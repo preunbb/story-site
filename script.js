@@ -81,6 +81,7 @@
   }
 
   // Tab switching with URL hash (#stories, #characters, #about, #other-authors)
+  // Flyouts in URL: #character/<id>, #story/<id>
   var TAB_IDS = ["stories", "characters", "about", "other-authors"];
 
   function showTab(name) {
@@ -95,17 +96,30 @@
     });
   }
 
+  function parseHash() {
+    var raw = (location.hash || "").replace(/^#/, "").toLowerCase();
+    var parts = raw.split("/");
+    var first = parts[0] || "";
+    if (first === "character" && parts[1]) {
+      return { tab: "characters", characterId: parts[1] };
+    }
+    if (first === "story" && parts[1]) {
+      var storyId = parts[1];
+      var num = parseInt(storyId, 10);
+      if (String(num) === storyId) return { tab: "stories", storyId: num };
+      return { tab: "stories", storyId: storyId };
+    }
+    var tab = TAB_IDS.indexOf(first) !== -1 ? first : "stories";
+    return { tab: tab };
+  }
+
   function getTabFromHash() {
-    var hash = (location.hash || "").replace(/^#/, "").toLowerCase();
-    return TAB_IDS.indexOf(hash) !== -1 ? hash : "stories";
+    return parseHash().tab;
   }
 
   function initTabs() {
     var panels = qsAll(".panel");
     var tabs = qsAll(".tab");
-
-    // Initial tab from URL
-    showTab(getTabFromHash());
 
     tabs.forEach(function (tab) {
       tab.addEventListener("click", function (e) {
@@ -114,10 +128,6 @@
         showTab(name);
         location.hash = name;
       });
-    });
-
-    window.addEventListener("hashchange", function () {
-      showTab(getTabFromHash());
     });
   }
 
@@ -241,7 +251,7 @@
     for (var i = 0; i < charButtons.length; i++) {
       charButtons[i].addEventListener("click", function () {
         var id = this.getAttribute("data-character-id");
-        openCharacterFlyout(getCharacterById(id));
+        location.hash = "character/" + id;
       });
     }
   }
@@ -314,16 +324,39 @@
     var storyButtons = flyoutBody.querySelectorAll("[data-story-id]");
     for (var j = 0; j < storyButtons.length; j++) {
       storyButtons[j].addEventListener("click", function () {
-        var id = parseInt(this.getAttribute("data-story-id"), 10);
-        openStoryFlyout(getStoryById(id));
+        var id = this.getAttribute("data-story-id");
+        location.hash = "story/" + id;
       });
     }
   }
 
   function closeFlyout() {
+    var state = parseHash();
+    if (state.characterId || state.storyId) {
+      location.hash = state.tab;
+      return;
+    }
     flyout.setAttribute("aria-hidden", "true");
     flyout.classList.remove("open");
     document.body.classList.remove("flyout-open");
+  }
+
+  function applyHash() {
+    var state = parseHash();
+    showTab(state.tab);
+    if (state.characterId) {
+      var character = getCharacterById(state.characterId);
+      if (character) openCharacterFlyout(character);
+      else closeFlyout();
+    } else if (state.storyId !== undefined) {
+      var story = getStoryById(state.storyId);
+      if (story) openStoryFlyout(story);
+      else closeFlyout();
+    } else {
+      flyout.setAttribute("aria-hidden", "true");
+      flyout.classList.remove("open");
+      document.body.classList.remove("flyout-open");
+    }
   }
 
   function bindStoryGridClick() {
@@ -332,8 +365,8 @@
       storiesGrid.addEventListener("click", function (e) {
         var card = e.target.closest(".story-card");
         if (!card) return;
-        var id = parseInt(card.getAttribute("data-story"), 10);
-        openStoryFlyout(getStoryById(id));
+        var id = card.getAttribute("data-story");
+        location.hash = "story/" + id;
       });
     }
   }
@@ -345,7 +378,7 @@
         var card = e.target.closest(".character-card");
         if (!card) return;
         var id = card.getAttribute("data-character");
-        openCharacterFlyout(getCharacterById(id));
+        location.hash = "character/" + id;
       });
     }
   }
@@ -366,6 +399,9 @@
       if (e.key === "Escape" && flyout.classList.contains("open"))
         closeFlyout();
     });
+
+    window.addEventListener("hashchange", applyHash);
+    applyHash();
   }
 
   init(window.DATA_SOURCE || { characters: [], stories: [] });

@@ -475,12 +475,12 @@ window.DATA_SOURCE = {
       profilePictures: [],
     },
     {
-      id: "legalese_nurse",
+      id: "the_nurse",
       name: "The Nurse",
       gender: "F",
       testiclesKilled: 0,
       bio: "Mid-30s, pleasantly thick, black hair with a thick streak of cyan. Clinic nurse who conducts Penile Necessity Assessments and checks readouts and paperwork with patients post-procedure. Cheerful and matter-of-fact.",
-      profilePictures: ["assets/characters/legalese_nurse.jpg"],
+      profilePictures: ["assets/characters/the_nurse.jpg"],
     },
     {
       id: "james_postop",
@@ -879,7 +879,7 @@ window.DATA_SOURCE = {
       cover: "assets/covers/legalese.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQp_4y7LJnHity8IKFUGkj_ScJ66i4HpU-yKIUslA2qmWCe8agtSxLe-_W7-Cza9tY3MCmi9JEF_uui/pub",
-      characterIds: ["ross", "legalese_nurse"],
+      characterIds: ["ross", "the_nurse"],
     },
     {
       id: 30,
@@ -895,7 +895,7 @@ window.DATA_SOURCE = {
         "amanda_postop",
         "amber_postop",
         "shardene",
-        "legalese_nurse",
+        "the_nurse",
       ],
     },
     {
