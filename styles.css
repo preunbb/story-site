@@ -217,6 +217,21 @@ a:hover {
   max-width: 56ch;
 }
 
+.other-authors-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.other-authors-list li {
+  margin-bottom: 0.5em;
+}
+.other-authors-list a {
+  color: inherit;
+}
+.other-authors-list a:hover {
+  text-decoration: underline;
+}
+
 /* Flyout */
 .flyout {
   position: fixed;
