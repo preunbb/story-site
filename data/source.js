@@ -892,5 +892,25 @@ window.DATA_SOURCE = {
         "https://docs.google.com/document/d/e/2PACX-1vT_B6lDYNi_ICH9IOVhhhMWE6YTtkKSbvma4E7nO4TxlxOMa9KGVO9lq3BiZqgnhMn3gJSYvSJepL71/pub",
       characterIds: [],
     },
+    {
+      id: 34,
+      title: "No Nut November: Squeeze",
+      summary:
+        "Steve is three days into No Nut November when the late train home brings him face to face with drunk Christie and Sharon—and a brutal choice: the squeeze or the jerk.",
+      cover: "assets/covers/no_nut_november_squeeze.jpg",
+      driveUrl:
+        "https://docs.google.com/document/d/e/2PACX-1vQWfM9IddQtsF4pQ9zXVzFNSu9xSB13fIIoo8XktLz5j_k_Ov5wqc1IZ5az6XJfIZruQfxFb554pptK/pub",
+      characterIds: [],
+    },
+    {
+      id: 35,
+      title: "No Nut November: Ass",
+      summary:
+        "Jordan's on day ten of No Nut November when Ashley drags him bikini shopping and teases him in the dressing room.",
+      cover: "assets/covers/no_nut_november_ass.jpg",
+      driveUrl:
+        "https://docs.google.com/document/d/e/2PACX-1vSYLqxpzpv0avqu9uBNT8-ejRcsIX9V5fKfEzarP_lCWpV9oqrQItoKQeK0rRk0D3cer6TgM2Y57TR3/pub",
+      characterIds: [],
+    },
   ],
 };
