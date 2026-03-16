@@ -564,7 +564,8 @@ window.DATA_SOURCE = {
     {
       id: 5,
       title: "The Ballbusting Arena 1: Battle Royale",
-      summary: "Britt has her first day in the ring.",
+      summary:
+        "Britt has her first day in the ring. Published on Amazon as part of a collection.",
       cover: "assets/covers/the_ballbusting_arena_1_battle_royale.jpg",
       amazonUrl:
         "https://www.amazon.com/Ballbusted-Castrated-Arena-Underground-Fighting-ebook/dp/B07X7J6GX8",
@@ -669,8 +670,10 @@ window.DATA_SOURCE = {
       id: 14,
       title: "The Ballbusting Arena 3: Retired",
       summary:
-        "Fiona takes Brad to her old arena for a VIP night. Club rules apply; they watch Sofia and Amy in the ring.",
+        "Fiona takes Brad to her old arena for a VIP night. Club rules apply; they watch Sofia and Amy in the ring. Published on Amazon as part of a collection.",
       cover: "assets/covers/the_ballbusting_arena_3_retired.jpg",
+      amazonUrl:
+        "https://www.amazon.com/Ballbusted-Castrated-Arena-Underground-Fighting-ebook/dp/B07X7J6GX8",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTcqX8xNsk5-s2a3en4zTxx3kZH1C43BY8KS84j1g8xBuJJpBMrKdqyglbLM037nRFyYcDbNsTC7bZT/pub",
       characterIds: ["fiona", "brad", "sofia", "amy", "wesley"],
@@ -739,6 +742,8 @@ window.DATA_SOURCE = {
       summary:
         "Robert is partnered with Monique in AP Calc. His mom Melody has a past; the clinic in town sees a lot of boys with 'problems down there'.",
       cover: "assets/covers/school_bully.jpg",
+      amazonUrl:
+        "https://www.amazon.com/Ballbusted-School-Bully-Part-1-ebook/dp/B07X3NGYVZ",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQf1mQ7QQv9z6iUH6DZRHEYn3XF_aURjfZukcC-Ibc5xRI0OpD4yU-5hfKvhGrQS1ADEOL5wptL1L1D/pub",
       characterIds: [
