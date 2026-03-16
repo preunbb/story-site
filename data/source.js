@@ -979,5 +979,15 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSU4uTw0_e32omJ7hRARitDiwSdX-MiuPuyLde4BYZk6DSU6wxhVcenbKDREtxuox9NSGnuyZ5svd1r/pub",
     },
+    {
+      id: 39,
+      title: "Trust issues",
+      summary:
+        "Tim's girlfriend Jenny has been ramping up the dominance. When she asks if he trusts her with a knife, saying yes might mean giving up more than he ever imagined.",
+      cover: "assets/covers/trust_issues.jpg",
+      driveUrl:
+        "https://docs.google.com/document/d/e/2PACX-1vRQEaO-eWJxiU6v7YmbiL2Fwo5G8O3Z9zgjmQ2BTfuufLcKvf5LxU4cjMiA9eFxKBNpFBIu_1lc8Dyb/pub",
+      characterIds: ["jenny"],
+    },
   ],
 };
