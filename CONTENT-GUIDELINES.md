@@ -33,6 +33,19 @@ When adding or editing character bios and story summaries in `data/source.js`, f
 
 ---
 
+## Cover images
+
+When creating or commissioning a new cover image (e.g. for a new story):
+
+- **No text.** There must be absolutely zero text anywhere on the cover—no title, no author name, no taglines. The cover is a picture only.
+- **Subject: one woman.** The cover is a photo (or photo-style image) of a single pretty woman. No men, no multiple figures, no props or scenery as the focus.
+- **Match the story’s woman.** The woman on the cover must match the **physical description** of whichever female character appears most often in the story (or is the clear “lead” woman). Use that character’s bio and the story text: hair color and style, build, age range, skin tone, distinctive traits (e.g. “black hair with a streak of cyan,” “buxom blonde,” “raven-haired Asian”). The cover should look like _that_ character.
+- **Match the story’s setting and tone.** Setting, outfit, and vibe should fit the story—e.g. nurse/clinical for a clinic story, domme/lingerie for a dungeon story, casual for a bar or campus story. No generic stock look; the image should feel like a still from that story’s world.
+
+**Summary:** A text-free picture of one woman who looks like the story’s main female character, in an outfit and setting that fit the story.
+
+---
+
 ## Reference when editing
 
-When you add new stories or characters, or revise existing bios/summaries, read this file (e.g. `@CONTENT-GUIDELINES.md`) and apply these rules so the catalog stays consistent and spoiler-free.
+When you add new stories or characters, create cover images, or revise existing bios/summaries, read this file (e.g. `@CONTENT-GUIDELINES.md`) and apply these rules so the catalog stays consistent and spoiler-free.

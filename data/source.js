@@ -471,6 +471,63 @@ window.DATA_SOURCE = {
       bio: "Steven's sister. Self-defense student who uses her brother as an unarmored practice target for groin strikes. Cheerful, cruel, and eager to share the aftermath with everyone.",
       profilePictures: [],
     },
+    {
+      id: "ross",
+      name: "Ross",
+      gender: "M",
+      bio: "Wakes up at the clinic after being drugged. Subject of a Penile Necessity Assessment; if he can't prove he needs it, the law says it goes.",
+      profilePictures: [],
+    },
+    {
+      id: "legalese_nurse",
+      name: "The Nurse",
+      gender: "F",
+      testiclesKilled: 0,
+      bio: "Mid-30s, pleasantly thick, black hair with a thick streak of cyan. Conducts Penile Necessity Assessments at the clinic. Cheerful and matter-of-fact about the procedure.",
+      profilePictures: [],
+    },
+    {
+      id: "james_postop",
+      name: "James",
+      gender: "M",
+      bio: "Employee at Over Easy Technologies. Anxious about his job and his standing at the company; agreed to a procedure to stay on board.",
+      profilePictures: [],
+    },
+    {
+      id: "diane_postop",
+      name: "Diane",
+      gender: "F",
+      bio: "Manager at Over Easy Technologies. Confident, dresses with a loose interpretation of the dress code. Keeps a jar on her desk.",
+      profilePictures: [],
+    },
+    {
+      id: "amanda_postop",
+      name: "Amanda",
+      gender: "F",
+      bio: "Cute blonde receptionist at Over Easy. Normally conservative dress; has gotten bolder around the office lately.",
+      profilePictures: [],
+    },
+    {
+      id: "amber_postop",
+      name: "Amber",
+      gender: "F",
+      bio: "Brunette production assistant. Works on company videos and staging.",
+      profilePictures: [],
+    },
+    {
+      id: "shardene",
+      name: "Shardene",
+      gender: "F",
+      bio: "Stripper. Creamy cappuccino skin, toned thighs, plump breasts, frizzy afro. One of the most popular at the club.",
+      profilePictures: [],
+    },
+    {
+      id: "postop_nurse",
+      name: "The Nurse",
+      gender: "F",
+      bio: "Hospital nurse. Cheerful and matter-of-fact. Checks readouts and paperwork with patients post-procedure.",
+      profilePictures: [],
+    },
   ],
   stories: [
     {
@@ -567,7 +624,7 @@ window.DATA_SOURCE = {
       cover: "assets/covers/commitment.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vRBtxHqI60ZsJNbBJl43GiOkLyCoN5n8Fm-lXK2qsrM_KHt0ZZkxiIYr_os0aOmTzWj7NvzgP_ykUXn/pub",
-      characterIds: ["jenny", "sanjay", "george"],
+      characterIds: ["jenny", "george"],
     },
     {
       id: 10,
@@ -665,6 +722,8 @@ window.DATA_SOURCE = {
       summary:
         "Prince Atheras ventures alone into a dangerous forest to rescue his captured swordmaster, ignoring his mother's warnings. In the jungle he crosses paths with Salei, a young scout from an isolated village that prizes male seed and has its own traditions about how to obtain it.",
       cover: "assets/covers/the_amazons_fruits.jpg",
+      amazonUrl:
+        "https://www.amazon.com/Ballbusting-Amazonian-Castratrix-Preun-BB-ebook",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vR7EElMXTg5o4F_WWEu1J4RFfAKF5NJL6pe0lluaHapWP7ZNo7fouYChti7WlZrHV_0TzOk8LCoAdAO/pub",
       characterIds: ["atheras", "salei"],
@@ -701,7 +760,7 @@ window.DATA_SOURCE = {
       id: 22,
       title: "Caged",
       summary:
-        "After five years in her cage, he's promised a gift for their anniversary. She keeps her word in the cruelest way—and he still asks for more work.",
+        "After five years in her cage, he's promised a gift for their anniversary. She keeps her word.",
       cover: "assets/covers/caged.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vScwbE6p1gmOjYx1gJwYRsBG4yaZxrYZOcM2eZa_7H0DPRw58GWhvUEwmD5aWjkagnEC3DiuGTrepJa/pub",
@@ -711,7 +770,7 @@ window.DATA_SOURCE = {
       id: 23,
       title: "Castration Appointment at the Kink Agency",
       summary:
-        "He's paid the agency a hefty fee for a very specific, permanent appointment. She'll do anything for that price.",
+        "He's paid the agency a hefty fee for a very specific, permanent appointment. She'll do anything for that price. Script written by me, and beautifully performed by a performer I've since lost contact with.",
       cover: "assets/covers/castration_appointment_at_the_kink_agency.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSmRTiAPjYMYME6TkjqBo2WIALcx0zF8bwSBtoiAcpB29emdpneSkyBUzTQOmqxI8WW0F0EHiFLL1G9/pub",
@@ -775,6 +834,63 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTAU43kVpZAcbYWpK5C8qNpyBgG1PZuYL9WrxJOUK741wmXWHxxkqzK0qDyGI6s4z6Hh1-X5OHA05LG/pub",
       characterIds: ["steven", "kaitlin", "amy", "june", "serena"],
+    },
+    {
+      id: 29,
+      title: "Legalese",
+      summary:
+        "After the Penile Necessity Assessment law, the government moves fast. Ross wakes up at the clinic—and the nurse is ready to see if he gets to keep his cock.",
+      cover: "assets/covers/legalese.jpg",
+      driveUrl:
+        "https://docs.google.com/document/d/e/2PACX-1vQp_4y7LJnHity8IKFUGkj_ScJ66i4HpU-yKIUslA2qmWCe8agtSxLe-_W7-Cza9tY3MCmi9JEF_uui/pub",
+      characterIds: ["ross", "legalese_nurse"],
+    },
+    {
+      id: 30,
+      title: "Postop",
+      summary:
+        "An employee at Over Easy Technologies wakes up after agreeing to a company-mandated procedure to keep his job. His manager wants a follow-up—and the office has changed in ways he didn't expect.",
+      cover: "assets/covers/postop.jpg",
+      driveUrl:
+        "https://docs.google.com/document/d/e/2PACX-1vSzw9FeU_bw3kinMgr4kctK9sPG_m9JTLgSxyaGA4t0Ie6VdJftpzR0LI8KcxjK_GW0b0r1GHDkjcCA/pub",
+      characterIds: [
+        "james_postop",
+        "diane_postop",
+        "amanda_postop",
+        "amber_postop",
+        "shardene",
+        "postop_nurse",
+      ],
+    },
+    {
+      id: 31,
+      title: "Office Management",
+      summary:
+        "An office worker's recovery period after a disciplinary procedure is over. His manager has a remote for the microchip in his remaining testicle—and company policy leaves no room for slip-ups.",
+      cover: "assets/covers/office_management.jpg",
+      driveUrl:
+        "https://docs.google.com/document/d/e/2PACX-1vTN5vggyeVjO2Q-btRDHYMD7pIokJV8I4XvBZzg-c_ZWQwPsGhMEOkL4N-FfbD4LQcwSkklj5le239n/pub",
+      characterIds: [],
+    },
+    {
+      id: 32,
+      title: "Nash Equilibrium",
+      summary:
+        "Cathy runs a game theory experiment. Three male subjects are strapped in and must each cast a vote—selfless or selfish—that will determine the consequences for all of them.",
+      cover: "assets/covers/nash_equilibrium.jpg",
+      driveUrl:
+        "https://docs.google.com/document/d/e/2PACX-1vQ7qBzB6EpL3DM7VcR7CsGgOKzJnF__EPTLO9uX1-7vbOtW7WoSnWo1rFgrClES0qrezqXpfvT13KzY/pub",
+      characterIds: ["cathy"],
+    },
+    {
+      id: 33,
+      title: "The First Guy I Ever Ballbusted",
+      summary:
+        "Very short first-person story I wrote as a script for someone long ago. She's since taken her content down and I respect her wishes - but you can still read the script here.",
+      cover: "assets/covers/the_first_guy_i_ever_ballbusted.jpg",
+      driveUrl:
+        "https://docs.google.com/document/d/e/2PACX-1vT_B6lDYNi_ICH9IOVhhhMWE6YTtkKSbvma4E7nO4TxlxOMa9KGVO9lq3BiZqgnhMn3gJSYvSJepL71/pub",
+      characterIds: [],
     },
   ],
 };
