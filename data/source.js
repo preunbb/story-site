@@ -37,7 +37,7 @@ window.DATA_SOURCE = {
       id: "sam",
       name: "Sam",
       gender: "M",
-      bio: "High school senior. Unusual in more ways than one; ends up in situations that spiral.",
+      bio: "High school senior with an exceptionally full scrotum. Tries his hardest to keep it that way, much to the chagrin of his swim instructor.",
       profilePictures: [],
     },
     {
