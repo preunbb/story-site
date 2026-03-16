@@ -25,6 +25,7 @@ window.DATA_SOURCE = {
       name: "Cathy",
       gender: "F",
       bio: "Loves science and hands-on research. Works at the clinic; curious, enthusiastic, a bit unhinged.",
+      testiclesKilled: 7,
       profilePictures: [
         "assets/characters/placeholder.svg",
         "assets/characters/placeholder.svg",
@@ -666,7 +667,7 @@ window.DATA_SOURCE = {
       cover: "assets/covers/her_proposal.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vRDqTNNakRk5cGuVVralHxnIVKjNJPYgMqpFHmFl69jqp6MIRxxsVJqAvwvU4ARWjojZX5GMwNrpDqt/pub",
-      characterIds: ["jenny", "sanjay", "cathy"],
+      characterIds: ["jenny", "sanjay"],
     },
     {
       id: 14,
@@ -755,7 +756,6 @@ window.DATA_SOURCE = {
         "maria",
         "malcolm",
         "michelle",
-        "cathy",
       ],
     },
     {
