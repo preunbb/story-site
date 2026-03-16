@@ -437,5 +437,19 @@ body.flyout-open {
   color: var(--ink-muted);
 }
 
+/* Ko-fi tip jar – bottom right */
+.floatingchat-container-wrap {
+  left: auto !important;
+  right: 1rem !important;
+  top: auto !important;
+  bottom: 1rem !important;
+}
+.floating-chat-kofi-popup-iframe {
+  left: auto !important;
+  right: 1rem !important;
+  top: auto !important;
+  bottom: 4rem !important;
+}
+
 /* Optional: link Google Fonts for DM Sans + Cormorant Garamond */
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap");
