@@ -170,6 +170,12 @@
         escapeHtml(story.amazonUrl) +
         '" target="_blank" rel="noopener noreferrer" class="flyout-link">Amazon</a>';
     }
+    if (story.audioUrl) {
+      linksHtml +=
+        '<a href="' +
+        escapeHtml(story.audioUrl.replace(/ /g, "%20")) +
+        '" class="flyout-link" download>Audio (m4a)</a>';
+    }
     linksHtml += "</div>";
 
     flyoutBody.innerHTML =

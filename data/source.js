@@ -627,5 +627,16 @@ window.DATA_SOURCE = {
         "https://docs.google.com/document/d/e/2PACX-1vScwbE6p1gmOjYx1gJwYRsBG4yaZxrYZOcM2eZa_7H0DPRw58GWhvUEwmD5aWjkagnEC3DiuGTrepJa/pub",
       characterIds: [],
     },
+    {
+      id: 23,
+      title: "Castration Appointment at the Kink Agency",
+      summary:
+        "He's paid the agency a hefty fee for a very specific, permanent appointment. She'll do anything for that price.",
+      cover: "assets/covers/castration_appointment_at_the_kink_agency.jpg",
+      driveUrl:
+        "https://docs.google.com/document/d/e/2PACX-1vSmRTiAPjYMYME6TkjqBo2WIALcx0zF8bwSBtoiAcpB29emdpneSkyBUzTQOmqxI8WW0F0EHiFLL1G9/pub",
+      audioUrl: "Castration Appointment at the Kink Agency by spazgirl.m4a",
+      characterIds: [],
+    },
   ],
 };
