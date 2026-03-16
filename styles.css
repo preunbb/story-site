@@ -68,6 +68,7 @@ a:hover {
 
 .tabs {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
 }
 
@@ -76,6 +77,7 @@ a:hover {
   border-radius: var(--radius);
   color: var(--ink-muted);
   font-size: 0.95rem;
+  flex-shrink: 0;
 }
 .tab:hover {
   color: var(--ink);
@@ -474,6 +476,99 @@ body.flyout-open {
   right: 1rem !important;
   top: auto !important;
   bottom: 4rem !important;
+}
+
+/* Mobile / small screens */
+@media (max-width: 768px) {
+  .site-header {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+    flex: 1 1 100%;
+  }
+
+  .tabs {
+    width: 100%;
+  }
+
+  .content {
+    padding: 1.25rem 1rem;
+  }
+
+  .panel h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Stories: vertical list, no covers */
+  .stories-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .story-card {
+    border-radius: var(--radius);
+    border-bottom: 1px solid var(--border);
+  }
+  .story-card:last-child {
+    border-bottom: none;
+  }
+  .story-card:hover {
+    transform: none;
+  }
+
+  .story-cover-wrap {
+    display: none;
+  }
+
+  .story-card-title {
+    padding: 1rem 1rem;
+    font-size: 1rem;
+  }
+
+  /* Characters: vertical list for consistency */
+  .characters-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .character-card {
+    border-radius: var(--radius);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-align: left;
+  }
+  .character-card:last-child {
+    border-bottom: none;
+  }
+  .character-card:hover {
+    transform: none;
+  }
+
+  .character-avatar-wrap {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    aspect-ratio: 1;
+  }
+
+  .character-card-name {
+    padding: 1rem 1rem 1rem 0;
+  }
+
+  /* Flyout full width on small screens */
+  .flyout-panel {
+    max-width: 100%;
+  }
 }
 
 /* Optional: link Google Fonts for DM Sans + Cormorant Garamond */
