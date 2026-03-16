@@ -566,6 +566,8 @@ window.DATA_SOURCE = {
       title: "The Ballbusting Arena 1: Battle Royale",
       summary: "Britt has her first day in the ring.",
       cover: "assets/covers/the_ballbusting_arena_1_battle_royale.jpg",
+      amazonUrl:
+        "https://www.amazon.com/Ballbusted-Castrated-Arena-Underground-Fighting-ebook/dp/B07X7J6GX8",
       driveUrl:
         "https://docs.google.com/document/d/1d_6G7cBaMt68YAQi-a38XKJ50dl_OqFqD2-Zg3fu_cU/edit?tab=t.0",
       characterIds: [
@@ -583,8 +585,10 @@ window.DATA_SOURCE = {
       id: 6,
       title: "A Healthy Relationship",
       summary:
-        "Rachel finally has a boyfriend who shares her kink. They try some roleplay in a physics lecture.",
+        "Rachel finally has a boyfriend who shares her kink. They try some roleplay in a physics lecture. Published on Amazon as 'Busted under the Desk'",
       cover: "assets/covers/a_healthy_relationship.jpg",
+      amazonUrl:
+        "https://www.amazon.com/Three-Ballbusting-Short-Stories-Castrated-ebook/dp/B07X3LZJ55",
       driveUrl:
         "https://docs.google.com/document/d/19aCVKeOTUt2EgmtKFl5GhpEfbFuERpy1tyyt1QeOzD4/edit?tab=t.0",
       characterIds: ["rachel", "greg"],
@@ -615,6 +619,8 @@ window.DATA_SOURCE = {
       summary:
         "He's finally ready to give her what she's always wanted. She has the tools ready.",
       cover: "assets/covers/commitment.jpg",
+      amazonUrl:
+        "https://www.amazon.com/Dating-Serial-Castratrix-Commitment-Relationship-ebook/dp/B07X2KSMT9",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vRBtxHqI60ZsJNbBJl43GiOkLyCoN5n8Fm-lXK2qsrM_KHt0ZZkxiIYr_os0aOmTzWj7NvzgP_ykUXn/pub",
       characterIds: ["jenny", "george"],
@@ -675,6 +681,8 @@ window.DATA_SOURCE = {
       summary:
         "Daniel steps into the arena for the first time. His fiancée Vanessa said one fight would be enough. His opponent is Sofia.",
       cover: "assets/covers/the_ballbusting_arena_2_sofias_choice.jpg",
+      amazonUrl:
+        "https://www.amazon.com/More-Tales-Ballbusting-Arena-Sofias-ebook",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vR7Gp9vmryuAt6xjGtyu4gtdF7LfwnMLxRaVJ59bgU3MCcC1c4rG-515FzV-2D6bJShjjMA56kiB5Lw/pub",
       characterIds: ["sofia", "daniel", "vanessa", "jenny"],
@@ -685,6 +693,8 @@ window.DATA_SOURCE = {
       summary:
         "Another night at the arena—and something comes together at the last minute.",
       cover: "assets/covers/the_ballbusting_arena_4_last_minute.jpg",
+      amazonUrl:
+        "https://www.amazon.com/More-Tales-Ballbusting-Arena-Sofias-ebook",
       driveUrl:
         "https://docs.google.com/document/d/17gDzSh4If2qXN-rXTiarJTSvnI6OylnAKe64zqT6p9I/edit?tab=t.0",
       characterIds: [],
@@ -693,8 +703,10 @@ window.DATA_SOURCE = {
       id: 17,
       title: "The Internship",
       summary:
-        "Nikita is an intern and personal assistant to her married boss, Mr. Wester. They work late together and grow close. When he confesses his feelings—and accidentally discovers what she reads on her work laptop—she surprises them both with a proposition.",
+        "Nikita is an intern and personal assistant to her married boss, Mr. Wester. They work late together and grow close. When he confesses his feelings—and accidentally discovers what she reads on her work laptop—she surprises them both with a proposition. Published as part of the collection on Amazon as 'Castrated by the Intern'",
       cover: "assets/covers/the_internship.jpg",
+      amazonUrl:
+        "https://www.amazon.com/Three-Ballbusting-Short-Stories-Castrated-ebook/dp/B07X3LZJ55",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQ545UIUPL8gg4x5HktS2dIPyQxj4jsIdxM9UYo-ipTOLGsFnu5vdwTovMBPGVvdrJd602APzJ6qZjC/pub",
       characterIds: ["nikita", "cole"],
@@ -814,6 +826,8 @@ window.DATA_SOURCE = {
       summary:
         "Sean moves in with his stepmom Genovia and stepsister Sylvana—both witches with powers over male arousal and orgasm. They have very different plans for him, and his resistance pushes them to extremes.",
       cover: "assets/covers/living_with_ballbusting_witches.jpg",
+      amazonUrl:
+        "https://www.amazon.com/Living-ballbusting-witches-Preun-BB-ebook/dp/B07X6GJ99F",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vS0bA6zQ9zU7aFW-AqA_k8k0VfL5VcfC8s43Z4kr1Fa71x3QuNeL9ujwSPiGzP2xJwtkl8TBKdgpR8C/pub",
       characterIds: ["genovia", "sylvana", "sean_witches"],
@@ -824,6 +838,8 @@ window.DATA_SOURCE = {
       summary:
         "Kaitlin's self defense class helps her make hilariously painful pranks on her brother even funnier than usual.",
       cover: "assets/covers/testy.jpg",
+      amazonUrl:
+        "https://www.amazon.com/Testy-Ballbusting-Prank-Gone-Too-ebook/dp/B07X1Z92PP",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTAU43kVpZAcbYWpK5C8qNpyBgG1PZuYL9WrxJOUK741wmXWHxxkqzK0qDyGI6s4z6Hh1-X5OHA05LG/pub",
       characterIds: ["steven", "kaitlin", "amy", "june", "serena"],
@@ -869,8 +885,10 @@ window.DATA_SOURCE = {
       id: 32,
       title: "Nash Equilibrium",
       summary:
-        "Cathy runs a game theory experiment. Three male subjects are strapped in and must each cast a vote—selfless or selfish—that will determine the consequences for all of them.",
+        "Cathy runs a game theory experiment. Three male subjects are strapped in and must each cast a vote—selfless or selfish—that will determine the consequences for all of them. Publised on Amazon as part of a collection with the title 'Ballbusting Lab'",
       cover: "assets/covers/nash_equilibrium.jpg",
+      amazonUrl:
+        "https://www.amazon.com/Three-Ballbusting-Short-Stories-Castrated-ebook/dp/B07X3LZJ55",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQ7qBzB6EpL3DM7VcR7CsGgOKzJnF__EPTLO9uX1-7vbOtW7WoSnWo1rFgrClES0qrezqXpfvT13KzY/pub",
       characterIds: ["cathy"],
