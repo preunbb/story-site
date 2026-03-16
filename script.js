@@ -121,36 +121,59 @@
     });
   }
 
-  // Build characters grid
+  function renderCharacterCard(c) {
+    var card = document.createElement("article");
+    card.className = "character-card";
+    card.setAttribute("data-character", c.id);
+    var firstPic =
+      c.profilePictures && c.profilePictures[0]
+        ? c.profilePictures[0]
+        : PLACEHOLDER_CHAR;
+    card.innerHTML =
+      '<div class="character-avatar-wrap">' +
+      '<img src="' +
+      firstPic +
+      '" alt="' +
+      escapeHtml(c.name) +
+      '" class="character-avatar" onerror="this.src=\'' +
+      PLACEHOLDER_CHAR +
+      "'\">" +
+      "</div>" +
+      '<span class="character-card-name">' +
+      escapeHtml(c.name) +
+      "</span>";
+    return card;
+  }
+
+  // Build characters grid: female first, then male; each group sorted by name
   function initCharactersGrid() {
     var charactersGrid = byId("characters-grid");
     if (!charactersGrid || !characters.length) return;
     charactersGrid.innerHTML = "";
-    var sorted = characters.slice().sort(function (a, b) {
-      return (a.name || "").localeCompare(b.name || "", undefined, { sensitivity: "base" });
+    var byGender = { F: [], M: [] };
+    characters.forEach(function (c) {
+      var g = c.gender || "M";
+      if (byGender[g]) byGender[g].push(c);
     });
-    sorted.forEach(function (c) {
-      var card = document.createElement("article");
-      card.className = "character-card";
-      card.setAttribute("data-character", c.id);
-      var firstPic =
-        c.profilePictures && c.profilePictures[0]
-          ? c.profilePictures[0]
-          : PLACEHOLDER_CHAR;
-      card.innerHTML =
-        '<div class="character-avatar-wrap">' +
-        '<img src="' +
-        firstPic +
-        '" alt="' +
-        escapeHtml(c.name) +
-        '" class="character-avatar" onerror="this.src=\'' +
-        PLACEHOLDER_CHAR +
-        "'\">" +
-        "</div>" +
-        '<span class="character-card-name">' +
-        escapeHtml(c.name) +
-        "</span>";
-      charactersGrid.appendChild(card);
+    ["F", "M"].forEach(function (gender) {
+      var list = byGender[gender];
+      if (!list.length) return;
+      list.sort(function (a, b) {
+        return (a.name || "").localeCompare(b.name || "", undefined, { sensitivity: "base" });
+      });
+      var section = document.createElement("div");
+      section.className = "characters-section";
+      var heading = document.createElement("h2");
+      heading.className = "characters-section-title";
+      heading.textContent = gender === "F" ? "Female characters" : "Male characters";
+      section.appendChild(heading);
+      var grid = document.createElement("div");
+      grid.className = "characters-grid-inner";
+      list.forEach(function (c) {
+        grid.appendChild(renderCharacterCard(c));
+      });
+      section.appendChild(grid);
+      charactersGrid.appendChild(section);
     });
   }
 

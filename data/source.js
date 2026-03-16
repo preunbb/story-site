@@ -7,7 +7,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 3,
       bio: "Therapist. Highly competent and devoted to her clients.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/karen.jpg"],
     },
     {
       id: "jenny",
@@ -15,10 +15,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 5,
       bio: "A high school goth who's grown into a professional dominatrix. Intense, expensive tastes, and a flair for the theatrical.",
-      profilePictures: [
-        "assets/characters/placeholder.svg",
-        "assets/characters/placeholder.svg",
-      ],
+      profilePictures: ["assets/characters/jenny.jpg"],
     },
     {
       id: "cathy",
@@ -26,10 +23,7 @@ window.DATA_SOURCE = {
       gender: "F",
       bio: "Loves science and hands-on research. Works at the clinic; curious, enthusiastic, a bit unhinged.",
       testiclesKilled: 7,
-      profilePictures: [
-        "assets/characters/placeholder.svg",
-        "assets/characters/placeholder.svg",
-      ],
+      profilePictures: ["assets/characters/cathy.jpg"],
     },
     {
       id: "amy",
@@ -37,6 +31,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 4,
       bio: "Nurse; black belt and arena fighter. Sweet on the surface; knows anatomy inside and out.",
+      profilePictures: ["assets/characters/amy.jpg"],
     },
     {
       id: "sam",
@@ -58,7 +53,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 1,
       bio: "Red-haired, green-eyed, freckled. First-timer at the arena; uses charm and flirting to get close.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/britt.jpg"],
     },
     {
       id: "emma",
@@ -66,7 +61,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 4,
       bio: "Buxom blonde. Confident, with a sadistic streak. Loves the spotlight and calls dibs on what she wants.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/emma.jpg"],
     },
     {
       id: "vivian",
@@ -74,7 +69,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 2,
       bio: "Raven-haired Asian fighter. Pragmatic, evil grin, no-nonsense in the ring.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/vivian.jpg"],
     },
     {
       id: "sofia",
@@ -82,7 +77,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 7,
       bio: "Russian former Olympian, thick accent. Muscular, cold, brutally efficient. One of the best in the arena.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/sofia.jpg"],
     },
     {
       id: "dan",
@@ -118,7 +113,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 2,
       bio: "Long-time fantasist who finally finds a boyfriend who shares her kink. Loves public roleplay.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/rachel.jpg"],
     },
     {
       id: "greg",
@@ -140,7 +135,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 2,
       bio: "Blonde, buxom, mid-twenties. Cheerful and cruel. Teams up with Goddess Alexa.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/june.jpg"],
     },
     {
       id: "alexa",
@@ -148,7 +143,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 2,
       bio: "Slim brunette domme—black dress, fishnets, heels. Insists on the title Goddess. Travels with a kit of tools.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/alexa.jpg"],
     },
     {
       id: "dennis",
@@ -163,7 +158,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 0,
       bio: "Blonde self-defense instructor (Ms. Jackson). Sports bra and booty shorts. Teaches groin strikes and isn't shy about demonstrating.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/serena.jpg"],
     },
     {
       id: "erica",
@@ -171,14 +166,14 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 2,
       bio: "Tall, dusky Asian in Serena's class. GO HUSKIES 2009, ample chest. Fights Dennis in the ring.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/erica.jpg"],
     },
     {
       id: "kayleigh",
       name: "Kayleigh",
       gender: "F",
       bio: "Dennis's red-haired, freckled girlfriend. Sends him nudes while he's at the gym.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/kayleigh.jpg"],
     },
     {
       id: "sanjay",
@@ -207,7 +202,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 2,
       bio: "Shy, mousy, cloud of brown curls. David's ex. Comes to the arena to watch. Drawn to sweet, loving guys.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/natalie.jpg"],
     },
     {
       id: "vanessa",
@@ -215,7 +210,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 0,
       bio: "Brian's girlfriend. Raven-haired arena fighter. Never loses. Has a pre-match routine the crowd loves.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/vanessa.jpg"],
     },
     {
       id: "david",
@@ -230,7 +225,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 6,
       bio: "Buxom blonde; Robert's mom and a former terror in high school. Sweet on the surface; knows way too much about ballbusting.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/melody.jpg"],
     },
     {
       id: "richard",
@@ -287,7 +282,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 104,
       bio: "Retired arena star. Strong, charismatic, used to being in control. Still has an in with the club.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/fiona.jpg"],
     },
     {
       id: "brad",
@@ -316,7 +311,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 2,
       bio: "Intern and personal assistant. Smart, attractive; has fantasies she's never shared with anyone.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/nikita.jpg"],
     },
     {
       id: "cole",
@@ -338,13 +333,13 @@ window.DATA_SOURCE = {
       name: "Maria",
       gender: "F",
       bio: "Sam's girlfriend who brought him to the cult. Also Dr. Maria Jimenez at the clinic—sympathetic with patients.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/maria.jpg"],
     },
     {
       id: "robin",
       name: "Robin",
       gender: "F",
-      bio: "Blonde from Sam's sociology class. They've hooked up; she's an acolyte in the cult.",
+      bio: "Acolyte in the cult of Poly.",
       profilePictures: [],
     },
     {
@@ -360,7 +355,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 2,
       bio: "Young scout from an isolated jungle village. Dark skin, muscular, white spiral tattoos on hips and breasts. Her village prizes male seed for the next generation; she's curious and eager to prove herself.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/salei.jpg"],
     },
     {
       id: "robert",
@@ -375,7 +370,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 2,
       bio: "Frizzy hair, glasses, smartest in class. Robert's calc partner; has strong opinions about who does the work and what happens if they're wrong.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/monique.jpg"],
     },
     {
       id: "malcolm",
@@ -389,7 +384,7 @@ window.DATA_SOURCE = {
       name: "Michelle",
       gender: "F",
       bio: "Blonde receptionist at the clinic. Knows the Drip and Snip special by heart; used to the stream of testicular injuries.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/michelle.jpg"],
     },
     {
       id: "hato",
@@ -403,7 +398,7 @@ window.DATA_SOURCE = {
       name: "Naimi",
       gender: "F",
       bio: "Dragon. Hato's fiancée. Strong, playful. Handles the traditional pre-wedding role in their culture.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/naimi.jpg"],
     },
     {
       id: "jon",
@@ -418,7 +413,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 2,
       bio: "Buxom, popular classmate. Dates jock Brad; when he cheats she takes her anger out on Jon—then keeps pushing boundaries.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/alyssa.jpg"],
     },
     {
       id: "brad_fz",
@@ -432,7 +427,7 @@ window.DATA_SOURCE = {
       name: "Dr. S",
       gender: "F",
       bio: "Asian urologist, head of the university hospital department. Operates on Jon more than once; leaves Cathy to assist.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/dr_s.jpg"],
     },
     {
       id: "genovia",
@@ -440,7 +435,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 2,
       bio: "Tall, curvy brunette stepmom. Witch with sexual psionics—she can read and control male arousal and orgasms. Tries to curb her stepson's urges with a hex.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/genovia.jpg"],
     },
     {
       id: "sylvana",
@@ -448,7 +443,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 2,
       bio: "Genovia's daughter; Sean's stepsister. Witch with similar powers. Teases and torments her stepbrother, determined to break his resistance.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/sylvana.jpg"],
     },
     {
       id: "sean_witches",
@@ -470,7 +465,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 2,
       bio: "Steven's sister. Self-defense student who uses her brother as an unarmored practice target for groin strikes. Cheerful, cruel, and eager to share the aftermath with everyone.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/kaitlin.jpg"],
     },
     {
       id: "ross",
@@ -485,7 +480,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 0,
       bio: "Mid-30s, pleasantly thick, black hair with a thick streak of cyan. Clinic nurse who conducts Penile Necessity Assessments and checks readouts and paperwork with patients post-procedure. Cheerful and matter-of-fact.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/legalese_nurse.jpg"],
     },
     {
       id: "james_postop",
@@ -499,28 +494,28 @@ window.DATA_SOURCE = {
       name: "Diane",
       gender: "F",
       bio: "Manager at Over Easy Technologies. Confident, dresses with a loose interpretation of the dress code. Keeps a jar on her desk.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/diane_postop.jpg"],
     },
     {
       id: "amanda_postop",
       name: "Amanda",
       gender: "F",
       bio: "Cute blonde receptionist at Over Easy. Normally conservative dress; has gotten bolder around the office lately.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/amanda_postop.jpg"],
     },
     {
       id: "amber_postop",
       name: "Amber",
       gender: "F",
       bio: "Brunette production assistant. Works on company videos and staging.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/amber_postop.jpg"],
     },
     {
       id: "shardene",
       name: "Shardene",
       gender: "F",
       bio: "Stripper. Creamy cappuccino skin, toned thighs, plump breasts, frizzy afro. One of the most popular at the club.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/shardene.jpg"],
     },
     {
       id: "officer_alice",
@@ -528,7 +523,7 @@ window.DATA_SOURCE = {
       gender: "F",
       testiclesKilled: 2,
       bio: "Officer. Conducts enhanced interrogations using testicular torture; prefers needlenose pliers and a methodical approach. Cheerful and matter-of-fact about procedure—and the paperwork that dictates how far she can go.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/officer_alice.jpg"],
     },
     {
       id: "ivan",
@@ -542,7 +537,7 @@ window.DATA_SOURCE = {
       name: "Lieutenant Maria",
       gender: "F",
       bio: "Alice's colleague at the station. Knows the paperwork inside out; helps with clearance, discretion, and the occasional mix-up.",
-      profilePictures: [],
+      profilePictures: ["assets/characters/lieutenant_maria.jpg"],
     },
   ],
   stories: [
