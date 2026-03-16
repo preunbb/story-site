@@ -568,7 +568,7 @@ window.DATA_SOURCE = {
       amazonUrl:
         "https://www.amazon.com/Castration-Anxiety-Preun-BB-ebook/dp/B07WS1GD4N",
       driveUrl:
-        "https://docs.google.com/document/d/1W8JLjGeuug4FnSALd2z-ivGM_25Fhg6kfZFFC1FNQqs/edit?tab=t.0",
+        "https://docs.google.com/document/d/e/2PACX-1vSzHrCQAe11KrCIyKxKmcF8imQnqjwi7cZ1QrmwuRtG80z9bJTo9REehUUBpbFKFoOvpPpWL4Vd_dVy/pub",
       characterIds: ["jeremy", "karen"],
     },
     {
@@ -577,7 +577,7 @@ window.DATA_SOURCE = {
       summary: "A brief glimpse into Jenny's busy life.",
       cover: "assets/covers/a_day_in_the_life_of_a_dominatrix.jpg",
       driveUrl:
-        "https://docs.google.com/document/d/1UgYwhn8WeEsr1RqY-755me6Rn_LZrc1kGoBKWMkz1O4/edit?tab=t.0",
+        "https://docs.google.com/document/d/e/2PACX-1vSkWP_Q0RQrC_sdo9j3NWYbjjqtJL-ZWt4CXP2DO68czpVmtXnyi52fzTlMjJ72TCwebQ-tDRhyg9bK/pub",
       characterIds: ["jenny"],
     },
     {
@@ -589,7 +589,7 @@ window.DATA_SOURCE = {
       amazonUrl:
         "https://www.amazon.com/Ballbusted-Castrated-Arena-Underground-Fighting-ebook/dp/B07X7J6GX8",
       driveUrl:
-        "https://docs.google.com/document/d/1d_6G7cBaMt68YAQi-a38XKJ50dl_OqFqD2-Zg3fu_cU/edit?tab=t.0",
+        "https://docs.google.com/document/d/e/2PACX-1vSojiHfPqWzU0OQi8Wxk1VCumujyMGPp49uIacSdo4yW96lOXu9tuLYCr1BGX1CbLOkSKDjIbar04bz/pub",
       characterIds: [
         "britt",
         "emma",
@@ -720,7 +720,7 @@ window.DATA_SOURCE = {
       amazonUrl:
         "https://www.amazon.com/More-Tales-Ballbusting-Arena-Sofias-ebook",
       driveUrl:
-        "https://docs.google.com/document/d/17gDzSh4If2qXN-rXTiarJTSvnI6OylnAKe64zqT6p9I/edit?tab=t.0",
+        "https://docs.google.com/document/d/e/2PACX-1vQElbm2mgIE8cMQBYsl6w7dHU8J2ff2dr26g35LDwdZF5eeWDvBMNL0B4ZYOcDRyE6_Ij9FMEDDHlPj/pub",
       characterIds: [],
     },
     {
