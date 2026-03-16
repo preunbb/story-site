@@ -522,6 +522,28 @@ window.DATA_SOURCE = {
       bio: "Stripper. Creamy cappuccino skin, toned thighs, plump breasts, frizzy afro. One of the most popular at the club.",
       profilePictures: [],
     },
+    {
+      id: "officer_alice",
+      name: "Officer Alice",
+      gender: "F",
+      testiclesKilled: 2,
+      bio: "Officer. Conducts enhanced interrogations using testicular torture; prefers needlenose pliers and a methodical approach. Cheerful and matter-of-fact about procedure—and the paperwork that dictates how far she can go.",
+      profilePictures: [],
+    },
+    {
+      id: "ivan",
+      name: "Ivan Miller",
+      gender: "M",
+      bio: "Picked up on a speeding ticket; his name hits the database as a suspect in multiple rape cases. Subject of a soundproof interrogation and the department's strict clearance rules.",
+      profilePictures: [],
+    },
+    {
+      id: "lieutenant_maria",
+      name: "Lieutenant Maria",
+      gender: "F",
+      bio: "Alice's colleague at the station. Knows the paperwork inside out; helps with clearance, discretion, and the occasional mix-up.",
+      profilePictures: [],
+    },
   ],
   stories: [
     {
@@ -930,6 +952,26 @@ window.DATA_SOURCE = {
       cover: "assets/covers/no_nut_november_ass.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSYLqxpzpv0avqu9uBNT8-ejRcsIX9V5fKfEzarP_lCWpV9oqrQItoKQeK0rRk0D3cer6TgM2Y57TR3/pub",
+      characterIds: [],
+    },
+    {
+      id: 36,
+      title: "Paperwork",
+      summary:
+        "Officer Alice brings in a suspect for questioning. The city's enhanced interrogation rules allow testicular torture—and the paperwork says exactly how far she can go. Getting the confession is the job; the rest is procedure.",
+      cover: "assets/covers/paperwork.jpg",
+      driveUrl:
+        "https://docs.google.com/document/d/e/2PACX-1vRETewpFyT0mnciKkMK8R97T-pDEcqkZ3siKhKg1oxgtWrgOe08CN7dLQLJ3c56bmZNcx86DyPlzGyZ/pub",
+      characterIds: ["officer_alice", "ivan", "lieutenant_maria"],
+    },
+    {
+      id: 37,
+      title: "Prank gone wrong",
+      summary:
+        "She hasn't seen him at school for two weeks—not since she and her friends pulled a prank on him behind the bleachers. She runs into him and wants to know how he's been.",
+      cover: "assets/covers/prank_gone_wrong.jpg",
+      driveUrl:
+        "https://docs.google.com/document/d/e/2PACX-1vQWua-pQJOAP2ZSyU5sFNSozli-i0KnBK1AkISCJMkY_xMpL4zcwkaiTkJbogDyeFWNYvYaNne5N762/pub",
       characterIds: [],
     },
   ],
