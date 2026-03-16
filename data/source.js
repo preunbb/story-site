@@ -390,7 +390,7 @@ window.DATA_SOURCE = {
       title: "Three Strikes",
       summary:
         "A high school senior with an unusual anatomy and a very demanding swim instructor.",
-      cover: "assets/covers/placeholder-1.jpg",
+      cover: "assets/covers/three_strikes.jpg",
       driveUrl: "https://drive.google.com/drive/folders/example1",
       characterIds: [
         "sam",
@@ -418,7 +418,7 @@ window.DATA_SOURCE = {
       id: 3,
       title: "Story Three",
       summary: "Third story. This one is Amazon only.",
-      cover: "assets/covers/placeholder-3.jpg",
+      cover: "assets/covers/story_three.jpg",
       amazonUrl: "https://www.amazon.com/dp/example3",
       characterIds: ["char-2", "char-3"],
     },
@@ -426,7 +426,7 @@ window.DATA_SOURCE = {
       id: 4,
       title: "A Day in the Life of a Dominatrix",
       summary: "A brief glimpse into Jenny's busy life.",
-      cover: "assets/covers/placeholder-4.jpg",
+      cover: "assets/covers/a_day_in_the_life_of_a_dominatrix.jpg",
       driveUrl:
         "https://docs.google.com/document/d/1UgYwhn8WeEsr1RqY-755me6Rn_LZrc1kGoBKWMkz1O4/edit?tab=t.0",
       characterIds: ["jenny"],
@@ -435,7 +435,7 @@ window.DATA_SOURCE = {
       id: 5,
       title: "The Ballbusting Arena 1: Battle Royale",
       summary: "Britt has her first day in the ring.",
-      cover: "assets/covers/placeholder-5.jpg",
+      cover: "assets/covers/the_ballbusting_arena_1_battle_royale.jpg",
       driveUrl:
         "https://docs.google.com/document/d/1d_6G7cBaMt68YAQi-a38XKJ50dl_OqFqD2-Zg3fu_cU/edit?tab=t.0",
       characterIds: [
@@ -454,7 +454,7 @@ window.DATA_SOURCE = {
       title: "A Healthy Relationship",
       summary:
         "Rachel finally has a boyfriend who shares her kink. They try some roleplay in a physics lecture.",
-      cover: "assets/covers/placeholder-6.jpg",
+      cover: "assets/covers/a_healthy_relationship.jpg",
       driveUrl:
         "https://docs.google.com/document/d/19aCVKeOTUt2EgmtKFl5GhpEfbFuERpy1tyyt1QeOzD4/edit?tab=t.0",
       characterIds: ["rachel", "greg"],
@@ -464,7 +464,7 @@ window.DATA_SOURCE = {
       title: "A Painful Train Ride",
       summary:
         "Allan's private train compartment is invaded by two women—June and Goddess Alexa.",
-      cover: "assets/covers/placeholder-7.jpg",
+      cover: "assets/covers/a_painful_train_ride.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTEnKFYNOWrlGqbFyMl3vHj7MyzTf4vJt4x_mLLEBSDlm5sr7vNbd_L86XFhXJbErYtvFzZmNyHjXs0/pub",
       characterIds: ["allan", "june", "alexa"],
@@ -474,7 +474,7 @@ window.DATA_SOURCE = {
       title: "Club Fight",
       summary:
         "Dennis's boxing time runs into Serena's self-defense class. Tensions rise; he and Erica agree to settle it in the ring.",
-      cover: "assets/covers/placeholder-8.jpg",
+      cover: "assets/covers/club_fight.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSrwbxvPy_ir_0ggOvgKWjAnKhgRzCtKsErNxLGWNmSdZkHtq6H8XTlR4UwXHpAnyM1f70CtaDpEQca/pub",
       characterIds: ["dennis", "serena", "erica", "kayleigh"],
@@ -484,7 +484,7 @@ window.DATA_SOURCE = {
       title: "Commitment",
       summary:
         "He's finally ready to give her what she's always wanted. She has the tools ready.",
-      cover: "assets/covers/placeholder-9.jpg",
+      cover: "assets/covers/commitment.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vRBtxHqI60ZsJNbBJl43GiOkLyCoN5n8Fm-lXK2qsrM_KHt0ZZkxiIYr_os0aOmTzWj7NvzgP_ykUXn/pub",
       characterIds: ["jenny", "sanjay", "george"],
@@ -494,6 +494,7 @@ window.DATA_SOURCE = {
       title: "The Ballbusting Arena 5: First Times",
       summary:
         "Brian watches Vanessa fight while Emma, Vivian, and Natalie join him in the stands. They swap stories about the past.",
+      cover: "assets/covers/the_ballbusting_arena_5_first_times.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTjujZsLMuA-lmgM6LPeed-X_FQ0STwNWLaRBQ1qRycmkdFK0UdNBVhJu7s1uA3tOWT5gXqZss0j0M7/pub",
       characterIds: ["brian", "emma", "vivian", "natalie", "vanessa", "david"],
@@ -503,7 +504,7 @@ window.DATA_SOURCE = {
       title: "Melody's First Time",
       summary:
         "Richard tries to trick Melody with a fake biology assignment. She's always fantasized about certain things—and suddenly has access.",
-      cover: "assets/covers/placeholder-11.jpg",
+      cover: "assets/covers/melodys_first_time.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQ4BV7uLAAfS57qXcqPU3km0k7kepW1TLwBZFvwB4KWX0kE1fv9EJEnL2e6VfZHhXCAHRTbY7Qo_mrf/pub",
       characterIds: ["melody", "richard", "nathan", "tommy"],
@@ -513,7 +514,7 @@ window.DATA_SOURCE = {
       title: "One Night Stand",
       summary:
         "Emma picks Simon up at a bar and takes him home. She ties him to her bed. She has a fantasy she wants him to play along with.",
-      cover: "assets/covers/placeholder-12.jpg",
+      cover: "assets/covers/one_night_stand.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQcNjbN4-u-A0mrr_00UfsUmYpGfi6UMU5xvD4CprYwOpTTsllqdXqFeuaXhxs79B9B0m2xOQq1JTOV/pub",
       characterIds: ["emma", "simon"],
@@ -523,7 +524,7 @@ window.DATA_SOURCE = {
       title: "Her Proposal",
       summary:
         "Jenny offers to marry Sanjay if he passes a test. He has to last an hour without cumming while she uses some of Cathy's inventions.",
-      cover: "assets/covers/placeholder-13.jpg",
+      cover: "assets/covers/her_proposal.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vRDqTNNakRk5cGuVVralHxnIVKjNJPYgMqpFHmFl69jqp6MIRxxsVJqAvwvU4ARWjojZX5GMwNrpDqt/pub",
       characterIds: ["jenny", "sanjay", "cathy"],
@@ -533,7 +534,7 @@ window.DATA_SOURCE = {
       title: "The Ballbusting Arena 3: Retired",
       summary:
         "Fiona takes Brad to her old arena for a VIP night. Club rules apply; they watch Sofia and Amy in the ring.",
-      cover: "assets/covers/placeholder-14.jpg",
+      cover: "assets/covers/the_ballbusting_arena_3_retired.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTcqX8xNsk5-s2a3en4zTxx3kZH1C43BY8KS84j1g8xBuJJpBMrKdqyglbLM037nRFyYcDbNsTC7bZT/pub",
       characterIds: ["fiona", "brad", "sofia", "amy", "wesley"],
@@ -543,7 +544,7 @@ window.DATA_SOURCE = {
       title: "The Ballbusting Arena 2: Sofia's Choice",
       summary:
         "Daniel steps into the arena for the first time. His fiancée Vanessa said one fight would be enough. His opponent is Sofia.",
-      cover: "assets/covers/placeholder-15.jpg",
+      cover: "assets/covers/the_ballbusting_arena_2_sofias_choice.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vR7Gp9vmryuAt6xjGtyu4gtdF7LfwnMLxRaVJ59bgU3MCcC1c4rG-515FzV-2D6bJShjjMA56kiB5Lw/pub",
       characterIds: ["sofia", "daniel", "vanessa", "jenny"],
@@ -553,7 +554,7 @@ window.DATA_SOURCE = {
       title: "The Ballbusting Arena 4: Last Minute",
       summary:
         "Another night at the arena—and something comes together at the last minute.",
-      cover: "assets/covers/placeholder-16.jpg",
+      cover: "assets/covers/the_ballbusting_arena_4_last_minute.jpg",
       driveUrl:
         "https://docs.google.com/document/d/17gDzSh4If2qXN-rXTiarJTSvnI6OylnAKe64zqT6p9I/edit?tab=t.0",
       characterIds: [],
@@ -563,7 +564,7 @@ window.DATA_SOURCE = {
       title: "The Internship",
       summary:
         "Nikita is an intern and personal assistant to her married boss, Mr. Wester. They work late together and grow close. When he confesses his feelings—and accidentally discovers what she reads on her work laptop—she surprises them both with a proposition.",
-      cover: "assets/covers/placeholder-17.jpg",
+      cover: "assets/covers/the_internship.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQ545UIUPL8gg4x5HktS2dIPyQxj4jsIdxM9UYo-ipTOLGsFnu5vdwTovMBPGVvdrJd602APzJ6qZjC/pub",
       characterIds: ["nikita", "cole"],
@@ -573,7 +574,7 @@ window.DATA_SOURCE = {
       title: "The Cult",
       summary:
         "Sam wakes up tied to an altar in the dark. His girlfriend Maria is there—and so is a goddess named Poly and her acolytes.",
-      cover: "assets/covers/placeholder-18.jpg",
+      cover: "assets/covers/the_cult.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTt0TRq1kLbyrUtvvw1s5rH-bDx9X6hSiu_1ybmn1vKmdz-7fQ5xuwSAAdQwFSUDtZ5cuhMZWAe5Yfd/pub",
       characterIds: ["sam", "poly", "maria", "robin"],
@@ -583,7 +584,7 @@ window.DATA_SOURCE = {
       title: "The Amazon's Fruits",
       summary:
         "Prince Atheras ventures alone into a dangerous forest to rescue his captured swordmaster, ignoring his mother's warnings. In the jungle he crosses paths with Salei, a young scout from an isolated village that prizes male seed and has its own traditions about how to obtain it.",
-      cover: "assets/covers/placeholder-19.jpg",
+      cover: "assets/covers/the_amazons_fruits.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vR7EElMXTg5o4F_WWEu1J4RFfAKF5NJL6pe0lluaHapWP7ZNo7fouYChti7WlZrHV_0TzOk8LCoAdAO/pub",
       characterIds: ["atheras", "salei"],
@@ -593,7 +594,7 @@ window.DATA_SOURCE = {
       title: "School Bully",
       summary:
         "Robert is partnered with Monique in AP Calc. His mom Melody has a past; the clinic in town sees a lot of boys with 'problems down there'.",
-      cover: "assets/covers/placeholder-20.jpg",
+      cover: "assets/covers/school_bully.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQf1mQ7QQv9z6iUH6DZRHEYn3XF_aURjfZukcC-Ibc5xRI0OpD4yU-5hfKvhGrQS1ADEOL5wptL1L1D/pub",
       characterIds: [
@@ -611,7 +612,7 @@ window.DATA_SOURCE = {
       title: "Relief",
       summary:
         "A dragon couple, two months from their wedding. Hato has been denied for ages; he begs for one day of relief in exchange for an extra day of their culture's pre-ceremony tradition.",
-      cover: "assets/covers/placeholder-21.jpg",
+      cover: "assets/covers/relief.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTYFdsidukSRvMu9bEuDO8LbJMenRKkALQ2bY7JFBRxs36bZ1duZCXPiK1f2WUcqxAxKZFPZjid5XET/pub",
       characterIds: ["hato", "naimi"],
@@ -621,6 +622,7 @@ window.DATA_SOURCE = {
       title: "Caged",
       summary:
         "After five years in her cage, he's promised a gift for their anniversary. She keeps her word in the cruelest way—and he still asks for more work.",
+      cover: "assets/covers/caged.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vScwbE6p1gmOjYx1gJwYRsBG4yaZxrYZOcM2eZa_7H0DPRw58GWhvUEwmD5aWjkagnEC3DiuGTrepJa/pub",
       characterIds: [],
