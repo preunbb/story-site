@@ -260,6 +260,27 @@ window.DATA_SOURCE = {
       profilePictures: [],
     },
     {
+      id: "jose",
+      name: "Jose",
+      gender: "M",
+      bio: "Hispanic gym regular, well-built and famously well-endowed. Catches Emma's eye at the gym; his confidence doesn't survive the night.",
+      profilePictures: [],
+    },
+    {
+      id: "eric",
+      name: "Eric",
+      gender: "M",
+      bio: "Alise's older stepson, high school senior. Well-hung, arrogant, used to getting his way. Plans a weekend with the babysitter that goes very wrong.",
+      profilePictures: [],
+    },
+    {
+      id: "bryan",
+      name: "Bryan",
+      gender: "M",
+      bio: "Eric's stepbrother, skinnier and timider. Goes along with Eric's schemes but draws Melody's attention in a different way when he finds her tied up.",
+      profilePictures: [],
+    },
+    {
       id: "fiona",
       name: "Fiona",
       gender: "F",
@@ -383,6 +404,73 @@ window.DATA_SOURCE = {
       bio: "Dragon. Hato's fiancée. Strong, playful. Handles the traditional pre-wedding role in their culture.",
       profilePictures: [],
     },
+    {
+      id: "jon",
+      name: "Jon",
+      gender: "M",
+      bio: "High school student. Tutors Alyssa and would do anything for her; gets drawn into her stress-relief routine and escalating situations.",
+      profilePictures: [],
+    },
+    {
+      id: "alyssa",
+      name: "Alyssa",
+      gender: "F",
+      testiclesKilled: 2,
+      bio: "Buxom, popular classmate. Dates jock Brad; when he cheats she takes her anger out on Jon—then keeps pushing boundaries.",
+      profilePictures: [],
+    },
+    {
+      id: "brad_fz",
+      name: "Brad",
+      gender: "M",
+      bio: "Alyssa's jock boyfriend. Cheats on her repeatedly; his behavior drives her to use Jon as an outlet.",
+      profilePictures: [],
+    },
+    {
+      id: "dr_s",
+      name: "Dr. S",
+      gender: "F",
+      bio: "Asian urologist, head of the university hospital department. Operates on Jon more than once; leaves Cathy to assist.",
+      profilePictures: [],
+    },
+    {
+      id: "genovia",
+      name: "Genovia",
+      gender: "F",
+      testiclesKilled: 2,
+      bio: "Tall, curvy brunette stepmom. Witch with sexual psionics—she can read and control male arousal and orgasms. Tries to curb her stepson's urges with a hex.",
+      profilePictures: [],
+    },
+    {
+      id: "sylvana",
+      name: "Sylvana",
+      gender: "F",
+      testiclesKilled: 2,
+      bio: "Genovia's daughter; Sean's stepsister. Witch with similar powers. Teases and torments her stepbrother, determined to break his resistance.",
+      profilePictures: [],
+    },
+    {
+      id: "sean_witches",
+      name: "Sean",
+      gender: "M",
+      bio: "Twenty-year-old virgin stepson. Moves in with Genovia and Sylvana; his fantasies make him a constant target for both witches' magic.",
+      profilePictures: [],
+    },
+    {
+      id: "steven",
+      name: "Steven",
+      gender: "M",
+      bio: "Law student; Kaitlin's brother. Gives her rides from self-defense class. One prank leaves him seriously injured—then a surgical mix-up leaves him with no way back. Ends up as the gym's paid practice dummy.",
+      profilePictures: [],
+    },
+    {
+      id: "kaitlin",
+      name: "Kaitlin",
+      gender: "F",
+      testiclesKilled: 2,
+      bio: "Steven's sister. Self-defense student who uses her brother as an unarmored practice target for groin strikes. Cheerful, cruel, and eager to share the aftermath with everyone.",
+      profilePictures: [],
+    },
   ],
   stories: [
     {
@@ -413,14 +501,6 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/1W8JLjGeuug4FnSALd2z-ivGM_25Fhg6kfZFFC1FNQqs/edit?tab=t.0",
       characterIds: ["jeremy", "karen"],
-    },
-    {
-      id: 3,
-      title: "Story Three",
-      summary: "Third story. This one is Amazon only.",
-      cover: "assets/covers/story_three.jpg",
-      amazonUrl: "https://www.amazon.com/dp/example3",
-      characterIds: ["char-2", "char-3"],
     },
     {
       id: 4,
@@ -577,7 +657,7 @@ window.DATA_SOURCE = {
       cover: "assets/covers/the_cult.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTt0TRq1kLbyrUtvvw1s5rH-bDx9X6hSiu_1ybmn1vKmdz-7fQ5xuwSAAdQwFSUDtZ5cuhMZWAe5Yfd/pub",
-      characterIds: ["sam", "poly", "maria", "robin"],
+      characterIds: ["poly", "maria", "robin"],
     },
     {
       id: 19,
@@ -637,6 +717,64 @@ window.DATA_SOURCE = {
         "https://docs.google.com/document/d/e/2PACX-1vSmRTiAPjYMYME6TkjqBo2WIALcx0zF8bwSBtoiAcpB29emdpneSkyBUzTQOmqxI8WW0F0EHiFLL1G9/pub",
       audioUrl: "Castration Appointment at the Kink Agency by spazgirl.m4a",
       characterIds: [],
+    },
+    {
+      id: 24,
+      title: "Food for Thot",
+      summary:
+        "Emma spots the perfect pair at the gym. Jose's used to girls drooling over his package—but she's got more than one thing on her mind, and his cojones are on the menu.",
+      cover: "assets/covers/food_for_thot.jpg",
+      driveUrl:
+        "https://docs.google.com/document/d/e/2PACX-1vSkCwlzQvhfAUEGIKey5gPeAsLdLNPfLBejwsRtqt53HtEQIgBPCYxnr_Oue17IT1xLzRFhEk5KgX-m/pub",
+      characterIds: ["emma", "jose"],
+    },
+    {
+      id: 25,
+      title: "Friendzoned",
+      summary:
+        "Jon tutors Alyssa and would do anything for her. When her boyfriend Brad keeps cheating, she starts taking her stress out on him in study hall—and things spiral from there through the clinic and beyond.",
+      cover: "assets/covers/friendzoned.jpg",
+      driveUrl:
+        "https://docs.google.com/document/d/e/2PACX-1vSas93kZnUArH8U_GUSKjn3vkVSgKdlcp44id_q0dcsv-J0eGTExnF5mpLsdwvh1kASg74ll7k1X412/pub",
+      characterIds: [
+        "jon",
+        "alyssa",
+        "brad",
+        "monique",
+        "dr_s",
+        "cathy",
+        "michelle",
+      ],
+    },
+    {
+      id: 26,
+      title: "Busted by the Babysitter",
+      summary:
+        "Alise hires the girl next door to watch her LEGALLY ADULT stepsons for the weekend. Eric's sure he can finally get with Melody—but she's been watching him too, and her 'accidents' have a way of adding up.",
+      cover: "assets/covers/busted_by_the_babysitter.jpg",
+      driveUrl:
+        "https://docs.google.com/document/d/e/2PACX-1vSCFSsYv9k5JNRuwqyMvtMBCESmShx9HFjIHjnnUFwG0DKcMhN4Lkx-AvSzawnOHyHDv1HylaLObYYm/pub",
+      characterIds: ["melody", "eric", "bryan"],
+    },
+    {
+      id: 27,
+      title: "Living with Ballbusting Witches",
+      summary:
+        "Sean moves in with his stepmom Genovia and stepsister Sylvana—both witches with powers over male arousal and orgasm. They have very different plans for him, and his resistance pushes them to extremes.",
+      cover: "assets/covers/living_with_ballbusting_witches.jpg",
+      driveUrl:
+        "https://docs.google.com/document/d/e/2PACX-1vS0bA6zQ9zU7aFW-AqA_k8k0VfL5VcfC8s43Z4kr1Fa71x3QuNeL9ujwSPiGzP2xJwtkl8TBKdgpR8C/pub",
+      characterIds: ["genovia", "sylvana", "sean_witches"],
+    },
+    {
+      id: 28,
+      title: "Testy",
+      summary:
+        "Kaitlin's self defense class helps her make hilariously painful pranks on her brother even funnier than usual.",
+      cover: "assets/covers/testy.jpg",
+      driveUrl:
+        "https://docs.google.com/document/d/e/2PACX-1vTAU43kVpZAcbYWpK5C8qNpyBgG1PZuYL9WrxJOUK741wmXWHxxkqzK0qDyGI6s4z6Hh1-X5OHA05LG/pub",
+      characterIds: ["steven", "kaitlin", "amy", "june", "serena"],
     },
   ],
 };
