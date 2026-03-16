@@ -483,7 +483,7 @@ window.DATA_SOURCE = {
       name: "The Nurse",
       gender: "F",
       testiclesKilled: 0,
-      bio: "Mid-30s, pleasantly thick, black hair with a thick streak of cyan. Conducts Penile Necessity Assessments at the clinic. Cheerful and matter-of-fact about the procedure.",
+      bio: "Mid-30s, pleasantly thick, black hair with a thick streak of cyan. Clinic nurse who conducts Penile Necessity Assessments and checks readouts and paperwork with patients post-procedure. Cheerful and matter-of-fact.",
       profilePictures: [],
     },
     {
@@ -519,13 +519,6 @@ window.DATA_SOURCE = {
       name: "Shardene",
       gender: "F",
       bio: "Stripper. Creamy cappuccino skin, toned thighs, plump breasts, frizzy afro. One of the most popular at the club.",
-      profilePictures: [],
-    },
-    {
-      id: "postop_nurse",
-      name: "The Nurse",
-      gender: "F",
-      bio: "Hospital nurse. Cheerful and matter-of-fact. Checks readouts and paperwork with patients post-procedure.",
       profilePictures: [],
     },
   ],
@@ -859,7 +852,7 @@ window.DATA_SOURCE = {
         "amanda_postop",
         "amber_postop",
         "shardene",
-        "postop_nurse",
+        "legalese_nurse",
       ],
     },
     {
