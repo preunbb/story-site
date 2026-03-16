@@ -1,0 +1,441 @@
+:root {
+  --grey: #252528;
+  --grey-soft: #2d2d31;
+  --grey-card: #36363b;
+  --red: #b07a85;
+  --red-bright: #c9959f;
+  --red-dim: #8f6a73;
+  --red-glow: rgba(176, 122, 133, 0.28);
+  --ink: #ebe9ec;
+  --ink-muted: #a8a4ab;
+  --border: rgba(176, 122, 133, 0.2);
+  --radius: 8px;
+  --radius-lg: 14px;
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --font-display: "Manrope", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--grey);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--red-bright);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: var(--ink);
+}
+
+/* Header */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: var(--grey-soft);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+.logo:hover {
+  color: var(--red-bright);
+}
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+}
+.tab:hover {
+  color: var(--ink);
+  background: rgba(176, 122, 133, 0.15);
+}
+.tab.active {
+  color: var(--ink);
+  background: var(--red-dim);
+  box-shadow: 0 0 20px var(--red-glow);
+}
+
+/* Content panels */
+.content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.panel {
+  display: none;
+}
+.panel.active {
+  display: block;
+}
+
+.panel h1 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+/* Stories grid */
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.story-card {
+  cursor: pointer;
+  background: var(--grey-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.story-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px var(--red-glow);
+  border-color: var(--red-dim);
+}
+
+.story-cover-wrap {
+  aspect-ratio: 2/3;
+  overflow: hidden;
+  background: var(--grey-soft);
+}
+
+.story-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.story-card:hover .story-cover {
+  transform: scale(1.03);
+}
+
+.story-card-title {
+  display: block;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* Characters grid */
+.characters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1.5rem;
+}
+
+.character-card {
+  cursor: pointer;
+  background: var(--grey-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+  text-align: center;
+}
+
+.character-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px var(--red-glow);
+  border-color: var(--red-dim);
+}
+
+.character-avatar-wrap {
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--grey-soft);
+}
+
+.character-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.character-card:hover .character-avatar {
+  transform: scale(1.03);
+}
+
+.character-card-name {
+  display: block;
+  padding: 0.75rem 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* About */
+.about-content {
+  color: var(--ink-muted);
+  max-width: 56ch;
+}
+
+/* Flyout */
+.flyout {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    visibility 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.flyout.open {
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+}
+
+.flyout-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  cursor: pointer;
+}
+
+.flyout-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 420px;
+  height: 100%;
+  background: var(--grey-soft);
+  border-left: 1px solid var(--border);
+  box-shadow: -8px 0 40px var(--red-glow);
+  padding: 1.5rem;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.flyout.open .flyout-panel {
+  transform: translateX(0);
+}
+
+body.flyout-open {
+  overflow: hidden;
+}
+
+.flyout-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--grey-card);
+  color: var(--ink-muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+.flyout-close:hover {
+  color: var(--ink);
+  background: var(--red-dim);
+}
+
+.flyout-cover-wrap {
+  aspect-ratio: 2/3;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  background: var(--grey-card);
+  border: 1px solid var(--border);
+}
+
+.flyout-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flyout-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+.flyout-summary {
+  margin: 0 0 1.25rem;
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.flyout-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.flyout-link {
+  display: inline-block;
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: var(--red-dim);
+  color: var(--ink);
+  border: 1px solid var(--border);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.flyout-link:hover {
+  background: var(--red);
+  border-color: var(--red-bright);
+  box-shadow: 0 0 16px var(--red-glow);
+}
+
+#flyout-body {
+  padding-top: 2.5rem;
+}
+
+.flyout-mode-story .flyout-cover-wrap {
+  aspect-ratio: 2/3;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  background: var(--grey-card);
+  border: 1px solid var(--border);
+}
+
+.flyout-links {
+  margin-bottom: 1.25rem;
+}
+
+.flyout-section {
+  margin-top: 1.25rem;
+}
+
+.flyout-section-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.flyout-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.flyout-list li {
+  margin: 0.25rem 0;
+}
+
+.flyout-inline-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--red-bright);
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+.flyout-inline-link:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.flyout-profiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.flyout-profile-wrap {
+  flex: 0 0 auto;
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--grey-card);
+  border: 1px solid var(--border);
+}
+
+.flyout-profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flyout-mode-character .flyout-title {
+  margin-top: 0;
+}
+
+.flyout-character-meta {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+
+/* Optional: link Google Fonts for DM Sans + Cormorant Garamond */
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap");

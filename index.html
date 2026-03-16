@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Preun</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="#" class="logo">Preun</a>
+      <nav class="tabs">
+        <a href="#stories" class="tab active" data-tab="stories">Stories</a>
+        <a href="#characters" class="tab" data-tab="characters">Characters</a>
+        <a href="#about" class="tab" data-tab="about">About</a>
+      </nav>
+    </header>
+
+    <main class="content">
+      <section id="panel-stories" class="panel active">
+        <h1>Stories</h1>
+        <div class="stories-grid" id="stories-grid">
+          <!-- Injected by JS from data/source.js -->
+        </div>
+      </section>
+
+      <section id="panel-characters" class="panel">
+        <h1>Characters</h1>
+        <div class="characters-grid" id="characters-grid">
+          <!-- Injected by JS from data/source.js -->
+        </div>
+      </section>
+
+      <section id="panel-about" class="panel">
+        <h1>About</h1>
+        <div class="about-content">
+          <p>
+            I'm Preun. I've been writing ballbusting and castration stories for
+            about 16 years now.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Shared flyout for story or character -->
+    <div id="flyout" class="flyout" aria-hidden="true">
+      <div class="flyout-backdrop" id="flyout-backdrop"></div>
+      <aside class="flyout-panel">
+        <button
+          type="button"
+          class="flyout-close"
+          id="flyout-close"
+          aria-label="Close"
+        >
+          ×
+        </button>
+        <div id="flyout-body"></div>
+      </aside>
+    </div>
+
+    <script src="data/source.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
