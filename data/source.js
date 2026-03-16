@@ -937,6 +937,8 @@ window.DATA_SOURCE = {
       title: "No Nut Narrator: Squeeze",
       summary:
         "Steve is three days into No Nut November when the late train home brings him face to face with drunk Christie and Sharon—and a brutal choice: the squeeze or the jerk. Part of KiwiBB's No Nut Narrator challenge.",
+      subtitle: "Part of KiwiBB's No Nut Narrator challenge.",
+
       cover: "assets/covers/no_nut_narrator_squeeze.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQWfM9IddQtsF4pQ9zXVzFNSu9xSB13fIIoo8XktLz5j_k_Ov5wqc1IZ5az6XJfIZruQfxFb554pptK/pub",
@@ -946,7 +948,8 @@ window.DATA_SOURCE = {
       id: 35,
       title: "No Nut Narrator: Ass",
       summary:
-        "Jordan's on day ten of No Nut November when Ashley drags him bikini shopping and teases him in the dressing room. Part of KiwiBB's No Nut Narrator challenge.",
+        "Jordan's on day ten of No Nut November when Ashley drags him bikini shopping and teases him in the dressing room.",
+      subtitle: "Part of KiwiBB's No Nut Narrator challenge.",
       cover: "assets/covers/no_nut_narrator_ass.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSYLqxpzpv0avqu9uBNT8-ejRcsIX9V5fKfEzarP_lCWpV9oqrQItoKQeK0rRk0D3cer6TgM2Y57TR3/pub",
