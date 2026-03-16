@@ -332,7 +332,7 @@ window.DATA_SOURCE = {
       id: "maria",
       name: "Maria",
       gender: "F",
-      bio: "Sam's girlfriend who brought him to the cult. Also Dr. Maria Jimenez at the clinic—sympathetic with patients.",
+      bio: "Dr. Maria Jimenez at the clinic—highly sympathetic with patients, even as she has to put them through some very tough procedures.",
       profilePictures: ["assets/characters/maria.jpg"],
     },
     {
@@ -742,7 +742,7 @@ window.DATA_SOURCE = {
       cover: "assets/covers/the_cult.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTt0TRq1kLbyrUtvvw1s5rH-bDx9X6hSiu_1ybmn1vKmdz-7fQ5xuwSAAdQwFSUDtZ5cuhMZWAe5Yfd/pub",
-      characterIds: ["poly", "maria", "robin"],
+      characterIds: ["poly", "robin"],
     },
     {
       id: 19,
