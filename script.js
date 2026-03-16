@@ -80,24 +80,44 @@
     });
   }
 
-  // Tab switching
+  // Tab switching with URL hash (#stories, #characters, #about, #other-authors)
+  var TAB_IDS = ["stories", "characters", "about", "other-authors"];
+
+  function showTab(name) {
+    if (TAB_IDS.indexOf(name) === -1) name = "stories";
+    var panels = qsAll(".panel");
+    var tabs = qsAll(".tab");
+    tabs.forEach(function (t) {
+      t.classList.toggle("active", t.getAttribute("data-tab") === name);
+    });
+    panels.forEach(function (p) {
+      p.classList.toggle("active", p.id === "panel-" + name);
+    });
+  }
+
+  function getTabFromHash() {
+    var hash = (location.hash || "").replace(/^#/, "").toLowerCase();
+    return TAB_IDS.indexOf(hash) !== -1 ? hash : "stories";
+  }
+
   function initTabs() {
     var panels = qsAll(".panel");
     var tabs = qsAll(".tab");
+
+    // Initial tab from URL
+    showTab(getTabFromHash());
+
     tabs.forEach(function (tab) {
       tab.addEventListener("click", function (e) {
         e.preventDefault();
         var name = tab.getAttribute("data-tab");
-        tabs.forEach(function (t) {
-          t.classList.remove("active");
-        });
-        panels.forEach(function (p) {
-          p.classList.remove("active");
-        });
-        tab.classList.add("active");
-        var panel = byId("panel-" + name);
-        if (panel) panel.classList.add("active");
+        showTab(name);
+        location.hash = name;
       });
+    });
+
+    window.addEventListener("hashchange", function () {
+      showTab(getTabFromHash());
     });
   }
 
