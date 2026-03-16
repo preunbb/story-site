@@ -785,6 +785,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTYFdsidukSRvMu9bEuDO8LbJMenRKkALQ2bY7JFBRxs36bZ1duZCXPiK1f2WUcqxAxKZFPZjid5XET/pub",
       characterIds: ["hato", "naimi"],
+      subtitle:
+        "This takes place in the 'Red Dragon' universe, started by poiu and continued by kiwibb. Fanart by 9x9 (https://inkbunny.net/s/2226481)",
     },
     {
       id: 22,

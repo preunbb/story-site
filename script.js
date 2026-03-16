@@ -231,6 +231,9 @@
     }
     linksHtml += "</div>";
 
+    var subtitleHtml = (story.subtitle && story.subtitle.trim())
+      ? '<p class="flyout-subtitle">' + escapeHtml(story.subtitle.trim()) + "</p>"
+      : "";
     flyoutBody.innerHTML =
       '<div class="flyout-mode flyout-mode-story">' +
       '<h2 class="flyout-title">' +
@@ -239,6 +242,7 @@
       '<p class="flyout-summary">' +
       escapeHtml(story.summary || "") +
       "</p>" +
+      subtitleHtml +
       linksHtml +
       charsHtml +
       "</div>";
