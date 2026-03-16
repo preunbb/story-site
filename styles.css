@@ -217,6 +217,16 @@ a:hover {
   max-width: 56ch;
 }
 
+.other-authors-subtitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.25em 0 0.5em;
+  color: var(--ink);
+}
+.other-authors-subtitle:first-of-type {
+  margin-top: 0.5em;
+}
+
 .other-authors-list {
   list-style: none;
   padding-left: 0;

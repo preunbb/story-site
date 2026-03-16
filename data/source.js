@@ -642,6 +642,8 @@ window.DATA_SOURCE = {
       summary:
         "Richard tries to trick Melody with a fake biology assignment. She's always fantasized about certain things—and suddenly has access.",
       cover: "assets/covers/melodys_first_time.jpg",
+      amazonUrl:
+        "https://www.amazon.com/Ballbusted-Girl-Next-Door-Melodys-ebook/dp/B07WW4WY5Q",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQ4BV7uLAAfS57qXcqPU3km0k7kepW1TLwBZFvwB4KWX0kE1fv9EJEnL2e6VfZHhXCAHRTbY7Qo_mrf/pub",
       characterIds: ["melody", "richard", "nathan", "tommy"],
@@ -803,6 +805,8 @@ window.DATA_SOURCE = {
       summary:
         "Jon tutors Alyssa and would do anything for her. When her boyfriend Brad keeps cheating, she starts taking her stress out on him in study hall—and things spiral from there through the clinic and beyond.",
       cover: "assets/covers/friendzoned.jpg",
+      amazonUrl:
+        "https://www.amazon.com/Friendzoned-part-Losing-ball-dreams-ebook/dp/B07X1346G7",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSas93kZnUArH8U_GUSKjn3vkVSgKdlcp44id_q0dcsv-J0eGTExnF5mpLsdwvh1kASg74ll7k1X412/pub",
       characterIds: [
