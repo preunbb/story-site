@@ -547,7 +547,8 @@ window.DATA_SOURCE = {
       summary:
         "A high school senior with an unusual anatomy and a very demanding swim instructor.",
       cover: "assets/covers/three_strikes.jpg",
-      driveUrl: "https://drive.google.com/drive/folders/example1",
+      driveUrl:
+        "https://docs.google.com/document/d/e/2PACX-1vTX9nnN1Igz0Nvpk3kpY6rjkJ26Lz5diQpx6G77hbuwGDXZ03x-aUrf7ni0nQv1hx1QzQ7X4ClVoUuR/pub",
       characterIds: [
         "sam",
         "jenny",
