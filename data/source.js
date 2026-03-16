@@ -605,12 +605,12 @@ window.DATA_SOURCE = {
       id: 6,
       title: "A Healthy Relationship",
       summary:
-        "Rachel finally has a boyfriend who shares her kink. They try some roleplay in a physics lecture. Published on Amazon as 'Busted under the Desk'",
+        "Rachel finally has a boyfriend who shares her kink. They try some roleplay in a physics lecture. Published on Amazon as 'Busted under the Desk'.",
       cover: "assets/covers/a_healthy_relationship.jpg",
       amazonUrl:
         "https://www.amazon.com/Three-Ballbusting-Short-Stories-Castrated-ebook/dp/B07X3LZJ55",
       driveUrl:
-        "https://docs.google.com/document/d/19aCVKeOTUt2EgmtKFl5GhpEfbFuERpy1tyyt1QeOzD4/edit?tab=t.0",
+        "https://docs.google.com/document/d/e/2PACX-1vRdLRm7RS8Ii9xyQ7GzfNSKP0O4AtgAs3cvpnYy9QAaPEQoThTi81fPpgCS7SgGrfDw7qsIq72rCdgL/pub",
       characterIds: ["rachel", "greg"],
     },
     {
