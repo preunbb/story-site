@@ -806,7 +806,7 @@ window.DATA_SOURCE = {
       cover: "assets/covers/castration_appointment_at_the_kink_agency.jpg",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSmRTiAPjYMYME6TkjqBo2WIALcx0zF8bwSBtoiAcpB29emdpneSkyBUzTQOmqxI8WW0F0EHiFLL1G9/pub",
-      audioUrl: "Castration Appointment at the Kink Agency by spazgirl.m4a",
+      audioUrl: "Castration Appointment at the Kink Agency.m4a",
       characterIds: [],
     },
     {
@@ -936,7 +936,7 @@ window.DATA_SOURCE = {
       id: 34,
       title: "No Nut Narrator: Squeeze",
       summary:
-        "Steve is three days into No Nut November when the late train home brings him face to face with drunk Christie and Sharon—and a brutal choice: the squeeze or the jerk. Part of KiwiBB's No Nut Narrator challenge.",
+        "Steve is three days into No Nut November when the late train home brings him face to face with drunk Christie and Sharon—and a brutal choice: the squeeze or the jerk.",
       subtitle: "Part of KiwiBB's No Nut Narrator challenge.",
 
       cover: "assets/covers/no_nut_narrator_squeeze.jpg",
