@@ -234,6 +234,19 @@
     var subtitleHtml = (story.subtitle && story.subtitle.trim())
       ? '<p class="flyout-subtitle">' + escapeHtml(story.subtitle.trim()) + "</p>"
       : "";
+    var tags = story.tags && Array.isArray(story.tags) ? story.tags : [];
+    var tagsHtml =
+      tags.length > 0
+        ? '<div class="flyout-tags">' +
+          tags
+            .map(function (tag) {
+              return (
+                '<span class="flyout-tag">' + escapeHtml(String(tag)) + "</span>"
+              );
+            })
+            .join("") +
+          "</div>"
+        : "";
     flyoutBody.innerHTML =
       '<div class="flyout-mode flyout-mode-story">' +
       '<h2 class="flyout-title">' +
@@ -243,6 +256,7 @@
       escapeHtml(story.summary || "") +
       "</p>" +
       subtitleHtml +
+      tagsHtml +
       linksHtml +
       charsHtml +
       "</div>";
