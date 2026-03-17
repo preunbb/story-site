@@ -697,7 +697,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vRDqTNNakRk5cGuVVralHxnIVKjNJPYgMqpFHmFl69jqp6MIRxxsVJqAvwvU4ARWjojZX5GMwNrpDqt/pub",
       characterIds: ["jenny", "sanjay"],
-      tags: ["medium", "New to Reddit"],
+      tags: ["medium"],
     },
     {
       id: 14,
