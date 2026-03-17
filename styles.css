@@ -112,6 +112,36 @@ a:hover {
   letter-spacing: 0.02em;
 }
 
+.tag-selector-wrap {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tag-selector-label {
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+}
+
+.tag-select {
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--grey-card);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  min-width: 10rem;
+}
+
+.tag-select:hover,
+.tag-select:focus {
+  border-color: var(--red-dim);
+  outline: none;
+}
+
 /* Stories grid */
 .stories-grid {
   display: grid;

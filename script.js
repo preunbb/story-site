@@ -50,10 +50,26 @@
     })[0];
   }
 
-  function renderStoriesGrid() {
+  function getAllTags() {
+    var set = {};
+    stories.forEach(function (s) {
+      var t = s.tags || [];
+      for (var i = 0; i < t.length; i++) {
+        set[t[i]] = true;
+      }
+    });
+    return Object.keys(set).sort();
+  }
+
+  function renderStoriesGrid(selectedTag) {
     var grid = byId("stories-grid");
     if (!grid) return;
-    var sorted = stories.slice().sort(function (a, b) {
+    var list = selectedTag
+      ? stories.filter(function (s) {
+          return (s.tags || []).indexOf(selectedTag) !== -1;
+        })
+      : stories.slice();
+    var sorted = list.sort(function (a, b) {
       return (a.title || "").localeCompare(b.title || "", undefined, {
         sensitivity: "base",
       });
@@ -77,6 +93,22 @@
         escapeHtml(s.title) +
         "</span>";
       grid.appendChild(card);
+    });
+  }
+
+  function initTagSelector() {
+    var select = byId("tag-select");
+    if (!select) return;
+    var tags = getAllTags();
+    select.innerHTML = '<option value="">All tags</option>';
+    tags.forEach(function (tag) {
+      var opt = document.createElement("option");
+      opt.value = tag;
+      opt.textContent = tag;
+      select.appendChild(opt);
+    });
+    select.addEventListener("change", function () {
+      renderStoriesGrid(select.value || null);
     });
   }
 
@@ -407,6 +439,7 @@
 
     initTabs();
     initCharactersGrid();
+    initTagSelector();
     renderStoriesGrid();
     bindStoryGridClick();
     bindCharacterGridClick();
