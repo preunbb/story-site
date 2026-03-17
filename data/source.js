@@ -769,7 +769,7 @@ window.DATA_SOURCE = {
         "Prince Atheras ventures alone into a dangerous forest to rescue his captured swordmaster, ignoring his mother's warnings. In the jungle he crosses paths with Salei, a young scout from an isolated village that prizes male seed and has its own traditions about how to obtain it.",
       cover: "assets/covers/the_amazons_fruits.jpg",
       amazonUrl:
-        "https://www.amazon.com/Ballbusting-Amazonian-Castratrix-Preun-BB-ebook",
+        "https://www.amazon.com/Ballbusting-Amazonian-Castratrix-Preun-BB-ebook/dp/B07XWPF8HM",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vR7EElMXTg5o4F_WWEu1J4RFfAKF5NJL6pe0lluaHapWP7ZNo7fouYChti7WlZrHV_0TzOk8LCoAdAO/pub",
       characterIds: ["atheras", "salei"],
