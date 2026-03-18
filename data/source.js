@@ -806,7 +806,7 @@ window.DATA_SOURCE = {
       characterIds: ["hato", "naimi"],
       subtitle:
         "This takes place in the 'Red Dragon' universe, started by poiu and continued by kiwibb. Fanart by 9x9 (https://inkbunny.net/s/2226481)",
-      tags: ["short", "Furry", "New to Reddit"],
+      tags: ["short", "Furry", "New to Reddit", "Based on other authors' work"],
     },
     {
       id: 22,
@@ -1024,7 +1024,7 @@ window.DATA_SOURCE = {
         " This was a commission to extend an existing story whose source I've since lost. Part 3 is the only part I've written.",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSU4uTw0_e32omJ7hRARitDiwSdX-MiuPuyLde4BYZk6DSU6wxhVcenbKDREtxuox9NSGnuyZ5svd1r/pub",
-      tags: ["medium", "New to Reddit"],
+      tags: ["medium", "New to Reddit", "Based on other authors' work"],
     },
     {
       id: 39,
@@ -1035,7 +1035,20 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vRQEaO-eWJxiU6v7YmbiL2Fwo5G8O3Z9zgjmQ2BTfuufLcKvf5LxU4cjMiA9eFxKBNpFBIu_1lc8Dyb/pub",
       characterIds: ["jenny"],
-      tags: ["short", "New to Reddit"],
+      tags: ["short", "New to Reddit", "Based on other authors' work"],
+    },
+    {
+      id: 40,
+      title: "Dragon Slaying Alternative Chapter 13: Kayla",
+      summary:
+        "After having his balls beaten 50 different ways by a panoply of beautiful anthropomorphic women, the red dragon P'oiu has an exceptionally difficult choice to make. He chooses...poorly.",
+      subtitle:
+        "Poiu is the original author of the first 12 chapters of this story, from here. While I’m not a furry myself, I appreciate his (and KiwiBB’s) red dragon world. Someone commissioned me to make an alternative to chapter 13, as well as two endings. Unfortunately I'm not sure who the artist for the cover is.",
+      cover: "assets/covers/dragon_slaying.jpg",
+      driveUrl:
+        "https://docs.google.com/document/d/e/2PACX-1vTUG5kvCCVa1GAQuZALyLUYM6smQs0mg2kAmF9UXScDNTBeM6rp7JhmXQEqoLJKT0fR5EWmAymSGu6X/pub",
+      characterIds: ["kayla"],
+      tags: ["long", "furry", "Based on other authors' work", "New to Reddit"],
     },
   ],
 };
