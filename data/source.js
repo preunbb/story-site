@@ -1048,7 +1048,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTUG5kvCCVa1GAQuZALyLUYM6smQs0mg2kAmF9UXScDNTBeM6rp7JhmXQEqoLJKT0fR5EWmAymSGu6X/pub",
       characterIds: ["kayla"],
-      tags: ["long", "furry", "Based on other authors' work", "New to Reddit"],
+      tags: ["long", "Furry", "Based on other authors' work", "New to Reddit"],
     },
   ],
 };
