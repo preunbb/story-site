@@ -934,7 +934,7 @@ window.DATA_SOURCE = {
         "the_nurse",
       ],
       subtitle: "Commission for a continuation between two captions.",
-      tags: ["Length: Short", "New to Reddit"],
+      tags: ["Length: Short", "New to Reddit", "Based on other authors' work"],
     },
     {
       id: 31,
@@ -1043,7 +1043,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vRQEaO-eWJxiU6v7YmbiL2Fwo5G8O3Z9zgjmQ2BTfuufLcKvf5LxU4cjMiA9eFxKBNpFBIu_1lc8Dyb/pub",
       characterIds: ["jenny"],
-      tags: ["Length: Short", "New to Reddit", ""],
+      tags: ["Length: Short", "New to Reddit", "Based on other authors' work"],
     },
     {
       id: 40,
