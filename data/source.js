@@ -558,7 +558,7 @@ window.DATA_SOURCE = {
         "cathy",
         "amy",
       ],
-      tags: ["long"],
+      tags: ["Length: Long"],
     },
     {
       id: 2,
@@ -571,7 +571,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSzHrCQAe11KrCIyKxKmcF8imQnqjwi7cZ1QrmwuRtG80z9bJTo9REehUUBpbFKFoOvpPpWL4Vd_dVy/pub",
       characterIds: ["jeremy", "karen"],
-      tags: ["long"],
+      tags: ["Length: Long"],
     },
     {
       id: 4,
@@ -581,7 +581,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSkWP_Q0RQrC_sdo9j3NWYbjjqtJL-ZWt4CXP2DO68czpVmtXnyi52fzTlMjJ72TCwebQ-tDRhyg9bK/pub",
       characterIds: ["jenny"],
-      tags: ["medium"],
+      tags: ["Length: Medium"],
     },
     {
       id: 5,
@@ -603,7 +603,7 @@ window.DATA_SOURCE = {
         "roger",
         "paul",
       ],
-      tags: ["medium"],
+      tags: ["Length: Medium"],
     },
     {
       id: 6,
@@ -616,7 +616,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vRdLRm7RS8Ii9xyQ7GzfNSKP0O4AtgAs3cvpnYy9QAaPEQoThTi81fPpgCS7SgGrfDw7qsIq72rCdgL/pub",
       characterIds: ["rachel", "greg"],
-      tags: ["medium"],
+      tags: ["Length: Medium"],
     },
     {
       id: 7,
@@ -627,7 +627,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTEnKFYNOWrlGqbFyMl3vHj7MyzTf4vJt4x_mLLEBSDlm5sr7vNbd_L86XFhXJbErYtvFzZmNyHjXs0/pub",
       characterIds: ["allan", "june", "alexa"],
-      tags: ["medium", "New to Reddit"],
+      tags: ["Length: Medium", "New to Reddit"],
     },
     {
       id: 8,
@@ -638,7 +638,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSrwbxvPy_ir_0ggOvgKWjAnKhgRzCtKsErNxLGWNmSdZkHtq6H8XTlR4UwXHpAnyM1f70CtaDpEQca/pub",
       characterIds: ["dennis", "serena", "erica", "kayleigh"],
-      tags: ["medium"],
+      tags: ["Length: Medium"],
     },
     {
       id: 9,
@@ -651,7 +651,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vRBtxHqI60ZsJNbBJl43GiOkLyCoN5n8Fm-lXK2qsrM_KHt0ZZkxiIYr_os0aOmTzWj7NvzgP_ykUXn/pub",
       characterIds: ["jenny", "george"],
-      tags: ["medium"],
+      tags: ["Length: Medium"],
     },
     {
       id: 10,
@@ -662,7 +662,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTjujZsLMuA-lmgM6LPeed-X_FQ0STwNWLaRBQ1qRycmkdFK0UdNBVhJu7s1uA3tOWT5gXqZss0j0M7/pub",
       characterIds: ["brian", "emma", "vivian", "natalie", "vanessa", "david"],
-      tags: ["medium"],
+      tags: ["Length: Medium"],
     },
     {
       id: 11,
@@ -675,7 +675,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQ4BV7uLAAfS57qXcqPU3km0k7kepW1TLwBZFvwB4KWX0kE1fv9EJEnL2e6VfZHhXCAHRTbY7Qo_mrf/pub",
       characterIds: ["melody", "richard", "nathan", "tommy"],
-      tags: ["medium"],
+      tags: ["Length: Medium"],
     },
     {
       id: 12,
@@ -686,7 +686,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQcNjbN4-u-A0mrr_00UfsUmYpGfi6UMU5xvD4CprYwOpTTsllqdXqFeuaXhxs79B9B0m2xOQq1JTOV/pub",
       characterIds: ["emma", "simon"],
-      tags: ["medium", "New to Reddit"],
+      tags: ["Length: Medium", "New to Reddit"],
     },
     {
       id: 13,
@@ -697,7 +697,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vRDqTNNakRk5cGuVVralHxnIVKjNJPYgMqpFHmFl69jqp6MIRxxsVJqAvwvU4ARWjojZX5GMwNrpDqt/pub",
       characterIds: ["jenny", "sanjay"],
-      tags: ["medium"],
+      tags: ["Length: Medium"],
     },
     {
       id: 14,
@@ -710,7 +710,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTcqX8xNsk5-s2a3en4zTxx3kZH1C43BY8KS84j1g8xBuJJpBMrKdqyglbLM037nRFyYcDbNsTC7bZT/pub",
       characterIds: ["fiona", "brad", "sofia", "amy", "wesley"],
-      tags: ["medium"],
+      tags: ["Length: Medium"],
     },
     {
       id: 15,
@@ -723,7 +723,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vR7Gp9vmryuAt6xjGtyu4gtdF7LfwnMLxRaVJ59bgU3MCcC1c4rG-515FzV-2D6bJShjjMA56kiB5Lw/pub",
       characterIds: ["sofia", "daniel", "vanessa", "jenny"],
-      tags: ["medium"],
+      tags: ["Length: Medium"],
     },
     {
       id: 16,
@@ -736,7 +736,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQElbm2mgIE8cMQBYsl6w7dHU8J2ff2dr26g35LDwdZF5eeWDvBMNL0B4ZYOcDRyE6_Ij9FMEDDHlPj/pub",
       characterIds: [],
-      tags: ["medium"],
+      tags: ["Length: Medium"],
     },
     {
       id: 17,
@@ -749,7 +749,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQ545UIUPL8gg4x5HktS2dIPyQxj4jsIdxM9UYo-ipTOLGsFnu5vdwTovMBPGVvdrJd602APzJ6qZjC/pub",
       characterIds: ["nikita", "cole"],
-      tags: ["medium"],
+      tags: ["Length: Medium"],
     },
     {
       id: 18,
@@ -760,7 +760,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTt0TRq1kLbyrUtvvw1s5rH-bDx9X6hSiu_1ybmn1vKmdz-7fQ5xuwSAAdQwFSUDtZ5cuhMZWAe5Yfd/pub",
       characterIds: ["poly", "robin"],
-      tags: ["short", "New to Reddit"],
+      tags: ["Length: Short", "New to Reddit"],
     },
     {
       id: 19,
@@ -773,7 +773,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vR7EElMXTg5o4F_WWEu1J4RFfAKF5NJL6pe0lluaHapWP7ZNo7fouYChti7WlZrHV_0TzOk8LCoAdAO/pub",
       characterIds: ["atheras", "salei"],
-      tags: ["long", "New to Reddit"],
+      tags: ["Length: Long", "New to Reddit"],
     },
     {
       id: 20,
@@ -793,7 +793,7 @@ window.DATA_SOURCE = {
         "malcolm",
         "michelle",
       ],
-      tags: ["long"],
+      tags: ["Length: Long"],
     },
     {
       id: 21,
@@ -806,7 +806,12 @@ window.DATA_SOURCE = {
       characterIds: ["hato", "naimi"],
       subtitle:
         "This takes place in the 'Red Dragon' universe, started by poiu and continued by kiwibb. Fanart by 9x9 (https://inkbunny.net/s/2226481)",
-      tags: ["short", "Furry", "New to Reddit", "Based on other authors' work"],
+      tags: [
+        "Length: Short",
+        "Furry",
+        "New to Reddit",
+        "Based on other authors' work",
+      ],
     },
     {
       id: 22,
@@ -817,7 +822,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vScwbE6p1gmOjYx1gJwYRsBG4yaZxrYZOcM2eZa_7H0DPRw58GWhvUEwmD5aWjkagnEC3DiuGTrepJa/pub",
       characterIds: [],
-      tags: ["short", "New to Reddit"],
+      tags: ["Length: Short", "New to Reddit"],
     },
     {
       id: 23,
@@ -829,7 +834,7 @@ window.DATA_SOURCE = {
         "https://docs.google.com/document/d/e/2PACX-1vSmRTiAPjYMYME6TkjqBo2WIALcx0zF8bwSBtoiAcpB29emdpneSkyBUzTQOmqxI8WW0F0EHiFLL1G9/pub",
       audioUrl: "Castration Appointment at the Kink Agency.m4a",
       characterIds: [],
-      tags: ["short"],
+      tags: ["Length: Short"],
     },
     {
       id: 24,
@@ -840,7 +845,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSkCwlzQvhfAUEGIKey5gPeAsLdLNPfLBejwsRtqt53HtEQIgBPCYxnr_Oue17IT1xLzRFhEk5KgX-m/pub",
       characterIds: ["emma", "jose"],
-      tags: ["medium"],
+      tags: ["Length: Medium"],
     },
     {
       id: 25,
@@ -861,7 +866,7 @@ window.DATA_SOURCE = {
         "cathy",
         "michelle",
       ],
-      tags: ["long"],
+      tags: ["Length: Long"],
     },
     {
       id: 26,
@@ -872,7 +877,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSCFSsYv9k5JNRuwqyMvtMBCESmShx9HFjIHjnnUFwG0DKcMhN4Lkx-AvSzawnOHyHDv1HylaLObYYm/pub",
       characterIds: ["melody", "eric", "bryan"],
-      tags: ["long", "New to Reddit"],
+      tags: ["Length: Long", "New to Reddit"],
     },
     {
       id: 27,
@@ -885,7 +890,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vS0bA6zQ9zU7aFW-AqA_k8k0VfL5VcfC8s43Z4kr1Fa71x3QuNeL9ujwSPiGzP2xJwtkl8TBKdgpR8C/pub",
       characterIds: ["genovia", "sylvana", "sean_witches"],
-      tags: ["long"],
+      tags: ["Length: Long"],
     },
     {
       id: 28,
@@ -898,7 +903,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTAU43kVpZAcbYWpK5C8qNpyBgG1PZuYL9WrxJOUK741wmXWHxxkqzK0qDyGI6s4z6Hh1-X5OHA05LG/pub",
       characterIds: ["steven", "kaitlin", "amy", "june", "serena"],
-      tags: ["medium"],
+      tags: ["Length: Medium"],
     },
     {
       id: 29,
@@ -909,7 +914,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQp_4y7LJnHity8IKFUGkj_ScJ66i4HpU-yKIUslA2qmWCe8agtSxLe-_W7-Cza9tY3MCmi9JEF_uui/pub",
       characterIds: ["ross", "the_nurse"],
-      tags: ["short"],
+      tags: ["Length: Short"],
     },
     {
       id: 30,
@@ -928,7 +933,7 @@ window.DATA_SOURCE = {
         "the_nurse",
       ],
       subtitle: "Commission for a continuation between two captions.",
-      tags: ["short", "New to Reddit"],
+      tags: ["Length: Short", "New to Reddit"],
     },
     {
       id: 31,
@@ -941,7 +946,7 @@ window.DATA_SOURCE = {
       characterIds: [],
       subtitle:
         "Followup to a beautiful RP I did with someone on tumblr way back in the day.",
-      tags: ["short", "New to Reddit"],
+      tags: ["Length: Short", "New to Reddit"],
     },
     {
       id: 32,
@@ -954,7 +959,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQ7qBzB6EpL3DM7VcR7CsGgOKzJnF__EPTLO9uX1-7vbOtW7WoSnWo1rFgrClES0qrezqXpfvT13KzY/pub",
       characterIds: ["cathy"],
-      tags: ["medium", "New to Reddit"],
+      tags: ["Length: Medium", "New to Reddit"],
     },
     {
       id: 33,
@@ -965,7 +970,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vT_B6lDYNi_ICH9IOVhhhMWE6YTtkKSbvma4E7nO4TxlxOMa9KGVO9lq3BiZqgnhMn3gJSYvSJepL71/pub",
       characterIds: [],
-      tags: ["short", "New to Reddit"],
+      tags: ["Length: Short", "New to Reddit"],
     },
     {
       id: 34,
@@ -978,7 +983,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQWfM9IddQtsF4pQ9zXVzFNSu9xSB13fIIoo8XktLz5j_k_Ov5wqc1IZ5az6XJfIZruQfxFb554pptK/pub",
       characterIds: [],
-      tags: ["short", "New to Reddit", "No Nut Narrator"],
+      tags: ["Length: Short", "New to Reddit", "No Nut Narrator"],
     },
     {
       id: 35,
@@ -990,7 +995,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSYLqxpzpv0avqu9uBNT8-ejRcsIX9V5fKfEzarP_lCWpV9oqrQItoKQeK0rRk0D3cer6TgM2Y57TR3/pub",
       characterIds: [],
-      tags: ["short", "New to Reddit", "No Nut Narrator"],
+      tags: ["Length: Short", "New to Reddit", "No Nut Narrator"],
     },
     {
       id: 36,
@@ -1001,7 +1006,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vRETewpFyT0mnciKkMK8R97T-pDEcqkZ3siKhKg1oxgtWrgOe08CN7dLQLJ3c56bmZNcx86DyPlzGyZ/pub",
       characterIds: ["officer_alice", "ivan", "lieutenant_maria"],
-      tags: ["medium", "New to Reddit"],
+      tags: ["Length: Medium", "New to Reddit"],
     },
     {
       id: 37,
@@ -1012,7 +1017,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQWua-pQJOAP2ZSyU5sFNSozli-i0KnBK1AkISCJMkY_xMpL4zcwkaiTkJbogDyeFWNYvYaNne5N762/pub",
       characterIds: [],
-      tags: ["medium"],
+      tags: ["Length: Medium"],
     },
     {
       id: 38,
@@ -1024,7 +1029,7 @@ window.DATA_SOURCE = {
         " This was a commission to extend an existing story whose source I've since lost. Part 3 is the only part I've written.",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSU4uTw0_e32omJ7hRARitDiwSdX-MiuPuyLde4BYZk6DSU6wxhVcenbKDREtxuox9NSGnuyZ5svd1r/pub",
-      tags: ["medium", "New to Reddit", "Based on other authors' work"],
+      tags: ["Length: Medium", "New to Reddit", "Based on other authors' work"],
     },
     {
       id: 39,
@@ -1035,7 +1040,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vRQEaO-eWJxiU6v7YmbiL2Fwo5G8O3Z9zgjmQ2BTfuufLcKvf5LxU4cjMiA9eFxKBNpFBIu_1lc8Dyb/pub",
       characterIds: ["jenny"],
-      tags: ["short", "New to Reddit", "Based on other authors' work"],
+      tags: ["Length: Short", "New to Reddit", "Based on other authors' work"],
     },
     {
       id: 40,
@@ -1048,7 +1053,12 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTUG5kvCCVa1GAQuZALyLUYM6smQs0mg2kAmF9UXScDNTBeM6rp7JhmXQEqoLJKT0fR5EWmAymSGu6X/pub",
       characterIds: ["kayla"],
-      tags: ["long", "Furry", "Based on other authors' work", "New to Reddit"],
+      tags: [
+        "Length: Long",
+        "Furry",
+        "Based on other authors' work",
+        "New to Reddit",
+      ],
     },
   ],
 };
