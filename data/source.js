@@ -223,7 +223,7 @@ window.DATA_SOURCE = {
       id: "melody",
       name: "Melody",
       gender: "F",
-      testiclesKilled: 6,
+      testiclesKilled: 8,
       bio: "Buxom blonde; Robert's mom and a former terror in high school. Sweet on the surface; knows way too much about ballbusting.",
       profilePictures: ["assets/characters/melody.jpg"],
     },
@@ -1029,7 +1029,7 @@ window.DATA_SOURCE = {
         " This was a commission to extend an existing story whose source I've since lost. Part 3 is the only part I've written.",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSU4uTw0_e32omJ7hRARitDiwSdX-MiuPuyLde4BYZk6DSU6wxhVcenbKDREtxuox9NSGnuyZ5svd1r/pub",
-      tags: ["Length: Medium", "New to Reddit", "Based on other authors' work"],
+      tags: ["Length: Medium", "New to Reddit", ""],
     },
     {
       id: 39,
@@ -1040,7 +1040,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vRQEaO-eWJxiU6v7YmbiL2Fwo5G8O3Z9zgjmQ2BTfuufLcKvf5LxU4cjMiA9eFxKBNpFBIu_1lc8Dyb/pub",
       characterIds: ["jenny"],
-      tags: ["Length: Short", "New to Reddit", "Based on other authors' work"],
+      tags: ["Length: Short", "New to Reddit", ""],
     },
     {
       id: 40,
