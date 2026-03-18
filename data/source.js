@@ -603,7 +603,7 @@ window.DATA_SOURCE = {
         "roger",
         "paul",
       ],
-      tags: ["Length: Medium"],
+      tags: ["Length: Medium", "Series: The Ballbusting Arena"],
     },
     {
       id: 6,
@@ -646,6 +646,7 @@ window.DATA_SOURCE = {
       summary:
         "He's finally ready to give her what she's always wanted. She has the tools ready.",
       cover: "assets/covers/commitment.jpg",
+      subtitle: "Published on Amazon as 'Dating a Serial Castratrix'.",
       amazonUrl:
         "https://www.amazon.com/Dating-Serial-Castratrix-Commitment-Relationship-ebook/dp/B07X2KSMT9",
       driveUrl:
@@ -662,7 +663,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTjujZsLMuA-lmgM6LPeed-X_FQ0STwNWLaRBQ1qRycmkdFK0UdNBVhJu7s1uA3tOWT5gXqZss0j0M7/pub",
       characterIds: ["brian", "emma", "vivian", "natalie", "vanessa", "david"],
-      tags: ["Length: Medium"],
+      tags: ["Length: Medium", "Series: The Ballbusting Arena"],
     },
     {
       id: 11,
@@ -710,7 +711,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTcqX8xNsk5-s2a3en4zTxx3kZH1C43BY8KS84j1g8xBuJJpBMrKdqyglbLM037nRFyYcDbNsTC7bZT/pub",
       characterIds: ["fiona", "brad", "sofia", "amy", "wesley"],
-      tags: ["Length: Medium"],
+      tags: ["Length: Medium", "Series: The Ballbusting Arena"],
     },
     {
       id: 15,
@@ -723,7 +724,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vR7Gp9vmryuAt6xjGtyu4gtdF7LfwnMLxRaVJ59bgU3MCcC1c4rG-515FzV-2D6bJShjjMA56kiB5Lw/pub",
       characterIds: ["sofia", "daniel", "vanessa", "jenny"],
-      tags: ["Length: Medium"],
+      tags: ["Length: Medium", "Series: The Ballbusting Arena"],
     },
     {
       id: 16,
@@ -736,7 +737,7 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQElbm2mgIE8cMQBYsl6w7dHU8J2ff2dr26g35LDwdZF5eeWDvBMNL0B4ZYOcDRyE6_Ij9FMEDDHlPj/pub",
       characterIds: [],
-      tags: ["Length: Medium"],
+      tags: ["Length: Medium", "Series: The Ballbusting Arena"],
     },
     {
       id: 17,
