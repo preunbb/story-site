@@ -1032,7 +1032,7 @@ window.DATA_SOURCE = {
         " This was a commission to extend an existing story whose source I've since lost. Part 3 is the only part I've written.",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSU4uTw0_e32omJ7hRARitDiwSdX-MiuPuyLde4BYZk6DSU6wxhVcenbKDREtxuox9NSGnuyZ5svd1r/pub",
-      tags: ["Length: Medium", "New to Reddit", ""],
+      tags: ["Length: Medium", "New to Reddit", "Based on other authors' work"],
     },
     {
       id: 39,
