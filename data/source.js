@@ -223,7 +223,7 @@ window.DATA_SOURCE = {
       id: "melody",
       name: "Melody",
       gender: "F",
-      testiclesKilled: 8,
+      testiclesKilled: 10,
       bio: "Buxom blonde; Robert's mom and a former terror in high school. Sweet on the surface; knows way too much about ballbusting.",
       profilePictures: ["assets/characters/melody.jpg"],
     },
