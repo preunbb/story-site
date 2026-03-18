@@ -288,7 +288,7 @@ window.DATA_SOURCE = {
       id: "brad",
       name: "Brad",
       gender: "M",
-      bio: "Fiona's boyfriend. She brings him to the arena for a night out; club rules mean he has to strip.",
+      bio: "Hunky asshole who dates Alyssa in High School.Fiona's boyfriend. She brings him to the arena for a night out; club rules mean he has to strip.",
       profilePictures: [],
     },
     {
@@ -416,8 +416,8 @@ window.DATA_SOURCE = {
       profilePictures: ["assets/characters/alyssa.jpg"],
     },
     {
-      id: "brad_fz",
-      name: "Brad",
+      id: "chad",
+      name: "Chad",
       gender: "M",
       bio: "Alyssa's jock boyfriend. Cheats on her repeatedly; his behavior drives her to use Jon as an outlet.",
       profilePictures: [],
@@ -860,7 +860,7 @@ window.DATA_SOURCE = {
       characterIds: [
         "jon",
         "alyssa",
-        "brad",
+        "chad",
         "monique",
         "dr_s",
         "cathy",
