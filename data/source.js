@@ -59,7 +59,7 @@ window.DATA_SOURCE = {
       id: "emma",
       name: "Emma",
       gender: "F",
-      testiclesKilled: 4,
+      testiclesKilled: 8,
       bio: "Buxom blonde. Confident, with a sadistic streak. Loves the spotlight and calls dibs on what she wants.",
       profilePictures: ["assets/characters/emma.jpg"],
     },
