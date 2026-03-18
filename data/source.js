@@ -952,8 +952,10 @@ window.DATA_SOURCE = {
       id: 32,
       title: "Nash Equilibrium",
       summary:
-        "Cathy runs a game theory experiment. Three male subjects are strapped in and must each cast a vote—selfless or selfish—that will determine the consequences for all of them. Publised on Amazon as part of a collection with the title 'Ballbusting Lab'",
+        "Cathy runs a game theory experiment. Three male subjects are strapped in and must each cast a vote—selfless or selfish—that will determine the consequences for all of them.",
       cover: "assets/covers/nash_equilibrium.jpg",
+      subtitle:
+        "Published on Amazon as part of a collection with the title 'Ballbusting Lab'.",
       amazonUrl:
         "https://www.amazon.com/Three-Ballbusting-Short-Stories-Castrated-ebook/dp/B07X3LZJ55",
       driveUrl:
