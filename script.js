@@ -50,6 +50,31 @@
     })[0];
   }
 
+  function normalizeStoryState(s) {
+    var st = s.state;
+    if (st === 1 || st === 2 || st === 3) return st;
+    if (st === "1" || st === "2" || st === "3") return parseInt(st, 10);
+    return 3;
+  }
+
+  function releaseDateSortKey(s) {
+    if (!s.releaseDate) return Number.POSITIVE_INFINITY;
+    var t = new Date(s.releaseDate).getTime();
+    return isNaN(t) ? Number.POSITIVE_INFINITY : t;
+  }
+
+  function compareStories(a, b) {
+    var sa = normalizeStoryState(a);
+    var sb = normalizeStoryState(b);
+    if (sa !== sb) return sa - sb;
+    var ta = releaseDateSortKey(a);
+    var tb = releaseDateSortKey(b);
+    if (ta !== tb) return ta - tb;
+    return (a.title || "").localeCompare(b.title || "", undefined, {
+      sensitivity: "base",
+    });
+  }
+
   function getAllTags() {
     var set = {};
     stories.forEach(function (s) {
@@ -69,25 +94,35 @@
           return (s.tags || []).indexOf(selectedTag) !== -1;
         })
       : stories.slice();
-    var sorted = list.sort(function (a, b) {
-      return (a.title || "").localeCompare(b.title || "", undefined, {
-        sensitivity: "base",
-      });
-    });
+    var sorted = list.sort(compareStories);
     grid.innerHTML = "";
     sorted.forEach(function (s) {
       var card = document.createElement("article");
       card.className = "story-card";
       card.setAttribute("data-story", s.id);
-      card.innerHTML =
-        '<div class="story-cover-wrap">' +
+      var coverContent =
         '<img src="' +
         (s.cover || PLACEHOLDER_COVER) +
         '" alt="' +
         escapeHtml(s.title) +
         '" class="story-cover" onerror="this.src=\'' +
         PLACEHOLDER_COVER +
-        "'\">" +
+        "'\">";
+      var st = normalizeStoryState(s);
+      if (st === 1) {
+        coverContent +=
+          '<span class="story-state-badge story-state-badge--soon" aria-label="Coming soon">' +
+          '<span class="story-state-badge-text">Coming soon!</span>' +
+          "</span>";
+      } else if (st === 2) {
+        coverContent +=
+          '<span class="story-state-badge story-state-badge--new" aria-label="New story">' +
+          '<span class="story-state-badge-text">New story!</span>' +
+          "</span>";
+      }
+      card.innerHTML =
+        '<div class="story-cover-wrap">' +
+        coverContent +
         "</div>" +
         '<span class="story-card-title">' +
         escapeHtml(s.title) +
@@ -201,13 +236,16 @@
       var list = byGender[gender];
       if (!list.length) return;
       list.sort(function (a, b) {
-        return (a.name || "").localeCompare(b.name || "", undefined, { sensitivity: "base" });
+        return (a.name || "").localeCompare(b.name || "", undefined, {
+          sensitivity: "base",
+        });
       });
       var section = document.createElement("div");
       section.className = "characters-section";
       var heading = document.createElement("h2");
       heading.className = "characters-section-title";
-      heading.textContent = gender === "F" ? "Female characters" : "Male characters";
+      heading.textContent =
+        gender === "F" ? "Female characters" : "Male characters";
       section.appendChild(heading);
       var grid = document.createElement("div");
       grid.className = "characters-grid-inner";
@@ -263,9 +301,12 @@
     }
     linksHtml += "</div>";
 
-    var subtitleHtml = (story.subtitle && story.subtitle.trim())
-      ? '<p class="flyout-subtitle">' + escapeHtml(story.subtitle.trim()) + "</p>"
-      : "";
+    var subtitleHtml =
+      story.subtitle && story.subtitle.trim()
+        ? '<p class="flyout-subtitle">' +
+          escapeHtml(story.subtitle.trim()) +
+          "</p>"
+        : "";
     var tags = story.tags && Array.isArray(story.tags) ? story.tags : [];
     var tagsHtml =
       tags.length > 0
@@ -273,7 +314,9 @@
           tags
             .map(function (tag) {
               return (
-                '<span class="flyout-tag">' + escapeHtml(String(tag)) + "</span>"
+                '<span class="flyout-tag">' +
+                escapeHtml(String(tag)) +
+                "</span>"
               );
             })
             .join("") +

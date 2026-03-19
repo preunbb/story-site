@@ -558,6 +558,8 @@ window.DATA_SOURCE = {
         "cathy",
         "amy",
       ],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Long"],
     },
     {
@@ -571,6 +573,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSzHrCQAe11KrCIyKxKmcF8imQnqjwi7cZ1QrmwuRtG80z9bJTo9REehUUBpbFKFoOvpPpWL4Vd_dVy/pub",
       characterIds: ["jeremy", "karen"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Long"],
     },
     {
@@ -581,6 +585,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSkWP_Q0RQrC_sdo9j3NWYbjjqtJL-ZWt4CXP2DO68czpVmtXnyi52fzTlMjJ72TCwebQ-tDRhyg9bK/pub",
       characterIds: ["jenny"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Medium"],
     },
     {
@@ -603,6 +609,8 @@ window.DATA_SOURCE = {
         "roger",
         "paul",
       ],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Medium", "Series: The Ballbusting Arena"],
     },
     {
@@ -616,6 +624,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vRdLRm7RS8Ii9xyQ7GzfNSKP0O4AtgAs3cvpnYy9QAaPEQoThTi81fPpgCS7SgGrfDw7qsIq72rCdgL/pub",
       characterIds: ["rachel", "greg"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Medium"],
     },
     {
@@ -627,6 +637,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTEnKFYNOWrlGqbFyMl3vHj7MyzTf4vJt4x_mLLEBSDlm5sr7vNbd_L86XFhXJbErYtvFzZmNyHjXs0/pub",
       characterIds: ["allan", "june", "alexa"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Medium", "New to Reddit"],
     },
     {
@@ -638,6 +650,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSrwbxvPy_ir_0ggOvgKWjAnKhgRzCtKsErNxLGWNmSdZkHtq6H8XTlR4UwXHpAnyM1f70CtaDpEQca/pub",
       characterIds: ["dennis", "serena", "erica", "kayleigh"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Medium"],
     },
     {
@@ -652,6 +666,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vRBtxHqI60ZsJNbBJl43GiOkLyCoN5n8Fm-lXK2qsrM_KHt0ZZkxiIYr_os0aOmTzWj7NvzgP_ykUXn/pub",
       characterIds: ["jenny", "george"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Medium"],
     },
     {
@@ -663,6 +679,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTjujZsLMuA-lmgM6LPeed-X_FQ0STwNWLaRBQ1qRycmkdFK0UdNBVhJu7s1uA3tOWT5gXqZss0j0M7/pub",
       characterIds: ["brian", "emma", "vivian", "natalie", "vanessa", "david"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Medium", "Series: The Ballbusting Arena"],
     },
     {
@@ -676,6 +694,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQ4BV7uLAAfS57qXcqPU3km0k7kepW1TLwBZFvwB4KWX0kE1fv9EJEnL2e6VfZHhXCAHRTbY7Qo_mrf/pub",
       characterIds: ["melody", "richard", "nathan", "tommy"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Medium"],
     },
     {
@@ -687,6 +707,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQcNjbN4-u-A0mrr_00UfsUmYpGfi6UMU5xvD4CprYwOpTTsllqdXqFeuaXhxs79B9B0m2xOQq1JTOV/pub",
       characterIds: ["emma", "simon"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Medium", "New to Reddit"],
     },
     {
@@ -698,6 +720,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vRDqTNNakRk5cGuVVralHxnIVKjNJPYgMqpFHmFl69jqp6MIRxxsVJqAvwvU4ARWjojZX5GMwNrpDqt/pub",
       characterIds: ["jenny", "sanjay"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Medium"],
     },
     {
@@ -711,6 +735,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTcqX8xNsk5-s2a3en4zTxx3kZH1C43BY8KS84j1g8xBuJJpBMrKdqyglbLM037nRFyYcDbNsTC7bZT/pub",
       characterIds: ["fiona", "brad", "sofia", "amy", "wesley"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Medium", "Series: The Ballbusting Arena"],
     },
     {
@@ -724,6 +750,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vR7Gp9vmryuAt6xjGtyu4gtdF7LfwnMLxRaVJ59bgU3MCcC1c4rG-515FzV-2D6bJShjjMA56kiB5Lw/pub",
       characterIds: ["sofia", "daniel", "vanessa", "jenny"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Medium", "Series: The Ballbusting Arena"],
     },
     {
@@ -737,6 +765,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQElbm2mgIE8cMQBYsl6w7dHU8J2ff2dr26g35LDwdZF5eeWDvBMNL0B4ZYOcDRyE6_Ij9FMEDDHlPj/pub",
       characterIds: [],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Medium", "Series: The Ballbusting Arena"],
     },
     {
@@ -750,6 +780,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQ545UIUPL8gg4x5HktS2dIPyQxj4jsIdxM9UYo-ipTOLGsFnu5vdwTovMBPGVvdrJd602APzJ6qZjC/pub",
       characterIds: ["nikita", "cole"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Medium"],
     },
     {
@@ -761,6 +793,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTt0TRq1kLbyrUtvvw1s5rH-bDx9X6hSiu_1ybmn1vKmdz-7fQ5xuwSAAdQwFSUDtZ5cuhMZWAe5Yfd/pub",
       characterIds: ["poly", "robin"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Short", "New to Reddit"],
     },
     {
@@ -774,6 +808,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vR7EElMXTg5o4F_WWEu1J4RFfAKF5NJL6pe0lluaHapWP7ZNo7fouYChti7WlZrHV_0TzOk8LCoAdAO/pub",
       characterIds: ["atheras", "salei"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Long", "New to Reddit"],
     },
     {
@@ -794,6 +830,8 @@ window.DATA_SOURCE = {
         "malcolm",
         "michelle",
       ],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Long"],
     },
     {
@@ -807,6 +845,8 @@ window.DATA_SOURCE = {
       characterIds: ["hato", "naimi"],
       subtitle:
         "This takes place in the 'Red Dragon' universe, started by poiu and continued by kiwibb. Fanart by 9x9 (https://inkbunny.net/s/2226481)",
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: [
         "Length: Short",
         "Furry",
@@ -823,6 +863,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vScwbE6p1gmOjYx1gJwYRsBG4yaZxrYZOcM2eZa_7H0DPRw58GWhvUEwmD5aWjkagnEC3DiuGTrepJa/pub",
       characterIds: [],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Short", "New to Reddit"],
     },
     {
@@ -835,6 +877,8 @@ window.DATA_SOURCE = {
         "https://docs.google.com/document/d/e/2PACX-1vSmRTiAPjYMYME6TkjqBo2WIALcx0zF8bwSBtoiAcpB29emdpneSkyBUzTQOmqxI8WW0F0EHiFLL1G9/pub",
       audioUrl: "Castration Appointment at the Kink Agency.m4a",
       characterIds: [],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Short"],
     },
     {
@@ -846,6 +890,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSkCwlzQvhfAUEGIKey5gPeAsLdLNPfLBejwsRtqt53HtEQIgBPCYxnr_Oue17IT1xLzRFhEk5KgX-m/pub",
       characterIds: ["emma", "jose"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Medium"],
     },
     {
@@ -867,6 +913,8 @@ window.DATA_SOURCE = {
         "cathy",
         "michelle",
       ],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Long"],
     },
     {
@@ -878,6 +926,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSCFSsYv9k5JNRuwqyMvtMBCESmShx9HFjIHjnnUFwG0DKcMhN4Lkx-AvSzawnOHyHDv1HylaLObYYm/pub",
       characterIds: ["melody", "eric", "bryan"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Long", "New to Reddit"],
     },
     {
@@ -891,6 +941,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vS0bA6zQ9zU7aFW-AqA_k8k0VfL5VcfC8s43Z4kr1Fa71x3QuNeL9ujwSPiGzP2xJwtkl8TBKdgpR8C/pub",
       characterIds: ["genovia", "sylvana", "sean_witches"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Long"],
     },
     {
@@ -904,6 +956,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTAU43kVpZAcbYWpK5C8qNpyBgG1PZuYL9WrxJOUK741wmXWHxxkqzK0qDyGI6s4z6Hh1-X5OHA05LG/pub",
       characterIds: ["steven", "kaitlin", "amy", "june", "serena"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Medium"],
     },
     {
@@ -915,6 +969,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQp_4y7LJnHity8IKFUGkj_ScJ66i4HpU-yKIUslA2qmWCe8agtSxLe-_W7-Cza9tY3MCmi9JEF_uui/pub",
       characterIds: ["ross", "the_nurse"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Short"],
     },
     {
@@ -934,6 +990,8 @@ window.DATA_SOURCE = {
         "the_nurse",
       ],
       subtitle: "Commission for a continuation between two captions.",
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Short", "New to Reddit", "Based on other authors' work"],
     },
     {
@@ -947,6 +1005,8 @@ window.DATA_SOURCE = {
       characterIds: [],
       subtitle:
         "Followup to a beautiful RP I did with someone on tumblr way back in the day.",
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Short", "New to Reddit"],
     },
     {
@@ -962,6 +1022,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQ7qBzB6EpL3DM7VcR7CsGgOKzJnF__EPTLO9uX1-7vbOtW7WoSnWo1rFgrClES0qrezqXpfvT13KzY/pub",
       characterIds: ["cathy"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Medium", "New to Reddit"],
     },
     {
@@ -973,6 +1035,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vT_B6lDYNi_ICH9IOVhhhMWE6YTtkKSbvma4E7nO4TxlxOMa9KGVO9lq3BiZqgnhMn3gJSYvSJepL71/pub",
       characterIds: [],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Short", "New to Reddit"],
     },
     {
@@ -986,6 +1050,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQWfM9IddQtsF4pQ9zXVzFNSu9xSB13fIIoo8XktLz5j_k_Ov5wqc1IZ5az6XJfIZruQfxFb554pptK/pub",
       characterIds: [],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Short", "New to Reddit", "No Nut Narrator"],
     },
     {
@@ -998,6 +1064,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSYLqxpzpv0avqu9uBNT8-ejRcsIX9V5fKfEzarP_lCWpV9oqrQItoKQeK0rRk0D3cer6TgM2Y57TR3/pub",
       characterIds: [],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Short", "New to Reddit", "No Nut Narrator"],
     },
     {
@@ -1009,6 +1077,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vRETewpFyT0mnciKkMK8R97T-pDEcqkZ3siKhKg1oxgtWrgOe08CN7dLQLJ3c56bmZNcx86DyPlzGyZ/pub",
       characterIds: ["officer_alice", "ivan", "lieutenant_maria"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Medium", "New to Reddit"],
     },
     {
@@ -1020,6 +1090,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vQWua-pQJOAP2ZSyU5sFNSozli-i0KnBK1AkISCJMkY_xMpL4zcwkaiTkJbogDyeFWNYvYaNne5N762/pub",
       characterIds: [],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Medium"],
     },
     {
@@ -1032,6 +1104,8 @@ window.DATA_SOURCE = {
         " This was a commission to extend an existing story whose source I've since lost. Part 3 is the only part I've written.",
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vSU4uTw0_e32omJ7hRARitDiwSdX-MiuPuyLde4BYZk6DSU6wxhVcenbKDREtxuox9NSGnuyZ5svd1r/pub",
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Medium", "New to Reddit", "Based on other authors' work"],
     },
     {
@@ -1043,6 +1117,8 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vRQEaO-eWJxiU6v7YmbiL2Fwo5G8O3Z9zgjmQ2BTfuufLcKvf5LxU4cjMiA9eFxKBNpFBIu_1lc8Dyb/pub",
       characterIds: ["jenny"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: ["Length: Short", "New to Reddit", "Based on other authors' work"],
     },
     {
@@ -1056,11 +1132,68 @@ window.DATA_SOURCE = {
       driveUrl:
         "https://docs.google.com/document/d/e/2PACX-1vTUG5kvCCVa1GAQuZALyLUYM6smQs0mg2kAmF9UXScDNTBeM6rp7JhmXQEqoLJKT0fR5EWmAymSGu6X/pub",
       characterIds: ["kayla"],
+      state: 3,
+      releaseDate: "2020-01-01",
       tags: [
         "Length: Long",
         "Furry",
         "Based on other authors' work",
         "New to Reddit",
+      ],
+    },
+    {
+      id: 41,
+      title: "Road Trip",
+      cover: "assets/covers/road_trip.jpg",
+      summary:
+        "Dava and Jeff (who met freshmen year of college) go on a road trip with his parents! But it's so boring in the back seat. Hopefully,  Dava can find a way to entertain herself.",
+      subtitle:
+        "Ancient commission from crushednutz on tumblr that I never finished.",
+      state: 1,
+      characterIds: ["dava", "jeff"],
+      tags: ["Length: Medium", "New to Reddit"],
+    },
+
+    {
+      id: 42,
+      title: "The Ballbusting Arena 6: Natalie Enters the Ring",
+      cover: "assets/covers/arena_6.png",
+      summary:
+        "Natalie finally gets her nerve up to sign up for the arena. The Nguyen twins look forward to an easy 2 vs. 1 fight against the shy girl.",
+      state: 1,
+      characterIds: ["natalie", "minh", "anh"],
+      tags: [
+        "Length: Medium",
+        "New to Reddit",
+        "Series: The Ballbusting Arena",
+      ],
+    },
+
+    {
+      id: 43,
+      title: "Andrea and Lucas",
+      cover: "assets/covers/andrea_and_lucas.png",
+      summary:
+        "She's a thicc goth dommy mommy who takes self defense classes. He's a religiously repressed genius nerd with a rare hyperspermia disorder. She's got a roommate who does pranks for social media, and a sister who works as a urological surgeon. He's got a stepmom who's part of an insane femdom cult that he barely escaped from intact. Hijinx ensure. Balls get popped.",
+      subtitle: "My first 'premium' story, exclusively for sale.",
+      state: 1,
+      characterIds: ["andrea", "lucas", "izzie", "tamara", "bridget"],
+      tags: ["Length: Extra Long", "Premium Story", "New to Reddit"],
+    },
+
+    {
+      id: 44,
+      title: "Courtroom Wedding",
+      summary:
+        "Nato and Yuki are excited to get married, but the insanity of the Red Dragon marital industrial complex is offputting. They opt for a simple, quick courtroom wedding.",
+      cover: "assets/covers/courtroom.png",
+      state: 1,
+      characterIds: ["nato", "yuki"],
+      tags: [
+        "Length: Medium",
+        "New to Reddit",
+        "Furry",
+        "Based on other authors' work",
       ],
     },
   ],

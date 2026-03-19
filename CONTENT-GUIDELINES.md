@@ -33,6 +33,13 @@ When adding or editing character bios and story summaries in `data/source.js`, f
 
 ---
 
+## Story `state` and `releaseDate`
+
+- **`state`** (number): `1` = coming soon (blue “Coming soon!” badge on the grid), `2` = new (green “New story!” badge), `3` = released (no badge). Omit or use `3` for normal catalog entries.
+- **`releaseDate`**: ISO date string (e.g. `"2020-01-01"`) used to sort stories on the grid within the same `state`. Stories without a date sort after dated ones in that state, then by title.
+
+---
+
 ## Cover images
 
 When creating or commissioning a new cover image (e.g. for a new story):
