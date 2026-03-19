@@ -1,6 +1,6 @@
 # Content guidelines for Preun data
 
-When adding or editing character bios and story summaries in `data/source.js`, follow these rules so the site stays spoiler-light.
+When adding or editing character bios, use `data/characters.js`. For story summaries and metadata, use `data/stories.js`. Follow these rules so the site stays spoiler-light.
 
 ---
 
