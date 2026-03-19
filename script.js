@@ -433,12 +433,41 @@
     }
   }
 
+  function renderOtherAuthors(otherAuthors) {
+    var root = byId("other-authors-root");
+    if (!root || !otherAuthors || !otherAuthors.length) return;
+    root.innerHTML = "";
+    otherAuthors.forEach(function (group) {
+      var type = group.type;
+      var authors = group.authors || [];
+      if (!type || !authors.length) return;
+      var h2 = document.createElement("h2");
+      h2.className = "other-authors-subtitle";
+      h2.textContent = type;
+      root.appendChild(h2);
+      var ul = document.createElement("ul");
+      ul.className = "other-authors-list";
+      authors.forEach(function (author) {
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        a.href = author.link || "#";
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.textContent = author.name || "";
+        li.appendChild(a);
+        ul.appendChild(li);
+      });
+      root.appendChild(ul);
+    });
+  }
+
   function init(data) {
     characters = data.characters || [];
     stories = data.stories || [];
 
     initTabs();
     initCharactersGrid();
+    renderOtherAuthors(data.otherAuthors);
     initTagSelector();
     renderStoriesGrid();
     bindStoryGridClick();
