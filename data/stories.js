@@ -474,7 +474,7 @@ window.DATA_STORIES = [
       "Cathy runs a game theory experiment. Three male subjects are strapped in and must each cast a vote—selfless or selfish—that will determine the consequences for all of them.",
     cover: "assets/covers/nash_equilibrium.jpg",
     subtitle:
-      "Published on Amazon as part of a collection with the title 'Ballbusting Lab'.",
+      "The perfect story for the guy looking for more math in their ballbusting stories. Published on Amazon as part of a collection with the title 'Ballbusting Lab'.",
     amazonUrl:
       "https://www.amazon.com/Three-Ballbusting-Short-Stories-Castrated-ebook/dp/B07X3LZJ55",
     driveUrl:
@@ -500,8 +500,7 @@ window.DATA_STORIES = [
   {
     id: 34,
     title: "No Nut Narrator: Squeeze",
-    summary:
-      "Steve is three days into No Nut November when the late train home brings him face to face with drunk Christie and Sharon—and a brutal choice: the squeeze or the jerk.",
+    summary: "Day 3 of No Nut November. Steve just wants to get home.",
     subtitle: "Part of KiwiBB's No Nut Narrator challenge.",
 
     cover: "assets/covers/no_nut_narrator_squeeze.jpg",
@@ -510,13 +509,13 @@ window.DATA_STORIES = [
     characterIds: [],
     state: 3,
     releaseDate: "2020-01-01",
-    tags: ["Length: Short", "New to Reddit", "No Nut Narrator"],
+    tags: ["Length: Short", "New to Reddit", "No Nut Narrator", ""],
   },
   {
     id: 35,
     title: "No Nut Narrator: Ass",
     summary:
-      "Jordan's on day ten of No Nut November when Ashley drags him bikini shopping and teases him in the dressing room.",
+      "Day 10 of No Nut November. Jordan goes bikini shopping with Ashley.",
     subtitle: "Part of KiwiBB's No Nut Narrator challenge.",
     cover: "assets/covers/no_nut_narrator_ass.jpg",
     driveUrl:
@@ -541,7 +540,7 @@ window.DATA_STORIES = [
   },
   {
     id: 37,
-    title: "Prank gone wrong",
+    title: "Prank Gone Wrong",
     summary:
       "She hasn't seen him at school for two weeks—not since she and her friends pulled a prank on him behind the bleachers. She runs into him and wants to know how he's been.",
     cover: "assets/covers/prank_gone_wrong.jpg",
@@ -550,7 +549,7 @@ window.DATA_STORIES = [
     characterIds: [],
     state: 3,
     releaseDate: "2020-01-01",
-    tags: ["Length: Medium"],
+    tags: ["Length: Short"],
   },
   {
     id: 38,
