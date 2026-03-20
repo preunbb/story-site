@@ -646,10 +646,10 @@ window.DATA_STORIES = [
     id: 44,
     title: "Courtroom Wedding",
     summary:
-      "Nato and Yuki are excited to get married, but the insanity of the Red Dragon marital industrial complex is offputting. They opt for a simple, quick courtroom wedding.",
+      "Malko and Taviri are excited to get married, but the insanity of the Red Dragon marital industrial complex is offputting. They opt for a simple, quick courtroom wedding.",
     cover: "assets/covers/courtroom.png",
     state: 1,
-    characterIds: ["nato", "yuki"],
+    characterIds: ["malko", "taviri"],
     tags: [
       "Length: Medium",
       "New to Reddit",
