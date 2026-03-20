@@ -109,14 +109,23 @@
         PLACEHOLDER_COVER +
         "'\">";
       var st = normalizeStoryState(s);
+      var rowBadgeHtml = "";
       if (st === 1) {
         coverContent +=
-          '<span class="story-state-badge story-state-badge--soon" aria-label="Coming soon">' +
+          '<span class="story-state-badge story-state-badge--soon story-state-badge--on-cover" aria-label="Coming soon">' +
+          '<span class="story-state-badge-text">Coming soon!</span>' +
+          "</span>";
+        rowBadgeHtml =
+          '<span class="story-state-badge story-state-badge--soon story-state-badge--in-row">' +
           '<span class="story-state-badge-text">Coming soon!</span>' +
           "</span>";
       } else if (st === 2) {
         coverContent +=
-          '<span class="story-state-badge story-state-badge--new" aria-label="New story">' +
+          '<span class="story-state-badge story-state-badge--new story-state-badge--on-cover" aria-label="New story">' +
+          '<span class="story-state-badge-text">New story!</span>' +
+          "</span>";
+        rowBadgeHtml =
+          '<span class="story-state-badge story-state-badge--new story-state-badge--in-row">' +
           '<span class="story-state-badge-text">New story!</span>' +
           "</span>";
       }
@@ -124,9 +133,12 @@
         '<div class="story-cover-wrap">' +
         coverContent +
         "</div>" +
+        '<div class="story-card-body">' +
         '<span class="story-card-title">' +
         escapeHtml(s.title) +
-        "</span>";
+        "</span>" +
+        rowBadgeHtml +
+        "</div>";
       grid.appendChild(card);
     });
   }

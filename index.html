@@ -13,10 +13,22 @@
       >
       <nav class="tabs">
         <a href="#stories" class="tab active" data-tab="stories">Stories</a>
-        <a href="#characters" class="tab" data-tab="characters">Characters</a>
+        <a
+          href="#characters"
+          class="tab"
+          data-tab="characters"
+          aria-label="Cast"
+          ><span class="tab-text-full">Cast</span
+          ><span class="tab-text-short" aria-hidden="true">Cast</span></a
+        >
         <a href="#about" class="tab" data-tab="about">About</a>
-        <a href="#other-authors" class="tab" data-tab="other-authors"
-          >Other authors</a
+        <a
+          href="#other-authors"
+          class="tab"
+          data-tab="other-authors"
+          aria-label="Other authors"
+          ><span class="tab-text-full">Other authors</span
+          ><span class="tab-text-short" aria-hidden="true">Authors</span></a
         >
       </nav>
     </header>
@@ -42,7 +54,7 @@
       </section>
 
       <section id="panel-characters" class="panel">
-        <h1>Characters</h1>
+        <h1>Cast</h1>
         <div class="characters-grid" id="characters-grid">
           <!-- Injected by JS from data/stories.js / characters.js -->
         </div>

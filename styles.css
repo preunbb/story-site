@@ -89,6 +89,10 @@ a:hover {
   box-shadow: 0 0 20px var(--red-glow);
 }
 
+.tab-text-short {
+  display: none;
+}
+
 /* Content panels */
 .content {
   max-width: 1100px;
@@ -208,6 +212,18 @@ a:hover {
 
 .story-state-badge-text {
   white-space: nowrap;
+}
+
+/* Row copy of badge: hidden on desktop (cover badge only) */
+.story-state-badge--in-row {
+  display: none;
+}
+
+.story-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
 }
 
 .story-cover {
@@ -604,6 +620,27 @@ body.flyout-open {
 
   .tabs {
     width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.2rem;
+    justify-content: stretch;
+  }
+
+  .tab {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.35rem 0.25rem;
+    font-size: 0.62rem;
+    line-height: 1.15;
+    text-align: center;
+    border-radius: 6px;
+  }
+
+  .tab .tab-text-full {
+    display: none;
+  }
+  .tab .tab-text-short {
+    display: inline;
   }
 
   .content {
@@ -615,7 +652,7 @@ body.flyout-open {
     margin-bottom: 1rem;
   }
 
-  /* Stories: vertical list, no covers */
+  /* Stories: vertical list with miniature portrait covers (like character avatars) */
   .stories-grid {
     display: flex;
     flex-direction: column;
@@ -623,6 +660,11 @@ body.flyout-open {
   }
 
   .story-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
     border-radius: var(--radius);
     border-bottom: 1px solid var(--border);
   }
@@ -634,11 +676,56 @@ body.flyout-open {
   }
 
   .story-cover-wrap {
+    width: 48px;
+    min-width: 48px;
+    flex-shrink: 0;
+    aspect-ratio: 2 / 3;
+    height: auto;
+    border-radius: 6px;
+    overflow: hidden;
+    align-self: center;
+  }
+
+  /* Row badge carries state; pill on tiny thumb would be illegible */
+  .story-cover-wrap .story-state-badge--on-cover {
     display: none;
   }
 
+  .story-card:hover .story-cover {
+    transform: none;
+  }
+
+  /* Title + row badge (same row as character names + meta) */
+  .story-card-body {
+    flex: 1;
+    min-width: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+    padding: 0;
+    min-height: 0;
+  }
+
+  .story-state-badge--in-row {
+    display: inline-flex;
+    position: static;
+    flex-shrink: 0;
+    margin-left: auto;
+    top: auto;
+    left: auto;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  }
+
   .story-card-title {
-    padding: 1rem 1rem;
+    flex: 1;
+    min-width: 0;
+    padding: 0;
     font-size: 1rem;
   }
 
