@@ -400,6 +400,20 @@ window.DATA_CHARACTERS = [
     profilePictures: ["assets/characters/naimi.jpg"],
   },
   {
+    id: "malko",
+    name: "Mal'ko",
+    gender: "M",
+    bio: "Young Red Dragon fiancé, engaged to Taviri. Not looking forward to his Pop, but loves his fiancée more than anything.",
+    profilePictures: ["assets/characters/malko.jpg"],
+  },
+  {
+    id: "taviri",
+    name: "Taviri",
+    gender: "F",
+    bio: "Mal'ko's fiancée. Hates big productions and planning. Loves Mal'ko.",
+    profilePictures: ["assets/characters/taviri.jpg"],
+  },
+  {
     id: "jon",
     name: "Jon",
     gender: "M",

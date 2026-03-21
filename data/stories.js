@@ -509,7 +509,7 @@ window.DATA_STORIES = [
     characterIds: [],
     state: 3,
     releaseDate: "2020-01-01",
-    tags: ["Length: Short", "New to Reddit", "No Nut Narrator", ""],
+    tags: ["Length: Short", "New to Reddit", "No Nut Narrator"],
   },
   {
     id: 35,
@@ -646,9 +646,12 @@ window.DATA_STORIES = [
     id: 44,
     title: "Courtroom Wedding",
     summary:
-      "Malko and Taviri are excited to get married, but the insanity of the Red Dragon marital industrial complex is offputting. They opt for a simple, quick courtroom wedding.",
+      "Mal'ko and Taviri are excited to get married, but the insanity of the Red Dragon marital industrial complex is offputting. They opt for a simple, quick courtroom wedding.",
+    driveUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vS8Bqzs-hZYnPrTxOBrh5RDXXVGYRm1DhKEkKtPW1Lj06DEG54-hUtVCUtOnRU5yIUEwAbXNZRW7Bb0/pub",
     cover: "assets/covers/courtroom.png",
-    state: 1,
+    state: 2,
+    releaseDate: "2026-03-21",
     characterIds: ["malko", "taviri"],
     tags: [
       "Length: Medium",
@@ -656,5 +659,18 @@ window.DATA_STORIES = [
       "Furry",
       "Based on other authors' work",
     ],
+  },
+
+  {
+    id: 45,
+    title: "Courtroom Wedding (Human Edition)",
+    summary: "Human version of Courtroom Wedding.",
+    cover: "assets/covers/courtroom_human.png",
+    driveUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vS4fMKNw3FphU7IKg_F5XtU6mq751qUSKHhebA4W5wGPs4iZj361ikKW9rB1s0QWvki8W6A9q4vRnTx/pub",
+    state: 2,
+    releaseDate: "2026-03-21",
+    characterIds: [],
+    tags: ["Length: Medium", "New to Reddit", "Based on other authors' work"],
   },
 ];

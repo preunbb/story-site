@@ -57,10 +57,73 @@
     return 3;
   }
 
+  var RELEASE_MONTH_NAMES = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  /** @returns {{ y: number, m: number, d: number } | null} */
+  function parseReleaseYyyyMmDd(iso) {
+    if (!iso || typeof iso !== "string") return null;
+    var parts = iso.trim().split("-");
+    if (parts.length !== 3) return null;
+    var y = parseInt(parts[0], 10);
+    var m = parseInt(parts[1], 10);
+    var d = parseInt(parts[2], 10);
+    if (isNaN(y) || isNaN(m) || isNaN(d) || m < 1 || m > 12 || d < 1 || d > 31) {
+      return null;
+    }
+    return { y: y, m: m, d: d };
+  }
+
+  function releaseYmdSortNumber(ymd) {
+    return ymd.y * 10000 + ymd.m * 100 + ymd.d;
+  }
+
   function releaseDateSortKey(s) {
-    if (!s.releaseDate) return Number.POSITIVE_INFINITY;
-    var t = new Date(s.releaseDate).getTime();
-    return isNaN(t) ? Number.POSITIVE_INFINITY : t;
+    var p = parseReleaseYyyyMmDd(s.releaseDate);
+    if (!p) return Number.POSITIVE_INFINITY;
+    return releaseYmdSortNumber(p);
+  }
+
+  /** e.g. "March 21, 2026", or null if missing/invalid */
+  function formatStoryReleaseDateLabel(iso) {
+    var p = parseReleaseYyyyMmDd(iso);
+    if (!p) return null;
+    return (
+      RELEASE_MONTH_NAMES[p.m - 1] + " " + p.d + ", " + p.y
+    );
+  }
+
+  function isReleaseWithinLastThreeMonths(iso) {
+    var rel = parseReleaseYyyyMmDd(iso);
+    if (!rel) return false;
+    var cutoff = new Date();
+    cutoff.setMonth(cutoff.getMonth() - 3);
+    var cy = cutoff.getFullYear();
+    var cm = cutoff.getMonth() + 1;
+    var cd = cutoff.getDate();
+    return releaseYmdSortNumber(rel) >= releaseYmdSortNumber({
+      y: cy,
+      m: cm,
+      d: cd,
+    });
+  }
+
+  function shouldShowNewStoryBadge(s) {
+    return (
+      normalizeStoryState(s) === 2 && isReleaseWithinLastThreeMonths(s.releaseDate)
+    );
   }
 
   function compareStories(a, b) {
@@ -119,7 +182,7 @@
           '<span class="story-state-badge story-state-badge--soon story-state-badge--in-row">' +
           '<span class="story-state-badge-text">Coming soon!</span>' +
           "</span>";
-      } else if (st === 2) {
+      } else if (st === 2 && shouldShowNewStoryBadge(s)) {
         coverContent +=
           '<span class="story-state-badge story-state-badge--new story-state-badge--on-cover" aria-label="New story">' +
           '<span class="story-state-badge-text">New story!</span>' +
@@ -313,6 +376,14 @@
     }
     linksHtml += "</div>";
 
+    var releaseLabel = formatStoryReleaseDateLabel(story.releaseDate);
+    var releaseHtml =
+      releaseLabel !== null
+        ? '<p class="flyout-release-date">Release date: <em>' +
+          escapeHtml(releaseLabel) +
+          "</em></p>"
+        : "";
+
     var subtitleHtml =
       story.subtitle && story.subtitle.trim()
         ? '<p class="flyout-subtitle">' +
@@ -342,6 +413,7 @@
       '<p class="flyout-summary">' +
       escapeHtml(story.summary || "") +
       "</p>" +
+      releaseHtml +
       subtitleHtml +
       tagsHtml +
       linksHtml +

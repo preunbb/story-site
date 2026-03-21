@@ -447,6 +447,17 @@ body.flyout-open {
   line-height: 1.55;
 }
 
+.flyout-release-date {
+  margin: 0 0 1.25rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--ink-muted);
+}
+
+.flyout-release-date em {
+  font-style: italic;
+}
+
 .flyout-subtitle {
   margin: 0 0 1.25rem;
   font-style: italic;
