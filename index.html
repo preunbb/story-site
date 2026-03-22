@@ -37,17 +37,46 @@
     <main class="content">
       <section id="panel-stories" class="panel active">
         <h1>Stories</h1>
-        <div class="tag-selector-wrap">
-          <label for="tag-select" class="tag-selector-label"
-            >Filter by tag</label
-          >
-          <select
-            id="tag-select"
-            class="tag-select"
-            aria-label="Filter stories by tag"
-          >
-            <option value="">All tags</option>
-          </select>
+        <div class="story-filters">
+          <div class="tag-selector-wrap">
+            <label for="tag-select" class="tag-selector-label"
+              >Filter by tag</label
+            >
+            <select
+              id="tag-select"
+              class="tag-select"
+              aria-label="Filter stories by tag"
+            >
+              <option value="">All tags</option>
+            </select>
+          </div>
+          <div class="brutality-filter-wrap">
+            <label for="brutality-mode" class="tag-selector-label"
+              >Filter by brutality</label
+            >
+            <select
+              id="brutality-mode"
+              class="tag-select brutality-mode-select"
+              aria-label="Brutality: equals, more than, or less than"
+            >
+              <option value="">Any</option>
+              <option value="eq">Equals</option>
+              <option value="gt">More than</option>
+              <option value="lt">Less than</option>
+            </select>
+            <select
+              id="brutality-level"
+              class="tag-select brutality-level-select"
+              aria-label="Brutality level 1 to 5"
+              disabled
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3" selected>3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
         </div>
         <div class="stories-grid" id="stories-grid">
           <!-- Injected by JS from data/stories.js / characters.js -->
@@ -69,19 +98,6 @@
             writing ballbusting and castration stories online for over a decade
             now. You might know me from various defunct Tumblr, wordpress,
             reddit, or twitter accounts.
-          </p>
-        </div>
-        <h1>On AI usage</h1>
-        <div class="about-content">
-          <p>
-            I absolutely promise I will never use AI in any aspect to even
-            slightly generate, edit, or influence the content I write, including
-            this blurb. I use it extensively for just about everything else on
-            this site (cover images, story summaries for old stories, vibe
-            coding the site itself) - but every keystroke in every story is
-            unvarnished, organic, artisanally hand-crafted human degeneracy. AI
-            has proven over and over to have no idea what is sexy in ballbusting
-            and castration erotica - and who wants to read that slop anyway?
           </p>
         </div>
         <h1>Contact me</h1>
@@ -111,6 +127,70 @@
             </li>
           </ul>
         </div>
+        <details class="about-disclosure">
+          <summary class="about-disclosure-summary">Other stuff</summary>
+          <div class="about-disclosure-body">
+            <h1>Brutality Ratings</h1>
+            <div class="about-content">
+              <p>
+                🥥: Nothing gets permanently broken. All men end with both of
+                their testicles intact, although they may be bruised, mushy, or
+                blue. She might even care enough about them to kiss them better.
+                A happy ending is almost guaranteed, or at least a half-decent
+                orgasm for him. At worst, he'll have a bit of permanent bruising
+                or some testicular shrinkage, but noting to threaten his
+                fertility or potency.
+                <br /><br />
+                🥥🥥: Some permanent damage. A ball is popped, or a pair is left
+                in a medically degraded state by the time she is done with them.
+                She might be slightly sympathetic, but expect her not to care
+                too much; it's not like she knows what a popped nut feels like.
+                But she'll likely get him competent medical care on a reasonable
+                timeline, if he really needs it.
+
+                <br /><br />
+                🥥🥥🥥: Someone gets castrated. He won't have kids, ever, and
+                depending on my mood may never get an erection again. Hormones
+                may be an issue. Doctors and surgeons might be clumsy, but
+                anesthetics will likely be available for him. She'll likely be
+                more focused with cumming on his face than calling a doctor in
+                time to repair the damage. Expect empty nutsacks and flippant
+                quips from her about dead family trees.
+
+                <br /><br />
+                🥥🥥🥥🥥: Multiple castrations, or one especially brutal
+                neutering. Descriptions may get intense; vague allusions to
+                blood might occur. Expect her to, at best, not care in the
+                slightest, and at worst, publicly mock him for his involuntary
+                sex change. Surgeries will likely be without anesthesia. Ex
+                girlfriends may be present to mock him after he's neutered.
+
+                <br /><br />
+                🥥🥥🥥🥥🥥: Multiple brutal castrations, with many specific
+                medical details. Balls are rendered to mush, at best. Detailed
+                specifics of internal damage and gradual cruel rendering into
+                mush is almost a given. Scrotums may get ripped apart. Penises
+                occasionally get snapped, burned, sliced or diced. Genitals and
+                orgasms are often a faint, painful memory for the men by the end
+                of these stories. Not for the faint of heart.
+              </p>
+            </div>
+            <h1>On AI usage</h1>
+            <div class="about-content">
+              <p>
+                I absolutely promise I will never use AI in any aspect to even
+                slightly generate, edit, or influence the content I write,
+                including this blurb. I use it extensively for just about
+                everything else on this site (cover images, story summaries for
+                old stories, vibe coding the site itself) - but every keystroke
+                in every story is unvarnished, organic, artisanally hand-crafted
+                human degeneracy. AI has proven over and over to have no idea
+                what is sexy in ballbusting and castration erotica - and who
+                wants to read that slop anyway?
+              </p>
+            </div>
+          </div>
+        </details>
       </section>
 
       <section id="panel-other-authors" class="panel">
