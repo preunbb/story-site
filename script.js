@@ -130,6 +130,24 @@
     );
   }
 
+  /** 1–5 busted coconuts (🥥) for flyout; empty if missing/invalid */
+  function formatBrutalityRatingFlyoutHtml(story) {
+    var n = getStoryBrutalityRating(story);
+    if (isNaN(n)) return "";
+    var icons = "";
+    var i;
+    for (i = 0; i < n; i++) {
+      icons += "\uD83E\uDD65";
+    }
+    return (
+      '<p class="flyout-brutality"><span class="flyout-brutality-label">Brutality: </span><span class="flyout-brutality-icons" role="img" aria-label="' +
+      escapeHtml("Rating " + n + " of 5") +
+      '">' +
+      icons +
+      "</span></p>"
+    );
+  }
+
   function compareStories(a, b) {
     var sa = normalizeStoryState(a);
     var sb = normalizeStoryState(b);
@@ -153,14 +171,44 @@
     return Object.keys(set).sort();
   }
 
-  function renderStoriesGrid(selectedTag) {
+  function getStoryBrutalityRating(s) {
+    var raw = s.brutalityRating;
+    var n =
+      typeof raw === "number" && !isNaN(raw) ? raw : parseInt(String(raw), 10);
+    if (isNaN(n)) return NaN;
+    return Math.max(1, Math.min(5, n));
+  }
+
+  /** mode: "" | "eq" | "gt" | "lt"; level must be allowed for that mode */
+  function passesBrutalityFilter(s, mode, levelStr) {
+    if (!mode) return true;
+    var r = getStoryBrutalityRating(s);
+    if (isNaN(r)) return false;
+    var n = parseInt(levelStr, 10);
+    if (isNaN(n) || n < 1 || n > 5) return true;
+    if (mode === "eq") return r === n;
+    if (mode === "gt") return r > n;
+    if (mode === "lt") return r < n;
+    return true;
+  }
+
+  function renderStoriesGrid() {
     var grid = byId("stories-grid");
     if (!grid) return;
-    var list = selectedTag
-      ? stories.filter(function (s) {
-          return (s.tags || []).indexOf(selectedTag) !== -1;
-        })
-      : stories.slice();
+    var tagSelect = byId("tag-select");
+    var selectedTag = tagSelect && tagSelect.value ? tagSelect.value : null;
+    var modeEl = byId("brutality-mode");
+    var levelEl = byId("brutality-level");
+    var bMode = modeEl && modeEl.value ? modeEl.value : "";
+    var bLevel = levelEl && levelEl.value ? levelEl.value : "3";
+
+    var list = stories.filter(function (s) {
+      if (selectedTag && (s.tags || []).indexOf(selectedTag) === -1) {
+        return false;
+      }
+      if (!passesBrutalityFilter(s, bMode, bLevel)) return false;
+      return true;
+    });
     var sorted = list.sort(compareStories);
     grid.innerHTML = "";
     sorted.forEach(function (s) {
@@ -210,7 +258,54 @@
     });
   }
 
-  function initTagSelector() {
+  function brutalityAllowedLevels(mode) {
+    if (mode === "eq") return [1, 2, 3, 4, 5];
+    if (mode === "gt") return [1, 2, 3, 4];
+    if (mode === "lt") return [2, 3, 4, 5];
+    return [1, 2, 3, 4, 5];
+  }
+
+  function defaultBrutalityPick(allowed) {
+    if (allowed.indexOf(3) !== -1) return 3;
+    return allowed[Math.floor((allowed.length - 1) / 2)];
+  }
+
+  function syncBrutalityLevelOptions() {
+    var modeEl = byId("brutality-mode");
+    var levelEl = byId("brutality-level");
+    if (!modeEl || !levelEl) return;
+    var mode = modeEl.value || "";
+    if (!mode) {
+      levelEl.disabled = true;
+      levelEl.innerHTML =
+        "<option value=\"1\">1</option>" +
+        "<option value=\"2\">2</option>" +
+        "<option value=\"3\" selected>3</option>" +
+        "<option value=\"4\">4</option>" +
+        "<option value=\"5\">5</option>";
+      return;
+    }
+    var allowed = brutalityAllowedLevels(mode);
+    var prev = parseInt(levelEl.value, 10);
+    var pick =
+      allowed.indexOf(prev) !== -1 ? prev : defaultBrutalityPick(allowed);
+    levelEl.innerHTML = allowed
+      .map(function (v) {
+        return (
+          '<option value="' +
+          v +
+          '"' +
+          (v === pick ? " selected" : "") +
+          ">" +
+          v +
+          "</option>"
+        );
+      })
+      .join("");
+    levelEl.disabled = false;
+  }
+
+  function initStoryFilters() {
     var select = byId("tag-select");
     if (!select) return;
     var tags = getAllTags();
@@ -222,8 +317,23 @@
       select.appendChild(opt);
     });
     select.addEventListener("change", function () {
-      renderStoriesGrid(select.value || null);
+      renderStoriesGrid();
     });
+
+    var modeEl = byId("brutality-mode");
+    var levelEl = byId("brutality-level");
+    if (modeEl) {
+      modeEl.addEventListener("change", function () {
+        syncBrutalityLevelOptions();
+        renderStoriesGrid();
+      });
+    }
+    if (levelEl) {
+      levelEl.addEventListener("change", function () {
+        renderStoriesGrid();
+      });
+    }
+    syncBrutalityLevelOptions();
   }
 
   // Hash: tabs (#stories, …), #character/<id>, #story/<id>, #story/<id>/read
@@ -808,6 +918,7 @@
       fullStoryCtaHtml !== ""
         ? "flyout-title flyout-title--with-cta"
         : "flyout-title";
+    var brutalityHtml = formatBrutalityRatingFlyoutHtml(story);
     flyoutBody.innerHTML =
       '<div class="flyout-mode flyout-mode-story">' +
       '<h2 class="' +
@@ -822,6 +933,7 @@
       releaseHtml +
       subtitleHtml +
       tagsHtml +
+      brutalityHtml +
       linksHtml +
       charsHtml +
       "</div>";
@@ -1023,7 +1135,7 @@
     initTabs();
     initCharactersGrid();
     renderOtherAuthors(data.otherAuthors);
-    initTagSelector();
+    initStoryFilters();
     renderStoriesGrid();
     bindStoryGridClick();
     bindCharacterGridClick();
