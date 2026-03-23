@@ -5,7 +5,6 @@
   var characters = [];
   var stories = [];
 
-  /** Published Google Docs block cross-origin fetch; Jina Reader returns text with CORS. */
   var JINA_READER_PREFIX = "https://r.jina.ai/";
   var readerAbort = null;
   var readerStory = null;
@@ -227,8 +226,7 @@
     });
   }
 
-  // Tab switching with URL hash (#stories, #characters, #about, #other-authors)
-  // Flyouts: #character/<id>, #story/<id> — reader: #story/<id>/read
+  // Hash: tabs (#stories, …), #character/<id>, #story/<id>, #story/<id>/read
   var TAB_IDS = ["stories", "characters", "about", "other-authors"];
 
   function showTab(name) {
@@ -371,10 +369,6 @@
     return body.replace(/^\r?\n+/, "").trim();
   }
 
-  /**
-   * Strip the fixed banner Google adds to every "Publish to web" doc (title, Report abuse,
-   * duplicate title, "Updated automatically every N minutes").
-   */
   function stripGoogleDocPublishedPreamble(md) {
     if (!md || typeof md !== "string") return md;
     var lines = md.split(/\n/);
@@ -403,7 +397,6 @@
     return lines.slice(j).join("\n").replace(/^\s+/, "");
   }
 
-  /** Undo escapeHtml on URL substrings so & etc. in destinations work in href. */
   function decodeMarkdownUrlEntities(s) {
     return s
       .replace(/&amp;/g, "&")
@@ -413,10 +406,6 @@
       .replace(/&#39;/g, "'");
   }
 
-  /**
-   * Safe href for reader inline links: http(s), mailto, same-page paths; bare hosts get https://.
-   * @returns {string|null}
-   */
   function normalizeReaderHref(raw) {
     if (!raw || typeof raw !== "string") return null;
     var href = decodeMarkdownUrlEntities(raw).trim();
@@ -441,9 +430,6 @@
 
   var MD_INLINE_LINK = /\[([^\]]*)\]\(([^)]+)\)/g;
 
-  /**
-   * Turn [label](url) into <a> after the string was fully escapeHtml'd (label safe as-is).
-   */
   function linkifyEscapedMarkdown(escaped) {
     MD_INLINE_LINK.lastIndex = 0;
     return escaped.replace(MD_INLINE_LINK, function (_, text, urlRaw) {
@@ -461,10 +447,6 @@
     });
   }
 
-  /**
-   * Google Docs / Jina often breaks *italic* or **bold** across lines; that would become a <br />
-   * and leave bare asterisks. Collapse newlines inside paired markers (conservative).
-   */
   function mergeEmphasisAcrossNewlines(escaped) {
     var s = escaped;
     var prev;
@@ -481,10 +463,6 @@
     return s;
   }
 
-  /**
-   * Bold/italic from common markdown, on already-escaped HTML-safe text (after linkify).
-   * Order: __ ** then _ * so ** is not eaten as two italics.
-   */
   function readerInlineEmphasis(escaped) {
     var s = escaped;
     s = s.replace(/__([^_]+)__/g, "<strong>$1</strong>");
@@ -496,7 +474,6 @@
     return s;
   }
 
-  /** escapeHtml'd body: merge broken emphasis, links, then bold/italic. */
   function readerFormatEscapedInline(escaped) {
     var s = mergeEmphasisAcrossNewlines(escaped);
     s = linkifyEscapedMarkdown(s);
@@ -710,10 +687,6 @@
 
   function openStoryReader(story) {
     if (!story || !story.driveUrl || !storyReaderEl) return;
-    if (readerAbort) {
-      readerAbort.abort();
-      readerAbort = null;
-    }
     flyout.setAttribute("aria-hidden", "true");
     flyout.classList.remove("open");
     document.body.classList.remove("flyout-open");

@@ -394,7 +394,6 @@ body.story-reader-open {
   overflow: hidden;
 }
 
-/* Full-screen story reader (Google Doc text via fetch proxy) */
 .story-reader {
   position: fixed;
   inset: 0;
