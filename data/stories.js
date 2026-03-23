@@ -41,7 +41,7 @@ window.DATA_STORIES = [
     summary: "A brief glimpse into Jenny's busy life.",
     cover: "assets/covers/a_day_in_the_life_of_a_dominatrix.jpg",
     driveUrl:
-      "https://docs.google.com/document/d/e/2PACX-1vSkWP_Q0RQrC_sdo9j3NWYbjjqtJL-ZWt4CXP2DO68czpVmtXnyi52fzTlMjJ72TCwebQ-tDRhyg9bK/pub",
+      "https://docs.google.com/document/d/e/2PACX-1vQljJeCPYRaaZ6RaxaIlNjYz-fh-yNNsoYER75eHB32UKFAUPSQ4rQ-ovd4q6K6Rvu_x_ZsS7Hz_S_q/pub",
     characterIds: ["jenny"],
     state: 3,
     releaseDate: "2020-01-01",
