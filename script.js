@@ -5,6 +5,11 @@
   var characters = [];
   var stories = [];
 
+  /** Published Google Docs block cross-origin fetch; Jina Reader returns text with CORS. */
+  var JINA_READER_PREFIX = "https://r.jina.ai/";
+  var readerAbort = null;
+  var readerStory = null;
+
   function byId(id) {
     return document.getElementById(id);
   }
@@ -46,7 +51,7 @@
 
   function getStoryById(id) {
     return stories.filter(function (s) {
-      return s.id === id;
+      return s.id === id || Number(s.id) === Number(id);
     })[0];
   }
 
@@ -223,7 +228,7 @@
   }
 
   // Tab switching with URL hash (#stories, #characters, #about, #other-authors)
-  // Flyouts in URL: #character/<id>, #story/<id>
+  // Flyouts: #character/<id>, #story/<id> — reader: #story/<id>/read
   var TAB_IDS = ["stories", "characters", "about", "other-authors"];
 
   function showTab(name) {
@@ -240,16 +245,19 @@
 
   function parseHash() {
     var raw = (location.hash || "").replace(/^#/, "").toLowerCase();
-    var parts = raw.split("/");
+    var parts = raw.split("/").filter(function (p) {
+      return p.length > 0;
+    });
     var first = parts[0] || "";
     if (first === "character" && parts[1]) {
       return { tab: "characters", characterId: parts[1] };
     }
     if (first === "story" && parts[1]) {
-      var storyId = parts[1];
-      var num = parseInt(storyId, 10);
-      if (String(num) === storyId) return { tab: "stories", storyId: num };
-      return { tab: "stories", storyId: storyId };
+      var storyIdRaw = parts[1];
+      var num = parseInt(storyIdRaw, 10);
+      var sid = String(num) === storyIdRaw ? num : storyIdRaw;
+      var readMode = parts[2] === "read";
+      return { tab: "stories", storyId: sid, readMode: readMode };
     }
     var tab = TAB_IDS.indexOf(first) !== -1 ? first : "stories";
     return { tab: tab };
@@ -338,6 +346,389 @@
   var flyoutClose = byId("flyout-close");
   var flyoutBody = byId("flyout-body");
 
+  var storyReaderEl = byId("story-reader");
+  var storyReaderArticle = byId("story-reader-article");
+  var storyReaderStatus = byId("story-reader-status");
+  var storyReaderTitle = byId("story-reader-title");
+  var storyReaderExternal = byId("story-reader-external");
+  var storyReaderDetails = byId("story-reader-details");
+  var storyReaderError = byId("story-reader-error");
+  var storyReaderErrorMsg = byId("story-reader-error-msg");
+  var storyReaderRetry = byId("story-reader-retry");
+  var storyReaderBack = byId("story-reader-back");
+  var storyReaderScroll = byId("story-reader-scroll");
+  var storyReaderChaptersNav = byId("story-reader-chapters");
+
+  var readerChapterScrollHandler = null;
+  var readerChapterHeads = [];
+  var readerChapterBtns = [];
+
+  function extractJinaMarkdown(fullText) {
+    if (!fullText || typeof fullText !== "string") return "";
+    var marker = "Markdown Content:";
+    var i = fullText.indexOf(marker);
+    var body = i === -1 ? fullText : fullText.slice(i + marker.length);
+    return body.replace(/^\r?\n+/, "").trim();
+  }
+
+  /**
+   * Strip the fixed banner Google adds to every "Publish to web" doc (title, Report abuse,
+   * duplicate title, "Updated automatically every N minutes").
+   */
+  function stripGoogleDocPublishedPreamble(md) {
+    if (!md || typeof md !== "string") return md;
+    var lines = md.split(/\n/);
+    var pubIdx = -1;
+    var scanEnd = Math.min(lines.length, 40);
+    var j;
+    for (j = 0; j < scanEnd; j++) {
+      if (lines[j].trim() === "Published using Google Docs") {
+        pubIdx = j;
+        break;
+      }
+    }
+    if (pubIdx === -1) return md;
+    var updIdx = -1;
+    for (j = pubIdx; j < lines.length; j++) {
+      if (/^Updated automatically every \d+ minutes\s*$/i.test(lines[j].trim())) {
+        updIdx = j;
+        break;
+      }
+    }
+    if (updIdx === -1) return md;
+    j = updIdx + 1;
+    while (j < lines.length && /^\s*$/.test(lines[j])) {
+      j++;
+    }
+    return lines.slice(j).join("\n").replace(/^\s+/, "");
+  }
+
+  /** Undo escapeHtml on URL substrings so & etc. in destinations work in href. */
+  function decodeMarkdownUrlEntities(s) {
+    return s
+      .replace(/&amp;/g, "&")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'");
+  }
+
+  /**
+   * Safe href for reader inline links: http(s), mailto, same-page paths; bare hosts get https://.
+   * @returns {string|null}
+   */
+  function normalizeReaderHref(raw) {
+    if (!raw || typeof raw !== "string") return null;
+    var href = decodeMarkdownUrlEntities(raw).trim();
+    if (!href) return null;
+    var lower = href.toLowerCase();
+    if (
+      lower.indexOf("javascript:") === 0 ||
+      lower.indexOf("data:") === 0 ||
+      lower.indexOf("vbscript:") === 0
+    ) {
+      return null;
+    }
+    if (/^[a-z][a-z0-9+.-]*:/i.test(href)) {
+      if (/^https?:\/\//i.test(href)) return href;
+      if (/^mailto:/i.test(href)) return href;
+      return null;
+    }
+    if (href.indexOf("//") === 0) return "https:" + href;
+    if (href.charAt(0) === "/" || href.charAt(0) === "#") return href;
+    return "https://" + href;
+  }
+
+  var MD_INLINE_LINK = /\[([^\]]*)\]\(([^)]+)\)/g;
+
+  /**
+   * Turn [label](url) into <a> after the string was fully escapeHtml'd (label safe as-is).
+   */
+  function linkifyEscapedMarkdown(escaped) {
+    MD_INLINE_LINK.lastIndex = 0;
+    return escaped.replace(MD_INLINE_LINK, function (_, text, urlRaw) {
+      var href = normalizeReaderHref(urlRaw);
+      if (!href) {
+        return "[" + text + "](" + escapeHtml(decodeMarkdownUrlEntities(urlRaw).trim()) + ")";
+      }
+      return (
+        '<a href="' +
+        escapeHtml(href) +
+        '" class="story-reader-inline-link" target="_blank" rel="noopener noreferrer">' +
+        text +
+        "</a>"
+      );
+    });
+  }
+
+  /**
+   * Google Docs / Jina often breaks *italic* or **bold** across lines; that would become a <br />
+   * and leave bare asterisks. Collapse newlines inside paired markers (conservative).
+   */
+  function mergeEmphasisAcrossNewlines(escaped) {
+    var s = escaped;
+    var prev;
+    do {
+      prev = s;
+      s = s.replace(/\*\*([^*]*)\n+([^*]*)\*\*/g, "**$1 $2**");
+      s = s.replace(
+        /\*((?:\s*\S[^*\n]*?))\n+([^*\n]+?)\*(?!\*)/g,
+        "*$1 $2*"
+      );
+      s = s.replace(/__([^_\n]+)\n+([^_]+)__/g, "__$1 $2__");
+      s = s.replace(/(^|[\s(>])_([^_\n]+)\n+([^_]+)_/g, "$1_$2 $3_");
+    } while (s !== prev);
+    return s;
+  }
+
+  /**
+   * Bold/italic from common markdown, on already-escaped HTML-safe text (after linkify).
+   * Order: __ ** then _ * so ** is not eaten as two italics.
+   */
+  function readerInlineEmphasis(escaped) {
+    var s = escaped;
+    s = s.replace(/__([^_]+)__/g, "<strong>$1</strong>");
+    s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+    s = s.replace(/(^|[\s(>])_([^_\n]+)_([\s),.!?:;<]|$)/g, function (m, a, mid, c) {
+      return a + "<em>" + mid + "</em>" + c;
+    });
+    s = s.replace(/\*((?:\s*\S[^*\n]*?))\*(?!\*)/g, "<em>$1</em>");
+    return s;
+  }
+
+  /** escapeHtml'd body: merge broken emphasis, links, then bold/italic. */
+  function readerFormatEscapedInline(escaped) {
+    var s = mergeEmphasisAcrossNewlines(escaped);
+    s = linkifyEscapedMarkdown(s);
+    s = readerInlineEmphasis(s);
+    return s;
+  }
+
+  function storyMarkdownToSafeHtml(markdown) {
+    var blocks = markdown.split(/\n\n+/);
+    var html = [];
+    var chapterIndex = 0;
+    function chapterHeading(level, trimmed) {
+      var tag = level === 2 ? "h2" : "h3";
+      var inner = readerFormatEscapedInline(escapeHtml(trimmed));
+      var id = "story-ch-" + chapterIndex++;
+      return (
+        "<" +
+        tag +
+        ' id="' +
+        id +
+        '" class="story-reader-chapter story-reader-chapter--h' +
+        level +
+        '">' +
+        inner +
+        "</" +
+        tag +
+        ">"
+      );
+    }
+    var b;
+    for (b = 0; b < blocks.length; b++) {
+      var block = blocks[b].trim();
+      if (!block) continue;
+      if (block.indexOf("### ") === 0) {
+        html.push(chapterHeading(3, block.slice(4).trim()));
+      } else if (block.indexOf("## ") === 0) {
+        html.push(chapterHeading(2, block.slice(3).trim()));
+      } else if (block.indexOf("# ") === 0) {
+        html.push(chapterHeading(3, block.slice(2).trim()));
+      } else {
+        var escapedPara = escapeHtml(block).replace(/\r\n/g, "\n");
+        html.push(
+          "<p>" +
+            readerFormatEscapedInline(escapedPara).replace(/\n/g, "<br />") +
+            "</p>"
+        );
+      }
+    }
+    return html.join("");
+  }
+
+  function elementTopInScroller(el, scroller) {
+    return (
+      el.getBoundingClientRect().top -
+      scroller.getBoundingClientRect().top +
+      scroller.scrollTop
+    );
+  }
+
+  function updateStoryReaderChapterHighlight() {
+    if (
+      !storyReaderScroll ||
+      !readerChapterHeads.length ||
+      !readerChapterBtns.length
+    ) {
+      return;
+    }
+    var top = storyReaderScroll.scrollTop;
+    var pad = 6;
+    var active = 0;
+    var i;
+    for (i = 0; i < readerChapterHeads.length; i++) {
+      var ot = elementTopInScroller(readerChapterHeads[i], storyReaderScroll);
+      if (ot <= top + pad) {
+        active = i;
+      }
+    }
+    for (i = 0; i < readerChapterBtns.length; i++) {
+      var on = i === active;
+      readerChapterBtns[i].classList.toggle("is-active", on);
+      if (on) {
+        readerChapterBtns[i].setAttribute("aria-current", "location");
+      } else {
+        readerChapterBtns[i].removeAttribute("aria-current");
+      }
+    }
+  }
+
+  function teardownStoryReaderChapters() {
+    if (storyReaderScroll && readerChapterScrollHandler) {
+      storyReaderScroll.removeEventListener("scroll", readerChapterScrollHandler);
+      readerChapterScrollHandler = null;
+    }
+    readerChapterHeads = [];
+    readerChapterBtns = [];
+    if (storyReaderChaptersNav) {
+      storyReaderChaptersNav.innerHTML = "";
+      storyReaderChaptersNav.hidden = true;
+    }
+  }
+
+  function setupStoryReaderChapters() {
+    teardownStoryReaderChapters();
+    if (
+      !storyReaderChaptersNav ||
+      !storyReaderArticle ||
+      !storyReaderScroll
+    ) {
+      return;
+    }
+    readerChapterHeads = qsAll(".story-reader-chapter", storyReaderArticle);
+    if (!readerChapterHeads.length) {
+      storyReaderChaptersNav.hidden = true;
+      return;
+    }
+    storyReaderChaptersNav.hidden = false;
+    var ul = document.createElement("ul");
+    ul.className = "story-reader-chapters-list";
+    for (var i = 0; i < readerChapterHeads.length; i++) {
+      (function (head) {
+        var li = document.createElement("li");
+        var level = head.classList.contains("story-reader-chapter--h2")
+          ? "h2"
+          : "h3";
+        li.className =
+          "story-reader-chapters-item story-reader-chapters-item--" + level;
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "story-reader-chapters-link";
+        btn.textContent = head.textContent || "";
+        btn.addEventListener("click", function () {
+          head.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+        li.appendChild(btn);
+        ul.appendChild(li);
+        readerChapterBtns.push(btn);
+      })(readerChapterHeads[i]);
+    }
+    storyReaderChaptersNav.appendChild(ul);
+
+    var ticking = false;
+    readerChapterScrollHandler = function () {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(function () {
+          ticking = false;
+          updateStoryReaderChapterHighlight();
+        });
+      }
+    };
+    storyReaderScroll.addEventListener("scroll", readerChapterScrollHandler, {
+      passive: true,
+    });
+    updateStoryReaderChapterHighlight();
+  }
+
+  function closeStoryReaderUi() {
+    teardownStoryReaderChapters();
+    if (readerAbort) {
+      readerAbort.abort();
+      readerAbort = null;
+    }
+    readerStory = null;
+    if (storyReaderEl) {
+      storyReaderEl.setAttribute("aria-hidden", "true");
+      storyReaderEl.classList.remove("open");
+    }
+    document.body.classList.remove("story-reader-open");
+  }
+
+  function loadStoryReaderContent(story) {
+    if (!story || !story.driveUrl) return;
+    if (!storyReaderArticle || !storyReaderStatus || !storyReaderError) return;
+    readerStory = story;
+    if (readerAbort) readerAbort.abort();
+    readerAbort = new AbortController();
+    teardownStoryReaderChapters();
+    storyReaderError.hidden = true;
+    storyReaderArticle.innerHTML = "";
+    storyReaderStatus.hidden = false;
+    storyReaderStatus.textContent = "Loading…";
+
+    var jinaUrl = JINA_READER_PREFIX + story.driveUrl;
+    fetch(jinaUrl, {
+      signal: readerAbort.signal,
+      credentials: "omit",
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.text();
+      })
+      .then(function (text) {
+        if (!readerStory || readerStory.id !== story.id) return;
+        storyReaderStatus.hidden = true;
+        storyReaderArticle.innerHTML = storyMarkdownToSafeHtml(
+          stripGoogleDocPublishedPreamble(extractJinaMarkdown(text))
+        );
+        setupStoryReaderChapters();
+      })
+      .catch(function (err) {
+        if (err.name === "AbortError") return;
+        if (!readerStory || readerStory.id !== story.id) return;
+        storyReaderStatus.hidden = true;
+        storyReaderArticle.innerHTML = "";
+        teardownStoryReaderChapters();
+        storyReaderError.hidden = false;
+        storyReaderErrorMsg.textContent =
+          "Could not load the story text. Try Google Docs, or tap Try again.";
+      });
+  }
+
+  function openStoryReader(story) {
+    if (!story || !story.driveUrl || !storyReaderEl) return;
+    if (readerAbort) {
+      readerAbort.abort();
+      readerAbort = null;
+    }
+    flyout.setAttribute("aria-hidden", "true");
+    flyout.classList.remove("open");
+    document.body.classList.remove("flyout-open");
+
+    storyReaderTitle.textContent = story.title || "";
+    storyReaderExternal.href = story.driveUrl;
+    storyReaderDetails.href = "#story/" + story.id;
+
+    storyReaderEl.setAttribute("aria-hidden", "false");
+    storyReaderEl.classList.add("open");
+    document.body.classList.add("story-reader-open");
+
+    loadStoryReaderContent(story);
+  }
+
   function openStoryFlyout(story) {
     if (!story) return;
     var chars = getCharactersForStory(story);
@@ -355,12 +746,21 @@
       });
       charsHtml += "</ul></div>";
     }
+    var fullStoryCtaHtml = "";
+    if (story.driveUrl) {
+      fullStoryCtaHtml =
+        '<div class="flyout-full-story-wrap">' +
+        '<a href="#story/' +
+        story.id +
+        '/read" class="flyout-full-story-cta">Full Story Here!</a>' +
+        "</div>";
+    }
     var linksHtml = '<div class="flyout-links">';
     if (story.driveUrl) {
       linksHtml +=
         '<a href="' +
         escapeHtml(story.driveUrl) +
-        '" target="_blank" rel="noopener noreferrer" class="flyout-link">Google Drive</a>';
+        '" target="_blank" rel="noopener noreferrer" class="flyout-link flyout-link--secondary">Google Docs</a>';
     }
     if (story.amazonUrl) {
       linksHtml +=
@@ -405,11 +805,18 @@
             .join("") +
           "</div>"
         : "";
+    var titleClass =
+      fullStoryCtaHtml !== ""
+        ? "flyout-title flyout-title--with-cta"
+        : "flyout-title";
     flyoutBody.innerHTML =
       '<div class="flyout-mode flyout-mode-story">' +
-      '<h2 class="flyout-title">' +
+      '<h2 class="' +
+      titleClass +
+      '">' +
       escapeHtml(story.title) +
       "</h2>" +
+      fullStoryCtaHtml +
       '<p class="flyout-summary">' +
       escapeHtml(story.summary || "") +
       "</p>" +
@@ -509,7 +916,11 @@
 
   function closeFlyout() {
     var state = parseHash();
-    if (state.characterId || state.storyId) {
+    if (state.readMode) {
+      location.hash = "stories";
+      return;
+    }
+    if (state.characterId || state.storyId !== undefined) {
       location.hash = state.tab;
       return;
     }
@@ -521,6 +932,24 @@
   function applyHash() {
     var state = parseHash();
     showTab(state.tab);
+
+    if (state.readMode && state.storyId !== undefined) {
+      var storyRead = getStoryById(state.storyId);
+      if (storyRead && storyRead.driveUrl) {
+        openStoryReader(storyRead);
+      } else if (storyRead) {
+        location.replace("#story/" + storyRead.id);
+      } else {
+        closeStoryReaderUi();
+        flyout.setAttribute("aria-hidden", "true");
+        flyout.classList.remove("open");
+        document.body.classList.remove("flyout-open");
+      }
+      return;
+    }
+
+    closeStoryReaderUi();
+
     if (state.characterId) {
       var character = getCharacterById(state.characterId);
       if (character) openCharacterFlyout(character);
@@ -602,9 +1031,24 @@
 
     if (flyoutBackdrop) flyoutBackdrop.addEventListener("click", closeFlyout);
     if (flyoutClose) flyoutClose.addEventListener("click", closeFlyout);
+    if (storyReaderBack) {
+      storyReaderBack.addEventListener("click", function () {
+        location.hash = "stories";
+      });
+    }
+    if (storyReaderRetry) {
+      storyReaderRetry.addEventListener("click", function () {
+        if (readerStory) loadStoryReaderContent(readerStory);
+      });
+    }
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && flyout.classList.contains("open"))
-        closeFlyout();
+      if (e.key !== "Escape") return;
+      var h = parseHash();
+      if (h.readMode) {
+        location.hash = "stories";
+        return;
+      }
+      if (flyout.classList.contains("open")) closeFlyout();
     });
 
     window.addEventListener("hashchange", applyHash);

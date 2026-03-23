@@ -137,6 +137,57 @@
       </aside>
     </div>
 
+    <div id="story-reader" class="story-reader" aria-hidden="true">
+      <header class="story-reader-toolbar">
+        <button
+          type="button"
+          class="story-reader-back"
+          id="story-reader-back"
+          aria-label="Close reader"
+        >
+          ← Back
+        </button>
+        <h2 class="story-reader-heading" id="story-reader-title"></h2>
+        <div class="story-reader-toolbar-actions">
+          <a
+            href="#"
+            class="story-reader-meta-link"
+            id="story-reader-details"
+            >Details</a
+          >
+          <a
+            href="#"
+            class="story-reader-external"
+            id="story-reader-external"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Google Docs</a
+          >
+        </div>
+      </header>
+      <div class="story-reader-main">
+        <nav
+          class="story-reader-chapters"
+          id="story-reader-chapters"
+          aria-label="Chapters"
+          hidden
+        ></nav>
+        <div class="story-reader-scroll" id="story-reader-scroll">
+          <p class="story-reader-status" id="story-reader-status"></p>
+          <article
+            class="story-reader-article"
+            id="story-reader-article"
+          ></article>
+          <div class="story-reader-error" id="story-reader-error" hidden>
+            <p class="story-reader-error-text" id="story-reader-error-msg"></p>
+            <button type="button" class="story-reader-retry" id="story-reader-retry">
+              Try again
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="data/characters.js"></script>
     <script src="data/stories.js"></script>
     <script src="data/otherAuthors.js"></script>
