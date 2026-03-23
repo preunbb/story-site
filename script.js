@@ -348,8 +348,10 @@
   var storyReaderArticle = byId("story-reader-article");
   var storyReaderStatus = byId("story-reader-status");
   var storyReaderTitle = byId("story-reader-title");
-  var storyReaderExternal = byId("story-reader-external");
   var storyReaderDetails = byId("story-reader-details");
+  var storyReaderShareTwitter = byId("story-reader-share-twitter");
+  var storyReaderShareBluesky = byId("story-reader-share-bluesky");
+  var storyReaderShareReddit = byId("story-reader-share-reddit");
   var storyReaderError = byId("story-reader-error");
   var storyReaderErrorMsg = byId("story-reader-error-msg");
   var storyReaderRetry = byId("story-reader-retry");
@@ -630,6 +632,36 @@
     updateStoryReaderChapterHighlight();
   }
 
+  function storyReaderSharePageUrl(storyId) {
+    var u = new URL(location.href);
+    u.hash = "story/" + storyId + "/read";
+    return u.href;
+  }
+
+  function updateStoryReaderShareLinks(story) {
+    var url = storyReaderSharePageUrl(story.id);
+    var title = story.title || "Story";
+    if (storyReaderShareTwitter) {
+      storyReaderShareTwitter.href =
+        "https://twitter.com/intent/tweet?text=" +
+        encodeURIComponent(title) +
+        "&url=" +
+        encodeURIComponent(url);
+    }
+    if (storyReaderShareBluesky) {
+      storyReaderShareBluesky.href =
+        "https://bsky.app/intent/compose?text=" +
+        encodeURIComponent(title + " " + url);
+    }
+    if (storyReaderShareReddit) {
+      storyReaderShareReddit.href =
+        "https://www.reddit.com/submit?url=" +
+        encodeURIComponent(url) +
+        "&title=" +
+        encodeURIComponent(title);
+    }
+  }
+
   function closeStoryReaderUi() {
     teardownStoryReaderChapters();
     if (readerAbort) {
@@ -681,7 +713,7 @@
         teardownStoryReaderChapters();
         storyReaderError.hidden = false;
         storyReaderErrorMsg.textContent =
-          "Could not load the story text. Try Google Docs, or tap Try again.";
+          "Could not load the story text. Tap Try again.";
       });
   }
 
@@ -692,8 +724,8 @@
     document.body.classList.remove("flyout-open");
 
     storyReaderTitle.textContent = story.title || "";
-    storyReaderExternal.href = story.driveUrl;
     storyReaderDetails.href = "#story/" + story.id;
+    updateStoryReaderShareLinks(story);
 
     storyReaderEl.setAttribute("aria-hidden", "false");
     storyReaderEl.classList.add("open");
@@ -729,12 +761,6 @@
         "</div>";
     }
     var linksHtml = '<div class="flyout-links">';
-    if (story.driveUrl) {
-      linksHtml +=
-        '<a href="' +
-        escapeHtml(story.driveUrl) +
-        '" target="_blank" rel="noopener noreferrer" class="flyout-link flyout-link--secondary">Google Docs</a>';
-    }
     if (story.amazonUrl) {
       linksHtml +=
         '<a href="' +
