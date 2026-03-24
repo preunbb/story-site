@@ -6,6 +6,8 @@
   var stories = [];
 
   var JINA_READER_PREFIX = "https://r.jina.ai/";
+  /** Seconds; Jina Reader: x-cache-tolerance (see github.com/jina-ai/reader README). */
+  var JINA_CACHE_TOLERANCE_SEC = 300;
   var readerAbort = null;
   var readerStory = null;
 
@@ -692,6 +694,9 @@
     fetch(jinaUrl, {
       signal: readerAbort.signal,
       credentials: "omit",
+      headers: {
+        "x-cache-tolerance": String(JINA_CACHE_TOLERANCE_SEC),
+      },
     })
       .then(function (res) {
         if (!res.ok) throw new Error("HTTP " + res.status);
