@@ -329,7 +329,10 @@ window.DATA_STORIES = [
     title: "Castration Appointment at the Kink Agency",
     brutalityRating: 3,
     summary:
-      "He's paid the agency a hefty fee for a very specific, permanent appointment. She'll do anything for that price. Script written by me, and beautifully performed by a performer I've since lost contact with.",
+      "He's paid the agency a hefty fee for a very specific, permanent appointment. She'll do anything for that price.",
+    subtitle:
+      "Script written by me, and beautifully performed by a performer I've since lost contact with.",
+
     cover: "assets/covers/castration_appointment_at_the_kink_agency.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vSmRTiAPjYMYME6TkjqBo2WIALcx0zF8bwSBtoiAcpB29emdpneSkyBUzTQOmqxI8WW0F0EHiFLL1G9/pub",
