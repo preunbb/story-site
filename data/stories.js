@@ -18,6 +18,7 @@ window.DATA_STORIES = [
     ],
     state: 3,
     tags: ["Length: Long"],
+    brutalityRating: 5,
   },
   {
     id: 2,
@@ -32,6 +33,7 @@ window.DATA_STORIES = [
     characterIds: ["jeremy", "karen"],
     state: 3,
     tags: ["Length: Long"],
+    brutalityRating: 3,
   },
   {
     id: 4,
@@ -43,6 +45,7 @@ window.DATA_STORIES = [
     characterIds: ["jenny"],
     state: 3,
     tags: ["Length: Medium"],
+    brutalityRating: 2,
   },
   {
     id: 5,
@@ -66,6 +69,7 @@ window.DATA_STORIES = [
     ],
     state: 3,
     tags: ["Length: Medium", "Series: The Ballbusting Arena"],
+    brutalityRating: 5,
   },
   {
     id: 6,
@@ -80,6 +84,7 @@ window.DATA_STORIES = [
     characterIds: ["rachel", "greg"],
     state: 3,
     tags: ["Length: Medium"],
+    brutalityRating: 3,
   },
   {
     id: 7,
@@ -92,9 +97,11 @@ window.DATA_STORIES = [
     characterIds: ["allan", "june", "alexa"],
     state: 3,
     tags: ["Length: Medium", "New to Reddit"],
+    brutalityRating: 3,
   },
   {
     id: 8,
+    brutalityRating: 3,
     title: "Club Fight",
     summary:
       "Dennis's boxing time runs into Serena's self-defense class. Tensions rise; he and Erica agree to settle it in the ring.",
@@ -107,6 +114,7 @@ window.DATA_STORIES = [
   },
   {
     id: 9,
+    brutalityRating: 3,
     title: "Commitment",
     summary:
       "He's finally ready to give her what she's always wanted. She has the tools ready.",
@@ -122,6 +130,7 @@ window.DATA_STORIES = [
   },
   {
     id: 10,
+    brutalityRating: 4,
     title: "The Ballbusting Arena 5: First Times",
     summary:
       "Brian watches Vanessa fight while Emma, Vivian, and Natalie join him in the stands. They swap stories about the past.",
@@ -134,6 +143,7 @@ window.DATA_STORIES = [
   },
   {
     id: 11,
+    brutalityRating: 5,
     title: "Melody's First Time",
     summary:
       "Richard tries to trick Melody with a fake biology assignment. She's always fantasized about certain things—and suddenly has access.",
@@ -148,6 +158,7 @@ window.DATA_STORIES = [
   },
   {
     id: 12,
+    brutalityRating: 4,
     title: "One Night Stand",
     summary:
       "Emma picks Simon up at a bar and takes him home. She ties him to her bed. She has a fantasy she wants him to play along with.",
@@ -160,6 +171,7 @@ window.DATA_STORIES = [
   },
   {
     id: 13,
+    brutalityRating: 3,
     title: "Her Proposal",
     summary:
       "Jenny offers to marry Sanjay if he passes a test. He has to last an hour without cumming while she uses some of Cathy's inventions.",
@@ -186,6 +198,7 @@ window.DATA_STORIES = [
   },
   {
     id: 15,
+    brutalityRating: 3,
     title: "The Ballbusting Arena 2: Sofia's Choice",
     summary:
       "Daniel steps into the arena for the first time. His fiancée Vanessa said one fight would be enough. His opponent is Sofia.",
@@ -200,6 +213,7 @@ window.DATA_STORIES = [
   },
   {
     id: 16,
+    brutalityRating: 4,
     title: "The Ballbusting Arena 4: Last Minute",
     summary:
       "Another night at the arena—and something comes together at the last minute.",
@@ -214,6 +228,7 @@ window.DATA_STORIES = [
   },
   {
     id: 17,
+    brutalityRating: 3,
     title: "The Internship",
     summary:
       "Nikita is an intern and personal assistant to her married boss, Mr. Wester. They work late together and grow close. When he confesses his feelings—and accidentally discovers what she reads on her work laptop—she surprises them both with a proposition. Published as part of the collection on Amazon as 'Castrated by the Intern'",
@@ -228,6 +243,7 @@ window.DATA_STORIES = [
   },
   {
     id: 18,
+    brutalityRating: 3,
     title: "The Cult",
     summary:
       "Sam wakes up tied to an altar in the dark. His girlfriend Maria is there—and so is a goddess named Poly and her acolytes.",
@@ -241,6 +257,7 @@ window.DATA_STORIES = [
   {
     id: 19,
     title: "The Amazon's Fruits",
+    brutalityRating: 4,
     summary:
       "Prince Atheras ventures alone into a dangerous forest to rescue his captured swordmaster, ignoring his mother's warnings. In the jungle he crosses paths with Salei, a young scout from an isolated village that prizes male seed and has its own traditions about how to obtain it.",
     cover: "assets/covers/the_amazons_fruits.jpg",
@@ -255,6 +272,7 @@ window.DATA_STORIES = [
   {
     id: 20,
     title: "School Bully",
+    brutalityRating: 5,
     summary:
       "Robert is partnered with Monique in AP Calc. His mom Melody has a past; the clinic in town sees a lot of boys with 'problems down there'.",
     cover: "assets/covers/school_bully.jpg",
@@ -276,6 +294,7 @@ window.DATA_STORIES = [
   {
     id: 21,
     title: "Relief",
+    brutalityRating: 1,
     summary:
       "A dragon couple, two months from their wedding. Hato has been denied for ages; he begs for one day of relief in exchange for an extra day of their culture's pre-ceremony tradition.",
     cover: "assets/covers/relief.jpg",
@@ -295,6 +314,7 @@ window.DATA_STORIES = [
   {
     id: 22,
     title: "Caged",
+    brutalityRating: 2,
     summary:
       "After five years in her cage, he's promised a gift for their anniversary. She keeps her word.",
     cover: "assets/covers/caged.jpg",
@@ -307,8 +327,12 @@ window.DATA_STORIES = [
   {
     id: 23,
     title: "Castration Appointment at the Kink Agency",
+    brutalityRating: 3,
     summary:
-      "He's paid the agency a hefty fee for a very specific, permanent appointment. She'll do anything for that price. Script written by me, and beautifully performed by a performer I've since lost contact with.",
+      "He's paid the agency a hefty fee for a very specific, permanent appointment. She'll do anything for that price.",
+    subtitle:
+      "Script written by me, and beautifully performed by a performer I've since lost contact with.",
+
     cover: "assets/covers/castration_appointment_at_the_kink_agency.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vSmRTiAPjYMYME6TkjqBo2WIALcx0zF8bwSBtoiAcpB29emdpneSkyBUzTQOmqxI8WW0F0EHiFLL1G9/pub",
@@ -320,6 +344,7 @@ window.DATA_STORIES = [
   {
     id: 24,
     title: "Food for Thot",
+    brutalityRating: 4,
     summary:
       "Emma spots the perfect pair at the gym. Jose's used to girls drooling over his package—but she's got more than one thing on her mind, and his cojones are on the menu.",
     cover: "assets/covers/food_for_thot.jpg",
@@ -332,6 +357,7 @@ window.DATA_STORIES = [
   {
     id: 25,
     title: "Friendzoned",
+    brutalityRating: 5,
     summary:
       "Jon tutors Alyssa and would do anything for her. When her boyfriend Brad keeps cheating, she starts taking her stress out on him in study hall—and things spiral from there through the clinic and beyond.",
     cover: "assets/covers/friendzoned.jpg",
@@ -354,6 +380,7 @@ window.DATA_STORIES = [
   {
     id: 26,
     title: "Busted by the Babysitter",
+    brutalityRating: 4,
     summary:
       "Alise hires the girl next door to watch her LEGALLY ADULT stepsons for the weekend. Eric's sure he can finally get with Melody—but she's been watching him too, and her 'accidents' have a way of adding up.",
     cover: "assets/covers/busted_by_the_babysitter.jpg",
@@ -366,6 +393,7 @@ window.DATA_STORIES = [
   {
     id: 27,
     title: "Living with Ballbusting Witches",
+    brutalityRating: 3,
     summary:
       "Sean moves in with his stepmom Genovia and stepsister Sylvana—both witches with powers over male arousal and orgasm. They have very different plans for him, and his resistance pushes them to extremes.",
     cover: "assets/covers/living_with_ballbusting_witches.jpg",
@@ -380,6 +408,7 @@ window.DATA_STORIES = [
   {
     id: 28,
     title: "Testy",
+    brutalityRating: 4,
     summary:
       "Kaitlin's self defense class helps her make hilariously painful pranks on her brother even funnier than usual.",
     cover: "assets/covers/testy.jpg",
@@ -394,6 +423,7 @@ window.DATA_STORIES = [
   {
     id: 29,
     title: "Legalese",
+    brutalityRating: 5,
     summary:
       "After the Penile Necessity Assessment law, the government moves fast. Ross wakes up at the clinic—and the nurse is ready to see if he gets to keep his cock.",
     cover: "assets/covers/legalese.jpg",
@@ -406,6 +436,7 @@ window.DATA_STORIES = [
   {
     id: 30,
     title: "Postop",
+    brutalityRating: 3,
     summary:
       "An employee at Over Easy Technologies wakes up after agreeing to a company-mandated procedure to keep his job. His manager wants a follow-up—and the office has changed in ways he didn't expect.",
     cover: "assets/covers/postop.jpg",
@@ -426,6 +457,7 @@ window.DATA_STORIES = [
   {
     id: 31,
     title: "Office Management",
+    brutalityRating: 5,
     summary:
       "An office worker's recovery period after a disciplinary procedure is over. His manager has a remote for the microchip in his remaining testicle—and company policy leaves no room for slip-ups.",
     cover: "assets/covers/office_management.jpg",
@@ -440,6 +472,7 @@ window.DATA_STORIES = [
   {
     id: 32,
     title: "Nash Equilibrium",
+    brutalityRating: 5,
     summary:
       "Cathy runs a game theory experiment. Three male subjects are strapped in and must each cast a vote—selfless or selfish—that will determine the consequences for all of them.",
     cover: "assets/covers/nash_equilibrium.jpg",
@@ -456,6 +489,7 @@ window.DATA_STORIES = [
   {
     id: 33,
     title: "The First Guy I Ever Ballbusted",
+    brutalityRating: 3,
     summary:
       "Very short first-person story I wrote as a script for someone long ago. She's since taken her content down and I respect her wishes - but you can still read the script here.",
     cover: "assets/covers/the_first_guy_i_ever_ballbusted.jpg",
@@ -468,6 +502,7 @@ window.DATA_STORIES = [
   {
     id: 34,
     title: "No Nut Narrator: Squeeze",
+    brutalityRating: 1,
     summary: "Day 3 of No Nut November. Steve just wants to get home.",
     subtitle: "Part of KiwiBB's No Nut Narrator challenge.",
 
@@ -481,6 +516,7 @@ window.DATA_STORIES = [
   {
     id: 35,
     title: "No Nut Narrator: Ass",
+    brutalityRating: 1,
     summary:
       "Day 10 of No Nut November. Jordan goes bikini shopping with Ashley.",
     subtitle: "Part of KiwiBB's No Nut Narrator challenge.",
@@ -494,6 +530,7 @@ window.DATA_STORIES = [
   {
     id: 36,
     title: "Paperwork",
+    brutalityRating: 5,
     summary:
       "Officer Alice brings in a suspect for questioning. The city's enhanced interrogation rules allow testicular torture—and the paperwork says exactly how far she can go. Getting the confession is the job; the rest is procedure.",
     cover: "assets/covers/paperwork.jpg",
@@ -506,6 +543,7 @@ window.DATA_STORIES = [
   {
     id: 37,
     title: "Prank Gone Wrong",
+    brutalityRating: 3,
     summary:
       "She hasn't seen him at school for two weeks—not since she and her friends pulled a prank on him behind the bleachers. She runs into him and wants to know how he's been.",
     cover: "assets/covers/prank_gone_wrong.jpg",
@@ -520,6 +558,7 @@ window.DATA_STORIES = [
     title: "James' Big Balls",
     summary:
       "James's cousin Sarah stays at his place for the weekend. What begins as secret ballbusting during a family movie turns into a brutal weekend alone together.",
+    brutalityRating: 3,
     cover: "assets/covers/james_big_balls.jpg",
     subtitle:
       " This was a commission to extend an existing story whose source I've since lost. Part 3 is the only part I've written.",
@@ -530,6 +569,7 @@ window.DATA_STORIES = [
   },
   {
     id: 39,
+    brutalityRating: 3,
     title: "Trust issues",
     summary:
       "Tim's girlfriend Jenny has been ramping up the dominance. When she asks if he trusts her with a knife, saying yes might mean giving up more than he ever imagined.",
@@ -542,6 +582,7 @@ window.DATA_STORIES = [
   },
   {
     id: 40,
+    brutalityRating: 5,
     title: "Dragon Slaying Alternative Chapter 13: Kayla",
     summary:
       "After having his balls beaten 50 different ways by a panoply of beautiful anthropomorphic women, the red dragon P'oiu has an exceptionally difficult choice to make. He chooses...poorly.",
@@ -562,6 +603,7 @@ window.DATA_STORIES = [
   {
     id: 41,
     title: "Road Trip",
+    brutalityRating: 1,
     cover: "assets/covers/road_trip.jpg",
     summary:
       "Dava and Jeff (who met freshmen year of college) go on a road trip with his parents! But it's so boring in the back seat. Hopefully,  Dava can find a way to entertain herself.",
@@ -575,6 +617,7 @@ window.DATA_STORIES = [
   {
     id: 42,
     title: "The Ballbusting Arena 6: Natalie Enters the Ring",
+    brutalityRating: 4,
     cover: "assets/covers/arena_6.png",
     summary:
       "Natalie finally gets her nerve up to sign up for the arena. The Nguyen twins look forward to an easy 2 vs. 1 fight against the shy girl.",
@@ -586,6 +629,7 @@ window.DATA_STORIES = [
   {
     id: 43,
     title: "Andrea and Lucas",
+    brutalityRating: 5,
     cover: "assets/covers/andrea_and_lucas.png",
     summary:
       "She's a thicc goth dommy mommy who takes self defense classes. He's a religiously repressed genius nerd with a rare hyperspermia disorder. She's got a roommate who does pranks for social media, and a sister who works as a urological surgeon. He's got a stepmom who's part of an insane femdom cult that he barely escaped from intact. Hijinx ensure. Balls get popped.",
@@ -620,6 +664,7 @@ window.DATA_STORIES = [
       "Furry",
       "Based on other authors' work",
     ],
+    brutalityRating: 2,
   },
 
   {
@@ -632,6 +677,7 @@ window.DATA_STORIES = [
     state: 2,
     releaseDate: "2026-03-21",
     characterIds: [],
+    brutalityRating: 2,
     tags: ["Length: Medium", "New to Reddit", "Based on other authors' work"],
   },
 ];
