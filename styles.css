@@ -131,6 +131,11 @@ a:hover {
   gap: 0.75rem;
 }
 
+/* Wrapper only needed for mobile grid; on desktop it’s transparent to layout */
+.filter-select-slot {
+  display: contents;
+}
+
 .brutality-level-select:disabled {
   opacity: 0.45;
   cursor: not-allowed;
@@ -157,6 +162,23 @@ a:hover {
 .tag-select:focus {
   border-color: var(--red-dim);
   outline: none;
+}
+
+.tag-select.brutality-mode-select {
+  min-width: 3.75rem;
+  width: auto;
+  flex: 0 0 auto;
+  padding-left: 0.5rem;
+  padding-right: 1.65rem;
+  text-align: center;
+}
+
+.tag-select.brutality-level-select {
+  min-width: 3.25rem;
+  flex: 0 0 auto;
+  padding-left: 0.5rem;
+  padding-right: 1.65rem;
+  text-align: center;
 }
 
 /* Stories grid */
@@ -1202,6 +1224,29 @@ body.story-reader-open {
   .panel h1 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
+  }
+
+  .story-filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .tag-selector-wrap,
+  .brutality-filter-wrap {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .filter-select-slot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
   }
 
   /* Stories: vertical list with miniature portrait covers (like character avatars) */

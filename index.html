@@ -42,40 +42,46 @@
             <label for="tag-select" class="tag-selector-label"
               >Filter by tag</label
             >
-            <select
-              id="tag-select"
-              class="tag-select"
-              aria-label="Filter stories by tag"
-            >
-              <option value="">All tags</option>
-            </select>
+            <div class="filter-select-slot">
+              <select
+                id="tag-select"
+                class="tag-select"
+                aria-label="Filter stories by tag"
+              >
+                <option value="">All tags</option>
+              </select>
+            </div>
           </div>
           <div class="brutality-filter-wrap">
             <label for="brutality-mode" class="tag-selector-label"
               >Filter by brutality</label
             >
-            <select
-              id="brutality-mode"
-              class="tag-select brutality-mode-select"
-              aria-label="Brutality: equals, more than, or less than"
-            >
-              <option value="">Any</option>
-              <option value="eq">Equals</option>
-              <option value="gt">More than</option>
-              <option value="lt">Less than</option>
-            </select>
-            <select
-              id="brutality-level"
-              class="tag-select brutality-level-select"
-              aria-label="Brutality level 1 to 5"
-              disabled
-            >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3" selected>3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
+            <div class="filter-select-slot">
+              <select
+                id="brutality-mode"
+                class="tag-select brutality-mode-select"
+                aria-label="Brutality comparison: any, equals, greater, less, or inclusive bounds"
+              >
+                <option value="">Any</option>
+                <option value="eq">=</option>
+                <option value="gt">&gt;</option>
+                <option value="lt">&lt;</option>
+                <option value="gte">≥</option>
+                <option value="lte">≤</option>
+              </select>
+              <select
+                id="brutality-level"
+                class="tag-select brutality-level-select"
+                aria-label="Brutality level 1 to 5"
+                disabled
+              >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3" selected>3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
           </div>
         </div>
         <div class="stories-grid" id="stories-grid">
@@ -167,12 +173,13 @@
 
                 <br /><br />
                 🥥🥥🥥🥥🥥: Multiple brutal castrations, with many specific
-                medical details. Balls are rendered to mush, at best. Detailed
-                specifics of internal damage and gradual cruel rendering into
-                mush is almost a given. Scrotums may get ripped apart. Penises
-                occasionally get snapped, burned, sliced or diced. Genitals and
-                orgasms are often a faint, painful memory for the men by the end
-                of these stories. Not for the faint of heart.
+                medical details. Balls cannot be saved, although a clumsy or
+                incompetent surgeon may attempt to do so (sans anesthesia).
+                Detailed specifics of internal damage and gradual cruel
+                rendering into mush is almost a given. Scrotums may get ripped
+                apart. Penises rarely get snapped, burned, sliced or diced.
+                Genitals and orgasms are often a faint, painful memory for the
+                men by the end of these stories. Not for the faint of heart.
               </p>
             </div>
             <h1>On AI usage</h1>
@@ -229,16 +236,11 @@
         </button>
         <h2 class="story-reader-heading" id="story-reader-title"></h2>
         <div class="story-reader-toolbar-actions">
-          <a
-            href="#"
-            class="story-reader-meta-link"
-            id="story-reader-details"
+          <a href="#" class="story-reader-meta-link" id="story-reader-details"
             >Details</a
           >
           <details class="story-reader-share-menu">
-            <summary class="story-reader-share-summary">
-              Share on…
-            </summary>
+            <summary class="story-reader-share-summary">Share on…</summary>
             <div class="story-reader-share-panel">
               <a
                 href="#"
@@ -319,7 +321,11 @@
           ></article>
           <div class="story-reader-error" id="story-reader-error" hidden>
             <p class="story-reader-error-text" id="story-reader-error-msg"></p>
-            <button type="button" class="story-reader-retry" id="story-reader-retry">
+            <button
+              type="button"
+              class="story-reader-retry"
+              id="story-reader-retry"
+            >
               Try again
             </button>
           </div>

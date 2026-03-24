@@ -181,7 +181,7 @@
     return Math.max(1, Math.min(5, n));
   }
 
-  /** mode: "" | "eq" | "gt" | "lt"; level must be allowed for that mode */
+  /** mode: "" | "eq" | "gt" | "lt" | "gte" | "lte"; level must be allowed for that mode */
   function passesBrutalityFilter(s, mode, levelStr) {
     if (!mode) return true;
     var r = getStoryBrutalityRating(s);
@@ -191,6 +191,8 @@
     if (mode === "eq") return r === n;
     if (mode === "gt") return r > n;
     if (mode === "lt") return r < n;
+    if (mode === "gte") return r >= n;
+    if (mode === "lte") return r <= n;
     return true;
   }
 
@@ -264,6 +266,8 @@
     if (mode === "eq") return [1, 2, 3, 4, 5];
     if (mode === "gt") return [1, 2, 3, 4];
     if (mode === "lt") return [2, 3, 4, 5];
+    if (mode === "gte") return [1, 2, 3, 4, 5];
+    if (mode === "lte") return [1, 2, 3, 4, 5];
     return [1, 2, 3, 4, 5];
   }
 
