@@ -12,7 +12,6 @@
   --radius: 8px;
   --radius-lg: 14px;
   --font-sans: "Manrope", system-ui, sans-serif;
-  --font-display: "Manrope", system-ui, sans-serif;
 }
 
 * {
@@ -42,7 +41,6 @@ a:hover {
   color: var(--ink);
 }
 
-/* Header */
 .site-header {
   display: flex;
   align-items: center;
@@ -56,7 +54,7 @@ a:hover {
 }
 
 .logo {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -93,7 +91,6 @@ a:hover {
   display: none;
 }
 
-/* Content panels */
 .content {
   max-width: 1100px;
   margin: 0 auto;
@@ -108,7 +105,7 @@ a:hover {
 }
 
 .panel h1 {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.75rem;
   font-weight: 600;
   margin: 0 0 1.5rem;
@@ -131,7 +128,6 @@ a:hover {
   gap: 0.75rem;
 }
 
-/* Wrapper only needed for mobile grid; on desktop it’s transparent to layout */
 .filter-select-slot {
   display: contents;
 }
@@ -181,7 +177,6 @@ a:hover {
   text-align: center;
 }
 
-/* Stories grid */
 .stories-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -238,18 +233,10 @@ a:hover {
   color: #fff;
 }
 
-.story-state-badge-star {
-  width: 1rem;
-  height: 1rem;
-  flex-shrink: 0;
-  fill: currentColor;
-}
-
 .story-state-badge-text {
   white-space: nowrap;
 }
 
-/* Row copy of badge: hidden on desktop (cover badge only) */
 .story-state-badge--in-row {
   display: none;
 }
@@ -280,7 +267,6 @@ a:hover {
   color: var(--ink);
 }
 
-/* Characters grid */
 .characters-grid {
   display: flex;
   flex-direction: column;
@@ -288,7 +274,7 @@ a:hover {
 }
 
 .characters-section-title {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.1rem;
   font-weight: 600;
   margin: 0 0 1rem;
@@ -347,7 +333,6 @@ a:hover {
   color: var(--ink);
 }
 
-/* About */
 .about-content {
   color: var(--ink-muted);
   max-width: 56ch;
@@ -390,7 +375,7 @@ a:hover {
   list-style: none;
   cursor: pointer;
   padding: 1rem 1.25rem;
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.05rem;
   font-weight: 600;
   color: var(--ink);
@@ -441,7 +426,6 @@ a:hover {
   margin-top: 1.25rem;
 }
 
-/* Flyout */
 .flyout {
   position: fixed;
   inset: 0;
@@ -552,7 +536,7 @@ body.story-reader-open {
   flex: 1;
   min-width: 0;
   margin: 0;
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: clamp(0.95rem, 3.5vw, 1.15rem);
   font-weight: 600;
   line-height: 1.3;
@@ -810,7 +794,7 @@ body.story-reader-open {
 }
 
 .story-reader-article h2 {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.35rem;
   font-weight: 600;
   margin: 1.75rem 0 0.75rem;
@@ -824,7 +808,7 @@ body.story-reader-open {
 }
 
 .story-reader-article h3 {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.1rem;
   font-weight: 600;
   margin: 1.35rem 0 0.5rem;
@@ -905,23 +889,8 @@ body.story-reader-open {
   background: var(--red-dim);
 }
 
-.flyout-cover-wrap {
-  aspect-ratio: 2/3;
-  border-radius: var(--radius);
-  overflow: hidden;
-  margin-bottom: 1.25rem;
-  background: var(--grey-card);
-  border: 1px solid var(--border);
-}
-
-.flyout-cover {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .flyout-title {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0 0 0.75rem;
@@ -946,7 +915,7 @@ body.story-reader-open {
   box-sizing: border-box;
   min-height: 3.35rem;
   padding: 0.95rem 1.25rem;
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1.12rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -1053,6 +1022,7 @@ body.story-reader-open {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+  margin-bottom: 1.25rem;
 }
 
 .flyout-link {
@@ -1079,25 +1049,12 @@ body.story-reader-open {
   padding-top: 2.5rem;
 }
 
-.flyout-mode-story .flyout-cover-wrap {
-  aspect-ratio: 2/3;
-  border-radius: var(--radius);
-  overflow: hidden;
-  margin-bottom: 1.25rem;
-  background: var(--grey-card);
-  border: 1px solid var(--border);
-}
-
-.flyout-links {
-  margin-bottom: 1.25rem;
-}
-
 .flyout-section {
   margin-top: 1.25rem;
 }
 
 .flyout-section-title {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 1rem;
   font-weight: 600;
   margin: 0 0 0.5rem;
@@ -1165,7 +1122,6 @@ body.story-reader-open {
   color: var(--ink-muted);
 }
 
-/* Ko-fi tip jar – bottom right */
 .floatingchat-container-wrap {
   left: auto !important;
   right: 1rem !important;
@@ -1179,7 +1135,6 @@ body.story-reader-open {
   bottom: 4rem !important;
 }
 
-/* Mobile / small screens */
 @media (max-width: 768px) {
   .site-header {
     flex-wrap: wrap;
@@ -1249,7 +1204,6 @@ body.story-reader-open {
     min-width: 0;
   }
 
-  /* Stories: vertical list with miniature portrait covers (like character avatars) */
   .stories-grid {
     display: flex;
     flex-direction: column;
@@ -1283,7 +1237,6 @@ body.story-reader-open {
     align-self: center;
   }
 
-  /* Row badge carries state; pill on tiny thumb would be illegible */
   .story-cover-wrap .story-state-badge--on-cover {
     display: none;
   }
@@ -1292,7 +1245,6 @@ body.story-reader-open {
     transform: none;
   }
 
-  /* Title + row badge (same row as character names + meta) */
   .story-card-body {
     flex: 1;
     min-width: 0;
@@ -1326,7 +1278,6 @@ body.story-reader-open {
     font-size: 1rem;
   }
 
-  /* Characters: vertical list for consistency */
   .characters-grid-inner {
     display: flex;
     flex-direction: column;
@@ -1360,11 +1311,7 @@ body.story-reader-open {
     padding: 1rem 1rem 1rem 0;
   }
 
-  /* Flyout full width on small screens */
   .flyout-panel {
     max-width: 100%;
   }
 }
-
-/* Optional: link Google Fonts for DM Sans + Cormorant Garamond */
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap");
