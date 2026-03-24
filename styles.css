@@ -1018,33 +1018,6 @@ body.story-reader-open {
   border-radius: var(--radius);
 }
 
-.flyout-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
-}
-
-.flyout-link {
-  display: inline-block;
-  padding: 0.6rem 1.1rem;
-  border-radius: var(--radius);
-  font-size: 0.9rem;
-  font-weight: 500;
-  background: var(--red-dim);
-  color: var(--ink);
-  border: 1px solid var(--border);
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-}
-.flyout-link:hover {
-  background: var(--red);
-  border-color: var(--red-bright);
-  box-shadow: 0 0 16px var(--red-glow);
-}
-
 #flyout-body {
   padding-top: 2.5rem;
 }

@@ -920,39 +920,36 @@
         return c.name;
       },
     );
-    var fullStoryCtaHtml = "";
-    if (story.driveUrl || story.audioUrl) {
-      var ctaParts = [];
-      if (story.audioUrl) {
-        ctaParts.push(
-          '<div class="flyout-full-story-wrap">' +
-            '<a href="' +
-            escapeHtml(story.audioUrl.replace(/ /g, "%20")) +
-            '" class="flyout-full-story-cta" download>Full Audio Here!</a>' +
-            "</div>",
-        );
-      }
-      if (story.driveUrl) {
-        ctaParts.push(
-          '<div class="flyout-full-story-wrap">' +
-            '<a href="#story/' +
-            story.id +
-            '/read" class="flyout-full-story-cta">' +
-            (story.audioUrl ? "Full Script Here!" : "Full Story Here!") +
-            "</a></div>",
-        );
-      }
-      fullStoryCtaHtml = ctaParts.join("");
+    var ctaParts = [];
+    if (story.audioUrl) {
+      ctaParts.push(
+        '<div class="flyout-full-story-wrap">' +
+          '<a href="' +
+          escapeHtml(story.audioUrl.replace(/ /g, "%20")) +
+          '" class="flyout-full-story-cta" download>Full Audio Here!</a>' +
+          "</div>",
+      );
     }
-    var linksHtml = "";
+    if (story.driveUrl) {
+      ctaParts.push(
+        '<div class="flyout-full-story-wrap">' +
+          '<a href="#story/' +
+          story.id +
+          '/read" class="flyout-full-story-cta">' +
+          (story.audioUrl ? "Full Script Here!" : "Full Story Here!") +
+          "</a></div>",
+      );
+    }
     if (story.amazonUrl) {
-      linksHtml =
-        '<div class="flyout-links">' +
-        '<a href="' +
-        escapeHtml(story.amazonUrl) +
-        '" target="_blank" rel="noopener noreferrer" class="flyout-link">Amazon</a>' +
-        "</div>";
+      ctaParts.push(
+        '<div class="flyout-full-story-wrap">' +
+          '<a href="' +
+          escapeHtml(story.amazonUrl) +
+          '" class="flyout-full-story-cta" target="_blank" rel="noopener noreferrer">Buy on Amazon Here!</a>' +
+          "</div>",
+      );
     }
+    var fullStoryCtaHtml = ctaParts.join("");
 
     var releaseLabel = formatStoryReleaseDateLabel(story.releaseDate);
     var releaseHtml =
@@ -1003,7 +1000,6 @@
       subtitleHtml +
       tagsHtml +
       brutalityHtml +
-      linksHtml +
       charsHtml +
       "</div>";
 

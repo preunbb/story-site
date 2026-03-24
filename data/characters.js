@@ -602,4 +602,18 @@ window.DATA_CHARACTERS = [
     bio: "Random asshole at the club. Virgin. Desperate to get laid.",
     profilePictures: ["assets/characters/hunter.jpg"],
   },
+  {
+    id: "yvette",
+    name: "Yvette",
+    gender: "F",
+    bio: "Tamara's intern assistant. Trillionaire heiress who's never had to really work for anything in her life. Knows her true calling is a surgeon, and is determined to prove it no matter how little natural talent she has.",
+    profilePictures: ["assets/characters/yvette.png"],
+  },
+  {
+    id: "eve",
+    name: "Eve",
+    gender: "F",
+    bio: "Lucas' stepmom. Devout member of the Church of the Broken Tree.",
+    profilePictures: ["assets/characters/eve.png"],
+  },
 ];

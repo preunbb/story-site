@@ -331,7 +331,7 @@ window.DATA_STORIES = [
     summary:
       "He's paid the agency a hefty fee for a very specific, permanent appointment. She'll do anything for that price.",
     subtitle:
-      "Script written by me, and beautifully performed by a performer I've since lost contact with.",
+      "Script written by me, and beautifully performed by an ASMR artist I've since lost contact with.",
 
     cover: "assets/covers/castration_appointment_at_the_kink_agency.jpg",
     driveUrl:
@@ -643,6 +643,8 @@ window.DATA_STORIES = [
       "bridget",
       "nate",
       "hunter",
+      "yvette",
+      "eve",
     ],
     tags: ["Length: Extra Long", "Premium Story", "New to Reddit"],
   },
