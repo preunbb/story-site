@@ -14,9 +14,6 @@
   function byId(id) {
     return document.getElementById(id);
   }
-  function qs(sel, el) {
-    return (el || document).querySelector(sel);
-  }
   function qsAll(sel, el) {
     return (el || document).querySelectorAll(sel);
   }
@@ -86,7 +83,15 @@
     var y = parseInt(parts[0], 10);
     var m = parseInt(parts[1], 10);
     var d = parseInt(parts[2], 10);
-    if (isNaN(y) || isNaN(m) || isNaN(d) || m < 1 || m > 12 || d < 1 || d > 31) {
+    if (
+      isNaN(y) ||
+      isNaN(m) ||
+      isNaN(d) ||
+      m < 1 ||
+      m > 12 ||
+      d < 1 ||
+      d > 31
+    ) {
       return null;
     }
     return { y: y, m: m, d: d };
@@ -106,9 +111,7 @@
   function formatStoryReleaseDateLabel(iso) {
     var p = parseReleaseYyyyMmDd(iso);
     if (!p) return null;
-    return (
-      RELEASE_MONTH_NAMES[p.m - 1] + " " + p.d + ", " + p.y
-    );
+    return RELEASE_MONTH_NAMES[p.m - 1] + " " + p.d + ", " + p.y;
   }
 
   function isReleaseWithinLastThreeMonths(iso) {
@@ -119,17 +122,45 @@
     var cy = cutoff.getFullYear();
     var cm = cutoff.getMonth() + 1;
     var cd = cutoff.getDate();
-    return releaseYmdSortNumber(rel) >= releaseYmdSortNumber({
-      y: cy,
-      m: cm,
-      d: cd,
-    });
+    return (
+      releaseYmdSortNumber(rel) >=
+      releaseYmdSortNumber({
+        y: cy,
+        m: cm,
+        d: cd,
+      })
+    );
   }
 
   function shouldShowNewStoryBadge(s) {
     return (
-      normalizeStoryState(s) === 2 && isReleaseWithinLastThreeMonths(s.releaseDate)
+      normalizeStoryState(s) === 2 &&
+      isReleaseWithinLastThreeMonths(s.releaseDate)
     );
+  }
+
+  var BRUT_MAX = 5;
+
+  function intRange(lo, hi) {
+    var a = [];
+    for (; lo <= hi; lo++) a.push(lo);
+    return a;
+  }
+
+  function brutalityLevelOptionsHtml(levels, pick) {
+    return levels
+      .map(function (v) {
+        return (
+          '<option value="' +
+          v +
+          '"' +
+          (v === pick ? " selected" : "") +
+          ">" +
+          v +
+          "</option>"
+        );
+      })
+      .join("");
   }
 
   /** 1–5 busted coconuts (🥥) for flyout; empty if missing/invalid */
@@ -143,7 +174,7 @@
     }
     return (
       '<p class="flyout-brutality"><span class="flyout-brutality-label">Brutality: </span><span class="flyout-brutality-icons" role="img" aria-label="' +
-      escapeHtml("Rating " + n + " of 5") +
+      escapeHtml("Rating " + n + " of " + BRUT_MAX) +
       '">' +
       icons +
       "</span></p>"
@@ -178,7 +209,7 @@
     var n =
       typeof raw === "number" && !isNaN(raw) ? raw : parseInt(String(raw), 10);
     if (isNaN(n)) return NaN;
-    return Math.max(1, Math.min(5, n));
+    return Math.max(1, Math.min(BRUT_MAX, n));
   }
 
   /** mode: "" | "eq" | "gt" | "lt" | "gte" | "lte"; level must be allowed for that mode */
@@ -187,13 +218,28 @@
     var r = getStoryBrutalityRating(s);
     if (isNaN(r)) return false;
     var n = parseInt(levelStr, 10);
-    if (isNaN(n) || n < 1 || n > 5) return true;
+    if (isNaN(n) || n < 1 || n > BRUT_MAX) return true;
     if (mode === "eq") return r === n;
     if (mode === "gt") return r > n;
     if (mode === "lt") return r < n;
     if (mode === "gte") return r >= n;
     if (mode === "lte") return r <= n;
     return true;
+  }
+
+  function storyStateBadgeHtml(kind, place) {
+    var soon = kind === "soon";
+    return (
+      '<span class="story-state-badge story-state-badge--' +
+      kind +
+      " story-state-badge--" +
+      place +
+      '" aria-label="' +
+      (soon ? "Coming soon" : "New story") +
+      '"><span class="story-state-badge-text">' +
+      (soon ? "Coming soon!" : "New story!") +
+      "</span></span>"
+    );
   }
 
   function renderStoriesGrid() {
@@ -230,23 +276,11 @@
       var st = normalizeStoryState(s);
       var rowBadgeHtml = "";
       if (st === 1) {
-        coverContent +=
-          '<span class="story-state-badge story-state-badge--soon story-state-badge--on-cover" aria-label="Coming soon">' +
-          '<span class="story-state-badge-text">Coming soon!</span>' +
-          "</span>";
-        rowBadgeHtml =
-          '<span class="story-state-badge story-state-badge--soon story-state-badge--in-row">' +
-          '<span class="story-state-badge-text">Coming soon!</span>' +
-          "</span>";
+        coverContent += storyStateBadgeHtml("soon", "on-cover");
+        rowBadgeHtml = storyStateBadgeHtml("soon", "in-row");
       } else if (st === 2 && shouldShowNewStoryBadge(s)) {
-        coverContent +=
-          '<span class="story-state-badge story-state-badge--new story-state-badge--on-cover" aria-label="New story">' +
-          '<span class="story-state-badge-text">New story!</span>' +
-          "</span>";
-        rowBadgeHtml =
-          '<span class="story-state-badge story-state-badge--new story-state-badge--in-row">' +
-          '<span class="story-state-badge-text">New story!</span>' +
-          "</span>";
+        coverContent += storyStateBadgeHtml("new", "on-cover");
+        rowBadgeHtml = storyStateBadgeHtml("new", "in-row");
       }
       card.innerHTML =
         '<div class="story-cover-wrap">' +
@@ -263,12 +297,9 @@
   }
 
   function brutalityAllowedLevels(mode) {
-    if (mode === "eq") return [1, 2, 3, 4, 5];
-    if (mode === "gt") return [1, 2, 3, 4];
-    if (mode === "lt") return [2, 3, 4, 5];
-    if (mode === "gte") return [1, 2, 3, 4, 5];
-    if (mode === "lte") return [1, 2, 3, 4, 5];
-    return [1, 2, 3, 4, 5];
+    if (mode === "gt") return intRange(1, BRUT_MAX - 1);
+    if (mode === "lt") return intRange(2, BRUT_MAX);
+    return intRange(1, BRUT_MAX);
   }
 
   function defaultBrutalityPick(allowed) {
@@ -283,31 +314,14 @@
     var mode = modeEl.value || "";
     if (!mode) {
       levelEl.disabled = true;
-      levelEl.innerHTML =
-        "<option value=\"1\">1</option>" +
-        "<option value=\"2\">2</option>" +
-        "<option value=\"3\" selected>3</option>" +
-        "<option value=\"4\">4</option>" +
-        "<option value=\"5\">5</option>";
+      levelEl.innerHTML = brutalityLevelOptionsHtml(intRange(1, BRUT_MAX), 3);
       return;
     }
     var allowed = brutalityAllowedLevels(mode);
     var prev = parseInt(levelEl.value, 10);
     var pick =
       allowed.indexOf(prev) !== -1 ? prev : defaultBrutalityPick(allowed);
-    levelEl.innerHTML = allowed
-      .map(function (v) {
-        return (
-          '<option value="' +
-          v +
-          '"' +
-          (v === pick ? " selected" : "") +
-          ">" +
-          v +
-          "</option>"
-        );
-      })
-      .join("");
+    levelEl.innerHTML = brutalityLevelOptionsHtml(allowed, pick);
     levelEl.disabled = false;
   }
 
@@ -438,7 +452,6 @@
         });
       });
       var section = document.createElement("div");
-      section.className = "characters-section";
       var heading = document.createElement("h2");
       heading.className = "characters-section-title";
       heading.textContent =
@@ -459,6 +472,12 @@
   var flyoutBackdrop = byId("flyout-backdrop");
   var flyoutClose = byId("flyout-close");
   var flyoutBody = byId("flyout-body");
+
+  function setFlyoutPanelOpen(on) {
+    flyout.setAttribute("aria-hidden", on ? "false" : "true");
+    flyout.classList.toggle("open", on);
+    document.body.classList.toggle("flyout-open", on);
+  }
 
   var storyReaderEl = byId("story-reader");
   var storyReaderArticle = byId("story-reader-article");
@@ -502,7 +521,9 @@
     if (pubIdx === -1) return md;
     var updIdx = -1;
     for (j = pubIdx; j < lines.length; j++) {
-      if (/^Updated automatically every \d+ minutes\s*$/i.test(lines[j].trim())) {
+      if (
+        /^Updated automatically every \d+ minutes\s*$/i.test(lines[j].trim())
+      ) {
         updIdx = j;
         break;
       }
@@ -553,7 +574,13 @@
     return escaped.replace(MD_INLINE_LINK, function (_, text, urlRaw) {
       var href = normalizeReaderHref(urlRaw);
       if (!href) {
-        return "[" + text + "](" + escapeHtml(decodeMarkdownUrlEntities(urlRaw).trim()) + ")";
+        return (
+          "[" +
+          text +
+          "](" +
+          escapeHtml(decodeMarkdownUrlEntities(urlRaw).trim()) +
+          ")"
+        );
       }
       return (
         '<a href="' +
@@ -571,10 +598,7 @@
     do {
       prev = s;
       s = s.replace(/\*\*([^*]*)\n+([^*]*)\*\*/g, "**$1 $2**");
-      s = s.replace(
-        /\*((?:\s*\S[^*\n]*?))\n+([^*\n]+?)\*(?!\*)/g,
-        "*$1 $2*"
-      );
+      s = s.replace(/\*((?:\s*\S[^*\n]*?))\n+([^*\n]+?)\*(?!\*)/g, "*$1 $2*");
       s = s.replace(/__([^_\n]+)\n+([^_]+)__/g, "__$1 $2__");
       s = s.replace(/(^|[\s(>])_([^_\n]+)\n+([^_]+)_/g, "$1_$2 $3_");
     } while (s !== prev);
@@ -585,9 +609,12 @@
     var s = escaped;
     s = s.replace(/__([^_]+)__/g, "<strong>$1</strong>");
     s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
-    s = s.replace(/(^|[\s(>])_([^_\n]+)_([\s),.!?:;<]|$)/g, function (m, a, mid, c) {
-      return a + "<em>" + mid + "</em>" + c;
-    });
+    s = s.replace(
+      /(^|[\s(>])_([^_\n]+)_([\s),.!?:;<]|$)/g,
+      function (m, a, mid, c) {
+        return a + "<em>" + mid + "</em>" + c;
+      },
+    );
     s = s.replace(/\*((?:\s*\S[^*\n]*?))\*(?!\*)/g, "<em>$1</em>");
     return s;
   }
@@ -636,7 +663,7 @@
         html.push(
           "<p>" +
             readerFormatEscapedInline(escapedPara).replace(/\n/g, "<br />") +
-            "</p>"
+            "</p>",
         );
       }
     }
@@ -682,7 +709,10 @@
 
   function teardownStoryReaderChapters() {
     if (storyReaderScroll && readerChapterScrollHandler) {
-      storyReaderScroll.removeEventListener("scroll", readerChapterScrollHandler);
+      storyReaderScroll.removeEventListener(
+        "scroll",
+        readerChapterScrollHandler,
+      );
       readerChapterScrollHandler = null;
     }
     readerChapterHeads = [];
@@ -695,11 +725,7 @@
 
   function setupStoryReaderChapters() {
     teardownStoryReaderChapters();
-    if (
-      !storyReaderChaptersNav ||
-      !storyReaderArticle ||
-      !storyReaderScroll
-    ) {
+    if (!storyReaderChaptersNav || !storyReaderArticle || !storyReaderScroll) {
       return;
     }
     readerChapterHeads = qsAll(".story-reader-chapter", storyReaderArticle);
@@ -716,8 +742,7 @@
         var level = head.classList.contains("story-reader-chapter--h2")
           ? "h2"
           : "h3";
-        li.className =
-          "story-reader-chapters-item story-reader-chapters-item--" + level;
+        li.className = "story-reader-chapters-item--" + level;
         var btn = document.createElement("button");
         btn.type = "button";
         btn.className = "story-reader-chapters-link";
@@ -820,7 +845,7 @@
         if (!readerStory || readerStory.id !== story.id) return;
         storyReaderStatus.hidden = true;
         storyReaderArticle.innerHTML = storyMarkdownToSafeHtml(
-          stripGoogleDocPublishedPreamble(extractJinaMarkdown(text))
+          stripGoogleDocPublishedPreamble(extractJinaMarkdown(text)),
         );
         setupStoryReaderChapters();
       })
@@ -836,11 +861,38 @@
       });
   }
 
+  function flyoutInlineLinkSection(
+    title,
+    ulClass,
+    rows,
+    dataAttr,
+    getId,
+    getText,
+  ) {
+    if (!rows.length) return "";
+    var h =
+      '<div class="flyout-section"><h3 class="flyout-section-title">' +
+      title +
+      '</h3><ul class="flyout-list ' +
+      ulClass +
+      '">';
+    for (var fi = 0; fi < rows.length; fi++) {
+      var row = rows[fi];
+      h +=
+        '<li><button type="button" class="flyout-inline-link" ' +
+        dataAttr +
+        '="' +
+        escapeHtml(String(getId(row))) +
+        '">' +
+        escapeHtml(getText(row) || "") +
+        "</button></li>";
+    }
+    return h + "</ul></div>";
+  }
+
   function openStoryReader(story) {
     if (!story || !story.driveUrl || !storyReaderEl) return;
-    flyout.setAttribute("aria-hidden", "true");
-    flyout.classList.remove("open");
-    document.body.classList.remove("flyout-open");
+    setFlyoutPanelOpen(false);
 
     storyReaderTitle.textContent = story.title || "";
     storyReaderDetails.href = "#story/" + story.id;
@@ -856,43 +908,51 @@
   function openStoryFlyout(story) {
     if (!story) return;
     var chars = getCharactersForStory(story);
-    var charsHtml = "";
-    if (chars.length) {
-      charsHtml =
-        '<div class="flyout-section"><h3 class="flyout-section-title">Characters</h3><ul class="flyout-list flyout-characters">';
-      chars.forEach(function (c) {
-        charsHtml +=
-          '<li><button type="button" class="flyout-inline-link" data-character-id="' +
-          escapeHtml(c.id) +
-          '">' +
-          escapeHtml(c.name) +
-          "</button></li>";
-      });
-      charsHtml += "</ul></div>";
-    }
+    var charsHtml = flyoutInlineLinkSection(
+      "Characters",
+      "flyout-characters",
+      chars,
+      "data-character-id",
+      function (c) {
+        return c.id;
+      },
+      function (c) {
+        return c.name;
+      },
+    );
     var fullStoryCtaHtml = "";
-    if (story.driveUrl) {
-      fullStoryCtaHtml =
-        '<div class="flyout-full-story-wrap">' +
-        '<a href="#story/' +
-        story.id +
-        '/read" class="flyout-full-story-cta">Full Story Here!</a>' +
-        "</div>";
+    if (story.driveUrl || story.audioUrl) {
+      var ctaParts = [];
+      if (story.audioUrl) {
+        ctaParts.push(
+          '<div class="flyout-full-story-wrap">' +
+            '<a href="' +
+            escapeHtml(story.audioUrl.replace(/ /g, "%20")) +
+            '" class="flyout-full-story-cta" download>Full Audio Here!</a>' +
+            "</div>",
+        );
+      }
+      if (story.driveUrl) {
+        ctaParts.push(
+          '<div class="flyout-full-story-wrap">' +
+            '<a href="#story/' +
+            story.id +
+            '/read" class="flyout-full-story-cta">' +
+            (story.audioUrl ? "Full Script Here!" : "Full Story Here!") +
+            "</a></div>",
+        );
+      }
+      fullStoryCtaHtml = ctaParts.join("");
     }
-    var linksHtml = '<div class="flyout-links">';
+    var linksHtml = "";
     if (story.amazonUrl) {
-      linksHtml +=
+      linksHtml =
+        '<div class="flyout-links">' +
         '<a href="' +
         escapeHtml(story.amazonUrl) +
-        '" target="_blank" rel="noopener noreferrer" class="flyout-link">Amazon</a>';
+        '" target="_blank" rel="noopener noreferrer" class="flyout-link">Amazon</a>' +
+        "</div>";
     }
-    if (story.audioUrl) {
-      linksHtml +=
-        '<a href="' +
-        escapeHtml(story.audioUrl.replace(/ /g, "%20")) +
-        '" class="flyout-link" download>Audio (m4a)</a>';
-    }
-    linksHtml += "</div>";
 
     var releaseLabel = formatStoryReleaseDateLabel(story.releaseDate);
     var releaseHtml =
@@ -929,7 +989,7 @@
         : "flyout-title";
     var brutalityHtml = formatBrutalityRatingFlyoutHtml(story);
     flyoutBody.innerHTML =
-      '<div class="flyout-mode flyout-mode-story">' +
+      "<div>" +
       '<h2 class="' +
       titleClass +
       '">' +
@@ -947,17 +1007,7 @@
       charsHtml +
       "</div>";
 
-    flyout.setAttribute("aria-hidden", "false");
-    flyout.classList.add("open");
-    document.body.classList.add("flyout-open");
-
-    var charButtons = flyoutBody.querySelectorAll("[data-character-id]");
-    for (var i = 0; i < charButtons.length; i++) {
-      charButtons[i].addEventListener("click", function () {
-        var id = this.getAttribute("data-character-id");
-        location.hash = "character/" + id;
-      });
-    }
+    setFlyoutPanelOpen(true);
   }
 
   function openCharacterFlyout(character) {
@@ -982,20 +1032,18 @@
         PLACEHOLDER_CHAR +
         '" alt="" class="flyout-profile-img"></div></div>';
     }
-    var storiesHtml = "";
-    if (charStories.length) {
-      storiesHtml =
-        '<div class="flyout-section"><h3 class="flyout-section-title">Stories</h3><ul class="flyout-list flyout-stories">';
-      charStories.forEach(function (s) {
-        storiesHtml +=
-          '<li><button type="button" class="flyout-inline-link" data-story-id="' +
-          s.id +
-          '">' +
-          escapeHtml(s.title) +
-          "</button></li>";
-      });
-      storiesHtml += "</ul></div>";
-    }
+    var storiesHtml = flyoutInlineLinkSection(
+      "Stories",
+      "flyout-stories",
+      charStories,
+      "data-story-id",
+      function (s) {
+        return s.id;
+      },
+      function (s) {
+        return s.title;
+      },
+    );
 
     var genderSymbol = character.gender === "F" ? "\u2640" : "\u2642";
     var metaHtml =
@@ -1009,7 +1057,7 @@
     metaHtml += "</p>";
 
     flyoutBody.innerHTML =
-      '<div class="flyout-mode flyout-mode-character">' +
+      '<div class="flyout-mode-character">' +
       picsHtml +
       '<h2 class="flyout-title">' +
       escapeHtml(character.name) +
@@ -1021,17 +1069,7 @@
       storiesHtml +
       "</div>";
 
-    flyout.setAttribute("aria-hidden", "false");
-    flyout.classList.add("open");
-    document.body.classList.add("flyout-open");
-
-    var storyButtons = flyoutBody.querySelectorAll("[data-story-id]");
-    for (var j = 0; j < storyButtons.length; j++) {
-      storyButtons[j].addEventListener("click", function () {
-        var id = this.getAttribute("data-story-id");
-        location.hash = "story/" + id;
-      });
-    }
+    setFlyoutPanelOpen(true);
   }
 
   function closeFlyout() {
@@ -1044,9 +1082,7 @@
       location.hash = state.tab;
       return;
     }
-    flyout.setAttribute("aria-hidden", "true");
-    flyout.classList.remove("open");
-    document.body.classList.remove("flyout-open");
+    setFlyoutPanelOpen(false);
   }
 
   function applyHash() {
@@ -1061,9 +1097,7 @@
         location.replace("#story/" + storyRead.id);
       } else {
         closeStoryReaderUi();
-        flyout.setAttribute("aria-hidden", "true");
-        flyout.classList.remove("open");
-        document.body.classList.remove("flyout-open");
+        setFlyoutPanelOpen(false);
       }
       return;
     }
@@ -1079,9 +1113,7 @@
       if (story) openStoryFlyout(story);
       else closeFlyout();
     } else {
-      flyout.setAttribute("aria-hidden", "true");
-      flyout.classList.remove("open");
-      document.body.classList.remove("flyout-open");
+      setFlyoutPanelOpen(false);
     }
   }
 
@@ -1151,6 +1183,19 @@
 
     if (flyoutBackdrop) flyoutBackdrop.addEventListener("click", closeFlyout);
     if (flyoutClose) flyoutClose.addEventListener("click", closeFlyout);
+    if (flyoutBody) {
+      flyoutBody.addEventListener("click", function (e) {
+        var btn = e.target.closest(".flyout-inline-link");
+        if (!btn) return;
+        var cid = btn.getAttribute("data-character-id");
+        if (cid) {
+          location.hash = "character/" + cid;
+          return;
+        }
+        var sid = btn.getAttribute("data-story-id");
+        if (sid) location.hash = "story/" + sid;
+      });
+    }
     if (storyReaderBack) {
       storyReaderBack.addEventListener("click", function () {
         location.hash = "stories";
