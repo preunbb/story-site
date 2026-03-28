@@ -634,7 +634,8 @@ window.DATA_STORIES = [
     summary:
       "She's a thicc goth dommy mommy who takes self defense classes. He's a religiously repressed genius nerd with a rare hyperspermia disorder. She's got a roommate who does pranks for social media, and a sister who works as a urological surgeon. He's got a stepmom who's part of an insane femdom cult that he barely escaped from intact. Hijinx ensure. Balls get popped.",
     subtitle: "My first 'premium' story, exclusively for sale.",
-    state: 1,
+    state: 2,
+    releaseDate: "2026-03-28",
     characterIds: [
       "andrea",
       "lucas",
@@ -647,6 +648,16 @@ window.DATA_STORIES = [
       "eve",
     ],
     tags: ["Length: Extra Long", "Premium Story", "New to Reddit"],
+    freePreviewUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vSbhD9A1JZM_QbboBUl3ex-aMwwYkipuRpcu4l6eOXDbVvI8tkt7mByZF8hJzFVUYkEJPi91b0viDMX/pub",
+    purchaseParts: [
+      {
+        part: 1,
+        kofiUrl: "https://ko-fi.com/s/edb2b8eaa5",
+        amazonUrl: null,
+      },
+      { part: 2, kofiUrl: null, amazonUrl: null },
+    ],
   },
 
   {
