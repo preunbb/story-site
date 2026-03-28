@@ -648,7 +648,7 @@ window.DATA_STORIES = [
       "eve",
     ],
     tags: ["Length: Extra Long", "Premium Story", "New to Reddit"],
-    freePreviewUrl:
+    driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vSbhD9A1JZM_QbboBUl3ex-aMwwYkipuRpcu4l6eOXDbVvI8tkt7mByZF8hJzFVUYkEJPi91b0viDMX/pub",
     purchaseParts: [
       {
