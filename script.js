@@ -242,6 +242,22 @@
     );
   }
 
+  function storyHasPremiumTag(s) {
+    var tags = s.tags || [];
+    for (var i = 0; i < tags.length; i++) {
+      if (String(tags[i]).indexOf("Premium") !== -1) return true;
+    }
+    return false;
+  }
+
+  function storyPremiumTagHtml(place) {
+    return (
+      '<span class="story-premium-tag story-premium-tag--' +
+      place +
+      '" role="img" aria-label="Premium"><span class="story-premium-tag-symbol" aria-hidden="true">$</span></span>'
+    );
+  }
+
   function renderStoriesGrid() {
     var grid = byId("stories-grid");
     if (!grid) return;
@@ -282,6 +298,15 @@
         coverContent += storyStateBadgeHtml("new", "on-cover");
         rowBadgeHtml = storyStateBadgeHtml("new", "in-row");
       }
+      var rowPremiumHtml = "";
+      if (storyHasPremiumTag(s)) {
+        coverContent += storyPremiumTagHtml("on-cover");
+        rowPremiumHtml = storyPremiumTagHtml("in-row");
+      }
+      var rowTrailingInner = rowBadgeHtml + rowPremiumHtml;
+      var trailingRowHtml = rowTrailingInner
+        ? '<div class="story-card-trailing">' + rowTrailingInner + "</div>"
+        : "";
       card.innerHTML =
         '<div class="story-cover-wrap">' +
         coverContent +
@@ -290,7 +315,7 @@
         '<span class="story-card-title">' +
         escapeHtml(s.title) +
         "</span>" +
-        rowBadgeHtml +
+        trailingRowHtml +
         "</div>";
       grid.appendChild(card);
     });
@@ -905,6 +930,64 @@
     loadStoryReaderContent(story);
   }
 
+  function purchasePartCell(url, label, variant) {
+    var cls =
+      "flyout-purchase-btn flyout-purchase-btn--" + escapeHtml(variant);
+    if (url) {
+      return (
+        '<a href="' +
+        escapeHtml(url) +
+        '" class="' +
+        cls +
+        '" target="_blank" rel="noopener noreferrer">' +
+        escapeHtml(label) +
+        "</a>"
+      );
+    }
+    return (
+      '<span class="' +
+      cls +
+      ' flyout-purchase-btn--disabled" aria-disabled="true">' +
+      escapeHtml(label) +
+      "</span>"
+    );
+  }
+
+  function formatPurchasePartsFlyoutHtml(story) {
+    var parts = story.purchaseParts;
+    if (!parts || !parts.length) return "";
+    var h = '<div class="flyout-purchase-block">';
+    if (story.freePreviewUrl) {
+      h +=
+        '<a href="' +
+        escapeHtml(story.freePreviewUrl) +
+        '" class="flyout-purchase-preview" target="_blank" rel="noopener noreferrer">' +
+        escapeHtml("Free Preview") +
+        "</a>";
+    }
+    h += '<div class="flyout-purchase-grids">';
+    h += '<div class="flyout-purchase-grid">';
+    for (var pi = 0; pi < parts.length; pi++) {
+      var p = parts[pi];
+      var n =
+        typeof p.part === "number" && !isNaN(p.part) ? p.part : pi + 1;
+      h += purchasePartCell(p.kofiUrl, "Buy part " + n + " on Kofi!", "kofi");
+    }
+    h += '</div><div class="flyout-purchase-grid">';
+    for (var ai = 0; ai < parts.length; ai++) {
+      var q = parts[ai];
+      var m =
+        typeof q.part === "number" && !isNaN(q.part) ? q.part : ai + 1;
+      h += purchasePartCell(
+        q.amazonUrl,
+        "Buy part " + m + " on Amazon!",
+        "amazon",
+      );
+    }
+    h += "</div></div></div>";
+    return h;
+  }
+
   function openStoryFlyout(story) {
     if (!story) return;
     var chars = getCharactersForStory(story);
@@ -948,6 +1031,9 @@
           '" class="flyout-full-story-cta" target="_blank" rel="noopener noreferrer">Buy on Amazon Here!</a>' +
           "</div>",
       );
+    }
+    if (story.purchaseParts && story.purchaseParts.length) {
+      ctaParts.push(formatPurchasePartsFlyoutHtml(story));
     }
     var fullStoryCtaHtml = ctaParts.join("");
 
