@@ -187,7 +187,10 @@
     if (sa !== sb) return sa - sb;
     var ta = releaseDateSortKey(a);
     var tb = releaseDateSortKey(b);
-    if (ta !== tb) return ta - tb;
+    var aDated = isFinite(ta);
+    var bDated = isFinite(tb);
+    if (aDated && bDated && ta !== tb) return tb - ta;
+    if (aDated !== bDated) return aDated ? -1 : 1;
     return (a.title || "").localeCompare(b.title || "", undefined, {
       sensitivity: "base",
     });
