@@ -957,14 +957,6 @@
     var parts = story.purchaseParts;
     if (!parts || !parts.length) return "";
     var h = '<div class="flyout-purchase-block">';
-    if (story.freePreviewUrl) {
-      h +=
-        '<a href="' +
-        escapeHtml(story.freePreviewUrl) +
-        '" class="flyout-purchase-preview" target="_blank" rel="noopener noreferrer">' +
-        escapeHtml("Free Preview") +
-        "</a>";
-    }
     h += '<div class="flyout-purchase-grids">';
     h += '<div class="flyout-purchase-grid">';
     for (var pi = 0; pi < parts.length; pi++) {
@@ -1014,12 +1006,20 @@
       );
     }
     if (story.driveUrl) {
+      var readerCtaLabel;
+      if (story.purchaseParts && story.purchaseParts.length) {
+        readerCtaLabel = "Free Preview";
+      } else if (story.audioUrl) {
+        readerCtaLabel = "Full Script Here!";
+      } else {
+        readerCtaLabel = "Full Story Here!";
+      }
       ctaParts.push(
         '<div class="flyout-full-story-wrap">' +
           '<a href="#story/' +
           story.id +
           '/read" class="flyout-full-story-cta">' +
-          (story.audioUrl ? "Full Script Here!" : "Full Story Here!") +
+          readerCtaLabel +
           "</a></div>",
       );
     }

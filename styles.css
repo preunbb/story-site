@@ -1016,53 +1016,6 @@ body.story-reader-open {
   margin: 0 0 1.15rem;
 }
 
-.flyout-purchase-preview {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  width: 100%;
-  min-height: 2.85rem;
-  margin: 0 0 0.45rem;
-  padding: 0.65rem 1rem;
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-align: center;
-  text-decoration: none;
-  color: #f6fff8;
-  background: linear-gradient(180deg, #2ea043 0%, #1f7a32 100%);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: var(--radius-lg);
-  box-shadow:
-    0 4px 16px rgba(34, 160, 67, 0.38),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  transition:
-    background 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.15s ease,
-    color 0.2s ease;
-}
-
-.flyout-purchase-preview:hover {
-  color: #fff;
-  background: linear-gradient(180deg, #3fb950 0%, #2ea043 100%);
-  box-shadow:
-    0 6px 22px rgba(46, 200, 90, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.16);
-  transform: translateY(-1px);
-}
-
-.flyout-purchase-preview:focus {
-  outline: none;
-}
-
-.flyout-purchase-preview:focus-visible {
-  outline: 2px solid #56d364;
-  outline-offset: 3px;
-}
-
 .flyout-purchase-grids {
   display: flex;
   flex-direction: column;
