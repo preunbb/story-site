@@ -646,6 +646,11 @@ window.DATA_STORIES = [
       "hunter",
       "yvette",
       "eve",
+      "emma",
+      "kaitlin",
+      "trinn",
+      "sunni",
+      "felix",
     ],
     tags: ["Length: Extra Long", "Premium Story", "New to Reddit"],
     driveUrl:
