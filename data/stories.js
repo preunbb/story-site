@@ -654,7 +654,7 @@ window.DATA_STORIES = [
       {
         part: 1,
         kofiUrl: "https://ko-fi.com/s/edb2b8eaa5",
-        amazonUrl: null,
+        amazonUrl: "https://www.amazon.com/dp/B0GJTZSS1D",
       },
       { part: 2, kofiUrl: null, amazonUrl: null },
     ],
