@@ -638,4 +638,11 @@ window.DATA_CHARACTERS = [
     bio: "Kaitlin's date to the Cherry Pop! concert. Used to be much manlier and more muscular, but Kaitlin's fetish has taken a permanent toll on him over the years.",
     profilePictures: ["assets/characters/felix.png"],
   },
+  {
+    id: "greyson",
+    name: "Greyson",
+    gender: "M",
+    bio: "Single man at the Cherry Pop! concert. Fantasizes about getting dominated, ballbusted, and halfstrated by a mean thicc woman, in public. Goes to a Cherry Pop! concert hoping to do that...and nothing more.",
+    profilePictures: ["assets/characters/greyson.png"],
+  },
 ];
