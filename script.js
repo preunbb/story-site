@@ -261,6 +261,65 @@
     );
   }
 
+  function storyOnCoverBadgesHtml(s) {
+    var st = normalizeStoryState(s);
+    var html = "";
+    if (st === 1) {
+      html += storyStateBadgeHtml("soon", "on-cover");
+    } else if (st === 2 && shouldShowNewStoryBadge(s)) {
+      html += storyStateBadgeHtml("new", "on-cover");
+    }
+    if (storyHasPremiumTag(s)) {
+      html += storyPremiumTagHtml("on-cover");
+    }
+    return html;
+  }
+
+  /** 3D flip cover (front + optional badges on front); null if story has no coverFlip */
+  function storyFlipCoverMarkup(s, onCoverBadges) {
+    if (!s.coverFlip) return null;
+    var frontSrc = s.cover || PLACEHOLDER_COVER;
+    var flipSrc = s.coverFlip;
+    var badges = onCoverBadges || "";
+    var frontImg =
+      '<img src="' +
+      escapeHtml(frontSrc) +
+      '" alt="' +
+      escapeHtml(s.title) +
+      '" class="story-cover" onerror="this.src=\'' +
+      PLACEHOLDER_COVER +
+      "'\">";
+    var flipImg =
+      '<img src="' +
+      escapeHtml(flipSrc) +
+      '" alt="' +
+      escapeHtml(s.title) +
+      ' (alternate cover)" class="story-cover" onerror="this.src=\'' +
+      PLACEHOLDER_COVER +
+      "'\">";
+    return (
+      '<div class="story-cover-wrap story-cover-wrap--flip" tabindex="0" role="button" aria-label="Toggle alternate cover" aria-pressed="false">' +
+      '<span class="story-cover-flip-hint" aria-hidden="true">⇄</span>' +
+      '<div class="story-cover-flip-inner">' +
+      '<div class="story-cover-face story-cover-face--front">' +
+      frontImg +
+      badges +
+      "</div>" +
+      '<div class="story-cover-face story-cover-face--back">' +
+      flipImg +
+      "</div></div></div>"
+    );
+  }
+
+  function toggleCoverFlip(el) {
+    if (!el || !el.classList.contains("story-cover-wrap--flip")) return;
+    el.classList.toggle("is-flipped");
+    el.setAttribute(
+      "aria-pressed",
+      el.classList.contains("is-flipped") ? "true" : "false",
+    );
+  }
+
   function renderStoriesGrid() {
     var grid = byId("stories-grid");
     if (!grid) return;
@@ -284,36 +343,37 @@
       var card = document.createElement("article");
       card.className = "story-card";
       card.setAttribute("data-story", s.id);
-      var coverContent =
+      var st = normalizeStoryState(s);
+      var rowBadgeHtml = "";
+      if (st === 1) {
+        rowBadgeHtml = storyStateBadgeHtml("soon", "in-row");
+      } else if (st === 2 && shouldShowNewStoryBadge(s)) {
+        rowBadgeHtml = storyStateBadgeHtml("new", "in-row");
+      }
+      var rowPremiumHtml = "";
+      if (storyHasPremiumTag(s)) {
+        rowPremiumHtml = storyPremiumTagHtml("in-row");
+      }
+      var onCoverBadges = storyOnCoverBadgesHtml(s);
+      var frontSrc = s.cover || PLACEHOLDER_COVER;
+      var frontImg =
         '<img src="' +
-        (s.cover || PLACEHOLDER_COVER) +
+        escapeHtml(frontSrc) +
         '" alt="' +
         escapeHtml(s.title) +
         '" class="story-cover" onerror="this.src=\'' +
         PLACEHOLDER_COVER +
         "'\">";
-      var st = normalizeStoryState(s);
-      var rowBadgeHtml = "";
-      if (st === 1) {
-        coverContent += storyStateBadgeHtml("soon", "on-cover");
-        rowBadgeHtml = storyStateBadgeHtml("soon", "in-row");
-      } else if (st === 2 && shouldShowNewStoryBadge(s)) {
-        coverContent += storyStateBadgeHtml("new", "on-cover");
-        rowBadgeHtml = storyStateBadgeHtml("new", "in-row");
-      }
-      var rowPremiumHtml = "";
-      if (storyHasPremiumTag(s)) {
-        coverContent += storyPremiumTagHtml("on-cover");
-        rowPremiumHtml = storyPremiumTagHtml("in-row");
-      }
+      var flipMarkup = storyFlipCoverMarkup(s, onCoverBadges);
+      var coverWrapHtml = flipMarkup
+        ? flipMarkup
+        : '<div class="story-cover-wrap">' + frontImg + onCoverBadges + "</div>";
       var rowTrailingInner = rowBadgeHtml + rowPremiumHtml;
       var trailingRowHtml = rowTrailingInner
         ? '<div class="story-card-trailing">' + rowTrailingInner + "</div>"
         : "";
       card.innerHTML =
-        '<div class="story-cover-wrap">' +
-        coverContent +
-        "</div>" +
+        coverWrapHtml +
         '<div class="story-card-body">' +
         '<span class="story-card-title">' +
         escapeHtml(s.title) +
@@ -1035,10 +1095,12 @@
           "</div>",
       );
     }
+    var purchaseHtml = "";
     if (story.purchaseParts && story.purchaseParts.length) {
-      ctaParts.push(formatPurchasePartsFlyoutHtml(story));
+      purchaseHtml = formatPurchasePartsFlyoutHtml(story);
     }
-    var fullStoryCtaHtml = ctaParts.join("");
+    var primaryCtaHtml = ctaParts.join("");
+    var hasFlyoutCta = primaryCtaHtml !== "" || purchaseHtml !== "";
 
     var releaseLabel = formatStoryReleaseDateLabel(story.releaseDate);
     var releaseHtml =
@@ -1069,19 +1131,44 @@
             .join("") +
           "</div>"
         : "";
-    var titleClass =
-      fullStoryCtaHtml !== ""
-        ? "flyout-title flyout-title--with-cta"
-        : "flyout-title";
+    var titleClass = hasFlyoutCta
+      ? "flyout-title flyout-title--with-cta"
+      : "flyout-title";
     var brutalityHtml = formatBrutalityRatingFlyoutHtml(story);
+    var flyoutOnCoverBadges = storyOnCoverBadgesHtml(story);
+    var flipFlyout = storyFlipCoverMarkup(story, flyoutOnCoverBadges);
+    var coverHtml;
+    if (flipFlyout) {
+      coverHtml =
+        '<div class="flyout-story-cover-wrap flyout-story-cover-wrap--flip">' +
+        flipFlyout +
+        "</div>";
+    } else {
+      var coverSrc = story.cover || PLACEHOLDER_COVER;
+      coverHtml =
+        '<div class="flyout-story-cover-wrap">' +
+        '<img src="' +
+        escapeHtml(coverSrc) +
+        '" alt="' +
+        escapeHtml(story.title || "Cover") +
+        '" class="flyout-story-cover-img" onerror="this.src=\'' +
+        PLACEHOLDER_COVER +
+        "'\">" +
+        "</div>";
+    }
     flyoutBody.innerHTML =
-      "<div>" +
+      '<div class="flyout-story">' +
       '<h2 class="' +
       titleClass +
       '">' +
       escapeHtml(story.title) +
       "</h2>" +
-      fullStoryCtaHtml +
+      coverHtml +
+      (primaryCtaHtml
+        ? '<div class="flyout-story-cta-mount">' + primaryCtaHtml + "</div>"
+        : "") +
+      purchaseHtml +
+      '<div class="flyout-story-meta">' +
       '<p class="flyout-summary">' +
       escapeHtml(story.summary || "") +
       "</p>" +
@@ -1090,7 +1177,7 @@
       tagsHtml +
       brutalityHtml +
       charsHtml +
-      "</div>";
+      "</div></div>";
 
     setFlyoutPanelOpen(true);
   }
@@ -1204,14 +1291,32 @@
 
   function bindStoryGridClick() {
     var storiesGrid = byId("stories-grid");
-    if (storiesGrid) {
-      storiesGrid.addEventListener("click", function (e) {
-        var card = e.target.closest(".story-card");
-        if (!card) return;
-        var id = card.getAttribute("data-story");
-        location.hash = "story/" + id;
-      });
-    }
+    if (!storiesGrid) return;
+    storiesGrid.addEventListener("click", function (e) {
+      var flip = e.target.closest(".story-cover-wrap--flip");
+      if (flip) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleCoverFlip(flip);
+        return;
+      }
+      var card = e.target.closest(".story-card");
+      if (!card) return;
+      var id = card.getAttribute("data-story");
+      location.hash = "story/" + id;
+    });
+    storiesGrid.addEventListener("keydown", function (e) {
+      var flip = e.target.closest(".story-cover-wrap--flip");
+      if (
+        !flip ||
+        e.target !== flip ||
+        (e.key !== "Enter" && e.key !== " ")
+      ) {
+        return;
+      }
+      e.preventDefault();
+      toggleCoverFlip(flip);
+    });
   }
 
   function bindCharacterGridClick() {
@@ -1270,6 +1375,12 @@
     if (flyoutClose) flyoutClose.addEventListener("click", closeFlyout);
     if (flyoutBody) {
       flyoutBody.addEventListener("click", function (e) {
+        var flip = e.target.closest(".story-cover-wrap--flip");
+        if (flip && flyoutBody.contains(flip)) {
+          e.preventDefault();
+          toggleCoverFlip(flip);
+          return;
+        }
         var btn = e.target.closest(".flyout-inline-link");
         if (!btn) return;
         var cid = btn.getAttribute("data-character-id");
@@ -1279,6 +1390,19 @@
         }
         var sid = btn.getAttribute("data-story-id");
         if (sid) location.hash = "story/" + sid;
+      });
+      flyoutBody.addEventListener("keydown", function (e) {
+        var flip = e.target.closest(".story-cover-wrap--flip");
+        if (
+          !flip ||
+          !flyoutBody.contains(flip) ||
+          e.target !== flip ||
+          (e.key !== "Enter" && e.key !== " ")
+        ) {
+          return;
+        }
+        e.preventDefault();
+        toggleCoverFlip(flip);
       });
     }
     if (storyReaderBack) {
