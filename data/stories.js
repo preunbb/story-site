@@ -671,9 +671,11 @@ window.DATA_STORIES = [
     title: "Courtroom Wedding",
     summary:
       "Mal'ko and Taviri are excited to get married, but the insanity of the Red Dragon marital industrial complex is offputting. They opt for a simple, quick courtroom wedding.",
+    subtitle: "NSFW cover courtesy of KiwiBB (and AI).",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vS8Bqzs-hZYnPrTxOBrh5RDXXVGYRm1DhKEkKtPW1Lj06DEG54-hUtVCUtOnRU5yIUEwAbXNZRW7Bb0/pub",
     cover: "assets/covers/courtroom.png",
+    coverFlip: "assets/covers/courtroom_nsfw_1.png",
     state: 2,
     releaseDate: "2026-03-21",
     characterIds: ["malko", "taviri"],
