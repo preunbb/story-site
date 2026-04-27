@@ -1314,9 +1314,10 @@ body.story-reader-open {
 }
 
 .flyout-profile-wrap {
-  flex: 0 0 auto;
-  width: 80px;
-  height: 80px;
+  flex: 1 1 100%;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--grey-card);
