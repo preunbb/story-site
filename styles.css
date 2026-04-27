@@ -938,6 +938,24 @@ body.story-reader-open {
   margin: 0 0 1rem;
 }
 
+.story-reader-article .story-reader-divider {
+  border: 0;
+  height: 1px;
+  margin: 2.25rem 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--red-dim) 18%,
+    var(--red-dim) 82%,
+    transparent 100%
+  );
+}
+
+.story-reader-article .story-reader-divider + .story-reader-chapter,
+.story-reader-article .story-reader-chapter + .story-reader-divider {
+  margin-top: 0.5rem;
+}
+
 .story-reader-article em {
   font-style: italic;
 }

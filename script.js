@@ -712,6 +712,8 @@
         html.push(chapterHeading(2, block.slice(3).trim()));
       } else if (block.indexOf("# ") === 0) {
         html.push(chapterHeading(3, block.slice(2).trim()));
+      } else if (/^\s*(?:[-*_]\s*)+$/.test(block)) {
+        html.push('<hr class="story-reader-divider" />');
       } else {
         var escapedPara = escapeHtml(block).replace(/\r\n/g, "\n");
         html.push(

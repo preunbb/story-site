@@ -73,8 +73,6 @@ function makeTurndown() {
   });
   // Drop images: stories shouldn't include any, and we don't want broken refs.
   td.addRule("dropImages", { filter: "img", replacement: () => "" });
-  // Drop horizontal rules originating from Google's chrome page-breaks.
-  td.addRule("dropHr", { filter: "hr", replacement: () => "" });
   // Disable turndown's aggressive backslash-escaping. The site's renderer in
   // script.js is conservative (emphasis only with whitespace flanks; headings
   // only at block start) so leaving underscores/asterisks/hyphens unescaped is
@@ -185,6 +183,27 @@ function unwrapAllGoogleRedirectors($, body) {
   });
 }
 
+/**
+ * Authors mark scene/chapter breaks by typing rows of dashes (or asterisks /
+ * underscores) on their own line. In the published HTML these are just plain
+ * paragraphs like `<p><span>------</span></p>`. Convert them to real <hr>
+ * elements so turndown emits a proper markdown HR (---) and the renderer can
+ * style them as visual dividers.
+ */
+function convertDashDividersToHr($, body) {
+  // Allow ASCII -, *, _ as well as the typographic en/em dashes. Authors here
+  // use anything from a single "-" to long "------" rows as scene breaks; a
+  // standalone dash-character paragraph is essentially never anything else.
+  const dividerRe = /^[-*_\u2013\u2014]+$/;
+  body.find("p").each((_, el) => {
+    const $el = $(el);
+    const text = $el.text().replace(/\s+/g, "");
+    if (text && dividerRe.test(text)) {
+      $el.replaceWith("<hr />");
+    }
+  });
+}
+
 function extractBodyHtml(html) {
   const $ = cheerio.load(html, { decodeEntities: false });
   const body = $(".doc-content").first();
@@ -192,6 +211,7 @@ function extractBodyHtml(html) {
   const classFormatting = parseStyleClassFormatting($);
   wrapStyledFormatting($, body, classFormatting);
   unwrapAllGoogleRedirectors($, body);
+  convertDashDividersToHr($, body);
   // Strip empty spans/paragraphs that Google emits as visual padding.
   body.find("p").each((_, el) => {
     const $el = $(el);
