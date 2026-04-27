@@ -1,0 +1,14 @@
+{
+  "name": "story-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "sync": "node scripts/sync-stories.mjs",
+    "sync:concurrent": "node scripts/sync-stories.mjs --concurrency=4"
+  },
+  "devDependencies": {
+    "cheerio": "^1.0.0",
+    "turndown": "^7.2.0"
+  }
+}

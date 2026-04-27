@@ -5,9 +5,13 @@
   var characters = [];
   var stories = [];
 
-  var JINA_READER_PREFIX = "https://r.jina.ai/";
-  /** Seconds; Jina Reader: x-cache-tolerance (see github.com/jina-ai/reader README). */
-  var JINA_CACHE_TOLERANCE_SEC = 300;
+  /**
+   * Story bodies are pre-rendered to markdown files under assets/stories/<id>.md
+   * by `npm run sync` (see scripts/sync-stories.mjs). They're committed to the
+   * repo and served same-origin, so the reader needs no proxy / API key /
+   * third-party service to display a story.
+   */
+  var STORY_MD_PREFIX = "assets/stories/";
   var readerAbort = null;
   var readerStory = null;
 
@@ -586,44 +590,6 @@
   var readerChapterHeads = [];
   var readerChapterBtns = [];
 
-  function extractJinaMarkdown(fullText) {
-    if (!fullText || typeof fullText !== "string") return "";
-    var marker = "Markdown Content:";
-    var i = fullText.indexOf(marker);
-    var body = i === -1 ? fullText : fullText.slice(i + marker.length);
-    return body.replace(/^\r?\n+/, "").trim();
-  }
-
-  function stripGoogleDocPublishedPreamble(md) {
-    if (!md || typeof md !== "string") return md;
-    var lines = md.split(/\n/);
-    var pubIdx = -1;
-    var scanEnd = Math.min(lines.length, 40);
-    var j;
-    for (j = 0; j < scanEnd; j++) {
-      if (lines[j].trim() === "Published using Google Docs") {
-        pubIdx = j;
-        break;
-      }
-    }
-    if (pubIdx === -1) return md;
-    var updIdx = -1;
-    for (j = pubIdx; j < lines.length; j++) {
-      if (
-        /^Updated automatically every \d+ minutes\s*$/i.test(lines[j].trim())
-      ) {
-        updIdx = j;
-        break;
-      }
-    }
-    if (updIdx === -1) return md;
-    j = updIdx + 1;
-    while (j < lines.length && /^\s*$/.test(lines[j])) {
-      j++;
-    }
-    return lines.slice(j).join("\n").replace(/^\s+/, "");
-  }
-
   function decodeMarkdownUrlEntities(s) {
     return s
       .replace(/&amp;/g, "&")
@@ -906,7 +872,7 @@
   }
 
   function loadStoryReaderContent(story) {
-    if (!story || !story.driveUrl) return;
+    if (!story || story.id == null) return;
     if (!storyReaderArticle || !storyReaderStatus || !storyReaderError) return;
     readerStory = story;
     if (readerAbort) readerAbort.abort();
@@ -917,13 +883,10 @@
     storyReaderStatus.hidden = false;
     storyReaderStatus.textContent = "Loading…";
 
-    var jinaUrl = JINA_READER_PREFIX + story.driveUrl;
-    fetch(jinaUrl, {
+    var mdUrl = STORY_MD_PREFIX + story.id + ".md";
+    fetch(mdUrl, {
       signal: readerAbort.signal,
       credentials: "omit",
-      headers: {
-        "x-cache-tolerance": String(JINA_CACHE_TOLERANCE_SEC),
-      },
     })
       .then(function (res) {
         if (!res.ok) throw new Error("HTTP " + res.status);
@@ -932,9 +895,7 @@
       .then(function (text) {
         if (!readerStory || readerStory.id !== story.id) return;
         storyReaderStatus.hidden = true;
-        storyReaderArticle.innerHTML = storyMarkdownToSafeHtml(
-          stripGoogleDocPublishedPreamble(extractJinaMarkdown(text)),
-        );
+        storyReaderArticle.innerHTML = storyMarkdownToSafeHtml(text);
         setupStoryReaderChapters();
       })
       .catch(function (err) {
