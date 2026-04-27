@@ -193,7 +193,7 @@ window.DATA_CHARACTERS = [
     name: "Brian",
     gender: "M",
     bio: "Vanessa's boyfriend. Watches her matches from the stands. Supportive, waits for her.",
-    profilePictures: [],
+    profilePictures: ["assets/characters/brian.png"],
   },
   {
     id: "natalie",
@@ -578,7 +578,7 @@ window.DATA_CHARACTERS = [
     id: "tamara",
     name: "Tamara",
     gender: "F",
-    bio: "Andrea's identical twin. Urological pathologist who has seen her share of testicular injuries, from the mild to the extreme. Not squeamish at all.",
+    bio: "Andrea's identical twin. Urological pathologist who has seen her share of testicular injuries. Testicular savant, just like her sister; can diagnose and save balls that nobody else could. Also shares her sister's kinks, much to her chagrin.",
     profilePictures: ["assets/characters/tamara.jpg"],
   },
   {
@@ -627,7 +627,7 @@ window.DATA_CHARACTERS = [
   {
     id: "sunni",
     name: "Sunni",
-    gender: "F",
+    gender: "M",
     bio: "Single guy attending his first Cherry Pop! concert. No idea what he's in for.",
     profilePictures: ["assets/characters/sunni.png"],
   },
@@ -644,5 +644,12 @@ window.DATA_CHARACTERS = [
     gender: "M",
     bio: "Single man at the Cherry Pop! concert. Fantasizes about getting dominated, ballbusted, and halfstrated by a mean thicc woman, in public. Goes to a Cherry Pop! concert hoping to do that...and nothing more.",
     profilePictures: ["assets/characters/greyson.png"],
+  },
+  {
+    id: "nguyen_twins",
+    name: "Nguyen Twins",
+    gender: "M",
+    bio: "Identical twin brothers. Well hung but virginal, they're hoping that the arena will help them lose their virginity.",
+    profilePictures: ["assets/characters/nguyen_twins.png"],
   },
 ];

@@ -619,10 +619,13 @@ window.DATA_STORIES = [
     title: "The Ballbusting Arena 6: Natalie Enters the Ring",
     brutalityRating: 4,
     cover: "assets/covers/arena_6.png",
+    driveUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vS32jqSSfXDaR_nKKo59asBOgSRmbZ5zn2msh9_8ov7AwMgq1o3SCWgfp5aearAIm3-dO-Hj1LJlnr2/pub",
+    releaseDate: "2026-04-26",
     summary:
       "Natalie finally gets her nerve up to sign up for the arena. The Nguyen twins look forward to an easy 2 vs. 1 fight against the shy girl.",
-    state: 1,
-    characterIds: ["natalie", "minh", "anh"],
+    state: 2,
+    characterIds: ["natalie", "nguyen_twins", "brian"],
     tags: ["Length: Medium", "New to Reddit", "Series: The Ballbusting Arena"],
   },
 
@@ -652,6 +655,7 @@ window.DATA_STORIES = [
       "sunni",
       "felix",
       "greyson",
+      "melody",
     ],
     tags: ["Length: Extra Long", "Premium Story", "New to Reddit"],
     driveUrl:
@@ -699,5 +703,16 @@ window.DATA_STORIES = [
     characterIds: [],
     brutalityRating: 2,
     tags: ["Length: Medium", "New to Reddit", "Based on other authors' work"],
+  },
+  {
+    id: 46,
+    title: "Melody Seduces a Virgin",
+    summary:
+      "Melody's castration kink is back in full force, ever since her son lost his balls. She's been craving a chance to explore her awakened urges, and the nervous, virginal Ryan is just the guy to help her.",
+    cover: "assets/covers/melody_seduces_a_virgin.png",
+    state: 1,
+    characterIds: ["melody", "ryan"],
+    brutalityRating: 4,
+    tags: ["Length: Medium", "New to Reddit"],
   },
 ];
