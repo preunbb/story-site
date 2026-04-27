@@ -155,12 +155,43 @@ function wrapStyledFormatting($, body, classFormatting) {
   });
 }
 
+/**
+ * Google Docs wraps every external link in a
+ *   https://www.google.com/url?q=<real-url>&sa=D&source=editors&ust=…&usg=…
+ * tracking redirector. Strip it back to the actual destination.
+ */
+function unwrapGoogleRedirectorHref(href) {
+  if (!href || typeof href !== "string") return href;
+  if (!/^https?:\/\/(?:www\.)?google\.com\/url\?/i.test(href)) return href;
+  try {
+    const u = new URL(href);
+    const q = u.searchParams.get("q");
+    return q || href;
+  } catch {
+    return href;
+  }
+}
+
+function unwrapAllGoogleRedirectors($, body) {
+  body.find("a[href]").each((_, el) => {
+    const $el = $(el);
+    const orig = $el.attr("href");
+    const cleaned = unwrapGoogleRedirectorHref(orig);
+    if (cleaned !== orig) $el.attr("href", cleaned);
+    // Also rewrite link text if it visibly displays the redirector URL
+    // (Google Docs sometimes uses the full URL as the anchor text).
+    const text = $el.text();
+    if (text && text.trim() === orig) $el.text(cleaned);
+  });
+}
+
 function extractBodyHtml(html) {
   const $ = cheerio.load(html, { decodeEntities: false });
   const body = $(".doc-content").first();
   if (!body.length) return null;
   const classFormatting = parseStyleClassFormatting($);
   wrapStyledFormatting($, body, classFormatting);
+  unwrapAllGoogleRedirectors($, body);
   // Strip empty spans/paragraphs that Google emits as visual padding.
   body.find("p").each((_, el) => {
     const $el = $(el);
