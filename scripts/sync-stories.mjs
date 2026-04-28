@@ -28,23 +28,33 @@ const STORIES_JS = join(repoRoot, "data", "stories.js");
 const OUT_DIR = join(repoRoot, "assets", "stories");
 const ARGS = parseArgs(process.argv.slice(2));
 
+function parseIdList(raw) {
+  return raw
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((s) => (Number.isFinite(Number(s)) ? Number(s) : s));
+}
+
 function parseArgs(argv) {
   const out = { concurrency: 3, only: null, prune: true };
+  const positional = [];
   for (const arg of argv) {
     if (arg.startsWith("--concurrency=")) {
       const n = parseInt(arg.slice("--concurrency=".length), 10);
       if (Number.isFinite(n) && n > 0) out.concurrency = Math.min(n, 8);
     } else if (arg.startsWith("--only=")) {
-      const ids = arg
-        .slice("--only=".length)
-        .split(",")
-        .map((s) => s.trim())
-        .filter(Boolean)
-        .map((s) => (Number.isFinite(Number(s)) ? Number(s) : s));
-      out.only = new Set(ids);
+      out.only = new Set(parseIdList(arg.slice("--only=".length)));
     } else if (arg === "--no-prune") {
       out.prune = false;
+    } else if (!arg.startsWith("--")) {
+      positional.push(arg);
     }
+  }
+  // Treat any positional args as a comma-separated list of story ids, e.g.
+  // `npm run sync 42,43,1` or `npm run sync 42 43 1`.
+  if (!out.only && positional.length) {
+    out.only = new Set(parseIdList(positional.join(",")));
   }
   return out;
 }
