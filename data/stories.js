@@ -21,6 +21,25 @@ window.DATA_STORIES = [
     brutalityRating: 5,
   },
   {
+    id: 100,
+    title: "Three Strikes (alt)",
+    summary:
+      "A college senior with an unusual anatomy and a very demanding swim coach. An aged-up retelling set at Western University.",
+    cover: "assets/covers/three_strikes.jpg",
+    characterIds: [
+      "sam",
+      "jenny",
+      "michelle",
+      "stephanie",
+      "karen",
+      "cathy",
+      "amy",
+    ],
+    state: 3,
+    tags: ["Length: Long"],
+    brutalityRating: 5,
+  },
+  {
     id: 2,
     title: "Castration Anxiety",
     summary:
