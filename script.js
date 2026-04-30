@@ -942,7 +942,7 @@
   }
 
   function openStoryReader(story) {
-    if (!story || !story.driveUrl || !storyReaderEl) return;
+    if (!story || !storyReaderEl) return;
     setFlyoutPanelOpen(false);
 
     storyReaderTitle.textContent = story.title || "";
@@ -1031,7 +1031,7 @@
           "</div>",
       );
     }
-    if (story.driveUrl) {
+    if (normalizeStoryState(story) !== 1) {
       var readerCtaLabel;
       if (story.purchaseParts && story.purchaseParts.length) {
         readerCtaLabel = "Free Preview";
@@ -1226,10 +1226,8 @@
 
     if (state.readMode && state.storyId !== undefined) {
       var storyRead = getStoryById(state.storyId);
-      if (storyRead && storyRead.driveUrl) {
+      if (storyRead) {
         openStoryReader(storyRead);
-      } else if (storyRead) {
-        location.replace("#story/" + storyRead.id);
       } else {
         closeStoryReaderUi();
         setFlyoutPanelOpen(false);
