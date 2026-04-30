@@ -3,29 +3,10 @@ window.DATA_STORIES = [
     id: 1,
     title: "Three Strikes",
     summary:
-      "A high school senior with an unusual anatomy and a very demanding swim instructor.",
+      "A college senior has an unusually blessed anatomy and a very demanding swim coach. She insists on some minor modifications to improve his speed, which he politely declines. She enlists three eager assistants to help change his mind: a Goth, a cheerleader, and an science wiz. Sam does his best to keep all of his blessings safe from the girls, but it's not easy, and all three girls make some very convincing arguments.",
     cover: "assets/covers/three_strikes.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTX9nnN1Igz0Nvpk3kpY6rjkJ26Lz5diQpx6G77hbuwGDXZ03x-aUrf7ni0nQv1hx1QzQ7X4ClVoUuR/pub",
-    characterIds: [
-      "sam",
-      "jenny",
-      "michelle",
-      "stephanie",
-      "karen",
-      "cathy",
-      "amy",
-    ],
-    state: 3,
-    tags: ["Length: Long"],
-    brutalityRating: 5,
-  },
-  {
-    id: 100,
-    title: "Three Strikes (alt)",
-    summary:
-      "A college senior with an unusual anatomy and a very demanding swim coach. An aged-up retelling set at Western University.",
-    cover: "assets/covers/three_strikes_alt.jpg",
     characterIds: [
       "sam",
       "jenny",

@@ -5,7 +5,9 @@
   "scripts": {
     "start": "python3 -m http.server 8000",
     "sync": "node scripts/sync-stories.mjs",
-    "sync:concurrent": "node scripts/sync-stories.mjs --concurrency=4"
+    "sync:concurrent": "node scripts/sync-stories.mjs --concurrency=4",
+    "pdf": "node scripts/render-story-pdf.mjs",
+    "epub": "node scripts/render-story-epub.mjs"
   },
   "devDependencies": {
     "cheerio": "^1.0.0",

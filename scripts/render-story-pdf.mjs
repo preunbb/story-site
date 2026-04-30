@@ -1,0 +1,449 @@
+#!/usr/bin/env node
+/*
+ * Renders a single story's reader output to a self-contained PDF using the
+ * same Markdown -> HTML conversion the in-browser reader does (mirrored
+ * from script.js' storyMarkdownToSafeHtml; shared via lib/story-render.mjs)
+ * and printed via headless Google Chrome.
+ *
+ * Usage:
+ *   node scripts/render-story-pdf.mjs [storyId] [--out=path.pdf] [--light]
+ *
+ * Defaults to story id 1 (Three Strikes). Output defaults to
+ * dist/<slugified-title>.pdf.
+ */
+
+import {
+  readFileSync,
+  writeFileSync,
+  mkdirSync,
+  unlinkSync,
+} from "node:fs";
+import { dirname, join, resolve } from "node:path";
+import { spawnSync } from "node:child_process";
+import { tmpdir } from "node:os";
+import {
+  loadStories,
+  findStory,
+  readStoryMarkdown,
+  slugify,
+  escapeHtml,
+  storyMarkdownToSafeHtml,
+  extractChapters,
+  END_PAGE,
+  DEFAULT_OUT_DIR,
+} from "./lib/story-render.mjs";
+
+const READER_OPTS = {
+  linkClass: "story-reader-inline-link",
+  dividerClass: "story-reader-divider",
+};
+
+const CHROME_CANDIDATES = [
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary",
+  "/Applications/Chromium.app/Contents/MacOS/Chromium",
+  "/usr/bin/google-chrome",
+  "/usr/bin/chromium",
+  "/usr/bin/chromium-browser",
+];
+
+function parseArgs(argv) {
+  const out = { id: 1, output: null, light: false };
+  for (const arg of argv) {
+    if (arg === "--light") {
+      out.light = true;
+    } else if (arg.startsWith("--out=")) {
+      out.output = arg.slice("--out=".length);
+    } else if (/^\d+$/.test(arg)) {
+      out.id = Number(arg);
+    } else if (!arg.startsWith("--")) {
+      const n = Number(arg);
+      if (!Number.isNaN(n)) out.id = n;
+    }
+  }
+  return out;
+}
+
+function findChrome() {
+  for (const path of CHROME_CANDIDATES) {
+    try {
+      readFileSync(path);
+      return path;
+    } catch {
+      /* not present */
+    }
+  }
+  throw new Error(
+    "Could not find Google Chrome / Chromium. Install Chrome or set CHROME_BIN.",
+  );
+}
+
+/* ---------- HTML document wrapping ---------- */
+
+function buildTocHtml({ title, chapters }) {
+  if (!chapters || !chapters.length) return "";
+  let topNum = 0;
+  const items = chapters
+    .map((ch) => {
+      const linkTitle = escapeHtml(ch.title);
+      const href = "#" + ch.id;
+      topNum += 1;
+      return (
+        `<li class="toc-item toc-item--h2">` +
+        `<span class="toc-num">${topNum}.</span>` +
+        `<a class="toc-link" href="${href}">${linkTitle}</a>` +
+        `<span class="toc-leader" aria-hidden="true"></span>` +
+        `</li>`
+      );
+    })
+    .join("\n      ");
+
+  return `  <section class="toc-page">
+    <p class="toc-eyebrow">Contents</p>
+    <h1 class="toc-title">${title}</h1>
+    <hr class="toc-flourish" />
+    <ol class="toc-list">
+      ${items}
+    </ol>
+  </section>`;
+}
+
+function buildEndPageHtml() {
+  const paragraphs = END_PAGE.paragraphs
+    .map((p) => `    <p class="end-message">${escapeHtml(p)}</p>`)
+    .join("\n");
+  const contacts = END_PAGE.contacts
+    .map(
+      (c) =>
+        `      <li>` +
+        `<span class="end-contact-label">${escapeHtml(c.label)}</span>` +
+        `<a href="${escapeHtml(c.href)}">${escapeHtml(c.text)}</a>` +
+        `</li>`,
+    )
+    .join("\n");
+  return `  <section class="end-page">
+    <hr class="end-flourish" />
+    <h1 class="end-title">${escapeHtml(END_PAGE.title)}</h1>
+${paragraphs}
+    <ul class="end-contacts">
+${contacts}
+    </ul>
+    <p class="end-signoff">${escapeHtml(END_PAGE.signoff)}</p>
+  </section>`;
+}
+
+function buildHtmlDocument({ story, bodyHtml, chapters, light }) {
+  const palette = light
+    ? {
+        bg: "#ffffff",
+        ink: "#1f1c21",
+        inkMuted: "#5b555f",
+        red: "#a14a59",
+        redBright: "#a14a59",
+        redDim: "#c89aa3",
+        border: "rgba(161, 74, 89, 0.25)",
+      }
+    : {
+        bg: "#252528",
+        ink: "#ebe9ec",
+        inkMuted: "#a8a4ab",
+        red: "#b07a85",
+        redBright: "#c9959f",
+        redDim: "#8f6a73",
+        border: "rgba(176, 122, 133, 0.2)",
+      };
+
+  const title = escapeHtml(story.title || "Story");
+  const tocHtml = buildTocHtml({ title, chapters });
+  const endHtml = buildEndPageHtml();
+
+  return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>${title}</title>
+<style>
+  @page {
+    size: Letter;
+    margin: 0.85in 0.75in;
+  }
+  :root {
+    --bg: ${palette.bg};
+    --ink: ${palette.ink};
+    --ink-muted: ${palette.inkMuted};
+    --red: ${palette.red};
+    --red-bright: ${palette.redBright};
+    --red-dim: ${palette.redDim};
+    --border: ${palette.border};
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 11pt;
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  article.story-reader-article {
+    max-width: 6.25in;
+    margin: 0 auto;
+    color: var(--ink);
+  }
+  .story-reader-article h2 {
+    font-size: 18pt;
+    font-weight: 600;
+    margin: 0 0 0.25in;
+    letter-spacing: 0.02em;
+    line-height: 1.25;
+    color: var(--ink);
+    page-break-before: always;
+    page-break-after: avoid;
+  }
+  .story-reader-article h3 {
+    font-size: 14pt;
+    font-weight: 600;
+    margin: 0.3in 0 0.12in;
+    line-height: 1.3;
+    color: var(--ink);
+    page-break-before: always;
+    page-break-after: avoid;
+  }
+  .story-reader-article p {
+    margin: 0 0 0.14in;
+    orphans: 3;
+    widows: 3;
+  }
+  .story-reader-article .story-reader-divider {
+    border: 0;
+    height: 1px;
+    margin: 0.35in auto;
+    width: 60%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--red-dim) 18%,
+      var(--red-dim) 82%,
+      transparent 100%
+    );
+  }
+  .toc-page {
+    page-break-after: always;
+    max-width: 5.75in;
+    margin: 0 auto;
+    padding-top: 0.4in;
+  }
+  .toc-page .toc-eyebrow {
+    font-size: 10pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin: 0 0 0.18in;
+    text-align: center;
+  }
+  .toc-page .toc-title {
+    font-size: 26pt;
+    font-weight: 700;
+    margin: 0 0 0.45in;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    text-align: center;
+    line-height: 1.2;
+  }
+  .toc-page .toc-flourish {
+    border: 0;
+    height: 1px;
+    margin: 0 auto 0.45in;
+    width: 35%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--red-dim) 18%,
+      var(--red-dim) 82%,
+      transparent 100%
+    );
+  }
+  .toc-page .toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .toc-page .toc-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.45em;
+    padding: 0.07in 0;
+    line-height: 1.35;
+  }
+  .toc-page .toc-num {
+    color: var(--ink-muted);
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+    min-width: 1.6em;
+    text-align: right;
+  }
+  .toc-page .toc-link {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 12pt;
+    font-weight: 500;
+  }
+  .toc-page .toc-leader {
+    flex: 1;
+    align-self: end;
+    margin: 0 0.2em 0.18em;
+    height: 0;
+    border-bottom: 1px dotted var(--ink-muted);
+    opacity: 0.6;
+  }
+  .story-reader-article em { font-style: italic; }
+  .story-reader-article strong { font-weight: 700; }
+  .story-reader-article .story-reader-inline-link {
+    color: var(--red-bright);
+    text-decoration: underline;
+    text-underline-offset: 0.12em;
+  }
+  .end-page {
+    page-break-before: always;
+    max-width: 5.5in;
+    margin: 0 auto;
+    padding-top: 0.5in;
+    text-align: center;
+  }
+  .end-page .end-flourish {
+    border: 0;
+    height: 1px;
+    margin: 0 auto 0.45in;
+    width: 45%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--red-dim) 18%,
+      var(--red-dim) 82%,
+      transparent 100%
+    );
+  }
+  .end-page .end-title {
+    font-size: 22pt;
+    font-weight: 700;
+    margin: 0 0 0.35in;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+  .end-page .end-message {
+    color: var(--ink);
+    font-size: 11.5pt;
+    line-height: 1.65;
+    margin: 0 0 0.18in;
+    text-align: left;
+  }
+  .end-page .end-message + .end-message {
+    margin-top: 0.05in;
+  }
+  .end-page .end-contacts {
+    list-style: none;
+    margin: 0.4in auto 0.35in;
+    padding: 0;
+    display: inline-block;
+    text-align: left;
+    color: var(--ink-muted);
+    font-size: 11pt;
+    line-height: 1.9;
+  }
+  .end-page .end-contacts a {
+    color: var(--red-bright);
+    text-decoration: underline;
+    text-underline-offset: 0.12em;
+  }
+  .end-page .end-contacts .end-contact-label {
+    color: var(--ink-muted);
+    display: inline-block;
+    width: 4.25em;
+  }
+  .end-page .end-signoff {
+    color: var(--ink-muted);
+    font-style: italic;
+    margin: 0.5in 0 0;
+    font-size: 11pt;
+  }
+</style>
+</head>
+<body>
+${tocHtml}
+  <article class="story-reader-article">
+${bodyHtml}
+  </article>
+${endHtml}
+</body>
+</html>`;
+}
+
+/* ---------- main ---------- */
+
+function main() {
+  const args = parseArgs(process.argv.slice(2));
+  const stories = loadStories();
+  const story = findStory(stories, args.id);
+  if (!story) {
+    console.error(`No story with id ${args.id} in data/stories.js`);
+    process.exit(1);
+  }
+
+  let markdown;
+  try {
+    markdown = readStoryMarkdown(story.id);
+  } catch (e) {
+    console.error(`Could not read story ${story.id} markdown: ${e.message}`);
+    console.error(`Run \`npm run sync -- --only=${story.id}\` first.`);
+    process.exit(1);
+  }
+
+  const bodyHtml = storyMarkdownToSafeHtml(markdown, READER_OPTS);
+  const chapters = extractChapters(markdown);
+  const html = buildHtmlDocument({
+    story,
+    bodyHtml,
+    chapters,
+    light: args.light,
+  });
+
+  const outPath = args.output
+    ? resolve(args.output)
+    : join(DEFAULT_OUT_DIR, `${slugify(story.title)}.pdf`);
+  mkdirSync(dirname(outPath), { recursive: true });
+
+  const tempHtmlPath = join(tmpdir(), `story-${story.id}-${Date.now()}.html`);
+  writeFileSync(tempHtmlPath, html, "utf8");
+
+  const chrome = process.env.CHROME_BIN || findChrome();
+  console.log(`Rendering "${story.title}" -> ${outPath}`);
+  const result = spawnSync(
+    chrome,
+    [
+      "--headless=new",
+      "--disable-gpu",
+      "--no-sandbox",
+      "--no-pdf-header-footer",
+      "--virtual-time-budget=10000",
+      `--print-to-pdf=${outPath}`,
+      `file://${tempHtmlPath}`,
+    ],
+    { stdio: "inherit" },
+  );
+
+  try {
+    unlinkSync(tempHtmlPath);
+  } catch {
+    /* ignore */
+  }
+
+  if (result.status !== 0) {
+    console.error(`Chrome exited with status ${result.status}`);
+    process.exit(result.status || 1);
+  }
+  console.log(`Wrote ${outPath}`);
+}
+
+main();
