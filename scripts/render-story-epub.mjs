@@ -12,18 +12,14 @@
  *   - No background colors / fixed sizes so the user's dark/light/font
  *     preferences continue to work on-device.
  *
+ * For combining multiple stories, see scripts/render-anthology-epub.mjs.
+ *
  * Usage:
  *   node scripts/render-story-epub.mjs [storyId] [--out=path.epub]
  */
 
-import {
-  readFileSync,
-  writeFileSync,
-  mkdirSync,
-  existsSync,
-} from "node:fs";
-import { dirname, join, resolve, extname, basename } from "node:path";
-import { createHash } from "node:crypto";
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
 import {
   loadStories,
   findStory,
@@ -31,21 +27,22 @@ import {
   slugify,
   escapeHtml,
   splitMarkdownByChapter,
-  renderBodyBlocks,
   END_PAGE,
   DEFAULT_OUT_DIR,
-  COVERS_DIR,
-  repoRoot,
 } from "./lib/story-render.mjs";
+import {
+  AUTHOR,
+  CONTAINER_XML,
+  buildAboutPage,
+  buildChapterPage,
+  buildCoverPage,
+  buildStylesheet,
+  deterministicUuid,
+  findStoryCover,
+  nowIsoSecond,
+  xhtmlPage,
+} from "./lib/epub-shared.mjs";
 import { buildZip } from "./lib/zip.mjs";
-
-const READER_OPTS = {
-  linkClass: "story-link",
-  dividerClass: "scene-break",
-};
-
-const AUTHOR = "Preun";
-const NS_UUID = "urn:uuid:9b9b1d60-7c1c-5a6a-9d0a-preun-story-site";
 
 function parseArgs(argv) {
   const out = { id: 1, output: null };
@@ -62,87 +59,7 @@ function parseArgs(argv) {
   return out;
 }
 
-/* ---------- IDs ---------- */
-
-// Deterministic UUID v5 derived from the story id so re-generating produces
-// the same identifier (KDP treats the dc:identifier as the book's identity).
-function deterministicUuid(name) {
-  const hash = createHash("sha1").update(NS_UUID + "|" + name).digest("hex");
-  const v = (parseInt(hash.slice(16, 18), 16) & 0x3f) | 0x80;
-  return [
-    hash.slice(0, 8),
-    hash.slice(8, 12),
-    "5" + hash.slice(13, 16),
-    v.toString(16).padStart(2, "0") + hash.slice(18, 20),
-    hash.slice(20, 32),
-  ].join("-");
-}
-
-function nowIsoSecond() {
-  return new Date().toISOString().replace(/\.\d{3}Z$/, "Z");
-}
-
-/* ---------- Cover detection ---------- */
-
-function findCover(story) {
-  // Story.cover is something like "assets/covers/three_strikes.jpg"
-  if (!story.cover) return null;
-  const candidate = join(repoRoot, story.cover);
-  if (!existsSync(candidate)) return null;
-  const ext = extname(candidate).toLowerCase();
-  const mime =
-    ext === ".png"
-      ? "image/png"
-      : ext === ".jpg" || ext === ".jpeg"
-      ? "image/jpeg"
-      : ext === ".webp"
-      ? "image/webp"
-      : ext === ".gif"
-      ? "image/gif"
-      : null;
-  if (!mime) return null;
-  return {
-    src: candidate,
-    name: "cover" + ext,
-    mime,
-  };
-}
-
-/* ---------- XHTML helpers ---------- */
-
-const XHTML_HEAD = `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="en" lang="en">
-<head>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" type="text/css" href="../styles.css" />
-`;
-
-function xhtmlPage({ title, bodyClass, body, extraHead }) {
-  return (
-    XHTML_HEAD +
-    `  <title>${escapeHtml(title)}</title>\n` +
-    (extraHead || "") +
-    "</head>\n" +
-    `<body${bodyClass ? ` class="${escapeHtml(bodyClass)}"` : ""}>\n` +
-    body +
-    "\n</body>\n</html>\n"
-  );
-}
-
 /* ---------- Content pages ---------- */
-
-function buildCoverPage(cover) {
-  if (!cover) return null;
-  return xhtmlPage({
-    title: "Cover",
-    bodyClass: "cover",
-    body:
-      `  <section epub:type="cover" class="cover-page">\n` +
-      `    <img src="../${escapeHtml(cover.name)}" alt="Cover" />\n` +
-      `  </section>`,
-  });
-}
 
 function buildTitlePage(story) {
   const title = escapeHtml(story.title || "Story");
@@ -176,7 +93,6 @@ function buildNavPage({ story, chapters, hasCover }) {
   // including it in the spine we get a single source of truth that's both
   // the machine-readable nav AND a visible Contents page when the reader
   // pages forward through the book.
-  const aboutHref = "about.xhtml";
   const titleHref = "titlepage.xhtml";
   const coverHref = hasCover ? "cover.xhtml" : null;
 
@@ -213,257 +129,6 @@ function buildNavPage({ story, chapters, hasCover }) {
     bodyClass: "nav",
     body,
   });
-}
-
-function buildChapterPage(chapter, totalChapters) {
-  const title = chapter.title || `Chapter ${chapter.index + 1}`;
-  const num = chapter.index + 1;
-  const bodyHtml = renderBodyBlocks(chapter.blocks, READER_OPTS);
-  return xhtmlPage({
-    title,
-    bodyClass: "chapter",
-    body:
-      `  <section epub:type="chapter" class="chapter">\n` +
-      `    <header class="chapter-header">\n` +
-      `      <p class="chapter-eyebrow">Chapter ${num} of ${totalChapters}</p>\n` +
-      `      <h1 class="chapter-title">${escapeHtml(title)}</h1>\n` +
-      `    </header>\n` +
-      `    <div class="chapter-body">\n` +
-      bodyHtml +
-      `\n    </div>\n` +
-      `  </section>`,
-  });
-}
-
-function buildAboutPage() {
-  const paras = END_PAGE.paragraphs
-    .map((p) => `    <p class="end-message">${escapeHtml(p)}</p>`)
-    .join("\n");
-  const contacts = END_PAGE.contacts
-    .map(
-      (c) =>
-        `      <li><span class="end-contact-label">${escapeHtml(c.label)}</span> ` +
-        `<a href="${escapeHtml(c.href)}" class="story-link">${escapeHtml(c.text)}</a></li>`,
-    )
-    .join("\n");
-  const body =
-    `  <section epub:type="afterword" class="end-page">\n` +
-    `    <hr class="end-flourish" />\n` +
-    `    <h1 class="end-title">${escapeHtml(END_PAGE.title)}</h1>\n` +
-    paras +
-    `\n    <ul class="end-contacts">\n${contacts}\n    </ul>\n` +
-    `    <p class="end-signoff">${escapeHtml(END_PAGE.signoff)}</p>\n` +
-    `  </section>`;
-  return xhtmlPage({
-    title: END_PAGE.title,
-    bodyClass: "about",
-    body,
-  });
-}
-
-/* ---------- Stylesheet ---------- */
-
-// Deliberately conservative for ebook readers. No backgrounds, em-based
-// sizing, no fixed widths -- so dark mode, font scaling, and reflow on
-// arbitrary screen sizes (Kindle / phone / Kobo / etc.) all keep working.
-function buildStylesheet() {
-  return `@charset "utf-8";
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: serif;
-  line-height: 1.55;
-  font-size: 1em;
-}
-
-/* Cover */
-body.cover { margin: 0; padding: 0; }
-.cover-page {
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  page-break-after: always;
-}
-.cover-page img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-}
-
-/* Title page */
-.titlepage {
-  text-align: center;
-  page-break-after: always;
-  margin-top: 25%;
-}
-.titlepage .title-main {
-  font-size: 2.2em;
-  font-weight: bold;
-  margin: 0 0 1em;
-  line-height: 1.2;
-}
-.titlepage .title-summary {
-  font-style: italic;
-  font-size: 1.05em;
-  margin: 0 1em 2em;
-  line-height: 1.45;
-}
-.titlepage .title-byline {
-  font-size: 1.1em;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin: 0;
-}
-
-/* Contents */
-.contents-page { page-break-after: always; }
-.contents-page .toc-eyebrow {
-  font-size: 0.8em;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  text-align: center;
-  margin: 1em 0 0.4em;
-}
-.contents-page .toc-title {
-  font-size: 1.7em;
-  font-weight: bold;
-  text-align: center;
-  margin: 0 0 1em;
-  line-height: 1.2;
-}
-.contents-page .toc-flourish {
-  border: 0;
-  height: 0;
-  text-align: center;
-  margin: 0 25% 1.5em;
-  border-top: 1px solid currentColor;
-  opacity: 0.35;
-}
-.contents-page .toc-h2 {
-  font-size: 0;
-  height: 0;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-.contents-page .toc-list {
-  list-style: none;
-  margin: 0;
-  padding: 0 1em;
-}
-.contents-page .toc-list li { margin: 0.5em 0; }
-.contents-page .toc-list a {
-  text-decoration: none;
-  color: inherit;
-}
-.contents-page .toc-num {
-  display: inline-block;
-  min-width: 2em;
-  font-variant-numeric: tabular-nums;
-  opacity: 0.6;
-}
-.hidden { display: none; }
-
-/* Chapter pages */
-.chapter { page-break-before: always; }
-.chapter-header {
-  text-align: center;
-  margin: 1.5em 0 1.5em;
-}
-.chapter-eyebrow {
-  font-size: 0.7em;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  margin: 0 0 0.6em;
-  opacity: 0.7;
-}
-.chapter-title {
-  font-size: 1.6em;
-  font-weight: bold;
-  margin: 0;
-  line-height: 1.25;
-}
-.chapter-body { margin: 0; }
-.chapter-body p {
-  margin: 0;
-  text-indent: 1.2em;
-  orphans: 2;
-  widows: 2;
-}
-.chapter-body p + p { margin-top: 0.4em; }
-.chapter-body .chapter-header + p,
-.chapter-body p:first-child,
-.chapter-body hr + p { text-indent: 0; }
-
-.chapter-body em { font-style: italic; }
-.chapter-body strong { font-weight: bold; }
-.chapter-body .story-link {
-  color: inherit;
-  text-decoration: underline;
-}
-
-/* Scene break */
-.scene-break {
-  border: 0;
-  height: 0;
-  text-align: center;
-  margin: 1.4em 0;
-}
-.scene-break::after {
-  content: "* * *";
-  letter-spacing: 0.5em;
-  display: block;
-  opacity: 0.55;
-}
-
-/* About / end page */
-.end-page {
-  page-break-before: always;
-  text-align: center;
-  margin-top: 2em;
-}
-.end-page .end-flourish {
-  border: 0;
-  height: 0;
-  border-top: 1px solid currentColor;
-  opacity: 0.35;
-  margin: 0 30% 1.5em;
-}
-.end-page .end-title {
-  font-size: 1.6em;
-  font-weight: bold;
-  margin: 0 0 1.2em;
-}
-.end-page .end-message {
-  text-align: left;
-  margin: 0 1em 0.8em;
-  line-height: 1.55;
-}
-.end-page .end-contacts {
-  list-style: none;
-  margin: 1.6em auto 1em;
-  padding: 0;
-  display: inline-block;
-  text-align: left;
-  line-height: 1.9;
-}
-.end-page .end-contact-label {
-  display: inline-block;
-  min-width: 4.5em;
-  opacity: 0.7;
-}
-.end-page .end-contacts a {
-  color: inherit;
-  text-decoration: underline;
-}
-.end-page .end-signoff {
-  font-style: italic;
-  margin: 1.5em 0 0;
-  opacity: 0.7;
-}
-`;
 }
 
 /* ---------- Manifest / OPF / NCX ---------- */
@@ -603,14 +268,6 @@ ${navPoints.join("\n")}
 `;
 }
 
-const CONTAINER_XML = `<?xml version="1.0" encoding="UTF-8"?>
-<container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
-  <rootfiles>
-    <rootfile full-path="OEBPS/package.opf" media-type="application/oebps-package+xml"/>
-  </rootfiles>
-</container>
-`;
-
 /* ---------- main ---------- */
 
 function main() {
@@ -636,7 +293,7 @@ function main() {
     console.error(`Story ${story.id} has no content.`);
     process.exit(1);
   }
-  const cover = findCover(story);
+  const cover = findStoryCover(story);
   const modified = nowIsoSecond();
 
   const files = [
@@ -677,7 +334,12 @@ function main() {
   for (const ch of chapters) {
     files.push({
       name: `OEBPS/text/${chapterFilename(ch)}`,
-      data: buildChapterPage(ch, chapters.length),
+      data: buildChapterPage({
+        title: ch.title,
+        num: ch.index + 1,
+        total: chapters.length,
+        blocks: ch.blocks,
+      }),
     });
   }
 

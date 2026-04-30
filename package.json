@@ -7,7 +7,8 @@
     "sync": "node scripts/sync-stories.mjs",
     "sync:concurrent": "node scripts/sync-stories.mjs --concurrency=4",
     "pdf": "node scripts/render-story-pdf.mjs",
-    "epub": "node scripts/render-story-epub.mjs"
+    "epub": "node scripts/render-story-epub.mjs",
+    "anthology": "node scripts/render-anthology-epub.mjs"
   },
   "devDependencies": {
     "cheerio": "^1.0.0",
