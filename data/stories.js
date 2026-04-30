@@ -25,7 +25,7 @@ window.DATA_STORIES = [
     title: "Three Strikes (alt)",
     summary:
       "A college senior with an unusual anatomy and a very demanding swim coach. An aged-up retelling set at Western University.",
-    cover: "assets/covers/three_strikes.jpg",
+    cover: "assets/covers/three_strikes_alt.jpg",
     characterIds: [
       "sam",
       "jenny",
