@@ -291,11 +291,14 @@ export function splitMarkdownByChapter(markdown) {
         blocks: [...leading, ...chapters[0].blocks],
       };
     } else {
+      // Stories with no chapter headings collapse into a single untitled
+      // chapter. Renderers detect the empty title and skip rendering a
+      // chapter header so the story doesn't display a placeholder label.
       chapters.push({
         index: 0,
         id: "story-ch-0",
         level: 2,
-        title: "Story",
+        title: "",
         blocks: leading,
       });
     }
@@ -317,7 +320,7 @@ export const END_PAGE = {
   title: "Until next time",
   paragraphs: [
     "You made it to the end. Hopefully your gonads are more functional than the ones you just read about.",
-    "I love hearing from readers. Whether you've got feedback, a request, an oddly specific scenario you've been dying to see written, a unformatted wall of text meticulouslydescribing each and every ballbusting fantasy you've ever masturbated to, or just want to correct all of my typoes, drop me a line.",
+    "I love hearing from readers. Whether you've got feedback, a request, an oddly specific scenario you've been dying to see written, a unformatted wall of text meticulously describing each and every ballbusting fantasy you've ever masturbated to, or just want to correct all of my typoes, drop me a line.",
   ],
   contacts: [
     {

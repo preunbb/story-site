@@ -153,7 +153,7 @@ function buildHtmlDocument({ story, bodyHtml, chapters, light }) {
         border: "rgba(176, 122, 133, 0.2)",
       };
 
-  const title = escapeHtml(story.title || "Story");
+  const title = escapeHtml(story.title);
   const tocHtml = buildTocHtml({ title, chapters });
   const endHtml = buildEndPageHtml();
 

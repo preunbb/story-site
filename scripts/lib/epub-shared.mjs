@@ -154,17 +154,22 @@ export function buildAboutPage() {
 import { renderBodyBlocks } from "./story-render.mjs";
 
 export function buildChapterPage({ title, num, total, blocks }) {
-  const safeTitle = title || `Chapter ${num}`;
   const bodyHtml = renderBodyBlocks(blocks, READER_OPTS);
+  // When a chapter has no title (e.g. a single-chapter story with no
+  // markdown headings), suppress the visible chapter header entirely;
+  // the surrounding title page already establishes context.
+  const header = title
+    ? `    <header class="chapter-header">\n` +
+      `      <p class="chapter-eyebrow">Chapter ${num} of ${total}</p>\n` +
+      `      <h1 class="chapter-title">${escapeHtml(title)}</h1>\n` +
+      `    </header>\n`
+    : "";
   return xhtmlPage({
-    title: safeTitle,
+    title: title || `Chapter ${num}`,
     bodyClass: "chapter",
     body:
       `  <section epub:type="chapter" class="chapter">\n` +
-      `    <header class="chapter-header">\n` +
-      `      <p class="chapter-eyebrow">Chapter ${num} of ${total}</p>\n` +
-      `      <h1 class="chapter-title">${escapeHtml(safeTitle)}</h1>\n` +
-      `    </header>\n` +
+      header +
       `    <div class="chapter-body">\n` +
       bodyHtml +
       `\n    </div>\n` +

@@ -104,7 +104,7 @@ function dedupePreservingOrder(arr) {
 
 function defaultAnthologyTitle(stories) {
   if (stories.length <= 3) {
-    return stories.map((s) => s.title || `Story ${s.id}`).join(" / ");
+    return stories.map((s) => s.title).join(" / ");
   }
   return `Anthology (${stories.length} stories)`;
 }
@@ -151,11 +151,11 @@ function buildAnthologyTitlePage({ title, summary }) {
 }
 
 function buildStoryTitlePage(story, position) {
-  const safeTitle = escapeHtml(story.title || `Story ${story.id}`);
+  const safeTitle = escapeHtml(story.title);
   const safeSummary = story.summary ? escapeHtml(story.summary) : "";
   const eyebrow = `Story ${position.index + 1} of ${position.total}`;
   return xhtmlPage({
-    title: story.title || `Story ${story.id}`,
+    title: story.title,
     bodyClass: "story-separator",
     body:
       `  <section epub:type="halftitlepage" class="story-separator-page">\n` +
@@ -174,7 +174,7 @@ function buildAnthologyNavPage({ anthologyTitle, entries, hasCover }) {
   const items = entries
     .map((e, i) => {
       const num = i + 1;
-      const safeTitle = escapeHtml(e.story.title || `Story ${e.story.id}`);
+      const safeTitle = escapeHtml(e.story.title);
       const summary = e.story.summary
         ? `\n        <span class="toc-summary">${escapeHtml(e.story.summary)}</span>`
         : "";
@@ -331,7 +331,7 @@ function buildNcx({ anthologyTitle, stories, cover, uuid }) {
   );
   for (const entry of stories) {
     const { story } = entry;
-    const safeTitle = escapeHtml(story.title || `Story ${story.id}`);
+    const safeTitle = escapeHtml(story.title);
     navPoints.push(
       `    <navPoint id="navp-${storyKey(story.id)}" playOrder="${order++}">\n` +
         `      <navLabel><text>${safeTitle}</text></navLabel>\n` +

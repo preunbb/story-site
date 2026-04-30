@@ -62,11 +62,11 @@ function parseArgs(argv) {
 /* ---------- Content pages ---------- */
 
 function buildTitlePage(story) {
-  const title = escapeHtml(story.title || "Story");
+  const title = escapeHtml(story.title);
   const summary = story.summary ? escapeHtml(story.summary) : "";
   const author = escapeHtml(AUTHOR);
   return xhtmlPage({
-    title: story.title || "Story",
+    title: story.title,
     bodyClass: "titlepage",
     body:
       `  <section epub:type="titlepage" class="titlepage">\n` +
@@ -78,13 +78,14 @@ function buildTitlePage(story) {
 }
 
 function buildNavPage({ story, chapters, hasCover }) {
-  const title = escapeHtml(story.title || "Story");
+  const title = escapeHtml(story.title);
   const items = chapters
     .map((ch, i) => {
       const num = i + 1;
       const href = chapterFilename(ch);
+      const label = ch.title || story.title;
       return `      <li><a href="${href}"><span class="toc-num">${num}.</span> <span class="toc-name">${escapeHtml(
-        ch.title,
+        label,
       )}</span></a></li>`;
     })
     .join("\n");
@@ -140,7 +141,7 @@ function chapterFilename(chapter) {
 
 function buildOpf({ story, chapters, cover, modified }) {
   const uuid = deterministicUuid(`story-${story.id}`);
-  const title = escapeHtml(story.title || "Story");
+  const title = escapeHtml(story.title);
   const summary = story.summary ? escapeHtml(story.summary) : "";
 
   const manifestItems = [];
@@ -211,7 +212,7 @@ ${spineItems.join("\n")}
 
 function buildNcx({ story, chapters, cover }) {
   const uuid = deterministicUuid(`story-${story.id}`);
-  const title = escapeHtml(story.title || "Story");
+  const title = escapeHtml(story.title);
 
   const navPoints = [];
   let order = 1;
@@ -237,9 +238,10 @@ function buildNcx({ story, chapters, cover }) {
       `    </navPoint>`,
   );
   for (const ch of chapters) {
+    const label = ch.title || story.title;
     navPoints.push(
       `    <navPoint id="navp-ch${ch.index + 1}" playOrder="${order++}">\n` +
-        `      <navLabel><text>${escapeHtml(ch.title)}</text></navLabel>\n` +
+        `      <navLabel><text>${escapeHtml(label)}</text></navLabel>\n` +
         `      <content src="text/${chapterFilename(ch)}" />\n` +
         `    </navPoint>`,
     );
