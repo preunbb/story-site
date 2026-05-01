@@ -16,6 +16,13 @@
  *
  * Usage:
  *   node scripts/render-story-epub.mjs [storyId] [--out=path.epub]
+ *                                       [--title="..."] [--no-cover]
+ *
+ *   --title=    Override the story's display title (used everywhere the title
+ *               appears: dc:title metadata, title page, contents, NCX, and the
+ *               default output filename slug).
+ *   --no-cover  Build the EPUB without a cover page or cover image. Useful when
+ *               KDP / a publisher will supply the cover separately.
  */
 
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
@@ -45,10 +52,14 @@ import {
 import { buildZip } from "./lib/zip.mjs";
 
 function parseArgs(argv) {
-  const out = { id: 1, output: null };
+  const out = { id: 1, output: null, title: null, noCover: false };
   for (const arg of argv) {
     if (arg.startsWith("--out=")) {
       out.output = arg.slice("--out=".length);
+    } else if (arg.startsWith("--title=")) {
+      out.title = arg.slice("--title=".length);
+    } else if (arg === "--no-cover") {
+      out.noCover = true;
     } else if (/^\d+$/.test(arg)) {
       out.id = Number(arg);
     } else if (!arg.startsWith("--")) {
@@ -275,11 +286,15 @@ ${navPoints.join("\n")}
 function main() {
   const args = parseArgs(process.argv.slice(2));
   const stories = loadStories();
-  const story = findStory(stories, args.id);
-  if (!story) {
+  const baseStory = findStory(stories, args.id);
+  if (!baseStory) {
     console.error(`No story with id ${args.id} in data/stories.js`);
     process.exit(1);
   }
+
+  // Shallow copy so a CLI title override doesn't mutate the loaded data.
+  const story = { ...baseStory };
+  if (args.title) story.title = args.title;
 
   let markdown;
   try {
@@ -295,7 +310,7 @@ function main() {
     console.error(`Story ${story.id} has no content.`);
     process.exit(1);
   }
-  const cover = findStoryCover(story);
+  const cover = args.noCover ? null : findStoryCover(story);
   const modified = nowIsoSecond();
 
   const files = [

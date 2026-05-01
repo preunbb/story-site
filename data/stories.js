@@ -986,7 +986,7 @@ window.DATA_STORIES = [
       },
       {
         path: "assets/scenes/andrea_and_lucas/good/tamara_aftermath_final.png",
-        caption: "Tamara, in the aftermath.",
+        caption: "Tamara, in the aftermath of the Cherry Pop! concert.",
       },
     ],
   },
