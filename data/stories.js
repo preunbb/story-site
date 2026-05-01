@@ -20,6 +20,36 @@ window.DATA_STORIES = [
     state: 3,
     tags: ["Length: Long"],
     brutalityRating: 5,
+    scenes: [
+      {
+        path: "assets/scenes/three_strikes/coach_joan_office_threat_v5_college.png",
+        caption: "Coach Joan lays out the deal in her office.",
+      },
+      {
+        path: "assets/scenes/three_strikes/jenny_portables_left_ball_stomp_v1.png",
+        caption:
+          "Strike one — Jenny's heel finds Sam's left nut behind the portables.",
+      },
+      {
+        path: "assets/scenes/three_strikes/michelle_cheerleader_right_ball_kick_v1.png",
+        caption: "Strike two — Michelle's cheer-routine punt to the right one.",
+      },
+      {
+        path: "assets/scenes/three_strikes/cathy_allan_utility_closet_knees_v1.png",
+        caption:
+          "Cathy conducts her semen extraction experiment after Allan's year of denial.",
+      },
+      {
+        path: "assets/scenes/three_strikes/amy_nurse_garret_aftermath_v2.png",
+        caption:
+          "Nurse Amy reminisces on the unnecessary surgery she gave her ex-boyfriend Garret.",
+      },
+      {
+        path: "assets/scenes/three_strikes/epilogue_joan_pool_billy_crush_v2_softer.png",
+        caption:
+          "Epilogue — Joan forcibly helps Billy become more hydrodynamic, in front of the whole class.",
+      },
+    ],
   },
   {
     id: 2,
@@ -76,6 +106,7 @@ window.DATA_STORIES = [
   {
     id: 6,
     title: "A Healthy Relationship",
+    displayCover: true,
     summary:
       "Rachel finally has a boyfriend who shares her kink. They try some roleplay in a physics lecture. Published on Amazon as 'Busted under the Desk'.",
     cover: "assets/covers/a_healthy_relationship.jpg",
@@ -113,6 +144,30 @@ window.DATA_STORIES = [
     characterIds: ["dennis", "serena", "erica", "kayleigh"],
     state: 3,
     tags: ["Length: Medium"],
+    scenes: [
+      {
+        path: "assets/scenes/club_fight/scene1_serena_knee_strike_v2_realistic.png",
+        caption:
+          "Serena's knee finds Dennis's groin during the self-defense demo.",
+      },
+      {
+        path: "assets/scenes/club_fight/scene2_erica_heel_breaks_cup_v2_topless.png",
+        caption:
+          "Erica feels Dennis' cup give way between her toes - and realizes he isn't wearing one!",
+      },
+      {
+        path: "assets/scenes/club_fight/scene3_erica_flashback_ex_v2.png",
+        caption: "Erica drifts into a flashback of her ex.",
+      },
+      {
+        path: "assets/scenes/club_fight/scene4_erica_final_stomp_splish_v1.png",
+        caption: "Erica's final stomp; the squelch is unmistakable.",
+      },
+      {
+        path: "assets/scenes/club_fight/scene5_dennis_last_load_v1.png",
+        caption: "Dennis's last load, milked from the wreckage.",
+      },
+    ],
   },
   {
     id: 9,
@@ -272,6 +327,44 @@ window.DATA_STORIES = [
     characterIds: ["atheras", "salei"],
     state: 3,
     tags: ["Length: Long", "New to Reddit"],
+    scenes: [
+      {
+        path: "assets/scenes/the_amazons_fruits/01_knee_crushes_codpiece.jpg",
+        caption: "Salei's knee crushes the prince's codpiece.",
+      },
+      {
+        path: "assets/scenes/the_amazons_fruits/02_examines_his_fruits.jpg",
+        caption: "She examines her foreign fruits with rapt curiosity.",
+      },
+      {
+        path: "assets/scenes/the_amazons_fruits/03_face_smother_first_harvest.jpg",
+        caption: "First harvest — face-smother to climax.",
+      },
+      {
+        path: "assets/scenes/the_amazons_fruits/04_seed_painted_chest.jpg",
+        caption: "She paints her chest with the prince's seed.",
+      },
+      {
+        path: "assets/scenes/the_amazons_fruits/05_stone_knee_to_naked_balls.jpg",
+        caption: "Stone-knee to bare testicles in the clearing.",
+      },
+      {
+        path: "assets/scenes/the_amazons_fruits/06_left_ball_pulped_in_jungle.jpg",
+        caption: "His left fruit, pulped into the jungle floor.",
+      },
+      {
+        path: "assets/scenes/the_amazons_fruits/07_trail_stomp_on_last_ball.jpg",
+        caption: "On the trail, a heel finds the last one.",
+      },
+      {
+        path: "assets/scenes/the_amazons_fruits/08_tree_root_pops_final_ball.jpg",
+        caption: "A tree root takes what little remained.",
+      },
+      {
+        path: "assets/scenes/the_amazons_fruits/09_carried_to_village_castrated.jpg",
+        caption: "Carried home to the village, harvested at last.",
+      },
+    ],
   },
   {
     id: 20,
@@ -294,6 +387,26 @@ window.DATA_STORIES = [
     ],
     state: 3,
     tags: ["Length: Long"],
+    scenes: [
+      {
+        path: "assets/scenes/school_bully/good/monique_stomps_robert_calc.png",
+        caption: "Monique's first stomp under the AP Calc desk.",
+      },
+
+      {
+        path: "assets/scenes/school_bully/good/monique_back_kick_outside_2.png",
+        caption: "Monique donkey kicks Robert's ball into his pelvic bone.",
+      },
+      {
+        path: "assets/scenes/school_bully/good/monique_back_kick_outside.png",
+        caption: "Robert fails to defend himself as Monique ",
+      },
+      {
+        path: "assets/scenes/school_bully/good/monique_bus_double_trouble.png",
+        caption:
+          "Monique squeezes the final testicle of both of her victims as hard as she can.",
+      },
+    ],
   },
   {
     id: 21,
@@ -357,6 +470,20 @@ window.DATA_STORIES = [
     characterIds: ["emma", "jose"],
     state: 3,
     tags: ["Length: Medium"],
+    scenes: [
+      {
+        path: "assets/scenes/food_for_thot/good/emma_gym_drools_at_bulge_v3.png",
+        caption: "Emma drools at Jose's bulge from across the weight room.",
+      },
+      {
+        path: "assets/scenes/food_for_thot/good/emma_facesit_final_castration_v3_extreme_closeup.png",
+        caption: "Emma savoring her mouthful.",
+      },
+      {
+        path: "assets/scenes/food_for_thot/good/gym_after.png",
+        caption: "Jose's empty sack reveals the damage Emma has done.",
+      },
+    ],
   },
   {
     id: 25,
@@ -380,6 +507,21 @@ window.DATA_STORIES = [
     ],
     state: 3,
     tags: ["Length: Long"],
+    scenes: [
+      {
+        path: "assets/scenes/friendzoned/good/ch02_orchiectomy_v1.png",
+        caption:
+          "Jon undergoes a deeply painful surgery, paralyzed but aware of every sensation.",
+      },
+      {
+        path: "assets/scenes/friendzoned/good/ch03_hospital_ruined_orgasm_v3.png",
+        caption: "Alyssa comforts Jon after he loses his first testicle.",
+      },
+      {
+        path: "assets/scenes/friendzoned/good/ch06_three_thumb_castration_v5_inked.png",
+        caption: "Ch. 6 — three thumbs, one castration.",
+      },
+    ],
   },
   {
     id: 26,
@@ -408,6 +550,35 @@ window.DATA_STORIES = [
     characterIds: ["genovia", "sylvana", "sean_witches"],
     state: 3,
     tags: ["Length: Long"],
+    scenes: [
+      {
+        path: "assets/scenes/living_with_ballbusting_witches/prom_1988_public_humiliation.png",
+        caption: "Prom 1988 — public humiliation, on stage.",
+      },
+      {
+        path: "assets/scenes/living_with_ballbusting_witches/kitchen_table_hex.png",
+        caption: "The kitchen-table hex.",
+      },
+      {
+        path: "assets/scenes/living_with_ballbusting_witches/sylvana_knee_at_stairs.png",
+        caption:
+          "Sylvana knees Sean right in the goolies while he's trying to get some ice to soothe his blueballs.",
+      },
+      {
+        path: "assets/scenes/living_with_ballbusting_witches/anthony_flashback_rupture_v5.png",
+        caption:
+          "Genovia experiments with her powers in college, and Anthony suffers a double testicular rupture as a result.",
+      },
+      {
+        path: "assets/scenes/living_with_ballbusting_witches/kitchen_climax_collision_v2_standing_burst.png",
+        caption:
+          "Sylvana ramps her arousal spell up as hard as she can. Genovia realizes what is happening, but it's too late.",
+      },
+      {
+        path: "assets/scenes/living_with_ballbusting_witches/sylvana_dark_awakening.png",
+        caption: "Sylvana's dark awakening.",
+      },
+    ],
   },
   {
     id: 28,
@@ -423,6 +594,36 @@ window.DATA_STORIES = [
     characterIds: ["steven", "kaitlin", "amy", "june", "serena"],
     state: 3,
     tags: ["Length: Medium"],
+    scenes: [
+      {
+        path: "assets/scenes/testy/aftermath_in_self_defense_class.jpg",
+        caption: "Aftermath in Kaitlin's self-defense class.",
+      },
+      {
+        path: "assets/scenes/testy/kaitlin_kicks_steven_gym.jpg",
+        caption: "Kaitlin tries her new technique on Steven at the gym.",
+      },
+      {
+        path: "assets/scenes/testy/pre_op_1_kaitlin_meddles.jpg",
+        caption:
+          "Kaitlin plays a hilarious prank on Steven before his surgery.",
+      },
+      {
+        path: "assets/scenes/testy/post_op_1_wrong_ball.jpg",
+        caption:
+          "Steven discovers he's lost his last healthy testicle, and the shattered remains of righty are still floating around inside his ballsack.",
+      },
+      {
+        path: "assets/scenes/testy/pre_op_2_doctor_dismayed.jpg",
+        caption:
+          "The doctor is annoyed at the extra work she'll have to do, while Steven deals with the pain of his first surgery and the devastating effects of his upcoming one.",
+      },
+      {
+        path: "assets/scenes/testy/post_op_2_wheeled_out.jpg",
+        caption:
+          "Kaitlin wheels Steven out, significantly lighter between the legs.",
+      },
+    ],
   },
   {
     id: 29,
@@ -603,6 +804,89 @@ window.DATA_STORIES = [
       "Based on other authors' work",
       "New to Reddit",
     ],
+    scenes: [
+      {
+        path: "assets/scenes/dragon_slaying/ch01_orca_first_mace_strike.png",
+        caption: "Ch. 1 — Orca's first mace strike to the dragon's pair.",
+      },
+      {
+        path: "assets/scenes/dragon_slaying/ch02_orca_ninth_kick_climax.png",
+        caption:
+          "Ch. 2 — Orca's ninth kick brings P'oiu off in spite of himself.",
+      },
+      {
+        path: "assets/scenes/dragon_slaying/ch03_opal_untwisting.png",
+        caption: "Ch. 3 — Opal untwists what's left of him.",
+      },
+      {
+        path: "assets/scenes/dragon_slaying/ch04_opal_riding_climax.png",
+        caption: "Ch. 4 — Opal rides him to climax.",
+      },
+      {
+        path: "assets/scenes/dragon_slaying/ch05_orca_wall_threat.png",
+        caption: "Ch. 5 — Orca pins him to the wall and threatens.",
+      },
+      {
+        path: "assets/scenes/dragon_slaying/ch06_tiger_quarterstaff.png",
+        caption: "Ch. 6 — the tiger's quarterstaff between his legs.",
+      },
+      {
+        path: "assets/scenes/dragon_slaying/ch07_hippo_stomping.png",
+        caption: "Ch. 7 — the hippo stomps in earnest.",
+      },
+      {
+        path: "assets/scenes/dragon_slaying/ch08_lia_first_fuck_squeeze.png",
+        caption: "Ch. 8 — Lia's first fuck-squeeze.",
+      },
+      {
+        path: "assets/scenes/dragon_slaying/ch09_lia_pop_attempt_stomp.png",
+        caption: "Ch. 9 — Lia's first attempt to pop one.",
+      },
+      {
+        path: "assets/scenes/dragon_slaying/ch10_hot_tub_caught.png",
+        caption: "Ch. 10 — caught in the hot tub.",
+      },
+      {
+        path: "assets/scenes/dragon_slaying/ch11_lia_thumping_caught.png",
+        caption: "Ch. 11 — Lia, mid-thump, caught in the act.",
+      },
+      {
+        path: "assets/scenes/dragon_slaying/ch12_three_women_debate.png",
+        caption: "Ch. 12 — the three women debate his fate.",
+      },
+      {
+        path: "assets/scenes/dragon_slaying/ch13_01_lia_rage_pummeling.png",
+        caption: "Ch. 13 — Lia's rage pummeling begins.",
+      },
+      {
+        path: "assets/scenes/dragon_slaying/ch13_02_lia_final_stomp.png",
+        caption: "Ch. 13 — Lia's final stomp.",
+      },
+      {
+        path: "assets/scenes/dragon_slaying/ch13_03_kayla_castration_setup.png",
+        caption: "Ch. 13 — Kayla sets up for the castration.",
+      },
+      {
+        path: "assets/scenes/dragon_slaying/ch13_04_lia_tail_smack.png",
+        caption: "Ch. 13 — Lia's tail-smack across the sack.",
+      },
+      {
+        path: "assets/scenes/dragon_slaying/ch13_05_first_pop_left_nut.png",
+        caption: "Ch. 13 — first pop, left nut.",
+      },
+      {
+        path: "assets/scenes/dragon_slaying/ch13_06_opal_slam_squelch.png",
+        caption: "Ch. 13 — Opal's slam — squelch.",
+      },
+      {
+        path: "assets/scenes/dragon_slaying/ch13_07_regen_crnch_squick.png",
+        caption: "Ch. 13 — the regenerated nut: crunch, squick.",
+      },
+      {
+        path: "assets/scenes/dragon_slaying/ch13_08_final_pop_castration.png",
+        caption: "Ch. 13 — the final pop. Castration complete.",
+      },
+    ],
   },
   {
     id: 41,
@@ -633,6 +917,13 @@ window.DATA_STORIES = [
     state: 2,
     characterIds: ["natalie", "nguyen_twins", "brian"],
     tags: ["Length: Medium", "New to Reddit", "Series: The Ballbusting Arena"],
+    scenes: [
+      {
+        path: "assets/scenes/arena_6/twins_center.png",
+        caption:
+          "The Nguyen twins think they're ready for the Arena. They aren't.",
+      },
+    ],
   },
 
   {
@@ -675,6 +966,29 @@ window.DATA_STORIES = [
       },
       { part: 2, kofiUrl: null, amazonUrl: null },
     ],
+    scenes: [
+      {
+        path: "assets/scenes/andrea_and_lucas/good/izzie_eunuchcorn_jeans_skit_v1.png",
+        caption: "Izzie's 'eunuchcorn' skit, in jeans.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/good/izzie_ball_killers_heel_skit_v8_cute_smile_clean.png",
+        caption: "Izzie's 'ball killers' skit — heel-out, cute smile.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/good/yvette_operates_on_sunni.png",
+        caption: "Dr. Yvette operates on Sunni.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/good/tamara_and_melody_medical_tent.png",
+        caption:
+          "Melody encourages Tamara to give in to her darker urges while operating on Melody's current boytoy.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/good/tamara_aftermath_final.png",
+        caption: "Tamara, in the aftermath.",
+      },
+    ],
   },
 
   {
@@ -696,6 +1010,24 @@ window.DATA_STORIES = [
       "Based on other authors' work",
     ],
     brutalityRating: 2,
+    scenes: [
+      {
+        path: "assets/scenes/courtroom_wedding/ballprint_dragon_v9.png",
+        caption: "Mal'ko's ballprint pressed against the courtroom slacks.",
+      },
+      {
+        path: "assets/scenes/courtroom_wedding/ballprint_dragon_v8.png",
+        caption: "Same ballprint, wider angle.",
+      },
+      {
+        path: "assets/scenes/courtroom_wedding/ballprint_dragon_v7.png",
+        caption: "Same ballprint, tighter cut.",
+      },
+      {
+        path: "assets/scenes/courtroom_wedding/ballprint_dragon_v4_2d.png",
+        caption: "Earlier composition of the same shot.",
+      },
+    ],
   },
 
   {
