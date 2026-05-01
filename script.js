@@ -28,6 +28,29 @@
     return div.innerHTML;
   }
 
+  /**
+   * Build an `<img>` tag with onerror fallback to a placeholder. Centralises
+   * the escaping + onerror dance shared by every cover, avatar, and scene
+   * thumbnail in the UI. `extras` lets callers add e.g. ` loading="lazy"`.
+   */
+  function imgHtml(opts) {
+    var src = opts.src || opts.placeholder;
+    var extras = opts.extras ? " " + opts.extras : "";
+    return (
+      '<img src="' +
+      escapeHtml(src) +
+      '" alt="' +
+      escapeHtml(opts.alt || "") +
+      '" class="' +
+      opts.className +
+      '"' +
+      extras +
+      " onerror=\"this.src='" +
+      opts.placeholder +
+      "'\">"
+    );
+  }
+
   function getStoriesForCharacter(charId) {
     return stories.filter(function (s) {
       return s.characterIds && s.characterIds.indexOf(charId) !== -1;
@@ -279,28 +302,28 @@
     return html;
   }
 
-  /** 3D flip cover (front + optional badges on front); null if story has no coverFlip */
-  function storyFlipCoverMarkup(s, onCoverBadges) {
-    if (!s.coverFlip) return null;
-    var frontSrc = s.cover || PLACEHOLDER_COVER;
-    var flipSrc = s.coverFlip;
+  function storyCoverImg(src, alt) {
+    return imgHtml({
+      src: src || PLACEHOLDER_COVER,
+      alt: alt,
+      className: "story-cover",
+      placeholder: PLACEHOLDER_COVER,
+    });
+  }
+
+  /**
+   * Cover wrapper for a story card / flyout. If the story has a coverFlip
+   * we build the 3D flip wrapper (front + back); otherwise just the plain
+   * single-image wrapper. Either way the on-cover badges (premium / new /
+   * coming-soon) are placed over the front face.
+   */
+  function storyCoverMarkup(s, onCoverBadges) {
     var badges = onCoverBadges || "";
-    var frontImg =
-      '<img src="' +
-      escapeHtml(frontSrc) +
-      '" alt="' +
-      escapeHtml(s.title) +
-      '" class="story-cover" onerror="this.src=\'' +
-      PLACEHOLDER_COVER +
-      "'\">";
-    var flipImg =
-      '<img src="' +
-      escapeHtml(flipSrc) +
-      '" alt="' +
-      escapeHtml(s.title) +
-      ' (alternate cover)" class="story-cover" onerror="this.src=\'' +
-      PLACEHOLDER_COVER +
-      "'\">";
+    var frontImg = storyCoverImg(s.cover, s.title);
+    if (!s.coverFlip) {
+      return '<div class="story-cover-wrap">' + frontImg + badges + "</div>";
+    }
+    var flipImg = storyCoverImg(s.coverFlip, s.title + " (alternate cover)");
     return (
       '<div class="story-cover-wrap story-cover-wrap--flip" tabindex="0" role="button" aria-label="Toggle alternate cover" aria-pressed="false">' +
       '<span class="story-cover-flip-hint" aria-hidden="true">⇄</span>' +
@@ -322,6 +345,35 @@
       "aria-pressed",
       el.classList.contains("is-flipped") ? "true" : "false",
     );
+  }
+
+  /**
+   * Handle a click event that may have hit a cover-flip element. Returns
+   * true if the event was a flip toggle (and was handled / stopped); the
+   * caller should bail out of any further click handling in that case.
+   */
+  function handleCoverFlipClick(e) {
+    var flip = e.target.closest(".story-cover-wrap--flip");
+    if (!flip) return false;
+    e.preventDefault();
+    e.stopPropagation();
+    toggleCoverFlip(flip);
+    return true;
+  }
+
+  function bindCoverFlipKeydown(rootEl) {
+    rootEl.addEventListener("keydown", function (e) {
+      var flip = e.target.closest(".story-cover-wrap--flip");
+      if (
+        !flip ||
+        e.target !== flip ||
+        (e.key !== "Enter" && e.key !== " ")
+      ) {
+        return;
+      }
+      e.preventDefault();
+      toggleCoverFlip(flip);
+    });
   }
 
   function renderStoriesGrid() {
@@ -358,20 +410,7 @@
       if (storyHasPremiumTag(s)) {
         rowPremiumHtml = storyPremiumTagHtml("in-row");
       }
-      var onCoverBadges = storyOnCoverBadgesHtml(s);
-      var frontSrc = s.cover || PLACEHOLDER_COVER;
-      var frontImg =
-        '<img src="' +
-        escapeHtml(frontSrc) +
-        '" alt="' +
-        escapeHtml(s.title) +
-        '" class="story-cover" onerror="this.src=\'' +
-        PLACEHOLDER_COVER +
-        "'\">";
-      var flipMarkup = storyFlipCoverMarkup(s, onCoverBadges);
-      var coverWrapHtml = flipMarkup
-        ? flipMarkup
-        : '<div class="story-cover-wrap">' + frontImg + onCoverBadges + "</div>";
+      var coverWrapHtml = storyCoverMarkup(s, storyOnCoverBadgesHtml(s));
       var rowTrailingInner = rowBadgeHtml + rowPremiumHtml;
       var trailingRowHtml = rowTrailingInner
         ? '<div class="story-card-trailing">' + rowTrailingInner + "</div>"
@@ -410,16 +449,17 @@
       var sum = document.createElement("summary");
       sum.className = "scenes-accordion-summary";
 
-      var coverSrc = s.cover || PLACEHOLDER_COVER;
       var sceneCount = s.scenes.length;
       var countLabel = sceneCount + " scene" + (sceneCount === 1 ? "" : "s");
       sum.innerHTML =
         '<span class="scenes-accordion-chevron" aria-hidden="true"></span>' +
-        '<img src="' +
-        escapeHtml(coverSrc) +
-        '" alt="" class="scenes-accordion-cover" loading="lazy" onerror="this.src=\'' +
-        PLACEHOLDER_COVER +
-        "'\">" +
+        imgHtml({
+          src: s.cover,
+          alt: "",
+          className: "scenes-accordion-cover",
+          placeholder: PLACEHOLDER_COVER,
+          extras: 'loading="lazy"',
+        }) +
         '<span class="scenes-accordion-heading">' +
         '<span class="scenes-accordion-title">' +
         escapeHtml(s.title || "Untitled") +
@@ -614,10 +654,6 @@
     return { tab: tab };
   }
 
-  function getTabFromHash() {
-    return parseHash().tab;
-  }
-
   function initTabs() {
     var panels = qsAll(".panel");
     var tabs = qsAll(".tab");
@@ -636,19 +672,15 @@
     var card = document.createElement("article");
     card.className = "character-card";
     card.setAttribute("data-character", c.id);
-    var firstPic =
-      c.profilePictures && c.profilePictures[0]
-        ? c.profilePictures[0]
-        : PLACEHOLDER_CHAR;
+    var firstPic = (c.profilePictures && c.profilePictures[0]) || null;
     card.innerHTML =
       '<div class="character-avatar-wrap">' +
-      '<img src="' +
-      firstPic +
-      '" alt="' +
-      escapeHtml(c.name) +
-      '" class="character-avatar" onerror="this.src=\'' +
-      PLACEHOLDER_CHAR +
-      "'\">" +
+      imgHtml({
+        src: firstPic,
+        alt: c.name,
+        className: "character-avatar",
+        placeholder: PLACEHOLDER_CHAR,
+      }) +
       "</div>" +
       '<span class="character-card-name">' +
       escapeHtml(c.name) +
@@ -707,9 +739,6 @@
   var storyReaderStatus = byId("story-reader-status");
   var storyReaderTitle = byId("story-reader-title");
   var storyReaderDetails = byId("story-reader-details");
-  var storyReaderShareTwitter = byId("story-reader-share-twitter");
-  var storyReaderShareBluesky = byId("story-reader-share-bluesky");
-  var storyReaderShareReddit = byId("story-reader-share-reddit");
   var storyReaderError = byId("story-reader-error");
   var storyReaderErrorMsg = byId("story-reader-error-msg");
   var storyReaderRetry = byId("story-reader-retry");
@@ -966,28 +995,47 @@
     return u.href;
   }
 
+  var SHARE_LINK_BUILDERS = [
+    {
+      id: "story-reader-share-twitter",
+      build: function (title, url) {
+        return (
+          "https://twitter.com/intent/tweet?text=" +
+          encodeURIComponent(title) +
+          "&url=" +
+          encodeURIComponent(url)
+        );
+      },
+    },
+    {
+      id: "story-reader-share-bluesky",
+      build: function (title, url) {
+        return (
+          "https://bsky.app/intent/compose?text=" +
+          encodeURIComponent(title + " " + url)
+        );
+      },
+    },
+    {
+      id: "story-reader-share-reddit",
+      build: function (title, url) {
+        return (
+          "https://www.reddit.com/submit?url=" +
+          encodeURIComponent(url) +
+          "&title=" +
+          encodeURIComponent(title)
+        );
+      },
+    },
+  ];
+
   function updateStoryReaderShareLinks(story) {
     var url = storyReaderSharePageUrl(story.id);
     var title = story.title || "Story";
-    if (storyReaderShareTwitter) {
-      storyReaderShareTwitter.href =
-        "https://twitter.com/intent/tweet?text=" +
-        encodeURIComponent(title) +
-        "&url=" +
-        encodeURIComponent(url);
-    }
-    if (storyReaderShareBluesky) {
-      storyReaderShareBluesky.href =
-        "https://bsky.app/intent/compose?text=" +
-        encodeURIComponent(title + " " + url);
-    }
-    if (storyReaderShareReddit) {
-      storyReaderShareReddit.href =
-        "https://www.reddit.com/submit?url=" +
-        encodeURIComponent(url) +
-        "&title=" +
-        encodeURIComponent(title);
-    }
+    SHARE_LINK_BUILDERS.forEach(function (cfg) {
+      var el = byId(cfg.id);
+      if (el) el.href = cfg.build(title, url);
+    });
   }
 
   function closeStoryReaderUi() {
@@ -1030,16 +1078,14 @@
         storyReaderStatus.hidden = true;
         var coverHtml = "";
         if (story.displayCover) {
-          var coverSrc = story.cover || PLACEHOLDER_COVER;
           coverHtml =
             '<div class="story-reader-cover-wrap">' +
-            '<img src="' +
-            escapeHtml(coverSrc) +
-            '" alt="' +
-            escapeHtml(story.title || "Cover") +
-            '" class="story-reader-cover-img" onerror="this.src=\'' +
-            PLACEHOLDER_COVER +
-            "'\">" +
+            imgHtml({
+              src: story.cover,
+              alt: story.title || "Cover",
+              className: "story-reader-cover-img",
+              placeholder: PLACEHOLDER_COVER,
+            }) +
             "</div>";
         }
         storyReaderArticle.innerHTML = coverHtml + storyMarkdownToSafeHtml(text);
@@ -1057,21 +1103,12 @@
       });
   }
 
-  function flyoutInlineLinkSection(
-    title,
-    ulClass,
-    rows,
-    dataAttr,
-    getId,
-    getText,
-  ) {
+  function flyoutInlineLinkSection(title, rows, dataAttr, getId, getText) {
     if (!rows.length) return "";
     var h =
       '<div class="flyout-section"><h3 class="flyout-section-title">' +
       title +
-      '</h3><ul class="flyout-list ' +
-      ulClass +
-      '">';
+      '</h3><ul class="flyout-list">';
     for (var fi = 0; fi < rows.length; fi++) {
       var row = rows[fi];
       h +=
@@ -1124,31 +1161,61 @@
     );
   }
 
+  var PURCHASE_VENDORS = [
+    { variant: "kofi", urlKey: "kofiUrl", label: "Kofi" },
+    { variant: "amazon", urlKey: "amazonUrl", label: "Amazon" },
+  ];
+
+  function purchaseVendorGridHtml(parts, vendor) {
+    var cells = parts
+      .map(function (p, i) {
+        var n =
+          typeof p.part === "number" && !isNaN(p.part) ? p.part : i + 1;
+        return purchasePartCell(
+          p[vendor.urlKey],
+          "Buy part " + n + " on " + vendor.label + "!",
+          vendor.variant,
+        );
+      })
+      .join("");
+    return '<div class="flyout-purchase-grid">' + cells + "</div>";
+  }
+
   function formatPurchasePartsFlyoutHtml(story) {
     var parts = story.purchaseParts;
     if (!parts || !parts.length) return "";
-    var h = '<div class="flyout-purchase-block">';
-    h += '<div class="flyout-purchase-grids">';
-    h += '<div class="flyout-purchase-grid">';
-    for (var pi = 0; pi < parts.length; pi++) {
-      var p = parts[pi];
-      var n =
-        typeof p.part === "number" && !isNaN(p.part) ? p.part : pi + 1;
-      h += purchasePartCell(p.kofiUrl, "Buy part " + n + " on Kofi!", "kofi");
-    }
-    h += '</div><div class="flyout-purchase-grid">';
-    for (var ai = 0; ai < parts.length; ai++) {
-      var q = parts[ai];
-      var m =
-        typeof q.part === "number" && !isNaN(q.part) ? q.part : ai + 1;
-      h += purchasePartCell(
-        q.amazonUrl,
-        "Buy part " + m + " on Amazon!",
-        "amazon",
-      );
-    }
-    h += "</div></div></div>";
-    return h;
+    var grids = PURCHASE_VENDORS.map(function (v) {
+      return purchaseVendorGridHtml(parts, v);
+    }).join("");
+    return (
+      '<div class="flyout-purchase-block">' +
+      '<div class="flyout-purchase-grids">' +
+      grids +
+      "</div></div>"
+    );
+  }
+
+  /**
+   * One of the green primary action buttons in the story flyout (full
+   * audio download, "open reader", "buy on Amazon", etc). All three CTAs
+   * share the same wrapper + class; only the href, label, and
+   * download/external attributes vary.
+   */
+  function flyoutCtaButton(opts) {
+    var href = opts.rawHref ? opts.href : escapeHtml(opts.href);
+    var attrs = "";
+    if (opts.download) attrs += " download";
+    if (opts.external) attrs += ' target="_blank" rel="noopener noreferrer"';
+    return (
+      '<div class="flyout-full-story-wrap">' +
+      '<a href="' +
+      href +
+      '" class="flyout-full-story-cta"' +
+      attrs +
+      ">" +
+      escapeHtml(opts.label) +
+      "</a></div>"
+    );
   }
 
   function openStoryFlyout(story) {
@@ -1156,7 +1223,6 @@
     var chars = getCharactersForStory(story);
     var charsHtml = flyoutInlineLinkSection(
       "Characters",
-      "flyout-characters",
       chars,
       "data-character-id",
       function (c) {
@@ -1169,11 +1235,11 @@
     var ctaParts = [];
     if (story.audioUrl) {
       ctaParts.push(
-        '<div class="flyout-full-story-wrap">' +
-          '<a href="' +
-          escapeHtml(story.audioUrl.replace(/ /g, "%20")) +
-          '" class="flyout-full-story-cta" download>Full Audio Here!</a>' +
-          "</div>",
+        flyoutCtaButton({
+          href: story.audioUrl.replace(/ /g, "%20"),
+          label: "Full Audio Here!",
+          download: true,
+        }),
       );
     }
     if (normalizeStoryState(story) !== 1) {
@@ -1186,21 +1252,20 @@
         readerCtaLabel = "Full Story Here!";
       }
       ctaParts.push(
-        '<div class="flyout-full-story-wrap">' +
-          '<a href="#story/' +
-          story.id +
-          '/read" class="flyout-full-story-cta">' +
-          readerCtaLabel +
-          "</a></div>",
+        flyoutCtaButton({
+          href: "#story/" + story.id + "/read",
+          label: readerCtaLabel,
+          rawHref: true,
+        }),
       );
     }
     if (story.amazonUrl) {
       ctaParts.push(
-        '<div class="flyout-full-story-wrap">' +
-          '<a href="' +
-          escapeHtml(story.amazonUrl) +
-          '" class="flyout-full-story-cta" target="_blank" rel="noopener noreferrer">Buy on Amazon Here!</a>' +
-          "</div>",
+        flyoutCtaButton({
+          href: story.amazonUrl,
+          label: "Buy on Amazon Here!",
+          external: true,
+        }),
       );
     }
     var purchaseHtml = "";
@@ -1243,25 +1308,21 @@
       ? "flyout-title flyout-title--with-cta"
       : "flyout-title";
     var brutalityHtml = formatBrutalityRatingFlyoutHtml(story);
-    var flyoutOnCoverBadges = storyOnCoverBadgesHtml(story);
-    var flipFlyout = storyFlipCoverMarkup(story, flyoutOnCoverBadges);
     var coverHtml;
-    if (flipFlyout) {
+    if (story.coverFlip) {
       coverHtml =
         '<div class="flyout-story-cover-wrap flyout-story-cover-wrap--flip">' +
-        flipFlyout +
+        storyCoverMarkup(story, storyOnCoverBadgesHtml(story)) +
         "</div>";
     } else {
-      var coverSrc = story.cover || PLACEHOLDER_COVER;
       coverHtml =
         '<div class="flyout-story-cover-wrap">' +
-        '<img src="' +
-        escapeHtml(coverSrc) +
-        '" alt="' +
-        escapeHtml(story.title || "Cover") +
-        '" class="flyout-story-cover-img" onerror="this.src=\'' +
-        PLACEHOLDER_COVER +
-        "'\">" +
+        imgHtml({
+          src: story.cover,
+          alt: story.title || "Cover",
+          className: "flyout-story-cover-img",
+          placeholder: PLACEHOLDER_COVER,
+        }) +
         "</div>";
     }
     flyoutBody.innerHTML =
@@ -1293,28 +1354,23 @@
   function openCharacterFlyout(character) {
     if (!character) return;
     var charStories = getStoriesForCharacter(character.id);
-    var picsHtml = "";
-    var pics = character.profilePictures || [];
-    if (pics.length) {
-      picsHtml = '<div class="flyout-profiles">';
-      pics.forEach(function (src) {
-        picsHtml +=
-          '<div class="flyout-profile-wrap"><img src="' +
-          (src || PLACEHOLDER_CHAR) +
-          '" alt="" class="flyout-profile-img" onerror="this.src=\'' +
-          PLACEHOLDER_CHAR +
-          "'\"></div>";
-      });
-      picsHtml += "</div>";
-    } else {
-      picsHtml =
-        '<div class="flyout-profiles"><div class="flyout-profile-wrap"><img src="' +
-        PLACEHOLDER_CHAR +
-        '" alt="" class="flyout-profile-img"></div></div>';
-    }
+    var pics = (character.profilePictures && character.profilePictures.length)
+      ? character.profilePictures
+      : [PLACEHOLDER_CHAR];
+    var picsHtml = '<div class="flyout-profiles">' +
+      pics.map(function (src) {
+        return '<div class="flyout-profile-wrap">' +
+          imgHtml({
+            src: src,
+            alt: "",
+            className: "flyout-profile-img",
+            placeholder: PLACEHOLDER_CHAR,
+          }) +
+          "</div>";
+      }).join("") +
+      "</div>";
     var storiesHtml = flyoutInlineLinkSection(
       "Stories",
-      "flyout-stories",
       charStories,
       "data-story-id",
       function (s) {
@@ -1337,7 +1393,6 @@
     metaHtml += "</p>";
 
     flyoutBody.innerHTML =
-      '<div class="flyout-mode-character">' +
       picsHtml +
       '<h2 class="flyout-title">' +
       escapeHtml(character.name) +
@@ -1346,8 +1401,7 @@
       '<p class="flyout-summary">' +
       escapeHtml(character.bio || "") +
       "</p>" +
-      storiesHtml +
-      "</div>";
+      storiesHtml;
 
     setFlyoutPanelOpen(true);
   }
@@ -1402,30 +1456,13 @@
     var storiesGrid = byId("stories-grid");
     if (!storiesGrid) return;
     storiesGrid.addEventListener("click", function (e) {
-      var flip = e.target.closest(".story-cover-wrap--flip");
-      if (flip) {
-        e.preventDefault();
-        e.stopPropagation();
-        toggleCoverFlip(flip);
-        return;
-      }
+      if (handleCoverFlipClick(e)) return;
       var card = e.target.closest(".story-card");
       if (!card) return;
       var id = card.getAttribute("data-story");
       location.hash = "story/" + id;
     });
-    storiesGrid.addEventListener("keydown", function (e) {
-      var flip = e.target.closest(".story-cover-wrap--flip");
-      if (
-        !flip ||
-        e.target !== flip ||
-        (e.key !== "Enter" && e.key !== " ")
-      ) {
-        return;
-      }
-      e.preventDefault();
-      toggleCoverFlip(flip);
-    });
+    bindCoverFlipKeydown(storiesGrid);
   }
 
   function bindCharacterGridClick() {
@@ -1485,12 +1522,7 @@
     if (flyoutClose) flyoutClose.addEventListener("click", closeFlyout);
     if (flyoutBody) {
       flyoutBody.addEventListener("click", function (e) {
-        var flip = e.target.closest(".story-cover-wrap--flip");
-        if (flip && flyoutBody.contains(flip)) {
-          e.preventDefault();
-          toggleCoverFlip(flip);
-          return;
-        }
+        if (handleCoverFlipClick(e)) return;
         var btn = e.target.closest(".flyout-inline-link");
         if (!btn) return;
         var cid = btn.getAttribute("data-character-id");
@@ -1501,19 +1533,7 @@
         var sid = btn.getAttribute("data-story-id");
         if (sid) location.hash = "story/" + sid;
       });
-      flyoutBody.addEventListener("keydown", function (e) {
-        var flip = e.target.closest(".story-cover-wrap--flip");
-        if (
-          !flip ||
-          !flyoutBody.contains(flip) ||
-          e.target !== flip ||
-          (e.key !== "Enter" && e.key !== " ")
-        ) {
-          return;
-        }
-        e.preventDefault();
-        toggleCoverFlip(flip);
-      });
+      bindCoverFlipKeydown(flyoutBody);
     }
     if (storyReaderBack) {
       storyReaderBack.addEventListener("click", function () {

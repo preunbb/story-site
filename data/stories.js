@@ -31,41 +31,18 @@ window.DATA_STORIES = [
           "Strike one — Jenny's heel finds Sam's left nut behind the portables.",
       },
       {
-        path: "assets/scenes/three_strikes/jenny_portables_left_ball_stomp_v2_overhead.png",
-        caption: "The same stomp, from overhead.",
-      },
-      {
-        path: "assets/scenes/three_strikes/jenny_portables_left_ball_stomp_v3_followthrough.png",
-        caption: "Followthrough — the dimple sets in.",
-      },
-      {
         path: "assets/scenes/three_strikes/michelle_cheerleader_right_ball_kick_v1.png",
         caption: "Strike two — Michelle's cheer-routine punt to the right one.",
       },
       {
         path: "assets/scenes/three_strikes/cathy_allan_utility_closet_knees_v1.png",
-        caption: "Cathy corners Allan in the utility closet.",
-      },
-      {
-        path: "assets/scenes/three_strikes/cathy_allan_utility_closet_knees_v2_impact.png",
-        caption: "Knee meets cup; the cup loses.",
-      },
-      {
-        path: "assets/scenes/three_strikes/karen_richard_dressing_room_v3.png",
         caption:
-          "Karen demonstrates her technique on Richard in the dressing room.",
+          "Cathy conducts her semen extraction experiment after Allan's year of denial.",
       },
       {
         path: "assets/scenes/three_strikes/amy_nurse_garret_aftermath_v2.png",
-        caption: "Nurse Amy tends to Garret's aftermath.",
-      },
-      {
-        path: "assets/scenes/three_strikes/closing_cathy_baseball_three_strikes_v1.png",
-        caption: "Strike three — Cathy's baseball bat seals it.",
-      },
-      {
-        path: "assets/scenes/three_strikes/taylor_dungeon_joan_final_crush_v1.png",
-        caption: "Taylor's final crush in Joan's dungeon.",
+        caption:
+          "Nurse Amy reminisces on the unnecessary surgery she gave her ex-boyfriend Garret.",
       },
       {
         path: "assets/scenes/three_strikes/epilogue_joan_pool_billy_crush_v2_softer.png",
@@ -129,6 +106,7 @@ window.DATA_STORIES = [
   {
     id: 6,
     title: "A Healthy Relationship",
+    displayCover: true,
     summary:
       "Rachel finally has a boyfriend who shares her kink. They try some roleplay in a physics lecture. Published on Amazon as 'Busted under the Desk'.",
     cover: "assets/covers/a_healthy_relationship.jpg",
@@ -236,57 +214,6 @@ window.DATA_STORIES = [
     characterIds: ["melody", "richard", "nathan", "tommy"],
     state: 3,
     tags: ["Length: Medium"],
-    scenes: [
-      {
-        path: "assets/scenes/melodys_first_time/richard_initial_squeeze_v1.png",
-        caption: "Melody's first curious squeeze of Richard's pair.",
-      },
-      {
-        path: "assets/scenes/melodys_first_time/richard_initial_squeeze_v2.png",
-        caption: "Same squeeze, tighter.",
-      },
-      {
-        path: "assets/scenes/melodys_first_time/richard_initial_squeeze_v3_split.png",
-        caption:
-          "Split panel — her grin, his bulging sack between her fingers.",
-      },
-      {
-        path: "assets/scenes/melodys_first_time/richard_first_knee_strike.png",
-        caption: "Richard's first knee strike from Melody.",
-      },
-      {
-        path: "assets/scenes/melodys_first_time/richard_floor_punt.png",
-        caption: "A punt while Richard's still on the floor.",
-      },
-      {
-        path: "assets/scenes/melodys_first_time/richard_knee_savoring.png",
-        caption: "Melody savors a held-knee against the wreckage.",
-      },
-      {
-        path: "assets/scenes/melodys_first_time/richard_thumb_crunch.png",
-        caption: "Thumb crunch — a single ball flattens.",
-      },
-      {
-        path: "assets/scenes/melodys_first_time/richard_cum_block_ruined.png",
-        caption: "Richard's orgasm, ruined mid-stream.",
-      },
-      {
-        path: "assets/scenes/melodys_first_time/richard_final_pop.png",
-        caption: "Richard's final pop.",
-      },
-      {
-        path: "assets/scenes/melodys_first_time/nathan_cords_snap.png",
-        caption: "Nathan's cords snap audibly between Melody's fingers.",
-      },
-      {
-        path: "assets/scenes/melodys_first_time/tommy_methodical_destruction.png",
-        caption: "Methodical destruction of Tommy's pair.",
-      },
-      {
-        path: "assets/scenes/melodys_first_time/tommy_final_clap_pop.png",
-        caption: "Tommy's final clap-pop.",
-      },
-    ],
   },
   {
     id: 12,
@@ -634,17 +561,18 @@ window.DATA_STORIES = [
       },
       {
         path: "assets/scenes/living_with_ballbusting_witches/sylvana_knee_at_stairs.png",
-        caption: "Sylvana's knee, waiting at the bottom of the stairs.",
-      },
-      {
-        path: "assets/scenes/living_with_ballbusting_witches/kitchen_climax_collision_v2_standing_burst.png",
         caption:
-          "Sylvana ramps her arousal spell up as hard as she can. Genovia realizes what is happening, but it's too late ",
+          "Sylvana knees Sean right in the goolies while he's trying to get some ice to soothe his blueballs.",
       },
       {
         path: "assets/scenes/living_with_ballbusting_witches/anthony_flashback_rupture_v5.png",
         caption:
-          "Genovia experiments with her powers, and Anthony suffers a double testicular rupture as a result.",
+          "Genovia experiments with her powers in college, and Anthony suffers a double testicular rupture as a result.",
+      },
+      {
+        path: "assets/scenes/living_with_ballbusting_witches/kitchen_climax_collision_v2_standing_burst.png",
+        caption:
+          "Sylvana ramps her arousal spell up as hard as she can. Genovia realizes what is happening, but it's too late.",
       },
       {
         path: "assets/scenes/living_with_ballbusting_witches/sylvana_dark_awakening.png",
@@ -992,7 +920,8 @@ window.DATA_STORIES = [
     scenes: [
       {
         path: "assets/scenes/arena_6/twins_center.png",
-        caption: "The Nguyen twins, centered, ready for Natalie.",
+        caption:
+          "The Nguyen twins think they're ready for the Arena. They aren't.",
       },
     ],
   },
@@ -1053,7 +982,7 @@ window.DATA_STORIES = [
       {
         path: "assets/scenes/andrea_and_lucas/good/tamara_and_melody_medical_tent.png",
         caption:
-          "Melody encourages Tamara to give in to her darker urges while operating on Melody's",
+          "Melody encourages Tamara to give in to her darker urges while operating on Melody's current boytoy.",
       },
       {
         path: "assets/scenes/andrea_and_lucas/good/tamara_aftermath_final.png",

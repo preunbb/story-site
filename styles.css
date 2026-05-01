@@ -1517,10 +1517,6 @@ body.story-reader-open {
   object-fit: cover;
 }
 
-.flyout-mode-character .flyout-title {
-  margin-top: 0;
-}
-
 .flyout-character-meta {
   margin: 0 0 0.75rem;
   font-size: 0.9rem;
