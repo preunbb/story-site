@@ -388,6 +388,124 @@
     });
   }
 
+  function storyHasScenes(s) {
+    return Array.isArray(s.scenes) && s.scenes.length > 0;
+  }
+
+  function renderScenesPanel() {
+    var root = byId("scenes-list");
+    if (!root) return;
+    var withScenes = stories.filter(storyHasScenes).sort(compareStories);
+    root.innerHTML = "";
+    if (!withScenes.length) {
+      root.innerHTML =
+        '<p class="scenes-intro">No illustrated scenes yet — check back soon.</p>';
+      return;
+    }
+    withScenes.forEach(function (s) {
+      var det = document.createElement("details");
+      det.className = "scenes-accordion";
+      det.setAttribute("data-story", String(s.id));
+
+      var sum = document.createElement("summary");
+      sum.className = "scenes-accordion-summary";
+
+      var coverSrc = s.cover || PLACEHOLDER_COVER;
+      var sceneCount = s.scenes.length;
+      var countLabel = sceneCount + " scene" + (sceneCount === 1 ? "" : "s");
+      sum.innerHTML =
+        '<span class="scenes-accordion-chevron" aria-hidden="true"></span>' +
+        '<img src="' +
+        escapeHtml(coverSrc) +
+        '" alt="" class="scenes-accordion-cover" loading="lazy" onerror="this.src=\'' +
+        PLACEHOLDER_COVER +
+        "'\">" +
+        '<span class="scenes-accordion-heading">' +
+        '<span class="scenes-accordion-title">' +
+        escapeHtml(s.title || "Untitled") +
+        "</span>" +
+        '<span class="scenes-accordion-count">' +
+        countLabel +
+        "</span>" +
+        "</span>";
+      det.appendChild(sum);
+
+      var body = document.createElement("div");
+      body.className = "scenes-accordion-body";
+      s.scenes.forEach(function (sc) {
+        if (!sc || !sc.path) return;
+        var fig = document.createElement("figure");
+        fig.className = "scene-figure";
+        fig.innerHTML =
+          '<img src="' +
+          escapeHtml(sc.path) +
+          '" alt="' +
+          escapeHtml(sc.caption || s.title || "Scene") +
+          '" class="scene-img" loading="lazy">' +
+          '<figcaption class="scene-caption">' +
+          escapeHtml(sc.caption || "") +
+          "</figcaption>";
+        body.appendChild(fig);
+      });
+      det.appendChild(body);
+
+      // Keep URL in sync with the most-recently-toggled story so links to
+      // /#scenes/<id> are shareable. Use replaceState so we don't re-fire
+      // applyHash (which would re-scroll the user to the top of the row).
+      det.addEventListener("toggle", function () {
+        if (!det.isConnected) return;
+        var sid = String(s.id);
+        var current = parseHash();
+        var newHash;
+        if (det.open) {
+          newHash = "#scenes/" + sid;
+        } else if (
+          current.tab === "scenes" &&
+          current.scenesStoryId !== undefined &&
+          String(current.scenesStoryId) === sid
+        ) {
+          newHash = "#scenes";
+        } else {
+          return;
+        }
+        if ("#" + (location.hash || "").replace(/^#/, "") === newHash) return;
+        try {
+          history.replaceState(null, "", newHash);
+        } catch (_e) {
+          location.hash = newHash;
+        }
+      });
+
+      root.appendChild(det);
+    });
+  }
+
+  function openScenesAccordionFor(storyId) {
+    var root = byId("scenes-list");
+    if (!root || storyId === undefined || storyId === null) return;
+    var det = root.querySelector(
+      '.scenes-accordion[data-story="' + String(storyId) + '"]',
+    );
+    if (!det) return;
+    var wasOpen = det.open;
+    if (!wasOpen) det.open = true;
+    if (wasOpen && isElementMostlyInViewport(det)) return;
+    requestAnimationFrame(function () {
+      try {
+        det.scrollIntoView({ behavior: "smooth", block: "start" });
+      } catch (_e) {
+        det.scrollIntoView();
+      }
+    });
+  }
+
+  function isElementMostlyInViewport(el) {
+    if (!el || !el.getBoundingClientRect) return false;
+    var r = el.getBoundingClientRect();
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    return r.top >= 0 && r.top < vh * 0.5;
+  }
+
   function brutalityAllowedLevels(mode) {
     if (mode === "gt") return intRange(1, BRUT_MAX - 1);
     if (mode === "lt") return intRange(2, BRUT_MAX);
@@ -448,8 +566,15 @@
     syncBrutalityLevelOptions();
   }
 
-  // Hash: tabs (#stories, …), #character/<id>, #story/<id>, #story/<id>/read
-  var TAB_IDS = ["stories", "characters", "about", "other-authors"];
+  // Hash: tabs (#stories, …), #character/<id>, #story/<id>, #story/<id>/read,
+  //       #scenes/<id> (auto-expand that story's accordion)
+  var TAB_IDS = [
+    "stories",
+    "characters",
+    "scenes",
+    "about",
+    "other-authors",
+  ];
 
   function showTab(name) {
     if (TAB_IDS.indexOf(name) === -1) name = "stories";
@@ -478,6 +603,12 @@
       var sid = String(num) === storyIdRaw ? num : storyIdRaw;
       var readMode = parts[2] === "read";
       return { tab: "stories", storyId: sid, readMode: readMode };
+    }
+    if (first === "scenes" && parts[1]) {
+      var scStoryRaw = parts[1];
+      var scNum = parseInt(scStoryRaw, 10);
+      var scSid = String(scNum) === scStoryRaw ? scNum : scStoryRaw;
+      return { tab: "scenes", scenesStoryId: scSid };
     }
     var tab = TAB_IDS.indexOf(first) !== -1 ? first : "stories";
     return { tab: tab };
@@ -1261,6 +1392,9 @@
       else closeFlyout();
     } else {
       setFlyoutPanelOpen(false);
+      if (state.scenesStoryId !== undefined) {
+        openScenesAccordionFor(state.scenesStoryId);
+      }
     }
   }
 
@@ -1343,6 +1477,7 @@
     renderOtherAuthors(data.otherAuthors);
     initStoryFilters();
     renderStoriesGrid();
+    renderScenesPanel();
     bindStoryGridClick();
     bindCharacterGridClick();
 
