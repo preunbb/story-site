@@ -897,7 +897,21 @@
       .then(function (text) {
         if (!readerStory || readerStory.id !== story.id) return;
         storyReaderStatus.hidden = true;
-        storyReaderArticle.innerHTML = storyMarkdownToSafeHtml(text);
+        var coverHtml = "";
+        if (story.displayCover) {
+          var coverSrc = story.cover || PLACEHOLDER_COVER;
+          coverHtml =
+            '<div class="story-reader-cover-wrap">' +
+            '<img src="' +
+            escapeHtml(coverSrc) +
+            '" alt="' +
+            escapeHtml(story.title || "Cover") +
+            '" class="story-reader-cover-img" onerror="this.src=\'' +
+            PLACEHOLDER_COVER +
+            "'\">" +
+            "</div>";
+        }
+        storyReaderArticle.innerHTML = coverHtml + storyMarkdownToSafeHtml(text);
         setupStoryReaderChapters();
       })
       .catch(function (err) {

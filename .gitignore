@@ -3,3 +3,4 @@ node_modules/
 .venv*/
 *.log
 dist/
+assets/stories/andrea_and_lucas.md
