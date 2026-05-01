@@ -5,6 +5,7 @@ window.DATA_STORIES = [
     summary:
       "A college senior has an unusually blessed anatomy and a very demanding swim coach. She insists on some minor modifications to improve his speed, which he politely declines. She enlists three eager assistants to help change his mind: a Goth, a cheerleader, and an science wiz. Sam does his best to keep all of his blessings safe from the girls, but it's not easy, and all three girls make some very convincing arguments.",
     cover: "assets/covers/three_strikes.jpg",
+    displayCover: true,
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTX9nnN1Igz0Nvpk3kpY6rjkJ26Lz5diQpx6G77hbuwGDXZ03x-aUrf7ni0nQv1hx1QzQ7X4ClVoUuR/pub",
     characterIds: [
@@ -26,6 +27,7 @@ window.DATA_STORIES = [
     summary:
       "Jeremy's having the weirdest, most painful nightmares. He's desperately hoping his therapist can help him figure things out.",
     cover: "assets/covers/castration_anxiety.jpg",
+    displayCover: true,
     amazonUrl:
       "https://www.amazon.com/Castration-Anxiety-Preun-BB-ebook/dp/B07WS1GD4N",
     driveUrl:
@@ -135,6 +137,8 @@ window.DATA_STORIES = [
     summary:
       "Brian watches Vanessa fight while Emma, Vivian, and Natalie join him in the stands. They swap stories about the past.",
     cover: "assets/covers/the_ballbusting_arena_5_first_times.jpg",
+    displayCover: true,
+    amazonUrl: "https://www.amazon.com/dp/B0GZ4YQ7YW",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTjujZsLMuA-lmgM6LPeed-X_FQ0STwNWLaRBQ1qRycmkdFK0UdNBVhJu7s1uA3tOWT5gXqZss0j0M7/pub",
     characterIds: ["brian", "emma", "vivian", "natalie", "vanessa", "david"],
@@ -619,6 +623,8 @@ window.DATA_STORIES = [
     title: "The Ballbusting Arena 6: Natalie Enters the Ring",
     brutalityRating: 4,
     cover: "assets/covers/arena_6.png",
+    displayCover: true,
+    amazonUrl: "https://www.amazon.com/dp/B0GZ4YQ7YW",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vS32jqSSfXDaR_nKKo59asBOgSRmbZ5zn2msh9_8ov7AwMgq1o3SCWgfp5aearAIm3-dO-Hj1LJlnr2/pub",
     releaseDate: "2026-04-26",
@@ -634,6 +640,7 @@ window.DATA_STORIES = [
     title: "Andrea and Lucas",
     brutalityRating: 5,
     cover: "assets/covers/andrea_and_lucas.png",
+    displayCover: true,
     summary:
       "She's a thicc goth dommy mommy who takes self defense classes. He's a religiously repressed genius nerd with a rare hyperspermia disorder. She's got a roommate who does pranks for social media, and a sister who works as a urological surgeon. He's got a stepmom who's part of an insane femdom cult that he barely escaped from intact. Hijinx ensure. Balls get popped.",
     subtitle: "My first 'premium' story, exclusively for sale.",

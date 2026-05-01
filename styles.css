@@ -911,6 +911,25 @@ body.story-reader-open {
   scroll-margin-top: 0.25rem;
 }
 
+.story-reader-cover-wrap {
+  margin: 0 auto 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.story-reader-cover-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+}
+
+.story-reader-article .story-reader-cover-wrap + .story-reader-chapter {
+  margin-top: 0;
+}
+
 .story-reader-article h2 {
   font-family: var(--font-sans);
   font-size: 1.35rem;
