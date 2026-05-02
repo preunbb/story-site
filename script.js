@@ -727,11 +727,110 @@
   var flyoutBackdrop = byId("flyout-backdrop");
   var flyoutClose = byId("flyout-close");
   var flyoutBody = byId("flyout-body");
+  var flyoutPanel = flyoutBody ? flyoutBody.closest(".flyout-panel") : null;
+
+  /** Floater for Kofi-vs-Amazon hint (native `title` is often delayed or absent on touch). */
+  var storyKofiPrefTipEl = null;
+  var storyKofiPrefTipHideTimer = null;
+
+  function getStoryKofiPrefTipEl() {
+    if (storyKofiPrefTipEl) return storyKofiPrefTipEl;
+    storyKofiPrefTipEl = document.createElement("div");
+    storyKofiPrefTipEl.className = "story-kofi-pref-tooltip";
+    storyKofiPrefTipEl.setAttribute("role", "tooltip");
+    document.body.appendChild(storyKofiPrefTipEl);
+    return storyKofiPrefTipEl;
+  }
+
+  function hideStoryKofiPrefTip() {
+    if (storyKofiPrefTipHideTimer) {
+      clearTimeout(storyKofiPrefTipHideTimer);
+      storyKofiPrefTipHideTimer = null;
+    }
+    if (storyKofiPrefTipEl) storyKofiPrefTipEl.classList.remove("is-visible");
+  }
+
+  function positionStoryKofiPrefTip(anchor) {
+    var tip = getStoryKofiPrefTipEl();
+    var rect = anchor.getBoundingClientRect();
+    var margin = 10;
+    var tr = tip.getBoundingClientRect();
+    var w = tr.width;
+    var h = tr.height;
+    var left = rect.left + rect.width / 2 - w / 2;
+    left = Math.max(margin, Math.min(left, window.innerWidth - w - margin));
+    var top = rect.bottom + margin;
+    if (top + h > window.innerHeight - margin) {
+      top = rect.top - h - margin;
+    }
+    if (top < margin) top = margin;
+    tip.style.left = left + "px";
+    tip.style.top = top + "px";
+  }
+
+  function showStoryKofiPrefTip(anchor, text) {
+    if (storyKofiPrefTipHideTimer) {
+      clearTimeout(storyKofiPrefTipHideTimer);
+      storyKofiPrefTipHideTimer = null;
+    }
+    var tip = getStoryKofiPrefTipEl();
+    tip.textContent = text;
+    tip.classList.add("is-visible");
+    positionStoryKofiPrefTip(anchor);
+    requestAnimationFrame(function () {
+      positionStoryKofiPrefTip(anchor);
+    });
+  }
+
+  function bindStoryKofiPrefTipUi() {
+    if (!flyoutBody || flyoutBody._storyKofiPrefTipBound) return;
+    flyoutBody._storyKofiPrefTipBound = true;
+    flyoutBody.addEventListener("pointerover", function (e) {
+      var anchor =
+        e.target && e.target.closest && e.target.closest("[data-kofi-pref-tooltip]");
+      if (!anchor || !flyoutBody.contains(anchor)) return;
+      var msg = anchor.getAttribute("data-kofi-pref-tooltip");
+      if (!msg) return;
+      showStoryKofiPrefTip(anchor, msg);
+    });
+    flyoutBody.addEventListener("pointerout", function (e) {
+      var anchor =
+        e.target && e.target.closest && e.target.closest("[data-kofi-pref-tooltip]");
+      if (!anchor || !flyoutBody.contains(anchor)) return;
+      var rt = e.relatedTarget;
+      if (rt && anchor.contains(rt)) return;
+      if (document.activeElement === anchor) return;
+      hideStoryKofiPrefTip();
+    });
+    flyoutBody.addEventListener("focusin", function (e) {
+      var anchor =
+        e.target && e.target.closest && e.target.closest("[data-kofi-pref-tooltip]");
+      if (!anchor || !flyoutBody.contains(anchor)) return;
+      var msg = anchor.getAttribute("data-kofi-pref-tooltip");
+      if (!msg) return;
+      showStoryKofiPrefTip(anchor, msg);
+    });
+    flyoutBody.addEventListener("focusout", function (e) {
+      var anchor =
+        e.target && e.target.closest && e.target.closest("[data-kofi-pref-tooltip]");
+      if (!anchor || !flyoutBody.contains(anchor)) return;
+      var rt = e.relatedTarget;
+      if (rt && anchor.contains(rt)) return;
+      storyKofiPrefTipHideTimer = setTimeout(function () {
+        hideStoryKofiPrefTip();
+      }, 0);
+    });
+    if (flyoutPanel) {
+      flyoutPanel.addEventListener("scroll", hideStoryKofiPrefTip, { passive: true });
+    }
+    window.addEventListener("resize", hideStoryKofiPrefTip);
+  }
 
   function setFlyoutPanelOpen(on) {
     flyout.setAttribute("aria-hidden", on ? "false" : "true");
     flyout.classList.toggle("open", on);
     document.body.classList.toggle("flyout-open", on);
+    if (!on) hideStoryKofiPrefTip();
   }
 
   var storyReaderEl = byId("story-reader");
@@ -1138,16 +1237,38 @@
     loadStoryReaderContent(story);
   }
 
-  function purchasePartCell(url, label, variant) {
+  var KOFI_PREFERENCE_TOOLTIP = "Kofi costs you less and pays me more!";
+
+  function storyHasKofiOption(story) {
+    if (!story) return false;
+    if (story.kofiUrl) return true;
+    if (story.purchaseParts && story.purchaseParts.length) {
+      return story.purchaseParts.some(function (p) {
+        return !!p.kofiUrl;
+      });
+    }
+    return false;
+  }
+
+  function purchasePartCell(url, label, variant, tooltip) {
     var cls =
       "flyout-purchase-btn flyout-purchase-btn--" + escapeHtml(variant);
+    var tipAttrs = tooltip
+      ? ' data-kofi-pref-tooltip="' +
+        escapeHtml(tooltip) +
+        '" title="' +
+        escapeHtml(tooltip) +
+        '"'
+      : "";
     if (url) {
       return (
         '<a href="' +
         escapeHtml(url) +
         '" class="' +
         cls +
-        '" target="_blank" rel="noopener noreferrer">' +
+        '"' +
+        tipAttrs +
+        ' target="_blank" rel="noopener noreferrer">' +
         escapeHtml(label) +
         "</a>"
       );
@@ -1155,7 +1276,9 @@
     return (
       '<span class="' +
       cls +
-      ' flyout-purchase-btn--disabled" aria-disabled="true">' +
+      ' flyout-purchase-btn--disabled" aria-disabled="true"' +
+      tipAttrs +
+      ">" +
       escapeHtml(label) +
       "</span>"
     );
@@ -1171,10 +1294,15 @@
       .map(function (p, i) {
         var n =
           typeof p.part === "number" && !isNaN(p.part) ? p.part : i + 1;
+        var tooltip =
+          vendor.variant === "amazon" && p.kofiUrl
+            ? KOFI_PREFERENCE_TOOLTIP
+            : null;
         return purchasePartCell(
           p[vendor.urlKey],
           "Buy part " + n + " on " + vendor.label + "!",
           vendor.variant,
+          tooltip,
         );
       })
       .join("");
@@ -1206,6 +1334,14 @@
     var attrs = "";
     if (opts.download) attrs += " download";
     if (opts.external) attrs += ' target="_blank" rel="noopener noreferrer"';
+    if (opts.tooltip) {
+      attrs +=
+        ' data-kofi-pref-tooltip="' +
+        escapeHtml(opts.tooltip) +
+        '" title="' +
+        escapeHtml(opts.tooltip) +
+        '"';
+    }
     return (
       '<div class="flyout-full-story-wrap">' +
       '<a href="' +
@@ -1265,6 +1401,7 @@
           href: story.amazonUrl,
           label: "Buy on Amazon Here!",
           external: true,
+          tooltip: storyHasKofiOption(story) ? KOFI_PREFERENCE_TOOLTIP : null,
         }),
       );
     }
@@ -1520,6 +1657,7 @@
 
     if (flyoutBackdrop) flyoutBackdrop.addEventListener("click", closeFlyout);
     if (flyoutClose) flyoutClose.addEventListener("click", closeFlyout);
+    bindStoryKofiPrefTipUi();
     if (flyoutBody) {
       flyoutBody.addEventListener("click", function (e) {
         if (handleCoverFlipClick(e)) return;

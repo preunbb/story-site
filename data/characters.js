@@ -266,14 +266,14 @@ window.DATA_CHARACTERS = [
     name: "Eric",
     gender: "M",
     bio: "Alise's older stepson, high school senior. Well-hung, arrogant, used to getting his way. Plans a weekend with the babysitter that goes very wrong.",
-    profilePictures: [],
+    profilePictures: ["assets/characters/eric.jpg"],
   },
   {
     id: "bryan",
     name: "Bryan",
     gender: "M",
     bio: "Eric's stepbrother, skinnier and timider. Goes along with Eric's schemes but draws Melody's attention in a different way when he finds her tied up.",
-    profilePictures: [],
+    profilePictures: ["assets/characters/bryan.jpg"],
   },
   {
     id: "fiona",

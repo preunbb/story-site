@@ -399,7 +399,8 @@ window.DATA_STORIES = [
       },
       {
         path: "assets/scenes/school_bully/good/monique_back_kick_outside.png",
-        caption: "Robert fails to defend himself as Monique ",
+        caption:
+          "Robert fails to defend himself as Monique gets ready to stomp on his crotch as hard as she can.",
       },
       {
         path: "assets/scenes/school_bully/good/monique_bus_double_trouble.png",
@@ -535,6 +536,33 @@ window.DATA_STORIES = [
     characterIds: ["melody", "eric", "bryan"],
     state: 3,
     tags: ["Length: Long", "New to Reddit"],
+    scenes: [
+      {
+        path: "assets/scenes/busted_by_the_babysitter/ch01_first_knee_aftermath_v2.jpg",
+        caption:
+          "Ch. 1 — Melody's first 'accidental' knee leaves Eric doubled over. \"Oh no, are you okay sweetie?\"",
+      },
+      {
+        path: "assets/scenes/busted_by_the_babysitter/ch01_gaming_stomp_v2.jpg",
+        caption:
+          "Ch. 1 — Eric stretched out playing Switch on the floor; Melody steps right between his legs and plants her boot. She'll claim she tripped on a controller.",
+      },
+      {
+        path: "assets/scenes/busted_by_the_babysitter/ch02_bryan_finds_melody_freed_v3.jpg",
+        caption:
+          "Ch. 2 — Eric returns with the condoms to find Melody freed and Bryan in horrified tears. The babysitter is no longer playing innocent.",
+      },
+      {
+        path: "assets/scenes/busted_by_the_babysitter/ch02_post_freeing_aftermath_v3.jpg",
+        caption:
+          "Ch. 2 — The mask comes off. Melody finally lets herself enjoy what she's been hiding all day.",
+      },
+      {
+        path: "assets/scenes/busted_by_the_babysitter/ch03_kneel_savoring_v5.jpg",
+        caption:
+          "Ch. 3 — Bryan thought he was about to lose his virginity. Melody is savoring something else entirely.",
+      },
+    ],
   },
   {
     id: 27,
@@ -744,6 +772,37 @@ window.DATA_STORIES = [
     characterIds: ["officer_alice", "ivan", "lieutenant_maria"],
     state: 3,
     tags: ["Length: Medium", "New to Reddit"],
+    scenes: [
+      {
+        path: "assets/scenes/paperwork/1_paperwork_alice_pliers_v5_chestup.png",
+        caption: "Officer Alice begins extracting her confession with pliers.",
+      },
+      {
+        path: "assets/scenes/paperwork/2_paperwork_alice_pin_raised_v5_chestup.png",
+        caption:
+          "Some suspects are very stubborn. But a good detective always has another lead! Alice's needles are surely just the trick to get justice served. Unfortunately, the scumbag keeps up his pointless lie even when she ruptures his left testicle.",
+      },
+      {
+        path: "assets/scenes/paperwork/3_paperwork_alice_maria_coffee_chat.png",
+        caption:
+          "A small paperwork mixup threatens to tank the investigation - but Maria assures her it's not a big deal. She'll just have to destroy the man's other testicle to work it out.",
+      },
+      {
+        path: "assets/scenes/paperwork/4_paperwork_crunch_split_reaction.png",
+        caption:
+          "Alice loses her cool and pops Ivan's last ball. If only he'd confessed sooner.",
+      },
+      {
+        path: "assets/scenes/paperwork/5_paperwork_alice_pearl_v5_chestup.png",
+        caption:
+          "She admires her handiwork, the last remains of the criminal's sexlife still miraculously intact. Ivan stupidly keeps begging to be let go, as if he's innocent? That's a bad move, since he's still got more for her to take...",
+      },
+      {
+        path: "assets/scenes/paperwork/6_paperwork_alice_papercutter_v1.png",
+        caption:
+          "After slicing his dick into dozens of paper-thin slices, Officer Alice has to endure the most tortuous part of her job - bagging and tagging all of the evidence. Paperwork can be a real pain sometimes!",
+      },
+    ],
   },
   {
     id: 37,
@@ -968,16 +1027,30 @@ window.DATA_STORIES = [
     ],
     scenes: [
       {
-        path: "assets/scenes/andrea_and_lucas/good/izzie_eunuchcorn_jeans_skit_v1.png",
-        caption: "Izzie's 'eunuchcorn' skit, in jeans.",
+        path: "assets/scenes/andrea_and_lucas/good/izzie_and_sterilizer.png",
+        caption:
+          "Izzie shows off OverEasy, inc.'s latest in cutting edge female self defense technology: The Sterilizer™! It's the first taser specifically designed to remove your (male) attacker from the gene pool.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/good/sterilizer_aftermath.png",
+        caption:
+          "Izzie's recent involuntary 'costar' deals with the fact that his semen is completely sperm-free after she gives him a hilarious demonstration of how the Sterilizer™ works.",
       },
       {
         path: "assets/scenes/andrea_and_lucas/good/izzie_ball_killers_heel_skit_v8_cute_smile_clean.png",
-        caption: "Izzie's 'ball killers' skit — heel-out, cute smile.",
+        caption:
+          "Now, it's time to show off the Ball Killers™! As fashionable as they are functional, these devious little heals will keep you sexy on the dance floor and safe anywhere there's a dangerous man around, as long as you don't mind cleaning bits of nutmeat off them when you're finished.",
       },
       {
+        path: "assets/scenes/andrea_and_lucas/good/izzie_eunuchcorn_jeans_skit_v1.png",
+        caption:
+          "Izzie visits Andrea's eunuch ex-boyfriend at the jeans store and teases him about the permanent, irreversible injury she inflicted for the sake of content.",
+      },
+
+      {
         path: "assets/scenes/andrea_and_lucas/good/yvette_operates_on_sunni.png",
-        caption: "Dr. Yvette operates on Sunni.",
+        caption:
+          "Sunni insists his injuries aren't that bad, but Dr. Yvette knows better: she's definitely going to have to remove both of his testicles. In the background, Felix futilely begs her to give him the tiniest amount of basic medical attention so he can remain a man.",
       },
       {
         path: "assets/scenes/andrea_and_lucas/good/tamara_and_melody_medical_tent.png",
@@ -986,7 +1059,8 @@ window.DATA_STORIES = [
       },
       {
         path: "assets/scenes/andrea_and_lucas/good/tamara_aftermath_final.png",
-        caption: "Tamara, in the aftermath of the Cherry Pop! concert.",
+        caption:
+          "Tamara, in the aftermath of the Cherry Pop! concert, deals with the insanely erotic clusterfuck that was the onsite medical tent, and the dozens of unnecessarily severed organs Yvette left lying around.",
       },
     ],
   },

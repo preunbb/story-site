@@ -3,9 +3,10 @@
 Looks up the cover and title for the given story id from data/stories.js,
 copies the existing cover artwork without scaling or cropping, extends the
 canvas (filling the new edges by stretching/blurring the existing edge
-pixels) until it is at least 1000x625 px, downscales if any side exceeds
-10000 px, and overlays the title at the top and the author tagline at the
-bottom in a consistent font. Output is always a JPEG.
+pixels) until it satisfies KDP's minimum cover dimensions (≥1000 px tall,
+≥625 px wide), and downscales if any side would exceed 10,000 px. Then
+overlays the title in a top margin and "by Preun BB" in a matching bottom
+margin so the artwork itself is never overwritten. Output is always a JPEG.
 
 Examples:
     .venv-crop/bin/python3 scripts/make_cover.py 5
@@ -29,8 +30,12 @@ REPO_ROOT = SCRIPT_DIR.parent
 sys.path.insert(0, str(SCRIPT_DIR))
 from extend_canvas import extend as extend_canvas_to_min  # type: ignore  # noqa: E402
 
-MIN_W = 1000
-MIN_H = 625
+# KDP cover spec:
+#   "Upload a cover with minimum dimensions of 1000 pixels in height and 625
+#    pixels in width. Cover image should not exceed 10,000 pixels in height
+#    and in width."
+MIN_W = 625
+MIN_H = 1000
 MAX_DIM = 10000
 DEFAULT_AUTHOR = "by Preun BB"
 
@@ -268,8 +273,20 @@ def render_overlays(image_path: Path, output_path: Path, title: str, author: str
             glow_blur=max(3, int(bottom_margin * 0.06)),
         )
 
+    # Adding margins can push the canvas past MAX_DIM even though the artwork
+    # passed size_canvas's cap. Downscale at the end so the final JPEG always
+    # respects the KDP "≤ 10,000 px in either dimension" rule.
+    final = canvas.convert("RGB")
+    fw, fh = final.size
+    if max(fw, fh) > MAX_DIM:
+        scale = MAX_DIM / max(fw, fh)
+        final = final.resize(
+            (max(1, int(fw * scale)), max(1, int(fh * scale))),
+            Image.Resampling.LANCZOS,
+        )
+
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    canvas.convert("RGB").save(
+    final.save(
         output_path, format="JPEG", quality=92, optimize=True, progressive=True
     )
 

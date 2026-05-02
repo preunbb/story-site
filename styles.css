@@ -1384,6 +1384,37 @@ body.story-reader-open {
   box-shadow: none;
 }
 
+/* Kofi vs Amazon hint — fixed floater (see script.js bindStoryKofiPrefTipUi) */
+.story-kofi-pref-tooltip {
+  position: fixed;
+  z-index: 10050;
+  box-sizing: border-box;
+  max-width: min(260px, calc(100vw - 20px));
+  padding: 0.5rem 0.65rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #f6fff8;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  background: linear-gradient(180deg, #1a1f24 0%, #12161a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition:
+    opacity 0.12s ease,
+    visibility 0.12s ease;
+}
+
+.story-kofi-pref-tooltip.is-visible {
+  visibility: visible;
+  opacity: 1;
+}
+
 .flyout-summary {
   margin: 0 0 1.25rem;
   color: var(--ink-muted);
