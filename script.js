@@ -87,6 +87,53 @@
     return 3;
   }
 
+  var LENGTH_TAG_PREFIX = "Length: ";
+
+  /** Buckets from word count; returns label without the "Length: " prefix. */
+  function lengthBucketLabel(wordCount) {
+    if (typeof wordCount !== "number" || !isFinite(wordCount) || wordCount < 0) {
+      return null;
+    }
+    if (wordCount < 2000) return "Extra Short";
+    if (wordCount < 5000) return "Short";
+    if (wordCount < 10000) return "Medium";
+    if (wordCount < 20000) return "Long";
+    return "Extra long";
+  }
+
+  function storyDerivedLengthTag(story) {
+    if (story.fullLengthNovel) {
+      return LENGTH_TAG_PREFIX + "Full Length Novel";
+    }
+    var label = lengthBucketLabel(story.wordCount);
+    return label ? LENGTH_TAG_PREFIX + label : null;
+  }
+
+  /** Data `tags` plus auto length tag; strips any legacy stored length tags. */
+  function storyEffectiveTags(story) {
+    var raw = story.tags && Array.isArray(story.tags) ? story.tags.slice() : [];
+    var out = [];
+    for (var i = 0; i < raw.length; i++) {
+      if (String(raw[i]).indexOf(LENGTH_TAG_PREFIX) === 0) continue;
+      out.push(raw[i]);
+    }
+    var lt = storyDerivedLengthTag(story);
+    if (lt) out.push(lt);
+    return out;
+  }
+
+  function storyWordCountFlyoutHtml(story) {
+    if (story.fullLengthNovel) return "";
+    var n = story.wordCount;
+    if (typeof n !== "number" || !isFinite(n) || n < 0) return "";
+    var formatted = n.toLocaleString(undefined, { maximumFractionDigits: 0 });
+    return (
+      '<p class="flyout-word-count">' +
+      escapeHtml(formatted + " words") +
+      "</p>"
+    );
+  }
+
   var RELEASE_MONTH_NAMES = [
     "January",
     "February",
@@ -226,7 +273,7 @@
   function getAllTags() {
     var set = {};
     stories.forEach(function (s) {
-      var t = s.tags || [];
+      var t = storyEffectiveTags(s);
       for (var i = 0; i < t.length; i++) {
         set[t[i]] = true;
       }
@@ -387,7 +434,7 @@
     var bLevel = levelEl && levelEl.value ? levelEl.value : "3";
 
     var list = stories.filter(function (s) {
-      if (selectedTag && (s.tags || []).indexOf(selectedTag) === -1) {
+      if (selectedTag && storyEffectiveTags(s).indexOf(selectedTag) === -1) {
         return false;
       }
       if (!passesBrutalityFilter(s, bMode, bLevel)) return false;
@@ -1426,7 +1473,8 @@
           escapeHtml(story.subtitle.trim()) +
           "</p>"
         : "";
-    var tags = story.tags && Array.isArray(story.tags) ? story.tags : [];
+    var tags = storyEffectiveTags(story);
+    var wordCountHtml = storyWordCountFlyoutHtml(story);
     var tagsHtml =
       tags.length > 0
         ? '<div class="flyout-tags">' +
@@ -1480,6 +1528,7 @@
       "</p>" +
       releaseHtml +
       subtitleHtml +
+      wordCountHtml +
       tagsHtml +
       brutalityHtml +
       charsHtml +

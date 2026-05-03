@@ -1,10 +1,12 @@
 window.DATA_STORIES = [
   {
     id: 1,
+    wordCount: 24139,
     title: "Three Strikes",
     summary:
       "A college senior has an unusually blessed anatomy and a very demanding swim coach. She insists on some minor modifications to improve his speed, which he politely declines. She enlists three eager assistants to help change his mind: a Goth, a cheerleader, and an science wiz. Sam does his best to keep all of his blessings safe from the girls, but it's not easy, and all three girls make some very convincing arguments.",
     cover: "assets/covers/three_strikes.jpg",
+    amazonUrl: "https://www.amazon.com/dp/B0GXQL879M/",
     displayCover: true,
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTX9nnN1Igz0Nvpk3kpY6rjkJ26Lz5diQpx6G77hbuwGDXZ03x-aUrf7ni0nQv1hx1QzQ7X4ClVoUuR/pub",
@@ -18,7 +20,7 @@ window.DATA_STORIES = [
       "amy",
     ],
     state: 3,
-    tags: ["Length: Long"],
+    tags: [],
     brutalityRating: 5,
     scenes: [
       {
@@ -53,6 +55,7 @@ window.DATA_STORIES = [
   },
   {
     id: 2,
+    wordCount: 7720,
     title: "Castration Anxiety",
     summary:
       "Jeremy's having the weirdest, most painful nightmares. He's desperately hoping his therapist can help him figure things out.",
@@ -64,11 +67,12 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vSzHrCQAe11KrCIyKxKmcF8imQnqjwi7cZ1QrmwuRtG80z9bJTo9REehUUBpbFKFoOvpPpWL4Vd_dVy/pub",
     characterIds: ["jeremy", "karen"],
     state: 3,
-    tags: ["Length: Long"],
+    tags: [],
     brutalityRating: 3,
   },
   {
     id: 4,
+    wordCount: 1070,
     title: "A Day in the Life of a Dominatrix",
     summary: "A brief glimpse into Jenny's busy life.",
     cover: "assets/covers/a_day_in_the_life_of_a_dominatrix.jpg",
@@ -76,11 +80,12 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vQljJeCPYRaaZ6RaxaIlNjYz-fh-yNNsoYER75eHB32UKFAUPSQ4rQ-ovd4q6K6Rvu_x_ZsS7Hz_S_q/pub",
     characterIds: ["jenny"],
     state: 3,
-    tags: ["Length: Medium"],
+    tags: [],
     brutalityRating: 2,
   },
   {
     id: 5,
+    wordCount: 4647,
     title: "The Ballbusting Arena 1: Battle Royale",
     summary:
       "Britt has her first day in the ring. Published on Amazon as part of a collection.",
@@ -100,11 +105,12 @@ window.DATA_STORIES = [
       "paul",
     ],
     state: 3,
-    tags: ["Length: Medium", "Series: The Ballbusting Arena"],
+    tags: ["Series: The Ballbusting Arena"],
     brutalityRating: 5,
   },
   {
     id: 6,
+    wordCount: 2263,
     title: "A Healthy Relationship",
     displayCover: true,
     summary:
@@ -116,11 +122,12 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vRdLRm7RS8Ii9xyQ7GzfNSKP0O4AtgAs3cvpnYy9QAaPEQoThTi81fPpgCS7SgGrfDw7qsIq72rCdgL/pub",
     characterIds: ["rachel", "greg"],
     state: 3,
-    tags: ["Length: Medium"],
+    tags: [],
     brutalityRating: 3,
   },
   {
     id: 7,
+    wordCount: 2365,
     title: "A Painful Train Ride",
     summary:
       "Allan's private train compartment is invaded by two women—June and Goddess Alexa.",
@@ -129,11 +136,12 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vTEnKFYNOWrlGqbFyMl3vHj7MyzTf4vJt4x_mLLEBSDlm5sr7vNbd_L86XFhXJbErYtvFzZmNyHjXs0/pub",
     characterIds: ["allan", "june", "alexa"],
     state: 3,
-    tags: ["Length: Medium", "New to Reddit"],
+    tags: ["New to Reddit"],
     brutalityRating: 3,
   },
   {
     id: 8,
+    wordCount: 5025,
     brutalityRating: 3,
     title: "Club Fight",
     summary:
@@ -143,7 +151,7 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vSrwbxvPy_ir_0ggOvgKWjAnKhgRzCtKsErNxLGWNmSdZkHtq6H8XTlR4UwXHpAnyM1f70CtaDpEQca/pub",
     characterIds: ["dennis", "serena", "erica", "kayleigh"],
     state: 3,
-    tags: ["Length: Medium"],
+    tags: [],
     scenes: [
       {
         path: "assets/scenes/club_fight/scene1_serena_knee_strike_v2_realistic.png",
@@ -171,6 +179,7 @@ window.DATA_STORIES = [
   },
   {
     id: 9,
+    wordCount: 1897,
     brutalityRating: 3,
     title: "Commitment",
     summary:
@@ -183,10 +192,11 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vRBtxHqI60ZsJNbBJl43GiOkLyCoN5n8Fm-lXK2qsrM_KHt0ZZkxiIYr_os0aOmTzWj7NvzgP_ykUXn/pub",
     characterIds: ["george"],
     state: 3,
-    tags: ["Length: Medium"],
+    tags: [],
   },
   {
     id: 10,
+    wordCount: 7937,
     brutalityRating: 4,
     title: "The Ballbusting Arena 5: First Times",
     summary:
@@ -198,10 +208,11 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vTjujZsLMuA-lmgM6LPeed-X_FQ0STwNWLaRBQ1qRycmkdFK0UdNBVhJu7s1uA3tOWT5gXqZss0j0M7/pub",
     characterIds: ["brian", "emma", "vivian", "natalie", "vanessa", "david"],
     state: 3,
-    tags: ["Length: Medium", "Series: The Ballbusting Arena"],
+    tags: ["Series: The Ballbusting Arena"],
   },
   {
     id: 11,
+    wordCount: 5699,
     brutalityRating: 5,
     title: "Melody's First Time",
     summary:
@@ -213,10 +224,11 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vQ4BV7uLAAfS57qXcqPU3km0k7kepW1TLwBZFvwB4KWX0kE1fv9EJEnL2e6VfZHhXCAHRTbY7Qo_mrf/pub",
     characterIds: ["melody", "richard", "nathan", "tommy"],
     state: 3,
-    tags: ["Length: Medium"],
+    tags: [],
   },
   {
     id: 12,
+    wordCount: 2871,
     brutalityRating: 4,
     title: "One Night Stand",
     summary:
@@ -226,10 +238,11 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vQcNjbN4-u-A0mrr_00UfsUmYpGfi6UMU5xvD4CprYwOpTTsllqdXqFeuaXhxs79B9B0m2xOQq1JTOV/pub",
     characterIds: ["emma", "simon"],
     state: 3,
-    tags: ["Length: Medium", "New to Reddit"],
+    tags: ["New to Reddit"],
   },
   {
     id: 13,
+    wordCount: 4934,
     brutalityRating: 3,
     title: "Her Proposal",
     summary:
@@ -239,10 +252,11 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vRDqTNNakRk5cGuVVralHxnIVKjNJPYgMqpFHmFl69jqp6MIRxxsVJqAvwvU4ARWjojZX5GMwNrpDqt/pub",
     characterIds: ["jenny", "sanjay"],
     state: 3,
-    tags: ["Length: Medium"],
+    tags: [],
   },
   {
     id: 14,
+    wordCount: 6147,
     title: "The Ballbusting Arena 3: Retired",
     summary:
       "Fiona takes Brad to her old arena for a VIP night. Club rules apply; they watch Sofia and Amy in the ring. Published on Amazon as part of a collection.",
@@ -253,10 +267,11 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vTcqX8xNsk5-s2a3en4zTxx3kZH1C43BY8KS84j1g8xBuJJpBMrKdqyglbLM037nRFyYcDbNsTC7bZT/pub",
     characterIds: ["fiona", "brad", "sofia", "amy", "wesley"],
     state: 3,
-    tags: ["Length: Medium", "Series: The Ballbusting Arena"],
+    tags: ["Series: The Ballbusting Arena"],
   },
   {
     id: 15,
+    wordCount: 3729,
     brutalityRating: 3,
     title: "The Ballbusting Arena 2: Sofia's Choice",
     summary:
@@ -268,10 +283,11 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vR7Gp9vmryuAt6xjGtyu4gtdF7LfwnMLxRaVJ59bgU3MCcC1c4rG-515FzV-2D6bJShjjMA56kiB5Lw/pub",
     characterIds: ["sofia", "daniel", "vanessa"],
     state: 3,
-    tags: ["Length: Medium", "Series: The Ballbusting Arena"],
+    tags: ["Series: The Ballbusting Arena"],
   },
   {
     id: 16,
+    wordCount: 4336,
     brutalityRating: 4,
     title: "The Ballbusting Arena 4: Last Minute",
     summary:
@@ -283,10 +299,11 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vQElbm2mgIE8cMQBYsl6w7dHU8J2ff2dr26g35LDwdZF5eeWDvBMNL0B4ZYOcDRyE6_Ij9FMEDDHlPj/pub",
     characterIds: [],
     state: 3,
-    tags: ["Length: Medium", "Series: The Ballbusting Arena"],
+    tags: ["Series: The Ballbusting Arena"],
   },
   {
     id: 17,
+    wordCount: 3315,
     brutalityRating: 3,
     title: "The Internship",
     summary:
@@ -298,10 +315,11 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vQ545UIUPL8gg4x5HktS2dIPyQxj4jsIdxM9UYo-ipTOLGsFnu5vdwTovMBPGVvdrJd602APzJ6qZjC/pub",
     characterIds: ["nikita", "cole"],
     state: 3,
-    tags: ["Length: Medium"],
+    tags: [],
   },
   {
     id: 18,
+    wordCount: 1845,
     brutalityRating: 3,
     title: "The Cult",
     summary:
@@ -311,10 +329,11 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vTt0TRq1kLbyrUtvvw1s5rH-bDx9X6hSiu_1ybmn1vKmdz-7fQ5xuwSAAdQwFSUDtZ5cuhMZWAe5Yfd/pub",
     characterIds: ["poly", "robin"],
     state: 3,
-    tags: ["Length: Short", "New to Reddit"],
+    tags: ["New to Reddit"],
   },
   {
     id: 19,
+    wordCount: 14490,
     title: "The Amazon's Fruits",
     brutalityRating: 4,
     summary:
@@ -326,7 +345,7 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vR7EElMXTg5o4F_WWEu1J4RFfAKF5NJL6pe0lluaHapWP7ZNo7fouYChti7WlZrHV_0TzOk8LCoAdAO/pub",
     characterIds: ["atheras", "salei"],
     state: 3,
-    tags: ["Length: Long", "New to Reddit"],
+    tags: ["New to Reddit"],
     scenes: [
       {
         path: "assets/scenes/the_amazons_fruits/01_knee_crushes_codpiece.jpg",
@@ -368,6 +387,7 @@ window.DATA_STORIES = [
   },
   {
     id: 20,
+    wordCount: 25525,
     title: "School Bully",
     brutalityRating: 5,
     summary:
@@ -386,7 +406,7 @@ window.DATA_STORIES = [
       "michelle",
     ],
     state: 3,
-    tags: ["Length: Long"],
+    tags: [],
     scenes: [
       {
         path: "assets/scenes/school_bully/good/monique_stomps_robert_calc.png",
@@ -411,6 +431,7 @@ window.DATA_STORIES = [
   },
   {
     id: 21,
+    wordCount: 2390,
     title: "Relief",
     brutalityRating: 1,
     summary:
@@ -422,15 +443,11 @@ window.DATA_STORIES = [
     subtitle:
       "This takes place in the 'Red Dragon' universe, started by poiu and continued by kiwibb. Fanart by 9x9 (https://inkbunny.net/s/2226481)",
     state: 3,
-    tags: [
-      "Length: Short",
-      "Furry",
-      "New to Reddit",
-      "Based on other authors' work",
-    ],
+    tags: ["Furry", "New to Reddit", "Based on other authors' work"],
   },
   {
     id: 22,
+    wordCount: 1305,
     title: "Caged",
     brutalityRating: 2,
     summary:
@@ -440,10 +457,11 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vScwbE6p1gmOjYx1gJwYRsBG4yaZxrYZOcM2eZa_7H0DPRw58GWhvUEwmD5aWjkagnEC3DiuGTrepJa/pub",
     characterIds: [],
     state: 3,
-    tags: ["Length: Short", "New to Reddit"],
+    tags: ["New to Reddit"],
   },
   {
     id: 23,
+    wordCount: 2281,
     title: "Castration Appointment at the Kink Agency",
     brutalityRating: 3,
     summary:
@@ -457,10 +475,11 @@ window.DATA_STORIES = [
     audioUrl: "Castration Appointment at the Kink Agency.m4a",
     characterIds: [],
     state: 3,
-    tags: ["Length: Short"],
+    tags: [],
   },
   {
     id: 24,
+    wordCount: 3786,
     title: "Food for Thot",
     brutalityRating: 4,
     summary:
@@ -470,7 +489,7 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vSkCwlzQvhfAUEGIKey5gPeAsLdLNPfLBejwsRtqt53HtEQIgBPCYxnr_Oue17IT1xLzRFhEk5KgX-m/pub",
     characterIds: ["emma", "jose"],
     state: 3,
-    tags: ["Length: Medium"],
+    tags: [],
     scenes: [
       {
         path: "assets/scenes/food_for_thot/good/emma_gym_drools_at_bulge_v3.png",
@@ -488,6 +507,7 @@ window.DATA_STORIES = [
   },
   {
     id: 25,
+    wordCount: 20089,
     title: "Friendzoned",
     brutalityRating: 5,
     summary:
@@ -507,7 +527,7 @@ window.DATA_STORIES = [
       "michelle",
     ],
     state: 3,
-    tags: ["Length: Long"],
+    tags: [],
     scenes: [
       {
         path: "assets/scenes/friendzoned/good/ch02_orchiectomy_v1.png",
@@ -526,6 +546,7 @@ window.DATA_STORIES = [
   },
   {
     id: 26,
+    wordCount: 10485,
     title: "Busted by the Babysitter",
     brutalityRating: 4,
     summary:
@@ -535,7 +556,7 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vSCFSsYv9k5JNRuwqyMvtMBCESmShx9HFjIHjnnUFwG0DKcMhN4Lkx-AvSzawnOHyHDv1HylaLObYYm/pub",
     characterIds: ["melody", "eric", "bryan"],
     state: 3,
-    tags: ["Length: Long", "New to Reddit"],
+    tags: ["New to Reddit"],
     scenes: [
       {
         path: "assets/scenes/busted_by_the_babysitter/ch01_first_knee_aftermath_v2.jpg",
@@ -566,6 +587,7 @@ window.DATA_STORIES = [
   },
   {
     id: 27,
+    wordCount: 9320,
     title: "Living with Ballbusting Witches",
     brutalityRating: 3,
     summary:
@@ -577,7 +599,7 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vS0bA6zQ9zU7aFW-AqA_k8k0VfL5VcfC8s43Z4kr1Fa71x3QuNeL9ujwSPiGzP2xJwtkl8TBKdgpR8C/pub",
     characterIds: ["genovia", "sylvana", "sean_witches"],
     state: 3,
-    tags: ["Length: Long"],
+    tags: [],
     scenes: [
       {
         path: "assets/scenes/living_with_ballbusting_witches/prom_1988_public_humiliation.png",
@@ -610,6 +632,7 @@ window.DATA_STORIES = [
   },
   {
     id: 28,
+    wordCount: 7060,
     title: "Testy",
     brutalityRating: 4,
     summary:
@@ -621,7 +644,7 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vTAU43kVpZAcbYWpK5C8qNpyBgG1PZuYL9WrxJOUK741wmXWHxxkqzK0qDyGI6s4z6Hh1-X5OHA05LG/pub",
     characterIds: ["steven", "kaitlin", "amy", "june", "serena"],
     state: 3,
-    tags: ["Length: Medium"],
+    tags: [],
     scenes: [
       {
         path: "assets/scenes/testy/aftermath_in_self_defense_class.jpg",
@@ -655,6 +678,7 @@ window.DATA_STORIES = [
   },
   {
     id: 29,
+    wordCount: 1300,
     title: "Legalese",
     brutalityRating: 5,
     summary:
@@ -664,10 +688,11 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vQp_4y7LJnHity8IKFUGkj_ScJ66i4HpU-yKIUslA2qmWCe8agtSxLe-_W7-Cza9tY3MCmi9JEF_uui/pub",
     characterIds: ["ross", "the_nurse"],
     state: 3,
-    tags: ["Length: Short"],
+    tags: [],
   },
   {
     id: 30,
+    wordCount: 6329,
     title: "Postop",
     brutalityRating: 3,
     summary:
@@ -685,10 +710,11 @@ window.DATA_STORIES = [
     ],
     subtitle: "Commission for a continuation between two captions.",
     state: 3,
-    tags: ["Length: Short", "New to Reddit", "Based on other authors' work"],
+    tags: ["New to Reddit", "Based on other authors' work"],
   },
   {
     id: 31,
+    wordCount: 2844,
     title: "Office Management",
     brutalityRating: 5,
     summary:
@@ -700,10 +726,11 @@ window.DATA_STORIES = [
     subtitle:
       "Followup to a beautiful RP I did with someone on tumblr way back in the day.",
     state: 3,
-    tags: ["Length: Short", "New to Reddit"],
+    tags: ["New to Reddit"],
   },
   {
     id: 32,
+    wordCount: 2665,
     title: "Nash Equilibrium",
     brutalityRating: 5,
     summary:
@@ -717,10 +744,11 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vQ7qBzB6EpL3DM7VcR7CsGgOKzJnF__EPTLO9uX1-7vbOtW7WoSnWo1rFgrClES0qrezqXpfvT13KzY/pub",
     characterIds: ["cathy"],
     state: 3,
-    tags: ["Length: Medium", "New to Reddit"],
+    tags: ["New to Reddit"],
   },
   {
     id: 33,
+    wordCount: 1291,
     title: "The First Guy I Ever Ballbusted",
     brutalityRating: 3,
     summary:
@@ -730,10 +758,11 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vT_B6lDYNi_ICH9IOVhhhMWE6YTtkKSbvma4E7nO4TxlxOMa9KGVO9lq3BiZqgnhMn3gJSYvSJepL71/pub",
     characterIds: [],
     state: 3,
-    tags: ["Length: Short", "New to Reddit"],
+    tags: ["New to Reddit"],
   },
   {
     id: 34,
+    wordCount: 3424,
     title: "No Nut Narrator: Squeeze",
     brutalityRating: 1,
     summary: "Day 3 of No Nut November. Steve just wants to get home.",
@@ -744,10 +773,11 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vQWfM9IddQtsF4pQ9zXVzFNSu9xSB13fIIoo8XktLz5j_k_Ov5wqc1IZ5az6XJfIZruQfxFb554pptK/pub",
     characterIds: [],
     state: 3,
-    tags: ["Length: Short", "New to Reddit", "No Nut Narrator"],
+    tags: ["New to Reddit", "No Nut Narrator"],
   },
   {
     id: 35,
+    wordCount: 896,
     title: "No Nut Narrator: Ass",
     brutalityRating: 1,
     summary:
@@ -758,10 +788,11 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vSYLqxpzpv0avqu9uBNT8-ejRcsIX9V5fKfEzarP_lCWpV9oqrQItoKQeK0rRk0D3cer6TgM2Y57TR3/pub",
     characterIds: [],
     state: 3,
-    tags: ["Length: Short", "New to Reddit", "No Nut Narrator"],
+    tags: ["New to Reddit", "No Nut Narrator"],
   },
   {
     id: 36,
+    wordCount: 8014,
     title: "Paperwork",
     brutalityRating: 5,
     summary:
@@ -771,7 +802,7 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vRETewpFyT0mnciKkMK8R97T-pDEcqkZ3siKhKg1oxgtWrgOe08CN7dLQLJ3c56bmZNcx86DyPlzGyZ/pub",
     characterIds: ["officer_alice", "ivan", "lieutenant_maria"],
     state: 3,
-    tags: ["Length: Medium", "New to Reddit"],
+    tags: ["New to Reddit"],
     scenes: [
       {
         path: "assets/scenes/paperwork/1_paperwork_alice_pliers_v5_chestup.png",
@@ -806,6 +837,7 @@ window.DATA_STORIES = [
   },
   {
     id: 37,
+    wordCount: 1379,
     title: "Prank Gone Wrong",
     brutalityRating: 3,
     summary:
@@ -815,10 +847,11 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vQWua-pQJOAP2ZSyU5sFNSozli-i0KnBK1AkISCJMkY_xMpL4zcwkaiTkJbogDyeFWNYvYaNne5N762/pub",
     characterIds: [],
     state: 3,
-    tags: ["Length: Short"],
+    tags: [],
   },
   {
     id: 38,
+    wordCount: 11745,
     title: "James' Big Balls",
     summary:
       "James's cousin Sarah stays at his place for the weekend. What begins as secret ballbusting during a family movie turns into a brutal weekend alone together.",
@@ -829,10 +862,11 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vSU4uTw0_e32omJ7hRARitDiwSdX-MiuPuyLde4BYZk6DSU6wxhVcenbKDREtxuox9NSGnuyZ5svd1r/pub",
     state: 3,
-    tags: ["Length: Medium", "New to Reddit", "Based on other authors' work"],
+    tags: ["New to Reddit", "Based on other authors' work"],
   },
   {
     id: 39,
+    wordCount: 521,
     brutalityRating: 3,
     title: "Trust issues",
     summary:
@@ -842,10 +876,11 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vRQEaO-eWJxiU6v7YmbiL2Fwo5G8O3Z9zgjmQ2BTfuufLcKvf5LxU4cjMiA9eFxKBNpFBIu_1lc8Dyb/pub",
     characterIds: ["jenny"],
     state: 3,
-    tags: ["Length: Short", "New to Reddit", "Based on other authors' work"],
+    tags: ["New to Reddit", "Based on other authors' work"],
   },
   {
     id: 40,
+    wordCount: 67264,
     brutalityRating: 5,
     title: "Dragon Slaying Alternative Chapter 13: Kayla",
     summary:
@@ -857,12 +892,7 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vTUG5kvCCVa1GAQuZALyLUYM6smQs0mg2kAmF9UXScDNTBeM6rp7JhmXQEqoLJKT0fR5EWmAymSGu6X/pub",
     characterIds: ["kayla"],
     state: 3,
-    tags: [
-      "Length: Long",
-      "Furry",
-      "Based on other authors' work",
-      "New to Reddit",
-    ],
+    tags: ["Furry", "Based on other authors' work", "New to Reddit"],
     scenes: [
       {
         path: "assets/scenes/dragon_slaying/ch01_orca_first_mace_strike.png",
@@ -958,11 +988,12 @@ window.DATA_STORIES = [
       "Ancient commission from crushednutz on tumblr that I never finished.",
     state: 1,
     characterIds: ["dava", "jeff"],
-    tags: ["Length: Medium", "New to Reddit"],
+    tags: ["New to Reddit"],
   },
 
   {
     id: 42,
+    wordCount: 9828,
     title: "The Ballbusting Arena 6: Natalie Enters the Ring",
     brutalityRating: 4,
     cover: "assets/covers/arena_6.png",
@@ -975,7 +1006,7 @@ window.DATA_STORIES = [
       "Natalie finally gets her nerve up to sign up for the arena. The Nguyen twins look forward to an easy 2 vs. 1 fight against the shy girl.",
     state: 2,
     characterIds: ["natalie", "nguyen_twins", "brian"],
-    tags: ["Length: Medium", "New to Reddit", "Series: The Ballbusting Arena"],
+    tags: ["New to Reddit", "Series: The Ballbusting Arena"],
     scenes: [
       {
         path: "assets/scenes/arena_6/twins_center.png",
@@ -987,6 +1018,7 @@ window.DATA_STORIES = [
 
   {
     id: 43,
+    fullLengthNovel: true,
     title: "Andrea and Lucas",
     brutalityRating: 5,
     cover: "assets/covers/andrea_and_lucas.png",
@@ -1014,7 +1046,7 @@ window.DATA_STORIES = [
       "greyson",
       "melody",
     ],
-    tags: ["Length: Extra Long", "Premium Story", "New to Reddit"],
+    tags: ["Premium Story", "New to Reddit"],
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vSbhD9A1JZM_QbboBUl3ex-aMwwYkipuRpcu4l6eOXDbVvI8tkt7mByZF8hJzFVUYkEJPi91b0viDMX/pub",
     purchaseParts: [
@@ -1067,6 +1099,7 @@ window.DATA_STORIES = [
 
   {
     id: 44,
+    wordCount: 3608,
     title: "Courtroom Wedding",
     summary:
       "Mal'ko and Taviri are excited to get married, but the insanity of the Red Dragon marital industrial complex is offputting. They opt for a simple, quick courtroom wedding.",
@@ -1077,12 +1110,7 @@ window.DATA_STORIES = [
     state: 2,
     releaseDate: "2026-03-21",
     characterIds: ["malko", "taviri"],
-    tags: [
-      "Length: Medium",
-      "New to Reddit",
-      "Furry",
-      "Based on other authors' work",
-    ],
+    tags: ["New to Reddit", "Furry", "Based on other authors' work"],
     brutalityRating: 2,
     scenes: [
       {
@@ -1106,6 +1134,7 @@ window.DATA_STORIES = [
 
   {
     id: 45,
+    wordCount: 3590,
     title: "Courtroom Wedding (Human Edition)",
     summary: "Human version of Courtroom Wedding.",
     cover: "assets/covers/courtroom_human.png",
@@ -1115,7 +1144,7 @@ window.DATA_STORIES = [
     releaseDate: "2026-03-21",
     characterIds: [],
     brutalityRating: 2,
-    tags: ["Length: Medium", "New to Reddit", "Based on other authors' work"],
+    tags: ["New to Reddit", "Based on other authors' work"],
   },
   {
     id: 46,
@@ -1126,6 +1155,6 @@ window.DATA_STORIES = [
     state: 1,
     characterIds: ["melody", "ryan"],
     brutalityRating: 4,
-    tags: ["Length: Medium", "New to Reddit"],
+    tags: ["New to Reddit"],
   },
 ];

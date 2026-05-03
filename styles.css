@@ -1433,6 +1433,13 @@ body.story-reader-open {
   font-style: italic;
 }
 
+.flyout-word-count {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--ink-muted);
+}
+
 .flyout-brutality {
   margin: 0 0 1.25rem;
   font-size: 0.9rem;
