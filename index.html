@@ -236,6 +236,54 @@
       </aside>
     </div>
 
+    <div id="scene-lightbox" class="scene-lightbox" aria-hidden="true">
+      <div
+        class="scene-lightbox-panel"
+        id="scene-lightbox-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Enlarged scene"
+      >
+        <button
+          type="button"
+          class="scene-lightbox-close"
+          id="scene-lightbox-close"
+          aria-label="Close"
+        >
+          ×
+        </button>
+        <div class="scene-lightbox-stage">
+          <button
+            type="button"
+            class="scene-lightbox-nav scene-lightbox-nav--prev"
+            id="scene-lightbox-prev"
+            aria-label="Previous scene"
+            hidden
+          >
+            ‹
+          </button>
+          <div class="scene-lightbox-img-wrap">
+            <img
+              id="scene-lightbox-img"
+              class="scene-lightbox-img"
+              alt=""
+              decoding="async"
+            />
+          </div>
+          <button
+            type="button"
+            class="scene-lightbox-nav scene-lightbox-nav--next"
+            id="scene-lightbox-next"
+            aria-label="Next scene"
+            hidden
+          >
+            ›
+          </button>
+        </div>
+        <p id="scene-lightbox-caption" class="scene-lightbox-caption" hidden></p>
+      </div>
+    </div>
+
     <div id="story-reader" class="story-reader" aria-hidden="true">
       <header class="story-reader-toolbar">
         <button

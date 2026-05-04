@@ -7,7 +7,6 @@ window.DATA_STORIES = [
       "A college senior has an unusually blessed anatomy and a very demanding swim coach. She insists on some minor modifications to improve his speed, which he politely declines. She enlists three eager assistants to help change his mind: a Goth, a cheerleader, and an science wiz. Sam does his best to keep all of his blessings safe from the girls, but it's not easy, and all three girls make some very convincing arguments.",
     cover: "assets/covers/three_strikes.jpg",
     amazonUrl: "https://www.amazon.com/dp/B0GXQL879M/",
-    displayCover: true,
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTX9nnN1Igz0Nvpk3kpY6rjkJ26Lz5diQpx6G77hbuwGDXZ03x-aUrf7ni0nQv1hx1QzQ7X4ClVoUuR/pub",
     characterIds: [
@@ -60,7 +59,6 @@ window.DATA_STORIES = [
     summary:
       "Jeremy's having the weirdest, most painful nightmares. He's desperately hoping his therapist can help him figure things out.",
     cover: "assets/covers/castration_anxiety.jpg",
-    displayCover: true,
     amazonUrl:
       "https://www.amazon.com/Castration-Anxiety-Preun-BB-ebook/dp/B07WS1GD4N",
     driveUrl:
@@ -112,7 +110,6 @@ window.DATA_STORIES = [
     id: 6,
     wordCount: 2263,
     title: "A Healthy Relationship",
-    displayCover: true,
     summary:
       "Rachel finally has a boyfriend who shares her kink. They try some roleplay in a physics lecture. Published on Amazon as 'Busted under the Desk'.",
     cover: "assets/covers/a_healthy_relationship.jpg",
@@ -164,7 +161,7 @@ window.DATA_STORIES = [
           "Erica feels Dennis' cup give way between her toes - and realizes he isn't wearing one!",
       },
       {
-        path: "assets/scenes/club_fight/scene3_erica_flashback_ex_v2.png",
+        path: "assets/scenes/club_fight/scene3_erica_flashback_ex_v4_knee.png",
         caption: "Erica drifts into a flashback of her ex.",
       },
       {
@@ -202,7 +199,6 @@ window.DATA_STORIES = [
     summary:
       "Brian watches Vanessa fight while Emma, Vivian, and Natalie join him in the stands. They swap stories about the past.",
     cover: "assets/covers/the_ballbusting_arena_5_first_times.jpg",
-    displayCover: true,
     amazonUrl: "https://www.amazon.com/dp/B0GZ4YQ7YW",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTjujZsLMuA-lmgM6LPeed-X_FQ0STwNWLaRBQ1qRycmkdFK0UdNBVhJu7s1uA3tOWT5gXqZss0j0M7/pub",
@@ -314,6 +310,13 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vQ545UIUPL8gg4x5HktS2dIPyQxj4jsIdxM9UYo-ipTOLGsFnu5vdwTovMBPGVvdrJd602APzJ6qZjC/pub",
     characterIds: ["nikita", "cole"],
+    scenes: [
+      {
+        path: "assets/scenes/the_internship/scene_office_nikita_cole_v3_painterly.png",
+        caption:
+          "Late night in the office — Nikita flushed and eager, Cole nervous but willing; lap discreetly obscured.",
+      },
+    ],
     state: 3,
     tags: [],
   },
@@ -392,7 +395,7 @@ window.DATA_STORIES = [
     brutalityRating: 5,
     summary:
       "Robert is partnered with Monique in AP Calc. His mom Melody has a past; the clinic in town sees a lot of boys with 'problems down there'.",
-    cover: "assets/covers/school_bully.jpg",
+    cover: "assets/covers/school_bully_cover_v4_notext.jpg",
     amazonUrl:
       "https://www.amazon.com/Ballbusted-School-Bully-Part-1-ebook/dp/B07X3NGYVZ",
     driveUrl:
@@ -410,12 +413,13 @@ window.DATA_STORIES = [
     scenes: [
       {
         path: "assets/scenes/school_bully/good/monique_stomps_robert_calc.png",
-        caption: "Monique's first stomp under the AP Calc desk.",
+        caption:
+          "Monique painfully corrects Robert's assumptions about her calculus abilities.",
       },
-
       {
         path: "assets/scenes/school_bully/good/monique_back_kick_outside_2.png",
-        caption: "Monique donkey kicks Robert's ball into his pelvic bone.",
+        caption:
+          "Monique donkey kicks Robert's ball into his pelvic bone. Hope that didn't cause any permanent damage!",
       },
       {
         path: "assets/scenes/school_bully/good/monique_back_kick_outside.png",
@@ -423,9 +427,14 @@ window.DATA_STORIES = [
           "Robert fails to defend himself as Monique gets ready to stomp on his crotch as hard as she can.",
       },
       {
+        path: "assets/scenes/school_bully/final_hospital_convo.png",
+        caption:
+          "In the clinic waiting room, Michelle cheerfully explains the benefits of the Drip-n-Snip - even though one of Robert's testicles is completely healthy, it really would be easier to just take them both out now. Melody is intrigued, but Robert seems to object for some reason.",
+      },
+      {
         path: "assets/scenes/school_bully/good/monique_bus_double_trouble.png",
         caption:
-          "Monique squeezes the final testicle of both of her victims as hard as she can.",
+          "Monique carefully compares the differences between the two friends. Did someone seriously pop Malcolm's ball before she could?!",
       },
     ],
   },
@@ -648,16 +657,13 @@ window.DATA_STORIES = [
     scenes: [
       {
         path: "assets/scenes/testy/aftermath_in_self_defense_class.jpg",
-        caption: "Aftermath in Kaitlin's self-defense class.",
-      },
-      {
-        path: "assets/scenes/testy/kaitlin_kicks_steven_gym.jpg",
-        caption: "Kaitlin tries her new technique on Steven at the gym.",
+        caption:
+          "Kaitlin plans a hilarious prank on Steven! That little crunch she felt probably didn't mean anything - a kick to the balls can't actually do any permanent damage, right? It's just funny!",
       },
       {
         path: "assets/scenes/testy/pre_op_1_kaitlin_meddles.jpg",
         caption:
-          "Kaitlin plays a hilarious prank on Steven before his surgery.",
+          "Turns out, that little kick was a lot more serious than Kaitlin thought - Steven's ball is already ruptured, and he's going to need surgery to save it. If only she didn't play yet another prank on him in the operating room...",
       },
       {
         path: "assets/scenes/testy/post_op_1_wrong_ball.jpg",
@@ -697,7 +703,7 @@ window.DATA_STORIES = [
     brutalityRating: 3,
     summary:
       "An employee at Over Easy Technologies wakes up after agreeing to a company-mandated procedure to keep his job. His manager wants a follow-up—and the office has changed in ways he didn't expect.",
-    cover: "assets/covers/postop.jpg",
+    cover: "assets/covers/postop_final.png",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vSzw9FeU_bw3kinMgr4kctK9sPG_m9JTLgSxyaGA4t0Ie6VdJftpzR0LI8KcxjK_GW0b0r1GHDkjcCA/pub",
     characterIds: [
@@ -743,6 +749,13 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vQ7qBzB6EpL3DM7VcR7CsGgOKzJnF__EPTLO9uX1-7vbOtW7WoSnWo1rFgrClES0qrezqXpfvT13KzY/pub",
     characterIds: ["cathy"],
+    scenes: [
+      {
+        path: "assets/scenes/nash_equilibrium/scene_lab_triplets_cathy_v2.png",
+        caption:
+          "Cathy’s decision study — three identical subjects on the X-frames, implements at the ready.",
+      },
+    ],
     state: 3,
     tags: ["New to Reddit"],
   },
@@ -797,7 +810,7 @@ window.DATA_STORIES = [
     brutalityRating: 5,
     summary:
       "Officer Alice brings in a suspect for questioning. The city's enhanced interrogation rules allow testicular torture—and the paperwork says exactly how far she can go. Getting the confession is the job; the rest is procedure.",
-    cover: "assets/covers/paperwork.jpg",
+    cover: "assets/covers/paperwork_cover_v4_notext.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vRETewpFyT0mnciKkMK8R97T-pDEcqkZ3siKhKg1oxgtWrgOe08CN7dLQLJ3c56bmZNcx86DyPlzGyZ/pub",
     characterIds: ["officer_alice", "ivan", "lieutenant_maria"],
@@ -997,7 +1010,6 @@ window.DATA_STORIES = [
     title: "The Ballbusting Arena 6: Natalie Enters the Ring",
     brutalityRating: 4,
     cover: "assets/covers/arena_6.png",
-    displayCover: true,
     amazonUrl: "https://www.amazon.com/dp/B0GZ4YQ7YW",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vS32jqSSfXDaR_nKKo59asBOgSRmbZ5zn2msh9_8ov7AwMgq1o3SCWgfp5aearAIm3-dO-Hj1LJlnr2/pub",
@@ -1022,7 +1034,6 @@ window.DATA_STORIES = [
     title: "Andrea and Lucas",
     brutalityRating: 5,
     cover: "assets/covers/andrea_and_lucas.png",
-    displayCover: true,
     summary:
       "She's a thicc goth dommy mommy who takes self defense classes. He's a religiously repressed genius nerd with a rare hyperspermia disorder. She's got a roommate who does pranks for social media, and a sister who works as a urological surgeon. He's got a stepmom who's part of an insane femdom cult that he barely escaped from intact. Hijinx ensure. Balls get popped.",
     subtitle: "My first 'premium' story, exclusively for sale.",

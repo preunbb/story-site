@@ -519,10 +519,16 @@
 
       var body = document.createElement("div");
       body.className = "scenes-accordion-body";
+      var sceneIndexInStory = 0;
       s.scenes.forEach(function (sc) {
         if (!sc || !sc.path) return;
         var fig = document.createElement("figure");
-        fig.className = "scene-figure";
+        fig.className = "scene-figure scene-figure--zoomable";
+        fig.setAttribute("tabindex", "0");
+        fig.setAttribute("title", "Click to enlarge");
+        fig.setAttribute("data-story-id", String(s.id));
+        fig.setAttribute("data-scene-index", String(sceneIndexInStory));
+        sceneIndexInStory += 1;
         fig.innerHTML =
           '<img src="' +
           escapeHtml(sc.path) +
@@ -565,6 +571,187 @@
 
       root.appendChild(det);
     });
+  }
+
+  var sceneLightbox = byId("scene-lightbox");
+  var sceneLightboxPanel = byId("scene-lightbox-panel");
+  var sceneLightboxImg = byId("scene-lightbox-img");
+  var sceneLightboxCaption = byId("scene-lightbox-caption");
+  var sceneLightboxClose = byId("scene-lightbox-close");
+  var sceneLightboxPrev = byId("scene-lightbox-prev");
+  var sceneLightboxNext = byId("scene-lightbox-next");
+  var sceneLightboxReturnFocus = null;
+  var sceneLightboxSlides = [];
+  var sceneLightboxIndex = 0;
+
+  function setSceneLightboxOpen(on) {
+    if (!sceneLightbox) return;
+    sceneLightbox.setAttribute("aria-hidden", on ? "false" : "true");
+    sceneLightbox.classList.toggle("open", on);
+    document.body.classList.toggle("scene-lightbox-open", on);
+    if (!on && sceneLightboxReturnFocus && sceneLightboxReturnFocus.focus) {
+      try {
+        sceneLightboxReturnFocus.focus();
+      } catch (_e) {}
+      sceneLightboxReturnFocus = null;
+    }
+    if (on && sceneLightboxClose && sceneLightboxClose.focus) {
+      try {
+        sceneLightboxClose.focus();
+      } catch (_e) {}
+    }
+  }
+
+  function closeSceneLightbox() {
+    sceneLightboxSlides = [];
+    sceneLightboxIndex = 0;
+    setSceneLightboxOpen(false);
+  }
+
+  function sceneSlidesForStory(story) {
+    var out = [];
+    if (!story || !Array.isArray(story.scenes)) return out;
+    story.scenes.forEach(function (sc) {
+      if (!sc || !sc.path) return;
+      var cap = sc.caption != null ? String(sc.caption).trim() : "";
+      out.push({
+        path: sc.path,
+        caption: cap,
+        alt: sc.caption || story.title || "Scene",
+      });
+    });
+    return out;
+  }
+
+  function updateSceneLightboxNav() {
+    var n = sceneLightboxSlides.length;
+    var i = sceneLightboxIndex;
+    if (sceneLightboxPrev) {
+      var hidePrev = n <= 1 || i <= 0;
+      sceneLightboxPrev.hidden = hidePrev;
+      sceneLightboxPrev.disabled = hidePrev;
+    }
+    if (sceneLightboxNext) {
+      var hideNext = n <= 1 || i >= n - 1;
+      sceneLightboxNext.hidden = hideNext;
+      sceneLightboxNext.disabled = hideNext;
+    }
+  }
+
+  function applySceneLightboxSlide() {
+    if (!sceneLightboxImg || !sceneLightboxSlides.length) return;
+    var slide = sceneLightboxSlides[sceneLightboxIndex];
+    if (!slide) return;
+    sceneLightboxImg.src = slide.path;
+    sceneLightboxImg.alt = slide.alt || "";
+    var capTrim = slide.caption;
+    if (sceneLightboxPanel) {
+      var n = sceneLightboxSlides.length;
+      var pos = sceneLightboxIndex + 1;
+      var base = capTrim || slide.alt || "Scene";
+      var label =
+        n > 1 ? base + " (" + pos + " of " + n + ")" : base;
+      sceneLightboxPanel.setAttribute("aria-label", label);
+    }
+    if (sceneLightboxCaption) {
+      if (capTrim) {
+        sceneLightboxCaption.textContent = capTrim;
+        sceneLightboxCaption.hidden = false;
+      } else {
+        sceneLightboxCaption.textContent = "";
+        sceneLightboxCaption.hidden = true;
+      }
+    }
+    updateSceneLightboxNav();
+  }
+
+  function sceneStepLightbox(delta) {
+    var n = sceneLightboxSlides.length;
+    if (n <= 1) return;
+    var next = sceneLightboxIndex + delta;
+    if (next < 0 || next >= n) return;
+    sceneLightboxIndex = next;
+    applySceneLightboxSlide();
+  }
+
+  function openSceneLightboxForStory(storyId, startIndex) {
+    if (!sceneLightboxImg || !sceneLightbox) return;
+    var story = getStoryById(storyId);
+    var slides = sceneSlidesForStory(story);
+    if (!slides.length) return;
+    sceneLightboxReturnFocus = document.activeElement;
+    sceneLightboxSlides = slides;
+    var i =
+      typeof startIndex === "number" && !isNaN(startIndex)
+        ? Math.max(0, Math.min(slides.length - 1, startIndex))
+        : 0;
+    sceneLightboxIndex = i;
+    applySceneLightboxSlide();
+    setSceneLightboxOpen(true);
+  }
+
+  function initSceneLightbox() {
+    if (!sceneLightbox || sceneLightbox._sceneLightboxBound) return;
+    sceneLightbox._sceneLightboxBound = true;
+    var scenesRoot = byId("scenes-list");
+    if (scenesRoot) {
+      scenesRoot.addEventListener("click", function (e) {
+        var fig =
+          e.target &&
+          e.target.closest &&
+          e.target.closest(".scene-figure--zoomable");
+        if (!fig || !scenesRoot.contains(fig)) return;
+        var img = fig.querySelector(".scene-img");
+        if (!img || !img.getAttribute("src")) return;
+        var sid = fig.getAttribute("data-story-id");
+        var idxRaw = fig.getAttribute("data-scene-index");
+        if (sid == null || idxRaw == null) return;
+        var idx = parseInt(idxRaw, 10);
+        if (isNaN(idx)) return;
+        openSceneLightboxForStory(sid, idx);
+      });
+      scenesRoot.addEventListener("keydown", function (e) {
+        if (e.key !== "Enter" && e.key !== " ") return;
+        var fig =
+          e.target &&
+          e.target.closest &&
+          e.target.closest(".scene-figure--zoomable");
+        if (!fig || !scenesRoot.contains(fig) || fig !== e.target) return;
+        e.preventDefault();
+        var img = fig.querySelector(".scene-img");
+        if (!img || !img.getAttribute("src")) return;
+        var sid = fig.getAttribute("data-story-id");
+        var idxRaw = fig.getAttribute("data-scene-index");
+        if (sid == null || idxRaw == null) return;
+        var idx = parseInt(idxRaw, 10);
+        if (isNaN(idx)) return;
+        openSceneLightboxForStory(sid, idx);
+      });
+    }
+    sceneLightbox.addEventListener("click", closeSceneLightbox);
+    if (sceneLightboxPanel) {
+      sceneLightboxPanel.addEventListener("click", function (e) {
+        e.stopPropagation();
+      });
+    }
+    if (sceneLightboxClose) {
+      sceneLightboxClose.addEventListener("click", function (e) {
+        e.stopPropagation();
+        closeSceneLightbox();
+      });
+    }
+    if (sceneLightboxPrev) {
+      sceneLightboxPrev.addEventListener("click", function (e) {
+        e.stopPropagation();
+        sceneStepLightbox(-1);
+      });
+    }
+    if (sceneLightboxNext) {
+      sceneLightboxNext.addEventListener("click", function (e) {
+        e.stopPropagation();
+        sceneStepLightbox(1);
+      });
+    }
   }
 
   function openScenesAccordionFor(storyId) {
@@ -1222,18 +1409,15 @@
       .then(function (text) {
         if (!readerStory || readerStory.id !== story.id) return;
         storyReaderStatus.hidden = true;
-        var coverHtml = "";
-        if (story.displayCover) {
-          coverHtml =
-            '<div class="story-reader-cover-wrap">' +
-            imgHtml({
-              src: story.cover,
-              alt: story.title || "Cover",
-              className: "story-reader-cover-img",
-              placeholder: PLACEHOLDER_COVER,
-            }) +
-            "</div>";
-        }
+        var coverHtml =
+          '<div class="story-reader-cover-wrap">' +
+          imgHtml({
+            src: story.cover,
+            alt: story.title || "Cover",
+            className: "story-reader-cover-img",
+            placeholder: PLACEHOLDER_COVER,
+          }) +
+          "</div>";
         storyReaderArticle.innerHTML = coverHtml + storyMarkdownToSafeHtml(text);
         setupStoryReaderChapters();
       })
@@ -1701,6 +1885,7 @@
     initStoryFilters();
     renderStoriesGrid();
     renderScenesPanel();
+    initSceneLightbox();
     bindStoryGridClick();
     bindCharacterGridClick();
 
@@ -1733,10 +1918,20 @@
       });
     }
     document.addEventListener("keydown", function (e) {
+      var lbOpen = sceneLightbox && sceneLightbox.classList.contains("open");
+      if (lbOpen && (e.key === "ArrowLeft" || e.key === "ArrowRight")) {
+        e.preventDefault();
+        sceneStepLightbox(e.key === "ArrowLeft" ? -1 : 1);
+        return;
+      }
       if (e.key !== "Escape") return;
       var h = parseHash();
       if (h.readMode) {
         location.hash = "stories";
+        return;
+      }
+      if (lbOpen) {
+        closeSceneLightbox();
         return;
       }
       if (flyout.classList.contains("open")) closeFlyout();
