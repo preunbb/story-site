@@ -570,27 +570,22 @@ window.DATA_STORIES = [
       {
         path: "assets/scenes/busted_by_the_babysitter/ch01_first_knee_aftermath_v2.jpg",
         caption:
-          "Ch. 1 — Melody's first 'accidental' knee leaves Eric doubled over. \"Oh no, are you okay sweetie?\"",
+          "Melody 'accidentally' knees Eric in the goolies. \"Oh no, are you okay sweetie? Nothing popped, right?\"",
       },
       {
         path: "assets/scenes/busted_by_the_babysitter/ch01_gaming_stomp_v2.jpg",
         caption:
-          "Ch. 1 — Eric stretched out playing Switch on the floor; Melody steps right between his legs and plants her boot. She'll claim she tripped on a controller.",
-      },
-      {
-        path: "assets/scenes/busted_by_the_babysitter/ch02_bryan_finds_melody_freed_v3.jpg",
-        caption:
-          "Ch. 2 — Eric returns with the condoms to find Melody freed and Bryan in horrified tears. The babysitter is no longer playing innocent.",
+          "Eric's chilling on the floor, playing video games, moments before Melody takes a devastating 'trip' and plants all of her weight directly onto his testicles. Boys really need to be more careful!",
       },
       {
         path: "assets/scenes/busted_by_the_babysitter/ch02_post_freeing_aftermath_v3.jpg",
         caption:
-          "Ch. 2 — The mask comes off. Melody finally lets herself enjoy what she's been hiding all day.",
+          "Melody triumphantly stands over the newly halfstrated Bryan. The poor boy struggles to stay conscious through the excruciating pain of a recently liquified gonad.",
       },
       {
         path: "assets/scenes/busted_by_the_babysitter/ch03_kneel_savoring_v5.jpg",
         caption:
-          "Ch. 3 — Bryan thought he was about to lose his virginity. Melody is savoring something else entirely.",
+          "Bryan was so close to losing his virginity with the girl of his dreams. Melody is taking something else from him entirely.",
       },
     ],
   },
