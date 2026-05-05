@@ -741,7 +741,7 @@ window.DATA_STORIES = [
     brutalityRating: 5,
     summary:
       "Cathy runs a game theory experiment. Three male subjects are strapped in and must each cast a vote—selfless or selfish—that will determine the consequences for all of them.",
-    cover: "assets/covers/nash_equilibrium.jpg",
+    cover: "assets/scenes/nash_equilibrium/scene_lab_triplets_cathy_v2.png",
     subtitle:
       "The perfect story for the guy looking for more math in their ballbusting stories. Published on Amazon as part of a collection with the title 'Ballbusting Lab'.",
     amazonUrl:
@@ -753,7 +753,7 @@ window.DATA_STORIES = [
       {
         path: "assets/scenes/nash_equilibrium/scene_lab_triplets_cathy_v2.png",
         caption:
-          "Cathy’s decision study — three identical subjects on the X-frames, implements at the ready.",
+          "Cathy begins her fascinating experiment on how fraternal psychology and male fragility can affect game theoretic equilibiria.",
       },
     ],
     state: 3,
