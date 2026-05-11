@@ -9,7 +9,8 @@
     "pdf": "node scripts/render-story-pdf.mjs",
     "epub": "node scripts/render-story-epub.mjs",
     "anthology": "node scripts/render-anthology-epub.mjs",
-    "publish": "node scripts/publish.mjs"
+    "publish": "node scripts/publish.mjs",
+    "reddit-post-sections": "node scripts/reddit-post-sections.mjs"
   },
   "devDependencies": {
     "cheerio": "^1.0.0",

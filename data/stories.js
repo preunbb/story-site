@@ -883,7 +883,7 @@ window.DATA_STORIES = [
   },
   {
     id: 36,
-    wordCount: 8015,
+    wordCount: 8016,
     title: "Paperwork",
     brutalityRating: 5,
     summary:
@@ -1306,5 +1306,16 @@ window.DATA_STORIES = [
           "Tamara, in the aftermath of the Cherry Pop! concert, deals with the insanely erotic clusterfuck that was the onsite medical tent, and the dozens of unnecessarily severed organs Yvette left lying around.",
       },
     ],
+  },
+  {
+    id: 48,
+    title: "Quality Control",
+    brutalityRating: 5,
+    cover: "assets/covers/quality_control_cover_v1.jpg",
+    summary:
+      "Over Easy Technologies sells gear and gadgets for many different cases - from automatically extracting semen samples from men to disciplinary devices to self-defense weapons that target one part of the male anatomy in particular. Olivia is excited for her first day on the prestigious job, and can't wait to see behind the scenes exactly how Over Easy keeps the quality of their products consistently high.",
+    state: 1,
+    characterIds: ["zennia", "cathy", "olivia"],
+    tags: ["New to Reddit"],
   },
 ];

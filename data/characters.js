@@ -666,4 +666,18 @@ window.DATA_CHARACTERS = [
     bio: "Blueballed virgin with low self-esteem. Four weeks of abstinence have left his balls extremely full. He's hoping he'll get the chance to empty them tonight, possibly with the involvement of an actual real-life woman.",
     profilePictures: ["assets/characters/ryan.jpg"],
   },
+  {
+    id: "zennia",
+    name: "Zennia",
+    gender: "F",
+    bio: "CEO of Over Easy Technologies—the premium lifestyle brand built on groin-adjacent chaos. She's built her career on one simple principle: Woman want to pop balls, and the market hasn't provided them efficient ways to carry this out.",
+    profilePictures: ["assets/characters/zennia_v2_redhair_cover_match.jpg"],
+  },
+  {
+    id: "olivia",
+    name: "Olivia",
+    gender: "F",
+    bio: "Perky new college-age intern at Over Easy—short. She's eager to get started at her first real job, and will do whatever it takes to prove herself.",
+    profilePictures: ["assets/characters/olivia.jpg"],
+  },
 ];
