@@ -622,7 +622,8 @@ a:hover {
 .scene-lightbox {
   position: fixed;
   inset: 0;
-  z-index: 110;
+  /* Above .story-reader (200) and share dropdown (210) so zoom works while reading */
+  z-index: 300;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1321,11 +1322,6 @@ body.scene-lightbox-open {
 
 .story-reader-article .story-reader-scene .scene-img {
   border-radius: 0.5rem;
-}
-
-.story-reader-article .story-reader-scene .scene-caption {
-  font-size: 0.95rem;
-  margin-top: 0.5rem;
 }
 
 .story-reader-scene-missing {

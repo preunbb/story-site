@@ -67,6 +67,53 @@ window.DATA_STORIES = [
     state: 3,
     tags: [],
     brutalityRating: 3,
+    scenes: [
+      {
+        path: "assets/scenes/castration_anxiety/scene_amazon_v5_dagger_triumph.jpg",
+        caption:
+          "The opening nightmare — Jeremy lashed to a sacrificial X while the Amazon queen turns to her tribe in ecstatic triumph. 'For Kali!'",
+      },
+      {
+        path: "assets/scenes/castration_anxiety/scene_first_knee_v6_coffee_table_crop.jpg",
+        caption:
+          "First session. He's eagerly stripped down for his 'treatment' — and Karen calmly explains the diagnosis while his nuts catch up with his decisions.",
+      },
+      {
+        path: "assets/scenes/castration_anxiety/scene_compression_v4_karen_foreground_smirk.jpg",
+        caption:
+          "Rapid testicle compressions, by the book. Karen's quiet, private smile as she glances up from her work to enjoy his reaction.",
+      },
+      {
+        path: "assets/scenes/castration_anxiety/scene_soccer_v3_foot_on_shoulder.jpg",
+        caption:
+          "Cleats in the mud. A new nightmare debuts — the all-girl team, the laughing captain, and the shrinkage that won't be in the dream alone.",
+      },
+      {
+        path: "assets/scenes/castration_anxiety/scene_burdizzo_v4_pre_horror.jpg",
+        caption:
+          "Second session. Karen wanted to make it 'a little more real this week.' She borrowed something from her farmhand friend.",
+      },
+      {
+        path: "assets/scenes/castration_anxiety/scene_ruined_orgasm_v3_hollow_aftermath.jpg",
+        caption:
+          "She promised him the blowjob he'd been imagining for months. He didn't last long enough to find out. She makes a quick note on her chart.",
+      },
+      {
+        path: "assets/scenes/castration_anxiety/scene_rupture_v3_no_restraints.jpg",
+        caption:
+          "The moment the role-play stops being role-play. 'OH MY GOD OH MY GOD! THAT WASN'T SUPPOSED TO HAPPEN!'",
+      },
+      {
+        path: "assets/scenes/castration_anxiety/scene_final_castration_v2_softer.jpg",
+        caption:
+          "Final session. The misdiagnosis corrected, the cure completed, and the therapist coming down from her very first orgasm.",
+      },
+      {
+        path: "assets/scenes/castration_anxiety/scene_eunuch_v1_desk_diagnosis.jpg",
+        caption:
+          "He came back for a testosterone prescription. Karen, polite and patient, explains why he won't be getting one.",
+      },
+    ],
   },
   {
     id: 4,
@@ -516,7 +563,7 @@ window.DATA_STORIES = [
   },
   {
     id: 25,
-    wordCount: 20089,
+    wordCount: 20092,
     title: "Friendzoned",
     brutalityRating: 5,
     summary:
@@ -1198,7 +1245,7 @@ window.DATA_STORIES = [
           "The pain is too much for Ryan to bear - he can't take it anymore. Melody disagrees.",
       },
       {
-        path: "assets/scenes/melody_seduces_a_virgin/ride_squish_v7_xray_overlay.png",
+        path: "assets/scenes/melody_seduces_a_virgin/ride_squish_v6_solo_aftermath.png",
         caption:
           "Melody crushes Ryan's last testicle to pulp with the hardest kegel she can give, and has a huge orgasm.",
       },

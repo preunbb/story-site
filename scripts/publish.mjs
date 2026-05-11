@@ -1,17 +1,22 @@
 #!/usr/bin/env node
 /*
- * Build a publish-ready cover + EPUB pair for a story.
+ * Build a publish-ready cover + a pair of EPUBs for a story.
  *
  * Wraps two existing scripts:
  *   1. scripts/make_cover.py   — generates the JPEG cover with the chosen
  *                                title overlaid (in the project's standard
  *                                Optima-on-dark-margin style).
- *   2. scripts/render-story-epub.mjs — generates the EPUB with the chosen
- *                                title used in metadata, on the title page,
- *                                in the contents, and in the NCX. The EPUB
- *                                is built WITHOUT a cover page, since the
- *                                cover JPEG is intended to be uploaded
- *                                separately (e.g. to KDP).
+ *   2. scripts/render-story-epub.mjs — generates two EPUB variants:
+ *        - <slug>.epub             : text-only, scene illustrations stripped.
+ *                                    This is the canonical KDP / commercial
+ *                                    upload (no inline imagery to risk a
+ *                                    content review tripping on).
+ *        - <slug>-illustrated.epub : same text plus the matching scene
+ *                                    images embedded inline (with captions),
+ *                                    for direct distribution to readers who
+ *                                    want the illustrated experience.
+ *      Both are built WITHOUT a cover page; the cover JPEG is intended to be
+ *      uploaded separately (e.g. to KDP).
  *
  * Usage:
  *   node scripts/publish.mjs <storyId> "<title>"
@@ -20,12 +25,14 @@
  * Outputs (relative to repo root):
  *   dist/covers/<title-slug>.jpg
  *   dist/<title-slug>.epub
+ *   dist/<title-slug>-illustrated.epub
  */
 
 import { spawnSync } from "node:child_process";
 import { existsSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { slugify } from "./lib/story-render.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -87,14 +94,34 @@ function main() {
     title,
   ]);
 
-  run("rendering epub (no cover page)", "node", [
+  // The EPUB renderer's default filename is `dist/<slugify(title)>.epub`.
+  // Mirror that slug here so the text-only variant lands at the canonical
+  // path (back-compat) and the illustrated variant lands beside it with a
+  // clear suffix. Both go to `dist/` via the same default out dir.
+  const slug = slugify(title) || "story";
+  const textOnlyPath = `dist/${slug}.epub`;
+  const illustratedPath = `dist/${slug}-illustrated.epub`;
+
+  run("rendering text-only epub", "node", [
     "scripts/render-story-epub.mjs",
     String(id),
     `--title=${title}`,
     "--no-cover",
+    "--no-images",
+    `--out=${textOnlyPath}`,
+  ]);
+
+  run("rendering illustrated epub", "node", [
+    "scripts/render-story-epub.mjs",
+    String(id),
+    `--title=${title}`,
+    "--no-cover",
+    `--out=${illustratedPath}`,
   ]);
 
   console.log("\n[publish] done.");
+  console.log(`[publish]   text-only:    ${textOnlyPath}`);
+  console.log(`[publish]   illustrated:  ${illustratedPath}`);
 }
 
 main();

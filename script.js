@@ -1236,11 +1236,6 @@
       );
     }
     var sc = match.scene;
-    var captionHtml = sc.caption
-      ? '<figcaption class="scene-caption">' +
-        escapeHtml(sc.caption) +
-        "</figcaption>"
-      : "";
     return (
       '<figure class="scene-figure scene-figure--zoomable story-reader-scene"' +
       ' tabindex="0" title="Click to enlarge"' +
@@ -1254,7 +1249,6 @@
       '" alt="' +
       escapeHtml(sc.caption || story.title || "Scene") +
       '" class="scene-img" loading="lazy">' +
-      captionHtml +
       "</figure>"
     );
   }

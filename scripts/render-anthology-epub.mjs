@@ -28,7 +28,12 @@
  *     [--title="My Anthology"] \
  *     [--summary="Short blurb for the title page"] \
  *     [--cover=path/to/cover.jpg] \
- *     [--out=path/to/output.epub]
+ *     [--out=path/to/output.epub] \
+ *     [--no-images]
+ *
+ *   --no-images Strip inline `[[scene:…]]` illustrations from every story.
+ *               Default behavior is to embed them per-story (with a stable
+ *               image-id prefix so two stories' scenes can't collide).
  *
  * Example:
  *   node scripts/render-anthology-epub.mjs 14 16 18 \
@@ -54,6 +59,7 @@ import {
   buildChapterPage,
   buildCoverPage,
   buildStylesheet,
+  collectReferencedSceneImages,
   coverFromAbsolutePath,
   deterministicUuid,
   findStoryCover,
@@ -71,6 +77,7 @@ function parseArgs(argv) {
     summary: null,
     cover: null,
     output: null,
+    noImages: false,
   };
   for (const arg of argv) {
     if (arg.startsWith("--title=")) {
@@ -81,6 +88,8 @@ function parseArgs(argv) {
       out.cover = arg.slice("--cover=".length);
     } else if (arg.startsWith("--out=")) {
       out.output = arg.slice("--out=".length);
+    } else if (arg === "--no-images" || arg === "--text-only") {
+      out.noImages = true;
     } else if (/^\d+$/.test(arg)) {
       out.ids.push(Number(arg));
     } else if (!arg.startsWith("--")) {
@@ -261,7 +270,7 @@ function buildOpf({ anthologyTitle, anthologySummary, stories, cover, modified, 
   spineItems.push(`    <itemref idref="nav" linear="yes" />`);
 
   for (const entry of stories) {
-    const { story, chapters } = entry;
+    const { story, chapters, sceneImages } = entry;
     const titleId = storyTitleId(story.id);
     manifestItems.push(
       `    <item id="${titleId}" href="text/${storyTitleFilename(story.id)}" media-type="application/xhtml+xml" />`,
@@ -273,6 +282,14 @@ function buildOpf({ anthologyTitle, anthologySummary, stories, cover, modified, 
         `    <item id="${id}" href="text/${chapterFilename(story.id, ch.index)}" media-type="application/xhtml+xml" />`,
       );
       spineItems.push(`    <itemref idref="${id}" linear="yes" />`);
+    }
+    // Per-story scene images: manifest-only, no spine entry. The
+    // s<storyId>-scene-NN id prefix in collectReferencedSceneImages keeps
+    // ids globally unique across the anthology.
+    for (const img of sceneImages || []) {
+      manifestItems.push(
+        `    <item id="${escapeHtml(img.manifestId)}" href="${escapeHtml(img.internalPath)}" media-type="${escapeHtml(img.mime)}" />`,
+      );
     }
   }
 
@@ -427,6 +444,26 @@ function main() {
   );
   const modified = nowIsoSecond();
 
+  // Resolve scene tags across every story. In "embed" mode each story gets
+  // its own image-id prefix (s<id>-) so chapter XHTML can disambiguate.
+  const imageMode = args.noImages ? "strip" : "embed";
+  for (const entry of stories) {
+    if (imageMode !== "embed") {
+      entry.sceneImages = [];
+      entry.sceneImageMap = new Map();
+      continue;
+    }
+    const allBlocks = entry.chapters.flatMap((ch) => ch.blocks);
+    const prefix = `${storyKey(entry.story.id)}-`;
+    entry.sceneImages = collectReferencedSceneImages(
+      entry.story,
+      allBlocks,
+      { prefix },
+    );
+    entry.sceneImageMap = new Map();
+    for (const img of entry.sceneImages) entry.sceneImageMap.set(img.index, img);
+  }
+
   const navEntries = stories.map((e) => ({
     story: e.story,
     href: storyTitleFilename(e.story.id),
@@ -481,11 +518,14 @@ function main() {
   }
 
   stories.forEach((entry, i) => {
-    const { story, chapters } = entry;
+    const { story, chapters, sceneImages, sceneImageMap } = entry;
     files.push({
       name: `OEBPS/text/${storyTitleFilename(story.id)}`,
       data: buildStoryTitlePage(story, { index: i, total: stories.length }),
     });
+    for (const img of sceneImages || []) {
+      files.push({ name: `OEBPS/${img.internalPath}`, data: img.data });
+    }
     for (const ch of chapters) {
       files.push({
         name: `OEBPS/text/${chapterFilename(story.id, ch.index)}`,
@@ -494,6 +534,9 @@ function main() {
           num: ch.index + 1,
           total: chapters.length,
           blocks: ch.blocks,
+          story,
+          imageMode,
+          sceneImageMap,
         }),
       });
     }
