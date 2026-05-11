@@ -500,7 +500,7 @@ window.DATA_CHARACTERS = [
     name: "James",
     gender: "M",
     bio: "Employee at Over Easy Technologies. Anxious about his job and his standing at the company; agreed to a procedure to stay on board.",
-    profilePictures: [],
+    profilePictures: ["assets/characters/james_postop.jpg"],
   },
   {
     id: "diane_postop",
@@ -651,5 +651,12 @@ window.DATA_CHARACTERS = [
     gender: "M",
     bio: "Identical twin brothers. Well hung but virginal, they're hoping that the arena will help them lose their virginity.",
     profilePictures: ["assets/characters/nguyen_twins.png"],
+  },
+  {
+    id: "ryan",
+    name: "Ryan",
+    gender: "M",
+    bio: "Blueballed virgin with low self-esteem. Four weeks of abstinence have left his balls extremely full. He's hoping he'll get the chance to empty them tonight, possibly with the involvement of an actual real-life woman.",
+    profilePictures: ["assets/characters/ryan.jpg"],
   },
 ];

@@ -1001,7 +1001,7 @@ window.DATA_STORIES = [
 
   {
     id: 42,
-    wordCount: 9828,
+    wordCount: 9970,
     title: "The Ballbusting Arena 6: Natalie Enters the Ring",
     brutalityRating: 4,
     cover: "assets/covers/arena_6.png",
@@ -1026,7 +1026,7 @@ window.DATA_STORIES = [
   {
     id: 43,
     fullLengthNovel: true,
-    title: "Andrea and Lucas",
+    title: "Andrea and Lucas: Part 1",
     brutalityRating: 5,
     cover: "assets/covers/andrea_and_lucas.png",
     summary:
@@ -1084,22 +1084,6 @@ window.DATA_STORIES = [
         caption:
           "Izzie visits Andrea's eunuch ex-boyfriend at the jeans store and teases him about the permanent, irreversible injury she inflicted for the sake of content.",
       },
-
-      {
-        path: "assets/scenes/andrea_and_lucas/good/yvette_operates_on_sunni.png",
-        caption:
-          "Sunni insists his injuries aren't that bad, but Dr. Yvette knows better: she's definitely going to have to remove both of his testicles. In the background, Felix futilely begs her to give him the tiniest amount of basic medical attention so he can remain a man.",
-      },
-      {
-        path: "assets/scenes/andrea_and_lucas/good/tamara_and_melody_medical_tent.png",
-        caption:
-          "Melody encourages Tamara to give in to her darker urges while operating on Melody's current boytoy.",
-      },
-      {
-        path: "assets/scenes/andrea_and_lucas/good/tamara_aftermath_final.png",
-        caption:
-          "Tamara, in the aftermath of the Cherry Pop! concert, deals with the insanely erotic clusterfuck that was the onsite medical tent, and the dozens of unnecessarily severed organs Yvette left lying around.",
-      },
     ],
   },
 
@@ -1154,13 +1138,67 @@ window.DATA_STORIES = [
   },
   {
     id: 46,
+    wordCount: 12776,
     title: "Melody Seduces a Virgin",
     summary:
       "Melody's castration kink is back in full force, ever since her son lost his balls. She's been craving a chance to explore her awakened urges, and the nervous, virginal Ryan is just the guy to help her.",
     cover: "assets/covers/melody_seduces_a_virgin.png",
-    state: 1,
+    state: 2,
+    driveUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vTw7ksLCB2UgTKpZGwSoE8dGkhwoHkCkg5_iUz8ga467w2A1twmZ-nuj_iYocjiUTdSHanhPdfMArhS/pub",
     characterIds: ["melody", "ryan"],
     brutalityRating: 4,
     tags: ["New to Reddit"],
+    releaseDate: "2026-05-11",
+  },
+  {
+    id: 43,
+    fullLengthNovel: true,
+    title: "Andrea and Lucas: Part 2",
+    brutalityRating: 5,
+    cover: "assets/covers/andrea_and_lucas.png",
+    summary:
+      "Andrea takes Lucas to a Cherry Pop! concert, and shows him what a mush pit is like. Later, she meets his family.",
+    state: 1,
+    characterIds: [
+      "andrea",
+      "lucas",
+      "izzie",
+      "tamara",
+      "yvette",
+      "eve",
+      "emma",
+      "kaitlin",
+      "trinn",
+      "sunni",
+      "felix",
+      "greyson",
+      "melody",
+    ],
+    tags: ["Premium Story", "New to Reddit"],
+    purchaseParts: [
+      {
+        part: 1,
+        kofiUrl: "https://ko-fi.com/s/edb2b8eaa5",
+        amazonUrl: "https://www.amazon.com/dp/B0GJTZSS1D",
+      },
+    ],
+    scenes: [
+      {
+        path: "assets/scenes/andrea_and_lucas/good/yvette_operates_on_sunni.png",
+        caption:
+          "Sunni insists his injuries aren't that bad, but Dr. Yvette knows better: she's definitely going to have to remove both of his testicles. In the background, Felix futilely begs her to give him the tiniest amount of basic medical attention so he can remain a man.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/good/tamara_and_melody_medical_tent.png",
+        caption:
+          "Melody encourages Tamara to give in to her darker urges while operating on Melody's current boytoy.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/good/tamara_aftermath_final.png",
+        caption:
+          "Tamara, in the aftermath of the Cherry Pop! concert, deals with the insanely erotic clusterfuck that was the onsite medical tent, and the dozens of unnecessarily severed organs Yvette left lying around.",
+      },
+    ],
   },
 ];
