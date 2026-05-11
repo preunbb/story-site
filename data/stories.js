@@ -1,7 +1,7 @@
 window.DATA_STORIES = [
   {
     id: 1,
-    wordCount: 24139,
+    wordCount: 24261,
     title: "Three Strikes",
     summary:
       "A college senior has an unusually blessed anatomy and a very demanding swim coach. She insists on some minor modifications to improve his speed, which he politely declines. She enlists three eager assistants to help change his mind: a Goth, a cheerleader, and an science wiz. Sam does his best to keep all of his blessings safe from the girls, but it's not easy, and all three girls make some very convincing arguments.",
@@ -54,7 +54,7 @@ window.DATA_STORIES = [
   },
   {
     id: 2,
-    wordCount: 7720,
+    wordCount: 7731,
     title: "Castration Anxiety",
     summary:
       "Jeremy's having the weirdest, most painful nightmares. He's desperately hoping his therapist can help him figure things out.",
@@ -67,6 +67,53 @@ window.DATA_STORIES = [
     state: 3,
     tags: [],
     brutalityRating: 3,
+    scenes: [
+      {
+        path: "assets/scenes/castration_anxiety/scene_amazon_v5_dagger_triumph.jpg",
+        caption:
+          "The opening nightmare — Jeremy lashed to a sacrificial X while the Amazon queen turns to her tribe in ecstatic triumph. 'For Kali!'",
+      },
+      {
+        path: "assets/scenes/castration_anxiety/scene_first_knee_v6_coffee_table_crop.jpg",
+        caption:
+          "First session. He's eagerly stripped down for his 'treatment' — and Karen calmly explains the diagnosis while his nuts catch up with his decisions.",
+      },
+      {
+        path: "assets/scenes/castration_anxiety/scene_compression_v4_karen_foreground_smirk.jpg",
+        caption:
+          "Rapid testicle compressions, by the book. Karen's quiet, private smile as she glances up from her work to enjoy his reaction.",
+      },
+      {
+        path: "assets/scenes/castration_anxiety/scene_soccer_v3_foot_on_shoulder.jpg",
+        caption:
+          "Cleats in the mud. A new nightmare debuts — the all-girl team, the laughing captain, and the shrinkage that won't be in the dream alone.",
+      },
+      {
+        path: "assets/scenes/castration_anxiety/scene_burdizzo_v4_pre_horror.jpg",
+        caption:
+          "Second session. Karen wanted to make it 'a little more real this week.' She borrowed something from her farmhand friend.",
+      },
+      {
+        path: "assets/scenes/castration_anxiety/scene_ruined_orgasm_v3_hollow_aftermath.jpg",
+        caption:
+          "She promised him the blowjob he'd been imagining for months. He didn't last long enough to find out. She makes a quick note on her chart.",
+      },
+      {
+        path: "assets/scenes/castration_anxiety/scene_rupture_v3_no_restraints.jpg",
+        caption:
+          "The moment the role-play stops being role-play. 'OH MY GOD OH MY GOD! THAT WASN'T SUPPOSED TO HAPPEN!'",
+      },
+      {
+        path: "assets/scenes/castration_anxiety/scene_final_castration_v2_softer.jpg",
+        caption:
+          "Final session. The misdiagnosis corrected, the cure completed, and the therapist coming down from her very first orgasm.",
+      },
+      {
+        path: "assets/scenes/castration_anxiety/scene_eunuch_v1_desk_diagnosis.jpg",
+        caption:
+          "He came back for a testosterone prescription. Karen, polite and patient, explains why he won't be getting one.",
+      },
+    ],
   },
   {
     id: 4,
@@ -138,7 +185,7 @@ window.DATA_STORIES = [
   },
   {
     id: 8,
-    wordCount: 5025,
+    wordCount: 5083,
     brutalityRating: 3,
     title: "Club Fight",
     summary:
@@ -238,7 +285,7 @@ window.DATA_STORIES = [
   },
   {
     id: 13,
-    wordCount: 4934,
+    wordCount: 5058,
     brutalityRating: 3,
     title: "Her Proposal",
     summary:
@@ -299,7 +346,7 @@ window.DATA_STORIES = [
   },
   {
     id: 17,
-    wordCount: 3315,
+    wordCount: 3317,
     brutalityRating: 3,
     title: "The Internship",
     summary:
@@ -516,7 +563,7 @@ window.DATA_STORIES = [
   },
   {
     id: 25,
-    wordCount: 20089,
+    wordCount: 20092,
     title: "Friendzoned",
     brutalityRating: 5,
     summary:
@@ -555,7 +602,7 @@ window.DATA_STORIES = [
   },
   {
     id: 26,
-    wordCount: 10485,
+    wordCount: 10516,
     title: "Busted by the Babysitter",
     brutalityRating: 4,
     summary:
@@ -679,7 +726,7 @@ window.DATA_STORIES = [
   },
   {
     id: 29,
-    wordCount: 1300,
+    wordCount: 1670,
     title: "Legalese",
     brutalityRating: 5,
     summary:
@@ -693,7 +740,7 @@ window.DATA_STORIES = [
   },
   {
     id: 30,
-    wordCount: 6329,
+    wordCount: 6420,
     title: "Postop",
     brutalityRating: 3,
     summary:
@@ -712,10 +759,46 @@ window.DATA_STORIES = [
     subtitle: "Commission for a continuation between two captions.",
     state: 3,
     tags: ["New to Reddit", "Based on other authors' work"],
+    scenes: [
+      {
+        path: "assets/scenes/post_op/scene_wake_up_stirrups_v2_draped.jpg",
+        caption:
+          "Ooh, someone's awake! Your double orchiectomy went just find - we've snipped both healthy testicles out. As your testosterone drains out, you'll find your little dick will shrivel up, you'll become a lot less distracted by pretty women, and concentrating on work will be so much easier. Welcome to your new life, and congratulations on choosing your career over your sex life! Over Easy Technologies would like to thank you for your service and contribution to our bottom dollar. After all, a castrated employee is an efficient employee!",
+      },
+      {
+        path: "assets/scenes/post_op/scene_jar_reveal_v2_softer.jpg",
+        caption:
+          "Yup - those are what you think they are, James. Your testicles. Sitting in a jar in your bosses desk for all of eternity. Disconnected, deadened, and safe from any chance of reproducing.",
+      },
+      {
+        path: "assets/scenes/post_op/scene_video_shoot_facecloseup_v4.jpg",
+        caption:
+          "Come on - show us what you got, James! Try your hardest to make that little guy twitch! The whole company deserves to see exactly what the effects of a castration are. That's perfect! You're so limp even though you're trying SO hard, it's adorable.",
+      },
+      {
+        path: "assets/scenes/post_op/scene_selfie_say_cheese_v1.jpg",
+        caption: "Say cheese, nutless!",
+      },
+      {
+        path: "assets/scenes/post_op/scene_strip_club_realization_v4_dress.jpg",
+        caption:
+          "Ok - it's ok. I mean, your friends already paid. I'm not mad at you. If you can't get it up during a lap dance, it's just your loss. But it's not your fault - I understand you went through a big operation recently, and you don't have quite the pep down there that you used to, right?",
+      },
+      {
+        path: "assets/scenes/post_op/scene_auditorium_screening_v1.jpg",
+        caption:
+          "The whole company is watching you, James! Your face, name, and corporate email blown up on the auditorium wall while you sink into your seat. You're not even trying to hide your shame - you're just trying to get through it as quickly as possible. If anyone had any doubt that you'd lost your balls for real, those are gone now.",
+      },
+      {
+        path: "assets/scenes/post_op/scene_deluge_inbox_v2_softened.jpg",
+        caption:
+          "The chopped balls challenge is incredibly distracting - thousands of videos from would-be sexual partners are flooding your work inbox. You try to stay on top of them but being reminded day in and day out of your empty, useless scrotum is very distracting, and your performance has started to dip again.",
+      },
+    ],
   },
   {
     id: 31,
-    wordCount: 2844,
+    wordCount: 2818,
     title: "Office Management",
     brutalityRating: 5,
     summary:
@@ -800,7 +883,7 @@ window.DATA_STORIES = [
   },
   {
     id: 36,
-    wordCount: 8014,
+    wordCount: 8015,
     title: "Paperwork",
     brutalityRating: 5,
     summary:
@@ -888,7 +971,7 @@ window.DATA_STORIES = [
   },
   {
     id: 40,
-    wordCount: 67264,
+    wordCount: 67340,
     brutalityRating: 5,
     title: "Dragon Slaying Alternative Chapter 13: Kayla",
     summary:
@@ -1001,7 +1084,7 @@ window.DATA_STORIES = [
 
   {
     id: 42,
-    wordCount: 9828,
+    wordCount: 9970,
     title: "The Ballbusting Arena 6: Natalie Enters the Ring",
     brutalityRating: 4,
     cover: "assets/covers/arena_6.png",
@@ -1026,7 +1109,7 @@ window.DATA_STORIES = [
   {
     id: 43,
     fullLengthNovel: true,
-    title: "Andrea and Lucas",
+    title: "Andrea and Lucas: Part 1",
     brutalityRating: 5,
     cover: "assets/covers/andrea_and_lucas.png",
     summary:
@@ -1084,22 +1167,6 @@ window.DATA_STORIES = [
         caption:
           "Izzie visits Andrea's eunuch ex-boyfriend at the jeans store and teases him about the permanent, irreversible injury she inflicted for the sake of content.",
       },
-
-      {
-        path: "assets/scenes/andrea_and_lucas/good/yvette_operates_on_sunni.png",
-        caption:
-          "Sunni insists his injuries aren't that bad, but Dr. Yvette knows better: she's definitely going to have to remove both of his testicles. In the background, Felix futilely begs her to give him the tiniest amount of basic medical attention so he can remain a man.",
-      },
-      {
-        path: "assets/scenes/andrea_and_lucas/good/tamara_and_melody_medical_tent.png",
-        caption:
-          "Melody encourages Tamara to give in to her darker urges while operating on Melody's current boytoy.",
-      },
-      {
-        path: "assets/scenes/andrea_and_lucas/good/tamara_aftermath_final.png",
-        caption:
-          "Tamara, in the aftermath of the Cherry Pop! concert, deals with the insanely erotic clusterfuck that was the onsite medical tent, and the dozens of unnecessarily severed organs Yvette left lying around.",
-      },
     ],
   },
 
@@ -1154,13 +1221,90 @@ window.DATA_STORIES = [
   },
   {
     id: 46,
+    wordCount: 12782,
     title: "Melody Seduces a Virgin",
     summary:
       "Melody's castration kink is back in full force, ever since her son lost his balls. She's been craving a chance to explore her awakened urges, and the nervous, virginal Ryan is just the guy to help her.",
     cover: "assets/covers/melody_seduces_a_virgin.png",
-    state: 1,
+    state: 2,
+    driveUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vTw7ksLCB2UgTKpZGwSoE8dGkhwoHkCkg5_iUz8ga467w2A1twmZ-nuj_iYocjiUTdSHanhPdfMArhS/pub",
     characterIds: ["melody", "ryan"],
     brutalityRating: 4,
     tags: ["New to Reddit"],
+    releaseDate: "2026-05-11",
+    scenes: [
+      {
+        path: "assets/scenes/melody_seduces_a_virgin/taxi_play_v7_thigh.png",
+        caption:
+          "Ryan is nervous about losing his virginity, while Melody sizes him up like a piece of meat.",
+      },
+      {
+        path: "assets/scenes/melody_seduces_a_virgin/back_kick_v4_aftermath.png",
+        caption:
+          "The pain is too much for Ryan to bear - he can't take it anymore. Melody disagrees.",
+      },
+      {
+        path: "assets/scenes/melody_seduces_a_virgin/ride_squish_v6_solo_aftermath.png",
+        caption:
+          "Melody crushes Ryan's last testicle to pulp with the hardest kegel she can give, and has a huge orgasm.",
+      },
+      {
+        path: "assets/scenes/melody_seduces_a_virgin/hospital_visit_v1.png",
+        caption:
+          "The morning after, Ryan lays in the hospital, recovering from his castration. Melody offers him some comfort, and a very generous offer.",
+      },
+    ],
+  },
+  {
+    id: 47,
+    fullLengthNovel: true,
+    title: "Andrea and Lucas: Part 2",
+    brutalityRating: 5,
+    cover: "assets/covers/andrea_and_lucas_part_2.png",
+    summary:
+      "Andrea takes Lucas to a Cherry Pop! concert, and shows him what a mush pit is like. Later, she meets his family.",
+    state: 1,
+    characterIds: [
+      "andrea",
+      "lucas",
+      "izzie",
+      "tamara",
+      "yvette",
+      "eve",
+      "joanna",
+      "emma",
+      "kaitlin",
+      "trinn",
+      "sunni",
+      "felix",
+      "greyson",
+      "melody",
+    ],
+    tags: ["Premium Story", "New to Reddit"],
+    purchaseParts: [
+      {
+        part: 1,
+        kofiUrl: "https://ko-fi.com/s/edb2b8eaa5",
+        amazonUrl: "https://www.amazon.com/dp/B0GJTZSS1D",
+      },
+    ],
+    scenes: [
+      {
+        path: "assets/scenes/andrea_and_lucas/good/yvette_operates_on_sunni.png",
+        caption:
+          "Sunni insists his injuries aren't that bad, but Dr. Yvette knows better: she's definitely going to have to remove both of his testicles. In the background, Felix futilely begs her to give him the tiniest amount of basic medical attention so he can remain a man.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/good/tamara_and_melody_medical_tent.png",
+        caption:
+          "Melody encourages Tamara to give in to her darker urges while operating on Melody's current boytoy.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/good/tamara_aftermath_final.png",
+        caption:
+          "Tamara, in the aftermath of the Cherry Pop! concert, deals with the insanely erotic clusterfuck that was the onsite medical tent, and the dozens of unnecessarily severed organs Yvette left lying around.",
+      },
+    ],
   },
 ];

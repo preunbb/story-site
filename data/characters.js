@@ -5,7 +5,7 @@ window.DATA_CHARACTERS = [
     name: "Karen",
     gender: "F",
     testiclesKilled: 3,
-    bio: "Therapist. Highly competent and devoted to her clients.",
+    bio: "Therapist with raven hair, almond eyes, and a wry, knowing smile. Specializes in 'castration anxiety' — and a few even rarer disorders. Devoted to her clients in her own particular way.",
     profilePictures: ["assets/characters/karen.jpg"],
   },
   {
@@ -43,8 +43,8 @@ window.DATA_CHARACTERS = [
     id: "jeremy",
     name: "Jeremy",
     gender: "M",
-    bio: "Mid-twenties. Plagued by vivid, painful nightmares. Hoping his therapist can help.",
-    profilePictures: [],
+    bio: "Mid-twenties, recently divorced, perpetually anxious and perpetually horny. Plagued by vivid castration nightmares and hoping his therapist can help him out of them.",
+    profilePictures: ["assets/characters/jeremy.jpg"],
   },
   {
     id: "britt",
@@ -500,7 +500,7 @@ window.DATA_CHARACTERS = [
     name: "James",
     gender: "M",
     bio: "Employee at Over Easy Technologies. Anxious about his job and his standing at the company; agreed to a procedure to stay on board.",
-    profilePictures: [],
+    profilePictures: ["assets/characters/james_postop.jpg"],
   },
   {
     id: "diane_postop",
@@ -618,6 +618,13 @@ window.DATA_CHARACTERS = [
     profilePictures: ["assets/characters/eve.png"],
   },
   {
+    id: "joanna",
+    name: "Joanna",
+    gender: "F",
+    bio: "Lucas' stepsister. Eve's daughter and a devout young initiate of the Church of the Broken Tree. Pretty, prim, and chillingly certain that her stepbrother's body is not his own to keep.",
+    profilePictures: ["assets/characters/joanna.png"],
+  },
+  {
     id: "trinn",
     name: "Trinn",
     gender: "M",
@@ -651,5 +658,12 @@ window.DATA_CHARACTERS = [
     gender: "M",
     bio: "Identical twin brothers. Well hung but virginal, they're hoping that the arena will help them lose their virginity.",
     profilePictures: ["assets/characters/nguyen_twins.png"],
+  },
+  {
+    id: "ryan",
+    name: "Ryan",
+    gender: "M",
+    bio: "Blueballed virgin with low self-esteem. Four weeks of abstinence have left his balls extremely full. He's hoping he'll get the chance to empty them tonight, possibly with the involvement of an actual real-life woman.",
+    profilePictures: ["assets/characters/ryan.jpg"],
   },
 ];

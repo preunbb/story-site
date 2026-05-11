@@ -245,6 +245,132 @@ function postProcessMarkdown(md) {
   );
 }
 
+/**
+ * Counts words the same way `wc -w` does: any run of non-whitespace is one
+ * word. Matches Google Docs' built-in word count closely enough that the
+ * existing hand-entered values in data/stories.js round-trip exactly.
+ */
+function countWords(md) {
+  const trimmed = md.trim();
+  if (!trimmed) return 0;
+  return trimmed.split(/\s+/).length;
+}
+
+/**
+ * Updates the `wordCount` field for the given story ids in data/stories.js.
+ *
+ * `updates` is an array of `{ id, words, fullLengthNovel }`. For each entry:
+ *   - If the matching block already has a `wordCount: N,` line, replace it.
+ *   - If it doesn't and the story is not a full-length novel, insert one
+ *     directly after the `id: N,` line.
+ *   - Full-length novels with no existing wordCount field are left alone
+ *     (the UI bypasses wordCount for them anyway).
+ *
+ * Top-level story blocks are detected as line-exact `  {` ... `  },` pairs at
+ * indent 2 (matching the file's existing style). When the same id appears in
+ * multiple blocks (e.g. id 43 has both a Part 1 and Part 2 entry), the block
+ * containing a `driveUrl:` line is preferred — that's the one we actually
+ * just synced from.
+ *
+ * Returns one result per requested update describing what happened.
+ */
+function applyWordCountUpdates(filepath, updates) {
+  if (!updates.length) return [];
+  const content = readFileSync(filepath, "utf8");
+  const lines = content.split("\n");
+
+  const findBlocks = () => {
+    const blocks = [];
+    let start = -1;
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      if (start === -1) {
+        if (line === "  {") start = i;
+      } else if (line === "  }," || line === "  }") {
+        blocks.push({ start, end: i });
+        start = -1;
+      }
+    }
+    return blocks;
+  };
+
+  const ID_RE = /^    id:\s+(\d+),\s*$/;
+  const WC_RE = /^    wordCount:\s+(\d+),\s*$/;
+  const DRIVE_RE = /^    driveUrl:/;
+
+  const results = [];
+  let dirty = false;
+
+  for (const { id, words, fullLengthNovel } of updates) {
+    const blocks = findBlocks();
+    const matches = [];
+    for (const blk of blocks) {
+      for (let i = blk.start; i <= blk.end; i++) {
+        const m = lines[i].match(ID_RE);
+        if (m && Number(m[1]) === id) {
+          matches.push(blk);
+          break;
+        }
+      }
+    }
+    if (!matches.length) {
+      results.push({ id, status: "block-not-found", words });
+      continue;
+    }
+    let target = matches[0];
+    if (matches.length > 1) {
+      const withDrive = matches.filter((blk) =>
+        lines.slice(blk.start, blk.end + 1).some((l) => DRIVE_RE.test(l)),
+      );
+      if (withDrive.length) target = withDrive[0];
+    }
+
+    let wcIdx = -1;
+    for (let i = target.start; i <= target.end; i++) {
+      if (WC_RE.test(lines[i])) {
+        wcIdx = i;
+        break;
+      }
+    }
+
+    const newLine = `    wordCount: ${words},`;
+    if (wcIdx !== -1) {
+      const oldWords = Number(lines[wcIdx].match(WC_RE)[1]);
+      if (oldWords === words) {
+        results.push({ id, status: "unchanged", words });
+        continue;
+      }
+      lines[wcIdx] = newLine;
+      dirty = true;
+      results.push({ id, status: "updated", words, from: oldWords });
+      continue;
+    }
+
+    if (fullLengthNovel) {
+      results.push({ id, status: "skipped-novel", words });
+      continue;
+    }
+
+    let idIdx = -1;
+    for (let i = target.start; i <= target.end; i++) {
+      if (ID_RE.test(lines[i])) {
+        idIdx = i;
+        break;
+      }
+    }
+    if (idIdx === -1) {
+      results.push({ id, status: "id-line-not-found", words });
+      continue;
+    }
+    lines.splice(idIdx + 1, 0, newLine);
+    dirty = true;
+    results.push({ id, status: "added", words });
+  }
+
+  if (dirty) writeFileSync(filepath, lines.join("\n"), "utf8");
+  return results;
+}
+
 async function fetchDoc(url, attempt = 1) {
   const res = await fetch(url, { redirect: "follow" });
   if (res.status === 429 || res.status >= 500) {
@@ -267,7 +393,12 @@ async function syncOne(story, td) {
   const md = postProcessMarkdown(td.turndown(inner));
   const outPath = join(OUT_DIR, `${story.id}.md`);
   writeFileSync(outPath, md, "utf8");
-  return { id: story.id, bytes: md.length, title: story.title };
+  return {
+    id: story.id,
+    bytes: md.length,
+    words: countWords(md),
+    title: story.title,
+  };
 }
 
 async function runWithConcurrency(items, limit, worker) {
@@ -327,6 +458,7 @@ async function main() {
 
   const ok = [];
   const errs = [];
+  const wcUpdates = [];
   for (let i = 0; i < results.length; i++) {
     const r = results[i];
     const s = stories[i];
@@ -337,7 +469,29 @@ async function main() {
       console.log(`  SKIP  #${s.id}: ${r.skipped}`);
     } else {
       ok.push(r);
-      console.log(`  ok    #${s.id} "${s.title}" (${r.bytes} bytes)`);
+      console.log(
+        `  ok    #${s.id} "${s.title}" (${r.bytes} bytes, ${r.words} words)`,
+      );
+      wcUpdates.push({
+        id: s.id,
+        words: r.words,
+        fullLengthNovel: !!s.fullLengthNovel,
+      });
+    }
+  }
+
+  const wcResults = applyWordCountUpdates(STORIES_JS, wcUpdates);
+  for (const r of wcResults) {
+    if (r.status === "updated") {
+      console.log(`  wc    #${r.id}: ${r.from} -> ${r.words}`);
+    } else if (r.status === "added") {
+      console.log(`  wc    #${r.id}: added ${r.words}`);
+    } else if (r.status === "skipped-novel") {
+      // No-op for full-length novels with no existing field.
+    } else if (r.status === "unchanged") {
+      // No-op when the count didn't move.
+    } else {
+      console.warn(`  wc    #${r.id}: ${r.status}`);
     }
   }
 

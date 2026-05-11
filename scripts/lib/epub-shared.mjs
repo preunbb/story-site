@@ -13,10 +13,16 @@
  * formats arrange chapters differently.
  */
 
-import { existsSync } from "node:fs";
-import { extname, join } from "node:path";
+import { existsSync, readFileSync } from "node:fs";
+import { basename, extname, join } from "node:path";
 import { createHash } from "node:crypto";
-import { END_PAGE, escapeHtml, repoRoot } from "./story-render.mjs";
+import {
+  END_PAGE,
+  escapeHtml,
+  extractSceneTagIdentifier,
+  findStorySceneByIdentifier,
+  repoRoot,
+} from "./story-render.mjs";
 
 /* ---------- Constants ---------- */
 
@@ -149,12 +155,151 @@ export function buildAboutPage() {
   });
 }
 
+/* ---------- Scene image embedding ---------- */
+
+const SCENE_IMAGE_MIME_BY_EXT = {
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".webp": "image/webp",
+  ".gif": "image/gif",
+};
+
+function safeImageBasename(p) {
+  // Keep the original basename when it's already filesystem-safe; otherwise
+  // fall back to a sanitized version. The EPUB spec only requires the path
+  // be a URL-encodable IRI, so this is conservative.
+  const raw = basename(p);
+  return raw.replace(/[^A-Za-z0-9._-]+/g, "_");
+}
+
+/**
+ * Walks every block in `blocks`, finds standalone `[[scene:…]]` tags that
+ * resolve against `story.scenes`, and returns one descriptor per unique
+ * referenced scene (in first-seen order). Scenes whose file is missing on
+ * disk are skipped with a warning.
+ *
+ * Descriptor fields:
+ *   manifestId   — stable id for the <item> in the OPF manifest
+ *   internalPath — path inside the EPUB zip, relative to OEBPS/
+ *                  (e.g. "images/s030-scene-01-foo.jpg")
+ *   xhtmlSrc     — relative path from chapter XHTML to the image
+ *                  (e.g. "../images/s030-scene-01-foo.jpg")
+ *   srcAbs       — absolute filesystem path
+ *   mime         — image media type
+ *   scene        — the original story.scenes[i] object
+ *   index        — scene's position in story.scenes
+ *   data         — Buffer of the image bytes (ready to drop into the zip)
+ *
+ * `prefix` lets the anthology renderer namespace per-story image ids
+ * (e.g. `s030-`) so two stories with the same scene index don't collide.
+ */
+export function collectReferencedSceneImages(story, blocks, opts = {}) {
+  const prefix = opts.prefix || "";
+  const result = [];
+  const seen = new Set();
+  for (const block of blocks) {
+    const id = extractSceneTagIdentifier(block);
+    if (!id) continue;
+    const match = findStorySceneByIdentifier(story, id);
+    if (!match) continue;
+    if (seen.has(match.index)) continue;
+    seen.add(match.index);
+
+    const srcAbs = join(repoRoot, match.scene.path);
+    if (!existsSync(srcAbs)) {
+      console.warn(
+        `[epub] scene image missing on disk, dropping: ${match.scene.path}`,
+      );
+      continue;
+    }
+    const ext = extname(match.scene.path).toLowerCase();
+    const mime = SCENE_IMAGE_MIME_BY_EXT[ext] || "application/octet-stream";
+    const ordinal = String(result.length + 1).padStart(2, "0");
+    const safeBase = safeImageBasename(match.scene.path);
+    const manifestId = `img-${prefix}scene-${ordinal}`;
+    const internalPath = `images/${prefix}scene-${ordinal}-${safeBase}`;
+
+    result.push({
+      manifestId,
+      internalPath,
+      xhtmlSrc: `../${internalPath}`,
+      srcAbs,
+      mime,
+      scene: match.scene,
+      index: match.index,
+      data: readFileSync(srcAbs),
+    });
+  }
+  return result;
+}
+
+/**
+ * Build a sceneRenderer callback for renderBodyBlock from a story + mode.
+ *
+ *   imageMode = "embed" with sceneImageMap: emit a <figure>/<img>/<figcaption>
+ *   imageMode = "embed" but image missing/unmapped: silently strip the tag
+ *   imageMode = "strip":                            silently strip the tag
+ *
+ * "Silently strip" rather than "leave a placeholder" keeps published EPUBs
+ * clean — a missing scene image shouldn't produce a "[missing scene: …]"
+ * blob in someone's Kindle.
+ */
+export function makeEpubSceneRenderer({ story, imageMode, sceneImageMap }) {
+  return function sceneRenderer(identifier) {
+    if (imageMode !== "embed") return "";
+    if (!sceneImageMap) return "";
+    const match = findStorySceneByIdentifier(story, identifier);
+    if (!match) return "";
+    const img = sceneImageMap.get(match.index);
+    if (!img) return "";
+    const altSource =
+      match.scene.caption || story.title || "Scene illustration";
+    const alt = escapeHtml(altSource);
+    const caption = match.scene.caption
+      ? `<figcaption class="scene-caption">${escapeHtml(match.scene.caption)}</figcaption>`
+      : "";
+    return (
+      `<figure class="scene-figure">` +
+      `<img src="${escapeHtml(img.xhtmlSrc)}" alt="${alt}" />` +
+      caption +
+      `</figure>`
+    );
+  };
+}
+
 /* ---------- Shared chapter rendering ---------- */
 
 import { renderBodyBlocks } from "./story-render.mjs";
 
-export function buildChapterPage({ title, num, total, blocks }) {
-  const bodyHtml = renderBodyBlocks(blocks, READER_OPTS);
+/**
+ * Render one chapter to XHTML.
+ *
+ * To embed scene images, pass `story`, `imageMode: "embed"`, and a
+ * `sceneImageMap` (Map<sceneIndex, sceneImageDescriptor>) populated from
+ * `collectReferencedSceneImages`. To strip scene tags entirely (e.g. for
+ * a text-only EPUB) pass `imageMode: "strip"`. The default is "strip" —
+ * passing nothing keeps the literal `[[scene:…]]` markers out of output
+ * even when the caller hasn't been updated for the image pipeline yet.
+ */
+export function buildChapterPage({
+  title,
+  num,
+  total,
+  blocks,
+  story = null,
+  imageMode = "strip",
+  sceneImageMap = null,
+}) {
+  const opts = {
+    ...READER_OPTS,
+    sceneRenderer: makeEpubSceneRenderer({
+      story,
+      imageMode,
+      sceneImageMap,
+    }),
+  };
+  const bodyHtml = renderBodyBlocks(blocks, opts);
   // When a chapter has no title (e.g. a single-chapter story with no
   // markdown headings), suppress the visible chapter header entirely;
   // the surrounding title page already establishes context.
@@ -331,6 +476,30 @@ body.cover { margin: 0; padding: 0; }
 .chapter-body .story-link {
   color: inherit;
   text-decoration: underline;
+}
+
+/* Inline scene illustrations (illustrated EPUB only). Keep these
+   max-width:100% so reflowable readers scale them sensibly on small
+   screens; page-break-inside:avoid keeps figure + caption together
+   when paginating. */
+.scene-figure {
+  margin: 1.4em 0;
+  text-align: center;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+.scene-figure img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+.scene-caption {
+  font-style: italic;
+  font-size: 0.9em;
+  line-height: 1.4;
+  margin: 0.4em 1em 0;
+  opacity: 0.8;
 }
 
 /* Scene break */

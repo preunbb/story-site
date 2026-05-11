@@ -147,6 +147,50 @@ export function readerFormatEscapedInline(escaped, opts) {
   return s;
 }
 
+/* ---------- Scene-tag helpers ---------- */
+
+/**
+ * Match an inline scene tag (`[[scene:identifier]]`) standing alone as its
+ * own paragraph. Whitespace inside the brackets is tolerated, mirroring the
+ * in-browser reader in script.js.
+ */
+export const SCENE_TAG_BLOCK_RE = /^\[\[\s*scene\s*:\s*([^\]]+?)\s*\]\]$/i;
+
+/**
+ * If `block` is a standalone `[[scene:identifier]]` paragraph, returns the
+ * trimmed identifier. Otherwise returns null. Accepts string blocks only.
+ */
+export function extractSceneTagIdentifier(block) {
+  if (typeof block !== "string") return null;
+  const m = block.trim().match(SCENE_TAG_BLOCK_RE);
+  return m ? m[1].trim() : null;
+}
+
+/**
+ * Resolves a `[[scene:identifier]]` identifier against `story.scenes`.
+ * `identifier` is either a numeric index (0-based) or a substring of a
+ * scene's `path`. Returns `{ scene, index }` on a hit, or `null` if no
+ * scene matches. Mirrors findStorySceneByIdentifier in script.js.
+ */
+export function findStorySceneByIdentifier(story, identifier) {
+  if (!story || !Array.isArray(story.scenes)) return null;
+  const id = String(identifier == null ? "" : identifier).trim();
+  if (!id) return null;
+  if (/^\d+$/.test(id)) {
+    const idx = parseInt(id, 10);
+    const byIdx = story.scenes[idx];
+    if (byIdx && byIdx.path) return { scene: byIdx, index: idx };
+  }
+  for (let i = 0; i < story.scenes.length; i++) {
+    const sc = story.scenes[i];
+    if (!sc || !sc.path) continue;
+    if (sc.path === id || sc.path.indexOf(id) !== -1) {
+      return { scene: sc, index: i };
+    }
+  }
+  return null;
+}
+
 /* ---------- Block parsing ---------- */
 
 function parseChapterHeading(block) {
@@ -188,8 +232,20 @@ function renderParagraph(block, opts) {
  * `opts.dividerClass` and `opts.linkClass` let callers pick their CSS
  * conventions (the on-site reader and the PDF use one set of class names,
  * the EPUB output uses cleaner generic ones).
+ *
+ * If `opts.sceneRenderer(identifier)` is provided, standalone scene tags
+ * (`[[scene:…]]`) are handed off to it. The callback returns either the
+ * HTML to substitute (e.g. an <img>/<figure>) or the empty string to drop
+ * the block entirely. Without a sceneRenderer, scene tags fall through to
+ * regular paragraph rendering (their literal text shows up in output),
+ * which is almost never what you want — pass a sceneRenderer.
  */
 export function renderBodyBlock(block, opts) {
+  const sceneId = extractSceneTagIdentifier(block);
+  if (sceneId && opts && typeof opts.sceneRenderer === "function") {
+    const out = opts.sceneRenderer(sceneId);
+    return out == null ? "" : out;
+  }
   if (isDividerBlock(block)) {
     const cls = opts && opts.dividerClass ? opts.dividerClass : "";
     return cls ? `<hr class="${cls}" />` : "<hr />";
@@ -198,7 +254,10 @@ export function renderBodyBlock(block, opts) {
 }
 
 export function renderBodyBlocks(blocks, opts) {
-  return blocks.map((b) => renderBodyBlock(b, opts)).join("\n");
+  return blocks
+    .map((b) => renderBodyBlock(b, opts))
+    .filter((s) => s !== "")
+    .join("\n");
 }
 
 /**

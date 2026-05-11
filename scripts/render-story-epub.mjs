@@ -17,12 +17,18 @@
  * Usage:
  *   node scripts/render-story-epub.mjs [storyId] [--out=path.epub]
  *                                       [--title="..."] [--no-cover]
+ *                                       [--no-images]
  *
  *   --title=    Override the story's display title (used everywhere the title
  *               appears: dc:title metadata, title page, contents, NCX, and the
  *               default output filename slug).
  *   --no-cover  Build the EPUB without a cover page or cover image. Useful when
  *               KDP / a publisher will supply the cover separately.
+ *   --no-images Strip inline `[[scene:…]]` scene illustrations from the story.
+ *               By default scene tags are resolved against story.scenes and the
+ *               matching image is embedded inline (with caption). Use this flag
+ *               to produce a clean text-only EPUB suitable for distribution
+ *               channels that don't want or can't display the illustrations.
  */
 
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
@@ -44,6 +50,7 @@ import {
   buildChapterPage,
   buildCoverPage,
   buildStylesheet,
+  collectReferencedSceneImages,
   deterministicUuid,
   findStoryCover,
   nowIsoSecond,
@@ -52,7 +59,13 @@ import {
 import { buildZip } from "./lib/zip.mjs";
 
 function parseArgs(argv) {
-  const out = { id: 1, output: null, title: null, noCover: false };
+  const out = {
+    id: 1,
+    output: null,
+    title: null,
+    noCover: false,
+    noImages: false,
+  };
   for (const arg of argv) {
     if (arg.startsWith("--out=")) {
       out.output = arg.slice("--out=".length);
@@ -60,6 +73,8 @@ function parseArgs(argv) {
       out.title = arg.slice("--title=".length);
     } else if (arg === "--no-cover") {
       out.noCover = true;
+    } else if (arg === "--no-images" || arg === "--text-only") {
+      out.noImages = true;
     } else if (/^\d+$/.test(arg)) {
       out.id = Number(arg);
     } else if (!arg.startsWith("--")) {
@@ -150,7 +165,7 @@ function chapterFilename(chapter) {
   return `chapter-${num}.xhtml`;
 }
 
-function buildOpf({ story, chapters, cover, modified }) {
+function buildOpf({ story, chapters, cover, sceneImages, modified }) {
   const uuid = deterministicUuid(`story-${story.id}`);
   const title = escapeHtml(story.title);
   const summary = story.summary ? escapeHtml(story.summary) : "";
@@ -190,6 +205,14 @@ function buildOpf({ story, chapters, cover, modified }) {
       `    <item id="${id}" href="text/${chapterFilename(ch)}" media-type="application/xhtml+xml" />`,
     );
     spineItems.push(`    <itemref idref="${id}" linear="yes" />`);
+  }
+
+  // Inline scene illustrations are manifest-only — they're never their own
+  // spine page; they're embedded via <img> from chapter XHTML.
+  for (const img of sceneImages) {
+    manifestItems.push(
+      `    <item id="${escapeHtml(img.manifestId)}" href="${escapeHtml(img.internalPath)}" media-type="${escapeHtml(img.mime)}" />`,
+    );
   }
 
   manifestItems.push(
@@ -313,13 +336,26 @@ function main() {
   const cover = args.noCover ? null : findStoryCover(story);
   const modified = nowIsoSecond();
 
+  // Decide what to do with [[scene:…]] tags. In "embed" mode we collect the
+  // referenced images now, then thread the resolved-path map through to each
+  // chapter so it can emit the right <img src>. In "strip" mode we just tell
+  // the chapter builder to drop them.
+  const imageMode = args.noImages ? "strip" : "embed";
+  let sceneImages = [];
+  const sceneImageMap = new Map();
+  if (imageMode === "embed") {
+    const allBlocks = chapters.flatMap((ch) => ch.blocks);
+    sceneImages = collectReferencedSceneImages(story, allBlocks);
+    for (const img of sceneImages) sceneImageMap.set(img.index, img);
+  }
+
   const files = [
     // mimetype must be first and stored uncompressed.
     { name: "mimetype", data: "application/epub+zip", store: true },
     { name: "META-INF/container.xml", data: CONTAINER_XML },
     {
       name: "OEBPS/package.opf",
-      data: buildOpf({ story, chapters, cover, modified }),
+      data: buildOpf({ story, chapters, cover, sceneImages, modified }),
     },
     {
       name: "OEBPS/toc.ncx",
@@ -348,6 +384,10 @@ function main() {
     });
   }
 
+  for (const img of sceneImages) {
+    files.push({ name: `OEBPS/${img.internalPath}`, data: img.data });
+  }
+
   for (const ch of chapters) {
     files.push({
       name: `OEBPS/text/${chapterFilename(ch)}`,
@@ -356,6 +396,9 @@ function main() {
         num: ch.index + 1,
         total: chapters.length,
         blocks: ch.blocks,
+        story,
+        imageMode,
+        sceneImageMap,
       }),
     });
   }
@@ -367,8 +410,13 @@ function main() {
 
   const zip = buildZip(files);
   writeFileSync(outPath, zip);
+  const imageNote = sceneImages.length
+    ? `, ${sceneImages.length} inline scene${sceneImages.length === 1 ? "" : "s"}`
+    : imageMode === "strip"
+      ? ", text-only"
+      : "";
   console.log(
-    `Wrote ${outPath} (${(zip.length / 1024).toFixed(1)} KB, ${chapters.length} chapters${cover ? ", with cover" : ""})`,
+    `Wrote ${outPath} (${(zip.length / 1024).toFixed(1)} KB, ${chapters.length} chapters${cover ? ", with cover" : ""}${imageNote})`,
   );
 }
 
