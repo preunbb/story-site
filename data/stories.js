@@ -54,7 +54,7 @@ window.DATA_STORIES = [
   },
   {
     id: 2,
-    wordCount: 7720,
+    wordCount: 7731,
     title: "Castration Anxiety",
     summary:
       "Jeremy's having the weirdest, most painful nightmares. He's desperately hoping his therapist can help him figure things out.",
@@ -1221,7 +1221,7 @@ window.DATA_STORIES = [
   },
   {
     id: 46,
-    wordCount: 12776,
+    wordCount: 12782,
     title: "Melody Seduces a Virgin",
     summary:
       "Melody's castration kink is back in full force, ever since her son lost his balls. She's been craving a chance to explore her awakened urges, and the nervous, virginal Ryan is just the guy to help her.",
