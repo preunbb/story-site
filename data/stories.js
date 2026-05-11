@@ -1,7 +1,7 @@
 window.DATA_STORIES = [
   {
     id: 1,
-    wordCount: 24139,
+    wordCount: 24261,
     title: "Three Strikes",
     summary:
       "A college senior has an unusually blessed anatomy and a very demanding swim coach. She insists on some minor modifications to improve his speed, which he politely declines. She enlists three eager assistants to help change his mind: a Goth, a cheerleader, and an science wiz. Sam does his best to keep all of his blessings safe from the girls, but it's not easy, and all three girls make some very convincing arguments.",
@@ -138,7 +138,7 @@ window.DATA_STORIES = [
   },
   {
     id: 8,
-    wordCount: 5025,
+    wordCount: 5083,
     brutalityRating: 3,
     title: "Club Fight",
     summary:
@@ -238,7 +238,7 @@ window.DATA_STORIES = [
   },
   {
     id: 13,
-    wordCount: 4934,
+    wordCount: 5058,
     brutalityRating: 3,
     title: "Her Proposal",
     summary:
@@ -299,7 +299,7 @@ window.DATA_STORIES = [
   },
   {
     id: 17,
-    wordCount: 3315,
+    wordCount: 3317,
     brutalityRating: 3,
     title: "The Internship",
     summary:
@@ -555,7 +555,7 @@ window.DATA_STORIES = [
   },
   {
     id: 26,
-    wordCount: 10485,
+    wordCount: 10516,
     title: "Busted by the Babysitter",
     brutalityRating: 4,
     summary:
@@ -679,7 +679,7 @@ window.DATA_STORIES = [
   },
   {
     id: 29,
-    wordCount: 1300,
+    wordCount: 1670,
     title: "Legalese",
     brutalityRating: 5,
     summary:
@@ -693,7 +693,7 @@ window.DATA_STORIES = [
   },
   {
     id: 30,
-    wordCount: 6329,
+    wordCount: 6420,
     title: "Postop",
     brutalityRating: 3,
     summary:
@@ -712,10 +712,46 @@ window.DATA_STORIES = [
     subtitle: "Commission for a continuation between two captions.",
     state: 3,
     tags: ["New to Reddit", "Based on other authors' work"],
+    scenes: [
+      {
+        path: "assets/scenes/post_op/scene_wake_up_stirrups_v2_draped.jpg",
+        caption:
+          "Ooh, someone's awake! Your double orchiectomy went just find - we've snipped both healthy testicles out. As your testosterone drains out, you'll find your little dick will shrivel up, you'll become a lot less distracted by pretty women, and concentrating on work will be so much easier. Welcome to your new life, and congratulations on choosing your career over your sex life! Over Easy Technologies would like to thank you for your service and contribution to our bottom dollar. After all, a castrated employee is an efficient employee!",
+      },
+      {
+        path: "assets/scenes/post_op/scene_jar_reveal_v2_softer.jpg",
+        caption:
+          "Yup - those are what you think they are, James. Your testicles. Sitting in a jar in your bosses desk for all of eternity. Disconnected, deadened, and safe from any chance of reproducing.",
+      },
+      {
+        path: "assets/scenes/post_op/scene_video_shoot_facecloseup_v4.jpg",
+        caption:
+          "Come on - show us what you got, James! Try your hardest to make that little guy twitch! The whole company deserves to see exactly what the effects of a castration are. That's perfect! You're so limp even though you're trying SO hard, it's adorable.",
+      },
+      {
+        path: "assets/scenes/post_op/scene_selfie_say_cheese_v1.jpg",
+        caption: "Say cheese, nutless!",
+      },
+      {
+        path: "assets/scenes/post_op/scene_strip_club_realization_v4_dress.jpg",
+        caption:
+          "Ok - it's ok. I mean, your friends already paid. I'm not mad at you. If you can't get it up during a lap dance, it's just your loss. But it's not your fault - I understand you went through a big operation recently, and you don't have quite the pep down there that you used to, right?",
+      },
+      {
+        path: "assets/scenes/post_op/scene_auditorium_screening_v1.jpg",
+        caption:
+          "The whole company is watching you, James! Your face, name, and corporate email blown up on the auditorium wall while you sink into your seat. You're not even trying to hide your shame - you're just trying to get through it as quickly as possible. If anyone had any doubt that you'd lost your balls for real, those are gone now.",
+      },
+      {
+        path: "assets/scenes/post_op/scene_deluge_inbox_v2_softened.jpg",
+        caption:
+          "The chopped balls challenge is incredibly distracting - thousands of videos from would-be sexual partners are flooding your work inbox. You try to stay on top of them but being reminded day in and day out of your empty, useless scrotum is very distracting, and your performance has started to dip again.",
+      },
+    ],
   },
   {
     id: 31,
-    wordCount: 2844,
+    wordCount: 2818,
     title: "Office Management",
     brutalityRating: 5,
     summary:
@@ -800,7 +836,7 @@ window.DATA_STORIES = [
   },
   {
     id: 36,
-    wordCount: 8014,
+    wordCount: 8015,
     title: "Paperwork",
     brutalityRating: 5,
     summary:
@@ -888,7 +924,7 @@ window.DATA_STORIES = [
   },
   {
     id: 40,
-    wordCount: 67264,
+    wordCount: 67340,
     brutalityRating: 5,
     title: "Dragon Slaying Alternative Chapter 13: Kayla",
     summary:
@@ -1150,13 +1186,35 @@ window.DATA_STORIES = [
     brutalityRating: 4,
     tags: ["New to Reddit"],
     releaseDate: "2026-05-11",
+    scenes: [
+      {
+        path: "assets/scenes/melody_seduces_a_virgin/taxi_play_v7_thigh.png",
+        caption:
+          "Ryan is nervous about losing his virginity, while Melody sizes him up like a piece of meat.",
+      },
+      {
+        path: "assets/scenes/melody_seduces_a_virgin/back_kick_v4_aftermath.png",
+        caption:
+          "The pain is too much for Ryan to bear - he can't take it anymore. Melody disagrees.",
+      },
+      {
+        path: "assets/scenes/melody_seduces_a_virgin/ride_squish_v7_xray_overlay.png",
+        caption:
+          "Melody crushes Ryan's last testicle to pulp with the hardest kegel she can give, and has a huge orgasm.",
+      },
+      {
+        path: "assets/scenes/melody_seduces_a_virgin/hospital_visit_v1.png",
+        caption:
+          "The morning after, Ryan lays in the hospital, recovering from his castration. Melody offers him some comfort, and a very generous offer.",
+      },
+    ],
   },
   {
-    id: 43,
+    id: 47,
     fullLengthNovel: true,
     title: "Andrea and Lucas: Part 2",
     brutalityRating: 5,
-    cover: "assets/covers/andrea_and_lucas.png",
+    cover: "assets/covers/andrea_and_lucas_part_2.png",
     summary:
       "Andrea takes Lucas to a Cherry Pop! concert, and shows him what a mush pit is like. Later, she meets his family.",
     state: 1,
@@ -1167,6 +1225,7 @@ window.DATA_STORIES = [
       "tamara",
       "yvette",
       "eve",
+      "joanna",
       "emma",
       "kaitlin",
       "trinn",

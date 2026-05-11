@@ -5,7 +5,7 @@ window.DATA_CHARACTERS = [
     name: "Karen",
     gender: "F",
     testiclesKilled: 3,
-    bio: "Therapist. Highly competent and devoted to her clients.",
+    bio: "Therapist with raven hair, almond eyes, and a wry, knowing smile. Specializes in 'castration anxiety' — and a few even rarer disorders. Devoted to her clients in her own particular way.",
     profilePictures: ["assets/characters/karen.jpg"],
   },
   {
@@ -43,8 +43,8 @@ window.DATA_CHARACTERS = [
     id: "jeremy",
     name: "Jeremy",
     gender: "M",
-    bio: "Mid-twenties. Plagued by vivid, painful nightmares. Hoping his therapist can help.",
-    profilePictures: [],
+    bio: "Mid-twenties, recently divorced, perpetually anxious and perpetually horny. Plagued by vivid castration nightmares and hoping his therapist can help him out of them.",
+    profilePictures: ["assets/characters/jeremy.jpg"],
   },
   {
     id: "britt",
@@ -616,6 +616,13 @@ window.DATA_CHARACTERS = [
     gender: "F",
     bio: "Lucas' stepmom. Devout member of the Church of the Broken Tree.",
     profilePictures: ["assets/characters/eve.png"],
+  },
+  {
+    id: "joanna",
+    name: "Joanna",
+    gender: "F",
+    bio: "Lucas' stepsister. Eve's daughter and a devout young initiate of the Church of the Broken Tree. Pretty, prim, and chillingly certain that her stepbrother's body is not his own to keep.",
+    profilePictures: ["assets/characters/joanna.png"],
   },
   {
     id: "trinn",

@@ -481,7 +481,11 @@
   function renderScenesPanel() {
     var root = byId("scenes-list");
     if (!root) return;
-    var withScenes = stories.filter(storyHasScenes).sort(compareStories);
+    var withScenes = stories.filter(storyHasScenes).sort(function (a, b) {
+      return (a.title || "").localeCompare(b.title || "", undefined, {
+        sensitivity: "base",
+      });
+    });
     root.innerHTML = "";
     if (!withScenes.length) {
       root.innerHTML =
@@ -690,44 +694,61 @@
     setSceneLightboxOpen(true);
   }
 
+  /**
+   * Parse the `data-story-id` / `data-scene-index` pair off a zoomable
+   * scene figure. Returns `null` if either is missing/invalid so the caller
+   * can no-op cleanly.
+   */
+  function sceneFigureTarget(fig) {
+    if (!fig) return null;
+    var img = fig.querySelector && fig.querySelector(".scene-img");
+    if (!img || !img.getAttribute("src")) return null;
+    var sid = fig.getAttribute("data-story-id");
+    var idxRaw = fig.getAttribute("data-scene-index");
+    if (sid == null || idxRaw == null) return null;
+    var idx = parseInt(idxRaw, 10);
+    if (isNaN(idx)) return null;
+    return { sid: sid, idx: idx };
+  }
+
+  /**
+   * Wire up click + keyboard activation for `.scene-figure--zoomable` inside
+   * any container. Idempotent — calling it twice on the same root is a
+   * no-op. Used both for the scenes accordion (#scenes-list) and for inline
+   * `[[scene:…]]` figures rendered inside the story reader article.
+   */
+  function bindSceneFigureZoom(root) {
+    if (!root || root._sceneZoomBound) return;
+    root._sceneZoomBound = true;
+    root.addEventListener("click", function (e) {
+      var fig =
+        e.target &&
+        e.target.closest &&
+        e.target.closest(".scene-figure--zoomable");
+      if (!fig || !root.contains(fig)) return;
+      var t = sceneFigureTarget(fig);
+      if (!t) return;
+      openSceneLightboxForStory(t.sid, t.idx);
+    });
+    root.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      var fig =
+        e.target &&
+        e.target.closest &&
+        e.target.closest(".scene-figure--zoomable");
+      if (!fig || !root.contains(fig) || fig !== e.target) return;
+      var t = sceneFigureTarget(fig);
+      if (!t) return;
+      e.preventDefault();
+      openSceneLightboxForStory(t.sid, t.idx);
+    });
+  }
+
   function initSceneLightbox() {
     if (!sceneLightbox || sceneLightbox._sceneLightboxBound) return;
     sceneLightbox._sceneLightboxBound = true;
-    var scenesRoot = byId("scenes-list");
-    if (scenesRoot) {
-      scenesRoot.addEventListener("click", function (e) {
-        var fig =
-          e.target &&
-          e.target.closest &&
-          e.target.closest(".scene-figure--zoomable");
-        if (!fig || !scenesRoot.contains(fig)) return;
-        var img = fig.querySelector(".scene-img");
-        if (!img || !img.getAttribute("src")) return;
-        var sid = fig.getAttribute("data-story-id");
-        var idxRaw = fig.getAttribute("data-scene-index");
-        if (sid == null || idxRaw == null) return;
-        var idx = parseInt(idxRaw, 10);
-        if (isNaN(idx)) return;
-        openSceneLightboxForStory(sid, idx);
-      });
-      scenesRoot.addEventListener("keydown", function (e) {
-        if (e.key !== "Enter" && e.key !== " ") return;
-        var fig =
-          e.target &&
-          e.target.closest &&
-          e.target.closest(".scene-figure--zoomable");
-        if (!fig || !scenesRoot.contains(fig) || fig !== e.target) return;
-        e.preventDefault();
-        var img = fig.querySelector(".scene-img");
-        if (!img || !img.getAttribute("src")) return;
-        var sid = fig.getAttribute("data-story-id");
-        var idxRaw = fig.getAttribute("data-scene-index");
-        if (sid == null || idxRaw == null) return;
-        var idx = parseInt(idxRaw, 10);
-        if (isNaN(idx)) return;
-        openSceneLightboxForStory(sid, idx);
-      });
-    }
+    bindSceneFigureZoom(byId("scenes-list"));
+    bindSceneFigureZoom(byId("story-reader-article"));
     sceneLightbox.addEventListener("click", closeSceneLightbox);
     if (sceneLightboxPanel) {
       sceneLightboxPanel.addEventListener("click", function (e) {
@@ -1173,7 +1194,72 @@
     return s;
   }
 
-  function storyMarkdownToSafeHtml(markdown) {
+  /**
+   * Match an inline scene tag (`[[scene:identifier]]`) standing alone as its
+   * own paragraph. Whitespace inside the brackets is permitted so users can
+   * type `[[ scene : 0 ]]` and still get a hit.
+   */
+  var SCENE_TAG_BLOCK_RE = /^\[\[\s*scene\s*:\s*([^\]]+?)\s*\]\]$/i;
+
+  /**
+   * Resolves a `[[scene:identifier]]` identifier against `story.scenes`.
+   * `identifier` is either a numeric index (0-based) or a substring of a
+   * scene's `path`. Returns `{ scene, index }` on a hit, or `null` if no
+   * scene matches (and the renderer should emit a visible placeholder).
+   */
+  function findStorySceneByIdentifier(story, identifier) {
+    if (!story || !Array.isArray(story.scenes)) return null;
+    var id = String(identifier == null ? "" : identifier).trim();
+    if (!id) return null;
+    if (/^\d+$/.test(id)) {
+      var idx = parseInt(id, 10);
+      var byIdx = story.scenes[idx];
+      if (byIdx && byIdx.path) return { scene: byIdx, index: idx };
+    }
+    for (var i = 0; i < story.scenes.length; i++) {
+      var sc = story.scenes[i];
+      if (!sc || !sc.path) continue;
+      if (sc.path === id || sc.path.indexOf(id) !== -1) {
+        return { scene: sc, index: i };
+      }
+    }
+    return null;
+  }
+
+  function readerSceneFigureHtml(story, identifier) {
+    var match = findStorySceneByIdentifier(story, identifier);
+    if (!match) {
+      return (
+        '<p class="story-reader-scene-missing">[missing scene: ' +
+        escapeHtml(identifier) +
+        "]</p>"
+      );
+    }
+    var sc = match.scene;
+    var captionHtml = sc.caption
+      ? '<figcaption class="scene-caption">' +
+        escapeHtml(sc.caption) +
+        "</figcaption>"
+      : "";
+    return (
+      '<figure class="scene-figure scene-figure--zoomable story-reader-scene"' +
+      ' tabindex="0" title="Click to enlarge"' +
+      ' data-story-id="' +
+      escapeHtml(String(story.id)) +
+      '" data-scene-index="' +
+      match.index +
+      '">' +
+      '<img src="' +
+      escapeHtml(sc.path) +
+      '" alt="' +
+      escapeHtml(sc.caption || story.title || "Scene") +
+      '" class="scene-img" loading="lazy">' +
+      captionHtml +
+      "</figure>"
+    );
+  }
+
+  function storyMarkdownToSafeHtml(markdown, story) {
     var blocks = markdown.split(/\n\n+/);
     var html = [];
     var chapterIndex = 0;
@@ -1199,6 +1285,11 @@
     for (b = 0; b < blocks.length; b++) {
       var block = blocks[b].trim();
       if (!block) continue;
+      var sceneMatch = block.match(SCENE_TAG_BLOCK_RE);
+      if (sceneMatch) {
+        html.push(readerSceneFigureHtml(story, sceneMatch[1]));
+        continue;
+      }
       if (block.indexOf("### ") === 0) {
         html.push(chapterHeading(3, block.slice(4).trim()));
       } else if (block.indexOf("## ") === 0) {
@@ -1418,7 +1509,8 @@
             placeholder: PLACEHOLDER_COVER,
           }) +
           "</div>";
-        storyReaderArticle.innerHTML = coverHtml + storyMarkdownToSafeHtml(text);
+        storyReaderArticle.innerHTML =
+          coverHtml + storyMarkdownToSafeHtml(text, story);
         setupStoryReaderChapters();
       })
       .catch(function (err) {

@@ -1314,6 +1314,32 @@ body.scene-lightbox-open {
   color: var(--ink);
 }
 
+.story-reader-article .story-reader-scene {
+  margin: 2rem auto;
+  max-width: 100%;
+}
+
+.story-reader-article .story-reader-scene .scene-img {
+  border-radius: 0.5rem;
+}
+
+.story-reader-article .story-reader-scene .scene-caption {
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+.story-reader-scene-missing {
+  margin: 1.5rem 0;
+  padding: 0.6rem 0.9rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  background: rgba(255, 80, 80, 0.08);
+  color: var(--red-bright);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
 .story-reader-error {
   max-width: 40rem;
   margin: 2rem auto 0;
