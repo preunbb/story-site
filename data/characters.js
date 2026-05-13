@@ -60,7 +60,7 @@ window.DATA_CHARACTERS = [
     gender: "F",
     testiclesKilled: 8,
     bio: "Buxom blonde. Confident, with a sadistic streak. Loves the spotlight and calls dibs on what she wants.",
-    profilePictures: ["assets/characters/emma.jpg"],
+    profilePictures: ["assets/characters/emma_profile_cast_baseline_v2.png"],
   },
   {
     id: "vivian",
@@ -302,7 +302,7 @@ window.DATA_CHARACTERS = [
     name: "Daniel",
     gender: "M",
     bio: "Vanessa's fiancé. Boxer. She tells him one fight in the arena will earn him her hand in marriage.",
-    profilePictures: [],
+    profilePictures: ["assets/characters/daniel.jpg"],
   },
   {
     id: "nikita",

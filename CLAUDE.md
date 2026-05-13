@@ -53,6 +53,16 @@ Lean into:
 - Real-looking interiors: visible clutter, scuffed paint, worn upholstery, lived-in lighting (warm lamps, cool window light, harsh fluorescent, etc.) that matches the scene's setting and time of day.
 - Believable expressions and posture — anatomy that holds up under scrutiny, including hands, feet, and the genitals when they're in frame.
 
+### Remote generation (default — use this)
+
+**Always generate new images with Cursor’s built-in remote image generation** (the default image tool in Composer / agent workflows — the same defaults you use elsewhere in Cursor). Agents must **never** use the repo’s local SD stack (`tools/local-image-gen/`, `127.0.0.1:8787`, `run.sh`, `curl` to local endpoints, CLI wrappers, etc.). **Unless** the user has explicitly said local image generation is set up **and** has asked you to use it for that task, assume it is unavailable and rely on remote generation only.
+
+Save outputs straight into `assets/scenes/<story_slug>/` or `assets/characters/` using **new versioned filenames**; follow the versioning and no-overwrite rules above.
+
+### Local Stable Diffusion (repo only — humans may set up later)
+
+Optional self-hosted stack under **`tools/local-image-gen/`**. **Agents must ignore it entirely** unless the user explicitly opts in for a given session after confirming it runs locally. Maintainer docs: **`tools/local-image-gen/README.md`**.
+
 ### Character continuity: match the cast portrait
 
 Every recurring character has a profile portrait in `assets/characters/<id>.{jpg,png}` (referenced from `data/characters.js`). When you generate any new image — cover, scene, alternate version — of a character who already has a portrait, the person you draw **must match that portrait**. Treat the portrait as the canonical reference for that character's:

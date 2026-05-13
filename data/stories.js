@@ -152,6 +152,43 @@ window.DATA_STORIES = [
     state: 3,
     tags: ["Series: The Ballbusting Arena"],
     brutalityRating: 5,
+    scenes: [
+      {
+        path: "assets/scenes/arena_1/scene_britt_debut_knee_v4_art_tableau.jpg",
+        caption:
+          "Britt’s innocent flirt snaps shut — her debut knee drives home against Dan while he’s still too hypnotized to guard.",
+      },
+      {
+        path: "assets/scenes/arena_1/scene_dan_reeling_team_pause_v1.jpg",
+        caption:
+          "Dan wrecked on the mat — Sofia looming while Britt leans in close, deciding how merciful the night’s going to be.",
+      },
+      {
+        path: "assets/scenes/arena_1/scene_pole_charge_four_carry_v2.jpg",
+        caption:
+          "The pole routine — Emma, Sofia, Vivian, and Britt haul Paul into momentum, crowd roaring as steel waits dead ahead.",
+      },
+      {
+        path: "assets/scenes/arena_1/scene_britt_finishing_strike_v3.jpg",
+        caption:
+          "Dan’s cheap shot earns him nothing — Britt finishes his last nut under the lights while the crowd loses its mind.",
+      },
+      {
+        path: "assets/scenes/arena_1/scene_britt_flirt_before_strike_v1_portrait.jpg",
+        caption:
+          "Innocent smile and hands on her shoulders—seconds before the debut knee; his face already knows.",
+      },
+      {
+        path: "assets/scenes/arena_1/scene_britt_clinch_knee_pads_metaphor_v1.jpg",
+        caption:
+          "Padded-gym parallel to the arena clinch: the same upward knee rhythm, filmed as safe sports photography.",
+      },
+      {
+        path: "assets/scenes/arena_1/scene_arena_first_pop_plum_allegory_v1.jpg",
+        caption:
+          "Allegory: one soft thing bursts under her heel like the first testicle under Sofia’s knee—Britt watches the spray.",
+      },
+    ],
   },
   {
     id: 6,
@@ -299,7 +336,7 @@ window.DATA_STORIES = [
   },
   {
     id: 14,
-    wordCount: 6147,
+    wordCount: 6153,
     title: "The Ballbusting Arena 3: Retired",
     summary:
       "Fiona takes Brad to her old arena for a VIP night. Club rules apply; they watch Sofia and Amy in the ring. Published on Amazon as part of a collection.",
@@ -311,6 +348,38 @@ window.DATA_STORIES = [
     characterIds: ["fiona", "brad", "sofia", "amy", "wesley"],
     state: 3,
     tags: ["Series: The Ballbusting Arena"],
+    scenes: [
+      {
+        path: "assets/scenes/arena_3/sofia_uppercut_opening_v1.jpg",
+        caption:
+          "Sofia drops to her knees and drives an uppercut between her opponent's legs—first fluff, then fight.",
+      },
+      {
+        path: "assets/scenes/arena_3/sofia_first_pop_collapse_v1.jpg",
+        caption:
+          "First pop of the night: her arm sinks in deep, the skinny fighter folds, and the crowd roars.",
+      },
+      {
+        path: "assets/scenes/arena_3/amy_wesley_denial_thumb_crunch_v1.jpg",
+        caption:
+          "Amy strokes him to the edge, then buries her thumbs—denied release turns to white-hot nut pain.",
+      },
+      {
+        path: "assets/scenes/arena_3/parallel_kicks_amy_fiona_v1.jpg",
+        caption:
+          "The same beat in two places: Amy's foot drives Wesley's nuts to his pelvis as, overhead, Fiona mirrors the technique on Brad.",
+      },
+      {
+        path: "assets/scenes/arena_3/wesley_rope_garrote_sendoff_v1.jpg",
+        caption:
+          "Amy loops the ring rope around his last cord, strokes him toward a finale the audience demands, then pulls.",
+      },
+      {
+        path: "assets/scenes/arena_3/fiona_brad_last_nut_splut_v1.jpg",
+        caption:
+          "\"The eunuchs never tell on us\"—Fiona's grip tightens on what's left of Brad while the show goes on below.",
+      },
+    ],
   },
   {
     id: 15,
@@ -325,12 +394,39 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vR7Gp9vmryuAt6xjGtyu4gtdF7LfwnMLxRaVJ59bgU3MCcC1c4rG-515FzV-2D6bJShjjMA56kiB5Lw/pub",
     characterIds: ["sofia", "daniel", "vanessa"],
+    scenes: [
+      {
+        path: "assets/scenes/arena_2_sofias_choice/arena2_opening_knees_v2_athletic.png",
+        caption:
+          "Sofia folds his defense—after the first solid shot between the legs, the rapid knees turn his legs to jelly and the arena noise fades to static.",
+      },
+      {
+        path: "assets/scenes/arena_2_sofias_choice/arena2_taunt_whisper_v2_faces.png",
+        caption:
+          "Death-grip intimacy: she holds him like a lover while she maps his breaking point with her hand, tears on his face and ice in her eyes.",
+      },
+      {
+        path: "assets/scenes/arena_2_sofias_choice/arena2_victory_standing_v3.png",
+        caption:
+          "The crowd gets their spectacle: Sofia on her feet, flushed and satisfied, Daniel wrecked on the canvas—still conscious enough to know what's left.",
+      },
+      {
+        path: "assets/scenes/arena_2_sofias_choice/arena2_heel_finisher_v1.png",
+        caption:
+          "One last stomp under the lights—no mercy in the silhouette, just the Ice Queen proving she can be theatrical when she wants to.",
+      },
+      {
+        path: "assets/scenes/arena_2_sofias_choice/arena2_vanessa_bleachers_v1.png",
+        caption:
+          "While Daniel goes under on the mat, Vanessa already has her evening framed the way she likes it—crowd, spotlight, and a new plus-one in the cheap seats.",
+      },
+    ],
     state: 3,
     tags: ["Series: The Ballbusting Arena"],
   },
   {
     id: 16,
-    wordCount: 4336,
+    wordCount: 4342,
     brutalityRating: 4,
     title: "The Ballbusting Arena 4: Last Minute",
     summary:
@@ -340,7 +436,39 @@ window.DATA_STORIES = [
       "https://www.amazon.com/More-Tales-Ballbusting-Arena-Sofias-ebook",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vQElbm2mgIE8cMQBYsl6w7dHU8J2ff2dr26g35LDwdZF5eeWDvBMNL0B4ZYOcDRyE6_Ij9FMEDDHlPj/pub",
-    characterIds: [],
+    characterIds: ["brian", "vanessa", "sofia"],
+    scenes: [
+      {
+        path: "assets/scenes/arena_4/brian_hypnotized_by_ring_v3.png",
+        caption:
+          "Brian can’t look away — terror and arousal braided together as the card rolls on.",
+      },
+      {
+        path: "assets/scenes/arena_4/sofia_stomp_action_v2_silhouette.png",
+        caption:
+          "The replay in his head: Sofia’s heel, the wet splat only he hears in imagination.",
+      },
+      {
+        path: "assets/scenes/arena_4/vanessa_stopwatch_beside_seat_v4.png",
+        caption:
+          "Two minutes — and Vanessa’s grin says the stakes are arena-real, not pillow talk.",
+      },
+      {
+        path: "assets/scenes/arena_4/sofia_victory_foot_press_v4.png",
+        caption:
+          "The fight on the mat keeps playing out while she explains how toys get played with here.",
+      },
+      {
+        path: "assets/scenes/arena_4/brian_doubled_agony_stand_v2.png",
+        caption:
+          "He takes himself to the brink the only way he knows: thumbs where she showed him.",
+      },
+      {
+        path: "assets/scenes/arena_4/vanessa_brian_aftermath_embrace_v3.png",
+        caption:
+          "After the timers and knees, tenderness with teeth — sidepiece learns what she did to her ex.",
+      },
+    ],
     state: 3,
     tags: ["Series: The Ballbusting Arena"],
   },
@@ -1291,9 +1419,20 @@ window.DATA_STORIES = [
     ],
     scenes: [
       {
+        path: "assets/scenes/andrea_and_lucas/ch10_cherry_pop_bar_standing_tether_stunning_bartender_remote_v7.png",
+        caption:
+          "Lucas tries to order a drink for Andrea, but he can't seem to get the simple order out. She helps him remember with a boot to the groin every time he messes up.",
+      },
+      {
         path: "assets/scenes/andrea_and_lucas/good/yvette_operates_on_sunni.png",
         caption:
           "Sunni insists his injuries aren't that bad, but Dr. Yvette knows better: she's definitely going to have to remove both of his testicles. In the background, Felix futilely begs her to give him the tiniest amount of basic medical attention so he can remain a man.",
+      },
+
+      {
+        path: "assets/scenes/andrea_and_lucas/ch10_emma_confront_lucas_andrea_shocked_remote_v2.png",
+        caption:
+          "Oops! Emma doesn't see Andrea's cuff on Lucas, and mistakenly thinks it's open season on his nuts like every other unowned guy at the concert. Andrea doesn't take the violation lightly - nobody bruises her nerd's balls but her.",
       },
       {
         path: "assets/scenes/andrea_and_lucas/good/tamara_and_melody_medical_tent.png",
@@ -1301,9 +1440,25 @@ window.DATA_STORIES = [
           "Melody encourages Tamara to give in to her darker urges while operating on Melody's current boytoy.",
       },
       {
+        path: "assets/scenes/andrea_and_lucas/STOMP.png",
+        caption:
+          "Andrea and Fiora compete to find out whose boy had stronger testicles.",
+      },
+      {
         path: "assets/scenes/andrea_and_lucas/good/tamara_aftermath_final.png",
         caption:
           "Tamara, in the aftermath of the Cherry Pop! concert, deals with the insanely erotic clusterfuck that was the onsite medical tent, and the dozens of unnecessarily severed organs Yvette left lying around.",
+      },
+
+      {
+        path: "assets/scenes/andrea_and_lucas/ch12_pre_intimacy_straps_ambiguous_v2.png",
+        caption:
+          "At Andrea's place after the concert, Lucas discovers what Sunday morning prayers really means.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/ch12_end_under_sheets_joint_v3.png",
+        caption:
+          "Freshly fucked and feeling especially safe with his Goddess of a girlfriend, Lucas finally opens up about his past.",
       },
     ],
   },
@@ -1317,5 +1472,25 @@ window.DATA_STORIES = [
     state: 1,
     characterIds: ["zennia", "cathy", "olivia"],
     tags: ["New to Reddit"],
+  },
+  {
+    id: 49,
+    wordCount: 2305,
+    title: "Nash Equilibrium — Part Two: Dominant Strategy",
+    brutalityRating: 5,
+    summary:
+      "Direct sequel: after the Prisoner's Dilemma experiment, Cathy keeps one triplet intact for phase two — telemetry, ruined orgasms, and the waiver he already signed.",
+    subtitle: "Sequel to Nash Equilibrium (site original).",
+    cover: "assets/scenes/nash_equilibrium/nash_equilibrium_part2_cover_v1.png",
+    characterIds: ["cathy"],
+    state: 3,
+    tags: ["New to Reddit"],
+    scenes: [
+      {
+        path: "assets/scenes/nash_equilibrium/nash_equilibrium_part2_cover_v1.png",
+        caption:
+          "Phase two — Cathy runs carry-through telemetry in the lab while the last intact subject pays for the dataset.",
+      },
+    ],
   },
 ];

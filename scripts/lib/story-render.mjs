@@ -253,6 +253,22 @@ export function renderBodyBlock(block, opts) {
   return renderParagraph(block, opts);
 }
 
+/**
+ * Like `renderBodyBlock`, but if `block` is an ATX heading (`#` … `###`), emit
+ * `<h2>` / `<h3>` instead of a paragraph. Used when converting extracted
+ * chapter body blocks to standalone HTML (e.g. Reddit-section exports for
+ * Google Docs) where sub-headings inside a chapter are still plain blocks.
+ */
+export function renderFlowBlock(block, opts) {
+  const heading = parseChapterHeading(block);
+  if (heading) {
+    const tag = heading.level === 2 ? "h2" : "h3";
+    const inner = readerFormatEscapedInline(escapeHtml(heading.title), opts);
+    return `<${tag}>${inner}</${tag}>`;
+  }
+  return renderBodyBlock(block, opts);
+}
+
 export function renderBodyBlocks(blocks, opts) {
   return blocks
     .map((b) => renderBodyBlock(b, opts))

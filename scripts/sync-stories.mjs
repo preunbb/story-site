@@ -237,6 +237,13 @@ function extractBodyHtml(html) {
 function postProcessMarkdown(md) {
   return (
     md
+      // Published Docs HTML sometimes merges a scene tag paragraph with the next
+      // line into one markdown line, so `storyMarkdownToSafeHtml` never sees a
+      // block that is only `[[scene:…]]`. Split when glued: `[[scene:x]] Next…`
+      .replace(/^(\[\[scene:[^\]]+\]\]) +(\S.*)$/gm, "$1\n\n$2")
+      // Docs emphasis can wrap the scene tag in `*…*`; strip that so it matches
+      // SCENE_TAG_BLOCK_RE.
+      .replace(/^\*\[\[scene:([^\]]+)\]\]\*$/gm, "[[scene:$1]]")
       // Collapse 3+ blank lines into 2.
       .replace(/\n{3,}/g, "\n\n")
       // Trim trailing whitespace per line (turndown sometimes leaves "  ").
