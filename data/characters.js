@@ -60,7 +60,7 @@ window.DATA_CHARACTERS = [
     gender: "F",
     testiclesKilled: 8,
     bio: "Buxom blonde. Confident, with a sadistic streak. Loves the spotlight and calls dibs on what she wants.",
-    profilePictures: ["assets/characters/emma_profile_cast_baseline_v2.png"],
+    profilePictures: ["assets/characters/emma_profile_cast_baseline_v1.png"],
   },
   {
     id: "vivian",

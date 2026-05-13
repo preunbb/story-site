@@ -22,6 +22,7 @@ import {
   extractSceneTagIdentifier,
   findStorySceneByIdentifier,
   repoRoot,
+  storyHidesScenes,
 } from "./story-render.mjs";
 
 /* ---------- Constants ---------- */
@@ -195,6 +196,7 @@ function safeImageBasename(p) {
  * (e.g. `s030-`) so two stories with the same scene index don't collide.
  */
 export function collectReferencedSceneImages(story, blocks, opts = {}) {
+  if (storyHidesScenes(story)) return [];
   const prefix = opts.prefix || "";
   const result = [];
   const seen = new Set();
@@ -247,6 +249,7 @@ export function collectReferencedSceneImages(story, blocks, opts = {}) {
  */
 export function makeEpubSceneRenderer({ story, imageMode, sceneImageMap }) {
   return function sceneRenderer(identifier) {
+    if (storyHidesScenes(story)) return "";
     if (imageMode !== "embed") return "";
     if (!sceneImageMap) return "";
     const match = findStorySceneByIdentifier(story, identifier);

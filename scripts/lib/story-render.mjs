@@ -172,6 +172,11 @@ export function extractSceneTagIdentifier(block) {
  * scene's `path`. Returns `{ scene, index }` on a hit, or `null` if no
  * scene matches. Mirrors findStorySceneByIdentifier in script.js.
  */
+/** When true, scene figures are omitted on the site and in EPUB image embeds. */
+export function storyHidesScenes(story) {
+  return story != null && story.hideScenes === true;
+}
+
 export function findStorySceneByIdentifier(story, identifier) {
   if (!story || !Array.isArray(story.scenes)) return null;
   const id = String(identifier == null ? "" : identifier).trim();

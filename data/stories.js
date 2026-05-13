@@ -152,6 +152,7 @@ window.DATA_STORIES = [
     state: 3,
     tags: ["Series: The Ballbusting Arena"],
     brutalityRating: 5,
+    hideScenes: true,
     scenes: [
       {
         path: "assets/scenes/arena_1/scene_britt_debut_knee_v4_art_tableau.jpg",
@@ -289,6 +290,7 @@ window.DATA_STORIES = [
     characterIds: ["brian", "emma", "vivian", "natalie", "vanessa", "david"],
     state: 3,
     tags: ["Series: The Ballbusting Arena"],
+    hideScenes: true,
   },
   {
     id: 11,
@@ -348,34 +350,35 @@ window.DATA_STORIES = [
     characterIds: ["fiona", "brad", "sofia", "amy", "wesley"],
     state: 3,
     tags: ["Series: The Ballbusting Arena"],
+    hideScenes: true,
     scenes: [
       {
-        path: "assets/scenes/arena_3/sofia_uppercut_opening_v1.jpg",
+        path: "assets/scenes/arena_3/sofia_uppercut_opening_v2.jpg",
         caption:
           "Sofia drops to her knees and drives an uppercut between her opponent's legs—first fluff, then fight.",
       },
       {
-        path: "assets/scenes/arena_3/sofia_first_pop_collapse_v1.jpg",
+        path: "assets/scenes/arena_3/sofia_first_pop_collapse_v2.jpg",
         caption:
           "First pop of the night: her arm sinks in deep, the skinny fighter folds, and the crowd roars.",
       },
       {
-        path: "assets/scenes/arena_3/amy_wesley_denial_thumb_crunch_v1.jpg",
+        path: "assets/scenes/arena_3/amy_wesley_denial_thumb_crunch_v2.jpg",
         caption:
           "Amy strokes him to the edge, then buries her thumbs—denied release turns to white-hot nut pain.",
       },
       {
-        path: "assets/scenes/arena_3/parallel_kicks_amy_fiona_v1.jpg",
+        path: "assets/scenes/arena_3/parallel_kicks_amy_fiona_v2.jpg",
         caption:
           "The same beat in two places: Amy's foot drives Wesley's nuts to his pelvis as, overhead, Fiona mirrors the technique on Brad.",
       },
       {
-        path: "assets/scenes/arena_3/wesley_rope_garrote_sendoff_v1.jpg",
+        path: "assets/scenes/arena_3/wesley_rope_garrote_sendoff_v2.jpg",
         caption:
           "Amy loops the ring rope around his last cord, strokes him toward a finale the audience demands, then pulls.",
       },
       {
-        path: "assets/scenes/arena_3/fiona_brad_last_nut_splut_v1.jpg",
+        path: "assets/scenes/arena_3/fiona_brad_last_nut_splut_v2.jpg",
         caption:
           "\"The eunuchs never tell on us\"—Fiona's grip tightens on what's left of Brad while the show goes on below.",
       },
@@ -394,6 +397,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vR7Gp9vmryuAt6xjGtyu4gtdF7LfwnMLxRaVJ59bgU3MCcC1c4rG-515FzV-2D6bJShjjMA56kiB5Lw/pub",
     characterIds: ["sofia", "daniel", "vanessa"],
+    hideScenes: true,
     scenes: [
       {
         path: "assets/scenes/arena_2_sofias_choice/arena2_opening_knees_v2_athletic.png",
@@ -437,6 +441,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vQElbm2mgIE8cMQBYsl6w7dHU8J2ff2dr26g35LDwdZF5eeWDvBMNL0B4ZYOcDRyE6_Ij9FMEDDHlPj/pub",
     characterIds: ["brian", "vanessa", "sofia"],
+    hideScenes: true,
     scenes: [
       {
         path: "assets/scenes/arena_4/brian_hypnotized_by_ring_v3.png",
@@ -524,6 +529,7 @@ window.DATA_STORIES = [
     characterIds: ["atheras", "salei"],
     state: 3,
     tags: ["New to Reddit"],
+    hideScenes: true,
     scenes: [
       {
         path: "assets/scenes/the_amazons_fruits/01_knee_crushes_codpiece.jpg",
@@ -1291,6 +1297,11 @@ window.DATA_STORIES = [
           "Now, it's time to show off the Ball Killers™! As fashionable as they are functional, these devious little heals will keep you sexy on the dance floor and safe anywhere there's a dangerous man around, as long as you don't mind cleaning bits of nutmeat off them when you're finished.",
       },
       {
+        path: "assets/scenes/andrea_and_lucas/good/izzie_eunuchcorn_jeans_skit_bridget_punt_shop_remote_v10.png",
+        caption:
+          "Bridget demos a jeans-store punt for the cameras while Andrea's sterilized ex sobs into a pair of Nate the Great branded denim—and Izzie's already grinning like the verdict is final.",
+      },
+      {
         path: "assets/scenes/andrea_and_lucas/good/izzie_eunuchcorn_jeans_skit_v1.png",
         caption:
           "Izzie visits Andrea's eunuch ex-boyfriend at the jeans store and teases him about the permanent, irreversible injury she inflicted for the sake of content.",
@@ -1393,6 +1404,8 @@ window.DATA_STORIES = [
     summary:
       "Andrea takes Lucas to a Cherry Pop! concert, and shows him what a mush pit is like. Later, she meets his family.",
     state: 1,
+    hideScenes: true,
+
     characterIds: [
       "andrea",
       "lucas",

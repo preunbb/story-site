@@ -475,7 +475,11 @@
   }
 
   function storyHasScenes(s) {
-    return Array.isArray(s.scenes) && s.scenes.length > 0;
+    return (
+      s.hideScenes !== true &&
+      Array.isArray(s.scenes) &&
+      s.scenes.length > 0
+    );
   }
 
   function renderScenesPanel() {
@@ -614,7 +618,8 @@
 
   function sceneSlidesForStory(story) {
     var out = [];
-    if (!story || !Array.isArray(story.scenes)) return out;
+    if (!story || story.hideScenes === true || !Array.isArray(story.scenes))
+      return out;
     story.scenes.forEach(function (sc) {
       if (!sc || !sc.path) return;
       var cap = sc.caption != null ? String(sc.caption).trim() : "";
@@ -1281,7 +1286,9 @@
       if (!block) continue;
       var sceneMatch = block.match(SCENE_TAG_BLOCK_RE);
       if (sceneMatch) {
-        html.push(readerSceneFigureHtml(story, sceneMatch[1]));
+        if (story.hideScenes !== true) {
+          html.push(readerSceneFigureHtml(story, sceneMatch[1]));
+        }
         continue;
       }
       if (block.indexOf("### ") === 0) {

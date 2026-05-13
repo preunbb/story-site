@@ -17,8 +17,10 @@ import {
 import { fileURLToPath } from "node:url";
 import { dirname, join, resolve } from "node:path";
 import { createContext, Script } from "node:vm";
-import * as cheerio from "cheerio";
-import TurndownService from "turndown";
+import {
+  makeTurndown,
+  fetchMarkdownFromPublishUrl,
+} from "./lib/published-doc-markdown.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -69,187 +71,6 @@ function loadStories() {
     throw new Error("data/stories.js did not populate window.DATA_STORIES");
   }
   return stories;
-}
-
-function makeTurndown() {
-  const td = new TurndownService({
-    headingStyle: "atx",
-    bulletListMarker: "-",
-    emDelimiter: "*",
-    strongDelimiter: "**",
-    hr: "---",
-    codeBlockStyle: "fenced",
-    linkStyle: "inlined",
-  });
-  // Drop images: stories shouldn't include any, and we don't want broken refs.
-  td.addRule("dropImages", { filter: "img", replacement: () => "" });
-  // Disable turndown's aggressive backslash-escaping. The site's renderer in
-  // script.js is conservative (emphasis only with whitespace flanks; headings
-  // only at block start) so leaving underscores/asterisks/hyphens unescaped is
-  // safe and avoids visible "\_" / "\-" leaking into prose like email
-  // addresses and divider rows.
-  td.escape = (s) => s;
-  return td;
-}
-
-/**
- * Builds a map of CSS-class → {italic,bold} from every <style> block in the
- * document. Google Docs encodes inline emphasis as `<span class="cN">…</span>`
- * where `cN` is defined in a <style> block as `font-style:italic` and/or
- * `font-weight:bold` (or numeric ≥600). Without this, turndown can't see the
- * formatting and italics/bolds get silently lost during conversion.
- */
-function parseStyleClassFormatting($) {
-  const map = new Map();
-  const ruleRe = /\.([a-zA-Z0-9_-]+)\s*\{([^}]+)\}/g;
-  $("style").each((_, el) => {
-    const css = $(el).contents().text();
-    let m;
-    while ((m = ruleRe.exec(css))) {
-      const name = m[1];
-      const decl = m[2];
-      const flags = map.get(name) || { italic: false, bold: false };
-      if (/font-style\s*:\s*italic/i.test(decl)) flags.italic = true;
-      if (/font-weight\s*:\s*(?:bold|bolder|[6-9]00)\b/i.test(decl)) {
-        flags.bold = true;
-      }
-      map.set(name, flags);
-    }
-    ruleRe.lastIndex = 0;
-  });
-  return map;
-}
-
-function inlineStyleFormatting(styleAttr) {
-  if (!styleAttr) return null;
-  const flags = { italic: false, bold: false };
-  if (/font-style\s*:\s*italic/i.test(styleAttr)) flags.italic = true;
-  if (/font-weight\s*:\s*(?:bold|bolder|[6-9]00)\b/i.test(styleAttr)) {
-    flags.bold = true;
-  }
-  return flags.italic || flags.bold ? flags : null;
-}
-
-/**
- * Replaces visually-formatted spans/paragraphs with real <em>/<strong> tags
- * so turndown produces proper markdown. Mutates `body` in place.
- */
-function wrapStyledFormatting($, body, classFormatting) {
-  body.find("[class],[style]").each((_, el) => {
-    const $el = $(el);
-    const flags = { italic: false, bold: false };
-    const classes = ($el.attr("class") || "").split(/\s+/).filter(Boolean);
-    for (const cls of classes) {
-      const f = classFormatting.get(cls);
-      if (!f) continue;
-      if (f.italic) flags.italic = true;
-      if (f.bold) flags.bold = true;
-    }
-    const inline = inlineStyleFormatting($el.attr("style"));
-    if (inline) {
-      flags.italic = flags.italic || inline.italic;
-      flags.bold = flags.bold || inline.bold;
-    }
-    if (!flags.italic && !flags.bold) return;
-    const tag = el.tagName ? el.tagName.toLowerCase() : "";
-    // Skip headings — turndown handles their text fine, and wrapping inside
-    // would produce e.g. `# *Heading*` which our renderer would parse oddly.
-    if (/^h[1-6]$/.test(tag)) return;
-    let inner = $el.html() || "";
-    if (!inner.trim()) return;
-    if (flags.italic) inner = `<em>${inner}</em>`;
-    if (flags.bold) inner = `<strong>${inner}</strong>`;
-    $el.html(inner);
-  });
-}
-
-/**
- * Google Docs wraps every external link in a
- *   https://www.google.com/url?q=<real-url>&sa=D&source=editors&ust=…&usg=…
- * tracking redirector. Strip it back to the actual destination.
- */
-function unwrapGoogleRedirectorHref(href) {
-  if (!href || typeof href !== "string") return href;
-  if (!/^https?:\/\/(?:www\.)?google\.com\/url\?/i.test(href)) return href;
-  try {
-    const u = new URL(href);
-    const q = u.searchParams.get("q");
-    return q || href;
-  } catch {
-    return href;
-  }
-}
-
-function unwrapAllGoogleRedirectors($, body) {
-  body.find("a[href]").each((_, el) => {
-    const $el = $(el);
-    const orig = $el.attr("href");
-    const cleaned = unwrapGoogleRedirectorHref(orig);
-    if (cleaned !== orig) $el.attr("href", cleaned);
-    // Also rewrite link text if it visibly displays the redirector URL
-    // (Google Docs sometimes uses the full URL as the anchor text).
-    const text = $el.text();
-    if (text && text.trim() === orig) $el.text(cleaned);
-  });
-}
-
-/**
- * Authors mark scene/chapter breaks by typing rows of dashes (or asterisks /
- * underscores) on their own line. In the published HTML these are just plain
- * paragraphs like `<p><span>------</span></p>`. Convert them to real <hr>
- * elements so turndown emits a proper markdown HR (---) and the renderer can
- * style them as visual dividers.
- */
-function convertDashDividersToHr($, body) {
-  // Allow ASCII -, *, _ as well as the typographic en/em dashes. Authors here
-  // use anything from a single "-" to long "------" rows as scene breaks; a
-  // standalone dash-character paragraph is essentially never anything else.
-  const dividerRe = /^[-*_\u2013\u2014]+$/;
-  body.find("p").each((_, el) => {
-    const $el = $(el);
-    const text = $el.text().replace(/\s+/g, "");
-    if (text && dividerRe.test(text)) {
-      $el.replaceWith("<hr />");
-    }
-  });
-}
-
-function extractBodyHtml(html) {
-  const $ = cheerio.load(html, { decodeEntities: false });
-  const body = $(".doc-content").first();
-  if (!body.length) return null;
-  const classFormatting = parseStyleClassFormatting($);
-  wrapStyledFormatting($, body, classFormatting);
-  unwrapAllGoogleRedirectors($, body);
-  convertDashDividersToHr($, body);
-  // Strip empty spans/paragraphs that Google emits as visual padding.
-  body.find("p").each((_, el) => {
-    const $el = $(el);
-    if (!$el.text().trim() && !$el.find("img,br").length) $el.remove();
-  });
-  body.find("span").each((_, el) => {
-    const $el = $(el);
-    if (!$el.attr("href") && !$el.text().length) $el.remove();
-  });
-  return body.html() || "";
-}
-
-function postProcessMarkdown(md) {
-  return (
-    md
-      // Published Docs HTML sometimes merges a scene tag paragraph with the next
-      // line into one markdown line, so `storyMarkdownToSafeHtml` never sees a
-      // block that is only `[[scene:…]]`. Split when glued: `[[scene:x]] Next…`
-      .replace(/^(\[\[scene:[^\]]+\]\]) +(\S.*)$/gm, "$1\n\n$2")
-      // Docs emphasis can wrap the scene tag in `*…*`; strip that so it matches
-      // SCENE_TAG_BLOCK_RE.
-      .replace(/^\*\[\[scene:([^\]]+)\]\]\*$/gm, "[[scene:$1]]")
-      // Collapse 3+ blank lines into 2.
-      .replace(/\n{3,}/g, "\n\n")
-      // Trim trailing whitespace per line (turndown sometimes leaves "  ").
-      .replace(/[ \t]+$/gm, "")
-      .trim() + "\n"
-  );
 }
 
 /**
@@ -378,26 +199,9 @@ function applyWordCountUpdates(filepath, updates) {
   return results;
 }
 
-async function fetchDoc(url, attempt = 1) {
-  const res = await fetch(url, { redirect: "follow" });
-  if (res.status === 429 || res.status >= 500) {
-    if (attempt < 4) {
-      const wait = 1000 * Math.pow(2, attempt);
-      await new Promise((r) => setTimeout(r, wait));
-      return fetchDoc(url, attempt + 1);
-    }
-  }
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return res.text();
-}
-
 async function syncOne(story, td) {
   if (!story.driveUrl) return { id: story.id, skipped: "no driveUrl" };
-  const html = await fetchDoc(story.driveUrl);
-  const inner = extractBodyHtml(html);
-  if (inner == null) throw new Error("could not find .doc-content");
-  if (!inner.trim()) throw new Error(".doc-content was empty");
-  const md = postProcessMarkdown(td.turndown(inner));
+  const md = await fetchMarkdownFromPublishUrl(story.driveUrl, td);
   const outPath = join(OUT_DIR, `${story.id}.md`);
   writeFileSync(outPath, md, "utf8");
   return {
