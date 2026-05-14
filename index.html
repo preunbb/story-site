@@ -97,21 +97,38 @@
       <section id="panel-characters" class="panel">
         <div class="cast-panel-header">
           <h1>Cast</h1>
-          <label class="characters-sort-toggle">
-            <span class="characters-sort-switch">
+          <div
+            id="characters-sort"
+            class="characters-sort"
+            role="group"
+            aria-label="Cast sort order"
+          >
+            <span
+              class="characters-sort-caption characters-sort-caption--gender"
+              id="characters-sort-label-gender"
+            >
+              Sort by gender
+            </span>
+            <label class="characters-sort-switch-wrap">
               <input
                 type="checkbox"
                 id="characters-sort-by-story"
                 class="characters-sort-input"
                 role="switch"
-                aria-labelledby="characters-sort-label"
+                aria-checked="false"
+                aria-label="Sort cast by story when on, by gender when off"
               />
               <span class="characters-sort-track" aria-hidden="true">
                 <span class="characters-sort-thumb"></span>
               </span>
+            </label>
+            <span
+              class="characters-sort-caption characters-sort-caption--story"
+              id="characters-sort-label-story"
+            >
+              Sort by story
             </span>
-            <span id="characters-sort-label">Sort by gender</span>
-          </label>
+          </div>
         </div>
         <div class="characters-grid" id="characters-grid">
           <!-- Injected by JS from data/stories.js / characters.js -->

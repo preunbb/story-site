@@ -403,23 +403,38 @@ html:not(.has-local-dist) .tabs .tab[data-tab="ratings"] {
   margin-bottom: 0;
 }
 
-.characters-sort-toggle {
+.characters-sort {
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
   font-family: var(--font-sans);
   font-size: 0.95rem;
   color: var(--ink);
-  cursor: pointer;
   user-select: none;
 }
 
-.characters-sort-switch {
+.characters-sort-caption {
+  font-weight: 500;
+  color: var(--ink-muted);
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.characters-sort--by-gender .characters-sort-caption--gender {
+  color: var(--ink);
+}
+
+.characters-sort--by-story .characters-sort-caption--story {
+  color: var(--ink);
+}
+
+.characters-sort-switch-wrap {
   position: relative;
   display: inline-block;
   width: 2.75rem;
   height: 1.5rem;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 .characters-sort-input {

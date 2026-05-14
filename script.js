@@ -1508,13 +1508,18 @@
     } catch (e) {}
   }
 
-  function updateCharactersSortLabel() {
-    var span = byId("characters-sort-label");
+  function updateCharactersSortControlState() {
+    var wrap = byId("characters-sort");
     var sortToggle = byId("characters-sort-by-story");
-    if (!span || !sortToggle) return;
-    span.textContent = sortToggle.checked
-      ? "Sort by story"
-      : "Sort by gender";
+    if (!sortToggle) return;
+    if (wrap) {
+      wrap.classList.toggle("characters-sort--by-story", sortToggle.checked);
+      wrap.classList.toggle("characters-sort--by-gender", !sortToggle.checked);
+    }
+    sortToggle.setAttribute(
+      "aria-checked",
+      sortToggle.checked ? "true" : "false"
+    );
   }
 
   function bindCharactersSortToggle() {
@@ -1522,10 +1527,10 @@
     if (!sortToggle || sortToggle.dataset.bound) return;
     sortToggle.dataset.bound = "1";
     sortToggle.checked = getCharactersSortByStory();
-    updateCharactersSortLabel();
+    updateCharactersSortControlState();
     sortToggle.addEventListener("change", function () {
       setCharactersSortByStory(sortToggle.checked);
-      updateCharactersSortLabel();
+      updateCharactersSortControlState();
       renderCharactersGrid();
     });
   }
