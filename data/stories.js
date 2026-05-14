@@ -974,6 +974,10 @@ window.DATA_STORIES = [
         caption:
           "Cathy begins her fascinating experiment on how fraternal psychology and male fragility can affect game theoretic equilibiria.",
       },
+      {
+        path: "assets/scenes/nash_equilibrium/nash_equilibrium_part2_cover_v1.png",
+        caption: "Now, for the next experiment...",
+      },
     ],
     state: 3,
     tags: ["New to Reddit"],
@@ -1486,24 +1490,5 @@ window.DATA_STORIES = [
     characterIds: ["zennia", "cathy", "olivia"],
     tags: ["New to Reddit"],
   },
-  {
-    id: 49,
-    wordCount: 2305,
-    title: "Nash Equilibrium — Part Two: Dominant Strategy",
-    brutalityRating: 5,
-    summary:
-      "Direct sequel: after the Prisoner's Dilemma experiment, Cathy keeps one triplet intact for phase two — telemetry, ruined orgasms, and the waiver he already signed.",
-    subtitle: "Sequel to Nash Equilibrium (site original).",
-    cover: "assets/scenes/nash_equilibrium/nash_equilibrium_part2_cover_v1.png",
-    characterIds: ["cathy"],
-    state: 3,
-    tags: ["New to Reddit"],
-    scenes: [
-      {
-        path: "assets/scenes/nash_equilibrium/nash_equilibrium_part2_cover_v1.png",
-        caption:
-          "Phase two — Cathy runs carry-through telemetry in the lab while the last intact subject pays for the dataset.",
-      },
-    ],
-  },
 ];
+
