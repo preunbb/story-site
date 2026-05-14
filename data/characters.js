@@ -407,7 +407,9 @@ window.DATA_CHARACTERS = [
     name: "Mal'ko",
     gender: "M",
     bio: "Young Red Dragon fiancé, engaged to Taviri. Not looking forward to his Pop, but loves his fiancée more than anything.",
-    profilePictures: ["assets/characters/malko.jpg"],
+    profilePictures: [
+      "assets/characters/malko_courtroom_anxious_shirtless_waistup_v1.png",
+    ],
   },
   {
     id: "taviri",
@@ -483,7 +485,9 @@ window.DATA_CHARACTERS = [
     gender: "F",
     testiclesKilled: 4,
     bio: "Steven's sister. Self-defense student who uses her brother as an unarmored practice target for groin strikes. Cheerful, cruel, and eager to share the aftermath with everyone.",
-    profilePictures: ["assets/characters/kaitlin.jpg"],
+    profilePictures: [
+      "assets/characters/kaitlin_profile_wave_sadistic_smile_v1.png",
+    ],
   },
   {
     id: "ross",
@@ -644,14 +648,18 @@ window.DATA_CHARACTERS = [
     name: "Trinn",
     gender: "M",
     bio: "Emma's date to the Cherry Pop! concert.",
-    profilePictures: ["assets/characters/trinn.png"],
+    profilePictures: [
+      "assets/characters/trinn_profile_from_part2_emma_scene_v1.png",
+    ],
   },
   {
     id: "sunni",
     name: "Sunni",
     gender: "M",
-    bio: "Single Indian guy at his first Cherry Pop! concert wearing glasses—feels conspicuous, out of place, and quietly anxious amid the spectacle. No idea what he's in for.",
-    profilePictures: ["assets/characters/sunni.png"],
+    bio: "Single Indian guy at his first Cherry Pop! concert. Also, Yvette's first ever real-world patient!",
+    profilePictures: [
+      "assets/characters/sunni_cherry_pop_medical_chair_stirrups_worried_v1.png",
+    ],
   },
   {
     id: "felix",
@@ -659,7 +667,8 @@ window.DATA_CHARACTERS = [
     gender: "M",
     bio: "At twenty-five, Kaitlin's date to the Cherry Pop! concert. Used to be much manlier and more muscular, but Kaitlin's fetish has taken a permanent toll on him over the years.",
     profilePictures: [
-      "assets/characters/felix_v2_age25_blonde_curvyhips_fullbody.png",
+      "assets/characters/felix_androgyn_miniskirt_cherrypop_arena_v1.png",
+      "assets/characters/felix_v2_age25_blonde_curvyhips_fullbody_nobar_v1.png",
       "assets/characters/felix.png",
     ],
   },
