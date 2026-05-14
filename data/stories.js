@@ -720,22 +720,24 @@ window.DATA_STORIES = [
     tags: [],
     scenes: [
       {
-        path: "assets/scenes/friendzoned/good/ch02_orchiectomy_v1.png",
-        caption:
-          "Jon undergoes a deeply painful surgery, paralyzed but aware of every sensation.",
-      },
-      {
-        path: "assets/scenes/friendzoned/good/ch03_hospital_ruined_orgasm_v3.png",
-        caption: "Alyssa comforts Jon after he loses his first testicle.",
-      },
-      {
-        path: "assets/scenes/friendzoned/good/ch06_three_thumb_castration_v5_inked.png",
-        caption: "Ch. 6 — three thumbs, one castration.",
-      },
-      {
         path: "assets/scenes/friendzoned/good/alyssa_lip_bite_guilty_direct_camera_oops_v1.png",
         caption:
           "Oops...I think I felt one pop. You didn't need both of your nuts, did you?",
+      },
+      {
+        path: "assets/scenes/friendzoned/good/ch02_orchiectomy_photo_real_cast_v1.png",
+        caption:
+          "I'm so sorry, sir, your left testicle is completely irreparable. Yes, we tried our best. Yes, we know your girlfriend did it by accident. You'll be ok. With only one nut, your sexual function might change, but you'll still be able to function. But we need to snip leftie out right away, now.",
+      },
+      {
+        path: "assets/scenes/friendzoned/good/ch03_hospital_ruined_orgasm_photo_real_cast_v1.png",
+        caption:
+          "Oh no...not again. I'm so sorry I came down full force on your boner like that. Did...did they really have to snip it at the base? Let me take a look beneath your gown - oh my god. There's...there's not even an inch left, it's just a smooth scar above your half-empty scrotum. I'm so sorry.",
+      },
+      {
+        path: "assets/scenes/friendzoned/good/ch06_three_thumb_castration_v5_inked.png",
+        caption:
+          "It's better this way, Jon. We can still be friends...eventually.",
       },
     ],
   },
