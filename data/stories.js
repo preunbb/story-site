@@ -1366,6 +1366,7 @@ window.DATA_STORIES = [
       "Melody's castration kink is back in full force, ever since her son lost his balls. She's been craving a chance to explore her awakened urges, and the nervous, virginal Ryan is just the guy to help her.",
     cover: "assets/covers/melody_seduces_a_virgin.png",
     state: 2,
+    amazonUrl: "https://www.amazon.com/dp/B0H1J6MB7C",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTw7ksLCB2UgTKpZGwSoE8dGkhwoHkCkg5_iUz8ga467w2A1twmZ-nuj_iYocjiUTdSHanhPdfMArhS/pub",
     characterIds: ["melody", "ryan"],
