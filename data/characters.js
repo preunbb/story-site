@@ -432,8 +432,10 @@ window.DATA_CHARACTERS = [
     name: "Alyssa",
     gender: "F",
     testiclesKilled: 2,
-    bio: "Buxom, popular classmate. Dates jock Brad; when he cheats she takes her anger out on Jon—then keeps pushing boundaries.",
-    profilePictures: ["assets/characters/alyssa.jpg"],
+    bio: "Stunning college-freshman blonde—very busty, bubbly, and a little oblivious to how intense she comes across. Wildly flirty and attention-loving; with jock Brad cheating again she vents on Jon, who's like a brother to her.",
+    profilePictures: [
+      "assets/characters/alyssa_profile_college_freshman_blonde_v1.png",
+    ],
   },
   {
     id: "chad",
