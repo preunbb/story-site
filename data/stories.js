@@ -701,7 +701,7 @@ window.DATA_STORIES = [
     title: "Friendzoned",
     brutalityRating: 5,
     summary:
-      "Jon tutors Alyssa and would do anything for her. When her boyfriend Brad keeps cheating, she starts taking her stress out on him in study hall—and things spiral from there through the clinic and beyond.",
+      "Jon tutors Alyssa and would do anything for her. When her boyfriend Chad keeps cheating, she starts taking her stress out on him in study hall—and things spiral from there through the clinic and beyond.",
     cover: "assets/covers/friendzoned_cover_study_hall_alyssa_jon_v1.png",
     amazonUrl:
       "https://www.amazon.com/Friendzoned-part-Losing-ball-dreams-ebook/dp/B07X1346G7",
@@ -731,6 +731,11 @@ window.DATA_STORIES = [
       {
         path: "assets/scenes/friendzoned/good/ch06_three_thumb_castration_v5_inked.png",
         caption: "Ch. 6 — three thumbs, one castration.",
+      },
+      {
+        path: "assets/scenes/friendzoned/good/alyssa_lip_bite_guilty_direct_camera_oops_v1.png",
+        caption:
+          "Oops...I think I felt one pop. You didn't need both of your nuts, did you?",
       },
     ],
   },
