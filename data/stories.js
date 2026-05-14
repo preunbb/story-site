@@ -1392,7 +1392,7 @@ window.DATA_STORIES = [
     fullLengthNovel: true,
     title: "Andrea and Lucas: Part 2",
     brutalityRating: 5,
-    cover: "assets/covers/andrea_and_lucas_part_2.png",
+    cover: "assets/covers/andrea_and_lucas_part_2_cover_eve_abby_kay_v1.png",
     summary:
       "Andrea takes Lucas to a Cherry Pop! concert, and shows him what a mush pit is like. Later, she meets his family.",
     state: 1,
