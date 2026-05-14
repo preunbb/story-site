@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Andrea and Lucas — local manuscript</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="preun-local-andrea">
+    <header class="site-header">
+      <span class="logo">Andrea and Lucas (local full text)</span>
+      <nav class="tabs">
+        <a href="index.html#stories" class="tab">← Main site</a>
+      </nav>
+    </header>
+
+    <main class="local-andrea-wrap">
+      <p class="local-andrea-status" id="local-andrea-status">Loading manuscript…</p>
+      <div
+        class="story-reader-error"
+        id="local-andrea-error"
+        hidden
+      >
+        <p class="story-reader-error-text" id="local-andrea-error-msg"></p>
+      </div>
+      <article
+        class="story-reader-article"
+        id="local-andrea-article"
+        aria-label="Story"
+      ></article>
+    </main>
+
+    <div id="scene-lightbox" class="scene-lightbox" aria-hidden="true">
+      <div
+        class="scene-lightbox-panel"
+        id="scene-lightbox-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Enlarged scene"
+      >
+        <button
+          type="button"
+          class="scene-lightbox-close"
+          id="scene-lightbox-close"
+          aria-label="Close"
+        >
+          ×
+        </button>
+        <div class="scene-lightbox-stage">
+          <button
+            type="button"
+            class="scene-lightbox-nav scene-lightbox-nav--prev"
+            id="scene-lightbox-prev"
+            aria-label="Previous scene"
+            hidden
+          >
+            ‹
+          </button>
+          <div class="scene-lightbox-img-wrap">
+            <img
+              id="scene-lightbox-img"
+              class="scene-lightbox-img"
+              alt=""
+              decoding="async"
+            />
+          </div>
+          <button
+            type="button"
+            class="scene-lightbox-nav scene-lightbox-nav--next"
+            id="scene-lightbox-next"
+            aria-label="Next scene"
+            hidden
+          >
+            ›
+          </button>
+        </div>
+        <p id="scene-lightbox-caption" class="scene-lightbox-caption" hidden></p>
+      </div>
+    </div>
+
+    <script src="data/stories.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

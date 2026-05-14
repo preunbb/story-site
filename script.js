@@ -12,6 +12,9 @@
    * third-party service to display a story.
    */
   var STORY_MD_PREFIX = "assets/stories/";
+  /** Present only after `npm run sync:andrea-complete` (dist/ is gitignored). */
+  var LOCAL_DIST_MARKER_URL = "dist/andrea-and-lucas-complete/SOURCE.json";
+  var LOCAL_ANDREA_STORY_MD_URL = "dist/andrea-and-lucas-complete/story.md";
   var readerAbort = null;
   var readerStory = null;
 
@@ -591,6 +594,23 @@
   var sceneLightboxReturnFocus = null;
   var sceneLightboxSlides = [];
   var sceneLightboxIndex = 0;
+  /** True when lightbox is showing cast profile(s); caption is full bio and styled for long text. */
+  var sceneLightboxProfileMode = false;
+  /** Name for aria-label when in profile mode (avoids reading the full bio). */
+  var sceneLightboxProfileName = null;
+
+  function slidesForCharacter(character) {
+    if (!character) return [];
+    var pics =
+      character.profilePictures && character.profilePictures.length
+        ? character.profilePictures.slice()
+        : [PLACEHOLDER_CHAR];
+    return pics
+      .filter(Boolean)
+      .map(function (src) {
+        return { path: src };
+      });
+  }
 
   function setSceneLightboxOpen(on) {
     if (!sceneLightbox) return;
@@ -613,6 +633,11 @@
   function closeSceneLightbox() {
     sceneLightboxSlides = [];
     sceneLightboxIndex = 0;
+    sceneLightboxProfileMode = false;
+    sceneLightboxProfileName = null;
+    if (sceneLightboxCaption) {
+      sceneLightboxCaption.classList.remove("scene-lightbox-caption--profile");
+    }
     setSceneLightboxOpen(false);
   }
 
@@ -653,16 +678,22 @@
     if (!slide) return;
     sceneLightboxImg.src = slide.path;
     sceneLightboxImg.alt = slide.alt || "";
-    var capTrim = slide.caption;
+    var capTrim = slide.caption != null ? String(slide.caption).trim() : "";
     if (sceneLightboxPanel) {
       var n = sceneLightboxSlides.length;
       var pos = sceneLightboxIndex + 1;
-      var base = capTrim || slide.alt || "Scene";
+      var ariaBase = sceneLightboxProfileMode && sceneLightboxProfileName
+        ? sceneLightboxProfileName + " portrait"
+        : capTrim || slide.alt || "Scene";
       var label =
-        n > 1 ? base + " (" + pos + " of " + n + ")" : base;
+        n > 1 ? ariaBase + " (" + pos + " of " + n + ")" : ariaBase;
       sceneLightboxPanel.setAttribute("aria-label", label);
     }
     if (sceneLightboxCaption) {
+      sceneLightboxCaption.classList.toggle(
+        "scene-lightbox-caption--profile",
+        sceneLightboxProfileMode && !!capTrim,
+      );
       if (capTrim) {
         sceneLightboxCaption.textContent = capTrim;
         sceneLightboxCaption.hidden = false;
@@ -688,6 +719,39 @@
     var story = getStoryById(storyId);
     var slides = sceneSlidesForStory(story);
     if (!slides.length) return;
+    sceneLightboxProfileMode = false;
+    sceneLightboxProfileName = null;
+    sceneLightboxReturnFocus = document.activeElement;
+    sceneLightboxSlides = slides;
+    var i =
+      typeof startIndex === "number" && !isNaN(startIndex)
+        ? Math.max(0, Math.min(slides.length - 1, startIndex))
+        : 0;
+    sceneLightboxIndex = i;
+    applySceneLightboxSlide();
+    setSceneLightboxOpen(true);
+  }
+
+  function openCharacterProfileLightbox(character, startIndex) {
+    if (!sceneLightboxImg || !sceneLightbox || !character) return;
+    var paths = slidesForCharacter(character).map(function (s) {
+      return s.path;
+    });
+    if (!paths.length) return;
+    var bio =
+      character.bio && String(character.bio).trim()
+        ? character.bio.trim()
+        : "";
+    var nm = character.name || "Character";
+    var slides = paths.map(function (path) {
+      return {
+        path: path,
+        caption: bio,
+        alt: nm + " portrait",
+      };
+    });
+    sceneLightboxProfileMode = true;
+    sceneLightboxProfileName = nm;
     sceneLightboxReturnFocus = document.activeElement;
     sceneLightboxSlides = slides;
     var i =
@@ -866,17 +930,450 @@
     syncBrutalityLevelOptions();
   }
 
+  /** Inline **bold**, *italic*, `code` for ratings panel (from markdown). */
+  function formatInlineMd(s) {
+    s = String(s);
+    var out = "";
+    var i = 0;
+    while (i < s.length) {
+      if (s.slice(i, i + 2) === "**") {
+        var end = s.indexOf("**", i + 2);
+        if (end === -1) {
+          out += escapeHtml(s.slice(i));
+          break;
+        }
+        out += "<strong>" + escapeHtml(s.slice(i + 2, end)) + "</strong>";
+        i = end + 2;
+        continue;
+      }
+      if (s[i] === "`") {
+        var endC = s.indexOf("`", i + 1);
+        if (endC === -1) {
+          out += escapeHtml(s[i]);
+          i++;
+          continue;
+        }
+        out += "<code>" + escapeHtml(s.slice(i + 1, endC)) + "</code>";
+        i = endC + 1;
+        continue;
+      }
+      if (s[i] === "*" && i + 1 < s.length && s[i + 1] !== "*") {
+        var endI = s.indexOf("*", i + 1);
+        if (endI === -1) {
+          out += escapeHtml(s[i]);
+          i++;
+          continue;
+        }
+        var inner = s.slice(i + 1, endI);
+        if (inner.indexOf("\n") !== -1 || inner.length === 0) {
+          out += escapeHtml(s[i]);
+          i++;
+          continue;
+        }
+        out += "<em>" + escapeHtml(inner) + "</em>";
+        i = endI + 1;
+        continue;
+      }
+      var cand = [];
+      var ti = s.indexOf("`", i);
+      if (ti !== -1) cand.push(ti);
+      var db = s.indexOf("**", i);
+      if (db !== -1) cand.push(db);
+      var st = s.indexOf("*", i);
+      while (st !== -1 && st + 1 < s.length && s[st + 1] === "*") {
+        st = s.indexOf("*", st + 2);
+      }
+      if (st !== -1) cand.push(st);
+      if (!cand.length) {
+        out += escapeHtml(s.slice(i));
+        break;
+      }
+      var next = Math.min.apply(null, cand);
+      if (next > i) out += escapeHtml(s.slice(i, next));
+      i = next;
+    }
+    return out;
+  }
+
+  function splitPipeRow(line) {
+    var raw = line.trim();
+    if (raw.indexOf("|") === -1) return null;
+    if (raw[0] === "|") raw = raw.slice(1);
+    if (raw.length && raw[raw.length - 1] === "|") raw = raw.slice(0, -1);
+    return raw.split("|").map(function (c) {
+      return c.trim();
+    });
+  }
+
+  function isSeparatorRow(cells) {
+    return cells.every(function (c) {
+      var t = c.replace(/\s/g, "");
+      return /^:?-+:?$/.test(t);
+    });
+  }
+
+  function parsePipeTable(mdChunk) {
+    var lines = String(mdChunk)
+      .split("\n")
+      .map(function (l) {
+        return l.trim();
+      })
+      .filter(function (l) {
+        return l.length > 0;
+      });
+    var rows = [];
+    for (var ti = 0; ti < lines.length; ti++) {
+      var cells = splitPipeRow(lines[ti]);
+      if (!cells || !cells.length) continue;
+      if (isSeparatorRow(cells)) continue;
+      rows.push(cells);
+    }
+    return rows;
+  }
+
+  function extractMainCatalogTableMd(chunk) {
+    var lines = String(chunk).split("\n");
+    for (var i = 0; i < lines.length; i++) {
+      if (/^\|\s*ID\s*\|/.test(lines[i])) {
+        return lines.slice(i).join("\n");
+      }
+    }
+    return "";
+  }
+
+  function renderIntroForRatings(introMd) {
+    var lines = introMd.replace(/\r\n/g, "\n").trim().split("\n");
+    if (lines.length && /^#\s+/.test(lines[0])) lines.shift();
+    var html = "";
+    var i = 0;
+    while (i < lines.length) {
+      if (!lines[i].trim()) {
+        i++;
+        continue;
+      }
+      if (lines[i].trim().indexOf("|") === 0) {
+        var tblLines = [];
+        while (i < lines.length && lines[i].trim().indexOf("|") === 0) {
+          tblLines.push(lines[i]);
+          i++;
+        }
+        var trows = parsePipeTable(tblLines.join("\n"));
+        html += renderRatingsGenericTable(trows);
+        continue;
+      }
+      var para = [];
+      while (
+        i < lines.length &&
+        lines[i].trim() &&
+        lines[i].trim().indexOf("|") !== 0
+      ) {
+        para.push(lines[i].trim());
+        i++;
+      }
+      html +=
+        '<p class="ratings-prose">' +
+        formatInlineMd(para.join(" ")) +
+        "</p>";
+    }
+    return html;
+  }
+
+  function renderRatingsGenericTable(rows) {
+    if (!rows || !rows.length) return "";
+    var h = rows[0];
+    var body = rows.slice(1);
+    var ths = h
+      .map(function (c) {
+        return "<th>" + formatInlineMd(c) + "</th>";
+      })
+      .join("");
+    var trs = body
+      .map(function (r) {
+        return (
+          "<tr>" +
+          r
+            .map(function (c) {
+              return "<td>" + formatInlineMd(c) + "</td>";
+            })
+            .join("") +
+          "</tr>"
+        );
+      })
+      .join("");
+    return (
+      '<div class="ratings-table-wrap">' +
+      '<table class="ratings-table ratings-table--intro"><thead><tr>' +
+      ths +
+      "</tr></thead><tbody>" +
+      trs +
+      "</tbody></table></div>"
+    );
+  }
+
+  function renderAndreaRatingsCard(block) {
+    var srcM = block.match(/\*\*Source reviewed:\*\*\s*`([^`]+)`/);
+    var subtitle = "";
+    if (srcM) {
+      subtitle =
+        '<p class="ratings-prose">' +
+        formatInlineMd("**Source reviewed:** `" + srcM[1] + "`") +
+        "</p>";
+    }
+    var tbl = parsePipeTable(block);
+    var scores = null;
+    for (var ri = 0; ri < tbl.length; ri++) {
+      var row = tbl[ri];
+      if (
+        row.length === 4 &&
+        /^[\d.]+$/.test(String(row[0]).replace(/[–—−]/g, "").trim())
+      ) {
+        scores = { w: row[0], a: row[1], i: row[2], e: row[3] };
+        break;
+      }
+    }
+    var whyM = block.match(/\*\*Why:\*\*\s*([\s\S]+)/);
+    var why = whyM ? whyM[1].trim() : "";
+    why = why.replace(/\n---\s*$/, "").trim();
+
+    var scoresHtml = "";
+    if (scores) {
+      scoresHtml =
+        '<div class="ratings-andrea-scores">' +
+        [
+          ["Writing", scores.w],
+          ["Ambition", scores.a],
+          ["Immersion", scores.i],
+          ["Eroticism", scores.e],
+        ]
+          .map(function (p) {
+            return (
+              '<div class="ratings-andrea-score"><span class="ratings-andrea-score-label">' +
+              escapeHtml(p[0]) +
+              '</span><span class="ratings-andrea-score-value">' +
+              escapeHtml(String(p[1])) +
+              "</span></div>"
+            );
+          })
+          .join("") +
+        "</div>";
+    }
+
+    return (
+      '<div class="ratings-andrea-card">' +
+      subtitle +
+      scoresHtml +
+      (why
+        ? '<p class="ratings-andrea-why">' + formatInlineMd(why) + "</p>"
+        : "") +
+      "</div>"
+    );
+  }
+
+  function renderCatalogRatingsScoreTable(rows) {
+    if (!rows || rows.length < 2) {
+      return '<p class="ratings-status ratings-status--error">Could not parse the ratings table.</p>';
+    }
+    var head = rows[0];
+    var data = rows.slice(1);
+    var thHtml = head
+      .map(function (text, idx) {
+        var cls =
+          idx === 0
+            ? "ratings-th-id"
+            : idx >= 2 && idx <= 5
+              ? "ratings-th-num"
+              : "";
+        return (
+          "<th" +
+          (cls ? ' class="' + cls + '"' : "") +
+          ">" +
+          escapeHtml(text) +
+          "</th>"
+        );
+      })
+      .join("");
+    var bodyHtml = data
+      .map(function (r) {
+        if (r.length < 7) return "";
+        var id = r[0];
+        var title = r[1];
+        var story = getStoryById(id);
+        var titleInner = story
+          ? '<a href="#story/' +
+            encodeURIComponent(String(story.id)) +
+            '" class="ratings-title-link">' +
+            formatInlineMd(title) +
+            "</a>"
+          : formatInlineMd(title);
+        var nums = [r[2], r[3], r[4], r[5]].map(function (n) {
+          var ns = String(n).trim();
+          var na =
+            ns === "-" ||
+            ns.toUpperCase() === "N/A" ||
+            /^[\u2013\u2014\u2212]$/.test(ns);
+          return (
+            '<td class="ratings-td-num">' +
+            (na
+              ? '<span class="ratings-na">' + escapeHtml(String(n)) + "</span>"
+              : escapeHtml(String(n))) +
+            "</td>"
+          );
+        });
+        return (
+          '<tr><td class="ratings-td-id">' +
+          escapeHtml(id) +
+          "</td><td>" +
+          titleInner +
+          "</td>" +
+          nums.join("") +
+          '<td class="ratings-td-notes">' +
+          formatInlineMd(r[6] || "") +
+          "</td></tr>"
+        );
+      })
+      .filter(Boolean)
+      .join("");
+    return (
+      '<div class="ratings-table-wrap">' +
+      '<table class="ratings-table"><thead><tr>' +
+      thHtml +
+      "</tr></thead><tbody>" +
+      bodyHtml +
+      "</tbody></table></div>"
+    );
+  }
+
+  function parseTakeawaysForRatings(text) {
+    return text
+      .split("\n")
+      .map(function (l) {
+        return l.trim();
+      })
+      .filter(function (l) {
+        return l.indexOf("- ") === 0;
+      })
+      .map(function (l) {
+        return l.slice(2).trim();
+      });
+  }
+
+  function renderTakeawaysList(items) {
+    if (!items.length) return "";
+    return (
+      '<ul class="ratings-takeaways">' +
+      items
+        .map(function (t) {
+          return "<li>" + formatInlineMd(t) + "</li>";
+        })
+        .join("") +
+      "</ul>"
+    );
+  }
+
+  function buildRatingsPanelHtml(md) {
+    md = md.replace(/\r\n/g, "\n");
+    var posAndrea = md.indexOf("## Andrea and Lucas");
+    var posTable = md.indexOf("## Ratings table");
+    var posTake = md.indexOf("## Quick comparative takeaways");
+    var posRegen = md.indexOf("## Regenerating");
+
+    var intro =
+      posAndrea === -1 ? "" : md.slice(0, posAndrea).trim();
+    var andreaBlock =
+      posAndrea === -1 || posTable === -1
+        ? ""
+        : md.slice(posAndrea, posTable).trim();
+    var tableChunk =
+      posTable === -1
+        ? ""
+        : md.slice(posTable, posTake === -1 ? md.length : posTake);
+    var takeChunk =
+      posTake === -1
+        ? ""
+        : md.slice(posTake, posRegen === -1 ? md.length : posRegen);
+
+    var introHtml = intro ? renderIntroForRatings(intro) : "";
+    var andreaHtml = andreaBlock ? renderAndreaRatingsCard(andreaBlock) : "";
+    var mainRows = parsePipeTable(extractMainCatalogTableMd(tableChunk));
+    var takeItems = parseTakeawaysForRatings(takeChunk);
+
+    var parts = [];
+    if (introHtml) {
+      parts.push(
+        '<div class="ratings-section"><h2>About these ratings</h2>' +
+          introHtml +
+          "</div>"
+      );
+    }
+    if (andreaHtml) {
+      parts.push(
+        '<div class="ratings-section"><h2>Andrea and Lucas (full published arc)</h2>' +
+          andreaHtml +
+          "</div>"
+      );
+    }
+    parts.push(
+      '<div class="ratings-section"><h2>All catalog IDs</h2>' +
+        renderCatalogRatingsScoreTable(mainRows) +
+        "</div>"
+    );
+    if (takeItems.length) {
+      parts.push(
+        '<div class="ratings-section"><h2>Quick comparative takeaways</h2>' +
+          renderTakeawaysList(takeItems) +
+          "</div>"
+      );
+    }
+    return parts.join("");
+  }
+
+  function loadStoryCatalogRatings() {
+    var root = byId("ratings-root");
+    if (!root) return;
+    fetch("docs/story-catalog-ratings.md")
+      .then(function (r) {
+        if (!r.ok) throw new Error(String(r.status));
+        return r.text();
+      })
+      .then(function (text) {
+        root.innerHTML = buildRatingsPanelHtml(text);
+        var lead = byId("ratings-lead");
+        if (lead) lead.removeAttribute("hidden");
+      })
+      .catch(function () {
+        root.innerHTML =
+          '<p class="ratings-status ratings-status--error">Could not load <code>docs/story-catalog-ratings.md</code>. Run <code>npm start</code> from the project root and open this site from that server (not as a raw <code>file://</code> URL).</p>';
+      });
+  }
+
   // Hash: tabs (#stories, …), #character/<id>, #story/<id>, #story/<id>/read,
   //       #scenes/<id> (auto-expand that story's accordion)
   var TAB_IDS = [
     "stories",
     "characters",
     "scenes",
+    "ratings",
     "about",
     "other-authors",
   ];
 
+  function localDistRatingsEnabled() {
+    return document.documentElement.classList.contains("has-local-dist");
+  }
+
+  function checkLocalDistMarker() {
+    return fetch(LOCAL_DIST_MARKER_URL, { credentials: "omit" }).then(
+      function (r) {
+        return r.ok;
+      },
+      function () {
+        return false;
+      },
+    );
+  }
+
   function showTab(name) {
+    if (name === "ratings" && !localDistRatingsEnabled()) name = "stories";
     if (TAB_IDS.indexOf(name) === -1) name = "stories";
     var panels = qsAll(".panel");
     var tabs = qsAll(".tab");
@@ -934,14 +1431,19 @@
     card.setAttribute("data-character", c.id);
     var firstPic = (c.profilePictures && c.profilePictures[0]) || null;
     card.innerHTML =
-      '<div class="character-avatar-wrap">' +
+      '<button type="button" class="character-avatar-zoom" data-character-id="' +
+      escapeHtml(c.id) +
+      '" aria-label="' +
+      escapeHtml((c.name || "Character") + " — enlarge portrait and show bio") +
+      '">' +
+      '<span class="character-avatar-wrap">' +
       imgHtml({
         src: firstPic,
         alt: c.name,
         className: "character-avatar",
         placeholder: PLACEHOLDER_CHAR,
       }) +
-      "</div>" +
+      "</span></button>" +
       '<span class="character-card-name">' +
       escapeHtml(c.name) +
       "</span>";
@@ -1297,6 +1799,25 @@
         html.push(chapterHeading(2, block.slice(3).trim()));
       } else if (block.indexOf("# ") === 0) {
         html.push(chapterHeading(3, block.slice(2).trim()));
+      } else if (/^\s*!\[([^\]]*)\]\(([^)]+)\)\s*$/.test(block)) {
+        var im = block.match(/^\s*!\[([^\]]*)\]\(([^)]+)\)\s*$/);
+        var iu = im && normalizeReaderHref(im[2].trim());
+        if (iu && /^https?:\/\//i.test(iu)) {
+          html.push(
+            '<figure class="story-reader-md-image"><img src="' +
+              escapeHtml(iu) +
+              '" alt="' +
+              escapeHtml((im[1] || "").trim()) +
+              '" class="story-reader-md-image-img" loading="lazy" decoding="async"></figure>',
+          );
+        } else {
+          var escapedPara = escapeHtml(block).replace(/\r\n/g, "\n");
+          html.push(
+            "<p>" +
+              readerFormatEscapedInline(escapedPara).replace(/\n/g, "<br />") +
+              "</p>",
+          );
+        }
       } else if (/^\s*(?:[-*_]\s*)+$/.test(block)) {
         html.push('<hr class="story-reader-divider" />');
       } else {
@@ -1821,15 +2342,28 @@
       ? character.profilePictures
       : [PLACEHOLDER_CHAR];
     var picsHtml = '<div class="flyout-profiles">' +
-      pics.map(function (src) {
-        return '<div class="flyout-profile-wrap">' +
+      pics.map(function (src, idx) {
+        return (
+          '<div class="flyout-profile-wrap">' +
+          '<button type="button" class="flyout-profile-zoom" aria-label="' +
+          escapeHtml(
+            (character.name || "Character") +
+              " — enlarge portrait" +
+              (pics.length > 1 ? " (" + (idx + 1) + ")" : ""),
+          ) +
+          '" data-zoom-character="' +
+          escapeHtml(character.id) +
+          '" data-profile-index="' +
+          idx +
+          '">' +
           imgHtml({
             src: src,
             alt: "",
             className: "flyout-profile-img",
             placeholder: PLACEHOLDER_CHAR,
           }) +
-          "</div>";
+          "</button></div>"
+        );
       }).join("") +
       "</div>";
     var storiesHtml = flyoutInlineLinkSection(
@@ -1932,6 +2466,17 @@
     var charactersGrid = byId("characters-grid");
     if (charactersGrid) {
       charactersGrid.addEventListener("click", function (e) {
+        var zoomBtn = e.target.closest(".character-avatar-zoom");
+        if (zoomBtn && charactersGrid.contains(zoomBtn)) {
+          var zid = zoomBtn.getAttribute("data-character-id");
+          var ch = zid ? getCharacterById(zid) : null;
+          if (ch) {
+            e.preventDefault();
+            e.stopPropagation();
+            openCharacterProfileLightbox(ch, 0);
+          }
+          return;
+        }
         var card = e.target.closest(".character-card");
         if (!card) return;
         var id = card.getAttribute("data-character");
@@ -1968,6 +2513,74 @@
     });
   }
 
+  function mergeAndreaScenesIntoStoriesList(list) {
+    var out = list && list.slice ? list.slice() : [];
+    var s43i = -1;
+    var s44 = null;
+    for (var i = 0; i < out.length; i++) {
+      if (out[i].id === 43) s43i = i;
+      if (out[i].id === 44) s44 = out[i];
+    }
+    if (s43i >= 0) {
+      var base = out[s43i];
+      out[s43i] = Object.assign({}, base, {
+        scenes: [].concat(base.scenes || [], (s44 && s44.scenes) || []),
+      });
+    }
+    return out;
+  }
+
+  function initLocalAndreaPage() {
+    var article = byId("local-andrea-article");
+    var status = byId("local-andrea-status");
+    var errBox = byId("local-andrea-error");
+    var errMsg = byId("local-andrea-error-msg");
+    if (!article) return;
+
+    stories = mergeAndreaScenesIntoStoriesList(window.DATA_STORIES || []);
+
+    function fail(msg) {
+      if (status) status.hidden = true;
+      if (errBox && errMsg) {
+        errBox.hidden = false;
+        errMsg.textContent = msg;
+      }
+    }
+
+    fetch(LOCAL_DIST_MARKER_URL, { credentials: "omit" })
+      .then(function (r) {
+        if (!r.ok) throw new Error("no marker");
+        return fetch(LOCAL_ANDREA_STORY_MD_URL, { credentials: "omit" });
+      })
+      .then(function (r) {
+        if (!r.ok) throw new Error("no md");
+        return r.text();
+      })
+      .then(function (md) {
+        var meta = getStoryById(43);
+        if (!meta) {
+          fail("Missing catalog story id 43 (Andrea and Lucas: Part 1).");
+          return;
+        }
+        article.innerHTML = storyMarkdownToSafeHtml(md, meta);
+        bindSceneFigureZoom(article);
+        initSceneLightbox();
+        if (status) status.hidden = true;
+      })
+      .catch(function () {
+        fail(
+          "This page only works locally after you run npm run sync:andrea-complete, then serve the site from the repo root (e.g. npm start). The dist/ folder is gitignored and is not on production.",
+        );
+      });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape") return;
+      if (sceneLightbox && sceneLightbox.classList.contains("open")) {
+        closeSceneLightbox();
+      }
+    });
+  }
+
   function init(data) {
     characters = data.characters || [];
     stories = data.stories || [];
@@ -1988,6 +2601,28 @@
     if (flyoutBody) {
       flyoutBody.addEventListener("click", function (e) {
         if (handleCoverFlipClick(e)) return;
+        var pz =
+          e.target &&
+          e.target.closest &&
+          e.target.closest(".flyout-profile-zoom");
+        if (pz && flyoutBody.contains(pz)) {
+          var cid = pz.getAttribute("data-zoom-character");
+          var idxRaw = pz.getAttribute("data-profile-index");
+          var ch = cid ? getCharacterById(cid) : null;
+          var idx =
+            typeof idxRaw === "string"
+              ? parseInt(idxRaw, 10)
+              : NaN;
+          if (
+            ch &&
+            !isNaN(idx) &&
+            idx >= 0
+          ) {
+            e.preventDefault();
+            openCharacterProfileLightbox(ch, idx);
+            return;
+          }
+        }
         var btn = e.target.closest(".flyout-inline-link");
         if (!btn) return;
         var cid = btn.getAttribute("data-character-id");
@@ -2032,7 +2667,21 @@
 
     window.addEventListener("hashchange", applyHash);
     applyHash();
+    checkLocalDistMarker().then(function (ok) {
+      if (ok) {
+        document.documentElement.classList.add("has-local-dist");
+        loadStoryCatalogRatings();
+      } else {
+        document.documentElement.classList.remove("has-local-dist");
+        if (parseHash().tab === "ratings") location.hash = "stories";
+      }
+      applyHash();
+    });
   }
 
-  init(window.DATA_SOURCE || { characters: [], stories: [] });
+  if (document.body && document.body.classList.contains("preun-local-andrea")) {
+    initLocalAndreaPage();
+  } else {
+    init(window.DATA_SOURCE || { characters: [], stories: [] });
+  }
 })();

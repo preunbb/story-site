@@ -411,7 +411,9 @@ window.DATA_CHARACTERS = [
     name: "Taviri",
     gender: "F",
     bio: "Mal'ko's fiancée. Hates big productions and planning. Loves Mal'ko.",
-    profilePictures: ["assets/characters/taviri.jpg"],
+    profilePictures: [
+      "assets/characters/taviri_waiting_room_wave_cleavage_v4.png",
+    ],
   },
   {
     id: "jon",
@@ -614,15 +616,25 @@ window.DATA_CHARACTERS = [
     id: "eve",
     name: "Eve",
     gender: "F",
-    bio: "Lucas' stepmom. Devout member of the Church of the Broken Tree.",
-    profilePictures: ["assets/characters/eve.png"],
+    bio: "Lucas's stepmother. A high priestess of the Church of the Broken Tree, she's a devout follower of her goddess --- in mind and body. She knows her Goddess loves her too, as she's blessed with the heavenly pleasure only a woman deserves every time she crushes a testicle between her teeth, in her hands, or beneath her feet. She knows her enjoyment of male agony is a gift from her Goddess, and she's determined to use it to the fullest. Knows, above all else, the one reason she was put on this earth: to rid the world of those two giant disgusting testicles between her step-son's legs.",
+    profilePictures: [
+      "assets/characters/eve_church_broken_tree_necklace_v2.png",
+    ],
   },
   {
-    id: "joanna",
-    name: "Joanna",
+    id: "kay",
+    name: "Kay",
     gender: "F",
-    bio: "Lucas' stepsister. Eve's daughter and a devout young initiate of the Church of the Broken Tree. Pretty, prim, and chillingly certain that her stepbrother's body is not his own to keep.",
-    profilePictures: ["assets/characters/joanna.png"],
+    testiclesKilled: 5,
+    bio: "Lucas's older stepsister who grew up in the Church of the Broken Tree. Inherited her mother's sadism. Celebrated by the whole congregation for her piety and strength. She's an atheist at heart, but she loves ballbusting and dominating men so much she's participated in MANY rites and involuntary 'conversion' missions.",
+    profilePictures: ["assets/characters/kay_final.png"],
+  },
+  {
+    id: "abby",
+    name: "Abby",
+    gender: "F",
+    bio: "Lucas's younger stepsister. Inherited her mother's piety. She was horrified when she learned about the First Rite, but she's always trusted her Goddess above all else - she doesn't enjoy castration the way the other girls in the Church do, but she's incredibly devout and knows better than to let her personal failings get in the way of service to her Goddes. Has performed many, many rites and used her natural gifts to tempt them to join the Church, just as she was taught by the Mother Supreme.",
+    profilePictures: ["assets/characters/abby_final.png"],
   },
   {
     id: "trinn",

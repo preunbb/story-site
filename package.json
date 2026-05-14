@@ -5,6 +5,7 @@
   "scripts": {
     "start": "python3 -m http.server 8000",
     "sync": "node scripts/sync-stories.mjs",
+    "sync:andrea-complete": "node scripts/sync-andrea-lucas-complete-to-dist.mjs",
     "sync:concurrent": "node scripts/sync-stories.mjs --concurrency=4",
     "pdf": "node scripts/render-story-pdf.mjs",
     "epub": "node scripts/render-story-epub.mjs",
