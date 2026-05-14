@@ -665,7 +665,7 @@ window.DATA_CHARACTERS = [
     id: "felix",
     name: "Felix",
     gender: "M",
-    bio: "At twenty-five, Kaitlin's date to the Cherry Pop! concert. Used to be much manlier and more muscular, but Kaitlin's fetish has taken a permanent toll on him over the years.",
+    bio: "Kaitlin's date to the Cherry Pop! concert. Can you believe he played football in college? Since he's dated Caitlin though, his muscles have shrivelled up and his voice has gotten higher - surely, that's a coincidence...",
     profilePictures: [
       "assets/characters/felix_androgyn_miniskirt_cherrypop_arena_v1.png",
       "assets/characters/felix_v2_age25_blonde_curvyhips_fullbody_nobar_v1.png",
