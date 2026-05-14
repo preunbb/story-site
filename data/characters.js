@@ -290,8 +290,8 @@ window.DATA_CHARACTERS = [
     id: "brad",
     name: "Brad",
     gender: "M",
-    bio: "Hunky asshole who dates Alyssa in High School.Fiona's boyfriend. She brings him to the arena for a night out; club rules mean he has to strip.",
-    profilePictures: [],
+    bio: "Hunky asshole who dates Alyssa in high school. Fiona's boyfriend. She brings him to the arena for a night out; club rules mean he has to strip.",
+    profilePictures: ["assets/characters/brad.jpg"],
   },
   {
     id: "wesley",
@@ -432,7 +432,7 @@ window.DATA_CHARACTERS = [
     name: "Alyssa",
     gender: "F",
     testiclesKilled: 2,
-    bio: "Stunning college-freshman blonde—very busty, bubbly, and a little oblivious to how intense she comes across. Wildly flirty and attention-loving; with jock Brad cheating again she vents on Jon, who's like a brother to her.",
+    bio: "Stunning college-freshman blonde—very busty, bubbly, and a little oblivious to how intense she comes across. Wildly flirty and attention-loving; with jock Chad cheating again she vents on Jon, who's like a brother to her.",
     profilePictures: [
       "assets/characters/alyssa_profile_college_freshman_blonde_v1.png",
     ],
@@ -442,7 +442,9 @@ window.DATA_CHARACTERS = [
     name: "Chad",
     gender: "M",
     bio: "Alyssa's jock boyfriend. Cheats on her repeatedly; his behavior drives her to use Jon as an outlet.",
-    profilePictures: [],
+    profilePictures: [
+      "assets/characters/chad_profile_jock_sneer_bulge_v1.png",
+    ],
   },
   {
     id: "dr_s",
