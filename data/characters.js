@@ -37,7 +37,7 @@ window.DATA_CHARACTERS = [
     name: "Sam",
     gender: "M",
     bio: "High school senior with an exceptionally full scrotum. Tries his hardest to keep it that way, much to the chagrin of his swim instructor.",
-    profilePictures: [],
+    profilePictures: ["assets/characters/sam_three_strikes_cover_match_v1.png"],
   },
   {
     id: "jeremy",
@@ -258,8 +258,11 @@ window.DATA_CHARACTERS = [
     id: "jose",
     name: "Jose",
     gender: "M",
-    bio: "Hispanic gym regular, well-built and famously well-endowed. Catches Emma's eye at the gym; his confidence doesn't survive the night.",
-    profilePictures: [],
+    bio: "Gym rat who catches Emma's eye at the gym...and regrets it.",
+    profilePictures: [
+      "assets/characters/jose_profile_gym_v1.png",
+      "assets/characters/jose_profile_gym_v3_flat_shorts_inward_knees.png",
+    ],
   },
   {
     id: "eric",
@@ -420,7 +423,7 @@ window.DATA_CHARACTERS = [
     name: "Jon",
     gender: "M",
     bio: "High school student. Tutors Alyssa and would do anything for her; gets drawn into her stress-relief routine and escalating situations.",
-    profilePictures: [],
+    profilePictures: ["assets/characters/jon_profile_friendzoned_real_v1.png"],
   },
   {
     id: "alyssa",
@@ -647,21 +650,24 @@ window.DATA_CHARACTERS = [
     id: "sunni",
     name: "Sunni",
     gender: "M",
-    bio: "Single guy attending his first Cherry Pop! concert. No idea what he's in for.",
+    bio: "Single Indian guy at his first Cherry Pop! concert wearing glasses—feels conspicuous, out of place, and quietly anxious amid the spectacle. No idea what he's in for.",
     profilePictures: ["assets/characters/sunni.png"],
   },
   {
     id: "felix",
     name: "Felix",
     gender: "M",
-    bio: "Kaitlin's date to the Cherry Pop! concert. Used to be much manlier and more muscular, but Kaitlin's fetish has taken a permanent toll on him over the years.",
-    profilePictures: ["assets/characters/felix.png"],
+    bio: "At twenty-five, Kaitlin's date to the Cherry Pop! concert. Used to be much manlier and more muscular, but Kaitlin's fetish has taken a permanent toll on him over the years.",
+    profilePictures: [
+      "assets/characters/felix_v2_age25_blonde_curvyhips_fullbody.png",
+      "assets/characters/felix.png",
+    ],
   },
   {
     id: "greyson",
     name: "Greyson",
     gender: "M",
-    bio: "Single man at the Cherry Pop! concert. Fantasizes about getting dominated, ballbusted, and halfstrated by a mean thicc woman, in public. Goes to a Cherry Pop! concert hoping to do that...and nothing more.",
+    bio: "Single man at the Cherry Pop! concert. A closet pervert who's struggled with erectile dysfunction for years—his fantasy life (getting dominated, ballbusted, and halfstrated by a mean thicc woman, in public) has become his main outlet. Goes to a Cherry Pop! concert hoping to live that out...and nothing more.",
     profilePictures: ["assets/characters/greyson.png"],
   },
   {

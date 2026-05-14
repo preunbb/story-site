@@ -77,6 +77,34 @@
     })[0];
   }
 
+  /**
+   * `profilePictures` is the canonical list (first = default thumbnail).
+   * Accepts a legacy singular `profilePicture` string or a mistaken string
+   * `profilePictures` value and normalizes to a string array.
+   */
+  function normalizeCharacterProfilePictures(list) {
+    if (!list || !list.forEach) return;
+    list.forEach(function (c) {
+      if (!c) return;
+      var pics = c.profilePictures;
+      var legacy = c.profilePicture;
+      if (typeof pics === "string") {
+        pics = pics.trim() ? [pics] : [];
+      } else if (!pics || !pics.slice) {
+        pics = [];
+      } else {
+        pics = pics.slice();
+      }
+      if (typeof legacy === "string" && legacy.trim()) {
+        if (pics.indexOf(legacy) === -1) pics.unshift(legacy);
+      }
+      c.profilePictures = pics.filter(function (p) {
+        return p && String(p).trim();
+      });
+      delete c.profilePicture;
+    });
+  }
+
   function getStoryById(id) {
     return stories.filter(function (s) {
       return s.id === id || Number(s.id) === Number(id);
@@ -660,13 +688,22 @@
   function updateSceneLightboxNav() {
     var n = sceneLightboxSlides.length;
     var i = sceneLightboxIndex;
+    var wrapProfile = sceneLightboxProfileMode && n > 1;
+    var prevLabel = sceneLightboxProfileMode
+      ? "Previous portrait"
+      : "Previous scene";
+    var nextLabel = sceneLightboxProfileMode
+      ? "Next portrait"
+      : "Next scene";
     if (sceneLightboxPrev) {
-      var hidePrev = n <= 1 || i <= 0;
+      sceneLightboxPrev.setAttribute("aria-label", prevLabel);
+      var hidePrev = n <= 1 || (!wrapProfile && i <= 0);
       sceneLightboxPrev.hidden = hidePrev;
       sceneLightboxPrev.disabled = hidePrev;
     }
     if (sceneLightboxNext) {
-      var hideNext = n <= 1 || i >= n - 1;
+      sceneLightboxNext.setAttribute("aria-label", nextLabel);
+      var hideNext = n <= 1 || (!wrapProfile && i >= n - 1);
       sceneLightboxNext.hidden = hideNext;
       sceneLightboxNext.disabled = hideNext;
     }
@@ -708,9 +745,13 @@
   function sceneStepLightbox(delta) {
     var n = sceneLightboxSlides.length;
     if (n <= 1) return;
-    var next = sceneLightboxIndex + delta;
-    if (next < 0 || next >= n) return;
-    sceneLightboxIndex = next;
+    if (sceneLightboxProfileMode) {
+      sceneLightboxIndex = (sceneLightboxIndex + delta + n) % n;
+    } else {
+      var next = sceneLightboxIndex + delta;
+      if (next < 0 || next >= n) return;
+      sceneLightboxIndex = next;
+    }
     applySceneLightboxSlide();
   }
 
@@ -1450,11 +1491,123 @@
     return card;
   }
 
-  // Build characters grid: female first, then male; each group sorted by name
-  function initCharactersGrid() {
+  var CHARACTERS_SORT_BY_STORY_KEY = "charactersSortByStory";
+
+  function getCharactersSortByStory() {
+    try {
+      return localStorage.getItem(CHARACTERS_SORT_BY_STORY_KEY) === "1";
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function setCharactersSortByStory(on) {
+    try {
+      if (on) localStorage.setItem(CHARACTERS_SORT_BY_STORY_KEY, "1");
+      else localStorage.removeItem(CHARACTERS_SORT_BY_STORY_KEY);
+    } catch (e) {}
+  }
+
+  function updateCharactersSortLabel() {
+    var span = byId("characters-sort-label");
+    var sortToggle = byId("characters-sort-by-story");
+    if (!span || !sortToggle) return;
+    span.textContent = sortToggle.checked
+      ? "Sort by story"
+      : "Sort by gender";
+  }
+
+  function bindCharactersSortToggle() {
+    var sortToggle = byId("characters-sort-by-story");
+    if (!sortToggle || sortToggle.dataset.bound) return;
+    sortToggle.dataset.bound = "1";
+    sortToggle.checked = getCharactersSortByStory();
+    updateCharactersSortLabel();
+    sortToggle.addEventListener("change", function () {
+      setCharactersSortByStory(sortToggle.checked);
+      updateCharactersSortLabel();
+      renderCharactersGrid();
+    });
+  }
+
+  function nameSort(a, b) {
+    return (a.name || "").localeCompare(b.name || "", undefined, {
+      sensitivity: "base",
+    });
+  }
+
+  /** Cast panel: either flat Female / Male blocks, or one subsection per story (all genders). */
+  function renderCharactersGrid() {
     var charactersGrid = byId("characters-grid");
     if (!charactersGrid || !characters.length) return;
     charactersGrid.innerHTML = "";
+    var byStory = getCharactersSortByStory();
+
+    var charById = {};
+    characters.forEach(function (c) {
+      charById[c.id] = c;
+    });
+
+    if (byStory) {
+      var placedInAnyStory = {};
+      stories
+        .slice()
+        .sort(compareStories)
+        .forEach(function (story) {
+          var ids = story.characterIds || [];
+          var seenId = {};
+          var row = [];
+          ids.forEach(function (cid) {
+            if (seenId[cid]) return;
+            seenId[cid] = true;
+            var ch = charById[cid];
+            if (ch) {
+              row.push(ch);
+              placedInAnyStory[ch.id] = true;
+            }
+          });
+          if (!row.length) return;
+          row.sort(nameSort);
+          var sub = document.createElement("div");
+          sub.className = "characters-story-group";
+          var h3 = document.createElement("h3");
+          h3.className = "characters-story-title";
+          var storyLink = document.createElement("a");
+          storyLink.href = "#story/" + story.id;
+          storyLink.textContent = story.title || "Story " + story.id;
+          h3.appendChild(storyLink);
+          sub.appendChild(h3);
+          var grid = document.createElement("div");
+          grid.className = "characters-grid-inner";
+          row.forEach(function (c) {
+            grid.appendChild(renderCharacterCard(c));
+          });
+          sub.appendChild(grid);
+          charactersGrid.appendChild(sub);
+        });
+
+      var orphans = characters.filter(function (c) {
+        return !placedInAnyStory[c.id];
+      });
+      if (orphans.length) {
+        orphans.sort(nameSort);
+        var orphanWrap = document.createElement("div");
+        orphanWrap.className = "characters-story-group";
+        var oh = document.createElement("h3");
+        oh.className = "characters-story-title";
+        oh.textContent = "Other characters";
+        orphanWrap.appendChild(oh);
+        var oGrid = document.createElement("div");
+        oGrid.className = "characters-grid-inner";
+        orphans.forEach(function (c) {
+          oGrid.appendChild(renderCharacterCard(c));
+        });
+        orphanWrap.appendChild(oGrid);
+        charactersGrid.appendChild(orphanWrap);
+      }
+      return;
+    }
+
     var byGender = { F: [], M: [] };
     characters.forEach(function (c) {
       var g = c.gender || "M";
@@ -1463,11 +1616,7 @@
     ["F", "M"].forEach(function (gender) {
       var list = byGender[gender];
       if (!list.length) return;
-      list.sort(function (a, b) {
-        return (a.name || "").localeCompare(b.name || "", undefined, {
-          sensitivity: "base",
-        });
-      });
+      list.sort(nameSort);
       var section = document.createElement("div");
       var heading = document.createElement("h2");
       heading.className = "characters-section-title";
@@ -1482,6 +1631,11 @@
       section.appendChild(grid);
       charactersGrid.appendChild(section);
     });
+  }
+
+  function initCharactersGrid() {
+    bindCharactersSortToggle();
+    renderCharactersGrid();
   }
 
   // Flyout: one panel, two modes
@@ -2574,8 +2728,14 @@
       });
 
     document.addEventListener("keydown", function (e) {
+      var lbOpen = sceneLightbox && sceneLightbox.classList.contains("open");
+      if (lbOpen && (e.key === "ArrowLeft" || e.key === "ArrowRight")) {
+        e.preventDefault();
+        sceneStepLightbox(e.key === "ArrowLeft" ? -1 : 1);
+        return;
+      }
       if (e.key !== "Escape") return;
-      if (sceneLightbox && sceneLightbox.classList.contains("open")) {
+      if (lbOpen) {
         closeSceneLightbox();
       }
     });
@@ -2583,6 +2743,7 @@
 
   function init(data) {
     characters = data.characters || [];
+    normalizeCharacterProfilePictures(characters);
     stories = data.stories || [];
 
     initTabs();

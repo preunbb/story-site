@@ -95,7 +95,24 @@
       </section>
 
       <section id="panel-characters" class="panel">
-        <h1>Cast</h1>
+        <div class="cast-panel-header">
+          <h1>Cast</h1>
+          <label class="characters-sort-toggle">
+            <span class="characters-sort-switch">
+              <input
+                type="checkbox"
+                id="characters-sort-by-story"
+                class="characters-sort-input"
+                role="switch"
+                aria-labelledby="characters-sort-label"
+              />
+              <span class="characters-sort-track" aria-hidden="true">
+                <span class="characters-sort-thumb"></span>
+              </span>
+            </span>
+            <span id="characters-sort-label">Sort by gender</span>
+          </label>
+        </div>
         <div class="characters-grid" id="characters-grid">
           <!-- Injected by JS from data/stories.js / characters.js -->
         </div>
