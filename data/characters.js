@@ -640,7 +640,7 @@ window.DATA_CHARACTERS = [
     id: "abby",
     name: "Abby",
     gender: "F",
-    bio: "Lucas's younger stepsister. Inherited her mother's piety. She was horrified when she learned about the First Rite, but she's always trusted her Goddess above all else - she doesn't enjoy castration the way the other girls in the Church do, but she's incredibly devout and knows better than to let her personal failings get in the way of service to her Goddes. Has performed many, many rites and used her natural gifts to tempt them to join the Church, just as she was taught by the Mother Supreme.",
+    bio: "Lucas's younger stepsister. Inherited her mother's piety. She was horrified when she learned about the First Rite, but she's always trusted her Goddess above all else - she doesn't enjoy castration the way the other girls in the Church do, but she's a devout Daughter and knows better than to let her personal weakness get in the way of service to her Goddess. Has performed many, many rites. Love for her goddess and her creations helps her ignore the screams and cries of the poor men she neuters.",
     profilePictures: ["assets/characters/abby_final.png"],
   },
   {
