@@ -410,6 +410,7 @@ window.DATA_CHARACTERS = [
     gender: "M",
     bio: "Young Red Dragon fiancé, engaged to Taviri. Not looking forward to his Pop, but loves his fiancée more than anything.",
     profilePictures: [
+      "assets/characters/malko_profile_2d_painted_v1.png",
       "assets/characters/malko_courtroom_anxious_shirtless_waistup_v1.png",
     ],
   },
@@ -418,9 +419,7 @@ window.DATA_CHARACTERS = [
     name: "Taviri",
     gender: "F",
     bio: "Mal'ko's fiancée. Hates big productions and planning. Loves Mal'ko.",
-    profilePictures: [
-      "assets/characters/taviri_waiting_room_wave_cleavage_v4.png",
-    ],
+    profilePictures: ["assets/characters/taviri_final"],
   },
   {
     id: "jon",
