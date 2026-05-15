@@ -1386,7 +1386,7 @@ window.DATA_STORIES = [
     amazonUrl: "https://www.amazon.com/dp/B0H1J6MB7C",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTw7ksLCB2UgTKpZGwSoE8dGkhwoHkCkg5_iUz8ga467w2A1twmZ-nuj_iYocjiUTdSHanhPdfMArhS/pub",
-    characterIds: ["melody", "ryan"],
+    characterIds: ["melody", "ryan", "malcolm"],
     brutalityRating: 4,
     tags: ["New to Reddit"],
     releaseDate: "2026-05-11",

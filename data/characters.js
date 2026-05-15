@@ -378,8 +378,10 @@ window.DATA_CHARACTERS = [
     id: "malcolm",
     name: "Malcolm",
     gender: "M",
-    bio: "Robert's friend; ginger, horny, impressively endowed. Ends up at Melody's house for 'yardwork'.",
-    profilePictures: [],
+    bio: "Robert's friend. Formerly impressively endowed, he's slightly more modest with only one of his massive, fertile testicles left intact.",
+    profilePictures: [
+      "assets/characters/malcolm_fullbody_user_pref_crop_sides_v1.png",
+    ],
   },
   {
     id: "michelle",
