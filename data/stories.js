@@ -598,24 +598,39 @@ window.DATA_STORIES = [
           "Monique painfully corrects Robert's assumptions about her calculus abilities.",
       },
       {
-        path: "assets/scenes/school_bully/good/monique_back_kick_outside_2.png",
+        path: "assets/scenes/school_bully/good/monique_back_kick_outside_2_photo_real_cast_v6_inverted_prompt_test.png",
         caption:
           "Monique donkey kicks Robert's ball into his pelvic bone. Hope that didn't cause any permanent damage!",
       },
       {
-        path: "assets/scenes/school_bully/good/monique_back_kick_outside.png",
+        path: "assets/scenes/school_bully/good/monique_back_kick_outside_photo_real_cast_v1.png",
         caption:
           "Robert fails to defend himself as Monique gets ready to stomp on his crotch as hard as she can.",
       },
       {
-        path: "assets/scenes/school_bully/final_hospital_convo.png",
+        path: "assets/scenes/school_bully/final_hospital_convo_photo_real_cast_v1.png",
         caption:
           "In the clinic waiting room, Michelle cheerfully explains the benefits of the Drip-n-Snip - even though one of Robert's testicles is completely healthy, it really would be easier to just take them both out now. Melody is intrigued, but Robert seems to object for some reason.",
+      },
+      {
+        path: "assets/scenes/school_bully/good/maria_milker_hospital_robert_relax_photo_real_v4.png",
+        caption:
+          "Dr. Jimenez got a little distracted while milking Robert's ball and fails to collect the full sample. Robert's not too worried about producing another one for her, until he learns just how thorough an OverEasy milker can be on his remaining testicle",
       },
       {
         path: "assets/scenes/school_bully/good/monique_bus_double_trouble.png",
         caption:
           "Monique carefully compares the differences between the two friends. Did someone seriously pop Malcolm's ball before she could?!",
+      },
+      {
+        path: "assets/scenes/school_bully/good/school_bully_monique_melody_dual_contest_photo_real_v7_gym_shorts_plum.png",
+        caption:
+          "Melody and Monique race to see whose boy loses his fertility first.",
+      },
+      {
+        path: "assets/scenes/school_bully/good/monique_hospital_vial_fertility_tease_photo_real_cast_v1.png",
+        caption:
+          "Robert can barely meet her eyes as Monique swirls his final sperm sample around and wonders aloud whether he still wants kids someday.",
       },
     ],
   },
@@ -1491,4 +1506,3 @@ window.DATA_STORIES = [
     tags: ["New to Reddit"],
   },
 ];
-

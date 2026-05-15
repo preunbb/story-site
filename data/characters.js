@@ -5,7 +5,7 @@ window.DATA_CHARACTERS = [
     name: "Karen",
     gender: "F",
     testiclesKilled: 3,
-    bio: "Therapist with raven hair, almond eyes, and a wry, knowing smile. Specializes in 'castration anxiety' — and a few even rarer disorders. Devoted to her clients in her own particular way.",
+    bio: "Skilled therapist specializing in male sexual pathology. Her doctorate deeply involved the well known 'castration anxiety' disorder, as well as a few much rarer variants. Deeply devoted to helping her clients overcome their problems.",
     profilePictures: ["assets/characters/karen.jpg"],
   },
   {
@@ -20,9 +20,9 @@ window.DATA_CHARACTERS = [
     id: "cathy",
     name: "Cathy",
     gender: "F",
-    bio: "Loves science and hands-on research. Works at the clinic; curious, enthusiastic, a bit unhinged.",
+    bio: "Cathy has been an avid scientist all her life. Whether it's testing the relative structural integrity of a boy's left testicle versus his right one, or seeing how long a man can be denied orgasm until his testicles explode, her extracurricular activities have set her up for success as a head researcher at OverEasy technologies. She works hard, and wouldn't trade her job for the world.",
     testiclesKilled: 7,
-    profilePictures: ["assets/characters/cathy.jpg"],
+    profilePictures: ["assets/characters/cathy_final.png"],
   },
   {
     id: "amy",
@@ -171,7 +171,7 @@ window.DATA_CHARACTERS = [
     id: "kayleigh",
     name: "Kayleigh",
     gender: "F",
-    bio: "Dennis's red-haired, freckled girlfriend. Sends him nudes while he's at the gym.",
+    bio: "Dennis's nymphomaniac girlfriend.",
     profilePictures: ["assets/characters/kayleigh.jpg"],
   },
   {
@@ -442,9 +442,7 @@ window.DATA_CHARACTERS = [
     name: "Chad",
     gender: "M",
     bio: "Alyssa's jock boyfriend. Cheats on her repeatedly; his behavior drives her to use Jon as an outlet.",
-    profilePictures: [
-      "assets/characters/chad_profile_jock_sneer_bulge_v1.png",
-    ],
+    profilePictures: ["assets/characters/chad_profile_jock_sneer_bulge_v1.png"],
   },
   {
     id: "dr_s",
