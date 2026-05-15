@@ -593,17 +593,17 @@ window.DATA_STORIES = [
     tags: [],
     scenes: [
       {
-        path: "assets/scenes/school_bully/good/monique_stomps_robert_calc.png",
+        path: "assets/scenes/school_bully/monique_stomps_robert_calc.png",
         caption:
           "Monique painfully corrects Robert's assumptions about her calculus abilities.",
       },
       {
-        path: "assets/scenes/school_bully/good/monique_back_kick_outside_2_photo_real_cast_v6_inverted_prompt_test.png",
+        path: "assets/scenes/school_bully/monique_back_kick_outside_2_photo_real_cast_v6_inverted_prompt_test.png",
         caption:
           "Monique donkey kicks Robert's ball into his pelvic bone. Hope that didn't cause any permanent damage!",
       },
       {
-        path: "assets/scenes/school_bully/good/monique_back_kick_outside_photo_real_cast_v1.png",
+        path: "assets/scenes/school_bully/monique_back_kick_outside_photo_real_cast_v1.png",
         caption:
           "Robert fails to defend himself as Monique gets ready to stomp on his crotch as hard as she can.",
       },
@@ -613,22 +613,22 @@ window.DATA_STORIES = [
           "In the clinic waiting room, Michelle cheerfully explains the benefits of the Drip-n-Snip - even though one of Robert's testicles is completely healthy, it really would be easier to just take them both out now. Melody is intrigued, but Robert seems to object for some reason.",
       },
       {
-        path: "assets/scenes/school_bully/good/maria_milker_hospital_robert_relax_photo_real_v4.png",
+        path: "assets/scenes/school_bully/maria_milker_hospital_robert_relax_photo_real_v4.png",
         caption:
           "Dr. Jimenez got a little distracted while milking Robert's ball and fails to collect the full sample. Robert's not too worried about producing another one for her, until he learns just how thorough an OverEasy milker can be on his remaining testicle",
       },
       {
-        path: "assets/scenes/school_bully/good/monique_bus_double_trouble.png",
+        path: "assets/scenes/school_bully/monique_bus_double_trouble.png",
         caption:
           "Monique carefully compares the differences between the two friends. Did someone seriously pop Malcolm's ball before she could?!",
       },
       {
-        path: "assets/scenes/school_bully/good/school_bully_monique_melody_dual_contest_photo_real_v7_gym_shorts_plum.png",
+        path: "assets/scenes/school_bully/school_bully_monique_melody_dual_contest_photo_real_v7_gym_shorts_plum.png",
         caption:
           "Melody and Monique race to see whose boy loses his fertility first.",
       },
       {
-        path: "assets/scenes/school_bully/good/monique_hospital_vial_fertility_tease_photo_real_cast_v1.png",
+        path: "assets/scenes/school_bully/monique_hospital_vial_fertility_tease_photo_real_cast_v1.png",
         caption:
           "Robert can barely meet her eyes as Monique swirls his final sperm sample around and wonders aloud whether he still wants kids someday.",
       },
@@ -697,15 +697,15 @@ window.DATA_STORIES = [
     tags: [],
     scenes: [
       {
-        path: "assets/scenes/food_for_thot/good/emma_gym_drools_at_bulge_v3.png",
+        path: "assets/scenes/food_for_thot/emma_gym_drools_at_bulge_v3.png",
         caption: "Emma drools at Jose's bulge from across the weight room.",
       },
       {
-        path: "assets/scenes/food_for_thot/good/emma_facesit_final_castration_v3_extreme_closeup.png",
+        path: "assets/scenes/food_for_thot/emma_facesit_final_castration_v3_extreme_closeup.png",
         caption: "Emma savoring her mouthful.",
       },
       {
-        path: "assets/scenes/food_for_thot/good/gym_after.png",
+        path: "assets/scenes/food_for_thot/gym_after.png",
         caption: "Jose's empty sack reveals the damage Emma has done.",
       },
     ],
@@ -735,22 +735,22 @@ window.DATA_STORIES = [
     tags: [],
     scenes: [
       {
-        path: "assets/scenes/friendzoned/good/alyssa_lip_bite_guilty_direct_camera_oops_v1.png",
+        path: "assets/scenes/friendzoned/alyssa_lip_bite_guilty_direct_camera_oops_v1.png",
         caption:
           "Oops...I think I felt one pop. You didn't need both of your nuts, did you?",
       },
       {
-        path: "assets/scenes/friendzoned/good/ch02_orchiectomy_photo_real_cast_v1.png",
+        path: "assets/scenes/friendzoned/ch02_orchiectomy_photo_real_cast_v1.png",
         caption:
           "I'm so sorry, sir, your left testicle is completely irreparable. Yes, we tried our best. Yes, we know your girlfriend did it by accident. You'll be ok. With only one nut, your sexual function might change, but you'll still be able to function. But we need to snip leftie out right away, now.",
       },
       {
-        path: "assets/scenes/friendzoned/good/ch03_hospital_ruined_orgasm_photo_real_cast_v1.png",
+        path: "assets/scenes/friendzoned/ch03_hospital_ruined_orgasm_photo_real_cast_v1.png",
         caption:
           "Oh no...not again. I'm so sorry I came down full force on your boner like that. Did...did they really have to snip it at the base? Let me take a look beneath your gown - oh my god. There's...there's not even an inch left, it's just a smooth scar above your half-empty scrotum. I'm so sorry.",
       },
       {
-        path: "assets/scenes/friendzoned/good/ch06_three_thumb_castration_v5_inked.png",
+        path: "assets/scenes/friendzoned/ch06_three_thumb_castration_v5_inked.png",
         caption:
           "It's better this way, Jon. We can still be friends...eventually.",
       },
@@ -1299,27 +1299,27 @@ window.DATA_STORIES = [
     ],
     scenes: [
       {
-        path: "assets/scenes/andrea_and_lucas/good/izzie_and_sterilizer.png",
+        path: "assets/scenes/andrea_and_lucas/izzie_and_sterilizer.png",
         caption:
           "Izzie shows off OverEasy, inc.'s latest in cutting edge female self defense technology: The Sterilizer™! It's the first taser specifically designed to remove your (male) attacker from the gene pool.",
       },
       {
-        path: "assets/scenes/andrea_and_lucas/good/sterilizer_aftermath.png",
+        path: "assets/scenes/andrea_and_lucas/sterilizer_aftermath.png",
         caption:
           "Izzie's recent involuntary 'costar' deals with the fact that his semen is completely sperm-free after she gives him a hilarious demonstration of how the Sterilizer™ works.",
       },
       {
-        path: "assets/scenes/andrea_and_lucas/good/izzie_ball_killers_heel_skit_v8_cute_smile_clean.png",
+        path: "assets/scenes/andrea_and_lucas/izzie_ball_killers_heel_skit_v8_cute_smile_clean.png",
         caption:
           "Now, it's time to show off the Ball Killers™! As fashionable as they are functional, these devious little heals will keep you sexy on the dance floor and safe anywhere there's a dangerous man around, as long as you don't mind cleaning bits of nutmeat off them when you're finished.",
       },
       {
-        path: "assets/scenes/andrea_and_lucas/good/izzie_eunuchcorn_jeans_skit_bridget_punt_shop_remote_v10.png",
+        path: "assets/scenes/andrea_and_lucas/izzie_eunuchcorn_jeans_skit_bridget_punt_shop_remote_v10.png",
         caption:
           "Bridget demos a jeans-store punt for the cameras while Andrea's sterilized ex sobs into a pair of Nate the Great branded denim—and Izzie's already grinning like the verdict is final.",
       },
       {
-        path: "assets/scenes/andrea_and_lucas/good/izzie_eunuchcorn_jeans_skit_v1.png",
+        path: "assets/scenes/andrea_and_lucas/izzie_eunuchcorn_jeans_skit_v1.png",
         caption:
           "Izzie visits Andrea's eunuch ex-boyfriend at the jeans store and teases him about the permanent, irreversible injury she inflicted for the sake of content.",
       },
@@ -1456,7 +1456,7 @@ window.DATA_STORIES = [
           "Lucas tries to order a drink for Andrea, but he can't seem to get the simple order out. She helps him remember with a boot to the groin every time he messes up.",
       },
       {
-        path: "assets/scenes/andrea_and_lucas/good/yvette_operates_on_sunni.png",
+        path: "assets/scenes/andrea_and_lucas/yvette_operates_on_sunni.png",
         caption:
           "Sunni insists his injuries aren't that bad, but Dr. Yvette knows better: she's definitely going to have to remove both of his testicles. In the background, Felix futilely begs her to give him the tiniest amount of basic medical attention so he can remain a man.",
       },
@@ -1467,7 +1467,7 @@ window.DATA_STORIES = [
           "Oops! Emma doesn't see Andrea's cuff on Lucas, and mistakenly thinks it's open season on his nuts like every other unowned guy at the concert. Andrea doesn't take the violation lightly - nobody bruises her nerd's balls but her.",
       },
       {
-        path: "assets/scenes/andrea_and_lucas/good/tamara_and_melody_medical_tent.png",
+        path: "assets/scenes/andrea_and_lucas/tamara_and_melody_medical_tent.png",
         caption:
           "Melody encourages Tamara to give in to her darker urges while operating on Melody's current boytoy.",
       },
@@ -1477,7 +1477,7 @@ window.DATA_STORIES = [
           "Andrea and Fiora compete to find out whose boy had stronger testicles.",
       },
       {
-        path: "assets/scenes/andrea_and_lucas/good/tamara_aftermath_final.png",
+        path: "assets/scenes/andrea_and_lucas/tamara_aftermath_final.png",
         caption:
           "Tamara, in the aftermath of the Cherry Pop! concert, deals with the insanely erotic clusterfuck that was the onsite medical tent, and the dozens of unnecessarily severed organs Yvette left lying around.",
       },
