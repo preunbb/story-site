@@ -2094,10 +2094,18 @@
     updateStoryReaderChapterHighlight();
   }
 
+  /**
+   * URL for social / chat apps: static share/<id>.html carries og:* tags (hash
+   * reader URLs are invisible to servers). Opens the story reader via redirect.
+   */
   function storyReaderSharePageUrl(storyId) {
-    var u = new URL(location.href);
-    u.hash = "story/" + storyId + "/read";
-    return u.href;
+    var prefix = location.pathname
+      .replace(/\/index\.html?$/i, "")
+      .replace(/\/$/, "");
+    var path =
+      (prefix ? prefix + "/" : "") + "share/" + String(storyId) + ".html";
+    if (path.charAt(0) !== "/") path = "/" + path;
+    return new URL(path, location.origin).href;
   }
 
   var SHARE_LINK_BUILDERS = [

@@ -4,13 +4,14 @@
   "type": "module",
   "scripts": {
     "start": "python3 -m http.server 8000",
-    "sync": "node scripts/sync-stories.mjs",
+    "sync": "node scripts/sync-stories.mjs && node scripts/generate-story-share-pages.mjs",
     "sync:andrea-complete": "node scripts/sync-andrea-lucas-complete-to-dist.mjs",
-    "sync:concurrent": "node scripts/sync-stories.mjs --concurrency=4",
+    "sync:concurrent": "node scripts/sync-stories.mjs --concurrency=4 && node scripts/generate-story-share-pages.mjs",
     "pdf": "node scripts/render-story-pdf.mjs",
     "epub": "node scripts/render-story-epub.mjs",
     "anthology": "node scripts/render-anthology-epub.mjs",
     "publish": "node scripts/publish.mjs",
+    "share-pages": "node scripts/generate-story-share-pages.mjs",
     "reddit-post-sections": "node scripts/reddit-post-sections.mjs",
     "copy-edit-server": "npm --prefix tools/copy-edit-server run start"
   },
