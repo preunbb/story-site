@@ -71,27 +71,27 @@ window.DATA_STORIES = [
       {
         path: "assets/scenes/castration_anxiety/scene_amazon_v5_dagger_triumph.jpg",
         caption:
-          "The opening nightmare — Jeremy lashed to a sacrificial X while the Amazon queen turns to her tribe in ecstatic triumph. 'For Kali!'",
+          "Jeremy's nightmares begin. His day to day life is boring and safe - but at night, Kali's cult destroys his manhood.",
       },
       {
         path: "assets/scenes/castration_anxiety/scene_first_knee_v6_coffee_table_crop.jpg",
         caption:
-          "First session. He's eagerly stripped down for his 'treatment' — and Karen calmly explains the diagnosis while his nuts catch up with his decisions.",
+          "His first session with Karen. Nudity is not optional; his continued testicular health is.",
       },
       {
         path: "assets/scenes/castration_anxiety/scene_compression_v4_karen_foreground_smirk.jpg",
         caption:
-          "Rapid testicle compressions, by the book. Karen's quiet, private smile as she glances up from her work to enjoy his reaction.",
+          "Standard castration anxiety treatment: Rapid testicle compressions.",
       },
       {
         path: "assets/scenes/castration_anxiety/scene_soccer_v3_foot_on_shoulder.jpg",
         caption:
-          "Cleats in the mud. A new nightmare debuts — the all-girl team, the laughing captain, and the shrinkage that won't be in the dream alone.",
+          "The nightmare continues with his nightly neutering at the hands of the soccer team. When he wakes up, he realizes his nightmmarish shrinkage is horribly real.",
       },
       {
-        path: "assets/scenes/castration_anxiety/scene_burdizzo_v4_pre_horror.jpg",
+        path: "assets/scenes/castration_anxiety/scene_burdizzo_v5_pre_horror.png",
         caption:
-          "Second session. Karen wanted to make it 'a little more real this week.' She borrowed something from her farmhand friend.",
+          "The burdizzo
       },
       {
         path: "assets/scenes/castration_anxiety/scene_ruined_orgasm_v3_hollow_aftermath.jpg",
