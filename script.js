@@ -2234,6 +2234,31 @@
     return h + "</ul></div>";
   }
 
+  /**
+   * Fires once when the reader shell opens (markdown may still be loading).
+   * Disabled unless window.DATA_ANALYTICS.ingestUrl is set (see data/analytics.js).
+   */
+  function logStoryReaderView(story) {
+    var cfg = window.DATA_ANALYTICS || {};
+    var url = (cfg.ingestUrl || "").trim();
+    if (!url || !story || story.id == null) return;
+    var sid =
+      typeof story.id === "number"
+        ? story.id
+        : parseInt(String(story.id), 10);
+    if (!isFinite(sid)) return;
+    var payload = JSON.stringify({ storyId: sid });
+    try {
+      fetch(url, {
+        method: "POST",
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: payload,
+        keepalive: true,
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
   function openStoryReader(story) {
     if (!story || !storyReaderEl) return;
     setFlyoutPanelOpen(false);
@@ -2246,6 +2271,7 @@
     storyReaderEl.classList.add("open");
     document.body.classList.add("story-reader-open");
 
+    logStoryReaderView(story);
     loadStoryReaderContent(story);
   }
 

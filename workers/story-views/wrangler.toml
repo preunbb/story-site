@@ -1,0 +1,14 @@
+name = "story-site-story-views"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+# Create the namespace once, then paste its id (see README):
+#   npx wrangler kv namespace create VIEWS
+[[kv_namespaces]]
+binding = "VIEWS"
+id = "REPLACE_ME_AFTER_kv_namespace_create"
+
+[vars]
+# Comma-separated list. Include your GitHub Pages origin and local dev origins.
+ALLOWED_ORIGINS = "https://preunbb.github.io,http://localhost:8000,http://127.0.0.1:8000"
+# Set STATS_SECRET via dashboard or `wrangler secret put STATS_SECRET` (do not commit).

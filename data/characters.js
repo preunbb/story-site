@@ -419,7 +419,7 @@ window.DATA_CHARACTERS = [
     name: "Taviri",
     gender: "F",
     bio: "Mal'ko's fiancée. Hates big productions and planning. Loves Mal'ko.",
-    profilePictures: ["assets/characters/taviri_final"],
+    profilePictures: ["assets/characters/taviri.png"],
   },
   {
     id: "jon",

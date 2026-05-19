@@ -12,6 +12,7 @@
     "anthology": "node scripts/render-anthology-epub.mjs",
     "publish": "node scripts/publish.mjs",
     "share-pages": "node scripts/generate-story-share-pages.mjs",
+    "deploy:story-views": "npx wrangler deploy --config workers/story-views/wrangler.toml",
     "reddit-post-sections": "node scripts/reddit-post-sections.mjs",
     "copy-edit-server": "npm --prefix tools/copy-edit-server run start"
   },
