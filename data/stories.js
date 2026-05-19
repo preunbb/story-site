@@ -91,7 +91,7 @@ window.DATA_STORIES = [
       {
         path: "assets/scenes/castration_anxiety/scene_burdizzo_v5_pre_horror.png",
         caption:
-          "The burdizzo
+          "Karen introduces Jeremy to the next phase of treatment. The burdizzo is just for roleplay...right?",
       },
       {
         path: "assets/scenes/castration_anxiety/scene_ruined_orgasm_v3_hollow_aftermath.jpg",
