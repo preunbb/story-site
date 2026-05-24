@@ -1853,10 +1853,16 @@
     return s;
   }
 
+  /** Drop emphasis markers the inline parser could not pair (nested/malformed md). */
+  function stripRemainingMarkdownAsterisks(s) {
+    return s.replace(/\*/g, "");
+  }
+
   function readerFormatEscapedInline(escaped) {
     var s = mergeEmphasisAcrossNewlines(escaped);
     s = linkifyEscapedMarkdown(s);
     s = readerInlineEmphasis(s);
+    s = stripRemainingMarkdownAsterisks(s);
     return s;
   }
 

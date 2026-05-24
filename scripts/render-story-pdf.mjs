@@ -6,7 +6,7 @@
  * and printed via headless Google Chrome.
  *
  * Usage:
- *   node scripts/render-story-pdf.mjs [storyId] [--out=path.pdf] [--light]
+ *   node scripts/render-story-pdf.mjs [storyId] [--out=path.pdf]
  *
  * Defaults to story id 1 (Three Strikes). Output defaults to
  * dist/<slugified-title>.pdf.
@@ -29,7 +29,11 @@ import {
   escapeHtml,
   storyMarkdownToSafeHtml,
   extractChapters,
-  END_PAGE,
+  makePdfSceneRenderer,
+  PDF_SCENE_FIGURE_CSS,
+  PDF_END_PAGE_CSS,
+  PDF_PRINT_PALETTE,
+  buildEndPageHtml,
   DEFAULT_OUT_DIR,
 } from "./lib/story-render.mjs";
 
@@ -48,11 +52,9 @@ const CHROME_CANDIDATES = [
 ];
 
 function parseArgs(argv) {
-  const out = { id: 1, output: null, light: false };
+  const out = { id: 1, output: null };
   for (const arg of argv) {
-    if (arg === "--light") {
-      out.light = true;
-    } else if (arg.startsWith("--out=")) {
+    if (arg.startsWith("--out=")) {
       out.output = arg.slice("--out=".length);
     } else if (/^\d+$/.test(arg)) {
       out.id = Number(arg);
@@ -108,51 +110,8 @@ function buildTocHtml({ title, chapters }) {
   </section>`;
 }
 
-function buildEndPageHtml() {
-  const paragraphs = END_PAGE.paragraphs
-    .map((p) => `    <p class="end-message">${escapeHtml(p)}</p>`)
-    .join("\n");
-  const contacts = END_PAGE.contacts
-    .map(
-      (c) =>
-        `      <li>` +
-        `<span class="end-contact-label">${escapeHtml(c.label)}</span>` +
-        `<a href="${escapeHtml(c.href)}">${escapeHtml(c.text)}</a>` +
-        `</li>`,
-    )
-    .join("\n");
-  return `  <section class="end-page">
-    <hr class="end-flourish" />
-    <h1 class="end-title">${escapeHtml(END_PAGE.title)}</h1>
-${paragraphs}
-    <ul class="end-contacts">
-${contacts}
-    </ul>
-    <p class="end-signoff">${escapeHtml(END_PAGE.signoff)}</p>
-  </section>`;
-}
-
-function buildHtmlDocument({ story, bodyHtml, chapters, light }) {
-  const palette = light
-    ? {
-        bg: "#ffffff",
-        ink: "#1f1c21",
-        inkMuted: "#5b555f",
-        red: "#a14a59",
-        redBright: "#a14a59",
-        redDim: "#c89aa3",
-        border: "rgba(161, 74, 89, 0.25)",
-      }
-    : {
-        bg: "#252528",
-        ink: "#ebe9ec",
-        inkMuted: "#a8a4ab",
-        red: "#b07a85",
-        redBright: "#c9959f",
-        redDim: "#8f6a73",
-        border: "rgba(176, 122, 133, 0.2)",
-      };
-
+function buildHtmlDocument({ story, bodyHtml, chapters }) {
+  const palette = PDF_PRINT_PALETTE;
   const title = escapeHtml(story.title);
   const tocHtml = buildTocHtml({ title, chapters });
   const endHtml = buildEndPageHtml();
@@ -305,69 +264,8 @@ function buildHtmlDocument({ story, bodyHtml, chapters, light }) {
     text-decoration: underline;
     text-underline-offset: 0.12em;
   }
-  .end-page {
-    page-break-before: always;
-    max-width: 5.5in;
-    margin: 0 auto;
-    padding-top: 0.5in;
-    text-align: center;
-  }
-  .end-page .end-flourish {
-    border: 0;
-    height: 1px;
-    margin: 0 auto 0.45in;
-    width: 45%;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      var(--red-dim) 18%,
-      var(--red-dim) 82%,
-      transparent 100%
-    );
-  }
-  .end-page .end-title {
-    font-size: 22pt;
-    font-weight: 700;
-    margin: 0 0 0.35in;
-    letter-spacing: 0.02em;
-    color: var(--ink);
-  }
-  .end-page .end-message {
-    color: var(--ink);
-    font-size: 11.5pt;
-    line-height: 1.65;
-    margin: 0 0 0.18in;
-    text-align: left;
-  }
-  .end-page .end-message + .end-message {
-    margin-top: 0.05in;
-  }
-  .end-page .end-contacts {
-    list-style: none;
-    margin: 0.4in auto 0.35in;
-    padding: 0;
-    display: inline-block;
-    text-align: left;
-    color: var(--ink-muted);
-    font-size: 11pt;
-    line-height: 1.9;
-  }
-  .end-page .end-contacts a {
-    color: var(--red-bright);
-    text-decoration: underline;
-    text-underline-offset: 0.12em;
-  }
-  .end-page .end-contacts .end-contact-label {
-    color: var(--ink-muted);
-    display: inline-block;
-    width: 4.25em;
-  }
-  .end-page .end-signoff {
-    color: var(--ink-muted);
-    font-style: italic;
-    margin: 0.5in 0 0;
-    font-size: 11pt;
-  }
+${PDF_SCENE_FIGURE_CSS}
+${PDF_END_PAGE_CSS}
 </style>
 </head>
 <body>
@@ -400,13 +298,15 @@ function main() {
     process.exit(1);
   }
 
-  const bodyHtml = storyMarkdownToSafeHtml(markdown, READER_OPTS);
+  const bodyHtml = storyMarkdownToSafeHtml(markdown, {
+    ...READER_OPTS,
+    sceneRenderer: makePdfSceneRenderer(story),
+  });
   const chapters = extractChapters(markdown);
   const html = buildHtmlDocument({
     story,
     bodyHtml,
     chapters,
-    light: args.light,
   });
 
   const outPath = args.output

@@ -1335,7 +1335,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vS8Bqzs-hZYnPrTxOBrh5RDXXVGYRm1DhKEkKtPW1Lj06DEG54-hUtVCUtOnRU5yIUEwAbXNZRW7Bb0/pub",
     cover: "assets/covers/courtroom.png",
-    coverFlip: "assets/covers/courtroom_nsfw_2.png",
+    coverFlip: "assets/covers/courtroom_nsfw_1.png",
     state: 2,
     releaseDate: "2026-03-21",
     characterIds: ["malko", "taviri"],
@@ -1420,9 +1420,9 @@ window.DATA_STORIES = [
     brutalityRating: 5,
     cover: "assets/covers/andrea_and_lucas_part_2_cover_eve_abby_kay_v1.png",
     summary:
-      "Andrea takes Lucas to a Cherry Pop! concert, and shows him what a mush pit is like. Later, she meets his family.",
+      "Andrea takes Lucas to a Cherry Pop! concert, and shows him what a mush pit is like. Meanwhile, Tamara deals with her new medical intern under difficult circumstances. Later, she meets his family.",
     state: 1,
-    hideScenes: true,
+    hideScenes: false,
 
     characterIds: [
       "andrea",
@@ -1450,6 +1450,11 @@ window.DATA_STORIES = [
       },
     ],
     scenes: [
+      {
+        path: "assets/scenes/andrea_and_lucas/ch08_cherry_pop_concert_stage_crowd_v1.png",
+        caption:
+          "Cherry Pop! takes the stage as Andrea and Lucas arrive to the Mush Pit. The crowd is already electric, and a couple of unlucky guys up front look like they're not going to make it through the night intact.",
+      },
       {
         path: "assets/scenes/andrea_and_lucas/ch10_cherry_pop_bar_standing_tether_stunning_bartender_remote_v7.png",
         caption:

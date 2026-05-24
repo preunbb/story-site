@@ -7,7 +7,7 @@
  * to what users see on the site.
  */
 
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join, resolve } from "node:path";
 import { createContext, Script } from "node:vm";
@@ -139,11 +139,17 @@ function readerInlineEmphasis(escaped) {
   return s;
 }
 
+/** Drop emphasis markers the inline parser could not pair (nested/malformed md). */
+function stripRemainingMarkdownAsterisks(s) {
+  return s.replace(/\*/g, "");
+}
+
 export function readerFormatEscapedInline(escaped, opts) {
   const linkClass = opts && opts.linkClass ? opts.linkClass : null;
   let s = mergeEmphasisAcrossNewlines(escaped);
   s = linkifyEscapedMarkdown(s, linkClass);
   s = readerInlineEmphasis(s);
+  s = stripRemainingMarkdownAsterisks(s);
   return s;
 }
 
@@ -175,6 +181,79 @@ export function extractSceneTagIdentifier(block) {
 /** When true, scene figures are omitted on the site and in EPUB image embeds. */
 export function storyHidesScenes(story) {
   return story != null && story.hideScenes === true;
+}
+
+/** Print palette for PDF output (always light/white background). */
+export const PDF_PRINT_PALETTE = {
+  bg: "#ffffff",
+  ink: "#1f1c21",
+  inkMuted: "#5b555f",
+  red: "#a14a59",
+  redBright: "#a14a59",
+  redDim: "#c89aa3",
+  border: "rgba(161, 74, 89, 0.25)",
+};
+
+/** CSS for inline scene figures in PDF output (shared by PDF renderers). */
+export const PDF_SCENE_FIGURE_CSS = `
+  .story-reader-article figure.story-scene {
+    margin: 0.25in 0;
+    page-break-inside: avoid;
+    text-align: center;
+  }
+  .story-reader-article figure.story-scene img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+  .story-reader-article .story-reader-scene-missing {
+    color: var(--ink-muted);
+    font-style: italic;
+    text-align: center;
+  }`;
+
+/**
+ * Merge Andrea and Lucas Part 1 + Part 2 scene lists for full-manuscript exports.
+ */
+export function mergeAndreaLucasStory(stories) {
+  const part1 = findStory(stories, 43);
+  const part2 = findStory(stories, 47);
+  const base = part2 || part1;
+  if (!base) return null;
+  return {
+    ...base,
+    scenes: [].concat((part1 && part1.scenes) || [], (part2 && part2.scenes) || []),
+  };
+}
+
+/**
+ * Resolve standalone `[[scene:…]]` tags to inline `<figure>` HTML for PDF export.
+ * Uses absolute `file://` image paths so headless Chrome can embed them.
+ */
+export function makePdfSceneRenderer(story, opts = {}) {
+  const root = opts.repoRoot || repoRoot;
+  return function sceneRenderer(identifier) {
+    if (storyHidesScenes(story)) return "";
+    const match = findStorySceneByIdentifier(story, identifier);
+    if (!match) {
+      return (
+        `<p class="story-reader-scene-missing">[missing scene: ${escapeHtml(identifier)}]</p>`
+      );
+    }
+    const { scene } = match;
+    const absPath = resolve(root, scene.path);
+    if (!existsSync(absPath)) {
+      console.warn(`[pdf] scene image missing on disk: ${scene.path}`);
+      return (
+        `<p class="story-reader-scene-missing">[missing scene: ${escapeHtml(identifier)}]</p>`
+      );
+    }
+    return (
+      `<figure class="story-scene">` +
+      `<img src="file://${absPath}" alt="" />` +
+      `</figure>`
+    );
+  };
 }
 
 export function findStorySceneByIdentifier(story, identifier) {
@@ -421,3 +500,93 @@ export const END_PAGE = {
   ],
   signoff: "— Preun",
 };
+
+/** CSS for the shared END_PAGE back matter in PDF output. */
+export const PDF_END_PAGE_CSS = `
+  .end-page {
+    page-break-before: always;
+    max-width: 5.5in;
+    margin: 0 auto;
+    padding-top: 0.5in;
+    text-align: center;
+  }
+  .end-page .end-flourish {
+    border: 0;
+    height: 1px;
+    margin: 0 auto 0.45in;
+    width: 45%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--red-dim) 18%,
+      var(--red-dim) 82%,
+      transparent 100%
+    );
+  }
+  .end-page .end-title {
+    font-size: 22pt;
+    font-weight: 700;
+    margin: 0 0 0.35in;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+  .end-page .end-message {
+    color: var(--ink);
+    font-size: 11.5pt;
+    line-height: 1.65;
+    margin: 0 0 0.18in;
+    text-align: left;
+  }
+  .end-page .end-message + .end-message {
+    margin-top: 0.05in;
+  }
+  .end-page .end-contacts {
+    list-style: none;
+    margin: 0.4in auto 0.35in;
+    padding: 0;
+    display: inline-block;
+    text-align: left;
+    color: var(--ink-muted);
+    font-size: 11pt;
+    line-height: 1.9;
+  }
+  .end-page .end-contacts a {
+    color: var(--red-bright);
+    text-decoration: underline;
+    text-underline-offset: 0.12em;
+  }
+  .end-page .end-contacts .end-contact-label {
+    color: var(--ink-muted);
+    display: inline-block;
+    width: 4.25em;
+  }
+  .end-page .end-signoff {
+    color: var(--ink-muted);
+    font-style: italic;
+    margin: 0.5in 0 0;
+    font-size: 11pt;
+  }`;
+
+export function buildEndPageHtml() {
+  const paragraphs = END_PAGE.paragraphs
+    .map((p) => `    <p class="end-message">${escapeHtml(p)}</p>`)
+    .join("\n");
+  const contacts = END_PAGE.contacts
+    .map(
+      (c) =>
+        `      <li>` +
+        `<span class="end-contact-label">${escapeHtml(c.label)}</span>` +
+        `<a href="${escapeHtml(c.href)}">${escapeHtml(c.text)}</a>` +
+        `</li>`,
+    )
+    .join("\n");
+  return `  <section class="end-page">
+    <hr class="end-flourish" />
+    <h1 class="end-title">${escapeHtml(END_PAGE.title)}</h1>
+${paragraphs}
+    <ul class="end-contacts">
+${contacts}
+    </ul>
+    <p class="end-signoff">${escapeHtml(END_PAGE.signoff)}</p>
+  </section>`;
+}
