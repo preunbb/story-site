@@ -1,0 +1,32 @@
+---
+description: Vocabulary allowances and style preferences for typo/grammar passes on catalog fiction—not dictionary “corrections” of intentional terms.
+alwaysApply: true
+---
+
+# Copy-edit spellchecker
+
+When reviewing or fixing typos, grammar, or copy in catalog fiction (Drive docs, synced `assets/stories/*.md`, or copy-edit tooling), apply these standing rules.
+
+## Valid catalog vocabulary (never “correct” away)
+
+Treat these as intentional words, not misspellings. Do not normalize them to generic or dictionary-only wording unless the author asks:
+
+- **halfstration** (and close variants like **halfstrated**)
+- **nutmeat**
+- **nutpain**
+- **ballpain**
+- **ballache**
+- **ballsack** (and natural plurals like *ball sacks*)
+- **testeria**
+
+## Style preferences (flag or fix when copy-editing)
+
+- **step-sister** — prefer hyphenated *step-sister* over *stepsister* or *step sister*.
+- **okay** — prefer *okay* over *ok*.
+- **Numbers ≤ 10** — spell out (*one* … *ten*) instead of digits (*1* … *10*) in prose. Digits are fine for ages, dates, times, measurements, and other contexts where numerals are standard.
+
+## Scope
+
+- Still flag objective typos, doubled words, wrong apostrophes, subject–verb agreement, etc.
+- Do **not** rewrite for voice or taste beyond the preferences above.
+- Do **not** treat catalog lexicon as errors.

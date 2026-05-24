@@ -1,7 +1,7 @@
 window.DATA_STORIES = [
   {
     id: 1,
-    wordCount: 24261,
+    wordCount: 24257,
     title: "Three Strikes",
     summary:
       "A college senior has an unusually blessed anatomy and a very demanding swim coach. She insists on some minor modifications to improve his speed, which he politely declines. She enlists three eager assistants to help change his mind: a Goth, a cheerleader, and an science wiz. Sam does his best to keep all of his blessings safe from the girls, but it's not easy, and all three girls make some very convincing arguments.",
@@ -1377,7 +1377,7 @@ window.DATA_STORIES = [
   },
   {
     id: 46,
-    wordCount: 12782,
+    wordCount: 12803,
     title: "Melody Seduces a Virgin",
     summary:
       "Melody's castration kink is back in full force, ever since her son lost his balls. She's been craving a chance to explore her awakened urges, and the nervous, virginal Ryan is just the guy to help her.",

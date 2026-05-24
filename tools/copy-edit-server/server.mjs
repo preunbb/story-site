@@ -98,6 +98,8 @@ async function analyzeChapter(chapterTitle, chapterBody) {
 
 Rules:
 - ONLY flag text that is objectively wrong or inconsistent standard English. Do NOT rewrite for taste, voice, or stylistic "improvement."
+- Catalog vocabulary is valid — never flag as misspellings: halfstration (halfstrated), nutmeat, nutpain, ballpain, ballache, ballsack, testeria.
+- Style preferences (flag these when editing): prefer step-sister over stepsister or step sister; prefer okay over ok; spell out numbers one through ten in prose (digits OK for ages, dates, times, measurements).
 - The chapter text is Markdown exported from a published Google Doc (italics may appear as *words*). Fixes will be applied with Google Docs "replace all" on the **underlying Doc**, which does NOT contain asterisk markers for italics.
 - For each issue, "before" and "after" must describe only the **visible prose** — omit surrounding * or ** markers unless the actual typo is inside the marker characters themselves.
 - Use straight ASCII apostrophes/quotes in "before"/"after" unless the snippet clearly uses curly punctuation.
