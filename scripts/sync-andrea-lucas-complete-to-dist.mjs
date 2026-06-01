@@ -5,7 +5,7 @@
  *
  * dist/ is gitignored — this snapshot is not tracked by git.
  *
- * After syncing, open http://localhost:8000/local-andrea-lucas.html (with
+ * After syncing, open http://localhost:8080/local-andrea-lucas.html (with
  * npm start) to read the manuscript in-browser. The main catalog "Ratings" tab
  * also appears only when SOURCE.json is present.
  *

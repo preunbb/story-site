@@ -10,5 +10,5 @@ id = "REPLACE_ME_AFTER_kv_namespace_create"
 
 [vars]
 # Comma-separated list. Include your GitHub Pages origin and local dev origins.
-ALLOWED_ORIGINS = "https://preunbb.github.io,http://localhost:8000,http://127.0.0.1:8000"
+ALLOWED_ORIGINS = "https://preunbb.github.io,http://localhost:8080,http://127.0.0.1:8080"
 # Set STATS_SECRET via dashboard or `wrangler secret put STATS_SECRET` (do not commit).

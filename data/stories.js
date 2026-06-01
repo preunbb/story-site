@@ -150,7 +150,8 @@ window.DATA_STORIES = [
       "paul",
     ],
     state: 3,
-    tags: ["Series: The Ballbusting Arena"],
+    series: { id: "ballbusting-arena", order: 1 },
+    tags: [],
     brutalityRating: 5,
     hideScenes: true,
     scenes: [
@@ -289,7 +290,8 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vTjujZsLMuA-lmgM6LPeed-X_FQ0STwNWLaRBQ1qRycmkdFK0UdNBVhJu7s1uA3tOWT5gXqZss0j0M7/pub",
     characterIds: ["brian", "emma", "vivian", "natalie", "vanessa", "david"],
     state: 3,
-    tags: ["Series: The Ballbusting Arena"],
+    series: { id: "ballbusting-arena", order: 5 },
+    tags: [],
     hideScenes: true,
   },
   {
@@ -306,6 +308,7 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vQ4BV7uLAAfS57qXcqPU3km0k7kepW1TLwBZFvwB4KWX0kE1fv9EJEnL2e6VfZHhXCAHRTbY7Qo_mrf/pub",
     characterIds: ["melody", "richard", "nathan", "tommy"],
     state: 3,
+    series: { id: "melody-adventures", order: 1 },
     tags: [],
   },
   {
@@ -349,7 +352,8 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vTcqX8xNsk5-s2a3en4zTxx3kZH1C43BY8KS84j1g8xBuJJpBMrKdqyglbLM037nRFyYcDbNsTC7bZT/pub",
     characterIds: ["fiona", "brad", "sofia", "amy", "wesley"],
     state: 3,
-    tags: ["Series: The Ballbusting Arena"],
+    series: { id: "ballbusting-arena", order: 3 },
+    tags: [],
     hideScenes: true,
     scenes: [
       {
@@ -426,7 +430,8 @@ window.DATA_STORIES = [
       },
     ],
     state: 3,
-    tags: ["Series: The Ballbusting Arena"],
+    series: { id: "ballbusting-arena", order: 2 },
+    tags: [],
   },
   {
     id: 16,
@@ -475,7 +480,8 @@ window.DATA_STORIES = [
       },
     ],
     state: 3,
-    tags: ["Series: The Ballbusting Arena"],
+    series: { id: "ballbusting-arena", order: 4 },
+    tags: [],
   },
   {
     id: 17,
@@ -590,6 +596,7 @@ window.DATA_STORIES = [
       "michelle",
     ],
     state: 3,
+    series: { id: "melody-adventures", order: 3 },
     tags: [],
     scenes: [
       {
@@ -768,6 +775,7 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vSCFSsYv9k5JNRuwqyMvtMBCESmShx9HFjIHjnnUFwG0DKcMhN4Lkx-AvSzawnOHyHDv1HylaLObYYm/pub",
     characterIds: ["melody", "eric", "bryan"],
     state: 3,
+    series: { id: "melody-adventures", order: 2 },
     tags: ["New to Reddit"],
     scenes: [
       {
@@ -1024,7 +1032,8 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vQWfM9IddQtsF4pQ9zXVzFNSu9xSB13fIIoo8XktLz5j_k_Ov5wqc1IZ5az6XJfIZruQfxFb554pptK/pub",
     characterIds: [],
     state: 3,
-    tags: ["New to Reddit", "No Nut Narrator"],
+    series: { id: "no-nut-narrator", order: 1 },
+    tags: ["New to Reddit"],
   },
   {
     id: 35,
@@ -1039,6 +1048,7 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vSYLqxpzpv0avqu9uBNT8-ejRcsIX9V5fKfEzarP_lCWpV9oqrQItoKQeK0rRk0D3cer6TgM2Y57TR3/pub",
     characterIds: [],
     state: 3,
+    series: { id: "no-nut-narrator", order: 2 },
     tags: ["New to Reddit", "No Nut Narrator"],
   },
   {
@@ -1255,8 +1265,9 @@ window.DATA_STORIES = [
     summary:
       "Natalie finally gets her nerve up to sign up for the arena. The Nguyen twins look forward to an easy 2 vs. 1 fight against the shy girl.",
     state: 2,
+    series: { id: "ballbusting-arena", order: 6 },
     characterIds: ["natalie", "nguyen_twins", "brian"],
-    tags: ["New to Reddit", "Series: The Ballbusting Arena"],
+    tags: ["New to Reddit"],
     scenes: [
       {
         path: "assets/scenes/arena_6/twins_center.png",
@@ -1276,6 +1287,7 @@ window.DATA_STORIES = [
       "She's a thicc goth dommy mommy who takes self defense classes. He's a religiously repressed genius nerd with a rare hyperspermia disorder. She's got a roommate who does pranks for social media, and a sister who works as a urological surgeon. He's got a stepmom who's part of an insane femdom cult that he barely escaped from intact. Hijinx ensure. Balls get popped.",
     subtitle: "My first 'premium' story, exclusively for sale.",
     state: 2,
+    series: { id: "andrea-lucas", order: 1 },
     releaseDate: "2026-03-28",
     characterIds: [
       "andrea",
@@ -1383,6 +1395,7 @@ window.DATA_STORIES = [
       "Melody's castration kink is back in full force, ever since her son lost his balls. She's been craving a chance to explore her awakened urges, and the nervous, virginal Ryan is just the guy to help her.",
     cover: "assets/covers/melody_seduces_a_virgin.png",
     state: 2,
+    series: { id: "melody-adventures", order: 4 },
     amazonUrl: "https://www.amazon.com/dp/B0H1J6MB7C",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTw7ksLCB2UgTKpZGwSoE8dGkhwoHkCkg5_iUz8ga467w2A1twmZ-nuj_iYocjiUTdSHanhPdfMArhS/pub",
@@ -1422,6 +1435,7 @@ window.DATA_STORIES = [
     summary:
       "Andrea takes Lucas to a Cherry Pop! concert, and shows him what a mush pit is like. Meanwhile, Tamara deals with her new medical intern under difficult circumstances. Later, she meets his family.",
     state: 1,
+    series: { id: "andrea-lucas", order: 2 },
     hideScenes: false,
 
     characterIds: [

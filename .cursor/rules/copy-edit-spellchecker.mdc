@@ -23,6 +23,11 @@ Treat these as intentional words, not misspellings. Do not normalize them to gen
 
 - **step-sister** — prefer hyphenated *step-sister* over *stepsister* or *step sister*.
 - **okay** — prefer *okay* over *ok*.
+- **liquify** — prefer *liquify* over *liquefy*.
+- **Church** — prefer capitalized *Church* over *church* when referring to the cult/organization (e.g. Church of the Broken Tree).
+- **Goddess** — prefer capitalized *Goddess* over *goddess* when referring to the cult deity.
+- **mom / Mom** — prefer lowercase *mom* in mid-sentence; capitalize *Mom* at the start of a sentence. Do not flag mom/Mom consistency otherwise.
+- **Unhyphenated compounds** — when a closed compound exists as a standard word (e.g. *nonbeliever*, *stepbrother*), prefer it over a hyphenated variant. Do **not** remove hyphens where grammar requires them (e.g. compound modifiers before a noun: *orgasm-inducing*, *modern-day*, *innocent-looking*).
 - **Numbers ≤ 10** — spell out (*one* … *ten*) instead of digits (*1* … *10*) in prose. Digits are fine for ages, dates, times, measurements, and other contexts where numerals are standard.
 
 ## Scope

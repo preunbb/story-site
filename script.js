@@ -15,6 +15,25 @@
   /** Present only after `npm run sync:andrea-complete` (dist/ is gitignored). */
   var LOCAL_DIST_MARKER_URL = "dist/andrea-and-lucas-complete/SOURCE.json";
   var LOCAL_ANDREA_STORY_MD_URL = "dist/andrea-and-lucas-complete/story.md";
+  /** Catalog series labels for the stories grid filter. Order lives on each story's `series` field. */
+  var STORY_SERIES = [
+    {
+      id: "ballbusting-arena",
+      label: "The Ballbusting Arena",
+    },
+    {
+      id: "melody-adventures",
+      label: "Melody's Adventures in Testicular Violence",
+    },
+    {
+      id: "andrea-lucas",
+      label: "Andrea and Lucas",
+    },
+    {
+      id: "no-nut-narrator",
+      label: "No Nut Narrator",
+    },
+  ];
   var readerAbort = null;
   var readerStory = null;
 
@@ -120,16 +139,48 @@
 
   var LENGTH_TAG_PREFIX = "Length: ";
 
+  /** Length filter options; `value` matches `storyDerivedLengthTag` output. */
+  var LENGTH_FILTER_OPTIONS = [
+    {
+      value: LENGTH_TAG_PREFIX + "Extra Short",
+      label: LENGTH_TAG_PREFIX + "Extra Short (Less than 2000 words)",
+    },
+    {
+      value: LENGTH_TAG_PREFIX + "Short",
+      label: LENGTH_TAG_PREFIX + "Short (Less than 5000 words)",
+    },
+    {
+      value: LENGTH_TAG_PREFIX + "Medium",
+      label: LENGTH_TAG_PREFIX + "Medium (Less than 10000 words)",
+    },
+    {
+      value: LENGTH_TAG_PREFIX + "Long",
+      label: LENGTH_TAG_PREFIX + "Long (Less than 20000 words)",
+    },
+    {
+      value: LENGTH_TAG_PREFIX + "Extra Long",
+      label: LENGTH_TAG_PREFIX + "Extra Long (20000+ words)",
+    },
+    {
+      value: LENGTH_TAG_PREFIX + "Full Length Novel",
+      label: LENGTH_TAG_PREFIX + "Full Length Novel",
+    },
+  ];
+
   /** Buckets from word count; returns label without the "Length: " prefix. */
   function lengthBucketLabel(wordCount) {
-    if (typeof wordCount !== "number" || !isFinite(wordCount) || wordCount < 0) {
+    if (
+      typeof wordCount !== "number" ||
+      !isFinite(wordCount) ||
+      wordCount < 0
+    ) {
       return null;
     }
     if (wordCount < 2000) return "Extra Short";
     if (wordCount < 5000) return "Short";
     if (wordCount < 10000) return "Medium";
     if (wordCount < 20000) return "Long";
-    return "Extra long";
+    return "Extra Long";
   }
 
   function storyDerivedLengthTag(story) {
@@ -306,10 +357,49 @@
     stories.forEach(function (s) {
       var t = storyEffectiveTags(s);
       for (var i = 0; i < t.length; i++) {
+        if (String(t[i]).indexOf("Series:") === 0) continue;
+        if (String(t[i]).indexOf(LENGTH_TAG_PREFIX) === 0) continue;
         set[t[i]] = true;
       }
     });
     return Object.keys(set).sort();
+  }
+
+  function storySeriesId(story) {
+    return story.series && story.series.id ? story.series.id : null;
+  }
+
+  function storySeriesOrder(story) {
+    if (!story.series || typeof story.series.order !== "number")
+      return Infinity;
+    return story.series.order;
+  }
+
+  function findStorySeries(seriesId) {
+    if (!seriesId) return null;
+    for (var i = 0; i < STORY_SERIES.length; i++) {
+      if (STORY_SERIES[i].id === seriesId) return STORY_SERIES[i];
+    }
+    return null;
+  }
+
+  function storyInSeries(story, series) {
+    if (!series) return true;
+    return storySeriesId(story) === series.id;
+  }
+
+  function compareStoriesForFilter(a, b, series) {
+    if (series) {
+      var ia = storySeriesOrder(a);
+      var ib = storySeriesOrder(b);
+      if (ia !== ib) return ia - ib;
+    }
+    return compareStories(a, b);
+  }
+
+  function passesLengthFilter(story, selectedLengthTag) {
+    if (!selectedLengthTag) return true;
+    return storyDerivedLengthTag(story) === selectedLengthTag;
   }
 
   function getStoryBrutalityRating(s) {
@@ -442,11 +532,7 @@
   function bindCoverFlipKeydown(rootEl) {
     rootEl.addEventListener("keydown", function (e) {
       var flip = e.target.closest(".story-cover-wrap--flip");
-      if (
-        !flip ||
-        e.target !== flip ||
-        (e.key !== "Enter" && e.key !== " ")
-      ) {
+      if (!flip || e.target !== flip || (e.key !== "Enter" && e.key !== " ")) {
         return;
       }
       e.preventDefault();
@@ -459,19 +545,30 @@
     if (!grid) return;
     var tagSelect = byId("tag-select");
     var selectedTag = tagSelect && tagSelect.value ? tagSelect.value : null;
+    var seriesSelect = byId("series-select");
+    var selectedSeriesId =
+      seriesSelect && seriesSelect.value ? seriesSelect.value : null;
+    var activeSeries = findStorySeries(selectedSeriesId);
+    var lengthSelect = byId("length-select");
+    var selectedLength =
+      lengthSelect && lengthSelect.value ? lengthSelect.value : null;
     var modeEl = byId("brutality-mode");
     var levelEl = byId("brutality-level");
     var bMode = modeEl && modeEl.value ? modeEl.value : "";
     var bLevel = levelEl && levelEl.value ? levelEl.value : "3";
 
     var list = stories.filter(function (s) {
+      if (activeSeries && !storyInSeries(s, activeSeries)) return false;
       if (selectedTag && storyEffectiveTags(s).indexOf(selectedTag) === -1) {
         return false;
       }
+      if (!passesLengthFilter(s, selectedLength)) return false;
       if (!passesBrutalityFilter(s, bMode, bLevel)) return false;
       return true;
     });
-    var sorted = list.sort(compareStories);
+    var sorted = list.sort(function (a, b) {
+      return compareStoriesForFilter(a, b, activeSeries);
+    });
     grid.innerHTML = "";
     sorted.forEach(function (s) {
       var card = document.createElement("article");
@@ -507,9 +604,7 @@
 
   function storyHasScenes(s) {
     return (
-      s.hideScenes !== true &&
-      Array.isArray(s.scenes) &&
-      s.scenes.length > 0
+      s.hideScenes !== true && Array.isArray(s.scenes) && s.scenes.length > 0
     );
   }
 
@@ -633,11 +728,9 @@
       character.profilePictures && character.profilePictures.length
         ? character.profilePictures.slice()
         : [PLACEHOLDER_CHAR];
-    return pics
-      .filter(Boolean)
-      .map(function (src) {
-        return { path: src };
-      });
+    return pics.filter(Boolean).map(function (src) {
+      return { path: src };
+    });
   }
 
   function setSceneLightboxOpen(on) {
@@ -692,9 +785,7 @@
     var prevLabel = sceneLightboxProfileMode
       ? "Previous portrait"
       : "Previous scene";
-    var nextLabel = sceneLightboxProfileMode
-      ? "Next portrait"
-      : "Next scene";
+    var nextLabel = sceneLightboxProfileMode ? "Next portrait" : "Next scene";
     if (sceneLightboxPrev) {
       sceneLightboxPrev.setAttribute("aria-label", prevLabel);
       var hidePrev = n <= 1 || (!wrapProfile && i <= 0);
@@ -719,11 +810,11 @@
     if (sceneLightboxPanel) {
       var n = sceneLightboxSlides.length;
       var pos = sceneLightboxIndex + 1;
-      var ariaBase = sceneLightboxProfileMode && sceneLightboxProfileName
-        ? sceneLightboxProfileName + " portrait"
-        : capTrim || slide.alt || "Scene";
-      var label =
-        n > 1 ? ariaBase + " (" + pos + " of " + n + ")" : ariaBase;
+      var ariaBase =
+        sceneLightboxProfileMode && sceneLightboxProfileName
+          ? sceneLightboxProfileName + " portrait"
+          : capTrim || slide.alt || "Scene";
+      var label = n > 1 ? ariaBase + " (" + pos + " of " + n + ")" : ariaBase;
       sceneLightboxPanel.setAttribute("aria-label", label);
     }
     if (sceneLightboxCaption) {
@@ -780,9 +871,7 @@
     });
     if (!paths.length) return;
     var bio =
-      character.bio && String(character.bio).trim()
-        ? character.bio.trim()
-        : "";
+      character.bio && String(character.bio).trim() ? character.bio.trim() : "";
     var nm = character.name || "Character";
     var slides = paths.map(function (path) {
       return {
@@ -938,6 +1027,50 @@
       allowed.indexOf(prev) !== -1 ? prev : defaultBrutalityPick(allowed);
     levelEl.innerHTML = brutalityLevelOptionsHtml(allowed, pick);
     levelEl.disabled = false;
+    fitSelectWidthToOptions(levelEl);
+  }
+
+  var filterSelectWidthMeasurer = null;
+
+  function fitSelectWidthToOptions(select) {
+    if (!select || !select.options || !select.options.length) return;
+    if (!filterSelectWidthMeasurer) {
+      filterSelectWidthMeasurer = document.createElement("span");
+      filterSelectWidthMeasurer.setAttribute("aria-hidden", "true");
+      filterSelectWidthMeasurer.style.cssText =
+        "position:absolute;left:-9999px;top:0;visibility:hidden;white-space:nowrap;";
+      document.body.appendChild(filterSelectWidthMeasurer);
+    }
+    var style = window.getComputedStyle(select);
+    filterSelectWidthMeasurer.style.font = style.font;
+    var maxText = 0;
+    for (var i = 0; i < select.options.length; i++) {
+      filterSelectWidthMeasurer.textContent = select.options[i].textContent;
+      maxText = Math.max(
+        maxText,
+        filterSelectWidthMeasurer.getBoundingClientRect().width,
+      );
+    }
+    var padL = parseFloat(style.paddingLeft) || 0;
+    var padR = parseFloat(style.paddingRight) || 0;
+    var borderL = parseFloat(style.borderLeftWidth) || 0;
+    var borderR = parseFloat(style.borderRightWidth) || 0;
+    select.style.width =
+      Math.ceil(maxText + padL + padR + borderL + borderR + 2) + "px";
+  }
+
+  function fitStoryFilterSelects() {
+    fitSelectWidthToOptions(byId("tag-select"));
+    fitSelectWidthToOptions(byId("series-select"));
+    fitSelectWidthToOptions(byId("length-select"));
+    fitSelectWidthToOptions(byId("brutality-mode"));
+    fitSelectWidthToOptions(byId("brutality-level"));
+  }
+
+  function scheduleStoryFilterSelectFit() {
+    requestAnimationFrame(function () {
+      fitStoryFilterSelects();
+    });
   }
 
   function initStoryFilters() {
@@ -955,11 +1088,40 @@
       renderStoriesGrid();
     });
 
+    var seriesSelect = byId("series-select");
+    if (seriesSelect) {
+      seriesSelect.innerHTML = '<option value="">All series</option>';
+      STORY_SERIES.forEach(function (series) {
+        var opt = document.createElement("option");
+        opt.value = series.id;
+        opt.textContent = series.label;
+        seriesSelect.appendChild(opt);
+      });
+      seriesSelect.addEventListener("change", function () {
+        renderStoriesGrid();
+      });
+    }
+
+    var lengthSelect = byId("length-select");
+    if (lengthSelect) {
+      lengthSelect.innerHTML = '<option value="">All lengths</option>';
+      LENGTH_FILTER_OPTIONS.forEach(function (optDef) {
+        var opt = document.createElement("option");
+        opt.value = optDef.value;
+        opt.textContent = optDef.label;
+        lengthSelect.appendChild(opt);
+      });
+      lengthSelect.addEventListener("change", function () {
+        renderStoriesGrid();
+      });
+    }
+
     var modeEl = byId("brutality-mode");
     var levelEl = byId("brutality-level");
     if (modeEl) {
       modeEl.addEventListener("change", function () {
         syncBrutalityLevelOptions();
+        scheduleStoryFilterSelectFit();
         renderStoriesGrid();
       });
     }
@@ -969,6 +1131,11 @@
       });
     }
     syncBrutalityLevelOptions();
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(scheduleStoryFilterSelectFit);
+    } else {
+      scheduleStoryFilterSelectFit();
+    }
   }
 
   /** Inline **bold**, *italic*, `code` for ratings panel (from markdown). */
@@ -1112,9 +1279,7 @@
         i++;
       }
       html +=
-        '<p class="ratings-prose">' +
-        formatInlineMd(para.join(" ")) +
-        "</p>";
+        '<p class="ratings-prose">' + formatInlineMd(para.join(" ")) + "</p>";
     }
     return html;
   }
@@ -1318,8 +1483,7 @@
     var posTake = md.indexOf("## Quick comparative takeaways");
     var posRegen = md.indexOf("## Regenerating");
 
-    var intro =
-      posAndrea === -1 ? "" : md.slice(0, posAndrea).trim();
+    var intro = posAndrea === -1 ? "" : md.slice(0, posAndrea).trim();
     var andreaBlock =
       posAndrea === -1 || posTable === -1
         ? ""
@@ -1343,26 +1507,26 @@
       parts.push(
         '<div class="ratings-section"><h2>About these ratings</h2>' +
           introHtml +
-          "</div>"
+          "</div>",
       );
     }
     if (andreaHtml) {
       parts.push(
         '<div class="ratings-section"><h2>Andrea and Lucas (full published arc)</h2>' +
           andreaHtml +
-          "</div>"
+          "</div>",
       );
     }
     parts.push(
       '<div class="ratings-section"><h2>All catalog IDs</h2>' +
         renderCatalogRatingsScoreTable(mainRows) +
-        "</div>"
+        "</div>",
     );
     if (takeItems.length) {
       parts.push(
         '<div class="ratings-section"><h2>Quick comparative takeaways</h2>' +
           renderTakeawaysList(takeItems) +
-          "</div>"
+          "</div>",
       );
     }
     return parts.join("");
@@ -1518,7 +1682,7 @@
     }
     sortToggle.setAttribute(
       "aria-checked",
-      sortToggle.checked ? "true" : "false"
+      sortToggle.checked ? "true" : "false",
     );
   }
 
@@ -1708,7 +1872,9 @@
     flyoutBody._storyKofiPrefTipBound = true;
     flyoutBody.addEventListener("pointerover", function (e) {
       var anchor =
-        e.target && e.target.closest && e.target.closest("[data-kofi-pref-tooltip]");
+        e.target &&
+        e.target.closest &&
+        e.target.closest("[data-kofi-pref-tooltip]");
       if (!anchor || !flyoutBody.contains(anchor)) return;
       var msg = anchor.getAttribute("data-kofi-pref-tooltip");
       if (!msg) return;
@@ -1716,7 +1882,9 @@
     });
     flyoutBody.addEventListener("pointerout", function (e) {
       var anchor =
-        e.target && e.target.closest && e.target.closest("[data-kofi-pref-tooltip]");
+        e.target &&
+        e.target.closest &&
+        e.target.closest("[data-kofi-pref-tooltip]");
       if (!anchor || !flyoutBody.contains(anchor)) return;
       var rt = e.relatedTarget;
       if (rt && anchor.contains(rt)) return;
@@ -1725,7 +1893,9 @@
     });
     flyoutBody.addEventListener("focusin", function (e) {
       var anchor =
-        e.target && e.target.closest && e.target.closest("[data-kofi-pref-tooltip]");
+        e.target &&
+        e.target.closest &&
+        e.target.closest("[data-kofi-pref-tooltip]");
       if (!anchor || !flyoutBody.contains(anchor)) return;
       var msg = anchor.getAttribute("data-kofi-pref-tooltip");
       if (!msg) return;
@@ -1733,7 +1903,9 @@
     });
     flyoutBody.addEventListener("focusout", function (e) {
       var anchor =
-        e.target && e.target.closest && e.target.closest("[data-kofi-pref-tooltip]");
+        e.target &&
+        e.target.closest &&
+        e.target.closest("[data-kofi-pref-tooltip]");
       if (!anchor || !flyoutBody.contains(anchor)) return;
       var rt = e.relatedTarget;
       if (rt && anchor.contains(rt)) return;
@@ -1742,7 +1914,9 @@
       }, 0);
     });
     if (flyoutPanel) {
-      flyoutPanel.addEventListener("scroll", hideStoryKofiPrefTip, { passive: true });
+      flyoutPanel.addEventListener("scroll", hideStoryKofiPrefTip, {
+        passive: true,
+      });
     }
     window.addEventListener("resize", hideStoryKofiPrefTip);
   }
@@ -2249,9 +2423,7 @@
     var url = (cfg.ingestUrl || "").trim();
     if (!url || !story || story.id == null) return;
     var sid =
-      typeof story.id === "number"
-        ? story.id
-        : parseInt(String(story.id), 10);
+      typeof story.id === "number" ? story.id : parseInt(String(story.id), 10);
     if (!isFinite(sid)) return;
     var payload = JSON.stringify({ storyId: sid });
     try {
@@ -2295,8 +2467,7 @@
   }
 
   function purchasePartCell(url, label, variant, tooltip) {
-    var cls =
-      "flyout-purchase-btn flyout-purchase-btn--" + escapeHtml(variant);
+    var cls = "flyout-purchase-btn flyout-purchase-btn--" + escapeHtml(variant);
     var tipAttrs = tooltip
       ? ' data-kofi-pref-tooltip="' +
         escapeHtml(tooltip) +
@@ -2336,8 +2507,7 @@
   function purchaseVendorGridHtml(parts, vendor) {
     var cells = parts
       .map(function (p, i) {
-        var n =
-          typeof p.part === "number" && !isNaN(p.part) ? p.part : i + 1;
+        var n = typeof p.part === "number" && !isNaN(p.part) ? p.part : i + 1;
         var tooltip =
           vendor.variant === "amazon" && p.kofiUrl
             ? KOFI_PREFERENCE_TOOLTIP
@@ -2537,33 +2707,37 @@
   function openCharacterFlyout(character) {
     if (!character) return;
     var charStories = getStoriesForCharacter(character.id);
-    var pics = (character.profilePictures && character.profilePictures.length)
-      ? character.profilePictures
-      : [PLACEHOLDER_CHAR];
-    var picsHtml = '<div class="flyout-profiles">' +
-      pics.map(function (src, idx) {
-        return (
-          '<div class="flyout-profile-wrap">' +
-          '<button type="button" class="flyout-profile-zoom" aria-label="' +
-          escapeHtml(
-            (character.name || "Character") +
-              " — enlarge portrait" +
-              (pics.length > 1 ? " (" + (idx + 1) + ")" : ""),
-          ) +
-          '" data-zoom-character="' +
-          escapeHtml(character.id) +
-          '" data-profile-index="' +
-          idx +
-          '">' +
-          imgHtml({
-            src: src,
-            alt: "",
-            className: "flyout-profile-img",
-            placeholder: PLACEHOLDER_CHAR,
-          }) +
-          "</button></div>"
-        );
-      }).join("") +
+    var pics =
+      character.profilePictures && character.profilePictures.length
+        ? character.profilePictures
+        : [PLACEHOLDER_CHAR];
+    var picsHtml =
+      '<div class="flyout-profiles">' +
+      pics
+        .map(function (src, idx) {
+          return (
+            '<div class="flyout-profile-wrap">' +
+            '<button type="button" class="flyout-profile-zoom" aria-label="' +
+            escapeHtml(
+              (character.name || "Character") +
+                " — enlarge portrait" +
+                (pics.length > 1 ? " (" + (idx + 1) + ")" : ""),
+            ) +
+            '" data-zoom-character="' +
+            escapeHtml(character.id) +
+            '" data-profile-index="' +
+            idx +
+            '">' +
+            imgHtml({
+              src: src,
+              alt: "",
+              className: "flyout-profile-img",
+              placeholder: PLACEHOLDER_CHAR,
+            }) +
+            "</button></div>"
+          );
+        })
+        .join("") +
       "</div>";
     var storiesHtml = flyoutInlineLinkSection(
       "Stories",
@@ -2815,15 +2989,8 @@
           var cid = pz.getAttribute("data-zoom-character");
           var idxRaw = pz.getAttribute("data-profile-index");
           var ch = cid ? getCharacterById(cid) : null;
-          var idx =
-            typeof idxRaw === "string"
-              ? parseInt(idxRaw, 10)
-              : NaN;
-          if (
-            ch &&
-            !isNaN(idx) &&
-            idx >= 0
-          ) {
+          var idx = typeof idxRaw === "string" ? parseInt(idxRaw, 10) : NaN;
+          if (ch && !isNaN(idx) && idx >= 0) {
             e.preventDefault();
             openCharacterProfileLightbox(ch, idx);
             return;
