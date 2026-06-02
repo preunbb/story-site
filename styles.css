@@ -2246,20 +2246,34 @@ body.preun-local-andrea .local-andrea-status {
   }
 
   .story-filters {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem 1rem;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 
   .tag-selector-wrap,
   .series-filter-wrap,
   .length-filter-wrap,
   .brutality-filter-wrap {
-    grid-template-columns: auto auto;
-    gap: 0.5rem;
+    width: 100%;
+    justify-self: stretch;
+    grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+    gap: 0.5rem 0.75rem;
+  }
+
+  .story-filters .filter-select-slot {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .tag-selector-wrap .tag-select,
+  .series-filter-wrap .tag-select,
+  .length-filter-wrap .tag-select {
+    width: 100%;
+    max-width: 100%;
   }
 
   .tag-selector-label {
-    white-space: nowrap;
+    white-space: normal;
   }
 
   .stories-grid {
