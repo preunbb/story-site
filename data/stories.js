@@ -1435,6 +1435,7 @@ window.DATA_STORIES = [
     summary:
       "Andrea takes Lucas to a Cherry Pop! concert, and shows him what a mush pit is like. Meanwhile, Tamara deals with her new medical intern under difficult circumstances. Later, she meets his family.",
     state: 1,
+    localOnly: true,
     series: { id: "andrea-lucas", order: 2 },
     hideScenes: false,
 
@@ -1499,6 +1500,16 @@ window.DATA_STORIES = [
         path: "assets/scenes/andrea_and_lucas/tamara_aftermath_final.png",
         caption:
           "Tamara, in the aftermath of the Cherry Pop! concert, deals with the insanely erotic clusterfuck that was the onsite medical tent, and the dozens of unnecessarily severed organs Yvette left lying around.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/izzie_studclamp_interrogation_v2_disc_jaws.png",
+        caption:
+          "Izzie interrogates a one-nut Church security guard with her new StudClamp, cranking compression on her phone while Andrea watches. His lone testicle is squeezed into a pinched donut around the steel disc jaws.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/tamara_biopsy_gun_cult_guard_v2_thin_worms_tattoos.png",
+        caption:
+          "Tamara attempts to extract information from a Church cult member as she slowly extracts his nutmeat.",
       },
 
       {

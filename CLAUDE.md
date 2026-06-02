@@ -53,6 +53,26 @@ Lean into:
 - Real-looking interiors: visible clutter, scuffed paint, worn upholstery, lived-in lighting (warm lamps, cool window light, harsh fluorescent, etc.) that matches the scene's setting and time of day.
 - Believable expressions and posture — anatomy that holds up under scrutiny, including hands, feet, and the genitals when they're in frame.
 
+### Over Easy Technologies branding (product images)
+
+**Canonical logo:** `assets/brands/overeasy_logo_v2_raw_eggs_minimal.png`  
+(Legacy fried-egg draft: `assets/brands/overeasy_logo_v1.png` — do not use.)
+
+The mark is **stylized and minimal** (flat line-and-fill, printable at small sizes on product hardware):
+
+- **Left:** a **smashed raw egg** — shell fragments, clear albumen, ruptured yolk spilling out.
+- **Right:** an **intact raw egg**, slightly **cracked** with a small yolk leak.
+- **Neither egg is cooked** — no fried whites, no pan, no browning.
+- **Wordmark:** **OVER EASY** (*EASY* in yolk-orange) with **TECHNOLOGIES** tracked below.
+
+Whenever you generate an image of an **Over Easy / OverEasy product** (self-defense gadgets, EunuchCorn apparel, strap-ons, catalog hero shots, skit props, packaging, etc.):
+
+1. **Read `assets/brands/overeasy_logo_v2_raw_eggs_minimal.png` first** so you can describe the egg mark and typography accurately in the prompt (or pass it as a reference image when the tool supports that).
+2. **Show the logo on the product** — printed, silkscreened, or embossed on the device body or packaging, the way real consumer-tech branding appears on hardware. Match the raw-egg pictogram + wordmark from the canonical file.
+3. **Do not use the legacy smiley-face circle icon** from early device drafts, and **do not revert to photoreal fried eggs** from `overeasy_logo_v1.png`.
+
+Scene illustrations where characters *use* Over Easy gear do not need the logo blown up front-and-center unless the story beat is literally a product demo or unboxing — but **dedicated product / device catalog shots always carry the logo.**
+
 ### Remote generation (default — use this)
 
 **Always generate new images with Cursor’s built-in remote image generation** (the default image tool in Composer / agent workflows — the same defaults you use elsewhere in Cursor). Agents must **never** use the repo’s local SD stack (`tools/local-image-gen/`, `127.0.0.1:8787`, `run.sh`, `curl` to local endpoints, CLI wrappers, etc.). **Unless** the user has explicitly said local image generation is set up **and** has asked you to use it for that task, assume it is unavailable and rely on remote generation only.

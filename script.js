@@ -75,7 +75,11 @@
 
   function getStoriesForCharacter(charId) {
     return stories.filter(function (s) {
-      return s.characterIds && s.characterIds.indexOf(charId) !== -1;
+      return (
+        isStoryVisibleInCatalog(s) &&
+        s.characterIds &&
+        s.characterIds.indexOf(charId) !== -1
+      );
     });
   }
 
@@ -135,6 +139,27 @@
     if (st === 1 || st === 2 || st === 3) return st;
     if (st === "1" || st === "2" || st === "3") return parseInt(st, 10);
     return 3;
+  }
+
+  /** True when served from localhost (catalog-only; not GitHub Pages). */
+  function isLocalDevHost() {
+    var h = location.hostname;
+    return h === "localhost" || h === "127.0.0.1";
+  }
+
+  /** Stories with `localOnly: true` are hidden on production deploys. */
+  function isStoryVisibleInCatalog(story) {
+    if (!story) return false;
+    if (story.localOnly && !isLocalDevHost()) return false;
+    return true;
+  }
+
+  /** Illustrated scenes for `state: 1` (coming soon) only show on localhost. */
+  function isStoryScenesVisibleOnSite(story) {
+    if (!story || story.hideScenes === true) return false;
+    if (!Array.isArray(story.scenes) || story.scenes.length === 0) return false;
+    if (normalizeStoryState(story) === 1 && !isLocalDevHost()) return false;
+    return true;
   }
 
   var LENGTH_TAG_PREFIX = "Length: ";
@@ -558,6 +583,7 @@
     var bLevel = levelEl && levelEl.value ? levelEl.value : "3";
 
     var list = stories.filter(function (s) {
+      if (!isStoryVisibleInCatalog(s)) return false;
       if (activeSeries && !storyInSeries(s, activeSeries)) return false;
       if (selectedTag && storyEffectiveTags(s).indexOf(selectedTag) === -1) {
         return false;
@@ -603,15 +629,15 @@
   }
 
   function storyHasScenes(s) {
-    return (
-      s.hideScenes !== true && Array.isArray(s.scenes) && s.scenes.length > 0
-    );
+    return isStoryScenesVisibleOnSite(s);
   }
 
   function renderScenesPanel() {
     var root = byId("scenes-list");
     if (!root) return;
-    var withScenes = stories.filter(storyHasScenes).sort(function (a, b) {
+    var withScenes = stories.filter(function (s) {
+      return isStoryVisibleInCatalog(s) && storyHasScenes(s);
+    }).sort(function (a, b) {
       return (a.title || "").localeCompare(b.title || "", undefined, {
         sensitivity: "base",
       });
@@ -764,8 +790,7 @@
 
   function sceneSlidesForStory(story) {
     var out = [];
-    if (!story || story.hideScenes === true || !Array.isArray(story.scenes))
-      return out;
+    if (!isStoryScenesVisibleOnSite(story)) return out;
     story.scenes.forEach(function (sc) {
       if (!sc || !sc.path) return;
       var cap = sc.caption != null ? String(sc.caption).trim() : "";
@@ -2127,7 +2152,7 @@
       if (!block) continue;
       var sceneMatch = block.match(SCENE_TAG_BLOCK_RE);
       if (sceneMatch) {
-        if (story.hideScenes !== true) {
+        if (isStoryScenesVisibleOnSite(story)) {
           html.push(readerSceneFigureHtml(story, sceneMatch[1]));
         }
         continue;
@@ -2795,7 +2820,7 @@
 
     if (state.readMode && state.storyId !== undefined) {
       var storyRead = getStoryById(state.storyId);
-      if (storyRead) {
+      if (storyRead && isStoryVisibleInCatalog(storyRead)) {
         openStoryReader(storyRead);
       } else {
         closeStoryReaderUi();
@@ -2812,7 +2837,7 @@
       else closeFlyout();
     } else if (state.storyId !== undefined) {
       var story = getStoryById(state.storyId);
-      if (story) openStoryFlyout(story);
+      if (story && isStoryVisibleInCatalog(story)) openStoryFlyout(story);
       else closeFlyout();
     } else {
       setFlyoutPanelOpen(false);
