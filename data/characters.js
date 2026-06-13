@@ -710,4 +710,18 @@ window.DATA_CHARACTERS = [
     bio: "Perky new college-age intern at Over Easy—short. She's eager to get started at her first real job, and will do whatever it takes to prove herself.",
     profilePictures: ["assets/characters/olivia.jpg"],
   },
+  {
+    id: "elijah",
+    name: "Elijah",
+    gender: "M",
+    bio: "A wispy, low-testosterone presence in the lower chambers of the Church of the Broken Tree. Soft and biddable; whatever the cult had planned for him below the belt was settled a long time ago, and the testosterone has been quietly leaving him ever since. Spends his evenings lighting candles in the ritual hall and trying very hard not to be noticed.",
+    profilePictures: ["assets/characters/elijah_cult_chamber_cast_v1.png"],
+  },
+  {
+    id: "isaac",
+    name: "Isaac",
+    gender: "M",
+    bio: "Tall, built, and visibly nervous—for very good reason. Recently dragged into the Church of the Broken Tree's ritual chamber, and well aware that the bulge straining his shorts is a major part of why he's there. He's leaving with one fewer testicle than he came in with, and he can already feel the candlelight on the one he's about to lose.",
+    profilePictures: ["assets/characters/isaac_cult_chamber_cast_v2.png"],
+  },
 ];
