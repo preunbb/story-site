@@ -714,14 +714,14 @@ window.DATA_CHARACTERS = [
     id: "elijah",
     name: "Elijah",
     gender: "M",
-    bio: "A shy freshman with an especially small member. Totally enamored with Abby, and totally clueless what a Second Rite entails.",
+    bio: "A shy freshman with an especially small member, and dreams of someday losing his virginity to a very understanding girl. He thinks he's found the right match with Abby, and she promises him the world - right after he attends whatever a 'Second Rite Ceremony' at her Church is.",
     profilePictures: ["assets/characters/elijah_cult_chamber_cast_v1.png"],
   },
   {
     id: "isaac",
     name: "Isaac",
     gender: "M",
-    bio: "Well hung and horny, Kay convinces him to agree to undergo the First Rite and join the Church as a proper member.",
+    bio: "Well hung and horny, Kay convinces him to  to agree to undergo the First Rite and join the Church as a proper member. He's nervous to leave the chamber one testicle lighter than he entered, but excited to finally blow his load after being blueballed for months on end.",
     profilePictures: ["assets/characters/isaac_cult_chamber_cast_v2.png"],
   },
 ];
