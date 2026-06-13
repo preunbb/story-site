@@ -1455,6 +1455,9 @@ window.DATA_STORIES = [
       "felix",
       "greyson",
       "melody",
+      "isaac",
+      "judah",
+      "elijah",
     ],
     tags: ["Premium Story", "New to Reddit"],
     purchaseParts: [
