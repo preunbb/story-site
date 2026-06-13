@@ -714,7 +714,7 @@ window.DATA_CHARACTERS = [
     id: "elijah",
     name: "Elijah",
     gender: "M",
-    bio: "A shy freshman with an especially small member, and dreams of someday losing his virginity to a very understanding girl. He thinks he's found the right match with Abby, and she promises him the world - right after he attends whatever a 'Second Rite Ceremony' at her Church is.",
+    bio: "A shy freshman with an especially small member, and dreams of someday losing his virginity to a very understanding girl. He thinks he's found the right match with his sweet, beautiful Abby, and she promises him the world - right after he attends whatever a 'Second Rite Ceremony' at her Church is.",
     profilePictures: ["assets/characters/elijah_cult_chamber_cast_v1.png"],
   },
   {
