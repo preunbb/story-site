@@ -714,14 +714,14 @@ window.DATA_CHARACTERS = [
     id: "elijah",
     name: "Elijah",
     gender: "M",
-    bio: "A wispy, low-testosterone presence in the lower chambers of the Church of the Broken Tree. Soft and biddable; whatever the cult had planned for him below the belt was settled a long time ago, and the testosterone has been quietly leaving him ever since. Spends his evenings lighting candles in the ritual hall and trying very hard not to be noticed.",
+    bio: "A shy freshman with an especially small member. Totally enamored with Abby, and totally clueless what a Second Rite entails.",
     profilePictures: ["assets/characters/elijah_cult_chamber_cast_v1.png"],
   },
   {
     id: "isaac",
     name: "Isaac",
     gender: "M",
-    bio: "Tall, built, and visibly nervous—for very good reason. Recently dragged into the Church of the Broken Tree's ritual chamber, and well aware that the bulge straining his shorts is a major part of why he's there. He's leaving with one fewer testicle than he came in with, and he can already feel the candlelight on the one he's about to lose.",
+    bio: "Well hung and horny, Kay convinces him to agree to undergo the First Rite and join the Church as a proper member.",
     profilePictures: ["assets/characters/isaac_cult_chamber_cast_v2.png"],
   },
 ];
