@@ -189,8 +189,8 @@ window.OVER_EASY_CATALOG = {
         "../assets/scenes/andrea_and_lucas/overeasy_bleach_wipes_box_v2.png",
       tagline: "Snuff out those swimmers!",
       description:
-        "Patented bleach wipes strong enough to neutralize every germ — and every " +
-        "ambitious swimmer — they touch, yet gentle enough for your most delicate bits. " +
+        "Patented bleach wipes strong enough to neutralize every germ and ambitious future e=heir " +
+        "they touch, yet gentle enough for your most delicate bits. " +
         "Essential for cleaning up any serious breeding hazard",
       features: [
         "Neutralizes bacteria and sperm on contact — skin, fabric, or floor",
