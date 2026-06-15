@@ -63,7 +63,7 @@ export const PRODUCT_HINTS = {
   },
   strapon: {
     kind: "device",
-    category: "discipline",
+    category: "sex-toys",
     badge: "Premium",
     displayName: "'Selfish Bitch' Strap-On System",
     imageNotes:
@@ -154,7 +154,7 @@ export const PRODUCT_HINTS = {
       "Two catalog modes: (1) feminine pass — green-lit UPC-style flat scanner head on highly articulate sci-fi telescoping arm; (2) male escort — cruel six-fingered mechanical hand, red audit ring, forearm laser barrel, prehensile steel thread. Wall panel with Luna wordmark and raw-egg Over Easy logo.",
     referenceAssets: [
       "assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_scanner_mode_v2.png",
-      "assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_audit_mode_v2.png",
+      "assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_audit_mode_v4.png",
     ],
   },
 };
