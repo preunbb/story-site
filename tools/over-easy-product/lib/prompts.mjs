@@ -151,9 +151,10 @@ export const PRODUCT_HINTS = {
     displayName: "Luna™ Identity Arm",
     model: "OET-LIA-1",
     imageNotes:
-      "Wall-mounted brushed stainless elevator security panel, telescoping gunmetal robotic arm with red-glow ring scanner at tip, Luna wordmark on LCD, inset detail of mechanical hand gripping hypodermic needle.",
+      "Two catalog modes: (1) feminine pass — green-lit UPC-style flat scanner head on highly articulate sci-fi telescoping arm; (2) male escort — cruel six-fingered mechanical hand, red audit ring, forearm laser barrel, prehensile steel thread. Wall panel with Luna wordmark and raw-egg Over Easy logo.",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_device_v1.png",
+      "assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_scanner_mode_v2.png",
+      "assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_audit_mode_v2.png",
     ],
   },
 };

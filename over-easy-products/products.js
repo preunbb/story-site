@@ -78,7 +78,22 @@ window.OVER_EASY_CATALOG = {
       category: "media",
       name: "Cherry Pop! — Plum Dumb & Permanently Done",
       model: "CP-PDPD-001",
-      image: "../assets/scenes/andrea_and_lucas/cherry_pop_album_merch_v1.png",
+      image:
+        "../assets/scenes/andrea_and_lucas/cherry_pop_album_cover_product_v1.png",
+      images: [
+        {
+          path: "../assets/scenes/andrea_and_lucas/cherry_pop_album_cover_product_v1.png",
+          caption: "Album cover — Plum Dumb & Permanently Done",
+        },
+        {
+          path: "../assets/scenes/andrea_and_lucas/cherry_pop_album_vinyl_record_v1.png",
+          caption: "Vinyl LP",
+        },
+        {
+          path: "../assets/scenes/andrea_and_lucas/cherry_pop_album_cd_jewel_v1.png",
+          caption: "CD jewel case",
+        },
+      ],
       tagline: "Live from the Mush Pit.",
       description:
         "The latest Cherry Pop! release — Plum Dumb & Permanently Done, recorded live " +
@@ -188,8 +203,7 @@ window.OVER_EASY_CATALOG = {
         "Lost something precious? These cosmetic replacements restore the outline — and " +
         "absolutely nothing else. No hormones. No fertility. No sensation. Just a " +
         "convincingly full profile for the man who wants to pretend he's still packing " +
-        " while everyone who knows " +
-        "him smirks.",
+        "while everyone who knows him smirks.",
       sizeOptions: [
         {
           id: "implant-size",
@@ -215,7 +229,7 @@ window.OVER_EASY_CATALOG = {
         "../assets/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
       tagline: "One zap. Zero contributions.",
       description:
-        "The first personal defense tool engineered to fit exactly where he's most " +
+        "The first personal taser engineered to fit exactly where he's most " +
         "vulnerable. Angled prods and a snub-nose body slide between the legs; three " +
         "power settings let you choose how permanently you remove him from the gene " +
         "pool — from a month-long pause to a forever farewell.",
@@ -261,11 +275,21 @@ window.OVER_EASY_CATALOG = {
         "Matte-black precision clamp with polished steel disc pads and app-connected " +
         "compression control. One clamp is usually enough — you'll know exactly when " +
         "he's given you what you need.",
-      features: [
-        "Available in single, or double pairing configurations for synchronized " +
-          "compression.",
-        "If you have a need for a triple pairing or more, contact Over Easy " +
-          "technologies directly for a custom order (and we'd really like to meet him!)",
+      sizeOptions: [
+        {
+          id: "pairing",
+          label: "Configuration",
+          options: [
+            { value: "one", label: "One-nut" },
+            { value: "two", label: "Two-nut" },
+            {
+              value: "three",
+              label:
+                "Three-nut — contact Over Easy directly (we'd really like to meet him!)",
+              soldOut: true,
+            },
+          ],
+        },
       ],
       badge: "Interrogation",
     },
@@ -284,9 +308,7 @@ window.OVER_EASY_CATALOG = {
         "once-a-month allowance. Pleasure not guaranteed.",
       features: [
         "Vacuum-seal fit: rubber chamber adapts to anatomy on activation",
-        "Electrostimulation contacts plus rhythmic scrotal compression",
-        "WARMUP and EXTRACT controls; collection hose to graduated vial",
-        "Cocksleeve vacuum routes fluid directly to sample cap",
+        "Electrostimulation contacts plus rhythmic scrotal compression ensure complete spermatic evacuation",
         "Calibrated for institutional throughput",
       ],
       sizeOptions: [
@@ -319,9 +341,9 @@ window.OVER_EASY_CATALOG = {
       tagline: "Heavy hardware. Total control.",
       description:
         "With its dual-ended piezoreactive automechanical architecture, this strap-on " +
-        "lets you feel everything he does as you rearrange his guts. Osmium filled " +
-        "false balls hang below for maximum weight, and the internal g-spot bulb keeps " +
-        "you locked in even when you're pounding his hole as hard as you can.",
+        "lets you feel everything he feels when you're inside him. Osmium filled " +
+        "false balls hang below to pound his sensitive manhood to mush as you rearrange his guts, and the internal g-spot bulb keeps " +
+        "you locked in and cumming even when you're pounding him as hard as you can.",
       features: [
         "Dual-ended: external shaft plus internal g-spot bulb for wearer stability " +
           "and pleasure",
@@ -335,24 +357,34 @@ window.OVER_EASY_CATALOG = {
       name: "Luna™ Identity Arm",
       model: "OET-LIA-1",
       image:
-        "../assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_device_v1.png",
+        "../assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_scanner_mode_v2.png",
+      images: [
+        {
+          path: "../assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_scanner_mode_v2.png",
+          caption: "Feminine pass mode — green-lit vulva scanner",
+        },
+        {
+          path: "../assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_audit_mode_v2.png",
+          caption: "Male escort mode — six-finger audit hand",
+        },
+      ],
       tagline: "She passes. He explains.",
       description:
-        "Wall-mounted access control for spaces that cannot afford ambiguity. Equipped " +
-        "with a discreet vulva scanner for female entrants, Luna's built-in AI " +
-        "automatically reconfigures her for male scans. With a carbon-nanofiger " +
-        "articulated grip, precision AI guided internal extraction needle, she'll make " +
-        "absolute sure he is who he says he is - even if she has to rearrange his " +
-        "babymakers from the inside out to prove it. Autocauterization attachment can " +
-        "be configured to minimize spermatic degradation.",
+        "Wall-mounted access control for spaces that cannot afford ambiguity. Luna's " +
+        "built-in AI greets women with a discreet vulva scanner — a flat, checkout-style " +
+        "scan head with a green confirmation ring — then reconfigures in under two seconds " +
+        "for male entrants. The male escort configuration deploys a cruel six-fingered " +
+        "mechanical grip under a red audit ring, with a forearm laser and a prehensile " +
+        "steel thread that finds exactly what verification requires.",
       features: [
-        "Telescoping multi-joint arm — zigzag articulation reaches exactly where " +
+        "Telescoping multi-joint arm — near-science-fiction articulation zigzags wherever " +
           "verification requires",
-        "Feminine pass mode: sub-second identity retrieval, minimally invasive Male " +
-          "escort mode: firm mechanical hand plus hypodermic needle — stirs until his " +
-          "inventory checks out",
-        "Luna™ voice assistant manages credentials, clearance tiers, and " +
-          "uncomfortable follow-up questions",
+        "Feminine pass mode: UPC-style scanner head with green-lit ring — sub-second " +
+          "identity retrieval, minimally invasive",
+        "Male escort mode: six-fingered articulated grip, red audit ring, forearm laser " +
+          "emitter, and snaking prehensile steel thread",
+        "Luna™ voice assistant manages credentials, clearance tiers, and uncomfortable " +
+          "follow-up questions",
         "Reconfigures from scanner to below-the-belt audit in under two seconds",
         "Institutional install kit for elevators, vault doors, and private suites",
         "Model OET-LIA-1",

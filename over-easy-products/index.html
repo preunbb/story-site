@@ -46,7 +46,60 @@
       <p id="oe-footer-note"></p>
     </footer>
 
+    <div id="scene-lightbox" class="scene-lightbox" aria-hidden="true">
+      <div
+        class="scene-lightbox-panel"
+        id="scene-lightbox-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Enlarged product image"
+      >
+        <button
+          type="button"
+          class="scene-lightbox-close"
+          id="scene-lightbox-close"
+          aria-label="Close"
+        >
+          ×
+        </button>
+        <div class="scene-lightbox-stage">
+          <button
+            type="button"
+            class="scene-lightbox-nav scene-lightbox-nav--prev"
+            id="scene-lightbox-prev"
+            aria-label="Previous image"
+            hidden
+          >
+            ‹
+          </button>
+          <div class="scene-lightbox-img-wrap">
+            <img
+              id="scene-lightbox-img"
+              class="scene-lightbox-img"
+              alt=""
+              decoding="async"
+            />
+          </div>
+          <button
+            type="button"
+            class="scene-lightbox-nav scene-lightbox-nav--next"
+            id="scene-lightbox-next"
+            aria-label="Next image"
+            hidden
+          >
+            ›
+          </button>
+        </div>
+        <p
+          id="scene-lightbox-caption"
+          class="scene-lightbox-caption"
+          hidden
+        ></p>
+      </div>
+    </div>
+
     <script src="products.js"></script>
+    <script src="lightbox.js"></script>
     <script>
       (function () {
         const catalog = window.OVER_EASY_CATALOG;
@@ -185,6 +238,58 @@
           );
         }
 
+        function productImages(p) {
+          if (p.images?.length) return p.images;
+          if (p.image) return [{ path: p.image }];
+          return [];
+        }
+
+        function renderCardMedia(p) {
+          const imgs = productImages(p);
+          const thumb = imgs[0]?.path || p.image || "";
+          if (!thumb) return '<div class="oe-card__media"></div>';
+
+          if (imgs.length <= 1) {
+            return (
+              '<div class="oe-card__media">' +
+              '<img src="' +
+              escapeHtml(thumb) +
+              '" alt="' +
+              escapeHtml(p.name) +
+              '" loading="lazy" />' +
+              "</div>"
+            );
+          }
+
+          const payload = escapeHtml(
+            JSON.stringify(
+              imgs.map(function (img) {
+                return { path: img.path, caption: img.caption || "" };
+              }),
+            ),
+          );
+
+          return (
+            '<figure class="oe-card__media oe-card__media--zoomable" tabindex="0" ' +
+            'role="button" aria-label="View ' +
+            escapeHtml(p.name) +
+            ' images" data-product-name="' +
+            escapeHtml(p.name) +
+            '" data-product-images="' +
+            payload +
+            '" data-image-index="0">' +
+            '<img src="' +
+            escapeHtml(thumb) +
+            '" alt="' +
+            escapeHtml(p.name) +
+            '" loading="lazy" />' +
+            '<span class="oe-card__media-count" aria-hidden="true">' +
+            imgs.length +
+            " photos</span>" +
+            "</figure>"
+          );
+        }
+
         function renderCard(p) {
           const features = (p.features || [])
             .map(function (f) {
@@ -206,13 +311,7 @@
             '<article class="oe-card" id="product-' +
             escapeHtml(p.id) +
             '">' +
-            '<div class="oe-card__media">' +
-            '<img src="' +
-            escapeHtml(p.image) +
-            '" alt="' +
-            escapeHtml(p.name) +
-            '" loading="lazy" />' +
-            "</div>" +
+            renderCardMedia(p) +
             '<div class="oe-card__body">' +
             '<div class="oe-card__meta">' +
             (p.badge
@@ -305,6 +404,10 @@
         window.addEventListener("hashchange", resolveHash);
         window.addEventListener("resize", updateTabIndicator);
         resolveHash();
+
+        if (window.OE_INIT_PRODUCT_LIGHTBOX) {
+          window.OE_INIT_PRODUCT_LIGHTBOX();
+        }
 
         function escapeHtml(str) {
           return String(str)

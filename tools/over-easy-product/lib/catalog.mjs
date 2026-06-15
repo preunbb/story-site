@@ -119,6 +119,16 @@ function formatWrappedString(str, fieldIndent = "      ") {
     .join("\n");
 }
 
+/** @param {object[]} images */
+function formatImages(images) {
+  const items = images.map((img) => {
+    const parts = [`path: ${JSON.stringify(img.path)}`];
+    if (img.caption) parts.push(`caption: ${JSON.stringify(img.caption)}`);
+    return `{ ${parts.join(", ")} }`;
+  });
+  return `[\n        ${items.join(",\n        ")},\n      ]`;
+}
+
 /** @param {object[]} sizeOptions */
 function formatSizeOptions(sizeOptions) {
   const fields = sizeOptions.map((field) => {
@@ -147,6 +157,9 @@ function formatProductEntry(p) {
   lines.push(`      name: ${JSON.stringify(p.name)},`);
   if (p.model) lines.push(`      model: ${JSON.stringify(p.model)},`);
   lines.push(`      image:`, `        ${JSON.stringify(p.image)},`);
+  if (p.images?.length) {
+    lines.push(`      images: ${formatImages(p.images)},`);
+  }
   if (p.tagline) {
     lines.push(`      tagline:`);
     lines.push(formatWrappedString(p.tagline).replace(/,$/, ","));
