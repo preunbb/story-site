@@ -212,7 +212,7 @@ window.OVER_EASY_CATALOG = {
             { value: "xxxs", label: "XXXS" },
             { value: "xxs", label: "XXS" },
             { value: "xs", label: "XS" },
-            { value: "s", label: "S" },
+            { value: "s", label: "S", soldOut: true },
             { value: "m", label: "M", soldOut: true },
             { value: "l", label: "L", soldOut: true },
           ],
