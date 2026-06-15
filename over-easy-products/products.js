@@ -191,7 +191,7 @@ window.OVER_EASY_CATALOG = {
       description:
         "Patented bleach wipes strong enough to neutralize every germ and ambitious future e=heir " +
         "they touch, yet gentle enough for your most delicate bits. " +
-        "Essential for cleaning up any serious breeding hazard",
+        "Essential for cleaning up any serious breeding hazard after a night of fun with a boy.",
       features: [
         "Neutralizes bacteria and sperm on contact — skin, fabric, or floor",
         "Deep-clean safe for post-encounter sensitive areas",
