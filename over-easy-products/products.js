@@ -321,8 +321,7 @@ window.OVER_EASY_CATALOG = {
       description:
         "Sleek palm-sized orb that emits focused subsonic pulses. With vibration " +
         "frequency precisely tuned to the exact resonant frequency of testicular " +
-        "matter, one ShellShocker can keep a whole room of men on their knees until you " +
-        "deactivate it.",
+        "matter, one ShellShocker can keep a whole room of men on their knees until deactivated. Useful for group self defense situations, getting through long lines quickly, or just clearing some personal space for yourself on a crowded subway..",
       features: ["Warning: effects have not been tested on women!"],
     },
     {
