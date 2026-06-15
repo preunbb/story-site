@@ -6,9 +6,9 @@
 | --- | --- | --- |
 | **Ross** | **Healthy** — penile elastrator amputation only; testicles untouched. | **Healthy** |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-|  | Testicles popped | Female orgasms |
+|  | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Total** | 0 | 0 |
 

@@ -6,9 +6,9 @@
 | --- | --- | --- |
 | **Unnamed client** | **Popped** — dominatrix hand-squeeze *crunch* / *squick* / final *POP* after rightie destroyed. | **Popped** — heel stomp *SQUICK* during stomping phase; client blacks out; confirmed mush while unconscious. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-|  | Testicles popped | Female orgasms |
+|  | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Total** | 2 | 0 |
 

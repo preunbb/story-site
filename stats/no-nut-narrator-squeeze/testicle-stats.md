@@ -7,9 +7,9 @@
 | **Steve** | **Damaged** — Christie drunken nut-squeeze + slap; swollen/bruised, no pop. | **Damaged** — same. |
 | **Evan** | **Damaged** — Sharon prolonged squeeze; survives. | **Damaged** — same. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-|  | Testicles popped | Female orgasms |
+|  | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Total** | 0 | 0 |
 

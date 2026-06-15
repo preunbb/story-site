@@ -7,9 +7,9 @@
 | **Greg** | **Popped** — Rachel's accidental thumb rupture during lecture roleplay squeeze; both nuts destroyed in her grip during orgasm. | **Popped** — same squeeze; involuntary fist finish after Rachel climaxes. |
 | **Prior boyfriend #3** (referenced) | **Damaged (referenced)** — ten knees, broke up; grapes-sized, not popped on-page. | **Damaged (referenced)** — same. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-|  | Testicles popped | Female orgasms |
+|  | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Total** | 2 | 1 |
 

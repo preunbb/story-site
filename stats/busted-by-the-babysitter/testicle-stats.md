@@ -9,9 +9,9 @@
 | **Bryan** (mean ending) | **Popped** — Ch.3 mean, Melody: thumb *splut*. | **Popped** — Ch.3 mean, fist *WHAM* finish. |
 | **Bryan** (nice ending) | **Popped** — Ch.3 nice, Melody squeezes left during sex. | **Healthy** — she spares right after his consent speech. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-| Section | Testicles popped | Female orgasms |
+| Section | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Ch.1** | 0 | 0 |
 | **Ch.2** | 2 | 2 |

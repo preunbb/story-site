@@ -12,9 +12,9 @@
 | **Emma's club douche** (flashback) | **Popped (flashback)** — Emma knees to mush, leaves him on floor. | **Popped (flashback)** — bilateral destruction implied ("sack full of mush"). |
 | **Vivian's David-era club pickups** (referenced) | **Damaged/popped (offscreen montage)** — weekend club neuterings; no on-page present match. | **Varies** |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-|  | Testicles popped | Female orgasms |
+|  | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Total** | 2 | 3 |
 

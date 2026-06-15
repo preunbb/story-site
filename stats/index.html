@@ -91,7 +91,7 @@
     <header>
       <h1>Catalog stats</h1>
       <p class="sub">
-        On-page testicle pops vs explicit female orgasms per story, sorted by
+        On-page testicles lost vs explicit female orgasms per story, sorted by
         combined total (highest left).
         <a href="./OVERALL.md">Table rollup</a> ·
         <a href="../index.html">← Stories</a>
@@ -102,7 +102,7 @@
       <div class="canvas-box">
         <canvas
           id="stats-chart"
-          aria-label="Pops and orgasms by story"
+          aria-label="Testicles lost and orgasms by story"
         ></canvas>
         <p id="chart-error" class="chart-error" hidden></p>
       </div>
@@ -115,18 +115,26 @@
         }
         const manifest = await res.json();
         const reports = [...manifest.reports].sort((a, b) => {
-          const sumA = (a.totalPops ?? 0) + (a.totalFemaleOrgasms ?? 0);
-          const sumB = (b.totalPops ?? 0) + (b.totalFemaleOrgasms ?? 0);
+          const sumA =
+            (a.totalTesticlesLost ?? a.totalPops ?? 0) +
+            (a.totalFemaleOrgasms ?? 0);
+          const sumB =
+            (b.totalTesticlesLost ?? b.totalPops ?? 0) +
+            (b.totalFemaleOrgasms ?? 0);
           return sumB - sumA || a.title.localeCompare(b.title);
         });
 
         const labels = reports.map((r) => r.title);
-        const pops = reports.map((r) => r.totalPops ?? 0);
+        const lost = reports.map(
+          (r) => r.totalTesticlesLost ?? r.totalPops ?? 0,
+        );
         const orgasms = reports.map((r) => r.totalFemaleOrgasms ?? 0);
+        const totalLost =
+          manifest.totals.totalTesticlesLost ?? manifest.totals.totalPops ?? 0;
 
         document.getElementById("totals").innerHTML = [
           `<span><strong>${reports.length}</strong> stories reported</span>`,
-          `<span><strong>${manifest.totals.totalPops}</strong> total pops</span>`,
+          `<span><strong>${totalLost}</strong> total testicles lost</span>`,
           `<span><strong>${manifest.totals.totalFemaleOrgasms}</strong> total female orgasms</span>`,
         ].join("");
 
@@ -137,8 +145,8 @@
             labels,
             datasets: [
               {
-                label: "Testicles popped",
-                data: pops,
+                label: "Testicles lost",
+                data: lost,
                 backgroundColor: "rgba(232, 93, 76, 0.85)",
                 borderColor: "rgba(232, 93, 76, 1)",
                 borderWidth: 1,
@@ -165,7 +173,9 @@
                   afterBody(items) {
                     const i = items[0].dataIndex;
                     const r = reports[i];
-                    const sum = (r.totalPops ?? 0) + (r.totalFemaleOrgasms ?? 0);
+                    const sum =
+                      (r.totalTesticlesLost ?? r.totalPops ?? 0) +
+                      (r.totalFemaleOrgasms ?? 0);
                     return [
                       `Combined: ${sum}`,
                       `Report: stats/${r.slug}/`,

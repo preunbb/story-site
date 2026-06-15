@@ -8,9 +8,9 @@
 | **Sarah** | — | — |
 | **Grace (aunt)** | — | — |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-| Section | Testicles popped | Female orgasms |
+| Section | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Part 1** | 0 | 0 |
 | **Part 2** | 1 | 2 |

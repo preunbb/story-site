@@ -8,9 +8,9 @@
 | **Wesley** | **Popped** — Amy’s pelvic-block kick; audible *splorch*. | **Destroyed** — rope garrote severs the nutcord during his forced orgasm (castration, not a classic in-sack pop). |
 | **Unnamed opening fighter** (“skinny guy”) | **Popped** — Sofia uppercut; muffled *pop*, then pulp confirmed. | **Popped** — Sofia thumb-crushes his last nut (*squelch*). |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-|  | Testicles popped | Female orgasms |
+|  | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Total** | 6 | 0 |
 

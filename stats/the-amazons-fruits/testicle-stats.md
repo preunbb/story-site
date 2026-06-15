@@ -8,9 +8,9 @@
 | **Vergil** | **Healthy (last known)** — Ch.3 flashback: Lurian heel abuse, bruised but intact when shown to Atheras. | **Healthy (last known)** — same flashback. |
 | **Heimdall** | **Unknown** — captured off-page; Atheras’s rescue motive, no gland status in prose. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-| Section | Testicles popped | Female orgasms |
+| Section | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **1** | 0 | 0 |
 | **2** | 1 | 0 |

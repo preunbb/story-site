@@ -10,31 +10,31 @@
 |---|---|
 | Stories with reports | **44** of 48 catalog entries |
 | Stories missing prose | **2** (ids 41, 48) |
-| **Total testicles popped** (on-page minimums) | **142** |
+| **Total testicles lost** (on-page) | **150** |
 | **Total female orgasms** (on-page minimums) | **132** |
-| Stories with ≥1 pop | 36 |
+| Stories with ≥1 testicle lost | 40 |
 | Stories with ≥1 female orgasm | 24 |
 
-> Totals sum each story's curated minimum from `meta.json`. Series with montages (especially *Andrea and Lucas* Ch.11) may under-count unnamed victims in prose.
+> Totals sum each story's curated minimum from `meta.json`. "Lost" includes ruptures, surgical removal, and on-page permanent infertility.
 
-## Top stories by pops
+## Top stories by testicles lost
 
-| Rank | Story | Pops | Female orgasms | Report |
+| Rank | Story | Testicles lost | Female orgasms | Report |
 |:---:|---|:---:|:---:|---|
 | 1 | Andrea and Lucas (Part 1 + Part 2) | **44** | 56 | [andrea-lucas](./andrea-lucas/testicle-stats-ch1-18.md) |
 | 2 | Three Strikes | **15** | 13 | [three-strikes](./three-strikes/testicle-stats.md) |
 | 3 | The Ballbusting Arena 1: Battle Royale | **8** | 1 | [ballbusting-arena-1-battle-royale](./ballbusting-arena-1-battle-royale/testicle-stats.md) |
 | 4 | The Ballbusting Arena 3: Retired | **6** | 0 | [ballbusting-arena-3-retired](./ballbusting-arena-3-retired/testicle-stats.md) |
-| 5 | Busted by the Babysitter | **5** | 4 | [busted-by-the-babysitter](./busted-by-the-babysitter/testicle-stats.md) |
-| 6 | Melody's First Time | **5** | 2 | [melody-first-time](./melody-first-time/testicle-stats.md) |
+| 5 | Melody's First Time | **5** | 2 | [melody-first-time](./melody-first-time/testicle-stats.md) |
+| 6 | Busted by the Babysitter | **5** | 4 | [busted-by-the-babysitter](./busted-by-the-babysitter/testicle-stats.md) |
 | 7 | Nash Equilibrium | **4** | 0 | [nash-equilibrium](./nash-equilibrium/testicle-stats.md) |
 | 8 | The Ballbusting Arena 6: Natalie Enters the Ring | **4** | 4 | [ballbusting-arena-6](./ballbusting-arena-6/testicle-stats.md) |
 | 9 | School Bully | **3** | 8 | [school-bully](./school-bully/testicle-stats.md) |
-| 10 | A Healthy Relationship | **2** | 1 | [a-healthy-relationship](./a-healthy-relationship/testicle-stats.md) |
+| 10 | Castration Anxiety | **2** | 2 | [castration-anxiety](./castration-anxiety/testicle-stats.md) |
 
 ## Top stories by female orgasms
 
-| Rank | Story | Female orgasms | Pops | Report |
+| Rank | Story | Female orgasms | Testicles lost | Report |
 |:---:|---|:---:|:---:|---|
 | 1 | Andrea and Lucas (Part 1 + Part 2) | **56** | 44 | [andrea-lucas](./andrea-lucas/testicle-stats-ch1-18.md) |
 | 2 | Three Strikes | **13** | 15 | [three-strikes](./three-strikes/testicle-stats.md) |
@@ -49,7 +49,7 @@
 
 ## All stories
 
-| Story | ID | Pops | Female orgasms | Sections | Report |
+| Story | ID | Testicles lost | Female orgasms | Sections | Report |
 |---|---|:---:|:---:|:---:|---|
 | Three Strikes | 1 | 15 | 13 | 12 | [three-strikes](./three-strikes/testicle-stats.md) |
 | Castration Anxiety | 2 | 2 | 2 | 1 | [castration-anxiety](./castration-anxiety/testicle-stats.md) |
@@ -66,8 +66,8 @@
 | The Ballbusting Arena 3: Retired | 14 | 6 | 0 | 1 | [ballbusting-arena-3-retired](./ballbusting-arena-3-retired/testicle-stats.md) |
 | The Ballbusting Arena 2: Sofia's Choice | 15 | 2 | 1 | 1 | [ballbusting-arena-2-sofias-choice](./ballbusting-arena-2-sofias-choice/testicle-stats.md) |
 | The Ballbusting Arena 4: Last Minute | 16 | 2 | 0 | 1 | [ballbusting-arena-4-last-minute](./ballbusting-arena-4-last-minute/testicle-stats.md) |
-| The Internship | 17 | 0 | 0 | 2 | [the-internship](./the-internship/testicle-stats.md) |
-| The Cult | 18 | 0 | 0 | 2 | [the-cult](./the-cult/testicle-stats.md) |
+| The Internship | 17 | 2 | 0 | 2 | [the-internship](./the-internship/testicle-stats.md) |
+| The Cult | 18 | 2 | 0 | 2 | [the-cult](./the-cult/testicle-stats.md) |
 | The Amazon's Fruits | 19 | 2 | 1 | 4 | [the-amazons-fruits](./the-amazons-fruits/testicle-stats.md) |
 | School Bully | 20 | 3 | 8 | 7 | [school-bully](./school-bully/testicle-stats.md) |
 | Relief | 21 | 0 | 1 | 1 | [relief](./relief/testicle-stats.md) |
@@ -77,9 +77,9 @@
 | Friendzoned | 25 | 2 | 3 | 6 | [friendzoned](./friendzoned/testicle-stats.md) |
 | Busted by the Babysitter | 26 | 5 | 4 | 4 | [busted-by-the-babysitter](./busted-by-the-babysitter/testicle-stats.md) |
 | Living with Ballbusting Witches | 27 | 2 | 1 | 2 | [living-with-ballbusting-witches](./living-with-ballbusting-witches/testicle-stats.md) |
-| Testy | 28 | 0 | 0 | 3 | [testy](./testy/testicle-stats.md) |
+| Testy | 28 | 2 | 0 | 3 | [testy](./testy/testicle-stats.md) |
 | Legalese | 29 | 0 | 0 | 1 | [legalese](./legalese/testicle-stats.md) |
-| Postop | 30 | 0 | 0 | 6 | [postop](./postop/testicle-stats.md) |
+| Postop | 30 | 2 | 0 | 6 | [postop](./postop/testicle-stats.md) |
 | Office Management | 31 | 1 | 0 | 1 | [office-management](./office-management/testicle-stats.md) |
 | Nash Equilibrium | 32 | 4 | 0 | 1 | [nash-equilibrium](./nash-equilibrium/testicle-stats.md) |
 | The First Guy I Ever Ballbusted | 33 | 2 | 2 | 1 | [the-first-guy-i-ever-ballbusted](./the-first-guy-i-ever-ballbusted/testicle-stats.md) |
@@ -98,9 +98,9 @@
 
 ## Not yet reported
 
-- **Road Trip** (id 41) — No synced local prose (`assets/stories/41.md` missing; unfinished commission).
-- **Quality Control** (id 48) — No synced local prose (`assets/stories/48.md` missing).
+- **Road Trip** (id 41) — No synced local prose.
+- **Quality Control** (id 48) — No synced local prose.
 
 ---
 
-*Regenerate a single story: ask the agent to run `story-testicle-stats` for that title. Regenerate this rollup after updating per-story `meta.json` files.*
+*Regenerate a single story: ask the agent to run `story-testicle-stats` for that title.*

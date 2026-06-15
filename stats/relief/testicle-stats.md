@@ -6,9 +6,9 @@
 | --- | --- | --- |
 | **Hato** | **Damaged** — targeted pre-ceremony nut; *squish* on punch 3, repeated *SPLAT* kicks, foot crush during dragon-position sex; swollen/deflated but **not popped** before he passes out. | **Healthy** — spared from kicks; drained during orgasm. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-|  | Testicles popped | Female orgasms |
+|  | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Total** | 0 | 1 |
 

@@ -6,9 +6,9 @@
 | --- | --- | --- |
 | **Unnamed college guy** | **Popped** — narrator thumb squeeze during hand crush (*left nut exploded*). | **Popped** — narrator full-weight foot crush after facesitting bargain. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-|  | Testicles popped | Female orgasms |
+|  | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Total** | 2 | 2 |
 

@@ -9,9 +9,9 @@
 | **Soccer goalie dream victim** (Jeremy) | **Popped (dream only)** — cleat grind in nightmare. | **Popped (dream only)** — same. |
 | **Fencing dream victim** (Jeremy) | **Popped (dream only)** — foil puncture/rupture in nightmare. | **Popped (dream only)** — second foil hit completes eunuchdom in dream. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-|  | Testicles popped | Female orgasms |
+|  | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Total** | 2 | 2 |
 

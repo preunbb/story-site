@@ -6,9 +6,9 @@
 | --- | --- | --- |
 | **Tim** | **Popped** — Jenny: cord tied, knife *snkt*, left gonad removed into bowl. | **Popped** — Jenny: second *snkt*; bilateral orchiectomy complete. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-|  | Testicles popped | Female orgasms |
+|  | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Total** | 2 | 0 |
 

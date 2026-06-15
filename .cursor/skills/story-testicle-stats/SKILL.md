@@ -17,7 +17,7 @@ Save to `stats/<slug>/`:
 |------|---------|
 | `testicle-stats.md` | **Two tables only** (use `testicle-stats-ch1-<N>.md` when scope is explicit chapter range) |
 | `notes.md` | Orgasm review, narration bugs, scope/methodology — not in the main report |
-| `meta.json` | `{ slug, storyId, title, seriesId, sectionCount, totalPops, totalFemaleOrgasms, curated: true, generatedAt }` |
+| `meta.json` | `{ slug, storyId, title, seriesId, sectionCount, totalTesticlesLost, totalFemaleOrgasms, curated: true, generatedAt }` |
 
 Update `stats/manifest.json` (one entry per slug; **not** `_manifest.json` — GitHub Pages/Jekyll skips underscore files). Catalog chart reads it at `stats/index.html`.
 
@@ -45,20 +45,20 @@ Update `stats/manifest.json` (one entry per slug; **not** `_manifest.json` — G
 | Male character | Left testicle | Right testicle |
 ```
 
-Statuses: **healthy** · **damaged** (specifics) · **popped** (who, when, how) · **popped (offscreen)** (only when destruction happened before the story and is **not** narrated on-page).
+Statuses: **healthy** · **damaged** (specifics) · **lost** / **popped** (who, when, how) · **lost (surgical)** · **lost (offscreen)** (pre-story, not narrated on-page).
 
 - List every **named** male through scope.
-- Also list **unnamed on-page victims** when they take pops or end-state damage that matters (e.g. arena fighters, bouncer, skit victims). Label them clearly (`Unnamed opening-fight victim`, `Unnamed male victim`).
+- Also list **unnamed on-page victims** when they lose testicles or end-state damage that matters (e.g. arena fighters, bouncer, skit victims). Label them clearly (`Unnamed opening-fight victim`, `Unnamed male victim`).
 - **Three Strikes only:** add `| Middle testicle |` column; Sam Johnson's row uses all three gonad columns.
 
 Put cast gaps and catalog-only characters in `notes.md`, not the main report.
 
-### Table 2 — Pops and female orgasms
+### Table 2 — Testicles lost and female orgasms
 
 ```markdown
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-| Chapter | Testicles popped | Female orgasms |
+| Chapter | Testicles lost | Female orgasms |
 ```
 
 (or `Section` when no chapter headings)
@@ -66,23 +66,28 @@ Put cast gaps and catalog-only characters in `notes.md`, not the main report.
 - **Multi-unit stories** (`sectionCount` > 1): one row per chapter/section plus a **Total** row (use `meta.json` totals; may include `+` minimums).
 - **Single-unit stories** (`sectionCount` === 1): **Total row only** — no per-section breakdown.
 
-### Counting rules — pops
+### Counting rules — testicles lost
 
-One **pop** = one testicle destroyed on-page in the prose (rupture, stomp, bite-through, etc.).
+One **lost** = one testicle permanently gone or made **totally infertile** on-page in the prose. Includes:
 
-**Include unnamed victims in pop totals the same as named ones.** Do not relegate unnamed pops to footnotes or notes-only tallies.
+- Rupture / stomp / bite / crush “pops”
+- **Surgical removal** (scalpel, knife, elastrator snip, orchiectomy) when narrated on-page
+- On-page destruction that prose treats as **permanent** (liquefied, cords snapped, both glands gone)
 
-**Count in the section/chapter where the prose narrates the destruction**, including:
-- Flashbacks told inside a section (monologue, memory, video replay)
-- Arena ring action, skits, montages — count each on-page pop even if the victim has no name
+**Include unnamed victims in lost totals the same as named ones.** Do not relegate unnamed losses to footnotes or notes-only tallies.
+
+**Count in the section/chapter where the prose narrates the loss**, including flashbacks told inside a section (monologue, memory, video replay) and arena/skit/montage action.
 
 **Do not count:**
-- Dream/nightmare pops (clearly framed as sleep fantasy)
-- Surgical removal without a rupture “pop” moment (track as **removed (surgical)** in status table; **0 pops** in pop table)
-- Events only referenced, not narrated (`popped (offscreen)` in status; **0 pops** unless the actual pop beat appears on-page somewhere in the story)
-- “Almost pops” / damage that prose explicitly says did not rupture
 
-**Do not use `popped (offscreen)`** for destruction that is fully narrated on-page in flashback — that label is for pre-story backstory only.
+- Dream/nightmare losses (clearly framed as sleep fantasy)
+- Events only referenced, not narrated (`lost (offscreen)` in status; **0 in lost table** unless the actual loss beat appears on-page somewhere in the story)
+- Reversible damage prose explicitly says heals (bruises, temporary swelling)
+- “Almost” losses prose explicitly rejects
+
+**Do not use `lost (offscreen)`** for destruction fully narrated on-page in flashback — that label is for pre-story backstory only.
+
+Male status may still say **popped** for a rupture beat; the table column is always **Testicles lost**.
 
 ### Counting rules — female orgasms
 
@@ -109,4 +114,4 @@ See `stats/andrea-lucas/testicle-stats-ch1-18.md` + `notes.md`.
 - Regex/heuristic bulk scanning instead of reading
 - Edit `assets/stories/*.md`
 - Add extra sections to the main report beyond the two tables
-- Exclude unnamed on-page pops from Table 2 or bury them only in notes
+- Exclude unnamed on-page losses from Table 2 or bury them only in notes

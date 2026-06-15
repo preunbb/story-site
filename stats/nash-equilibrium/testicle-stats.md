@@ -8,9 +8,9 @@
 | **Subject 2** (triplet) | **Popped** — simultaneous crush when Subject 3 votes selfish. | **Popped** — Cathy full-weight stomp (*squelch*). |
 | **Subject 3** (triplet) | **Healthy** — selfish vote spares him; Part 2 castration teased but not shown. | **Healthy** |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-|  | Testicles popped | Female orgasms |
+|  | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Total** | 4 | 0 |
 

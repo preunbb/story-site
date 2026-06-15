@@ -7,9 +7,9 @@
 | **Jose** | **Popped** — Sec.2, Emma: molar bite splits then thumb-crush liquifies left nut during blowjob. | **Popped** — Sec.2, Emma: chews last nut to nothing after he chooses to keep his cock over his ball. |
 | **Jose's locker-room buddies** | Not in prose (unnamed). | — |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-| Section | Testicles popped | Female orgasms |
+| Section | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **1 — At the Gym** | 0 | 0 |
 | **2 — Her Place** | 2 | 2 |

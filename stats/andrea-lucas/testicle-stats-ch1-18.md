@@ -18,9 +18,9 @@
 | **Isaac** | **Popped** — Ch.17, Kay: bites down and grinds his **healthy left** nut to mush in the First Rite mouth-rite (after promising to take the broken **right**). | **Damaged** — six months of Kay’s “prep” left it liquified/dead but still in the sack; not cleanly popped on-page, but functionally destroyed. |
 | **Elijah** | **Popped** — Ch.18, Abby: crushes **both** nuts at once in her fist during the Second Rite handjob (full castration, not halfstration). | **Popped** — Ch.18, Abby: same fist crush; both destroyed together. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-| Chapter | Testicles popped | Female orgasms |
+| Chapter | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **1** | 1 | 0 |
 | **2** | 0 | 0 |

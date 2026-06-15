@@ -7,9 +7,9 @@
 | **Mal'ko Vesunako** | **Popped** — Taviri's knee: nuptial *Squick, POP!!!* on left nut. | **Damaged** — ballprint abuse + wedding grinding; **intact** at exit. |
 | **Unnamed fiances (waiting room)** | **Popped (offscreen)** — couple #41; others implied. | Mixed — observation only. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-| Section | Testicles popped | Female orgasms |
+| Section | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **1 — Waiting room** | 0 | 1 |
 | **2 — Ballprint paperwork** | 0 | 0 |

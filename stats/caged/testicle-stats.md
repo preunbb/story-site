@@ -6,9 +6,9 @@
 | --- | --- | --- |
 | **Unnamed slave** | **Popped** — Goddess Samiey heel-twist halfstration for missed chores; liquified, cage crushes remnant. | **Damaged** — kick during argument; “hairline fracture”; likely low function but **not popped** on-page. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-|  | Testicles popped | Female orgasms |
+|  | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Total** | 1 | 0 |
 

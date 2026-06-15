@@ -6,9 +6,9 @@
 | --- | --- | --- |
 | **Sean** | **Popped (offscreen / before story)** — Jenny ruptured one ball ~1 month earlier (client-paid partial neutering); replaced with silicone fake on a realistic cord. | **Popped** — today's pointed-toe kick misses silicone left; follow-up kick + forward fall twists and purees his sole remaining real nut. Full castration by session end. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-|  | Testicles popped | Female orgasms |
+|  | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Total** | 1 | 0 |
 

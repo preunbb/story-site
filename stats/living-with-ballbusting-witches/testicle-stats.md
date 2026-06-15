@@ -7,9 +7,9 @@
 | **Sean** | **Popped** — Ch.2 kitchen: overstuffed sack splits; innards eject, nut finishes killing itself. | **Popped** — Ch.2, same cascade after Genovia's block + Sylvana's tease spell. |
 | **Anthony** (flashback only) | **Popped (offscreen)** — Genovia's college experiment: both nuts burst from dual orgasm block + tease. | **Popped (offscreen)** — same. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-| Section | Testicles popped | Female orgasms |
+| Section | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Ch.1 — An Unusual Family** | 0 | 0 |
 | **Ch.2 — Between a Rock and a Hard Place** | 2 | 1 |

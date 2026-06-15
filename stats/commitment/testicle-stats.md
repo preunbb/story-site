@@ -7,9 +7,9 @@
 | **George** (boyfriend) | **Popped** — elastrator + burdizzo + paring-knife removal; preserved in jar/bronzed earrings. | **Popped** — same voluntary castration night. |
 | **Prior collection boys** (referenced) | **Popped (offscreen)** — mistress's wall of trophies / past elastrator mistakes referenced. | **Popped (offscreen)** — same. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-|  | Testicles popped | Female orgasms |
+|  | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Total** | 2 | 0 |
 

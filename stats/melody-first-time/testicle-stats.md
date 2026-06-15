@@ -8,9 +8,9 @@
 | **Nathan** | **Popped** — Melody yanks; both cords **snap**, nuts detached in sack (Part 2). | **Popped** — same snap. |
 | **Tommy** | **Popped** — Melody claps palms over left nut until mush (Part 2 deal). | **Healthy (damaged)** — promised spare; right bruised but intact when ambulance takes him. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-| Section | Testicles popped | Female orgasms |
+| Section | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **1 — Part 1** | 2 | 1 |
 | **2 — Part 2** | 3 | 1 |

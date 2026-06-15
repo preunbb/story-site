@@ -8,9 +8,9 @@
 | **Erica's ex-boyfriend** (flashback) | **Healthy (last known)** — one nut survived prom-night knee. | **Popped (flashback)** — Erica knee-ruptures right nut before story present timeline. |
 | **Joe Altacounte** etc. | Not in prose — boxing résumé only. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-| Section | Testicles popped | Female orgasms |
+| Section | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **1 — Knockout** | 0 | 0 |
 | **2 — Pinned** | 1 | 0 |

@@ -17,9 +17,9 @@
 | **Marcus** | **Popped (offscreen)** — Jenny backstory. | **Popped (offscreen)** | — |
 | **Baseball boy** (Epilogue coda) | **Damaged** — Cathy knee opens fight; Stephanie scene cuts off before confirmed pop. | **Healthy (last known)** — foot on right, story ends mid-assault. | — |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-| Section | Testicles popped | Female orgasms |
+| Section | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **1 — The Jock** | 0 | 0 |
 | **2 — The Coach** | 2 | 2 |

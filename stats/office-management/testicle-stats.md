@@ -6,9 +6,9 @@
 | --- | --- | --- |
 | **John** | **Popped (offscreen)** — prior disciplinary rupture; one nut left at story open. | **Popped** — Diane knee *crnch-SQUICK* ruptures last nut; Ms. S scoops mush and severs cords. *(Penis also amputated as "company property.")* |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-|  | Testicles popped | Female orgasms |
+|  | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Total** | 1 | 0 |
 

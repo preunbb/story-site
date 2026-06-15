@@ -8,9 +8,9 @@
 | --- | --- | --- |
 | **P'oiu** (Happy Ending) | **Popped** — Ch.13: left nut **pop** at forced orgasm under Kayla’s weight; regenerated tissue destroyed again under Lia’s tail before final castration. | **Popped** — Happy Ending beat: right nut final **pop** under Lia’s tail during their mutual climax (nuptial-style finish). |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-| Section | Testicles popped | Female orgasms |
+| Section | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Ch.13: Kayla** | 2 | 7 |
 | **Happy Ending** | 0 | 1 |

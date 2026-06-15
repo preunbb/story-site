@@ -6,9 +6,9 @@
 | --- | --- | --- |
 | **Sanjay** | **Popped** — Section 1: elastrator band on Cathy’s cocksleeve fully cinches after his second orgasm; scrotum drops to the floor with both glands inside (*plop*). | **Popped** — same device failure/session; bilateral neutering on-page. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-| Section | Testicles popped | Female orgasms |
+| Section | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **1 — Warehouse “last hour” test** | 2 | 1 |
 | **2 — Jenny’s drive away (epilogue)** | 0 | 0 |

@@ -6,9 +6,9 @@
 | --- | --- | --- |
 | **Jordan** | **Healthy** — Day 10 blueballs; bikini-shop teasing only. | **Healthy** |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-|  | Testicles popped | Female orgasms |
+|  | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Total** | 0 | 0 |
 

@@ -8,9 +8,9 @@
 | **Malcolm** | **Popped (offscreen / before story)** — Melody thumb-popped one nut ~1 year prior; uniball when he appears in closet epilogue. | **Damaged** — repeated abuse during affair; intact through epilogue. |
 | **Robert** (son) | **Popped (offscreen)** — Melody castration flashback; empty sack by college. | **Popped (offscreen)** — bilateral. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-| Section | Testicles popped | Female orgasms |
+| Section | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **1 — Meet Cute, Cute Meat** | 1 | 3 |
 | **2 — Scylla and Charybdis** | 1 | 4 |

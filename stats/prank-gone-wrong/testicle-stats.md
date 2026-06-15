@@ -6,9 +6,9 @@
 | --- | --- | --- |
 | **Unnamed male victim** (school prank target) | **Popped** — first nut gives way under narrator’s heel during the bleachers ambush; remnants squeezed out before ambulance. | **Popped** — friends’ kicks, then narrator’s heel jump finishes the pair; hospital confirms bilateral castration. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-|  | Testicles popped | Female orgasms |
+|  | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Total** | 2 | 0 |
 

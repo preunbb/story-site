@@ -8,9 +8,9 @@
 | **Officer Alice** | — | — |
 | **Lieutenant Maria** | — | — |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-| Section | Testicles popped | Female orgasms |
+| Section | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **1 (Left nut)** | 1 | 0 |
 | **2 (Right nut)** | 1 | 0 |

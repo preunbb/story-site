@@ -9,9 +9,9 @@
 | **Roger** | **Popped** — Emma mouth-bite through both nuts at once. | **Popped** — same bite (both destroyed together). |
 | **Paul** | **Popped** — iron-pole double-heave liquifies both. | **Popped** — same pole sequence. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-|  | Testicles popped | Female orgasms |
+|  | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Total** | 8 | 1 |
 

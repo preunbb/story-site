@@ -6,9 +6,9 @@
 | --- | --- | --- |
 | **Allan** | **Popped** — three-hour clamp/heel/tool session with June and Goddess Alexa ends in full castration; final stomp at station. | **Popped** — same session; clamps and repeated torture liquefy both nuts before eunuch passes out. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-|  | Testicles popped | Female orgasms |
+|  | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Total** | 2 | 0 |
 

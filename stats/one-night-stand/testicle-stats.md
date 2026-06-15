@@ -6,9 +6,9 @@
 | --- | --- | --- |
 | **Simon** | **Popped** — Emma full-force hand squeeze during "roleplay" blowjob; both nuts mush, chunks milked through urethra. | **Popped** — same squeeze/suck sequence. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-|  | Testicles popped | Female orgasms |
+|  | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **Total** | 2 | 1 |
 

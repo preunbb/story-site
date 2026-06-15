@@ -8,9 +8,9 @@
 | **Malcolm** | **Removed** — Ch.4 Melody thumb-crunch empties left shell (surgical removal after); Ch.6 Melody **spares** right when Robert loses race. | **Healthy (last known)** — intact at Epilogue; sexually active with Melody. |
 | **James** | **Healthy (implied)** — Monique’s Ch.6 math-class threat only. | **Healthy (implied)** |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-| Section | Testicles popped | Female orgasms |
+| Section | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **1 — Monique (Calc lab)** | 0 | 0 |
 | **2 — Melody (parking lot)** | 1 | 2 |

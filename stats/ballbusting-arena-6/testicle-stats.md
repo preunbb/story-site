@@ -9,9 +9,9 @@
 | **Brian** | — (audience; Vanessa squeezes his plums — not popped) | — |
 | **David** (flashback) | **Popped (offscreen)** — Natalie's prior real-life castration (before arena). | **Popped (offscreen)** — same event. |
 
-## Pops and female orgasms
+## Testicles lost and female orgasms
 
-| Section | Testicles popped | Female orgasms |
+| Section | Testicles lost | Female orgasms |
 | --- | --- | --- |
 | **1 — The Shy Girl** | 0 | 0 |
 | **2 — Brotherhood Lost** | 4 | 4 |
