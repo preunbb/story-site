@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Story stats — catalog chart</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <style>
+      :root {
+        --bg: #0f1117;
+        --panel: #1a1d27;
+        --text: #e8eaef;
+        --muted: #9aa3b2;
+        --pop: #e85d4c;
+        --orgasm: #7b6cff;
+        --border: #2a3040;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Manrope, system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+      }
+      header {
+        padding: 1.5rem 1.25rem 0.5rem;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      h1 {
+        margin: 0 0 0.35rem;
+        font-size: 1.5rem;
+      }
+      .sub {
+        color: var(--muted);
+        margin: 0 0 1rem;
+        font-size: 0.95rem;
+      }
+      .sub a {
+        color: #a8b4ff;
+      }
+      .totals {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      .totals span {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 0.5rem 0.85rem;
+        font-size: 0.9rem;
+      }
+      .chart-wrap {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 1rem 2rem;
+      }
+      .canvas-box {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1rem;
+        height: min(85vh, 900px);
+      }
+      canvas {
+        width: 100% !important;
+        height: 100% !important;
+      }
+      .legend-note {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-top: 0.75rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Catalog stats</h1>
+      <p class="sub">
+        On-page testicle pops vs explicit female orgasms per story.
+        <a href="./OVERALL.md">Table rollup</a> ·
+        <a href="../index.html">← Stories</a>
+      </p>
+      <div class="totals" id="totals"></div>
+    </header>
+    <div class="chart-wrap">
+      <div class="canvas-box">
+        <canvas id="stats-chart" aria-label="Pops and orgasms by story"></canvas>
+      </div>
+      <p class="legend-note">
+        Sorted by story title. Minimum curated counts from LLM reports; montage chapters may under-count unnamed victims.
+      </p>
+    </div>
+    <script>
+      async function main() {
+        const res = await fetch("./_manifest.json");
+        const manifest = await res.json();
+        const reports = [...manifest.reports].sort((a, b) =>
+          a.title.localeCompare(b.title),
+        );
+
+        const labels = reports.map((r) => r.title);
+        const pops = reports.map((r) => r.totalPops ?? 0);
+        const orgasms = reports.map((r) => r.totalFemaleOrgasms ?? 0);
+
+        document.getElementById("totals").innerHTML = [
+          `<span><strong>${reports.length}</strong> stories reported</span>`,
+          `<span><strong>${manifest.totals.totalPops}</strong> total pops</span>`,
+          `<span><strong>${manifest.totals.totalFemaleOrgasms}</strong> total female orgasms</span>`,
+        ].join("");
+
+        const ctx = document.getElementById("stats-chart");
+        new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels,
+            datasets: [
+              {
+                label: "Testicles popped",
+                data: pops,
+                backgroundColor: "rgba(232, 93, 76, 0.85)",
+                borderColor: "rgba(232, 93, 76, 1)",
+                borderWidth: 1,
+              },
+              {
+                label: "Female orgasms",
+                data: orgasms,
+                backgroundColor: "rgba(123, 108, 255, 0.85)",
+                borderColor: "rgba(123, 108, 255, 1)",
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: "index", intersect: false },
+            plugins: {
+              legend: { labels: { color: "#e8eaef", font: { family: "Manrope" } } },
+              tooltip: {
+                callbacks: {
+                  afterBody(items) {
+                    const i = items[0].dataIndex;
+                    const slug = reports[i].slug;
+                    return `Report: stats/${slug}/`;
+                  },
+                },
+              },
+            },
+            scales: {
+              x: {
+                ticks: {
+                  color: "#9aa3b2",
+                  maxRotation: 55,
+                  minRotation: 55,
+                  autoSkip: false,
+                  font: { size: 10, family: "Manrope" },
+                },
+                grid: { color: "rgba(255,255,255,0.06)" },
+              },
+              y: {
+                beginAtZero: true,
+                ticks: { color: "#9aa3b2", font: { family: "Manrope" } },
+                grid: { color: "rgba(255,255,255,0.06)" },
+                title: {
+                  display: true,
+                  text: "Count",
+                  color: "#9aa3b2",
+                },
+              },
+            },
+          },
+        });
+      }
+      main().catch(console.error);
+    </script>
+  </body>
+</html>

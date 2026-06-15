@@ -15,10 +15,11 @@ Save to `stats/<slug>/`:
 
 | File | Purpose |
 |------|---------|
-| `testicle-stats.md` | Full report (use `testicle-stats-ch1-<N>.md` when scope is explicit chapter range) |
+| `testicle-stats.md` | **Two tables only** (use `testicle-stats-ch1-<N>.md` when scope is explicit chapter range) |
+| `notes.md` | Orgasm review, narration bugs, scope/methodology — not in the main report |
 | `meta.json` | `{ slug, storyId, title, seriesId, sectionCount, totalPops, totalFemaleOrgasms, curated: true, generatedAt }` |
 
-Update `stats/_manifest.json` (one entry per slug).
+Update `stats/_manifest.json` (one entry per slug). Catalog chart reads from manifest at `stats/index.html`.
 
 **Slug:** lowercase hyphenated title, or `series.id` when merging series parts (e.g. `andrea-lucas`).
 
@@ -32,47 +33,59 @@ Update `stats/_manifest.json` (one entry per slug).
 ## Section numbering
 
 - If `# Chapter N:` headings exist → use those chapter numbers.
-- Else → number each top-level `# Section Title` (after cast/preamble) as **1, 2, 3…** in document order. Label tables “Section N” or “Ch.N” consistently within the report.
+- Else → number each top-level `# Section Title` (after cast/preamble) as **1, 2, 3…** in document order.
 
-## Report sections (required)
+## Report format (exactly two tables)
 
-### 1. Male character status (end of scope)
+### Table 1 — Male testicle status
+
+```markdown
+## Male testicle status
 
 | Male character | Left testicle | Right testicle |
+```
 
 Statuses: **healthy** · **damaged** (specifics) · **popped** (who, when, how) · **popped (offscreen)**.
 
-Every **named** male through scope. Note chars in catalog but absent from prose.
+Every **named** male through scope. **Three Strikes only:** add `| Middle testicle |` column; Sam Johnson's row uses all three gonad columns.
 
-### 2. Balls popped per chapter/section
+Put `**Not listed:** …` and cast gaps in `notes.md`, not the main report.
 
-| Chapter/Section | # of testicles popped |
+### Table 2 — Pops and female orgasms
 
-One count = one testicle destroyed **on-page in present-timeline action** in that unit. No flashback double-counting; no “almost pops” prose rejects.
+```markdown
+## Pops and female orgasms
 
-### 3. Female orgasms per chapter/section
+| Chapter | Testicles popped | Female orgasms |
+```
 
-| Chapter/Section | # of female orgasms |
+(or `Section` when no chapter headings)
 
-One count = one distinct on-page **female** orgasm/climax/squirt beat. Exclude male orgasms and “she came to/back/home”. Count explicit “came again” / montage multiples when prose supports it.
+- **Multi-unit stories** (`sectionCount` > 1): one row per chapter/section plus a **Total** row (use `meta.json` totals; may include `+` minimums).
+- **Single-unit stories** (`sectionCount` === 1): **Total row only** — no per-section breakdown.
 
-### 4. Female orgasm review
+Counting rules:
+- Pop = one testicle destroyed on-page in present-timeline action
+- Female orgasm = one distinct on-page female climax/squirt beat (exclude male orgasms, “she came home”, etc.)
 
-- Total, avg per chapter/section, peak chapter(s) with counts
-- **By character** (named women; note unnamed crowds when relevant)
+### notes.md (required when there is commentary)
 
-### 5. Known narration bugs (if any)
+Move here (do not put in main report):
+
+- Female orgasm review (totals, peaks, by character)
+- Known narration bugs / continuity issues
+- Scope, branching endings, methodology footnotes
 
 ## Catalog rollup
 
-When asked for **overall** stats: after per-story reports exist, write `stats/OVERALL.md` summarizing every slug from `stats/*/meta.json` plus grand totals.
+When asked for **overall** stats: write `stats/OVERALL.md` from all `meta.json` files; chart is at `stats/index.html`.
 
 ## Template
 
-See `stats/andrea-lucas/testicle-stats-ch1-18.md` for long-form layout.
+See `stats/andrea-lucas/testicle-stats-ch1-18.md` + `notes.md`.
 
 ## Do not
 
 - Regex/heuristic bulk scanning instead of reading
 - Edit `assets/stories/*.md`
-- Skip female orgasm sections
+- Add extra sections to the main report beyond the two tables

@@ -2,6 +2,8 @@
 
 **Generated:** 2026-06-15 · **Method:** LLM-curated per-story reports (`story-testicle-stats` skill)
 
+**Chart:** [stats/index.html](./index.html) (run `npm start` → http://localhost:8080/stats/)
+
 ## Grand totals
 
 | Metric | Value |
