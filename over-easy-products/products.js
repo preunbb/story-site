@@ -313,8 +313,7 @@ window.OVER_EASY_CATALOG = {
       tagline: "Dial the pressure. Watch the readout.",
       description:
         "Matte-black precision clamp with polished steel disc pads and app-connected " +
-        "compression control. One clamp is usually enough — you'll know exactly when " +
-        "he's given you what you need.",
+        "compression control. Perfect for extracting information and confessions from disobedient men.",
       sizeOptions: [
         {
           id: "pairing",
@@ -463,7 +462,7 @@ window.OVER_EASY_CATALOG = {
           caption: "Male escort mode — six-finger audit hand",
         },
       ],
-      tagline: "She passes. He explains.",
+      tagline: "Safety ensured.",
       description:
         "Wall-mounted access control for spaces that cannot afford ambiguity. Luna's " +
         "built-in AI greets women with a discreet vulva scanner — a flat, " +
