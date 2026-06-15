@@ -17,9 +17,9 @@ npm start
 
 ```
 stats/
-  index.html              ← bar chart (loads _manifest.json)
+  index.html              ← bar chart (loads manifest.json)
   OVERALL.md              ← catalog rollup table
-  _manifest.json
+  manifest.json           ← data for chart (no leading _ — Jekyll ignores those)
   <slug>/
     testicle-stats.md     ← two tables only (or testicle-stats-ch1-<N>.md)
     notes.md              ← orgasm review, narration bugs, scope

@@ -10,9 +10,9 @@
 |---|---|
 | Stories with reports | **44** of 48 catalog entries |
 | Stories missing prose | **2** (ids 41, 48) |
-| **Total testicles popped** (on-page minimums) | **138** |
-| **Total female orgasms** (on-page minimums) | **141** |
-| Stories with ≥1 pop | 34 |
+| **Total testicles popped** (on-page minimums) | **142** |
+| **Total female orgasms** (on-page minimums) | **132** |
+| Stories with ≥1 pop | 36 |
 | Stories with ≥1 female orgasm | 24 |
 
 > Totals sum each story's curated minimum from `meta.json`. Series with montages (especially *Andrea and Lucas* Ch.11) may under-count unnamed victims in prose.
@@ -37,15 +37,15 @@
 | Rank | Story | Female orgasms | Pops | Report |
 |:---:|---|:---:|:---:|---|
 | 1 | Andrea and Lucas (Part 1 + Part 2) | **56** | 44 | [andrea-lucas](./andrea-lucas/testicle-stats-ch1-18.md) |
-| 2 | Dragon Slaying Alternative Chapter 13: Kayla | **17** | 2 | [dragon-slaying](./dragon-slaying/testicle-stats.md) |
-| 3 | Three Strikes | **13** | 15 | [three-strikes](./three-strikes/testicle-stats.md) |
-| 4 | School Bully | **8** | 3 | [school-bully](./school-bully/testicle-stats.md) |
+| 2 | Three Strikes | **13** | 15 | [three-strikes](./three-strikes/testicle-stats.md) |
+| 3 | School Bully | **8** | 3 | [school-bully](./school-bully/testicle-stats.md) |
+| 4 | Dragon Slaying Alternative Chapter 13: Kayla | **8** | 2 | [dragon-slaying](./dragon-slaying/testicle-stats.md) |
 | 5 | Melody Seduces a Virgin | **7** | 2 | [melody-seduces-a-virgin](./melody-seduces-a-virgin/testicle-stats.md) |
 | 6 | James' Big Balls | **6** | 2 | [james-big-balls](./james-big-balls/testicle-stats.md) |
 | 7 | Busted by the Babysitter | **4** | 5 | [busted-by-the-babysitter](./busted-by-the-babysitter/testicle-stats.md) |
 | 8 | The Ballbusting Arena 6: Natalie Enters the Ring | **4** | 4 | [ballbusting-arena-6](./ballbusting-arena-6/testicle-stats.md) |
-| 9 | Friendzoned | **3** | 2 | [friendzoned](./friendzoned/testicle-stats.md) |
-| 10 | The Ballbusting Arena 5: First Times | **3** | 2 | [ballbusting-arena-5-first-times](./ballbusting-arena-5-first-times/testicle-stats.md) |
+| 9 | The Ballbusting Arena 5: First Times | **3** | 2 | [ballbusting-arena-5-first-times](./ballbusting-arena-5-first-times/testicle-stats.md) |
+| 10 | Friendzoned | **3** | 2 | [friendzoned](./friendzoned/testicle-stats.md) |
 
 ## All stories
 
@@ -65,7 +65,7 @@
 | Her Proposal | 13 | 2 | 1 | 2 | [her-proposal](./her-proposal/testicle-stats.md) |
 | The Ballbusting Arena 3: Retired | 14 | 6 | 0 | 1 | [ballbusting-arena-3-retired](./ballbusting-arena-3-retired/testicle-stats.md) |
 | The Ballbusting Arena 2: Sofia's Choice | 15 | 2 | 1 | 1 | [ballbusting-arena-2-sofias-choice](./ballbusting-arena-2-sofias-choice/testicle-stats.md) |
-| The Ballbusting Arena 4: Last Minute | 16 | 0 | 0 | 1 | [ballbusting-arena-4-last-minute](./ballbusting-arena-4-last-minute/testicle-stats.md) |
+| The Ballbusting Arena 4: Last Minute | 16 | 2 | 0 | 1 | [ballbusting-arena-4-last-minute](./ballbusting-arena-4-last-minute/testicle-stats.md) |
 | The Internship | 17 | 0 | 0 | 2 | [the-internship](./the-internship/testicle-stats.md) |
 | The Cult | 18 | 0 | 0 | 2 | [the-cult](./the-cult/testicle-stats.md) |
 | The Amazon's Fruits | 19 | 2 | 1 | 4 | [the-amazons-fruits](./the-amazons-fruits/testicle-stats.md) |
@@ -86,10 +86,10 @@
 | No Nut Narrator: Squeeze | 34 | 0 | 0 | 1 | [no-nut-narrator-squeeze](./no-nut-narrator-squeeze/testicle-stats.md) |
 | No Nut Narrator: Ass | 35 | 0 | 0 | 1 | [no-nut-narrator-ass](./no-nut-narrator-ass/testicle-stats.md) |
 | Paperwork | 36 | 2 | 0 | 3 | [paperwork](./paperwork/testicle-stats.md) |
-| Prank Gone Wrong | 37 | 0 | 0 | 1 | [prank-gone-wrong](./prank-gone-wrong/testicle-stats.md) |
+| Prank Gone Wrong | 37 | 2 | 0 | 1 | [prank-gone-wrong](./prank-gone-wrong/testicle-stats.md) |
 | James' Big Balls | 38 | 2 | 6 | 5 | [james-big-balls](./james-big-balls/testicle-stats.md) |
 | Trust issues | 39 | 2 | 0 | 1 | [trust-issues](./trust-issues/testicle-stats.md) |
-| Dragon Slaying Alternative Chapter 13: Kayla | 40 | 2 | 17 | 14 | [dragon-slaying](./dragon-slaying/testicle-stats.md) |
+| Dragon Slaying Alternative Chapter 13: Kayla | 40 | 2 | 8 | 2 | [dragon-slaying](./dragon-slaying/testicle-stats.md) |
 | The Ballbusting Arena 6: Natalie Enters the Ring | 42 | 4 | 4 | 2 | [ballbusting-arena-6](./ballbusting-arena-6/testicle-stats.md) |
 | Andrea and Lucas (Part 1 + Part 2) | 43+47 | 44 | 56 | Ch.1–18 | [andrea-lucas](./andrea-lucas/testicle-stats-ch1-18.md) |
 | Courtroom Wedding | 44 | 1 | 2 | 3 | [courtroom-wedding](./courtroom-wedding/testicle-stats.md) |

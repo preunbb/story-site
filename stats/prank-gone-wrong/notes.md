@@ -2,38 +2,17 @@
 
 ## Scope
 
-**Scope:** Full story (single monologue section).  
-**Status values:** `healthy` · `damaged` · `popped` · `popped (offscreen)`.
-
----
-
-## Additional notes
-
-No named males in `characters.js` for this story.
+Full story (single monologue section). Present-timeline action is the hallway confrontation; the prank itself is narrated in flashback within that monologue and counts toward pops in Section 1.
 
 ---
 
 ## Female orgasm review
 
-- **Total:** 0 (on-page)  
-- **Average per section:** 0  
-- **Peak section(s):** —  
-- **By character:** Unnamed narrator — 0 on-page; references repeated solo sessions afterward (off-page).
+- **Total:** 0 on-page during the monologue.
+- Narrator references masturbating to the memory afterward (off-page, not counted).
 
 ---
 
-## Known narration bugs (if any)
+## Known narration bugs
 
 None noted.
-
----
-
-## Known narration bugs (if any)
-
-None noted.
-
----
-
-## Pop count notes
-
-**Flashback total (for status only): 2** — both nuts during the prank.

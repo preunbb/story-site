@@ -80,13 +80,19 @@
         font-size: 0.85rem;
         margin-top: 0.75rem;
       }
+      .chart-error {
+        color: #e85d4c;
+        margin: 1rem 0 0;
+        font-size: 0.95rem;
+      }
     </style>
   </head>
   <body>
     <header>
       <h1>Catalog stats</h1>
       <p class="sub">
-        On-page testicle pops vs explicit female orgasms per story.
+        On-page testicle pops vs explicit female orgasms per story, sorted by
+        combined total (highest left).
         <a href="./OVERALL.md">Table rollup</a> ·
         <a href="../index.html">← Stories</a>
       </p>
@@ -98,15 +104,21 @@
           id="stats-chart"
           aria-label="Pops and orgasms by story"
         ></canvas>
+        <p id="chart-error" class="chart-error" hidden></p>
       </div>
     </div>
     <script>
       async function main() {
-        const res = await fetch("./_manifest.json");
+        const res = await fetch("./manifest.json");
+        if (!res.ok) {
+          throw new Error(`manifest.json failed to load (${res.status})`);
+        }
         const manifest = await res.json();
-        const reports = [...manifest.reports].sort((a, b) =>
-          a.title.localeCompare(b.title),
-        );
+        const reports = [...manifest.reports].sort((a, b) => {
+          const sumA = (a.totalPops ?? 0) + (a.totalFemaleOrgasms ?? 0);
+          const sumB = (b.totalPops ?? 0) + (b.totalFemaleOrgasms ?? 0);
+          return sumB - sumA || a.title.localeCompare(b.title);
+        });
 
         const labels = reports.map((r) => r.title);
         const pops = reports.map((r) => r.totalPops ?? 0);
@@ -152,8 +164,12 @@
                 callbacks: {
                   afterBody(items) {
                     const i = items[0].dataIndex;
-                    const slug = reports[i].slug;
-                    return `Report: stats/${slug}/`;
+                    const r = reports[i];
+                    const sum = (r.totalPops ?? 0) + (r.totalFemaleOrgasms ?? 0);
+                    return [
+                      `Combined: ${sum}`,
+                      `Report: stats/${r.slug}/`,
+                    ];
                   },
                 },
               },
@@ -183,7 +199,12 @@
           },
         });
       }
-      main().catch(console.error);
+      main().catch((err) => {
+        const el = document.getElementById("chart-error");
+        el.hidden = false;
+        el.textContent = `Could not load chart data: ${err.message}`;
+        console.error(err);
+      });
     </script>
   </body>
 </html>

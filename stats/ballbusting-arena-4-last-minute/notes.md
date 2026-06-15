@@ -1,15 +1,8 @@
-# The Ballbusting Arena 4: Last Minute — testicle stats — notes
+# The Ballbusting Arena 4: Last Minute — notes
 
 ## Scope
 
-**Scope:** Full story (Brian’s first arena visit with Vanessa).  
-**Series:** `ballbusting-arena` (Part 4).
-
----
-
-## Additional notes
-
-**Referenced:** Arena fighter on mat (unnamed) is milked down to one nut during Brian’s edging scene; **Daniel** (Vanessa’s ex-fiancé) castrated by Sofia earlier that night — off-page reference to Part 2, not counted here.
+Full story (Brian’s first arena visit with Vanessa). Series: `ballbusting-arena` (Part 4).
 
 ---
 
@@ -20,24 +13,12 @@
 
 ---
 
-## Known narration bugs (if any)
+## Known narration bugs
 
 - Line 61 names **“Fiona”** where **Vanessa** is clearly meant (copy/paste from Arena 3).
 
 ---
 
-## Known narration bugs (if any)
+## Additional notes
 
-- Line 61 names **“Fiona”** where **Vanessa** is clearly meant (copy/paste from Arena 3).
-
----
-
-## Footnotes
-
-**Total: 0.**
-
----
-
-## Pop count notes
-
-**Total: 0.**
+**Referenced, not counted:** **Daniel** (Vanessa’s ex-fiancé) — Sofia popped his last nut earlier that night; told, not shown on-page. Ring fighter at line 247 is down to one nut but his first pop is not explicitly narrated in this text.

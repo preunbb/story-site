@@ -7,14 +7,14 @@
     48
   ],
   "totals": {
-    "totalPops": 138,
-    "totalFemaleOrgasms": 141
+    "totalPops": 142,
+    "totalFemaleOrgasms": 132
   },
   "reports": [
     {
       "slug": "three-strikes",
-      "title": "Three Strikes",
       "storyId": 1,
+      "title": "Three Strikes",
       "sectionCount": 12,
       "totalPops": 15,
       "totalFemaleOrgasms": 13,
@@ -24,8 +24,8 @@
     },
     {
       "slug": "castration-anxiety",
-      "title": "Castration Anxiety",
       "storyId": 2,
+      "title": "Castration Anxiety",
       "sectionCount": 1,
       "totalPops": 2,
       "totalFemaleOrgasms": 2,
@@ -35,8 +35,8 @@
     },
     {
       "slug": "a-day-in-the-life-of-a-dominatrix",
-      "title": "A Day in the Life of a Dominatrix",
       "storyId": 4,
+      "title": "A Day in the Life of a Dominatrix",
       "sectionCount": 1,
       "totalPops": 1,
       "totalFemaleOrgasms": 0,
@@ -46,8 +46,8 @@
     },
     {
       "slug": "ballbusting-arena-1-battle-royale",
-      "title": "The Ballbusting Arena 1: Battle Royale",
       "storyId": 5,
+      "title": "The Ballbusting Arena 1: Battle Royale",
       "sectionCount": 1,
       "totalPops": 8,
       "totalFemaleOrgasms": 1,
@@ -57,8 +57,8 @@
     },
     {
       "slug": "a-healthy-relationship",
-      "title": "A Healthy Relationship",
       "storyId": 6,
+      "title": "A Healthy Relationship",
       "sectionCount": 1,
       "totalPops": 2,
       "totalFemaleOrgasms": 1,
@@ -68,8 +68,8 @@
     },
     {
       "slug": "a-painful-train-ride",
-      "title": "A Painful Train Ride",
       "storyId": 7,
+      "title": "A Painful Train Ride",
       "sectionCount": 1,
       "totalPops": 2,
       "totalFemaleOrgasms": 0,
@@ -79,8 +79,8 @@
     },
     {
       "slug": "club-fight",
-      "title": "Club Fight",
       "storyId": 8,
+      "title": "Club Fight",
       "sectionCount": 3,
       "totalPops": 1,
       "totalFemaleOrgasms": 0,
@@ -90,8 +90,8 @@
     },
     {
       "slug": "commitment",
-      "title": "Commitment",
       "storyId": 9,
+      "title": "Commitment",
       "sectionCount": 1,
       "totalPops": 2,
       "totalFemaleOrgasms": 0,
@@ -101,8 +101,8 @@
     },
     {
       "slug": "ballbusting-arena-5-first-times",
-      "title": "The Ballbusting Arena 5: First Times",
       "storyId": 10,
+      "title": "The Ballbusting Arena 5: First Times",
       "sectionCount": 1,
       "totalPops": 2,
       "totalFemaleOrgasms": 3,
@@ -112,8 +112,8 @@
     },
     {
       "slug": "melody-first-time",
-      "title": "Melody's First Time",
       "storyId": 11,
+      "title": "Melody's First Time",
       "sectionCount": 2,
       "totalPops": 5,
       "totalFemaleOrgasms": 2,
@@ -123,8 +123,8 @@
     },
     {
       "slug": "one-night-stand",
-      "title": "One Night Stand",
       "storyId": 12,
+      "title": "One Night Stand",
       "sectionCount": 1,
       "totalPops": 2,
       "totalFemaleOrgasms": 1,
@@ -134,8 +134,8 @@
     },
     {
       "slug": "her-proposal",
-      "title": "Her Proposal",
       "storyId": 13,
+      "title": "Her Proposal",
       "sectionCount": 2,
       "totalPops": 2,
       "totalFemaleOrgasms": 1,
@@ -145,44 +145,44 @@
     },
     {
       "slug": "ballbusting-arena-3-retired",
-      "title": "The Ballbusting Arena 3: Retired",
       "storyId": 14,
-      "seriesId": "ballbusting-arena",
+      "title": "The Ballbusting Arena 3: Retired",
       "sectionCount": 1,
       "totalPops": 6,
       "totalFemaleOrgasms": 0,
       "curated": true,
       "generatedAt": "2026-06-15",
-      "reportFile": "ballbusting-arena-3-retired/testicle-stats.md"
+      "reportFile": "ballbusting-arena-3-retired/testicle-stats.md",
+      "seriesId": "ballbusting-arena"
     },
     {
       "slug": "ballbusting-arena-2-sofias-choice",
-      "title": "The Ballbusting Arena 2: Sofia's Choice",
       "storyId": 15,
-      "seriesId": "ballbusting-arena",
+      "title": "The Ballbusting Arena 2: Sofia's Choice",
       "sectionCount": 1,
       "totalPops": 2,
       "totalFemaleOrgasms": 1,
       "curated": true,
       "generatedAt": "2026-06-15",
-      "reportFile": "ballbusting-arena-2-sofias-choice/testicle-stats.md"
+      "reportFile": "ballbusting-arena-2-sofias-choice/testicle-stats.md",
+      "seriesId": "ballbusting-arena"
     },
     {
       "slug": "ballbusting-arena-4-last-minute",
-      "title": "The Ballbusting Arena 4: Last Minute",
       "storyId": 16,
-      "seriesId": "ballbusting-arena",
+      "title": "The Ballbusting Arena 4: Last Minute",
       "sectionCount": 1,
-      "totalPops": 0,
+      "totalPops": 2,
       "totalFemaleOrgasms": 0,
       "curated": true,
       "generatedAt": "2026-06-15",
-      "reportFile": "ballbusting-arena-4-last-minute/testicle-stats.md"
+      "reportFile": "ballbusting-arena-4-last-minute/testicle-stats.md",
+      "seriesId": "ballbusting-arena"
     },
     {
       "slug": "the-internship",
-      "title": "The Internship",
       "storyId": 17,
+      "title": "The Internship",
       "sectionCount": 2,
       "totalPops": 0,
       "totalFemaleOrgasms": 0,
@@ -192,8 +192,8 @@
     },
     {
       "slug": "the-cult",
-      "title": "The Cult",
       "storyId": 18,
+      "title": "The Cult",
       "sectionCount": 2,
       "totalPops": 0,
       "totalFemaleOrgasms": 0,
@@ -203,8 +203,8 @@
     },
     {
       "slug": "the-amazons-fruits",
-      "title": "The Amazon's Fruits",
       "storyId": 19,
+      "title": "The Amazon's Fruits",
       "sectionCount": 4,
       "totalPops": 2,
       "totalFemaleOrgasms": 1,
@@ -214,8 +214,8 @@
     },
     {
       "slug": "school-bully",
-      "title": "School Bully",
       "storyId": 20,
+      "title": "School Bully",
       "sectionCount": 7,
       "totalPops": 3,
       "totalFemaleOrgasms": 8,
@@ -225,8 +225,8 @@
     },
     {
       "slug": "relief",
-      "title": "Relief",
       "storyId": 21,
+      "title": "Relief",
       "sectionCount": 1,
       "totalPops": 0,
       "totalFemaleOrgasms": 1,
@@ -236,8 +236,8 @@
     },
     {
       "slug": "caged",
-      "title": "Caged",
       "storyId": 22,
+      "title": "Caged",
       "sectionCount": 1,
       "totalPops": 1,
       "totalFemaleOrgasms": 0,
@@ -247,8 +247,8 @@
     },
     {
       "slug": "castration-appointment-at-the-kink-agency",
-      "title": "Castration Appointment at the Kink Agency",
       "storyId": 23,
+      "title": "Castration Appointment at the Kink Agency",
       "sectionCount": 1,
       "totalPops": 2,
       "totalFemaleOrgasms": 0,
@@ -258,8 +258,8 @@
     },
     {
       "slug": "food-for-thot",
-      "title": "Food for Thot",
       "storyId": 24,
+      "title": "Food for Thot",
       "sectionCount": 3,
       "totalPops": 2,
       "totalFemaleOrgasms": 2,
@@ -269,8 +269,8 @@
     },
     {
       "slug": "friendzoned",
-      "title": "Friendzoned",
       "storyId": 25,
+      "title": "Friendzoned",
       "sectionCount": 6,
       "totalPops": 2,
       "totalFemaleOrgasms": 3,
@@ -280,8 +280,8 @@
     },
     {
       "slug": "busted-by-the-babysitter",
-      "title": "Busted by the Babysitter",
       "storyId": 26,
+      "title": "Busted by the Babysitter",
       "seriesId": "melody-adventures",
       "sectionCount": 4,
       "totalPops": 5,
@@ -292,8 +292,8 @@
     },
     {
       "slug": "living-with-ballbusting-witches",
-      "title": "Living with Ballbusting Witches",
       "storyId": 27,
+      "title": "Living with Ballbusting Witches",
       "sectionCount": 2,
       "totalPops": 2,
       "totalFemaleOrgasms": 1,
@@ -303,8 +303,8 @@
     },
     {
       "slug": "testy",
-      "title": "Testy",
       "storyId": 28,
+      "title": "Testy",
       "sectionCount": 3,
       "totalPops": 0,
       "totalFemaleOrgasms": 0,
@@ -314,8 +314,8 @@
     },
     {
       "slug": "legalese",
-      "title": "Legalese",
       "storyId": 29,
+      "title": "Legalese",
       "sectionCount": 1,
       "totalPops": 0,
       "totalFemaleOrgasms": 0,
@@ -325,8 +325,8 @@
     },
     {
       "slug": "postop",
-      "title": "Postop",
       "storyId": 30,
+      "title": "Postop",
       "sectionCount": 6,
       "totalPops": 0,
       "totalFemaleOrgasms": 0,
@@ -336,8 +336,8 @@
     },
     {
       "slug": "office-management",
-      "title": "Office Management",
       "storyId": 31,
+      "title": "Office Management",
       "sectionCount": 1,
       "totalPops": 1,
       "totalFemaleOrgasms": 0,
@@ -347,8 +347,8 @@
     },
     {
       "slug": "nash-equilibrium",
-      "title": "Nash Equilibrium",
       "storyId": 32,
+      "title": "Nash Equilibrium",
       "sectionCount": 1,
       "totalPops": 4,
       "totalFemaleOrgasms": 0,
@@ -358,8 +358,8 @@
     },
     {
       "slug": "the-first-guy-i-ever-ballbusted",
-      "title": "The First Guy I Ever Ballbusted",
       "storyId": 33,
+      "title": "The First Guy I Ever Ballbusted",
       "sectionCount": 1,
       "totalPops": 2,
       "totalFemaleOrgasms": 2,
@@ -369,8 +369,8 @@
     },
     {
       "slug": "no-nut-narrator-squeeze",
-      "title": "No Nut Narrator: Squeeze",
       "storyId": 34,
+      "title": "No Nut Narrator: Squeeze",
       "seriesId": "no-nut-narrator",
       "sectionCount": 1,
       "totalPops": 0,
@@ -381,8 +381,8 @@
     },
     {
       "slug": "no-nut-narrator-ass",
-      "title": "No Nut Narrator: Ass",
       "storyId": 35,
+      "title": "No Nut Narrator: Ass",
       "seriesId": "no-nut-narrator",
       "sectionCount": 1,
       "totalPops": 0,
@@ -393,8 +393,8 @@
     },
     {
       "slug": "paperwork",
-      "title": "Paperwork",
       "storyId": 36,
+      "title": "Paperwork",
       "sectionCount": 3,
       "totalPops": 2,
       "totalFemaleOrgasms": 0,
@@ -404,19 +404,19 @@
     },
     {
       "slug": "prank-gone-wrong",
-      "title": "Prank Gone Wrong",
       "storyId": 37,
+      "title": "Prank Gone Wrong",
       "sectionCount": 1,
-      "totalPops": 0,
+      "totalPops": 2,
       "totalFemaleOrgasms": 0,
       "curated": true,
-      "generatedAt": "2026-06-14",
+      "generatedAt": "2026-06-15",
       "reportFile": "prank-gone-wrong/testicle-stats.md"
     },
     {
       "slug": "james-big-balls",
-      "title": "James' Big Balls",
       "storyId": 38,
+      "title": "James' Big Balls",
       "sectionCount": 5,
       "totalPops": 2,
       "totalFemaleOrgasms": 6,
@@ -426,8 +426,8 @@
     },
     {
       "slug": "trust-issues",
-      "title": "Trust issues",
       "storyId": 39,
+      "title": "Trust issues",
       "sectionCount": 1,
       "totalPops": 2,
       "totalFemaleOrgasms": 0,
@@ -437,19 +437,19 @@
     },
     {
       "slug": "dragon-slaying",
-      "title": "Dragon Slaying Alternative Chapter 13: Kayla",
       "storyId": 40,
-      "sectionCount": 14,
+      "title": "Dragon Slaying Alternative Chapter 13: Kayla",
+      "sectionCount": 2,
       "totalPops": 2,
-      "totalFemaleOrgasms": 17,
+      "totalFemaleOrgasms": 8,
       "curated": true,
-      "generatedAt": "2026-06-14",
+      "generatedAt": "2026-06-15",
       "reportFile": "dragon-slaying/testicle-stats.md"
     },
     {
       "slug": "ballbusting-arena-6",
-      "title": "The Ballbusting Arena 6: Natalie Enters the Ring",
       "storyId": 42,
+      "title": "The Ballbusting Arena 6: Natalie Enters the Ring",
       "seriesId": "ballbusting-arena",
       "sectionCount": 2,
       "totalPops": 4,
@@ -459,9 +459,43 @@
       "reportFile": "ballbusting-arena-6/testicle-stats.md"
     },
     {
+      "slug": "courtroom-wedding",
+      "storyId": 44,
+      "title": "Courtroom Wedding",
+      "sectionCount": 3,
+      "totalPops": 1,
+      "totalFemaleOrgasms": 2,
+      "curated": true,
+      "generatedAt": "2026-06-14",
+      "reportFile": "courtroom-wedding/testicle-stats.md"
+    },
+    {
+      "slug": "courtroom-wedding-human-edition",
+      "storyId": 45,
+      "title": "Courtroom Wedding (Human Edition)",
+      "sectionCount": 3,
+      "totalPops": 1,
+      "totalFemaleOrgasms": 2,
+      "curated": true,
+      "generatedAt": "2026-06-14",
+      "reportFile": "courtroom-wedding-human-edition/testicle-stats.md"
+    },
+    {
+      "slug": "melody-seduces-a-virgin",
+      "storyId": 46,
+      "title": "Melody Seduces a Virgin",
+      "seriesId": "melody-adventures",
+      "sectionCount": 2,
+      "totalPops": 2,
+      "totalFemaleOrgasms": 7,
+      "curated": true,
+      "generatedAt": "2026-06-14",
+      "reportFile": "melody-seduces-a-virgin/testicle-stats.md"
+    },
+    {
       "slug": "andrea-lucas",
       "title": "Andrea and Lucas (Part 1 + Part 2)",
-      "storyId": [
+      "storyIds": [
         43,
         47
       ],
@@ -473,40 +507,6 @@
       "curated": true,
       "generatedAt": "2026-06-15",
       "reportFile": "andrea-lucas/testicle-stats-ch1-18.md"
-    },
-    {
-      "slug": "courtroom-wedding",
-      "title": "Courtroom Wedding",
-      "storyId": 44,
-      "sectionCount": 3,
-      "totalPops": 1,
-      "totalFemaleOrgasms": 2,
-      "curated": true,
-      "generatedAt": "2026-06-14",
-      "reportFile": "courtroom-wedding/testicle-stats.md"
-    },
-    {
-      "slug": "courtroom-wedding-human-edition",
-      "title": "Courtroom Wedding (Human Edition)",
-      "storyId": 45,
-      "sectionCount": 3,
-      "totalPops": 1,
-      "totalFemaleOrgasms": 2,
-      "curated": true,
-      "generatedAt": "2026-06-14",
-      "reportFile": "courtroom-wedding-human-edition/testicle-stats.md"
-    },
-    {
-      "slug": "melody-seduces-a-virgin",
-      "title": "Melody Seduces a Virgin",
-      "storyId": 46,
-      "seriesId": "melody-adventures",
-      "sectionCount": 2,
-      "totalPops": 2,
-      "totalFemaleOrgasms": 7,
-      "curated": true,
-      "generatedAt": "2026-06-14",
-      "reportFile": "melody-seduces-a-virgin/testicle-stats.md"
     }
   ]
 }
