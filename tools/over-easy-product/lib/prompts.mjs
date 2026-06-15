@@ -38,6 +38,17 @@ export const PRODUCT_HINTS = {
       "assets/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
     ],
   },
+  "shell-shaker": {
+    kind: "device",
+    category: "self-defense",
+    displayName: "Shell Shaker™",
+    model: "OET-SS-1",
+    imageNotes:
+      "Sleek matte-black spherical orb, palm-sized, a few pulsing glowing cyan-orange light lines arcing across the surface like sonar rings. Subtle vibration haze. Small power ring at equator. SHELL SHAKER label. Over Easy raw-egg pictogram embossed on one hemisphere.",
+    referenceAssets: [
+      "assets/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
+    ],
+  },
   "ball-killers": {
     kind: "fashion",
     category: "fashion",
@@ -267,7 +278,6 @@ Use reference images when available. Never overwrite an existing file — this i
 /** Alternate slugs when product display names don't slugify to catalog ids. */
 const SLUG_ALIASES = {
   "over-easy-strap-on-system": "strapon",
-  "shell-shaker": "strapon",
   "shell-shaker-strap-on-system": "strapon",
   "selfish-bitch-strap-on-system": "strapon",
   "testicular-biopsy-gun": "biopsy-gun",

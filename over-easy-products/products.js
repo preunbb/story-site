@@ -163,9 +163,7 @@ window.OVER_EASY_CATALOG = {
         "../assets/scenes/andrea_and_lucas/testicular_biopsy_gun_device_v2.png",
       tagline: "Core samples on demand.",
       description:
-        "Hospital-grade core instrument from our discontinued medical line. Pistol " +
-        "grip, angled coring needle, and a graduated collection vial. #1 testicular " +
-        "core sampler on the market. Vial detaches for recreational usage.",
+        "Hospital-grade instrument for removing testicular tissue samples for analysis. Extra thick collection needle ensures adequate retrieval for even the toughest diagnoses. For recrational usage, simply detach the removable vial.",
     },
     {
       id: "bleach-wipes",
@@ -189,7 +187,7 @@ window.OVER_EASY_CATALOG = {
           label: "Pack size",
           options: [
             { value: "purse", label: "30-count purse-sized pack" },
-            { value: "home", label: "1,000-count home usage" },
+            { value: "home", label: "1,000-count home usage pack" },
             {
               value: "bulk",
               label: "50,000-count bulk sterilization commercial packs",
@@ -204,7 +202,7 @@ window.OVER_EASY_CATALOG = {
       name: "OneNut© Cup",
       model: "OET-ONC-1",
       image: "../assets/scenes/andrea_and_lucas/overeasy_onenut_cup_v1.png",
-      tagline: "Snug for what survived.",
+      tagline: "Better safe than sorry.",
       description:
         "For men with only one remaining testicle, standard cups leave too much room — " +
         "your lone survivor bounces, pinches, and slides into the gap. OneNut© cups are " +
@@ -275,12 +273,8 @@ window.OVER_EASY_CATALOG = {
         "let you choose how permanently you remove him from the gene pool — from a " +
         "month-long pause to a forever farewell.",
       features: [
-        "Three-position selector: LOW / MEDIUM / HIGH",
-        "LOW — temporary fertility pause (~1 month) from one second of contact",
-        "MEDIUM — lasting structural damage; he'll feel the reminder every time",
-        "HIGH — irreversible exit from the breeding market in five seconds",
+        "Three voltage settings, for precision usage",
         "Angled prods for precise below-the-belt contact",
-        "Model CBT-22120",
       ],
     },
     {
@@ -297,11 +291,20 @@ window.OVER_EASY_CATALOG = {
         "give him a quick ejection from the genepool with its pneumatic bolt. Keychain " +
         "included.",
       features: [
-        "Brushed steel body, black rubber grip",
-        "Single flush activation button",
         "Tapered impact head",
         "Keychain attachment for everyday carry",
       ],
+    },
+    {
+      id: "shell-shaker",
+      category: "self-defense",
+      name: "Shell Shaker™",
+      model: "OET-SS-1",
+      image:
+        "../assets/scenes/andrea_and_lucas/overeasy_shell_shaker_device_v1.png",
+      tagline: "Resonance he won't forget.",
+      description:
+        "Sleek palm-sized orb that emits focused subsonic pulses. With vibration frequency automatically tuned to the exact resonant frequency of testicular matter - one ShellShocker can make a whole room of men fall to their knees until you deactivate it.",
     },
     {
       id: "studclamp",
@@ -441,9 +444,7 @@ window.OVER_EASY_CATALOG = {
         "For the woman who wants to forge a new connection with her man and hammer home " +
         "who's in charge. Our commercial Ball Anvil™ upgrades the popular open-source " +
         "design into injection-molded black plastic with twin oval wells — sized so his " +
-        "fragile lumps of ore can spread flat beneath you while you ride him. Each well " +
-        "centers a polished steel bolt point and a blood-red heart that marks exactly " +
-        "where the hammer falls.",
+        "fragile lumps of ore can spread flat beneath you while you pound him flat.",
     },
     {
       id: "luna-identity-arm",
