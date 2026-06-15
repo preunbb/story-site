@@ -366,7 +366,7 @@ window.OVER_EASY_CATALOG = {
         "already tapped out.Originally built for prisoner extractions and automated " +
         "release scheduling, we've used our rigorous quality control process to ensure " +
         "it's now safe for home and medical use!" +
-        "Ultrahigh electrostimulation plus precision compression make sure you wring out every last drop" +
+        "Ultrahigh electrostimulation plus precision compression make sure you wring out every last drop. " +
         "Pleasure not guaranteed.",
       features: [
         "Vacuum-seal fit: rubber chamber adapts to anatomy on activation",
