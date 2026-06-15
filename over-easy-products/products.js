@@ -189,9 +189,10 @@ window.OVER_EASY_CATALOG = {
         "../assets/scenes/andrea_and_lucas/overeasy_bleach_wipes_box_v2.png",
       tagline: "Snuff out those swimmers!",
       description:
-        "Patented bleach wipes strong enough to neutralize every germ and ambitious future e=heir " +
-        "they touch, yet gentle enough for your most delicate bits. " +
-        "Essential for cleaning up any serious breeding hazard after a night of fun with a boy.",
+        "Patented bleach wipes strong enough to neutralize every germ and ambitious " +
+        "future e=heir they touch, yet gentle enough for your most delicate bits. " +
+        "Essential for cleaning up any serious breeding hazard after a night of fun " +
+        "with a boy.",
       features: [
         "Neutralizes bacteria and sperm on contact — skin, fabric, or floor",
         "Deep-clean safe for post-encounter sensitive areas",
@@ -281,7 +282,7 @@ window.OVER_EASY_CATALOG = {
       model: "CBT-22120",
       image:
         "../assets/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
-      tagline: "One zap. Zero contributions.",
+      tagline: "One zap. Zero kids.",
       description:
         "The first personal taser engineered to fit exactly where he's most vulnerable. " +
         "Angled prods and a snub-nose body slide between the legs; three power settings " +
@@ -321,7 +322,10 @@ window.OVER_EASY_CATALOG = {
       description:
         "Sleek palm-sized orb that emits focused subsonic pulses. With vibration " +
         "frequency precisely tuned to the exact resonant frequency of testicular " +
-        "matter, one ShellShocker can keep a whole room of men on their knees until deactivated. Useful for group self defense situations, getting through long lines quickly, or just clearing some personal space for yourself on a crowded subway..",
+        "matter, one ShellShocker can keep a whole room of men on their knees until " +
+        "deactivated. Useful for defending yourself from multiple male attackers at " +
+        "once, getting through long lines quickly, or just clearing some personal space " +
+        "for yourself on a crowded subway.",
       features: ["Warning: effects have not been tested on women!"],
     },
     {
