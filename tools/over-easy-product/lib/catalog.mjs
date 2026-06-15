@@ -16,6 +16,12 @@ export function loadCatalog(repoRoot) {
   return { path, catalog };
 }
 
+/** @param {string} repoRoot @param {string} id */
+export function findCatalogProduct(repoRoot, id) {
+  const { catalog } = loadCatalog(repoRoot);
+  return catalog.products.find((p) => p.id === id) ?? null;
+}
+
 /** @param {string} repoRoot @param {typeof catalog} catalog */
 export function writeCatalog(repoRoot, catalog) {
   const path = join(repoRoot, "over-easy-products", "products.js");
@@ -35,10 +41,20 @@ function formatProductsJs(catalog) {
     ? `\n    footerNote:\n      ${JSON.stringify(brand.footerNote)},`
     : "";
 
+  const categories = catalog.categories?.length
+    ? `\n\n  categories: [\n${catalog.categories
+        .map(
+          (c) =>
+            `    { id: ${JSON.stringify(c.id)}, label: ${JSON.stringify(c.label)} },`,
+        )
+        .join("\n")}\n  ],`
+    : "";
+
   return `/**
  * Over Easy Technologies — product catalog config
  *
  * Edit this file to change copy, images, features, or add/remove products.
+ * This is the single source of truth for catalog copy — oe-product tooling reads from here.
  * Paths are relative to over-easy-products/index.html
  *
  * New products: npm run oe-product -- "Product Name"
@@ -48,7 +64,7 @@ window.OVER_EASY_CATALOG = {
     name: ${JSON.stringify(brand.name)},
     tagline: ${JSON.stringify(brand.tagline)},
     logo: ${JSON.stringify(brand.logo)},${footerNote}
-  },
+  },${categories}
 
   products: [
 ${products}
@@ -62,8 +78,9 @@ function formatProductEntry(p) {
   const lines = [
     "    {",
     `      id: ${JSON.stringify(p.id)},`,
-    `      name: ${JSON.stringify(p.name)},`,
   ];
+  if (p.category) lines.push(`      category: ${JSON.stringify(p.category)},`);
+  lines.push(`      name: ${JSON.stringify(p.name)},`);
   if (p.model) lines.push(`      model: ${JSON.stringify(p.model)},`);
   lines.push(`      image:`, `        ${JSON.stringify(p.image)},`);
   if (p.tagline) lines.push(`      tagline: ${JSON.stringify(p.tagline)},`);

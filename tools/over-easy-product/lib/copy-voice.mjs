@@ -3,7 +3,7 @@
  */
 
 export const COPY_VOICE_RULES = `
-CATALOG COPY RULES (over-easy-products/products.js):
+CATALOG COPY RULES (over-easy-products/products.js — single source of truth):
 
 Audience: women shopping Over Easy — confident, amused, in on the joke.
 
@@ -77,16 +77,15 @@ export function extractProductSpecs(excerpts) {
  * @param {string} opts.slug
  * @param {ReturnType<import("./prompts.mjs").getHints>} opts.hints
  * @param {string[]} opts.specs
+ * @param {Record<string, unknown> | null} [opts.existingProduct] from products.js
  */
-export function buildMarketingCopy({ slug, hints, specs }) {
-  if (hints.marketing) {
-    const features = [...hints.marketing.features];
-    for (const s of specs) {
-      if (!features.some((f) => f.toLowerCase().includes(s.slice(0, 20).toLowerCase()))) {
-        features.push(s);
-      }
-    }
-    return { ...hints.marketing, features: features.slice(0, 6) };
+export function buildMarketingCopy({ slug, hints, specs, existingProduct }) {
+  if (existingProduct) {
+    return {
+      tagline: existingProduct.tagline ?? "",
+      description: existingProduct.description ?? "",
+      features: existingProduct.features ?? [],
+    };
   }
 
   const displayName = hints.displayName ?? "Over Easy product";

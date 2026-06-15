@@ -31,14 +31,7 @@ window.OVER_EASY_CATALOG = {
         "../assets/scenes/andrea_and_lucas/overeasy_ball_killers_heels_v1.png",
       tagline: "Fashionable. Functional. Pointed.",
       description:
-        "Self-defense you can wear to dinner. Glossy patent pumps with blood-red soles and tungsten-tipped points at heel and toe — as sexy on the dance floor as they are useful when someone needs a very direct lesson in boundaries.",
-      features: [
-        "Shiny black patent upper; blood-red lacquered sole",
-        "\"ball\" / \"killer\" printed on each shoe in bright red",
-        "Dual contact points — heel stem and toe — capped in tungsten",
-        "Stiletto geometry for maximum leverage (dry cleaning not included)",
-        "Sold as a matched pair",
-      ],
+        "Self-defense you can wear to dinner. Glossy patent pumps with tungsten-tipped points at heel and toe — as sexy on the dance floor as they are useful when someone needs a very direct lesson in boundaries.",
       badge: "Fashion",
     },
     {
@@ -50,13 +43,11 @@ window.OVER_EASY_CATALOG = {
         "../assets/scenes/andrea_and_lucas/overeasy_eunuchcorn_denim_v1.png",
       tagline: "Jeans for those out of the gene pool.",
       description:
-        "Finally — denim that fits what's left. EunuchCorn jeans and shorts feature an ultra-high seam and extra-tight flat front: no embarrassing loose crotch, no pointless zipper bulge, just the confident silhouette of a man who's already said goodbye to half his legacy. Available in high, medium, and low-slung eunuch arch.",
+        "Finally — denim that fits what's left. EunuchCorn jeans and shorts feature an ultra-high seam and extra-tight flat front: no embarrassing loose crotch, no pointless zipper bulge, just the confident silhouette of a man who's already said goodbye to his legacy. Available in high, medium, and low-slung eunuch arch.",
       features: [
         "Jeans and jean shorts — same fit, your choice",
         "Ultra-high seam; concave flat front panel",
-        "No room for what isn't there anymore",
-        "High / medium / low-slung eunuch arch sizing",
-        "Over Easy raw-egg pictogram on back pocket",
+        "Confident, proud, unmistakeable EunuchCorn branding - so you can show off your fashion sense and status as a eunuch to the world",
       ],
       badge: "Fashion",
     },
@@ -65,11 +56,10 @@ window.OVER_EASY_CATALOG = {
       category: "media",
       name: "Cherry Pop! — Plum Dumb & Permanently Done",
       model: "CP-PDPD-001",
-      image:
-        "../assets/scenes/andrea_and_lucas/cherry_pop_album_merch_v1.png",
+      image: "../assets/scenes/andrea_and_lucas/cherry_pop_album_merch_v1.png",
       tagline: "Live from the Mush Pit.",
       description:
-        "The latest Cherry Pop! release — Plum Dumb & Permanently Done, recorded live where the floor gets slippery and the audience stops contributing. Featuring fan favorites from Crushed to Bits, The Leafless Tree, and Shredded Seed. Available on CD and vinyl.",
+        "The latest Cherry Pop! release — Plum Dumb & Permanently Done, recorded live from their show at Brokeberry Mall. With microphones installed beneath every panel of the dance floor, you get to hear every pop and squick from the legendary Mush Pit in perfect detail. Available on CD and vinyl.",
       features: [
         "Studio album: Plum Dumb & Permanently Done",
         "Live from the Mush Pit recording",
@@ -88,13 +78,7 @@ window.OVER_EASY_CATALOG = {
         "../assets/scenes/andrea_and_lucas/testicular_biopsy_gun_device_v2.png",
       tagline: "Core samples on demand.",
       description:
-        "Hospital-grade core instrument from our discontinued medical line. Pistol grip, angled coring needle, and a graduated collection vial. Whether you need a sample or just need to leave a hole — we're not here to judge.",
-      features: [
-        "Long stainless coring needle with hex lock",
-        "Graduated rear collection vial (ml)",
-        "Knurled depth adjustment knob",
-        "Ergonomic finger-groove grip",
-      ],
+        "Hospital-grade core instrument from our discontinued medical line. Pistol grip, angled coring needle, and a graduated collection vial. #1 testicular core sampler on the market. Vial detaches for recreational usage.",
       badge: "Medical",
     },
     {
@@ -108,11 +92,10 @@ window.OVER_EASY_CATALOG = {
       description:
         "Patented bleach wipes strong enough to neutralize every germ — and every ambitious swimmer — they touch, yet gentle enough for your most delicate cleanup. When the evening went your way and his contributions absolutely did not.",
       features: [
-        "Pull-tab wet-wipe dispenser pack",
         "Neutralizes swimmers on contact — skin, fabric, or floor",
         "Deep-clean safe for post-encounter sensitive areas",
         "Essential after any serious breeding hazard",
-        "40-count travel pack",
+        "Available in a 30-count purse-sized back, 1,000-count home usage, or 50,000-count commerical bulk packs",
       ],
       badge: "Hygiene",
     },
@@ -124,14 +107,7 @@ window.OVER_EASY_CATALOG = {
       image: "../assets/scenes/andrea_and_lucas/overeasy_onenut_cup_v1.png",
       tagline: "Snug for what survived.",
       description:
-        "Standard cups leave too much room — your lone survivor bounces, pinches, and slides into the gap. OneNut© cups are molded for exactly one side: leftie or rightie, XS through XXXL. The empty half stays flat so everyone can see you're working with an inventory of one.",
-      features: [
-        "Asymmetric shell — one dome, one flat side (obviously lopsided)",
-        "Leftie and rightie orientations",
-        "XS through XXXL — snug fit for your remaining asset",
-        "Eliminates pinching from loose standard cups",
-        "Over Easy co-brand on shell",
-      ],
+        "Standard cups leave too much room — your lone survivor bounces, pinches, and slides into the gap. OneNut© cups are molded for exactly one side: leftie or rightie, XS through XXXL.",
       badge: "Protection",
     },
     {
@@ -202,10 +178,8 @@ window.OVER_EASY_CATALOG = {
       description:
         "Matte-black precision clamp with polished steel disc pads and app-connected compression control. One clamp is usually enough — you'll know exactly when he's given you what you need.",
       features: [
-        "Bluetooth app: live compression readout (0–100%)",
-        "Perpendicular steel disc jaws for even pressure",
-        "Red/green pairing indicator",
-        "Sold individually; pairs available for symmetrical situations",
+        "Available in single, or double pairing configurations for synchronized compression.",
+        "If you have a need for a triple pairing or more, contact Over Easy technologies directly for a custom order (and we'd really like to meet him!)",
       ],
       badge: "Interrogation",
     },
@@ -214,8 +188,7 @@ window.OVER_EASY_CATALOG = {
       category: "discipline",
       name: "Auto-Milker™",
       model: "OET-AM-1",
-      image:
-        "../assets/scenes/school_bully/overeasy_auto_milker_device_v1.png",
+      image: "../assets/scenes/school_bully/overeasy_auto_milker_device_v1.png",
       tagline: "When he says he's empty — prove him wrong.",
       description:
         "Clinical-grade semen extraction for when a handjob misses the cup or the donor insists he's tapped out. Slip the molded rubber sleeve over him, seal the scrotum pouch, and let electrostimulation plus precision compression wring out every last drop — usually in two or three minutes, even from inmates on a once-a-month allowance. Pleasure not guaranteed.",
@@ -224,26 +197,22 @@ window.OVER_EASY_CATALOG = {
         "Electrostimulation contacts plus rhythmic scrotal compression",
         "WARMUP and EXTRACT controls; collection hose to graduated vial",
         "Cocksleeve vacuum routes fluid directly to sample cap",
-        "Calibrated for institutional throughput — not a spa treatment",
+        "Calibrated for institutional throughput",
       ],
       badge: "Security",
     },
     {
       id: "strapon",
       category: "discipline",
-      name: "Shell Shaker™ Strap-On System",
+      name: "'Selfish Bitch' Strap-On System",
       model: "OET-SS-PRO",
-      image:
-        "../assets/scenes/andrea_and_lucas/overeasy_strapon_device_v3.png",
-      tagline: "Heavy hardware. Tiny straps. Total control.",
+      image: "../assets/scenes/andrea_and_lucas/overeasy_strapon_device_v3.png",
+      tagline: "Heavy hardware. Total control.",
       description:
-        "Over Easy's flagship harness feels like lead in your hands — dense mechanical guts sealed inside solid matte rubber, with a stabilizing internal bulb that keeps you locked in even when you're pounding hard. Stiff weighted false balls hang below for authentic heft and impact; a built-in leather scrotum cuff tethers his assets while you work. The straps look almost too small to trust — until you yank.",
+        "With its dual-ended piezoreactive automechanical architecture, this strap-on lets you feel everything he does as you rearrange his guts. Osmium filled false balls hang below for maximum weight, and the internal g-spot bulb keeps you locked in even when you're pounding his hole as hard as you can.",
       features: [
-        "Solid rubber shell hides motor and electronics — no flimsy novelty feel",
-        "Dual-ended: external shaft plus internal g-spot bulb for wearer stability",
-        "Pair of rigid, weighted false testicles for heft and contact feedback",
-        "Integrated leather scrotum tether cuff with buckle",
-        "Minimal but surprisingly sturdy black leather waist and thigh straps",
+        "Dual-ended: external shaft plus internal g-spot bulb for wearer stability and pleasure",
+        "Extra dense false testicles for heft and impact",
       ],
       badge: "Premium",
     },

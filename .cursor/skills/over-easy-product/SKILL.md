@@ -10,9 +10,9 @@ description: >-
 
 # Over Easy product catalog workflow
 
-Add one product: **internal story research → coy marketing copy → image → catalog entry**.
+**Published catalog:** `over-easy-products/products.js` (copy) + `assets/scenes/...` (images).
 
-Project rules: `CLAUDE.md` (Over Easy branding). Copy voice: `tools/over-easy-product/lib/copy-voice.mjs`.
+**Draft scratch:** `over-easy-products/drafts/<slug>/draft.json` — image workflow only; safe to delete after apply.
 
 ## Catalog copy voice (required)
 
@@ -28,7 +28,7 @@ Project rules: `CLAUDE.md` (Over Easy branding). Copy voice: `tools/over-easy-pr
 - Quotes from fiction
 - Clinical/pornographic explicitness
 
-Story excerpts in drafts are **internal research only** — mine specs, don't paste prose.
+Story excerpts in `draft.json` are **internal research only** — mine specs, don't paste prose.
 
 ## Trigger
 
@@ -38,20 +38,23 @@ npm run oe-product -- "Product Name"
 
 ## Step 1 — Scaffold draft
 
-Writes `over-easy-products/drafts/<slug>/` with pre-written marketing copy, `copy-voice.txt`, `AGENT_BRIEF.md`, `image-prompt.txt`.
+Writes **one file:** `over-easy-products/drafts/<slug>/draft.json`
+
+Contains: `imagePrompt`, `assetFilename`, `referenceAssets`, `productSpecs`, `excerpts` (internal). Does **not** hold published copy for existing products.
 
 ## Step 2 — Generate product image
 
-1. Read `assets/brands/overeasy_logo_v2_raw_eggs_minimal.png`.
-2. Use reference assets from brief.
-3. Remote GenerateImage only; save versioned path from brief.
-4. Raw-egg pictogram on every product. No people, no story scenes.
+1. Read `draft.json`.
+2. Read `assets/brands/overeasy_logo_v2_raw_eggs_minimal.png`.
+3. Use `referenceAssets` / `existingAssets` from draft as reference images.
+4. Remote GenerateImage only; save to versioned path in `assetFilename`.
+5. Raw-egg pictogram on every product. No people, no story scenes.
 
-## Step 3 — Review copy
+## Step 3 — Edit catalog copy
 
-Draft copy is auto-generated in marketing voice. Tweak in draft JSON or `products.js` if needed — **keep the voice rules above**.
+Edit **`over-easy-products/products.js`** for tagline, description, and features.
 
-Do **not** replace with story quotes or character references.
+For **new** products, `draft.json` may include `starterCatalogEntry` — tweak in `products.js` before `--apply`.
 
 ## Step 4 — Apply
 
@@ -59,7 +62,8 @@ Do **not** replace with story quotes or character references.
 npm run oe-product -- "<Product Name>" --apply
 ```
 
-`--force` replaces existing id.
+- **Existing product:** updates `image` path only; copy untouched.
+- **New product:** appends starter entry from scaffold (after you edited `products.js`).
 
 ## Step 5 — Preview
 
@@ -68,12 +72,14 @@ npm run oe-product -- "<Product Name>" --apply
 ## Quick path (agent)
 
 1. `npm run oe-product -- "X"`
-2. Read brief; generate image
-3. Adjust copy only if needed (stay coy, no lore)
+2. Read `drafts/<slug>/draft.json`; generate image
+3. Edit copy in `products.js` if needed
 4. `npm run oe-product -- "X" --apply`
+5. Delete draft folder when done (optional)
 
 ## Do not
 
 - Put Izzie/Abby/Lucas/etc. or skit/rite events in catalog copy
 - Paste story sentences into tagline/description/features
 - Overwrite images without new version suffix
+- Maintain copy in draft files — `products.js` only
