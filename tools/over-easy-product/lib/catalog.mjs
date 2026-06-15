@@ -40,6 +40,9 @@ function formatProductsJs(catalog) {
   const footerNote = brand.footerNote
     ? `\n    footerNote:\n      ${JSON.stringify(brand.footerNote)},`
     : "";
+  const purchaseUrl = brand.purchaseUrl
+    ? `\n    purchaseUrl: ${JSON.stringify(brand.purchaseUrl)},`
+    : "";
 
   const categories = catalog.categories?.length
     ? `\n\n  categories: [\n${catalog.categories
@@ -58,12 +61,15 @@ function formatProductsJs(catalog) {
  * Paths are relative to over-easy-products/index.html
  *
  * New products: npm run oe-product -- "Product Name"
+ *
+ * Editor: word-wrap + no autocomplete — see .vscode/settings.json (oe-catalog language).
+ * Format on save: installs Run on Save extension (see .vscode/extensions.json), or run npm run format:oe-catalog.
  */
 window.OVER_EASY_CATALOG = {
   brand: {
     name: ${JSON.stringify(brand.name)},
     tagline: ${JSON.stringify(brand.tagline)},
-    logo: ${JSON.stringify(brand.logo)},${footerNote}
+    logo: ${JSON.stringify(brand.logo)},${footerNote}${purchaseUrl}
   },${categories}
 
   products: [
@@ -71,6 +77,64 @@ ${products}
   ],
 };
 `;
+}
+
+/** Max chars per line when writing wrapped string literals. */
+const WRAP_COL = 88;
+
+/**
+ * @param {string} str
+ * @param {string} fieldIndent e.g. "      " before key, value uses +8
+ */
+function formatWrappedString(str, fieldIndent = "      ") {
+  const valueIndent = `${fieldIndent}  `;
+  if (!str) return `${valueIndent}${JSON.stringify("")},`;
+
+  const maxChunk = WRAP_COL - valueIndent.length - 2;
+  const words = str.split(/\s+/);
+  const chunks = [];
+  let current = "";
+
+  for (const word of words) {
+    const candidate = current ? `${current} ${word}` : word;
+    if (candidate.length > maxChunk && current) {
+      chunks.push(current);
+      current = word;
+    } else {
+      current = candidate;
+    }
+  }
+  if (current) chunks.push(current);
+
+  if (chunks.length === 1) {
+    return `${valueIndent}${JSON.stringify(chunks[0])},`;
+  }
+
+  return chunks
+    .map((chunk, i) => {
+      const text = i < chunks.length - 1 ? `${chunk} ` : chunk;
+      const suffix = i < chunks.length - 1 ? " +" : ",";
+      return `${valueIndent}${JSON.stringify(text)}${suffix}`;
+    })
+    .join("\n");
+}
+
+/** @param {object[]} sizeOptions */
+function formatSizeOptions(sizeOptions) {
+  const fields = sizeOptions.map((field) => {
+    const opts = field.options
+      .map((opt) => {
+        const parts = [
+          `value: ${JSON.stringify(opt.value)}`,
+          `label: ${JSON.stringify(opt.label)}`,
+        ];
+        if (opt.soldOut) parts.push("soldOut: true");
+        return `{ ${parts.join(", ")} }`;
+      })
+      .join(", ");
+    return `{ id: ${JSON.stringify(field.id)}, label: ${JSON.stringify(field.label)}, options: [${opts}] }`;
+  });
+  return `[\n        ${fields.join(",\n        ")},\n      ]`;
 }
 
 /** @param {Record<string, unknown>} p */
@@ -83,14 +147,22 @@ function formatProductEntry(p) {
   lines.push(`      name: ${JSON.stringify(p.name)},`);
   if (p.model) lines.push(`      model: ${JSON.stringify(p.model)},`);
   lines.push(`      image:`, `        ${JSON.stringify(p.image)},`);
-  if (p.tagline) lines.push(`      tagline: ${JSON.stringify(p.tagline)},`);
-  lines.push(`      description:`, `        ${JSON.stringify(p.description)},`);
+  if (p.tagline) {
+    lines.push(`      tagline:`);
+    lines.push(formatWrappedString(p.tagline).replace(/,$/, ","));
+  }
+  lines.push(`      description:`);
+  lines.push(formatWrappedString(p.description));
   if (p.features?.length) {
     lines.push(`      features: [`);
     for (const f of p.features) {
-      lines.push(`        ${JSON.stringify(f)},`);
+      const wrapped = formatWrappedString(f, "        ");
+      lines.push(wrapped.replace(/,$/, ","));
     }
     lines.push(`      ],`);
+  }
+  if (p.sizeOptions?.length) {
+    lines.push(`      sizeOptions: ${formatSizeOptions(p.sizeOptions)},`);
   }
   if (p.badge) lines.push(`      badge: ${JSON.stringify(p.badge)},`);
   lines.push("    }");

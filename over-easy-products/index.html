@@ -120,12 +120,87 @@
           requestAnimationFrame(updateTabIndicator);
         }
 
+        function renderSizeOptions(p) {
+          if (!p.sizeOptions?.length) return "";
+
+          const fields = p.sizeOptions
+            .map(function (field) {
+              const selectId =
+                "size-" + escapeHtml(p.id) + "-" + escapeHtml(field.id);
+              const options = field.options
+                .map(function (opt) {
+                  const label = opt.soldOut
+                    ? opt.label + " — sold out"
+                    : opt.label;
+                  const disabled = opt.soldOut ? " disabled" : "";
+                  const className = opt.soldOut
+                    ? ' class="oe-size-option--sold-out"'
+                    : "";
+                  return (
+                    '<option value="' +
+                    escapeHtml(opt.value) +
+                    '"' +
+                    disabled +
+                    className +
+                    ">" +
+                    escapeHtml(label) +
+                    "</option>"
+                  );
+                })
+                .join("");
+
+              return (
+                '<div class="oe-size-field">' +
+                '<label class="oe-size-label" for="' +
+                selectId +
+                '">' +
+                escapeHtml(field.label) +
+                "</label>" +
+                '<select class="oe-size-select" id="' +
+                selectId +
+                '" name="' +
+                escapeHtml(p.id + "-" + field.id) +
+                '" aria-label="' +
+                escapeHtml(field.label) +
+                '">' +
+                options +
+                "</select>" +
+                "</div>"
+              );
+            })
+            .join("");
+
+          return '<div class="oe-card__sizes">' + fields + "</div>";
+        }
+
+        function renderPurchaseButton() {
+          const url = brand.purchaseUrl;
+          if (!url) return "";
+          return (
+            '<div class="oe-card__actions">' +
+            '<a class="oe-purchase-btn" href="' +
+            escapeHtml(url) +
+            '" target="_blank" rel="noopener noreferrer">Purchase</a>' +
+            "</div>"
+          );
+        }
+
         function renderCard(p) {
           const features = (p.features || [])
             .map(function (f) {
               return "<li>" + escapeHtml(f) + "</li>";
             })
             .join("");
+
+          const footerParts = [];
+          if (features) {
+            footerParts.push(
+              '<ul class="oe-card__features">' + features + "</ul>",
+            );
+          }
+          const sizes = renderSizeOptions(p);
+          if (sizes) footerParts.push(sizes);
+          footerParts.push(renderPurchaseButton());
 
           return (
             '<article class="oe-card" id="product-' +
@@ -156,9 +231,9 @@
             '<p class="oe-card__desc">' +
             escapeHtml(p.description) +
             "</p>" +
-            (features
-              ? '<ul class="oe-card__features">' + features + "</ul>"
-              : "") +
+            '<div class="oe-card__footer">' +
+            footerParts.join("") +
+            "</div>" +
             "</div>" +
             "</article>"
           );

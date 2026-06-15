@@ -307,6 +307,67 @@ img {
   color: var(--oe-gray-text);
 }
 
+.oe-card__footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.oe-card__sizes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 0.75rem;
+}
+
+.oe-size-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.oe-size-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--oe-gray-text);
+}
+
+.oe-size-select {
+  width: 100%;
+  appearance: none;
+  font-family: inherit;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  color: var(--oe-black);
+  background: var(--oe-gray)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%235c5c58' d='M1 1l5 5 5-5'/%3E%3C/svg%3E")
+    no-repeat right 0.75rem center;
+  border: 1px solid var(--oe-gray-mid);
+  border-radius: 8px;
+  padding: 0.55rem 2rem 0.55rem 0.75rem;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.oe-size-select:hover {
+  border-color: #ccc;
+}
+
+.oe-size-select:focus {
+  outline: none;
+  border-color: var(--oe-yolk-dark);
+  box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.2);
+}
+
+.oe-size-select option.oe-size-option--sold-out,
+.oe-size-select option:disabled {
+  color: #a8a8a4;
+}
+
 .oe-card__features {
   margin: 0;
   padding: 0;
@@ -315,7 +376,51 @@ img {
   color: var(--oe-gray-text);
   border-top: 1px solid var(--oe-gray-mid);
   padding-top: 0.75rem;
-  margin-top: auto;
+}
+
+.oe-card__footer > .oe-card__actions:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.oe-card__actions {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--oe-gray-mid);
+}
+
+.oe-purchase-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--oe-black);
+  background: var(--oe-yolk);
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.oe-purchase-btn:hover {
+  background: var(--oe-yolk-dark);
+  color: var(--oe-black);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(245, 166, 35, 0.35);
+}
+
+.oe-purchase-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.45);
 }
 
 .oe-card__features li {
