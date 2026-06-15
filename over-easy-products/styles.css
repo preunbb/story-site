@@ -1,16 +1,18 @@
 /* Over Easy Technologies product catalog */
 
 :root {
-  --oe-black: #1a1a1a;
-  --oe-gray: #f4f4f5;
-  --oe-gray-mid: #e4e4e7;
-  --oe-gray-text: #52525b;
+  --oe-black: #0a0a0a;
+  --oe-black-soft: #141414;
+  --oe-gray: #f7f7f5;
+  --oe-gray-mid: #e8e8e4;
+  --oe-gray-text: #5c5c58;
   --oe-yolk: #f5a623;
   --oe-yolk-dark: #d4891a;
   --oe-white: #ffffff;
   --oe-radius: 12px;
   --oe-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   --oe-max: 1120px;
+  --oe-header-border: rgba(255, 255, 255, 0.08);
 }
 
 *,
@@ -21,7 +23,11 @@
 
 body {
   margin: 0;
-  font-family: "Manrope", system-ui, -apple-system, sans-serif;
+  font-family:
+    "Manrope",
+    system-ui,
+    -apple-system,
+    sans-serif;
   background: var(--oe-gray);
   color: var(--oe-black);
   line-height: 1.55;
@@ -37,91 +43,176 @@ img {
   display: block;
 }
 
-/* Header */
+/* Header — dark masthead with category nav */
 .oe-header {
-  background: var(--oe-white);
-  border-bottom: 1px solid var(--oe-gray-mid);
+  background:
+    radial-gradient(
+      120% 180% at 100% -40%,
+      rgba(245, 166, 35, 0.12) 0%,
+      transparent 55%
+    ),
+    linear-gradient(180deg, #111111 0%, var(--oe-black) 100%);
+  color: var(--oe-white);
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 20;
+  border-bottom: 1px solid var(--oe-header-border);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+}
+
+.oe-header__top {
+  border-bottom: 1px solid var(--oe-header-border);
 }
 
 .oe-header__inner {
   max-width: var(--oe-max);
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  padding: 1.35rem 1.5rem 1.15rem;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .oe-brand {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
   text-decoration: none;
-}
-
-.oe-brand__logo {
-  width: 48px;
-  height: auto;
+  color: inherit;
+  flex-shrink: 0;
 }
 
 .oe-brand__text {
-  font-weight: 700;
-  font-size: 1.05rem;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 .oe-brand__text span {
   color: var(--oe-yolk);
 }
 
-.oe-nav {
-  font-size: 0.875rem;
-  color: var(--oe-gray-text);
+.oe-header__tagline {
+  margin: 0;
+  max-width: 28rem;
+  text-align: right;
+  font-family: "Instrument Sans", "Manrope", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 400;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.52);
+  letter-spacing: 0.01em;
 }
 
-/* Hero */
-.oe-hero {
-  background: linear-gradient(135deg, var(--oe-black) 0%, #2d2d2d 100%);
-  color: var(--oe-white);
-  padding: 3rem 1.5rem 3.5rem;
-}
-
-.oe-hero__inner {
+.oe-header__nav-wrap {
   max-width: var(--oe-max);
   margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
-.oe-hero h1 {
-  margin: 0 0 0.5rem;
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
+.oe-tabs {
+  position: relative;
+  display: block;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 1.5rem,
+    #000 calc(100% - 1.5rem),
+    transparent 100%
+  );
 }
 
-.oe-hero p {
-  margin: 0;
-  max-width: 36rem;
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 1.05rem;
+.oe-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.oe-tabs__inner {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  min-width: min-content;
+  padding: 0 0.15rem;
+}
+
+.oe-tab {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.42);
+  font: inherit;
+  font-family: "Instrument Sans", "Manrope", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 1.05rem 1.35rem 1.15rem;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  transition: color 0.28s ease;
+}
+
+.oe-tab__label {
+  display: inline-block;
+  transition: transform 0.28s ease;
+}
+
+.oe-tab:hover {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.oe-tab:hover .oe-tab__label {
+  transform: translateY(-1px);
+}
+
+.oe-tab--active {
+  color: var(--oe-white);
+}
+
+.oe-tab--active .oe-tab__label {
+  transform: translateY(0);
+}
+
+.oe-tabs__indicator {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--oe-yolk) 18%,
+    var(--oe-yolk) 82%,
+    transparent 100%
+  );
+  border-radius: 999px;
+  pointer-events: none;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 0 18px rgba(245, 166, 35, 0.45);
 }
 
 /* Catalog */
 .oe-main {
   max-width: var(--oe-max);
   margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
+  padding: 2.5rem 1.5rem 4rem;
 }
 
 .oe-section-title {
-  margin: 0 0 1.5rem;
-  font-size: 0.75rem;
-  font-weight: 600;
+  margin: 0 0 1.75rem;
+  font-family: "Instrument Sans", "Manrope", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.22em;
   color: var(--oe-gray-text);
 }
 
@@ -139,7 +230,9 @@ img {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .oe-card:hover {
@@ -259,12 +352,56 @@ img {
   opacity: 0.9;
 }
 
+@media (max-width: 768px) {
+  .oe-header__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding: 1.1rem 1.25rem 1rem;
+  }
+
+  .oe-header__tagline {
+    text-align: left;
+    max-width: none;
+    font-size: 0.86rem;
+  }
+
+  .oe-header__nav-wrap {
+    padding: 0;
+  }
+
+  .oe-tabs {
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 1rem,
+      #000 calc(100% - 2.5rem),
+      transparent 100%
+    );
+  }
+
+  .oe-tabs__inner {
+    padding: 0 1rem;
+  }
+
+  .oe-tab {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    padding: 0.95rem 1rem 1.05rem;
+  }
+
+  .oe-main {
+    padding-top: 2rem;
+  }
+}
+
 @media (max-width: 640px) {
   .oe-grid {
     grid-template-columns: 1fr;
   }
 
   .oe-brand__text {
-    font-size: 0.9rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.14em;
   }
 }

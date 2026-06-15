@@ -10,30 +10,34 @@
     />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="oe-header">
-      <div class="oe-header__inner">
-        <a class="oe-brand" href="#" id="oe-brand-link">
-          <img class="oe-brand__logo" id="oe-brand-logo" alt="" width="48" height="48" />
-          <span class="oe-brand__text" id="oe-brand-name"></span>
-        </a>
-        <nav class="oe-nav">Product Catalog</nav>
+      <div class="oe-header__top">
+        <div class="oe-header__inner">
+          <a class="oe-brand" href="#" id="oe-brand-link">
+            <span class="oe-brand__text" id="oe-brand-name"></span>
+          </a>
+          <p class="oe-header__tagline" id="oe-hero-tagline"></p>
+        </div>
+      </div>
+      <div class="oe-header__nav-wrap">
+        <nav class="oe-tabs" id="oe-tabs" aria-label="Product categories">
+          <div class="oe-tabs__inner" id="oe-tabs-inner"></div>
+          <span
+            class="oe-tabs__indicator"
+            id="oe-tabs-indicator"
+            aria-hidden="true"
+          ></span>
+        </nav>
       </div>
     </header>
 
-    <section class="oe-hero">
-      <div class="oe-hero__inner">
-        <h1 id="oe-hero-title">Product Catalog</h1>
-        <p id="oe-hero-tagline"></p>
-      </div>
-    </section>
-
     <main class="oe-main">
-      <h2 class="oe-section-title">Current lineup</h2>
+      <h2 class="oe-section-title" id="oe-section-title">Current lineup</h2>
       <div class="oe-grid" id="oe-product-grid"></div>
     </main>
 
@@ -48,64 +52,184 @@
         const catalog = window.OVER_EASY_CATALOG;
         if (!catalog) return;
 
-        const { brand, products } = catalog;
+        const { brand, categories, products } = catalog;
+        let activeCategory = categories[0]?.id ?? "";
 
         // Brand header
-        document.getElementById("oe-brand-logo").src = brand.logo;
-        document.getElementById("oe-brand-logo").alt = brand.name;
-        document.getElementById("oe-brand-name").innerHTML =
-          brand.name.replace("Easy", '<span>Easy</span>');
+        document.getElementById("oe-brand-name").innerHTML = brand.name.replace(
+          "Easy",
+          "<span>Easy</span>",
+        );
         document.getElementById("oe-hero-tagline").textContent = brand.tagline;
         document.getElementById("oe-footer-logo").src = brand.logo;
         document.getElementById("oe-footer-logo").alt = brand.name;
         document.getElementById("oe-footer-note").textContent =
           brand.footerNote;
 
-        // Product cards
+        const tabsEl = document.getElementById("oe-tabs");
+        const tabsInner = document.getElementById("oe-tabs-inner");
+        const tabsIndicator = document.getElementById("oe-tabs-indicator");
         const grid = document.getElementById("oe-product-grid");
-        grid.innerHTML = products
-          .map(function (p) {
-            const features = (p.features || [])
-              .map(function (f) {
-                return "<li>" + escapeHtml(f) + "</li>";
-              })
-              .join("");
+        const sectionTitle = document.getElementById("oe-section-title");
 
+        tabsInner.innerHTML = categories
+          .map(function (cat) {
             return (
-              '<article class="oe-card" id="product-' +
-              escapeHtml(p.id) +
-              '">' +
-              '<div class="oe-card__media">' +
-              '<img src="' +
-              escapeHtml(p.image) +
-              '" alt="' +
-              escapeHtml(p.name) +
-              '" loading="lazy" />' +
-              "</div>" +
-              '<div class="oe-card__body">' +
-              '<div class="oe-card__meta">' +
-              (p.badge
-                ? '<span class="oe-badge">' + escapeHtml(p.badge) + "</span>"
-                : "") +
-              (p.model
-                ? '<span class="oe-model">' + escapeHtml(p.model) + "</span>"
-                : "") +
-              "</div>" +
-              "<h3 class=\"oe-card__title\">" +
-              escapeHtml(p.name) +
-              "</h3>" +
-              (p.tagline
-                ? '<p class="oe-card__tagline">' + escapeHtml(p.tagline) + "</p>"
-                : "") +
-              '<p class="oe-card__desc">' +
-              escapeHtml(p.description) +
-              "</p>" +
-              (features ? '<ul class="oe-card__features">' + features + "</ul>" : "") +
-              "</div>" +
-              "</article>"
+              '<button type="button" class="oe-tab" data-category="' +
+              escapeHtml(cat.id) +
+              '" aria-selected="false">' +
+              '<span class="oe-tab__label">' +
+              escapeHtml(cat.label) +
+              "</span>" +
+              "</button>"
             );
           })
           .join("");
+
+        function updateTabIndicator() {
+          const activeBtn = tabsInner.querySelector(".oe-tab--active");
+          if (!activeBtn || !tabsIndicator) return;
+          const left =
+            activeBtn.offsetLeft + tabsInner.offsetLeft - tabsEl.scrollLeft;
+          tabsIndicator.style.width = activeBtn.offsetWidth + "px";
+          tabsIndicator.style.transform = "translateX(" + left + "px)";
+        }
+
+        function renderProducts() {
+          const visible = products.filter(function (p) {
+            return p.category === activeCategory;
+          });
+          const catLabel =
+            categories.find(function (c) {
+              return c.id === activeCategory;
+            })?.label ?? "Current lineup";
+
+          sectionTitle.textContent = catLabel;
+
+          grid.innerHTML = visible
+            .map(function (p) {
+              return renderCard(p);
+            })
+            .join("");
+
+          tabsInner.querySelectorAll(".oe-tab").forEach(function (btn) {
+            const selected = btn.dataset.category === activeCategory;
+            btn.classList.toggle("oe-tab--active", selected);
+            btn.setAttribute("aria-selected", selected ? "true" : "false");
+          });
+          requestAnimationFrame(updateTabIndicator);
+        }
+
+        function renderCard(p) {
+          const features = (p.features || [])
+            .map(function (f) {
+              return "<li>" + escapeHtml(f) + "</li>";
+            })
+            .join("");
+
+          return (
+            '<article class="oe-card" id="product-' +
+            escapeHtml(p.id) +
+            '">' +
+            '<div class="oe-card__media">' +
+            '<img src="' +
+            escapeHtml(p.image) +
+            '" alt="' +
+            escapeHtml(p.name) +
+            '" loading="lazy" />' +
+            "</div>" +
+            '<div class="oe-card__body">' +
+            '<div class="oe-card__meta">' +
+            (p.badge
+              ? '<span class="oe-badge">' + escapeHtml(p.badge) + "</span>"
+              : "") +
+            (p.model
+              ? '<span class="oe-model">' + escapeHtml(p.model) + "</span>"
+              : "") +
+            "</div>" +
+            '<h3 class="oe-card__title">' +
+            escapeHtml(p.name) +
+            "</h3>" +
+            (p.tagline
+              ? '<p class="oe-card__tagline">' + escapeHtml(p.tagline) + "</p>"
+              : "") +
+            '<p class="oe-card__desc">' +
+            escapeHtml(p.description) +
+            "</p>" +
+            (features
+              ? '<ul class="oe-card__features">' + features + "</ul>"
+              : "") +
+            "</div>" +
+            "</article>"
+          );
+        }
+
+        function setCategory(categoryId, options) {
+          if (
+            !categories.some(function (c) {
+              return c.id === categoryId;
+            })
+          ) {
+            return;
+          }
+          activeCategory = categoryId;
+          renderProducts();
+          if (!options || !options.skipHash) {
+            history.replaceState(null, "", "#category-" + categoryId);
+          }
+          const activeBtn = tabsInner.querySelector(
+            '.oe-tab[data-category="' + categoryId + '"]',
+          );
+          if (activeBtn) {
+            activeBtn.scrollIntoView({
+              behavior: "smooth",
+              block: "nearest",
+              inline: "center",
+            });
+          }
+        }
+
+        function resolveHash() {
+          const hash = location.hash.replace(/^#/, "");
+          if (!hash) {
+            setCategory(categories[0].id, { skipHash: true });
+            return;
+          }
+          if (hash.indexOf("category-") === 0) {
+            setCategory(hash.slice("category-".length), { skipHash: true });
+            return;
+          }
+          if (hash.indexOf("product-") === 0) {
+            const productId = hash.slice("product-".length);
+            const product = products.find(function (p) {
+              return p.id === productId;
+            });
+            if (product?.category) {
+              setCategory(product.category, { skipHash: true });
+              requestAnimationFrame(function () {
+                const el = document.getElementById("product-" + productId);
+                if (el)
+                  el.scrollIntoView({ behavior: "smooth", block: "start" });
+              });
+              return;
+            }
+          }
+          setCategory(categories[0].id, { skipHash: true });
+        }
+
+        tabsEl.addEventListener("click", function (event) {
+          const btn = event.target.closest(".oe-tab");
+          if (!btn) return;
+          setCategory(btn.dataset.category);
+        });
+
+        tabsEl.addEventListener("scroll", updateTabIndicator, {
+          passive: true,
+        });
+
+        window.addEventListener("hashchange", resolveHash);
+        window.addEventListener("resize", updateTabIndicator);
+        resolveHash();
 
         function escapeHtml(str) {
           return String(str)

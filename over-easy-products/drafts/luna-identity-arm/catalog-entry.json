@@ -1,0 +1,31 @@
+{
+  "catalogEntry": {
+    "id": "luna-identity-arm",
+    "name": "Luna™ Identity Arm",
+    "model": "OET-LIA-1",
+    "image": "../assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_device_v1.png",
+    "tagline": "She passes. He explains.",
+    "description": "Wall-mounted access control for spaces that cannot afford ambiguity. Luna™ confirms feminine credentials with a discreet biometric scan — red light, instant clearance, zero small talk. When an unauthorized male tags along anyway, the same arm reconfigures into something considerably less polite: articulated grip, precision needle, and a verification routine thorough enough to rearrange his family tree from the inside. Painful? Casually. Permanent? Frequently. The voice assistant handles the paperwork so you never have to.",
+    "features": [
+      "Telescoping multi-joint arm — zigzag articulation reaches exactly where verification requires",
+      "Feminine pass mode: red-glow intimate biometric scan, sub-second identity lock",
+      "Male escort mode: firm mechanical hand plus hypodermic needle — stirs until his inventory checks out",
+      "Luna™ voice assistant manages credentials, clearance tiers, and uncomfortable follow-up questions",
+      "Reconfigures from scanner to below-the-belt audit in under two seconds",
+      "Institutional install kit for elevators, vault doors, and private suites",
+      "Model OET-LIA-1"
+    ],
+    "badge": "Security"
+  },
+  "productSpecs": [
+    "Telescoping metal arm with zigzag articulation",
+    "Red-glow biometric scanner head",
+    "Feminine identity confirmation mode",
+    "Male presence detection with secondary verification",
+    "Hand-grip plus hypodermic needle attachment",
+    "Luna voice assistant interface"
+  ],
+  "excerptsNote": "internal only",
+  "imagePrompt": "Product catalog photograph of Over Easy Technologies hardware — Luna™ Identity Arm access-control system.\n\nWall-mounted brushed stainless elevator security panel on white studio background. Telescoping articulated robotic arm extended from panel at mid height — matte gunmetal segments with visible hinge joints, zigzag elbow geometry. At arm tip: dual-mode end effector shown in scanner configuration — slim ring sensor emitting soft red glow, plus secondary articulated mechanical fingers folded back. Separate small inset or second angle showing alternate end attachment: cruel matte-black mechanical hand gripping a thin hypodermic needle angled for precision work (product demo only — no anatomy, no people).\n\nControl panel on wall unit: small LCD reading FEMININE IDENTITY CONFIRMED, Luna™ wordmark, tiny speaker grille. OVER EASY TECHNOLOGIES wordmark and canonical raw-egg pictogram silkscreened on panel bezel.\n\nPRODUCT SPECS (visual/design only — do not illustrate story scenes):\n- Telescoping multi-joint security arm\n- Red biometric scanner ring at tip\n- Alternate hand-plus-needle end effector\n- Luna voice-assistant branding on control unit\n\nBRANDING (required on every Over Easy product):\n- Canonical raw-egg pictogram from logo reference: smashed raw egg left, cracked intact egg right (minimal line art — NOT smiley face, NOT fried eggs).\n- Silkscreen, emboss, or print on product body/packaging beside OVER EASY TECHNOLOGIES wordmark where appropriate.\n\nSTYLE: Photo-real product photography, white or neutral studio background, sharp focus. No people, no story scenes, no characters. No on-image sound effects.\n\nSave to: assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_device_v1.png\nUse reference images when available. Never overwrite an existing file — this is a new versioned asset.",
+  "assetFilename": "overeasy_luna_identity_arm_device_v1.png"
+}

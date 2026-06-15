@@ -1,0 +1,12 @@
+Product catalog photograph of Over Easy Technologies hardware — Shell Shaker™.
+
+Photo-real Over Easy product on white studio background. Match details from story excerpts.
+
+BRANDING (required on every Over Easy product):
+- Canonical raw-egg pictogram from logo reference: smashed raw egg left, cracked intact egg right (minimal line art — NOT smiley face, NOT fried eggs).
+- Silkscreen, emboss, or print on product body/packaging beside OVER EASY TECHNOLOGIES wordmark where appropriate.
+
+STYLE: Photo-real product photography, white or neutral studio background, sharp focus. No people unless story beat requires it. No on-image sound effects.
+
+Save to: assets/scenes/andrea_and_lucas/overeasy_shell_shaker_device_v1.png
+Use reference images when available. Never overwrite an existing file — this is a new versioned asset.
