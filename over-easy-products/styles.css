@@ -1,0 +1,270 @@
+/* Over Easy Technologies product catalog */
+
+:root {
+  --oe-black: #1a1a1a;
+  --oe-gray: #f4f4f5;
+  --oe-gray-mid: #e4e4e7;
+  --oe-gray-text: #52525b;
+  --oe-yolk: #f5a623;
+  --oe-yolk-dark: #d4891a;
+  --oe-white: #ffffff;
+  --oe-radius: 12px;
+  --oe-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --oe-max: 1120px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Manrope", system-ui, -apple-system, sans-serif;
+  background: var(--oe-gray);
+  color: var(--oe-black);
+  line-height: 1.55;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Header */
+.oe-header {
+  background: var(--oe-white);
+  border-bottom: 1px solid var(--oe-gray-mid);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.oe-header__inner {
+  max-width: var(--oe-max);
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.oe-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.oe-brand__logo {
+  width: 48px;
+  height: auto;
+}
+
+.oe-brand__text {
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.oe-brand__text span {
+  color: var(--oe-yolk);
+}
+
+.oe-nav {
+  font-size: 0.875rem;
+  color: var(--oe-gray-text);
+}
+
+/* Hero */
+.oe-hero {
+  background: linear-gradient(135deg, var(--oe-black) 0%, #2d2d2d 100%);
+  color: var(--oe-white);
+  padding: 3rem 1.5rem 3.5rem;
+}
+
+.oe-hero__inner {
+  max-width: var(--oe-max);
+  margin: 0 auto;
+}
+
+.oe-hero h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.oe-hero p {
+  margin: 0;
+  max-width: 36rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.05rem;
+}
+
+/* Catalog */
+.oe-main {
+  max-width: var(--oe-max);
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.oe-section-title {
+  margin: 0 0 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--oe-gray-text);
+}
+
+.oe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Product card */
+.oe-card {
+  background: var(--oe-white);
+  border-radius: var(--oe-radius);
+  box-shadow: var(--oe-shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.oe-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.oe-card__media {
+  background: #fafafa;
+  padding: 1.5rem;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--oe-gray-mid);
+}
+
+.oe-card__media img {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.oe-card__body {
+  padding: 1.25rem 1.5rem 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.oe-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.oe-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--oe-black);
+  color: var(--oe-white);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.oe-model {
+  font-size: 0.75rem;
+  color: var(--oe-gray-text);
+  font-family: ui-monospace, monospace;
+}
+
+.oe-card__title {
+  margin: 0 0 0.25rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.oe-card__tagline {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--oe-yolk-dark);
+}
+
+.oe-card__desc {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: var(--oe-gray-text);
+}
+
+.oe-card__features {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8rem;
+  color: var(--oe-gray-text);
+  border-top: 1px solid var(--oe-gray-mid);
+  padding-top: 0.75rem;
+  margin-top: auto;
+}
+
+.oe-card__features li {
+  padding: 0.2rem 0 0.2rem 1rem;
+  position: relative;
+}
+
+.oe-card__features li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--oe-yolk);
+}
+
+/* Footer */
+.oe-footer {
+  background: var(--oe-white);
+  border-top: 1px solid var(--oe-gray-mid);
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.oe-footer p {
+  margin: 0;
+  max-width: 32rem;
+  margin-inline: auto;
+  font-size: 0.8rem;
+  color: var(--oe-gray-text);
+}
+
+.oe-footer img {
+  width: 120px;
+  margin: 0 auto 1rem;
+  opacity: 0.9;
+}
+
+@media (max-width: 640px) {
+  .oe-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .oe-brand__text {
+    font-size: 0.9rem;
+  }
+}

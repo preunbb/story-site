@@ -68,10 +68,11 @@ The mark is **stylized and minimal** (flat line-and-fill, printable at small siz
 Whenever you generate an image of an **Over Easy / OverEasy product** (self-defense gadgets, EunuchCorn apparel, strap-ons, catalog hero shots, skit props, packaging, etc.):
 
 1. **Read `assets/brands/overeasy_logo_v2_raw_eggs_minimal.png` first** so you can describe the egg mark and typography accurately in the prompt (or pass it as a reference image when the tool supports that).
-2. **Show the logo on the product** — printed, silkscreened, or embossed on the device body or packaging, the way real consumer-tech branding appears on hardware. Match the raw-egg pictogram + wordmark from the canonical file.
-3. **Do not use the legacy smiley-face circle icon** from early device drafts, and **do not revert to photoreal fried eggs** from `overeasy_logo_v1.png`.
+2. **Every Over Easy device must carry the logo.** All hardware — Sterilizer, StudClamp, Nutcracker/Ballcracker, strap-ons, ShellShaker, bleaching wipes, milker rigs, EunuchCorn apparel tags, catalog hero shots, skit props, packaging, etc. — gets the raw-egg pictogram silkscreened, embossed, or printed on the product body the way real consumer-tech branding appears. Match the pictogram from the canonical file: smashed raw egg left, cracked intact raw egg right; **never** the legacy smiley-face circle, concentric-ring badge, or photoreal fried eggs from `overeasy_logo_v1.png`.
+3. **Placement:** Logo badge on a flat surface of the device (body, control unit, harness plate) beside or above the existing OVER EASY / TECHNOLOGIES wordmark. Pictogram only on hardware unless the shot is packaging or a full brand lockup — the wordmark may already be printed separately on the device.
+4. **When updating an existing device render:** Keep the hardware identical; swap only the legacy icon for the canonical two-egg pictogram. Save as a new versioned file (`_v2`, `_v3`, …); never overwrite the prior render.
 
-Scene illustrations where characters *use* Over Easy gear do not need the logo blown up front-and-center unless the story beat is literally a product demo or unboxing — but **dedicated product / device catalog shots always carry the logo.**
+Scene illustrations where characters *use* Over Easy gear do not need the logo blown up front-and-center unless the story beat is literally a product demo or unboxing — but **dedicated product / device catalog shots always carry the logo**, and **any device visible in frame should show the pictogram** if the branding surface is legible.
 
 ### Remote generation (default — use this)
 

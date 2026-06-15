@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Over Easy Technologies — Product Catalog</title>
+    <meta
+      name="description"
+      content="Over Easy Technologies product catalog — self-defense, medical, and lifestyle hardware."
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="oe-header">
+      <div class="oe-header__inner">
+        <a class="oe-brand" href="#" id="oe-brand-link">
+          <img class="oe-brand__logo" id="oe-brand-logo" alt="" width="48" height="48" />
+          <span class="oe-brand__text" id="oe-brand-name"></span>
+        </a>
+        <nav class="oe-nav">Product Catalog</nav>
+      </div>
+    </header>
+
+    <section class="oe-hero">
+      <div class="oe-hero__inner">
+        <h1 id="oe-hero-title">Product Catalog</h1>
+        <p id="oe-hero-tagline"></p>
+      </div>
+    </section>
+
+    <main class="oe-main">
+      <h2 class="oe-section-title">Current lineup</h2>
+      <div class="oe-grid" id="oe-product-grid"></div>
+    </main>
+
+    <footer class="oe-footer">
+      <img id="oe-footer-logo" alt="" width="120" height="40" />
+      <p id="oe-footer-note"></p>
+    </footer>
+
+    <script src="products.js"></script>
+    <script>
+      (function () {
+        const catalog = window.OVER_EASY_CATALOG;
+        if (!catalog) return;
+
+        const { brand, products } = catalog;
+
+        // Brand header
+        document.getElementById("oe-brand-logo").src = brand.logo;
+        document.getElementById("oe-brand-logo").alt = brand.name;
+        document.getElementById("oe-brand-name").innerHTML =
+          brand.name.replace("Easy", '<span>Easy</span>');
+        document.getElementById("oe-hero-tagline").textContent = brand.tagline;
+        document.getElementById("oe-footer-logo").src = brand.logo;
+        document.getElementById("oe-footer-logo").alt = brand.name;
+        document.getElementById("oe-footer-note").textContent =
+          brand.footerNote;
+
+        // Product cards
+        const grid = document.getElementById("oe-product-grid");
+        grid.innerHTML = products
+          .map(function (p) {
+            const features = (p.features || [])
+              .map(function (f) {
+                return "<li>" + escapeHtml(f) + "</li>";
+              })
+              .join("");
+
+            return (
+              '<article class="oe-card" id="product-' +
+              escapeHtml(p.id) +
+              '">' +
+              '<div class="oe-card__media">' +
+              '<img src="' +
+              escapeHtml(p.image) +
+              '" alt="' +
+              escapeHtml(p.name) +
+              '" loading="lazy" />' +
+              "</div>" +
+              '<div class="oe-card__body">' +
+              '<div class="oe-card__meta">' +
+              (p.badge
+                ? '<span class="oe-badge">' + escapeHtml(p.badge) + "</span>"
+                : "") +
+              (p.model
+                ? '<span class="oe-model">' + escapeHtml(p.model) + "</span>"
+                : "") +
+              "</div>" +
+              "<h3 class=\"oe-card__title\">" +
+              escapeHtml(p.name) +
+              "</h3>" +
+              (p.tagline
+                ? '<p class="oe-card__tagline">' + escapeHtml(p.tagline) + "</p>"
+                : "") +
+              '<p class="oe-card__desc">' +
+              escapeHtml(p.description) +
+              "</p>" +
+              (features ? '<ul class="oe-card__features">' + features + "</ul>" : "") +
+              "</div>" +
+              "</article>"
+            );
+          })
+          .join("");
+
+        function escapeHtml(str) {
+          return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+        }
+      })();
+    </script>
+  </body>
+</html>

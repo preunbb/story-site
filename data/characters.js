@@ -683,6 +683,15 @@ window.DATA_CHARACTERS = [
     profilePictures: ["assets/characters/greyson.png"],
   },
   {
+    id: "isaac",
+    name: "Isaac",
+    gender: "M",
+    bio: "College freshman virgin with a hyperactive religious streak and the absolute worst taste in girlfriends. Kay swept him up on his orientation tour, kept him celibate for six months while methodically dismantling his right testicle in increasingly creative \"prayer lessons,\" and walked him into the Church of the Broken Tree's chapel believing he was about to lose his already-dead right ball in exchange for finally getting to sleep with her. The doctors have already confirmed his right testicle is hormonally and reproductively dead. He has no idea Kay's plan is to pop the healthy left one instead.",
+    profilePictures: [
+      "assets/characters/isaac_freshman_dorm_portrait_v1.png",
+    ],
+  },
+  {
     id: "nguyen_twins",
     name: "Nguyen Twins",
     gender: "M",

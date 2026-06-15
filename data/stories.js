@@ -1525,6 +1525,21 @@ window.DATA_STORIES = [
         caption:
           "Freshly fucked and feeling especially safe with his Goddess of a girlfriend, Lucas finally opens up about his past.",
       },
+      {
+        path: "assets/scenes/andrea_and_lucas/ch18_abby_elijah_second_rite_dais_v8.png",
+        caption:
+          "Abby confronts bound Elijah on the dais during his Second Rite — yellow striped tee, ultrashort jean shorts, and a promise he was never going to keep.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/ch18_abby_elijah_second_rite_revelation_v6.png",
+        caption:
+          "Before the congregation assembles, Abby whispers the truth to Elijah in the ritual chamber. He still thinks he's only getting a handjob.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/ch18_abby_elijah_second_rite_neutering_v10_kneeling_lookup.png",
+        caption:
+          "Abby kneels before bound Elijah during his Second Rite — sweet piety on her face, anguish on his, the ceremony underway in the candlelit chamber.",
+      },
     ],
   },
   {
