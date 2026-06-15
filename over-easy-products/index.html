@@ -182,19 +182,25 @@
                 "size-" + escapeHtml(p.id) + "-" + escapeHtml(field.id);
               const options = field.options
                 .map(function (opt) {
+                  const unavailable = opt.soldOut || opt.disabled;
                   const label = opt.soldOut
                     ? opt.label + " — sold out"
                     : opt.label;
-                  const disabled = opt.soldOut ? " disabled" : "";
-                  const className = opt.soldOut
+                  const disabled = unavailable ? " disabled" : "";
+                  const className = unavailable
                     ? ' class="oe-size-option--sold-out"'
                     : "";
+                  const imageIndexAttr =
+                    opt.imageIndex != null
+                      ? ' data-image-index="' + escapeHtml(String(opt.imageIndex)) + '"'
+                      : "";
                   return (
                     '<option value="' +
                     escapeHtml(opt.value) +
                     '"' +
                     disabled +
                     className +
+                    imageIndexAttr +
                     ">" +
                     escapeHtml(label) +
                     "</option>"
@@ -244,22 +250,18 @@
           return [];
         }
 
+        function hasImageEditionSelect(p) {
+          return (p.sizeOptions || []).some(function (field) {
+            return (field.options || []).some(function (opt) {
+              return opt.imageIndex != null;
+            });
+          });
+        }
+
         function renderCardMedia(p) {
           const imgs = productImages(p);
           const thumb = imgs[0]?.path || p.image || "";
           if (!thumb) return '<div class="oe-card__media"></div>';
-
-          if (imgs.length <= 1) {
-            return (
-              '<div class="oe-card__media">' +
-              '<img src="' +
-              escapeHtml(thumb) +
-              '" alt="' +
-              escapeHtml(p.name) +
-              '" loading="lazy" />' +
-              "</div>"
-            );
-          }
 
           const payload = escapeHtml(
             JSON.stringify(
@@ -269,11 +271,19 @@
             ),
           );
 
+          const showCount = imgs.length > 1 && !hasImageEditionSelect(p);
+          const countBadge = showCount
+            ? '<span class="oe-card__media-count" aria-hidden="true">' +
+              imgs.length +
+              " photos</span>"
+            : "";
+
           return (
             '<figure class="oe-card__media oe-card__media--zoomable" tabindex="0" ' +
             'role="button" aria-label="View ' +
             escapeHtml(p.name) +
-            ' images" data-product-name="' +
+            (imgs.length > 1 ? " images" : " image") +
+            '" data-product-name="' +
             escapeHtml(p.name) +
             '" data-product-images="' +
             payload +
@@ -283,9 +293,7 @@
             '" alt="' +
             escapeHtml(p.name) +
             '" loading="lazy" />' +
-            '<span class="oe-card__media-count" aria-hidden="true">' +
-            imgs.length +
-            " photos</span>" +
+            countBadge +
             "</figure>"
           );
         }
@@ -314,9 +322,6 @@
             renderCardMedia(p) +
             '<div class="oe-card__body">' +
             '<div class="oe-card__meta">' +
-            (p.badge
-              ? '<span class="oe-badge">' + escapeHtml(p.badge) + "</span>"
-              : "") +
             (p.model
               ? '<span class="oe-model">' + escapeHtml(p.model) + "</span>"
               : "") +
@@ -395,6 +400,34 @@
           const btn = event.target.closest(".oe-tab");
           if (!btn) return;
           setCategory(btn.dataset.category);
+        });
+
+        grid.addEventListener("change", function (event) {
+          const sel = event.target.closest(".oe-size-select");
+          if (!sel) return;
+          const opt = sel.options[sel.selectedIndex];
+          if (!opt) return;
+          const imgIdxRaw = opt.getAttribute("data-image-index");
+          if (imgIdxRaw == null) return;
+          const imgIdx = parseInt(imgIdxRaw, 10);
+          if (isNaN(imgIdx)) return;
+          const card = sel.closest(".oe-card");
+          if (!card) return;
+          const fig = card.querySelector(".oe-card__media--zoomable");
+          if (!fig) return;
+          const raw = fig.getAttribute("data-product-images");
+          if (!raw) return;
+          let productSlides;
+          try {
+            productSlides = JSON.parse(raw);
+          } catch (_e) {
+            return;
+          }
+          const slide = productSlides[imgIdx];
+          if (!slide?.path) return;
+          const thumb = fig.querySelector("img");
+          if (thumb) thumb.src = slide.path;
+          fig.setAttribute("data-image-index", String(imgIdx));
         });
 
         tabsEl.addEventListener("scroll", updateTabIndicator, {

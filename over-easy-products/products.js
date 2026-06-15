@@ -41,7 +41,6 @@ window.OVER_EASY_CATALOG = {
         "Self-defense you can wear to dinner. Glossy patent pumps with tungsten-tipped " +
         "points at heel and toe — as sexy on the dance floor as they are useful when " +
         "someone needs a very direct lesson in boundaries.",
-      badge: "Fashion",
     },
     {
       id: "eunuchcorn-denim",
@@ -66,7 +65,6 @@ window.OVER_EASY_CATALOG = {
       sizeOptions: [
         { id: "arch", label: "Eunuch arch", options: [{ value: "high", label: "High-slung eunuch arch" }, { value: "medium", label: "Medium eunuch arch" }, { value: "low", label: "Low-slung eunuch arch" }] },
       ],
-      badge: "Fashion",
     },
     {
       id: "cherry-pop-album",
@@ -94,7 +92,29 @@ window.OVER_EASY_CATALOG = {
           "CD jewel case and vinyl sleeve editions",
           "Parental advisory: obvious if you've heard a track",
       ],
-      badge: "Music",
+    },
+    {
+      id: "gonadal-integrity-poster",
+      category: "media",
+      name: "Comparative Gonadal Integrity Poster",
+      model: "OET-GIP-24",
+      image:
+        "../assets/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_realistic_v1.png",
+      images: [
+        { path: "../assets/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_realistic_v1.png", caption: "Current edition — full-color anatomical plate" },
+        { path: "../assets/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_v1.png", caption: "Vintage edition — sepia medical engraving" },
+      ],
+      tagline:
+        "Before. After. On your wall.",
+      description:
+        "For the classy, intellectual castratrix, or just any woman who wants to learn " +
+        "about the specifics of his testicular organs. Shows a testicle before and " +
+        "after its rupture, in full-color or sepia editions. Custom posters available; " +
+        "make sure to book your appointment with an OverEasy sales representative to " +
+        "coincide with when you plan on popping him.",
+      sizeOptions: [
+        { id: "edition", label: "Edition", options: [{ value: "full-color", label: "Full-color anatomical plate", imageIndex: 0 }, { value: "sepia", label: "Vintage sepia medical engraving", imageIndex: 1 }, { value: "custom", label: "Custom printed photorealistic copy (requires booking a home visit from an OverEasy sales representative to meet the unlucky boyfriend or husband)", disabled: true }] },
+      ],
     },
     {
       id: "biopsy-gun",
@@ -109,7 +129,6 @@ window.OVER_EASY_CATALOG = {
         "Hospital-grade core instrument from our discontinued medical line. Pistol " +
         "grip, angled coring needle, and a graduated collection vial. #1 testicular " +
         "core sampler on the market. Vial detaches for recreational usage.",
-      badge: "Medical",
     },
     {
       id: "bleach-wipes",
@@ -131,7 +150,6 @@ window.OVER_EASY_CATALOG = {
       sizeOptions: [
         { id: "pack-size", label: "Pack size", options: [{ value: "purse", label: "30-count purse-sized pack" }, { value: "home", label: "1,000-count home usage" }, { value: "bulk", label: "50,000-count bulk sterilization commercial packs" }] },
       ],
-      badge: "Hygiene",
     },
     {
       id: "onenut-cup",
@@ -150,7 +168,6 @@ window.OVER_EASY_CATALOG = {
         { id: "orientation", label: "Orientation", options: [{ value: "left", label: "Leftie" }, { value: "right", label: "Rightie" }] },
         { id: "cup-size", label: "Cup size", options: [{ value: "xxxs", label: "XXXS" }, { value: "xxs", label: "XXS" }, { value: "xs", label: "XS" }, { value: "s", label: "S" }, { value: "m", label: "M" }, { value: "l", label: "L" }, { value: "xl", label: "XL" }] },
       ],
-      badge: "Protection",
     },
     {
       id: "testicular-implants",
@@ -165,11 +182,10 @@ window.OVER_EASY_CATALOG = {
         "Lost something precious? These cosmetic replacements restore the outline — and " +
         "absolutely nothing else. No hormones. No fertility. No sensation. Just a " +
         "convincingly full profile for the man who wants to pretend he's still packing " +
-        "while everyone who knows him smirks.",
+        "heat.",
       sizeOptions: [
         { id: "implant-size", label: "Implant size", options: [{ value: "xxxs", label: "XXXS" }, { value: "xxs", label: "XXS" }, { value: "xs", label: "XS" }, { value: "s", label: "S", soldOut: true }, { value: "m", label: "M", soldOut: true }, { value: "l", label: "L", soldOut: true }] },
       ],
-      badge: "Cosmetic",
     },
     {
       id: "sterilizer",
@@ -193,7 +209,6 @@ window.OVER_EASY_CATALOG = {
           "Angled prods for precise below-the-belt contact",
           "Model CBT-22120",
       ],
-      badge: "Self Defense",
     },
     {
       id: "nutcracker",
@@ -215,7 +230,6 @@ window.OVER_EASY_CATALOG = {
           "Tapered impact head",
           "Keychain attachment for everyday carry",
       ],
-      badge: "EDC",
     },
     {
       id: "studclamp",
@@ -233,7 +247,6 @@ window.OVER_EASY_CATALOG = {
       sizeOptions: [
         { id: "pairing", label: "Configuration", options: [{ value: "one", label: "One-nut" }, { value: "two", label: "Two-nut" }, { value: "three", label: "Three-nut — contact Over Easy directly (we'd really like to meet him!)", soldOut: true }] },
       ],
-      badge: "Interrogation",
     },
     {
       id: "auto-milker",
@@ -259,17 +272,14 @@ window.OVER_EASY_CATALOG = {
       sizeOptions: [
         { id: "sleeve-fit", label: "Sleeve fit", options: [{ value: "micro", label: "1–3\" erections (micropenis)" }, { value: "below-avg", label: "3–5\" erections (below average)" }, { value: "average", label: "5–7\" erections (average)" }, { value: "above-avg", label: "7–9\" erections (slightly above average)" }, { value: "preference", label: "9–11\" erections (standard female preference)" }] },
       ],
-      badge: "Security",
     },
     {
       id: "strapon",
       category: "sex-toys",
       name: "'Selfish Bitch' Strap-On System",
-      model: "OET-SS-PRO",
+      model: "OET-SB-PRO",
       image:
         "../assets/scenes/andrea_and_lucas/overeasy_strapon_device_v3.png",
-      tagline:
-        "Heavy hardware. Total control.",
       description:
         "With its dual-ended piezoreactive automechanical architecture, this strap-on " +
         "lets you feel everything he feels when you're inside him. Osmium filled false " +
@@ -281,7 +291,58 @@ window.OVER_EASY_CATALOG = {
           "and pleasure",
           "Extra dense false testicles for heft and impact",
       ],
-      badge: "Premium",
+    },
+    {
+      id: "reactive-buttplug",
+      category: "sex-toys",
+      name: "Reactive Prostate Plug™",
+      model: "OET-RPP-1",
+      image:
+        "../assets/scenes/andrea_and_lucas/overeasy_reactive_prostate_plug_device_v1.png",
+      tagline:
+        "It learns what he's trying to hide.",
+      description:
+        "Not your normal plug. Over Easy's reactive architecture reads his resistance " +
+        "and answers it — expanding, contracting, thrusting, and finding his prostate " +
+        "whether he cooperates or not. The harder he tries to push it out, the harder " +
+        "it pushes in. Trained for hands-free control while you watch him squirm.",
+      features: [
+          "Telescopic segmented shaft adapts in real time to movement and arousal",
+          "Reactive mode doubles thrust and pressure when he resists",
+          "Rhythm breaks, speeds up, and slows down to keep him guessing",
+      ],
+    },
+    {
+      id: "ball-cuff",
+      category: "sex-toys",
+      name: "Ball Cuff™",
+      model: "OET-BCF-1",
+      image:
+        "../assets/scenes/andrea_and_lucas/overeasy_ball_cuff_device_v2.png",
+      images: [
+        { path: "../assets/scenes/andrea_and_lucas/overeasy_ball_cuff_device_v2.png", caption: "Ball Cuff™ — deep-profile ring" },
+        { path: "../assets/scenes/andrea_and_lucas/lucas_hyperspermia_scrotum_textbook_diagram_v1.png", caption: "Sizing reference — hyperactive testicular disorder (hyperspermia)" },
+      ],
+      tagline:
+        "Stretch him out. Pin him down.",
+      description:
+        "Thick rubber ring made of ultra-dense silicone composite, designed to keep him " +
+        "packaged up nice and tight for your pleasure.",
+    },
+    {
+      id: "ball-anvil",
+      category: "sex-toys",
+      name: "Ball Anvil™",
+      model: "OET-BA-1",
+      image:
+        "../assets/scenes/andrea_and_lucas/overeasy_ball_anvil_device_v1.png",
+      description:
+        "For the woman who wants to forge a new connection with her man and hammer home " +
+        "who's in charge. Our commercial Ball Anvil™ upgrades the popular open-source " +
+        "design into injection-molded black plastic with twin oval wells — sized so his " +
+        "fragile lumps of ore can spread flat beneath you while you ride him. Each well " +
+        "centers a polished steel bolt point and a blood-red heart that marks exactly " +
+        "where the hammer falls.",
     },
     {
       id: "luna-identity-arm",
@@ -305,19 +366,40 @@ window.OVER_EASY_CATALOG = {
         "laser and a prehensile steel thread that finds exactly what verification " +
         "requires.",
       features: [
-          "Telescoping multi-joint arm — near-science-fiction articulation zigzags " +
-          "wherever verification requires",
-          "Feminine pass mode: UPC-style scanner head with green-lit ring — sub-second " +
-          "identity retrieval, minimally invasive",
-          "Male escort mode: six-fingered articulated grip, red audit ring, forearm " +
-          "laser emitter, and snaking prehensile steel thread",
-          "Luna™ voice assistant manages credentials, clearance tiers, and " +
+          "Telescoping multi-joint arm — articulation allows verification on groins of " +
+          "all sizes and heights",
+          "Female identification mode: sub-second identity retrieval, minimally " +
+          "invasive",
+          "Male identification mode: six-fingered articulated grip, carbon nanofiber " +
+          "auditing needle, and cauterization laser ensure a full testicular audit for " +
+          "your organization's safety",
+          "On-board Luna™ AI voice assistant manages credentials, clearance tiers, and " +
           "uncomfortable follow-up questions",
-          "Reconfigures from scanner to below-the-belt audit in under two seconds",
-          "Institutional install kit for elevators, vault doors, and private suites",
-          "Model OET-LIA-1",
+          "Reconfigures from vaginal scanner to testicular auditor in under two seconds",
       ],
-      badge: "Security",
+    },
+    {
+      id: "male-containment-chip",
+      category: "discipline",
+      name: "Male Containment Chip™",
+      model: "OET-MC-1",
+      image:
+        "../assets/scenes/andrea_and_lucas/overeasy_male_containment_chip_remote_device_v1.png",
+      tagline:
+        "Dial his focus. Watch him learn.",
+      description:
+        "Corporate discipline for the male employee who kept a testicle and still " +
+        "cannot behave. A microchip implanted deep in the surviving gland — you'll feel " +
+        "it every day — pairs with a manager-issue white remote and five graduated " +
+        "correction levels. From a reminder tick to something smoky enough to clear the " +
+        "office.",
+      features: [
+          "Sub-dermal implant — company property, recovered on termination",
+          "Manager remote: levels 0–5 disciplinary burn and scar settings",
+          "Male Containment department install and calibration",
+          "Pairs with corporate chastity policy for complete below-the-belt compliance",
+          "Level 5 reserved for serious infractions — you'll know if she meant it",
+      ],
     }
   ],
 };

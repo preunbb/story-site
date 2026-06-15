@@ -139,6 +139,8 @@ function formatSizeOptions(sizeOptions) {
           `label: ${JSON.stringify(opt.label)}`,
         ];
         if (opt.soldOut) parts.push("soldOut: true");
+        if (opt.disabled) parts.push("disabled: true");
+        if (opt.imageIndex != null) parts.push(`imageIndex: ${opt.imageIndex}`);
         return `{ ${parts.join(", ")} }`;
       })
       .join(", ");

@@ -72,6 +72,54 @@ export const PRODUCT_HINTS = {
       "assets/scenes/andrea_and_lucas/overeasy_strapon_device_v3.png",
     ],
   },
+  "ball-anvil": {
+    kind: "device",
+    category: "sex-toys",
+    badge: "Premium",
+    displayName: "Ball Anvil™",
+    model: "OET-BA-1",
+    imageNotes:
+      "Rectangular matte-black injection-molded plastic slab, twin oval depressions with polished steel pointed bolts centered in each, blood-red heart graphics around bolts, Over Easy egg logo embossed on edge.",
+    referenceAssets: [
+      "assets/scenes/andrea_and_lucas/overeasy_ball_anvil_device_v1.png",
+    ],
+  },
+  "reactive-buttplug": {
+    kind: "device",
+    category: "sex-toys",
+    badge: "Premium",
+    displayName: "Reactive Prostate Plug™",
+    model: "OET-RPP-1",
+    imageNotes:
+      "Matte black telescopic segmented butt plug, reactive sex-tech aesthetic, LED ring at base, Over Easy egg logo on cap.",
+    referenceAssets: [
+      "assets/scenes/andrea_and_lucas/overeasy_reactive_prostate_plug_device_v1.png",
+    ],
+  },
+  "ball-cuff": {
+    kind: "device",
+    category: "sex-toys",
+    badge: "Accessory",
+    displayName: "Ball Cuff™",
+    model: "OET-BCF-1",
+    imageNotes:
+      "Thick charcoal grey rubber scrotal ring, bull-and-lasso cartoon stamp on outer surface, Over Easy egg logo.",
+    referenceAssets: [
+      "assets/scenes/andrea_and_lucas/overeasy_ball_cuff_device_v2.png",
+    ],
+  },
+  "male-containment-chip": {
+    kind: "device",
+    category: "discipline",
+    badge: "Corporate",
+    displayName: "Male Containment Chip™",
+    model: "OET-MC-1",
+    imageNotes:
+      "Tiny silver microchip on sterile card plus white corporate remote with 0–5 level dial, OVER EASY TECHNOLOGIES branding.",
+    referenceAssets: [
+      "assets/scenes/andrea_and_lucas/overeasy_male_containment_chip_remote_device_v1.png",
+    ],
+  },
   "auto-milker": {
     kind: "device",
     category: "discipline",
@@ -144,6 +192,20 @@ export const PRODUCT_HINTS = {
       "assets/scenes/andrea_and_lucas/cherry_pop_album_cover_plum_dumb_mush_pit_ch08_11_v1.png",
     ],
   },
+  "gonadal-integrity-poster": {
+    kind: "media",
+    category: "media",
+    badge: "Decor",
+    displayName: "Comparative Gonadal Integrity Poster",
+    model: "OET-GIP-24",
+    imageNotes:
+      "Framed wall poster — two catalog editions: (1) current full-color realistic cross-section plate with labeled margins; (2) vintage sepia medical engraving. Black frame, white studio product shot.",
+    referenceAssets: [
+      "assets/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_realistic_v1.png",
+      "assets/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_v1.png",
+      "assets/brands/crushed_testicles_xray_crosssection_v3_reference_plate.png",
+    ],
+  },
   "luna-identity-arm": {
     kind: "device",
     category: "discipline",
@@ -212,6 +274,11 @@ const SLUG_ALIASES = {
   ballcracker: "nutcracker",
   "semen-extractor": "auto-milker",
   luna: "luna-identity-arm",
+  "reactive-prostate-plug": "reactive-buttplug",
+  "reactive-butt-plug": "reactive-buttplug",
+  "ball-cuff": "ball-cuff",
+  "male-containment": "male-containment-chip",
+  microchip: "male-containment-chip",
 };
 
 /** @param {string} slug */
