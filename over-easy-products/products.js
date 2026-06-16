@@ -169,7 +169,7 @@ window.OVER_EASY_CATALOG = {
       name: "Hypersecretory Disorder Clinical Poster",
       model: "OET-HSD-24",
       image:
-        "../assets/scenes/andrea_and_lucas/lucas_hyperspermia_scrotum_textbook_diagram_v1.png",
+        "../assets/scenes/andrea_and_lucas/lucas_hyperspermia_scrotum_textbook_diagram_v2.png",
       description:
         "Vintage textbook plate illustrating the effects of 'hypersecreetary disorder', an antiquated" +
         "name for what doctors now call 'hyperactive testicular disorder'. A great gift for the " +
@@ -410,7 +410,7 @@ window.OVER_EASY_CATALOG = {
       category: "sex-toys",
       name: "'Selfish Bitch' Strap-On System",
       model: "OET-SB-PRO",
-      image: "../assets/scenes/andrea_and_lucas/overeasy_strapon_device_v4.png",
+      image: "../assets/scenes/andrea_and_lucas/overeasy_strapon_device_v5.png",
       description:
         "With its dual-ended piezoreactive automechanical architecture, this strap-on " +
         "lets you feel everything he feels when you're inside him. Osmium filled false " +
