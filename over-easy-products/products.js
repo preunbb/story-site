@@ -428,11 +428,11 @@ window.OVER_EASY_CATALOG = {
     {
       id: "reactive-buttplug",
       category: "sex-toys",
-      name: "Reactive Prostate Plug™",
+      name: "'Broken Boy' Reactive Prostate Plug™",
       model: "OET-RPP-1",
       image:
         "../assets/scenes/andrea_and_lucas/overeasy_reactive_prostate_plug_device_v1.png",
-      tagline: "Break him. Buttplug him. Force him to cum.",
+      tagline: "Break him. Plug him. Make him cum the hard way.",
       description:
         "Not your normal plug. Over Easy's reactive architecture reads his resistance " +
         "and answers it — expanding, contracting, thrusting, and finding his sensitive " +
