@@ -88,7 +88,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "bronze-trophy-earrings",
       category: "fashion",
-      name: "Bronze Trophy Earrings™",
+      name: "`Nevermore` Custom-Made Bronze Keepsake Earrings™",
       model: "OET-BTE-1",
       image:
         "../assets/scenes/one_night_stand/overeasy_bronze_testicle_earrings_v1.png",
