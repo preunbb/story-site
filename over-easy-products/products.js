@@ -415,10 +415,10 @@ window.OVER_EASY_CATALOG = {
         "With its dual-ended piezoreactive automechanical architecture, this strap-on " +
         "lets you feel everything he feels when you're inside him. Osmium filled false " +
         "balls hang below to pound his sensitive manhood to mush as you rearrange his " +
-        "guts, and the internal g-spot bulb keeps you locked in and cumming even when " +
+        "guts, and the internal g-spot stimulator keeps you locked in and cumming even when " +
         "you're pummelling his prostate.",
       features: [
-        "Dual-ended: external shaft plus internal g-spot bulb for wearer stability " +
+        "Dual-ended: external shaft plus internal g-spot stimulator for wearer stability " +
           "and pleasure",
         "Extra dense false testicles for heft and impact",
       ],
