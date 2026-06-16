@@ -171,11 +171,9 @@ window.OVER_EASY_CATALOG = {
       image:
         "../assets/scenes/andrea_and_lucas/lucas_hyperspermia_scrotum_textbook_diagram_v1.png",
       description:
-        "Full-color textbook plate illustrating hyperactive testicular disorder " +
-        "(clinical hyperspermia): enlarged, hyperproductive glands with annotated " +
-        "cross-sections, volume benchmarks, and cord stress tolerances. Standard issue " +
-        "in Over Easy partner clinics and recommended wall art for any woman dating a " +
-        "man who insists he has this mythical condition.",
+        "Vintage textbook plate illustrating the effects of 'hypersecreetary disorder', an antiquated" +
+        "name for what doctors now call 'hyperactive testicular disorder'. A great gift for the " +
+        "man who insists he has this mythical condition .",
     },
     {
       id: "biopsy-gun",
@@ -412,7 +410,7 @@ window.OVER_EASY_CATALOG = {
       category: "sex-toys",
       name: "'Selfish Bitch' Strap-On System",
       model: "OET-SB-PRO",
-      image: "../assets/scenes/andrea_and_lucas/overeasy_strapon_device_v3.png",
+      image: "../assets/scenes/andrea_and_lucas/overeasy_strapon_device_v4.png",
       description:
         "With its dual-ended piezoreactive automechanical architecture, this strap-on " +
         "lets you feel everything he feels when you're inside him. Osmium filled false " +
