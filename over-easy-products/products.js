@@ -328,7 +328,7 @@ window.OVER_EASY_CATALOG = {
       model: "OET-SS-1",
       image:
         "../assets/scenes/andrea_and_lucas/overeasy_shell_shaker_device_v1.png",
-      tagline: "Resonance he won't forget.",
+      tagline: "Really resonates with a lot of boys.",
       description:
         "Sleek palm-sized orb that emits focused subsonic pulses. With vibration " +
         "frequency precisely tuned to the exact resonant frequency of testicular " +
