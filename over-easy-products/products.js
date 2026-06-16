@@ -440,15 +440,15 @@ window.OVER_EASY_CATALOG = {
         "it out, the harder it pushes in. Trained for hands-free control while you " +
         "watch him squirm and leak.",
       features: [
-        "Telescopic segmented shaft adapts in real time to movement and arousal",
-        "Reactive mode doubles thrust and pressure when he resists",
-        "Rhythm breaks, speeds up, and slows down to keep him guessing",
+        "Telescopic segmented shaft adapts in real time to the shape of his asshole",
+        "Reactive mode doubles thrust and prostatic pressure when he resists",
+        "Rhythm breaks, speeds up, and slows down to keep him guessing and leaking semen",
       ],
     },
     {
       id: "ball-cuff",
       category: "sex-toys",
-      name: "Ball Cuff™",
+      name: "'Choking Bull' Ball Cuff™",
       model: "OET-BCF-1",
       image:
         "../assets/scenes/andrea_and_lucas/overeasy_ball_cuff_device_v2.png",
