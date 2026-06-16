@@ -452,7 +452,7 @@ window.OVER_EASY_CATALOG = {
       model: "OET-BCF-1",
       image:
         "../assets/scenes/andrea_and_lucas/overeasy_ball_cuff_device_v2.png",
-      tagline: "Stretch him out. Pin him down.",
+      tagline: "Streeeeeeeetch him out!",
       description:
         "Thick rubber ring made of ultra-dense silicone composite, designed to keep him " +
         "packaged up nice and tight for your pleasure.",
@@ -468,7 +468,8 @@ window.OVER_EASY_CATALOG = {
         "For the woman who wants to forge a new connection with her man and hammer home " +
         "who's in charge. Our commercial Ball Anvil™ upgrades the popular open-source " +
         "design into injection-molded black plastic with twin oval wells — sized so his " +
-        "fragile lumps of ore can spread flat beneath you while you pound them with your cheeks.",
+        "fragile lumps of ore have enough room to spread flat between your cheeks, but " +
+        "are still kept in place so the can't escape the points beneath.",
     },
     {
       id: "luna-identity-arm",
