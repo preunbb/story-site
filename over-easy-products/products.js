@@ -172,7 +172,7 @@ window.OVER_EASY_CATALOG = {
         "../assets/scenes/andrea_and_lucas/lucas_hyperspermia_scrotum_textbook_diagram_v2.png",
       description:
         "Vintage textbook plate illustrating the effects of 'hypersecreetary disorder', " +
-        "an antiquatedname for what doctors now call 'hyperactive testicular disorder'. " +
+        "an antiquated name for what doctors now call 'hyperactive testicular disorder'. " +
         "A great gift for the man who insists he has this mythical condition .",
     },
     {
@@ -471,7 +471,7 @@ window.OVER_EASY_CATALOG = {
         "who's in charge. Our commercial Ball Anvil™ upgrades the popular open-source " +
         "design into injection-molded black plastic with twin oval wells — sized so his " +
         "fragile lumps of ore have enough room to spread flat between your cheeks, but " +
-        "are still kept in place so the can't escape the points beneath.",
+        "are still kept in place so he can't escape the points beneath.",
     },
     {
       id: "luna-identity-arm",
