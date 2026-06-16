@@ -343,7 +343,7 @@ window.OVER_EASY_CATALOG = {
       model: "OET-SC-1",
       image:
         "../assets/scenes/andrea_and_lucas/overeasy_studclamp_device_v2.png",
-      tagline: "Dial the pressure. Watch the readout.",
+      tagline: "Squeeze it out of him.",
       description:
         "Matte-black precision clamp with polished steel disc pads and app-connected " +
         "compression control. Perfect for extracting information and confessions from " +
