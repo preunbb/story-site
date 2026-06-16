@@ -80,7 +80,7 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Solid opaque matte-black rubber harness, heavy stiff false balls, minimal leather straps, internal g-spot bulb visible from angle, leather scrotum tether cuff, Over Easy logo. NO cutaway.",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/overeasy_strapon_device_v3.png",
+      "assets/scenes/andrea_and_lucas/overeasy_strapon_device_v10.png",
     ],
   },
   "ball-anvil": {
