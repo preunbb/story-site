@@ -38,15 +38,16 @@ export const PRODUCT_HINTS = {
       "assets/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
     ],
   },
-  "shell-shaker": {
+  "bell-ringer": {
     kind: "device",
     category: "self-defense",
-    displayName: "Shell Shaker™",
-    model: "OET-SS-1",
+    badge: "Self Defense",
+    displayName: "BellRinger™",
+    model: "OET-BR-1",
     imageNotes:
-      "Sleek matte-black spherical orb, palm-sized, a few pulsing glowing cyan-orange light lines arcing across the surface like sonar rings. Subtle vibration haze. Small power ring at equator. SHELL SHAKER label. Over Easy raw-egg pictogram embossed on one hemisphere.",
+      "Matte-black sphere same diameter as US quarter, quarter coin beside it for scale, white background. Cyan-orange sonar-ring glow bands, equator seam, top power ring. No labels or logos on device.",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
+      "assets/scenes/andrea_and_lucas/overeasy_bell_ringer_device_v1.png",
     ],
   },
   "ball-killers": {
@@ -58,6 +59,31 @@ export const PRODUCT_HINTS = {
       "Shiny black patent heel pair, blood-red soles, 'ball' and 'killer' in bright red on each shoe, tungsten-capped points at heel and toe.",
     referenceAssets: [
       "assets/scenes/andrea_and_lucas/overeasy_ball_killers_heels_v1.png",
+    ],
+  },
+  "bronze-trophy-earrings": {
+    kind: "fashion",
+    category: "fashion",
+    badge: "Fashion",
+    displayName: "Bronze Trophy Earrings™",
+    model: "OET-BTE-1",
+    imageNotes:
+      "Pair of antiqued bronze dangle earrings on black velvet stand, white background. Each drop charm shaped like a testicle orb with asymmetric form and fine etched vein-map paths. Bronze hook wires.",
+    referenceAssets: [
+      "assets/scenes/one_night_stand/overeasy_bronze_testicle_earrings_v1.png",
+    ],
+  },
+  "church-broken-tree-pendant": {
+    kind: "fashion",
+    category: "fashion",
+    badge: "Fashion",
+    displayName: "Church of the Broken Tree Devotional Pendant",
+    model: "CBT-PND-1",
+    imageNotes:
+      "Circular pewter pendant on silver cable chain, white background. Raised relief broken-tree emblem matching church_broken_tree_emblem_v1 — trunk, roots, leafy branches, jagged broken upper branch, oxidized recess, antique silver finish.",
+    referenceAssets: [
+      "assets/brands/church_broken_tree_emblem_v1.png",
+      "assets/scenes/andrea_and_lucas/church_broken_tree_pendant_product_v1.png",
     ],
   },
   "bleach-wipes": {

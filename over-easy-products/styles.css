@@ -613,6 +613,71 @@ body.scene-lightbox-open {
   box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.45);
 }
 
+.oe-purchase-btn--disabled {
+  color: var(--oe-gray-text);
+  background: var(--oe-gray-mid);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.oe-purchase-btn--disabled:hover {
+  color: var(--oe-gray-text);
+  background: var(--oe-gray-mid);
+  transform: none;
+  box-shadow: none;
+}
+
+.oe-purchase-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.oe-purchase-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.55rem);
+  transform: translateX(-50%) translateY(4px);
+  z-index: 5;
+  width: max-content;
+  max-width: min(18rem, calc(100vw - 2rem));
+  padding: 0.55rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: normal;
+  text-transform: none;
+  text-align: center;
+  color: var(--oe-white);
+  background: var(--oe-black);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    visibility 0.15s ease;
+}
+
+.oe-purchase-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--oe-black);
+}
+
+.oe-purchase-wrap:hover .oe-purchase-tooltip,
+.oe-purchase-wrap:focus-within .oe-purchase-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
 .oe-card__features li {
   padding: 0.2rem 0 0.2rem 1rem;
   position: relative;

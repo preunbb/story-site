@@ -232,9 +232,41 @@
           return '<div class="oe-card__sizes">' + fields + "</div>";
         }
 
-        function renderPurchaseButton() {
+        function purchaseDisabledTooltip(p) {
+          if (p.purchaseDisabledTooltip) return p.purchaseDisabledTooltip;
+          const features = p.features || [];
+          if (features.length === 1) return features[0];
+          return "";
+        }
+
+        function renderPurchaseButton(p) {
           const url = brand.purchaseUrl;
           if (!url) return "";
+          if (p.purchaseDisabled) {
+            const tooltip = purchaseDisabledTooltip(p);
+            const tooltipId = tooltip
+              ? "purchase-tooltip-" + escapeHtml(p.id)
+              : "";
+            const tooltipHtml = tooltip
+              ? '<span class="oe-purchase-tooltip" id="' +
+                tooltipId +
+                '" role="tooltip">' +
+                escapeHtml(tooltip) +
+                "</span>"
+              : "";
+            const describedBy = tooltipId
+              ? ' aria-describedby="' + tooltipId + '"'
+              : "";
+            return (
+              '<div class="oe-card__actions">' +
+              '<div class="oe-purchase-wrap">' +
+              '<span class="oe-purchase-btn oe-purchase-btn--disabled" aria-disabled="true" tabindex="0"' +
+              describedBy +
+              ">Purchase</span>" +
+              tooltipHtml +
+              "</div></div>"
+            );
+          }
           return (
             '<div class="oe-card__actions">' +
             '<a class="oe-purchase-btn" href="' +
@@ -313,7 +345,7 @@
           }
           const sizes = renderSizeOptions(p);
           if (sizes) footerParts.push(sizes);
-          footerParts.push(renderPurchaseButton());
+          footerParts.push(renderPurchaseButton(p));
 
           return (
             '<article class="oe-card" id="product-' +

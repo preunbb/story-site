@@ -86,6 +86,34 @@ window.OVER_EASY_CATALOG = {
       ],
     },
     {
+      id: "bronze-trophy-earrings",
+      category: "fashion",
+      name: "Bronze Trophy Earrings™",
+      model: "OET-BTE-1",
+      image:
+        "../assets/scenes/one_night_stand/overeasy_bronze_testicle_earrings_v1.png",
+      tagline: "His loss is your gain.",
+      description:
+        "The problem with those beautiful nights of passion is that they don't last. " +
+        "Over Easy's bronzing services give you a permanent reminder of that most " +
+        "memorable moment in the life of your husband, partner, or one night stand.",
+      purchaseDisabledTooltip:
+        "Not available for purchase online - bring his jewels to your nearest " +
+        "OverEasy jewelry center to have them bronzed and set.",
+      purchaseDisabled: true,
+    },
+    {
+      id: "church-broken-tree-pendant",
+      category: "fashion",
+      name: "Church of the Broken Tree Devotional Pendant",
+      model: "CBT-PND-1",
+      image:
+        "../assets/scenes/andrea_and_lucas/church_broken_tree_pendant_product_v1.png",
+      tagline: "Wear your faith where he can see it.",
+      description:
+        "For the spiritual girl who wants a reminder of the Goddess's promise - that what hangs between his legs was never meant to last.",
+    },
+    {
       id: "cherry-pop-album",
       category: "media",
       name: "Cherry Pop! — Plum Dumb & Permanently Done",
@@ -171,9 +199,10 @@ window.OVER_EASY_CATALOG = {
       image:
         "../assets/scenes/andrea_and_lucas/lucas_hyperspermia_scrotum_textbook_diagram_v2.png",
       description:
-        "Vintage textbook plate illustrating the effects of 'hypersecreetary disorder', " +
-        "an antiquated name for what doctors now call 'hyperactive testicular disorder'. " +
-        "A great gift for the man who insists he has this mythical condition .",
+        "Vintage textbook plate illustrating the effects of 'hypersecretory disorder', " +
+        "an antiquated name for what doctors now call 'hyperactive testicular " +
+        "disorder'. A great gift for the man who insists he has this mythical condition " +
+        ".",
     },
     {
       id: "biopsy-gun",
@@ -320,17 +349,17 @@ window.OVER_EASY_CATALOG = {
       ],
     },
     {
-      id: "shell-shaker",
+      id: "bell-ringer",
       category: "self-defense",
-      name: "Shell Shaker™",
-      model: "OET-SS-1",
+      name: "BellRinger™",
+      model: "OET-BR-1",
       image:
-        "../assets/scenes/andrea_and_lucas/overeasy_shell_shaker_device_v1.png",
+        "../assets/scenes/andrea_and_lucas/overeasy_bell_ringer_device_v1.png",
       tagline: "Really resonates with a lot of boys.",
       description:
         "Sleek palm-sized orb that emits focused subsonic pulses. With vibration " +
         "frequency precisely tuned to the exact resonant frequency of testicular " +
-        "matter, one ShellShocker can keep a whole room of men on their knees until " +
+        "matter, one BellRinger can keep a whole room of men on their knees until " +
         "deactivated. Useful for defending yourself from multiple male attackers at " +
         "once, getting through long lines quickly, or just clearing some personal space " +
         "for yourself on a crowded subway.",
@@ -402,6 +431,11 @@ window.OVER_EASY_CATALOG = {
             {
               value: "preference",
               label: '9–11" erections (standard female preference)',
+            },
+            {
+              value: "valentina",
+              label:
+                "VALEN-10 AGI enabled ultra-intelligent adjustable model (NOT YET SAFE FOR PUBLIC RELEASE)",
             },
           ],
         },
