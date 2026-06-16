@@ -410,7 +410,7 @@ window.OVER_EASY_CATALOG = {
       category: "sex-toys",
       name: "'Selfish Bitch' Strap-On System",
       model: "OET-SB-PRO",
-      image: "../assets/scenes/andrea_and_lucas/overeasy_strapon_device_v6.png",
+      image: "../assets/scenes/andrea_and_lucas/overeasy_strapon_device_v8.png",
       description:
         "With its dual-ended piezoreactive automechanical architecture, this strap-on " +
         "lets you feel everything he feels when you're inside him. Osmium filled false " +
