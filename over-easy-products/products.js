@@ -357,14 +357,10 @@ window.OVER_EASY_CATALOG = {
             "Contour Restoration Inserts™ — cosmetic silicone, display use only.",
         },
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_contour_restoration_inserts_xxxs_wearing_v1.png",
+          path: "../assets/scenes/andrea_and_lucas/overeasy_contour_restoration_inserts_xxxs_model_v1.png",
           caption:
-            "XXXS restores the outline. Barely. He knows the difference — and so will anyone who looks twice.",
-        },
-        {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_contour_restoration_inserts_xxxs_saleswoman_demo_v4.png",
-          caption:
-            "Our fitting specialists know how to highlight your best features — even when there isn't much to work with.",
+            "Model fit — our specialists know how to highlight your best features, even " +
+            "when there isn't much to work with.",
         },
       ],
       tagline: "Look the part. Feel nothing.",
