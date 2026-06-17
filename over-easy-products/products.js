@@ -26,7 +26,7 @@ window.OVER_EASY_CATALOG = {
     { id: "discipline", label: "Discipline & Security" },
     { id: "sex-toys", label: "Sex Toys" },
     { id: "kitchen-gadgets", label: "Kitchen Gadgets" },
-    { id: "skill-training", label: "Skill Training" },
+    { id: "skill-training", label: "Skill Training", hidden: true },
   ],
 
   products: [
@@ -137,7 +137,7 @@ window.OVER_EASY_CATALOG = {
         {
           path: "../assets/scenes/one_night_stand/overeasy_nevermore_keepsakes_two_pairs_men_cringing_v1.png",
           caption:
-            "When you've got two beaus you can't decide between - ask them both for their Keepsakes and see which one is more devoted. And iff they're BOTH truly in love with you, that extra pair can make fantastic white elephant gifts for your girlfriends.",
+            "When you've got two beaus you can't decide between - ask them both for their Keepsakes and see which one is more devoted. And if they're BOTH truly in love with you, that extra pair can make a fantastic white elephant gifts for your girlfriends.",
         },
       ],
       tagline: "His loss is your gain.",
