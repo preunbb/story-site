@@ -1,7 +1,7 @@
 /**
  * Over Easy Technologies — product catalog config
  *
- * Edit this file to change copy, images, features, or add/remove products.
+ * Edit this file to change copy, images, features, setlist, or add/remove products.
  * This is the single source of truth for catalog copy — oe-product tooling reads from here.
  * Paths are relative to over-easy-products/index.html
  *
@@ -139,6 +139,11 @@ window.OVER_EASY_CATALOG = {
           caption:
             "When you've got two beaus you can't decide between - ask them both for their Keepsakes and see which one is more devoted. And if they're BOTH truly in love with you, that extra pair can make a fantastic white elephant gifts for your girlfriends.",
         },
+        {
+          path: "../assets/scenes/one_night_stand/overeasy_nevermore_keepsakes_two_friends_chatting_v2.png",
+          caption:
+            "Pendant Nevermores™ available when your lover has a little less (or more!) to donate.",
+        },
       ],
       tagline: "His loss is your gain.",
       description:
@@ -193,6 +198,19 @@ window.OVER_EASY_CATALOG = {
         "from their show at Brokeberry Mall. With microphones beneath every panel of " +
         "the dance floor, every pop and squick from the band's most legendary mush pit " +
         "is captured in perfect audio fidelity. Available on CD and vinyl.",
+      setlist: [
+        "Crushed to Bits",
+        "The Leafless Tree",
+        "Shredded Seed",
+        "CRUNCH. POP. SQUICK. DEFEAT.",
+        "Plum Dumb and Permanently Done",
+        "You Only Need One!",
+        "What's Yours is Mine, What's Mine is Mine",
+        "So Easy to Break",
+        "I Know Why the Caged Cock Leaks (spoken word)",
+        "You Don't Even Need One (remix)!",
+        "We've Both Split Up Now",
+      ],
       features: ["Parental advisory: Explicit Content"],
     },
     {
@@ -345,6 +363,23 @@ window.OVER_EASY_CATALOG = {
       model: "OET-TI-2",
       image:
         "../assets/scenes/andrea_and_lucas/overeasy_testicular_implants_v2.png",
+      images: [
+        {
+          path: "../assets/scenes/andrea_and_lucas/overeasy_testicular_implants_v2.png",
+          caption:
+            "Contour Restoration Inserts™ — cosmetic silicone, display use only.",
+        },
+        {
+          path: "../assets/scenes/andrea_and_lucas/overeasy_contour_restoration_inserts_xxxs_wearing_v1.png",
+          caption:
+            "XXXS restores the outline. Barely. He knows the difference — and so will anyone who looks twice.",
+        },
+        {
+          path: "../assets/scenes/andrea_and_lucas/overeasy_contour_restoration_inserts_xxxs_saleswoman_demo_v4.png",
+          caption:
+            "Our fitting specialists know how to highlight your best features — even when there isn't much to work with.",
+        },
+      ],
       tagline: "Look the part. Feel nothing.",
       description:
         "Lost something precious? These cosmetic replacements restore the outline — and " +

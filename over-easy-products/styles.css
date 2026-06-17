@@ -558,6 +558,37 @@ body.scene-lightbox-open {
   color: #a8a8a4;
 }
 
+.oe-card__setlist {
+  border-top: 1px solid var(--oe-gray-mid);
+  padding-top: 0.75rem;
+}
+
+.oe-card__setlist-label {
+  margin: 0 0 0.45rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--oe-gray-text);
+}
+
+.oe-card__setlist-tracks {
+  margin: 0;
+  padding: 0 0 0 1.35rem;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--oe-gray-text);
+}
+
+.oe-card__setlist-tracks li {
+  padding: 0.12rem 0;
+}
+
+.oe-card__setlist-tracks li::marker {
+  color: var(--oe-yolk-dark);
+  font-weight: 600;
+}
+
 .oe-card__features {
   margin: 0;
   padding: 0;

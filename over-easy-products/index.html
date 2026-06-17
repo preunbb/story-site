@@ -333,6 +333,25 @@
           );
         }
 
+        function renderSetlist(p) {
+          const tracks = p.setlist || [];
+          if (!tracks.length) return "";
+
+          const items = tracks
+            .map(function (title) {
+              return "<li>" + escapeHtml(title) + "</li>";
+            })
+            .join("");
+
+          return (
+            '<div class="oe-card__setlist">' +
+            '<p class="oe-card__setlist-label">Setlist</p>' +
+            '<ol class="oe-card__setlist-tracks">' +
+            items +
+            "</ol></div>"
+          );
+        }
+
         function renderCard(p) {
           const features = (p.features || [])
             .map(function (f) {
@@ -341,6 +360,8 @@
             .join("");
 
           const footerParts = [];
+          const setlist = renderSetlist(p);
+          if (setlist) footerParts.push(setlist);
           if (features) {
             footerParts.push(
               '<ul class="oe-card__features">' + features + "</ul>",
