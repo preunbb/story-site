@@ -107,7 +107,7 @@ window.OVER_EASY_CATALOG = {
       images: [
         {
           path: "../assets/scenes/one_night_stand/overeasy_bronze_testicle_earrings_v1.png",
-          caption: "Every pair of Nevermore™ Keepsakes is completely unique",
+          caption: "Every pair of Nevermore™ Keepsakes is completely unique.",
         },
         {
           path: "../assets/asdf.png",
@@ -377,6 +377,23 @@ window.OVER_EASY_CATALOG = {
       model: "CBT-22120",
       image:
         "../assets/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
+      images: [
+        {
+          path: "../assets/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
+          caption:
+            "Sterilizer™ CBT-22120 — angled prods, three-setting voltage selector",
+        },
+        {
+          path: "../assets/scenes/andrea_and_lucas/overeasy_sterilizer_crosssection_voltage_graded_v3.png",
+          caption:
+            "Voltage-graded injury — LOW, MEDIUM, and HIGH, with cross-sections to show the devastating internal effects.",
+        },
+        {
+          path: "../assets/scenes/andrea_and_lucas/overeasy_sterilizer_crosssection_voltage_graded_v2_schematic.png",
+          caption:
+            "Voltage-graded gonadal injury — vintage sepia medical plate (FIG. 14)",
+        },
+      ],
       tagline: "One zap. Zero kids.",
       description:
         "The first personal taser engineered to fit exactly where he's most vulnerable. " +
@@ -402,9 +419,14 @@ window.OVER_EASY_CATALOG = {
             "Ballcracker™ OET-BC-1 — brushed steel, ribbed grip, keychain-ready",
         },
         {
+          path: "../assets/scenes/andrea_and_lucas/overeasy_ballcracker_crosssection_dual_mode_v3.png",
+          caption:
+            "Dual-mode mechanism — tapered impact vs. pneumatic actuator (full-color sagittal cross-section)",
+        },
+        {
           path: "../assets/scenes/andrea_and_lucas/overeasy_ballcracker_crosssection_pneumatic_epididymis_v2_schematic.png",
           caption:
-            "Dual-mode trauma mechanism — tapered impact head vs. pneumatic epididymis actuator (sagittal cross-section)",
+            "In-depth trauma mechanism - subtly crack him open by hand, or pop him instantly",
         },
       ],
       tagline: "Pocket-sized permanence.",
@@ -425,6 +447,22 @@ window.OVER_EASY_CATALOG = {
       model: "OET-BR-1",
       image:
         "../assets/scenes/andrea_and_lucas/overeasy_bell_ringer_device_v1.png",
+      images: [
+        {
+          path: "../assets/scenes/andrea_and_lucas/overeasy_bell_ringer_device_v1.png",
+          caption:
+            "BellRinger™ OET-BR-1 — palm-sized subsonic resonator, blue/orange field indicators",
+        },
+        {
+          path: "../assets/scenes/andrea_and_lucas/overeasy_bell_ringer_resonant_field_poster_realistic_v1.png",
+          caption:
+            "Resonant field effects — full-color area-of-effect plate (sympathetic parenchymal oscillation)",
+        },
+        {
+          path: "../assets/scenes/andrea_and_lucas/overeasy_bell_ringer_resonant_field_poster_vintage_v1.png",
+          caption: "Subsonic resonance — vintage sepia medical plate (FIG. 16)",
+        },
+      ],
       tagline: "Really resonates with a lot of boys.",
       description:
         "Sleek palm-sized orb that emits focused subsonic pulses. With vibration " +
@@ -442,6 +480,18 @@ window.OVER_EASY_CATALOG = {
       model: "OET-SC-1",
       image:
         "../assets/scenes/andrea_and_lucas/overeasy_studclamp_device_v2.png",
+      images: [
+        {
+          path: "../assets/scenes/andrea_and_lucas/overeasy_studclamp_device_v2.png",
+          caption:
+            "StudClamp™ OET-SC-1 — matte-black C-clamp, polished steel disc pads, app-connected compression",
+        },
+        {
+          path: "../assets/scenes/andrea_and_lucas/overeasy_gonadal_integrity_intact_studclamp_flattened_crosssection_v1.png",
+          caption:
+            "Artist's rendition of another successful interrogation using the StudClamp™.",
+        },
+      ],
       tagline: "Squeeze it out of him.",
       description:
         "Matte-black precision clamp with polished steel disc pads and app-connected " +
@@ -592,6 +642,11 @@ window.OVER_EASY_CATALOG = {
         {
           path: "../assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_audit_mode_v4.png",
           caption: "Male escort mode — six-finger audit hand",
+        },
+        {
+          path: "../assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_audit_crosssection_clinical_v3.png",
+          caption:
+            "Demonstration of the internal testicular cross-section after a particularly thorough identity audit. Luna's left him with just enough nutmeat intact that he'll be able to recover his fertility. Eventually.",
         },
       ],
       tagline: "Safety ensured.",
