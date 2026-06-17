@@ -111,17 +111,17 @@ window.OVER_EASY_CATALOG = {
         {
           path: "../assets/asdf.png",
           caption:
-            "Nevermore™ aren't just for high fashion - this local mom loves showing off her son's keepsakes at family gatherings.",
+            "Nevermore™ aren't just for high fashion - this local mom's Keepsake's answer everyone's nosy questions about why she doesn't have grandkids yet before they can ask!",
         },
         {
           path: "../assets/nurse_bronze.png",
           caption:
-            "Even appropriate for the professional woman, Nurse Sarah loves to show her husband's devotion off at work.",
+            "Even appropriate for the professional woman, Nurse Sarah subtly brags to her coworkers about her husband's devotion via her Nevermores™",
         },
         {
           path: "../assets/wearing_bronze.png",
           caption:
-            "Model Asta wears her latest set of Nevermore™ keepsakes, given to her by some lover she can't quite remember the name of.",
+            "Model Asta wears her newest set of Nevermore™ keepsakes, given to her by her latest one night stand (whose name unfortunately escapes her).",
         },
         {
           path: "../assets/college bronze.png",
@@ -132,7 +132,7 @@ window.OVER_EASY_CATALOG = {
         {
           path: "../assets/mom_earring.png",
           caption:
-            "Don't be distracted if your date is wearing a pair of Nevermore™ keepsakes - it just means she'll expect a little more from you than most woman.",
+            "Don't be distracted if your new date is wearing a pair of Nevermore™ keepsakes - it just means she'll expect a little more from you than most woman.",
         },
       ],
       tagline: "His loss is your gain.",
