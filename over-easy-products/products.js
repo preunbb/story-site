@@ -285,12 +285,12 @@ window.OVER_EASY_CATALOG = {
       tagline: "Snuff out those swimmers!",
       description:
         "Patented bleach wipes strong enough to neutralize every germ and ambitious " +
-        "future e=heir they touch, yet gentle enough for your most delicate bits. " +
+        "future heir they touch, yet gentle enough for your most delicate bits. " +
         "Essential for cleaning up any serious breeding hazard after a night of fun " +
         "with a boy.",
       features: [
         "Neutralizes bacteria and sperm on contact — skin, fabric, or floor",
-        "Deep-clean safe for post-encounter sensitive areas",
+        "Safe for any vaginal PH, so you can really scrub deep and avoid any awkward pregnancies",
       ],
       sizeOptions: [
         {
@@ -402,7 +402,7 @@ window.OVER_EASY_CATALOG = {
         "month-long pause to a forever farewell.",
       features: [
         "Three voltage settings - YOU choose how much you reduce his sperm count!",
-        "Angled prods for precise below-the-belt contact",
+        "Angled prods for precise contact with the most productive regions of his testicles",
       ],
     },
     {
@@ -419,11 +419,6 @@ window.OVER_EASY_CATALOG = {
             "Ballcracker™ OET-BC-1 — brushed steel, ribbed grip, keychain-ready",
         },
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_ballcracker_crosssection_dual_mode_v3.png",
-          caption:
-            "Dual-mode mechanism — tapered impact vs. pneumatic actuator (full-color sagittal cross-section)",
-        },
-        {
           path: "../assets/scenes/andrea_and_lucas/overeasy_ballcracker_crosssection_pneumatic_epididymis_v2_schematic.png",
           caption:
             "In-depth trauma mechanism - subtly crack him open by hand, or pop him instantly",
@@ -431,12 +426,12 @@ window.OVER_EASY_CATALOG = {
       ],
       tagline: "Pocket-sized permanence.",
       description:
-        "Brushed stainless pocket popper with a ribbed grip and a conical business end. " +
+        "Brushed stainless pocket popper for the self-defense enthusiast on the go. " +
         "Dismantle his family tree slowly and intentionally with the pointed end, or " +
         "give him a quick ejection from the genepool with its pneumatic bolt. Keychain " +
         "included.",
       features: [
-        "Tapered impact head",
+        "Rubber grip for comfortable handling",
         "Keychain attachment for everyday carry",
       ],
     },
@@ -489,7 +484,7 @@ window.OVER_EASY_CATALOG = {
         {
           path: "../assets/scenes/andrea_and_lucas/overeasy_gonadal_integrity_intact_studclamp_flattened_crosssection_v1.png",
           caption:
-            "Artist's rendition of another successful interrogation using the StudClamp™.",
+            "Artist's rendition of the cross-section of the subject during his successful StudClamp™ interrogation.",
         },
       ],
       tagline: "Squeeze it out of him.",
@@ -568,6 +563,17 @@ window.OVER_EASY_CATALOG = {
       model: "OET-SB-PRO",
       image:
         "../assets/scenes/andrea_and_lucas/overeasy_strapon_device_v10.png",
+      images: [
+        {
+          path: "../assets/scenes/andrea_and_lucas/overeasy_strapon_device_v10.png",
+          caption:
+            "Selfish Bitch™ OET-SB-PRO — dual-ended piezoreactive harness, osmium false balls",
+        },
+        {
+          path: "../assets/scenes/andrea_and_lucas/overeasy_strapon_selfish_bitch_andrea_lucas_scared_v2.png",
+          caption: "Andrea models the harness; Lucas knows what's coming.",
+        },
+      ],
       description:
         "With its dual-ended piezoreactive automechanical architecture, this strap-on " +
         "lets you feel everything he feels when you're inside him. Osmium filled false " +
