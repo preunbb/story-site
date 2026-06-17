@@ -497,6 +497,32 @@ body.scene-lightbox-open {
   color: var(--oe-gray-text);
 }
 
+.oe-card__story {
+  margin: -0.5rem 0 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--oe-gray-text);
+}
+
+.oe-card__story-label {
+  font-weight: 600;
+  color: var(--oe-black);
+}
+
+.oe-card__story-link {
+  color: var(--oe-yolk-dark);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.oe-card__story-link:hover {
+  text-decoration: underline;
+}
+
+.oe-card__story--soon {
+  font-style: italic;
+}
+
 .oe-card__footer {
   margin-top: auto;
   display: flex;

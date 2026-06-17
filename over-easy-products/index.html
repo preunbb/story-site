@@ -105,7 +105,7 @@
         const catalog = window.OVER_EASY_CATALOG;
         if (!catalog) return;
 
-        const { brand, categories, products } = catalog;
+        const { brand, categories, products, storyRefs } = catalog;
         const visibleCategories = categories.filter(function (c) {
           return !c.hidden;
         });
@@ -352,6 +352,40 @@
           );
         }
 
+        function renderStoryLink(p) {
+          const refKey = p.story;
+          if (!refKey || !storyRefs) return "";
+          const ref = storyRefs[refKey];
+          if (!ref) return "";
+
+          if (ref.comingSoon) {
+            return (
+              '<p class="oe-card__story oe-card__story--soon">' +
+              '<span class="oe-card__story-label">Featured in:</span> ' +
+              escapeHtml(ref.label) +
+              "</p>"
+            );
+          }
+
+          const external =
+            ref.href.indexOf("http://") === 0 || ref.href.indexOf("https://") === 0;
+          const rel = external ? ' rel="noopener noreferrer"' : "";
+          const target = external ? ' target="_blank"' : "";
+
+          return (
+            '<p class="oe-card__story">' +
+            '<span class="oe-card__story-label">Featured in:</span> ' +
+            '<a class="oe-card__story-link" href="' +
+            escapeHtml(ref.href) +
+            '"' +
+            target +
+            rel +
+            ">" +
+            escapeHtml(ref.label) +
+            "</a></p>"
+          );
+        }
+
         function renderCard(p) {
           const features = (p.features || [])
             .map(function (f) {
@@ -391,6 +425,7 @@
             '<p class="oe-card__desc">' +
             escapeHtml(p.description) +
             "</p>" +
+            renderStoryLink(p) +
             '<div class="oe-card__footer">' +
             footerParts.join("") +
             "</div>" +

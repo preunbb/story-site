@@ -1,7 +1,7 @@
 /**
  * Over Easy Technologies — product catalog config
  *
- * Edit this file to change copy, images, features, setlist, or add/remove products.
+ * Edit this file to change copy, images, features, or add/remove products.
  * This is the single source of truth for catalog copy — oe-product tooling reads from here.
  * Paths are relative to over-easy-products/index.html
  *
@@ -26,7 +26,7 @@ window.OVER_EASY_CATALOG = {
     { id: "discipline", label: "Discipline & Security" },
     { id: "sex-toys", label: "Sex Toys" },
     { id: "kitchen-gadgets", label: "Kitchen Gadgets" },
-    { id: "skill-training", label: "Skill Training", hidden: true },
+    { id: "skill-training", label: "Skill Training" },
   ],
 
   products: [
@@ -198,19 +198,6 @@ window.OVER_EASY_CATALOG = {
         "from their show at Brokeberry Mall. With microphones beneath every panel of " +
         "the dance floor, every pop and squick from the band's most legendary mush pit " +
         "is captured in perfect audio fidelity. Available on CD and vinyl.",
-      setlist: [
-        "Crushed to Bits",
-        "The Leafless Tree",
-        "Shredded Seed",
-        "CRUNCH. POP. SQUICK. DEFEAT.",
-        "Plum Dumb and Permanently Done",
-        "You Only Need One!",
-        "What's Yours is Mine, What's Mine is Mine",
-        "So Easy to Break",
-        "I Know Why the Caged Cock Leaks (spoken word)",
-        "You Don't Even Need One (remix)!",
-        "We've Both Split Up Now",
-      ],
       features: ["Parental advisory: Explicit Content"],
     },
     {
@@ -555,9 +542,14 @@ window.OVER_EASY_CATALOG = {
             "Auto-Milker™ OET-AM-1 — electrostim sleeve, scrotal compression, graduated collection vial",
         },
         {
-          path: "../assets/automilker_in_use.png",
+          path: "../assets/automilker_in_use_tamara_v1.png",
           caption:
-            "Nurse Yvette after a cumpletely successful extraction. She's made sure to collect absolutely every last drop of semen from her lucky patient!",
+            "Dr. Tamara after a cumpletely successful extraction from an especially productive (and lucky!) patient.",
+        },
+        {
+          path: "../assets/too_much.png",
+          caption:
+            "Warning: only licensed doctors may operate the Auto-Milker™ alone! Interns can be helpful, but their enthusiasm often has drastic consequences for patients' fertility.",
         },
       ],
       tagline: "When he says he's empty — prove him wrong.",
