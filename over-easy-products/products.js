@@ -551,7 +551,7 @@ window.OVER_EASY_CATALOG = {
       model: "OET-GP-1",
       image: "../assets/scenes/overeasy_catalog/overeasy_garlic_press_v1.png",
       description:
-        "Besides pressing garlic, this handy press is great whenever you need to extrude something in the kitchen into a fine, uniform mush.",
+        "Besides pressing garlic, this handy press is great whenever you need to extrude something in the kitchen into a uniform mush.",
     },
     {
       id: "microplane",
@@ -571,6 +571,33 @@ window.OVER_EASY_CATALOG = {
         "../assets/scenes/overeasy_catalog/overeasy_dual_egg_slicer_v1.png",
       description:
         "Great for egg salad. Double wide design allows you to slice those eggs twice as fast!",
+    },
+    {
+      id: "olive-pitter",
+      category: "kitchen-gadgets",
+      name: "Olive Pitter",
+      model: "OET-OP-1",
+      image: "../assets/scenes/overeasy_catalog/overeasy_olive_pitter_v2.png",
+      description:
+        "Instantly pops the hard center out of cherries, olives, or even plums.",
+    },
+    {
+      id: "meat-tenderizer",
+      category: "kitchen-gadgets",
+      name: "Meat Tenderizer",
+      model: "OET-MT-1",
+      image:
+        "../assets/scenes/overeasy_catalog/overeasy_meat_tenderizer_v2.png",
+      description: "A few good whacks and even stubborn meat gives way.",
+    },
+    {
+      id: "citrus-reamer",
+      category: "kitchen-gadgets",
+      name: "Citrus Reamer",
+      model: "OET-CR-1",
+      image: "../assets/scenes/overeasy_catalog/overeasy_citrus_reamer_v1.png",
+      description:
+        "Simply half your desired fruit and use our patented reamer to extract every last drop of juice.",
     },
     {
       id: "male-containment-chip",
