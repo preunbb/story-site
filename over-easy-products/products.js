@@ -117,7 +117,7 @@ window.OVER_EASY_CATALOG = {
         {
           path: "../assets/nurse_bronze.png",
           caption:
-            "Even appropriate for the professional woman, Nurse Sarah subtly brags to her coworkers about her husband's devotion via her Nevermores™",
+            "Even appropriate for the professional woman, Nurse Sarah subtly shows off her husband's love to her coworkers and patients via her Nevermores™.",
         },
         {
           path: "../assets/wearing_bronze.png",
@@ -132,7 +132,7 @@ window.OVER_EASY_CATALOG = {
         {
           path: "../assets/mom_earring.png",
           caption:
-            "Don't be distracted if your new date is wearing a pair of Nevermore™ Keepsakes - it just means she'll expect a little more from you than most woman.",
+            "Don't be intimidated if your new date is wearing a pair of Nevermore™ Keepsakes - it just means she'll expect a little more from you than most woman.",
         },
         {
           path: "../assets/scenes/one_night_stand/overeasy_nevermore_keepsakes_two_pairs_men_cringing_v1.png",
