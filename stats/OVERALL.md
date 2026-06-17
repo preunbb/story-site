@@ -1,6 +1,6 @@
 # Catalog stats — overall rollup
 
-**Generated:** 2026-06-15 · **Method:** LLM-curated per-story reports (`story-testicle-stats` skill)
+**Generated:** 2026-06-17 · **Method:** LLM-curated per-story reports (`story-testicle-stats` skill)
 
 **Chart:** [stats/index.html](./index.html) (run `npm start` → http://localhost:8080/stats/)
 
@@ -10,8 +10,8 @@
 |---|---|
 | Stories with reports | **44** of 48 catalog entries |
 | Stories missing prose | **2** (ids 41, 48) |
-| **Total testicles lost** (on-page) | **150** |
-| **Total female orgasms** (on-page minimums) | **132** |
+| **Total testicles lost** (on-page) | **174** |
+| **Total female orgasms** (on-page minimums) | **150** |
 | Stories with ≥1 testicle lost | 40 |
 | Stories with ≥1 female orgasm | 24 |
 
@@ -21,7 +21,7 @@
 
 | Rank | Story | Testicles lost | Female orgasms | Report |
 |:---:|---|:---:|:---:|---|
-| 1 | Andrea and Lucas (Part 1 + Part 2) | **44** | 56 | [andrea-lucas](./andrea-lucas/testicle-stats-ch1-18.md) |
+| 1 | Andrea and Lucas (Part 1 + Part 2) | **68** | 74 | [andrea-lucas](./andrea-lucas/testicle-stats-ch1-19.md) |
 | 2 | Three Strikes | **15** | 13 | [three-strikes](./three-strikes/testicle-stats.md) |
 | 3 | The Ballbusting Arena 1: Battle Royale | **8** | 1 | [ballbusting-arena-1-battle-royale](./ballbusting-arena-1-battle-royale/testicle-stats.md) |
 | 4 | The Ballbusting Arena 3: Retired | **6** | 0 | [ballbusting-arena-3-retired](./ballbusting-arena-3-retired/testicle-stats.md) |
@@ -36,7 +36,7 @@
 
 | Rank | Story | Female orgasms | Testicles lost | Report |
 |:---:|---|:---:|:---:|---|
-| 1 | Andrea and Lucas (Part 1 + Part 2) | **56** | 44 | [andrea-lucas](./andrea-lucas/testicle-stats-ch1-18.md) |
+| 1 | Andrea and Lucas (Part 1 + Part 2) | **74** | 68 | [andrea-lucas](./andrea-lucas/testicle-stats-ch1-19.md) |
 | 2 | Three Strikes | **13** | 15 | [three-strikes](./three-strikes/testicle-stats.md) |
 | 3 | School Bully | **8** | 3 | [school-bully](./school-bully/testicle-stats.md) |
 | 4 | Dragon Slaying Alternative Chapter 13: Kayla | **8** | 2 | [dragon-slaying](./dragon-slaying/testicle-stats.md) |
@@ -91,7 +91,7 @@
 | Trust issues | 39 | 2 | 0 | 1 | [trust-issues](./trust-issues/testicle-stats.md) |
 | Dragon Slaying Alternative Chapter 13: Kayla | 40 | 2 | 8 | 2 | [dragon-slaying](./dragon-slaying/testicle-stats.md) |
 | The Ballbusting Arena 6: Natalie Enters the Ring | 42 | 4 | 4 | 2 | [ballbusting-arena-6](./ballbusting-arena-6/testicle-stats.md) |
-| Andrea and Lucas (Part 1 + Part 2) | 43+47 | 44 | 56 | Ch.1–18 | [andrea-lucas](./andrea-lucas/testicle-stats-ch1-18.md) |
+| Andrea and Lucas (Part 1 + Part 2) | 43+47 | 68 | 74 | Ch.1–19 | [andrea-lucas](./andrea-lucas/testicle-stats-ch1-19.md) |
 | Courtroom Wedding | 44 | 1 | 2 | 3 | [courtroom-wedding](./courtroom-wedding/testicle-stats.md) |
 | Courtroom Wedding (Human Edition) | 45 | 1 | 2 | 3 | [courtroom-wedding-human-edition](./courtroom-wedding-human-edition/testicle-stats.md) |
 | Melody Seduces a Virgin | 46 | 2 | 7 | 2 | [melody-seduces-a-virgin](./melody-seduces-a-virgin/testicle-stats.md) |
