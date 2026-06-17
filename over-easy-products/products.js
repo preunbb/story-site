@@ -511,7 +511,7 @@ window.OVER_EASY_CATALOG = {
     },
     {
       id: "auto-milker",
-      category: "discipline",
+      category: "medical",
       name: "Auto-Milker™",
       model: "OET-AM-1",
       image: "../assets/scenes/school_bully/overeasy_auto_milker_device_v1.png",
@@ -655,11 +655,11 @@ window.OVER_EASY_CATALOG = {
       images: [
         {
           path: "../assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_scanner_mode_v2.png",
-          caption: "Feminine pass mode — green-lit vulva scanner",
+          caption: "Non-invasive ultra-fast female identification mode",
         },
         {
           path: "../assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_audit_mode_v4.png",
-          caption: "Male escort mode — six-finger audit hand",
+          caption: "Thorough, secure and reliable male identification mode",
         },
         {
           path: "../assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_audit_crosssection_clinical_v3.png",
