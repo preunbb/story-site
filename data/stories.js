@@ -1300,7 +1300,7 @@ window.DATA_STORIES = [
     ],
     tags: ["Premium Story", "New to Reddit"],
     driveUrl:
-      "https://docs.google.com/document/d/e/2PACX-1vSbhD9A1JZM_QbboBUl3ex-aMwwYkipuRpcu4l6eOXDbVvI8tkt7mByZF8hJzFVUYkEJPi91b0viDMX/pub",
+      "https://docs.google.com/document/d/e/2PACX-1vSrtvzgoGYWGYgg9a-y9YsyTJijnb_F4Hj2k9H5HFLI_wMKwwAn1b3LahTprIUMALrw2K_CCx-rtpoj/pub",
     purchaseParts: [
       {
         part: 1,

@@ -25,6 +25,7 @@ window.OVER_EASY_CATALOG = {
     { id: "self-defense", label: "Self Defense" },
     { id: "discipline", label: "Discipline & Security" },
     { id: "sex-toys", label: "Sex Toys" },
+    { id: "kitchen-gadgets", label: "Kitchen Gadgets" },
   ],
 
   products: [
@@ -542,6 +543,34 @@ window.OVER_EASY_CATALOG = {
           "uncomfortable follow-up questions",
         "Reconfigures from vaginal scanner to testicular auditor in under two seconds",
       ],
+    },
+    {
+      id: "garlic-press",
+      category: "kitchen-gadgets",
+      name: "Garlic Press",
+      model: "OET-GP-1",
+      image: "../assets/scenes/overeasy_catalog/overeasy_garlic_press_v1.png",
+      description:
+        "Besides pressing garlic, this handy press is great whenever you need to extrude something in the kitchen into a fine, uniform mush.",
+    },
+    {
+      id: "microplane",
+      category: "kitchen-gadgets",
+      name: "Microplane",
+      model: "OET-MP-1",
+      image: "../assets/scenes/overeasy_catalog/overeasy_microplane_v1.png",
+      description:
+        "With its ultra-fine grit and carbon-steel construction, this microplane can turn cheese, vegetables, or even meat into the finest of shavings.",
+    },
+    {
+      id: "dual-egg-slicer",
+      category: "kitchen-gadgets",
+      name: "Dual Egg Slicer",
+      model: "OET-DES-1",
+      image:
+        "../assets/scenes/overeasy_catalog/overeasy_dual_egg_slicer_v1.png",
+      description:
+        "Great for egg salad. Double wide design allows you to slice those eggs twice as fast!",
     },
     {
       id: "male-containment-chip",

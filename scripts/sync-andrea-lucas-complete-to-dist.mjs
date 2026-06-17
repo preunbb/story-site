@@ -23,8 +23,10 @@ import {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, "..");
 
+/** Editable Drive doc (see dist/drive_doc_ids.json for Part 1 / Part 2 mappings). */
+const EDIT_DOC_ID = "1BpovDCzcee_DMzKcEP4t6f17KLm3vMIbecE7PDXZS68";
 const PUBLISH_URL =
-  "https://docs.google.com/document/d/e/2PACX-1vRZn0xAmLfvgzDGcS3Agh9kkDg_wC6IVdyWM1fIk6S8vPBzQZ5ht1w4UYZLHRDMhpOYdfk51BwIenkN/pub";
+  "https://docs.google.com/document/d/e/2PACX-1vSrtvzgoGYWGYgg9a-y9YsyTJijnb_F4Hj2k9H5HFLI_wMKwwAn1b3LahTprIUMALrw2K_CCx-rtpoj/pub";
 
 const OUT_DIR = join(REPO_ROOT, "dist", "andrea-and-lucas-complete");
 
@@ -47,6 +49,8 @@ async function main() {
     JSON.stringify(
       {
         title: "Andrea and Lucas",
+        editDocId: EDIT_DOC_ID,
+        editUrl: `https://docs.google.com/document/d/${EDIT_DOC_ID}/edit`,
         publishUrl: PUBLISH_URL,
         syncedAt,
         wordCount: words,
