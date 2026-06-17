@@ -515,6 +515,18 @@ window.OVER_EASY_CATALOG = {
       name: "Auto-Milker™",
       model: "OET-AM-1",
       image: "../assets/scenes/school_bully/overeasy_auto_milker_device_v1.png",
+      images: [
+        {
+          path: "../assets/scenes/school_bully/overeasy_auto_milker_device_v1.png",
+          caption:
+            "Auto-Milker™ OET-AM-1 — electrostim sleeve, scrotal compression, graduated collection vial",
+        },
+        {
+          path: "../assets/automilker_in_use.png",
+          caption:
+            "Nurse Yvette after a cumpletely successful extraction. She's made sure to collect absolutely every last drop of semen from her lucky patient!",
+        },
+      ],
       tagline: "When he says he's empty — prove him wrong.",
       description:
         "Clinical-grade semen extraction for when a donor misses the cup or claims he's " +
