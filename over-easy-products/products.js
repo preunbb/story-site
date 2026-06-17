@@ -391,7 +391,7 @@ window.OVER_EASY_CATALOG = {
         {
           path: "../assets/scenes/andrea_and_lucas/overeasy_sterilizer_crosssection_voltage_graded_v2_schematic.png",
           caption:
-            "Voltage-graded gonadal injury — vintage sepia medical plate (FIG. 14)",
+            "Boring medical details - but very helpful for his urologist to understand the severity of his injuries after you've done what you need to keep yourself safe.",
         },
       ],
       tagline: "One zap. Zero kids.",
