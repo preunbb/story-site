@@ -26,6 +26,7 @@ window.OVER_EASY_CATALOG = {
     { id: "discipline", label: "Discipline & Security" },
     { id: "sex-toys", label: "Sex Toys" },
     { id: "kitchen-gadgets", label: "Kitchen Gadgets" },
+    { id: "skill-training", label: "Skill Training", hidden: true },
   ],
 
   products: [
@@ -36,6 +37,16 @@ window.OVER_EASY_CATALOG = {
       model: "OET-BK-1",
       image:
         "../assets/scenes/andrea_and_lucas/overeasy_ball_killers_heels_v1.png",
+      images: [
+        {
+          path: "../assets/scenes/andrea_and_lucas/overeasy_ball_killers_heels_v1.png",
+          caption: "Ball Killers™ — patent pumps on white background",
+        },
+        {
+          path: "../assets/ballkiller.png",
+          caption: "In action — get your money's worth",
+        },
+      ],
       tagline: "Fashionable. Functional. Pointed.",
       description:
         "Self-defense you can wear to dinner. Glossy patent pumps with tungsten-tipped " +
@@ -91,8 +102,39 @@ window.OVER_EASY_CATALOG = {
       category: "fashion",
       name: "Nevermore™ Custom-Made Bronze Keepsake Earrings",
       model: "OET-BTE-1",
-      image:
-        "../assets/scenes/one_night_stand/overeasy_bronze_testicle_earrings_v1.png",
+      image: "../assets/wearing_bronze.png",
+      images: [
+        {
+          path: "../assets/scenes/one_night_stand/overeasy_bronze_testicle_earrings_v1.png",
+          caption: "Antiqued bronze keepsake drops on velvet stand",
+        },
+        {
+          path: "../assets/asdf.png",
+          caption:
+            "Nevermore™ aren't just for high fashion - this local mom loves showing off her son's keepsakes at family gatherings.",
+        },
+        {
+          path: "../assets/nurse_bronze.png",
+          caption:
+            "Even appropriate for the professional woman, Nurse Sarah loves to show her husband's devotion off at work.",
+        },
+        {
+          path: "../assets/wearing_bronze.png",
+          caption:
+            "Model Asta wears her latest set of Nevermore™ keepsakes, given to her by some lover she can't quite remember the name of.",
+        },
+        {
+          path: "../assets/college bronze.png",
+          caption:
+            "Lucia is embarassed to admit it, but deep down she loves being the first of her friends to get her own pair of Nevermores™ - she really has the best boyfriend on campus!",
+        },
+
+        {
+          path: "../assets/mom_earring.png",
+          caption:
+            "Don't be distracted if your date is wearing a pair of Nevermore™ keepsakes - it just means she'll expect a little more from you than most woman.",
+        },
+      ],
       tagline: "His loss is your gain.",
       description:
         "The problem with those beautiful nights of passion is that they don't last. " +
@@ -110,6 +152,20 @@ window.OVER_EASY_CATALOG = {
       model: "CBT-PND-1",
       image:
         "../assets/scenes/andrea_and_lucas/church_broken_tree_pendant_product_v1.png",
+      images: [
+        {
+          path: "../assets/scenes/andrea_and_lucas/church_broken_tree_pendant_product_v1.png",
+          caption: "Devotional pendant — pewter on silver cable chain",
+        },
+        {
+          path: "../assets/characters/kay_final.png",
+          caption: "Model: Kay",
+        },
+        {
+          path: "../assets/characters/abby_final.png",
+          caption: "Model: Abby",
+        },
+      ],
       tagline: "Wear your faith where he can see it.",
       description:
         "For the spiritual girl who wants a reminder of the Goddess's promise - that what hangs between his legs was never meant to last.",
@@ -334,7 +390,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "nutcracker",
       category: "self-defense",
-      name: "Ballcracker™",
+      name: "The Ballcracker™",
       model: "OET-BC-1",
       image:
         "../assets/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
@@ -352,7 +408,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "bell-ringer",
       category: "self-defense",
-      name: "BellRinger™",
+      name: "The BellRinger™",
       model: "OET-BR-1",
       image:
         "../assets/scenes/andrea_and_lucas/overeasy_bell_ringer_device_v1.png",
@@ -598,6 +654,55 @@ window.OVER_EASY_CATALOG = {
       image: "../assets/scenes/overeasy_catalog/overeasy_citrus_reamer_v1.png",
       description:
         "Simply half your desired fruit and use our patented reamer to extract every last drop of juice.",
+    },
+    {
+      id: "at-home-vasectomy-circumcision-class",
+      category: "skill-training",
+      name: "At-Home Vasectomy & Circumcision Skill Class",
+      model: "OET-ST-VC-1",
+      image:
+        "../assets/scenes/overeasy_catalog/overeasy_at_home_vasectomy_circumcision_class_v1.png",
+      tagline: "Take him off the market from your own kitchen table.",
+      description:
+        "Medical degrees are expensive, and a huge hassle. Doctors insist they are the only ones who can do even the simplest of procedures, then charge an arm and a leg for their bills." +
+        "Shouldn't there be an easy way? With OverEasy's hands-on SkillUp class, we provide you with experienced instructors and an endless supply of practice materials so you can take control of your own home life and learn how to disconnect his little babymakers for good.",
+    },
+    {
+      id: "self-defense-skill-class",
+      category: "skill-training",
+      name: "Self Defense Skill Class",
+      model: "OET-ST-SD-1",
+      image:
+        "../assets/scenes/overeasy_catalog/overeasy_self_defense_skill_class_v1.png",
+      tagline: "Get your money's worth.",
+      description:
+        "Over Easy's certified self-defense curriculum teaches you to protect yourself — and " +
+        "make every lesson count when someone needs a very direct reminder of where he's " +
+        "vulnerable. Reflex drills, boundary-setting techniques, and below-the-belt precision " +
+        "that leaves a permanent impression.",
+      features: [
+        "Twelve-week progressive video course",
+        "Partner drills for knees, elbows, and targeted strikes",
+        "Graduation certificate suitable for framing",
+      ],
+    },
+    {
+      id: "michelin-star-cooking-class",
+      category: "skill-training",
+      name: "Michelin Star Cooking Class",
+      model: "OET-ST-MC-1",
+      image:
+        "../assets/scenes/overeasy_catalog/overeasy_michelin_star_cooking_class_v1.png",
+      tagline: "Plate him like a professional.",
+      description:
+        "Elevate your kitchen game with techniques from Michelin-trained chefs — knife skills, " +
+        "precise trimming, and how to reduce stubborn ingredients to their essential parts. " +
+        "Perfect for the hostess who wants dinner to end with nothing left on his plate.",
+      features: [
+        "Chef-led modules on filleting, deboning, and reduction",
+        "Recipe cards for five-course tasting menus",
+        "Branded apron and tasting spoon included",
+      ],
     },
     {
       id: "male-containment-chip",

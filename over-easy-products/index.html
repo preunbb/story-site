@@ -106,7 +106,10 @@
         if (!catalog) return;
 
         const { brand, categories, products } = catalog;
-        let activeCategory = categories[0]?.id ?? "";
+        const visibleCategories = categories.filter(function (c) {
+          return !c.hidden;
+        });
+        let activeCategory = visibleCategories[0]?.id ?? "";
 
         // Brand header
         document.getElementById("oe-brand-name").innerHTML = brand.name.replace(
@@ -125,7 +128,7 @@
         const grid = document.getElementById("oe-product-grid");
         const sectionTitle = document.getElementById("oe-section-title");
 
-        tabsInner.innerHTML = categories
+        tabsInner.innerHTML = visibleCategories
           .map(function (cat) {
             return (
               '<button type="button" class="oe-tab" data-category="' +
@@ -377,7 +380,7 @@
 
         function setCategory(categoryId, options) {
           if (
-            !categories.some(function (c) {
+            !visibleCategories.some(function (c) {
               return c.id === categoryId;
             })
           ) {
@@ -402,12 +405,22 @@
 
         function resolveHash() {
           const hash = location.hash.replace(/^#/, "");
+          const defaultCategory = visibleCategories[0]?.id ?? "";
           if (!hash) {
-            setCategory(categories[0].id, { skipHash: true });
+            setCategory(defaultCategory, { skipHash: true });
             return;
           }
           if (hash.indexOf("category-") === 0) {
-            setCategory(hash.slice("category-".length), { skipHash: true });
+            const categoryId = hash.slice("category-".length);
+            if (
+              visibleCategories.some(function (c) {
+                return c.id === categoryId;
+              })
+            ) {
+              setCategory(categoryId, { skipHash: true });
+            } else {
+              setCategory(defaultCategory, { skipHash: true });
+            }
             return;
           }
           if (hash.indexOf("product-") === 0) {
@@ -416,16 +429,23 @@
               return p.id === productId;
             });
             if (product?.category) {
-              setCategory(product.category, { skipHash: true });
-              requestAnimationFrame(function () {
-                const el = document.getElementById("product-" + productId);
-                if (el)
-                  el.scrollIntoView({ behavior: "smooth", block: "start" });
+              const categoryVisible = visibleCategories.some(function (c) {
+                return c.id === product.category;
               });
+              if (categoryVisible) {
+                setCategory(product.category, { skipHash: true });
+                requestAnimationFrame(function () {
+                  const el = document.getElementById("product-" + productId);
+                  if (el)
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                });
+              } else {
+                setCategory(defaultCategory, { skipHash: true });
+              }
               return;
             }
           }
-          setCategory(categories[0].id, { skipHash: true });
+          setCategory(defaultCategory, { skipHash: true });
         }
 
         tabsEl.addEventListener("click", function (event) {
