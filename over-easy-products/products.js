@@ -44,7 +44,8 @@ window.OVER_EASY_CATALOG = {
         },
         {
           path: "../assets/ballkiller.png",
-          caption: "In action — get your money's worth",
+          caption:
+            "As stylish as they are dangerous, these functional heels will keep you sexy and safe.",
         },
       ],
       tagline: "Fashionable. Functional. Pointed.",
@@ -100,18 +101,18 @@ window.OVER_EASY_CATALOG = {
     {
       id: "bronze-trophy-earrings",
       category: "fashion",
-      name: "Nevermore™ Custom-Made Bronze Keepsake Earrings",
+      name: "Nevermore™ Keepsakes Custom-Made Bronze Earrings",
       model: "OET-BTE-1",
       image: "../assets/wearing_bronze.png",
       images: [
         {
           path: "../assets/scenes/one_night_stand/overeasy_bronze_testicle_earrings_v1.png",
-          caption: "Antiqued bronze keepsake drops on velvet stand",
+          caption: "Every pair of Nevermore™ Keepsakes is completely unique",
         },
         {
           path: "../assets/asdf.png",
           caption:
-            "Nevermore™ aren't just for high fashion - this local mom's Keepsake's answer everyone's nosy questions about why she doesn't have grandkids yet before they can ask!",
+            "Nevermore™ aren't just for high fashion - her son's Keepsakes on her ears answers all those pesky questions about why she doesn't have grandkids yet.",
         },
         {
           path: "../assets/nurse_bronze.png",
@@ -121,7 +122,7 @@ window.OVER_EASY_CATALOG = {
         {
           path: "../assets/wearing_bronze.png",
           caption:
-            "Model Asta wears her newest set of Nevermore™ keepsakes, given to her by her latest one night stand (whose name unfortunately escapes her).",
+            "Model Asta wears her newest set of Nevermore™ Keepsakes, given to her by her latest one night stand (whose name unfortunately escapes her).",
         },
         {
           path: "../assets/college bronze.png",
@@ -132,7 +133,7 @@ window.OVER_EASY_CATALOG = {
         {
           path: "../assets/mom_earring.png",
           caption:
-            "Don't be distracted if your new date is wearing a pair of Nevermore™ keepsakes - it just means she'll expect a little more from you than most woman.",
+            "Don't be distracted if your new date is wearing a pair of Nevermore™ Keepsakes - it just means she'll expect a little more from you than most woman.",
         },
       ],
       tagline: "His loss is your gain.",
@@ -394,6 +395,18 @@ window.OVER_EASY_CATALOG = {
       model: "OET-BC-1",
       image:
         "../assets/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
+      images: [
+        {
+          path: "../assets/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
+          caption:
+            "Ballcracker™ OET-BC-1 — brushed steel, ribbed grip, keychain-ready",
+        },
+        {
+          path: "../assets/scenes/andrea_and_lucas/overeasy_ballcracker_crosssection_pneumatic_epididymis_v2_schematic.png",
+          caption:
+            "Dual-mode trauma mechanism — tapered impact head vs. pneumatic epididymis actuator (sagittal cross-section)",
+        },
+      ],
       tagline: "Pocket-sized permanence.",
       description:
         "Brushed stainless pocket popper with a ribbed grip and a conical business end. " +
@@ -723,8 +736,7 @@ window.OVER_EASY_CATALOG = {
       features: [
         "Sub-dermal implant — company property, recovered on termination",
         "Manager remote: levels 1–5 disciplinary burn and scar settings",
-        "Male Containment department install and calibration",
-        "Pairs with corporate chastity policy for complete below-the-belt compliance",
+        "Installed and uninstalled (upon employee's termination) by a certified OverEasy technician",
         "Level 5 is reserved for serious infractions — use with moderation if " +
           "long-term disciplinary procedures are desired!",
       ],
