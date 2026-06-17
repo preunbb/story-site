@@ -46,10 +46,14 @@ function formatProductsJs(catalog) {
 
   const categories = catalog.categories?.length
     ? `\n\n  categories: [\n${catalog.categories
-        .map(
-          (c) =>
-            `    { id: ${JSON.stringify(c.id)}, label: ${JSON.stringify(c.label)} },`,
-        )
+        .map((c) => {
+          const parts = [
+            `id: ${JSON.stringify(c.id)}`,
+            `label: ${JSON.stringify(c.label)}`,
+          ];
+          if (c.hidden) parts.push("hidden: true");
+          return `    { ${parts.join(", ")} },`;
+        })
         .join("\n")}\n  ],`
     : "";
 
