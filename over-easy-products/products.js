@@ -446,16 +446,17 @@ window.OVER_EASY_CATALOG = {
         {
           path: "../assets/scenes/andrea_and_lucas/overeasy_bell_ringer_device_v1.png",
           caption:
-            "BellRinger™ OET-BR-1 — palm-sized subsonic resonator, blue/orange field indicators",
+            "Small enough to fit dozens in your purse, ensuring you're never caught without a fresh BellRinger™.",
         },
         {
           path: "../assets/scenes/andrea_and_lucas/overeasy_bell_ringer_resonant_field_poster_realistic_v1.png",
           caption:
-            "Resonant field effects — full-color area-of-effect plate (sympathetic parenchymal oscillation)",
+            "Wide range and depth of effect ensures the BellRinger™ can keep a whole room of men on their knees until deactivated.",
         },
         {
           path: "../assets/scenes/andrea_and_lucas/overeasy_bell_ringer_resonant_field_poster_vintage_v1.png",
-          caption: "Subsonic resonance — vintage sepia medical plate (FIG. 16)",
+          caption:
+            "Vintage and modern product posters available for purchase upon request.",
         },
       ],
       tagline: "Really resonates with a lot of boys.",
@@ -479,7 +480,7 @@ window.OVER_EASY_CATALOG = {
         {
           path: "../assets/scenes/andrea_and_lucas/overeasy_studclamp_device_v2.png",
           caption:
-            "StudClamp™ OET-SC-1 — matte-black C-clamp, polished steel disc pads, app-connected compression",
+            "StudClamp™ mobile app and compatible smart phone required for full functionality",
         },
         {
           path: "../assets/scenes/andrea_and_lucas/overeasy_gonadal_integrity_intact_studclamp_flattened_crosssection_v1.png",
