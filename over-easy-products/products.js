@@ -142,7 +142,7 @@ window.OVER_EASY_CATALOG = {
         {
           path: "../assets/scenes/one_night_stand/overeasy_nevermore_keepsakes_two_friends_chatting_v2.png",
           caption:
-            "Pendant Nevermores™ available when your lover has a little less (or more!) to donate.",
+            "Pendant Nevermores™ available when your lover has a little less (or more!) to donate and you'd like your jewelry symmetrical.",
         },
       ],
       tagline: "His loss is your gain.",
