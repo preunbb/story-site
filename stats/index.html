@@ -129,13 +129,13 @@
           (r) => r.totalTesticlesLost ?? r.totalPops ?? 0,
         );
         const orgasms = reports.map((r) => r.totalFemaleOrgasms ?? 0);
-        const totalLost =
-          manifest.totals.totalTesticlesLost ?? manifest.totals.totalPops ?? 0;
+        const totalLost = lost.reduce((sum, n) => sum + n, 0);
+        const totalOrgasms = orgasms.reduce((sum, n) => sum + n, 0);
 
         document.getElementById("totals").innerHTML = [
           `<span><strong>${reports.length}</strong> stories reported</span>`,
           `<span><strong>${totalLost}</strong> total testicles lost</span>`,
-          `<span><strong>${manifest.totals.totalFemaleOrgasms}</strong> total female orgasms</span>`,
+          `<span><strong>${totalOrgasms}</strong> total female orgasms</span>`,
         ].join("");
 
         const ctx = document.getElementById("stats-chart");
