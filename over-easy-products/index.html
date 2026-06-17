@@ -105,7 +105,7 @@
         const catalog = window.OVER_EASY_CATALOG;
         if (!catalog) return;
 
-        const { brand, categories, products, storyRefs } = catalog;
+        const { brand, categories, products } = catalog;
         const visibleCategories = categories.filter(function (c) {
           return !c.hidden;
         });
@@ -242,39 +242,54 @@
           return "";
         }
 
+        function renderComingSoonButton(p) {
+          const tooltip = p.purchaseDisabled
+            ? purchaseDisabledTooltip(p)
+            : "";
+          const tooltipId = tooltip
+            ? "purchase-tooltip-" + escapeHtml(p.id)
+            : "";
+          const tooltipHtml = tooltip
+            ? '<span class="oe-purchase-tooltip" id="' +
+              tooltipId +
+              '" role="tooltip">' +
+              escapeHtml(tooltip) +
+              "</span>"
+            : "";
+          const describedBy = tooltipId
+            ? ' aria-describedby="' + tooltipId + '"'
+            : "";
+          return (
+            '<div class="oe-card__actions">' +
+            '<div class="oe-purchase-wrap">' +
+            '<span class="oe-purchase-btn oe-purchase-btn--disabled" aria-disabled="true" tabindex="0"' +
+            describedBy +
+            ">Coming soon!</span>" +
+            tooltipHtml +
+            "</div></div>"
+          );
+        }
+
         function renderPurchaseButton(p) {
-          const url = brand.purchaseUrl;
-          if (!url) return "";
           if (p.purchaseDisabled) {
-            const tooltip = purchaseDisabledTooltip(p);
-            const tooltipId = tooltip
-              ? "purchase-tooltip-" + escapeHtml(p.id)
-              : "";
-            const tooltipHtml = tooltip
-              ? '<span class="oe-purchase-tooltip" id="' +
-                tooltipId +
-                '" role="tooltip">' +
-                escapeHtml(tooltip) +
-                "</span>"
-              : "";
-            const describedBy = tooltipId
-              ? ' aria-describedby="' + tooltipId + '"'
-              : "";
-            return (
-              '<div class="oe-card__actions">' +
-              '<div class="oe-purchase-wrap">' +
-              '<span class="oe-purchase-btn oe-purchase-btn--disabled" aria-disabled="true" tabindex="0"' +
-              describedBy +
-              ">Purchase</span>" +
-              tooltipHtml +
-              "</div></div>"
-            );
+            return renderComingSoonButton(p);
           }
+          const url = p.purchaseUrl;
+          if (!url) {
+            return renderComingSoonButton(p);
+          }
+          const external =
+            url.indexOf("http://") === 0 || url.indexOf("https://") === 0;
+          const target = external ? ' target="_blank"' : "";
+          const rel = external ? ' rel="noopener noreferrer"' : "";
           return (
             '<div class="oe-card__actions">' +
             '<a class="oe-purchase-btn" href="' +
             escapeHtml(url) +
-            '" target="_blank" rel="noopener noreferrer">Purchase</a>' +
+            '"' +
+            target +
+            rel +
+            ">Purchase</a>" +
             "</div>"
           );
         }
@@ -352,40 +367,6 @@
           );
         }
 
-        function renderStoryLink(p) {
-          const refKey = p.story;
-          if (!refKey || !storyRefs) return "";
-          const ref = storyRefs[refKey];
-          if (!ref) return "";
-
-          if (ref.comingSoon) {
-            return (
-              '<p class="oe-card__story oe-card__story--soon">' +
-              '<span class="oe-card__story-label">Featured in:</span> ' +
-              escapeHtml(ref.label) +
-              "</p>"
-            );
-          }
-
-          const external =
-            ref.href.indexOf("http://") === 0 || ref.href.indexOf("https://") === 0;
-          const rel = external ? ' rel="noopener noreferrer"' : "";
-          const target = external ? ' target="_blank"' : "";
-
-          return (
-            '<p class="oe-card__story">' +
-            '<span class="oe-card__story-label">Featured in:</span> ' +
-            '<a class="oe-card__story-link" href="' +
-            escapeHtml(ref.href) +
-            '"' +
-            target +
-            rel +
-            ">" +
-            escapeHtml(ref.label) +
-            "</a></p>"
-          );
-        }
-
         function renderCard(p) {
           const features = (p.features || [])
             .map(function (f) {
@@ -425,7 +406,6 @@
             '<p class="oe-card__desc">' +
             escapeHtml(p.description) +
             "</p>" +
-            renderStoryLink(p) +
             '<div class="oe-card__footer">' +
             footerParts.join("") +
             "</div>" +

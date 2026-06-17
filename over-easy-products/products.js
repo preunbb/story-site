@@ -5,6 +5,9 @@
  * This is the single source of truth for catalog copy — oe-product tooling reads from here.
  * Paths are relative to over-easy-products/index.html
  *
+ * purchaseUrl — optional. Ko-fi, story reader (../#story/N/read), etc.
+ * Omit for “Coming soon!” products.
+ *
  * New products: npm run oe-product -- "Product Name"
  *
  * Editor: word-wrap + no autocomplete — see .vscode/settings.json (oe-catalog language).
@@ -15,7 +18,6 @@ window.OVER_EASY_CATALOG = {
     name: "Over Easy Technologies",
     tagline: "Premium lifestyle hardware for the modern woman.",
     logo: "../assets/brands/overeasy_logo_v2_raw_eggs_minimal.png",
-    purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
   },
 
   categories: [
@@ -33,6 +35,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "ball-killers",
       category: "fashion",
+      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "Ball Killers™",
       model: "OET-BK-1",
       image:
@@ -58,6 +61,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "eunuchcorn-denim",
       category: "fashion",
+      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "EunuchCorn™ Denim",
       model: "OET-EC-D1",
       image:
@@ -101,6 +105,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "bronze-trophy-earrings",
       category: "fashion",
+      purchaseUrl: "../#story/12/read",
       name: "Nevermore™ Keepsakes Custom-Made Bronze Earrings",
       model: "OET-BTE-1",
       image: "../assets/wearing_bronze.png",
@@ -154,6 +159,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "church-broken-tree-pendant",
       category: "fashion",
+      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "Church of the Broken Tree Devotional Pendant",
       model: "CBT-PND-1",
       image:
@@ -174,6 +180,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "cherry-pop-album",
       category: "media",
+      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "Cherry Pop! — Plum Dumb & Permanently Done",
       model: "CP-PDPD-001",
       image:
@@ -252,6 +259,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "hypersecretory-disorder-poster",
       category: "media",
+      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "Hypersecretory Disorder Clinical Poster",
       model: "OET-HSD-24",
       image:
@@ -265,6 +273,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "biopsy-gun",
       category: "medical",
+      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "Testicular Biopsy Gun™",
       model: "OET-TBG-1",
       image:
@@ -278,6 +287,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "bleach-wipes",
       category: "medical",
+      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "Bleach Wipes™",
       model: "OET-BW-40",
       image:
@@ -311,6 +321,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "onenut-cup",
       category: "medical",
+      purchaseUrl: "../#story/1/read",
       name: "OneNut© Cup",
       model: "OET-ONC-1",
       image: "../assets/scenes/andrea_and_lucas/overeasy_onenut_cup_v1.png",
@@ -386,6 +397,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "sterilizer",
       category: "self-defense",
+      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "The Sterilizer™",
       model: "CBT-22120",
       image:
@@ -422,6 +434,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "nutcracker",
       category: "self-defense",
+      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "The Ballcracker™",
       model: "OET-BC-1",
       image:
@@ -486,6 +499,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "studclamp",
       category: "discipline",
+      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "StudClamp™",
       model: "OET-SC-1",
       image:
@@ -527,6 +541,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "auto-milker",
       category: "medical",
+      purchaseUrl: "../#story/20/read",
       name: "Auto-Milker™",
       model: "OET-AM-1",
       image: "../assets/scenes/school_bully/overeasy_auto_milker_device_v1.png",
@@ -591,6 +606,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "strapon",
       category: "sex-toys",
+      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "'Selfish Bitch' Strap-On System",
       model: "OET-SB-PRO",
       image:
@@ -621,6 +637,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "reactive-buttplug",
       category: "sex-toys",
+      purchaseUrl: "../#story/13/read",
       name: "'Broken Boy' Reactive Prostate Plug™",
       model: "OET-RPP-1",
       image:
@@ -642,6 +659,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "ball-cuff",
       category: "sex-toys",
+      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "'Choking Bull' Ball Cuff™",
       model: "OET-BCF-1",
       image:
@@ -654,6 +672,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "ball-anvil",
       category: "sex-toys",
+      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "Ball Anvil™",
       model: "OET-BA-1",
       image:
@@ -668,6 +687,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "luna-identity-arm",
       category: "discipline",
+      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "Luna™ Identity Arm",
       model: "OET-LIA-1",
       image:
@@ -822,6 +842,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "male-containment-chip",
       category: "discipline",
+      purchaseUrl: "../#story/31/read",
       name: "Male Containment Chip™",
       model: "OET-MC-1",
       image:
