@@ -55,6 +55,14 @@
         </div>
       </div>
       <div class="oe-header__nav-wrap">
+        <label class="oe-category-select-wrap" for="oe-category-select">
+          <span class="oe-category-select__label">Category</span>
+          <select
+            class="oe-category-select"
+            id="oe-category-select"
+            aria-label="Product category"
+          ></select>
+        </label>
         <nav class="oe-tabs" id="oe-tabs" aria-label="Product categories">
           <div class="oe-tabs__inner" id="oe-tabs-inner"></div>
           <span
@@ -155,8 +163,10 @@
         const tabsEl = document.getElementById("oe-tabs");
         const tabsInner = document.getElementById("oe-tabs-inner");
         const tabsIndicator = document.getElementById("oe-tabs-indicator");
+        const categorySelect = document.getElementById("oe-category-select");
         const grid = document.getElementById("oe-product-grid");
         const sectionTitle = document.getElementById("oe-section-title");
+        const desktopTabsMq = window.matchMedia("(min-width: 769px)");
 
         tabsInner.innerHTML = visibleCategories
           .map(function (cat) {
@@ -168,6 +178,18 @@
               escapeHtml(cat.label) +
               "</span>" +
               "</button>"
+            );
+          })
+          .join("");
+
+        categorySelect.innerHTML = visibleCategories
+          .map(function (cat) {
+            return (
+              '<option value="' +
+              escapeHtml(cat.id) +
+              '">' +
+              escapeHtml(cat.label) +
+              "</option>"
             );
           })
           .join("");
@@ -203,7 +225,12 @@
             btn.classList.toggle("oe-tab--active", selected);
             btn.setAttribute("aria-selected", selected ? "true" : "false");
           });
-          requestAnimationFrame(updateTabIndicator);
+          if (categorySelect.value !== activeCategory) {
+            categorySelect.value = activeCategory;
+          }
+          if (desktopTabsMq.matches) {
+            requestAnimationFrame(updateTabIndicator);
+          }
         }
 
         function renderSizeOptions(p) {
@@ -457,15 +484,17 @@
           if (!options || !options.skipHash) {
             history.replaceState(null, "", "#category-" + categoryId);
           }
-          const activeBtn = tabsInner.querySelector(
-            '.oe-tab[data-category="' + categoryId + '"]',
-          );
-          if (activeBtn) {
-            activeBtn.scrollIntoView({
-              behavior: "smooth",
-              block: "nearest",
-              inline: "center",
-            });
+          if (desktopTabsMq.matches) {
+            const activeBtn = tabsInner.querySelector(
+              '.oe-tab[data-category="' + categoryId + '"]',
+            );
+            if (activeBtn) {
+              activeBtn.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+                inline: "center",
+              });
+            }
           }
         }
 
@@ -520,6 +549,10 @@
           setCategory(btn.dataset.category);
         });
 
+        categorySelect.addEventListener("change", function () {
+          setCategory(categorySelect.value);
+        });
+
         grid.addEventListener("change", function (event) {
           const sel = event.target.closest(".oe-size-select");
           if (!sel) return;
@@ -553,7 +586,9 @@
         });
 
         window.addEventListener("hashchange", resolveHash);
-        window.addEventListener("resize", updateTabIndicator);
+        window.addEventListener("resize", function () {
+          if (desktopTabsMq.matches) updateTabIndicator();
+        });
         resolveHash();
 
         if (window.OE_INIT_PRODUCT_LIGHTBOX) {
