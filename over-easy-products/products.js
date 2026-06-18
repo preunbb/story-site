@@ -561,7 +561,7 @@ window.OVER_EASY_CATALOG = {
         {
           path: "../assets/too_much.png",
           caption:
-            "Warning: only licensed doctors may operate the Auto-Milker™ alone! Interns can be helpful, but their enthusiasm often has drastic consequences for patients' fertility.",
+            "Warning: only licensed doctors may operate the Auto-Milker™ alone! Interns can be helpful, but their naive enthusiasm often has drastic consequences for patients' fertility.",
         },
       ],
       tagline: "When he says he's empty — prove him wrong.",
