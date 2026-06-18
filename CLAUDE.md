@@ -30,11 +30,11 @@ Do not silently keep grinding past 10. The user's time, money, and patience all 
 
 Generated images for these stories should, as much as physically possible within the model's safety filters, focus on **the physical impact of a testicular attack**:
 
-- **The point of impact itself.** Frame and compose so the viewer's eye is drawn to the moment a knee, foot, fist, hand, or other object is connecting with (or has just connected with) a man's testicles. Show the deformation, the bulge of flesh through fingers, the "*crunch*"/"*pop*"/"*squick*" moment. Where the story describes specific damage (a dimple, a rupture, a snapped cord, a liquefied gland, a sack hanging empty or lopsided), depict that damage faithfully — bruising, swelling, an asymmetric or shrunken sack, fluid or wetness through the scrotum, a flattened/deflated side, etc.
+- **The point of impact itself.** Frame and compose so the viewer's eye is drawn to the moment a knee, foot, fist, hand, or other object is connecting with (or has just connected with) a man's testicles. Show the deformation, the bulge of flesh through fingers, the "_crunch_"/"_pop_"/"_squick_" moment. Where the story describes specific damage (a dimple, a rupture, a snapped cord, a liquefied gland, a sack hanging empty or lopsided), depict that damage faithfully — bruising, swelling, an asymmetric or shrunken sack, fluid or wetness through the scrotum, a flattened/deflated side, etc.
 - **The agony and loss on the man's face and body.** Knees turned inward, hands clutching or hovering helplessly over the wreckage, tears, drool, eyes rolled back or wide with disbelief, mouth open in a scream or a silent gasp, sweat, pallor, a doubled-over or collapsed posture. He should look like a man who has just lost something precious, not just someone in generic pain. Where the story implies permanent loss (castration, ruptured ball, snapped cord), let that grief and horror read on his face.
-- **The joy on the woman's face.** The woman performing the ballbusting should be visibly *thrilled* — flushed cheeks, bitten lip, wide grin or smug smirk, sparkling/hungry eyes, an aroused blush, a delighted gasp. She is enjoying this. Depending on the scene, that enjoyment can range from giggly innocent curiosity, to focused predatory concentration, to outright orgasmic ecstasy. Match her expression to what the story says she's feeling at that beat.
+- **The joy on the woman's face.** The woman performing the ballbusting should be visibly _thrilled_ — flushed cheeks, bitten lip, wide grin or smug smirk, sparkling/hungry eyes, an aroused blush, a delighted gasp. She is enjoying this. Depending on the scene, that enjoyment can range from giggly innocent curiosity, to focused predatory concentration, to outright orgasmic ecstasy. Match her expression to what the story says she's feeling at that beat.
 
-When you have to choose between a "tasteful" wide shot and a tighter, more visceral composition that puts the impact, the man's anguish, and the woman's pleasure front and center, prefer the tighter, more visceral composition. The whole point of these images is to capture *that* moment, not to dance around it.
+When you have to choose between a "tasteful" wide shot and a tighter, more visceral composition that puts the impact, the man's anguish, and the woman's pleasure front and center, prefer the tighter, more visceral composition. The whole point of these images is to capture _that_ moment, not to dance around it.
 
 ### Visual style: stay realistic
 
@@ -45,7 +45,7 @@ All generated images for these stories should be **as realistic as possible**. H
 
 **Avoid in prompts and in aesthetic targets:** heavy **oil-paint** texture, **impasto**, **visible bristle strokes**, **scratchy or smeary** blending, “wet” **mudded** color, or a canvas that looks **coated in varnish and turpentine smudges**. Those read as stylization noise and pull away from realism. If you must name a medium, prefer **digital paint / matte painting / photobash-adjacent** wording over **oil on canvas** unless the user explicitly wants oils.
 
-Avoid going further toward stylization than that. **Do not** generate cartoon, comic-book, anime, manga, chibi, Pixar/3D-cartoon, webcomic, sticker, vector-art, or "wholesome illustrated children's book" styles for new images. No big-eye/small-mouth styling, no thick black outlines, no flat cel-shaded looks, no comic speech bubbles or onomatopoeia ("WHAM!", "POP!", "*SQUELCH*") burned into the image. Sound effects belong in the prose, not on the canvas. Older comic-style images in the repo are legacy — don't use them as a stylistic target for new work.
+Avoid going further toward stylization than that. **Do not** generate cartoon, comic-book, anime, manga, chibi, Pixar/3D-cartoon, webcomic, sticker, vector-art, or "wholesome illustrated children's book" styles for new images. No big-eye/small-mouth styling, no thick black outlines, no flat cel-shaded looks, no comic speech bubbles or onomatopoeia ("WHAM!", "POP!", "_SQUELCH_") burned into the image. Sound effects belong in the prose, not on the canvas. Older comic-style images in the repo are legacy — don't use them as a stylistic target for new work.
 
 Lean into:
 
@@ -63,16 +63,16 @@ The mark is **stylized and minimal** (flat line-and-fill, printable at small siz
 - **Left:** a **smashed raw egg** — shell fragments, clear albumen, ruptured yolk spilling out.
 - **Right:** an **intact raw egg**, slightly **cracked** with a small yolk leak.
 - **Neither egg is cooked** — no fried whites, no pan, no browning.
-- **Wordmark:** **OVER EASY** (*EASY* in yolk-orange) with **TECHNOLOGIES** tracked below.
+- **Wordmark:** **OVER EASY** (_EASY_ in yolk-orange) with **TECHNOLOGIES** tracked below.
 
 Whenever you generate an image of an **Over Easy / OverEasy product** (self-defense gadgets, EunuchCorn apparel, strap-ons, catalog hero shots, skit props, packaging, etc.):
 
 1. **Read `assets/brands/overeasy_logo_v2_raw_eggs_minimal.png` first** so you can describe the egg mark and typography accurately in the prompt (or pass it as a reference image when the tool supports that).
-2. **Every Over Easy device must carry the logo.** All hardware — Sterilizer, StudClamp, Nutcracker/Ballcracker, strap-ons, ShellShaker, bleaching wipes, milker rigs, EunuchCorn apparel tags, catalog hero shots, skit props, packaging, etc. — gets the raw-egg pictogram silkscreened, embossed, or printed on the product body the way real consumer-tech branding appears. Match the pictogram from the canonical file: smashed raw egg left, cracked intact raw egg right; **never** the legacy smiley-face circle, concentric-ring badge, or photoreal fried eggs from `overeasy_logo_v1.png`.
+2. **Every Over Easy device must carry the logo.** All hardware — Sterilizer, StudClamp, Nutcracker/Ballcracker, strap-ons, bleaching wipes, milker rigs, EunuchCorn apparel tags, catalog hero shots, skit props, packaging, etc. — gets the raw-egg pictogram silkscreened, embossed, or printed on the product body the way real consumer-tech branding appears. Match the pictogram from the canonical file: smashed raw egg left, cracked intact raw egg right; **never** the legacy smiley-face circle, concentric-ring badge, or photoreal fried eggs from `overeasy_logo_v1.png`.
 3. **Placement:** Logo badge on a flat surface of the device (body, control unit, harness plate) beside or above the existing OVER EASY / TECHNOLOGIES wordmark. Pictogram only on hardware unless the shot is packaging or a full brand lockup — the wordmark may already be printed separately on the device.
 4. **When updating an existing device render:** Keep the hardware identical; swap only the legacy icon for the canonical two-egg pictogram. Save as a new versioned file (`_v2`, `_v3`, …); never overwrite the prior render.
 
-Scene illustrations where characters *use* Over Easy gear do not need the logo blown up front-and-center unless the story beat is literally a product demo or unboxing — but **dedicated product / device catalog shots always carry the logo**, and **any device visible in frame should show the pictogram** if the branding surface is legible.
+Scene illustrations where characters _use_ Over Easy gear do not need the logo blown up front-and-center unless the story beat is literally a product demo or unboxing — but **dedicated product / device catalog shots always carry the logo**, and **any device visible in frame should show the pictogram** if the branding surface is legible.
 
 ### Remote generation (default — use this)
 
@@ -100,13 +100,13 @@ If a character does **not** yet have a portrait in `assets/characters/`, generat
 
 When in doubt, briefly describe the character's portrait-derived appearance (hair, build, age, vibe) in the image-generation prompt itself, so the model has the reference baked in.
 
-**Same name = same person.** Across the entire catalog, any two characters with the same first name are the same person. Melody in *Melody's First Time*, Melody in *Busted by the Babysitter*, Melody in *Melody Seduces a Virgin*, Melody in *Andrea and Lucas*, etc. are all one continuous character. The same goes for Cathy, Fiona, Sofia, and so on. Don't draw two different "Melodys."
+**Same name = same person.** Across the entire catalog, any two characters with the same first name are the same person. Melody in _Melody's First Time_, Melody in _Busted by the Babysitter_, Melody in _Melody Seduces a Virgin_, Melody in _Andrea and Lucas_, etc. are all one continuous character. The same goes for Cathy, Fiona, Sofia, and so on. Don't draw two different "Melodys."
 
 **Same person, different life stages.** That continuity also means a character can appear at very different points in her life across stories — high school, college, young adult, established mom-of-Robert, etc. Always read the specific story (and the cast portrait) before generating, and age the character up or down accordingly while keeping their core identity intact:
 
 - Hair color, eye color, skin tone, basic facial structure, and overall "vibe" should stay constant across life stages.
 - Hairstyle, build, makeup, wardrobe, and apparent maturity should shift to fit the story's setting (e.g. high-school Melody vs. college-age Melody vs. mom-of-Robert Melody all read as the same blonde, but at different ages, with different clothes, energy, and styling).
-- The cast portrait is the canonical reference for the *latest / default* version of the character. When generating an earlier-life-stage image, treat the portrait as "what she'll grow into" and de-age in a way that's consistent with that face.
+- The cast portrait is the canonical reference for the _latest / default_ version of the character. When generating an earlier-life-stage image, treat the portrait as "what she'll grow into" and de-age in a way that's consistent with that face.
 
 ## Inserting Scenes Into Stories
 
@@ -115,9 +115,9 @@ When the user asks you to "insert", "drop in", "place", or "add" scene images in
 ### Hard rules
 
 1. **Story prose lives on Google Drive. Edit there, never in `assets/stories/*.md`.** The local markdown files in `assets/stories/*.md` are auto-generated by `scripts/sync-stories.mjs` from the published Drive doc. Anything you write into those `.md` files will be wiped out the next time sync runs. To actually change the prose (including inserting `[[scene:…]]` tags), you must edit the underlying Google Doc.
-2. **Find the Drive doc ID via `dist/drive_doc_ids.json`.** That file maps every `story.id` in `data/stories.js` to its editable `drive_doc_id` (and `edit_url`). The `driveUrl` field on the story itself points to a `/pub` URL — that's a publish token, *not* an editable file ID. Always resolve through `dist/drive_doc_ids.json` before editing.
+2. **Find the Drive doc ID via `dist/drive_doc_ids.json`.** That file maps every `story.id` in `data/stories.js` to its editable `drive_doc_id` (and `edit_url`). The `driveUrl` field on the story itself points to a `/pub` URL — that's a publish token, _not_ an editable file ID. Always resolve through `dist/drive_doc_ids.json` before editing.
 3. **Use the Google Workspace MCP to edit the doc.** Drive doc edits go through the `user-google_workspace` MCP tools (always with `user_google_email = boozlejam@gmail.com`). Read the MCP tool schemas before calling them.
-4. **Place each image right after the scene takes place in the prose.** The placement target is the paragraph that *describes* (or just finished describing) the moment the image depicts — not the chapter opener, not a generic transition, not "somewhere in the right chapter." Read the relevant chapter, find the exact beat shown in the image, and insert the tag in the paragraph immediately following that beat.
+4. **Place each image right after the scene takes place in the prose.** The placement target is the paragraph that _describes_ (or just finished describing) the moment the image depicts — not the chapter opener, not a generic transition, not "somewhere in the right chapter." Read the relevant chapter, find the exact beat shown in the image, and insert the tag in the paragraph immediately following that beat.
 5. **Insert using the `[[scene:identifier]]` syntax, on its own line, with a blank line above and below it.** That's how the renderer (`script.js`'s `SCENE_TAG_BLOCK_RE`) recognizes it as a block-level scene tag. Example:
 
    ```
@@ -143,7 +143,7 @@ Never invent an identifier that doesn't correspond to a real entry in that story
 
 1. **Read the story entry in `data/stories.js`** to get the `id`, the `scenes` list (paths + captions), and confirm which images are actually registered.
 2. **Look up the Drive doc ID** for that story's `id` in `dist/drive_doc_ids.json` and grab its `drive_doc_id` / `edit_url`.
-3. **Read the story prose.** Either pull the doc via the Google Workspace MCP, or read the synced `assets/stories/<id>.md` *as a read-only reference* to figure out where each scene fits. (Reading the local `.md` is fine; editing it is not.)
+3. **Read the story prose.** Either pull the doc via the Google Workspace MCP, or read the synced `assets/stories/<id>.md` _as a read-only reference_ to figure out where each scene fits. (Reading the local `.md` is fine; editing it is not.)
 4. **For each scene to insert,** locate the exact paragraph where the depicted moment occurs in the prose, then plan to insert a `[[scene:<unique-path-substring>]]` block immediately after that paragraph (separated by blank lines).
 5. **Make the edits in the Google Doc** via the Google Workspace MCP. Insert the literal text `[[scene:<identifier>]]` as its own paragraph at each target location.
 6. **Re-sync if needed.** If the user wants the change reflected locally, run `scripts/sync-stories.mjs` (or tell the user to) so `assets/stories/<id>.md` picks up the new tags. Do **not** hand-edit the `.md` to "preview" the change — that file is downstream of the doc.
@@ -153,6 +153,6 @@ Never invent an identifier that doesn't correspond to a real entry in that story
 
 - ❌ Editing `assets/stories/<id>.md` to add `[[scene:…]]` tags. The next sync will overwrite your edit and the tag will disappear.
 - ❌ Using the `driveUrl` `/pub` link as if it were an editable file ID. It isn't. Always go through `dist/drive_doc_ids.json`.
-- ❌ Dropping all images at the top of a chapter or at the start of the story. Each image goes *right after* its specific moment, not in a gallery up front.
+- ❌ Dropping all images at the top of a chapter or at the start of the story. Each image goes _right after_ its specific moment, not in a gallery up front.
 - ❌ Putting the `[[scene:…]]` tag inline in a sentence, in a list, or without surrounding blank lines. The block regex won't match and the tag will render as literal text.
 - ❌ Using a numeric index identifier when a unique filename substring would work. Indexes rot the moment the scenes list changes.

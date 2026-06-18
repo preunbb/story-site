@@ -731,4 +731,11 @@ window.DATA_CHARACTERS = [
     bio: "Well hung and horny, Kay convinces him to  to agree to undergo the First Rite and join the Church as a proper member. He's nervous to leave the chamber one testicle lighter than he entered, but excited to finally blow his load after being blueballed for months on end.",
     profilePictures: ["assets/characters/isaac_cult_chamber_cast_v2.png"],
   },
+  {
+    id: "judah",
+    name: "Judah",
+    gender: "M",
+    bio: "Poorly hung low-level male member of the Cult of the Broken Tree, Judah wants to keep his last ball intact no matter what - even if he has to betray dozens of his brethren to the demonic trio descending upon them.",
+    profilePictures: ["assets/characters/judah_cult_cast_v2.png"],
+  },
 ];

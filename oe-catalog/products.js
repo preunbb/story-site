@@ -51,6 +51,11 @@ window.OVER_EASY_CATALOG = {
           caption:
             "As stylish as they are dangerous, these functional heels will keep you sexy and safe.",
         },
+        {
+          path: "assets/scenes/overeasy_catalog/overeasy_ball_killers_dept_store_demo_caption_v1.png",
+          caption:
+            "Tungsten toes for when sorry isn't enough — shattered testicles, zero regrets.",
+        },
       ],
       tagline: "Fashionable. Functional. Pointed.",
       description:
@@ -432,6 +437,11 @@ window.OVER_EASY_CATALOG = {
           path: "assets/scenes/andrea_and_lucas/overeasy_sterilizer_crosssection_voltage_graded_v2_schematic.png",
           caption:
             "Boring medical details - but very helpful for his urologist to understand the severity of his injuries after you've done what you need to keep yourself safe.",
+        },
+        {
+          path: "assets/scenes/overeasy_catalog/overeasy_sterilizer_trade_show_demo_caption_v1.png",
+          caption:
+            "HIGH setting turns his nuts into mush before he finishes the waiver.",
         },
       ],
       tagline: "One zap. Zero kids.",
