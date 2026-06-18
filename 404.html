@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page not found</title>
+    <script>
+      (function () {
+        var path = location.pathname.replace(/\/$/, "");
+        if (path.endsWith("/over-easy-products")) {
+          var target = path + location.search + location.hash;
+          location.replace(target);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Page not found.</p>
+    <p><a href="../">Return to the site</a></p>
+  </body>
+</html>
