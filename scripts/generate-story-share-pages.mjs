@@ -20,7 +20,11 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(__dirname, "..");
 const storiesPath = join(repoRoot, "data", "stories.js");
+const catalogPath = join(repoRoot, "oe-catalog", "products.js");
 const outDir = join(repoRoot, "share");
+const OE_SHARE_IMAGE = "assets/brands/overeasy_logo_v2_raw_eggs_minimal.png";
+const OE_SHARE_IMAGE_WIDTH = "1536";
+const OE_SHARE_IMAGE_HEIGHT = "1024";
 
 const SITE_ORIGIN = (
   process.env.PREUN_SITE_ORIGIN ||
@@ -34,6 +38,15 @@ function loadStories() {
     const window = {};
     ${src}
     return window.DATA_STORIES;
+  `)();
+}
+
+function loadOverEasyCatalog() {
+  const src = readFileSync(catalogPath, "utf8");
+  return new Function(`
+    const window = {};
+    ${src}
+    return window.OVER_EASY_CATALOG;
   `)();
 }
 
@@ -54,6 +67,10 @@ function absoluteCoverUrl(cover) {
 
 function readerUrlForStory(storyId) {
   return `${SITE_ORIGIN}/#story/${encodeURIComponent(String(storyId))}/read`;
+}
+
+function catalogUrl() {
+  return `${SITE_ORIGIN}/over-easy-products`;
 }
 
 function buildPageHtml(story) {
@@ -97,6 +114,53 @@ function buildPageHtml(story) {
 `;
 }
 
+function buildOverEasySharePageHtml(catalog) {
+  const brand = catalog?.brand ?? {};
+  const title = `${brand.name || "Over Easy Technologies"} — Product Catalog`;
+  const description =
+    brand.tagline ||
+    "Over Easy Technologies product catalog — self-defense, medical, and lifestyle hardware.";
+  const pageUrl = catalogUrl();
+  const img = absoluteCoverUrl(OE_SHARE_IMAGE);
+  const titleEsc = escapeAttr(title);
+  const descEsc = escapeAttr(description);
+  const pageEsc = escapeAttr(pageUrl);
+  const pageJson = JSON.stringify(pageUrl);
+  const imgEsc = escapeAttr(img);
+  const refreshUrl = pageUrl.replace(/'/g, "%27");
+
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>${titleEsc}</title>
+    <link rel="canonical" href="${pageEsc}" />
+    <meta property="og:title" content="${titleEsc}" />
+    <meta property="og:description" content="${descEsc}" />
+    <meta property="og:image" content="${imgEsc}" />
+    <meta property="og:image:width" content="${OE_SHARE_IMAGE_WIDTH}" />
+    <meta property="og:image:height" content="${OE_SHARE_IMAGE_HEIGHT}" />
+    <meta property="og:url" content="${pageEsc}" />
+    <meta property="og:site_name" content="${escapeAttr(brand.name || "Over Easy Technologies")}" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${titleEsc}" />
+    <meta name="twitter:description" content="${descEsc}" />
+    <meta name="twitter:image" content="${imgEsc}" />
+    <meta http-equiv="refresh" content='0;url=${refreshUrl}' />
+    <script>
+      location.replace(${pageJson});
+    </script>
+  </head>
+  <body>
+    <p><a href="${pageEsc}">Continue to the product catalog…</a></p>
+  </body>
+</html>
+`;
+}
+
 function main() {
   const stories = loadStories();
   mkdirSync(outDir, { recursive: true });
@@ -111,8 +175,16 @@ function main() {
     const file = join(outDir, `${s.id}.html`);
     writeFileSync(file, buildPageHtml(s), "utf8");
   }
+
+  const catalog = loadOverEasyCatalog();
+  writeFileSync(
+    join(outDir, "over-easy-products.html"),
+    buildOverEasySharePageHtml(catalog),
+    "utf8",
+  );
+
   console.log(
-    `[share-pages] wrote ${ids.size} files to share/ (origin ${SITE_ORIGIN})`,
+    `[share-pages] wrote ${ids.size} story files + over-easy-products.html to share/ (origin ${SITE_ORIGIN})`,
   );
 }
 

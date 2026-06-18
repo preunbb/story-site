@@ -3,7 +3,7 @@
  */
 
 export const COPY_VOICE_RULES = `
-CATALOG COPY RULES (over-easy-products/products.js — single source of truth):
+CATALOG COPY RULES (oe-catalog/products.js — single source of truth):
 
 Audience: women shopping Over Easy — confident, amused, in on the joke.
 
@@ -114,7 +114,7 @@ export function buildMarketingCopy({ slug, hints, specs, existingProduct }) {
     description: descriptions[kind] ?? descriptions.device,
     features: defaultFeatures.length > 2 ? defaultFeatures : [
       "Canonical Over Easy raw-egg pictogram branding",
-      "Edit features in over-easy-products/products.js",
+      "Edit features in oe-catalog/products.js",
     ],
   };
 }

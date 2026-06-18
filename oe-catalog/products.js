@@ -3,7 +3,7 @@
  *
  * Edit this file to change copy, images, features, setlist, or add/remove products.
  * This is the single source of truth for catalog copy — oe-product tooling reads from here.
- * Paths are relative to over-easy-products/index.html
+ * Paths are relative to over-easy-products.html (repo root)
  *
  * purchaseUrl — optional. Story flyout (../#story/N), reader, Ko-fi, etc.
  * Omit for “Coming soon!” products.
@@ -17,7 +17,7 @@ window.OVER_EASY_CATALOG = {
   brand: {
     name: "Over Easy Technologies",
     tagline: "Premium lifestyle hardware for the modern woman.",
-    logo: "../assets/brands/overeasy_logo_v2_raw_eggs_minimal.png",
+    logo: "assets/brands/overeasy_logo_v2_raw_eggs_minimal.png",
   },
 
   categories: [
@@ -39,14 +39,14 @@ window.OVER_EASY_CATALOG = {
       name: "Ball Killers™",
       model: "OET-BK-1",
       image:
-        "../assets/scenes/andrea_and_lucas/overeasy_ball_killers_heels_v1.png",
+        "assets/scenes/andrea_and_lucas/overeasy_ball_killers_heels_v1.png",
       images: [
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_ball_killers_heels_v1.png",
+          path: "assets/scenes/andrea_and_lucas/overeasy_ball_killers_heels_v1.png",
           caption: "Ball Killers™ — patent pumps on white background",
         },
         {
-          path: "../assets/ballkiller.png",
+          path: "assets/ballkiller.png",
           caption:
             "As stylish as they are dangerous, these functional heels will keep you sexy and safe.",
         },
@@ -65,7 +65,7 @@ window.OVER_EASY_CATALOG = {
       name: "EunuchCorn™ Denim",
       model: "OET-EC-D1",
       image:
-        "../assets/scenes/andrea_and_lucas/overeasy_eunuchcorn_denim_v1.png",
+        "assets/scenes/andrea_and_lucas/overeasy_eunuchcorn_denim_v1.png",
       tagline: "Jeans for those out of the gene pool.",
       description:
         "Finally — denim that fits what's left. EunuchCorn jeans and shorts feature an " +
@@ -108,44 +108,44 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "../#story/12/read",
       name: "Nevermore™ Keepsakes Custom-Made Bronze Earrings",
       model: "OET-BTE-1",
-      image: "../assets/wearing_bronze.png",
+      image: "assets/wearing_bronze.png",
       images: [
         {
-          path: "../assets/scenes/one_night_stand/overeasy_bronze_testicle_earrings_v1.png",
+          path: "assets/scenes/one_night_stand/overeasy_bronze_testicle_earrings_v1.png",
           caption: "Every pair of Nevermore™ Keepsakes is completely unique.",
         },
         {
-          path: "../assets/asdf.png",
+          path: "assets/asdf.png",
           caption:
             "Nevermore™ aren't just for high fashion - her son's Keepsakes on her ears answers all those pesky questions about why she doesn't have grandkids yet.",
         },
         {
-          path: "../assets/nurse_bronze.png",
+          path: "assets/nurse_bronze.png",
           caption:
             "Even appropriate for the professional woman, Nurse Sarah subtly shows off her husband's love to her coworkers and patients via her Nevermores™.",
         },
         {
-          path: "../assets/wearing_bronze.png",
+          path: "assets/wearing_bronze.png",
           caption:
             "Model Asta wears her newest set of Nevermore™ Keepsakes, given to her by her latest one night stand (whose name unfortunately escapes her).",
         },
         {
-          path: "../assets/college bronze.png",
+          path: "assets/college bronze.png",
           caption:
             "Lucia is embarassed to admit it, but deep down she loves being the first of her friends to get her own pair of Nevermores™ - she really has the best boyfriend on campus!",
         },
         {
-          path: "../assets/mom_earring.png",
+          path: "assets/mom_earring.png",
           caption:
             "After you break up with him, you can wear the pair of Nevermores™ your ex gave you to first dates so men know you know your worth.",
         },
         {
-          path: "../assets/scenes/one_night_stand/overeasy_nevermore_keepsakes_two_pairs_men_cringing_v1.png",
+          path: "assets/scenes/one_night_stand/overeasy_nevermore_keepsakes_two_pairs_men_cringing_v1.png",
           caption:
             "When you've got two beaus you can't decide between - ask them both for their Keepsakes and see which one is more devoted. And if they're BOTH truly in love with you, that extra pair can make a fantastic white elephant gifts for your girlfriends.",
         },
         {
-          path: "../assets/scenes/one_night_stand/overeasy_nevermore_keepsakes_two_friends_chatting_v2.png",
+          path: "assets/scenes/one_night_stand/overeasy_nevermore_keepsakes_two_friends_chatting_v2.png",
           caption:
             "Pendant Nevermores™ available when your lover has a little less (or more!) to donate and you'd like your jewelry symmetrical.",
         },
@@ -163,14 +163,14 @@ window.OVER_EASY_CATALOG = {
       name: "Church of the Broken Tree Devotional Pendant",
       model: "CBT-PND-1",
       image:
-        "../assets/scenes/andrea_and_lucas/church_broken_tree_pendant_product_v1.png",
+        "assets/scenes/andrea_and_lucas/church_broken_tree_pendant_product_v1.png",
       images: [
         {
-          path: "../assets/scenes/andrea_and_lucas/church_broken_tree_pendant_product_v1.png",
+          path: "assets/scenes/andrea_and_lucas/church_broken_tree_pendant_product_v1.png",
           caption: "Devotional pendant — pewter on silver cable chain",
         },
-        { path: "../assets/characters/kay_final.png", caption: "Model: Kay" },
-        { path: "../assets/characters/abby_final.png", caption: "Model: Abby" },
+        { path: "assets/characters/kay_final.png", caption: "Model: Kay" },
+        { path: "assets/characters/abby_final.png", caption: "Model: Abby" },
       ],
       tagline: "Wear your faith where he can see it.",
       description:
@@ -184,18 +184,18 @@ window.OVER_EASY_CATALOG = {
       name: "Cherry Pop! — Plum Dumb & Permanently Done",
       model: "CP-PDPD-001",
       image:
-        "../assets/scenes/andrea_and_lucas/cherry_pop_album_cover_product_v1.png",
+        "assets/scenes/andrea_and_lucas/cherry_pop_album_cover_product_v1.png",
       images: [
         {
-          path: "../assets/scenes/andrea_and_lucas/cherry_pop_album_cover_product_v1.png",
+          path: "assets/scenes/andrea_and_lucas/cherry_pop_album_cover_product_v1.png",
           caption: "Album cover — Plum Dumb & Permanently Done",
         },
         {
-          path: "../assets/scenes/andrea_and_lucas/cherry_pop_album_vinyl_record_v1.png",
+          path: "assets/scenes/andrea_and_lucas/cherry_pop_album_vinyl_record_v1.png",
           caption: "Vinyl LP",
         },
         {
-          path: "../assets/scenes/andrea_and_lucas/cherry_pop_album_cd_jewel_v1.png",
+          path: "assets/scenes/andrea_and_lucas/cherry_pop_album_cd_jewel_v1.png",
           caption: "CD jewel case",
         },
       ],
@@ -227,14 +227,14 @@ window.OVER_EASY_CATALOG = {
       name: "Comparative Gonadal Integrity Poster",
       model: "OET-GIP-24",
       image:
-        "../assets/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_realistic_v1.png",
+        "assets/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_realistic_v1.png",
       images: [
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_realistic_v1.png",
+          path: "assets/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_realistic_v1.png",
           caption: "Current edition — full-color anatomical plate",
         },
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_v1.png",
+          path: "assets/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_v1.png",
           caption: "Vintage edition — sepia medical engraving",
         },
       ],
@@ -277,7 +277,7 @@ window.OVER_EASY_CATALOG = {
       name: "Hypersecretory Disorder Clinical Poster",
       model: "OET-HSD-24",
       image:
-        "../assets/scenes/andrea_and_lucas/lucas_hyperspermia_scrotum_textbook_diagram_v2.png",
+        "assets/scenes/andrea_and_lucas/lucas_hyperspermia_scrotum_textbook_diagram_v2.png",
       description:
         "Vintage textbook plate illustrating the effects of 'hypersecretory disorder', " +
         "an antiquated name for what doctors now call 'hyperactive testicular " +
@@ -291,7 +291,7 @@ window.OVER_EASY_CATALOG = {
       name: "Testicular Biopsy Gun™",
       model: "OET-TBG-1",
       image:
-        "../assets/scenes/andrea_and_lucas/testicular_biopsy_gun_device_v2.png",
+        "assets/scenes/andrea_and_lucas/testicular_biopsy_gun_device_v2.png",
       description:
         "Hospital-grade instrument for removing testicular tissue samples for analysis. " +
         "Extra thick collection needle ensures adequate retrieval for even the toughest " +
@@ -305,7 +305,7 @@ window.OVER_EASY_CATALOG = {
       name: "Bleach Wipes™",
       model: "OET-BW-40",
       image:
-        "../assets/scenes/andrea_and_lucas/overeasy_bleach_wipes_box_v2.png",
+        "assets/scenes/andrea_and_lucas/overeasy_bleach_wipes_box_v2.png",
       tagline: "Snuff out those swimmers!",
       description:
         "Patented bleach wipes strong enough to neutralize every germ and ambitious " +
@@ -338,7 +338,7 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "../#story/1/read",
       name: "OneNut© Cup",
       model: "OET-ONC-1",
-      image: "../assets/scenes/andrea_and_lucas/overeasy_onenut_cup_v1.png",
+      image: "assets/scenes/andrea_and_lucas/overeasy_onenut_cup_v1.png",
       tagline: "Better safe than sorry.",
       description:
         "For men with only one remaining testicle, standard cups leave too much room — " +
@@ -374,15 +374,15 @@ window.OVER_EASY_CATALOG = {
       name: "Contour Restoration Inserts™",
       model: "OET-TI-2",
       image:
-        "../assets/scenes/andrea_and_lucas/overeasy_testicular_implants_v2.png",
+        "assets/scenes/andrea_and_lucas/overeasy_testicular_implants_v2.png",
       images: [
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_testicular_implants_v2.png",
+          path: "assets/scenes/andrea_and_lucas/overeasy_testicular_implants_v2.png",
           caption:
             "Contour Restoration Inserts™ — cosmetic silicone, display use only.",
         },
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_contour_restoration_inserts_xxxs_model_v1.png",
+          path: "assets/scenes/andrea_and_lucas/overeasy_contour_restoration_inserts_xxxs_model_v1.png",
           caption:
             "Model fit — our specialists know how to highlight your best features, even when there isn't much to work with.",
         },
@@ -415,20 +415,20 @@ window.OVER_EASY_CATALOG = {
       name: "The Sterilizer™",
       model: "CBT-22120",
       image:
-        "../assets/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
+        "assets/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
       images: [
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
+          path: "assets/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
           caption:
             "Sterilizer™ CBT-22120 — angled prods, three-setting voltage selector",
         },
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_sterilizer_crosssection_voltage_graded_v3.png",
+          path: "assets/scenes/andrea_and_lucas/overeasy_sterilizer_crosssection_voltage_graded_v3.png",
           caption:
             "Voltage-graded injury — LOW, MEDIUM, and HIGH, with cross-sections to show the devastating internal effects.",
         },
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_sterilizer_crosssection_voltage_graded_v2_schematic.png",
+          path: "assets/scenes/andrea_and_lucas/overeasy_sterilizer_crosssection_voltage_graded_v2_schematic.png",
           caption:
             "Boring medical details - but very helpful for his urologist to understand the severity of his injuries after you've done what you need to keep yourself safe.",
         },
@@ -452,15 +452,15 @@ window.OVER_EASY_CATALOG = {
       name: "The Ballcracker™",
       model: "OET-BC-1",
       image:
-        "../assets/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
+        "assets/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
       images: [
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
+          path: "assets/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
           caption:
             "Ballcracker™ OET-BC-1 — brushed steel, ribbed grip, keychain-ready",
         },
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_ballcracker_crosssection_pneumatic_epididymis_v2_schematic.png",
+          path: "assets/scenes/andrea_and_lucas/overeasy_ballcracker_crosssection_pneumatic_epididymis_v2_schematic.png",
           caption:
             "In-depth trauma mechanism - subtly crack him open by hand, or pop him instantly",
         },
@@ -483,20 +483,20 @@ window.OVER_EASY_CATALOG = {
       name: "The BellRinger™",
       model: "OET-BR-1",
       image:
-        "../assets/scenes/andrea_and_lucas/overeasy_bell_ringer_device_v1.png",
+        "assets/scenes/andrea_and_lucas/overeasy_bell_ringer_device_v1.png",
       images: [
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_bell_ringer_device_v1.png",
+          path: "assets/scenes/andrea_and_lucas/overeasy_bell_ringer_device_v1.png",
           caption:
             "Small enough to fit dozens in your purse, ensuring you're never caught without a fresh BellRinger™.",
         },
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_bell_ringer_resonant_field_poster_realistic_v1.png",
+          path: "assets/scenes/andrea_and_lucas/overeasy_bell_ringer_resonant_field_poster_realistic_v1.png",
           caption:
             "Wide range and depth of effect ensures the BellRinger™ can keep a whole room of men on their knees until deactivated.",
         },
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_bell_ringer_resonant_field_poster_vintage_v1.png",
+          path: "assets/scenes/andrea_and_lucas/overeasy_bell_ringer_resonant_field_poster_vintage_v1.png",
           caption:
             "Vintage and modern product posters available for purchase upon request.",
         },
@@ -518,15 +518,15 @@ window.OVER_EASY_CATALOG = {
       name: "StudClamp™",
       model: "OET-SC-1",
       image:
-        "../assets/scenes/andrea_and_lucas/overeasy_studclamp_device_v2.png",
+        "assets/scenes/andrea_and_lucas/overeasy_studclamp_device_v2.png",
       images: [
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_studclamp_device_v2.png",
+          path: "assets/scenes/andrea_and_lucas/overeasy_studclamp_device_v2.png",
           caption:
             "StudClamp™ mobile app and compatible smart phone required for full functionality",
         },
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_gonadal_integrity_intact_studclamp_flattened_crosssection_v1.png",
+          path: "assets/scenes/andrea_and_lucas/overeasy_gonadal_integrity_intact_studclamp_flattened_crosssection_v1.png",
           caption:
             "Artist's rendition of the cross-section of the subject during his successful StudClamp™ interrogation.",
         },
@@ -559,20 +559,20 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "../#story/20/read",
       name: "Auto-Milker™",
       model: "OET-AM-1",
-      image: "../assets/scenes/school_bully/overeasy_auto_milker_device_v1.png",
+      image: "assets/scenes/school_bully/overeasy_auto_milker_device_v1.png",
       images: [
         {
-          path: "../assets/scenes/school_bully/overeasy_auto_milker_device_v1.png",
+          path: "assets/scenes/school_bully/overeasy_auto_milker_device_v1.png",
           caption:
             "Auto-Milker™ OET-AM-1 — electrostim sleeve, scrotal compression, graduated collection vial",
         },
         {
-          path: "../assets/automilker_in_use_tamara_v1.png",
+          path: "assets/automilker_in_use_tamara_v1.png",
           caption:
             "Dr. Tamara after a cumpletely successful extraction from an especially productive (and lucky!) patient.",
         },
         {
-          path: "../assets/too_much.png",
+          path: "assets/too_much.png",
           caption:
             "Warning: only licensed doctors may operate the Auto-Milker™ alone! Interns can be helpful, but their naive enthusiasm often has drastic consequences for patients' fertility.",
         },
@@ -625,15 +625,15 @@ window.OVER_EASY_CATALOG = {
       name: "'Selfish Bitch' Strap-On System",
       model: "OET-SB-PRO",
       image:
-        "../assets/scenes/andrea_and_lucas/overeasy_strapon_device_v10.png",
+        "assets/scenes/andrea_and_lucas/overeasy_strapon_device_v10.png",
       images: [
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_strapon_device_v10.png",
+          path: "assets/scenes/andrea_and_lucas/overeasy_strapon_device_v10.png",
           caption:
             "Selfish Bitch™ OET-SB-PRO — dual-ended piezoreactive harness, osmium false balls",
         },
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_strapon_selfish_bitch_andrea_lucas_scared_v2.png",
+          path: "assets/scenes/andrea_and_lucas/overeasy_strapon_selfish_bitch_andrea_lucas_scared_v2.png",
           caption: "Andrea models the harness; Lucas knows what's coming.",
         },
       ],
@@ -656,7 +656,7 @@ window.OVER_EASY_CATALOG = {
       name: "'Broken Boy' Reactive Prostate Plug™",
       model: "OET-RPP-1",
       image:
-        "../assets/scenes/andrea_and_lucas/overeasy_reactive_prostate_plug_device_v1.png",
+        "assets/scenes/andrea_and_lucas/overeasy_reactive_prostate_plug_device_v1.png",
       tagline: "Break him. Plug him. Make him cum the hard way.",
       description:
         "Not your normal plug. Over Easy's reactive architecture reads his resistance " +
@@ -678,7 +678,7 @@ window.OVER_EASY_CATALOG = {
       name: "'Choking Bull' Ball Cuff™",
       model: "OET-BCF-1",
       image:
-        "../assets/scenes/andrea_and_lucas/overeasy_ball_cuff_device_v2.png",
+        "assets/scenes/andrea_and_lucas/overeasy_ball_cuff_device_v2.png",
       tagline: "Streeeeeeeetch him out!",
       description:
         "Thick rubber ring made of ultra-dense silicone composite, designed to keep him " +
@@ -691,7 +691,7 @@ window.OVER_EASY_CATALOG = {
       name: "Ball Anvil™",
       model: "OET-BA-1",
       image:
-        "../assets/scenes/andrea_and_lucas/overeasy_ball_anvil_device_v1.png",
+        "assets/scenes/andrea_and_lucas/overeasy_ball_anvil_device_v1.png",
       description:
         "For the woman who wants to forge a new connection with her man and hammer home " +
         "who's in charge. Our commercial Ball Anvil™ upgrades the popular open-source " +
@@ -706,18 +706,18 @@ window.OVER_EASY_CATALOG = {
       name: "Luna™ Identity Arm",
       model: "OET-LIA-1",
       image:
-        "../assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_scanner_mode_v2.png",
+        "assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_scanner_mode_v2.png",
       images: [
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_scanner_mode_v2.png",
+          path: "assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_scanner_mode_v2.png",
           caption: "Non-invasive ultra-fast female identification mode",
         },
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_audit_mode_v4.png",
+          path: "assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_audit_mode_v4.png",
           caption: "Thorough, secure and reliable male identification mode",
         },
         {
-          path: "../assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_audit_crosssection_clinical_v3.png",
+          path: "assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_audit_crosssection_clinical_v3.png",
           caption:
             "Demonstration of the internal testicular cross-section after a particularly thorough identity audit. Luna's left him with just enough nutmeat intact that he'll be able to recover his fertility. Eventually.",
         },
@@ -746,7 +746,7 @@ window.OVER_EASY_CATALOG = {
       category: "kitchen-gadgets",
       name: "Garlic Press",
       model: "OET-GP-1",
-      image: "../assets/scenes/overeasy_catalog/overeasy_garlic_press_v1.png",
+      image: "assets/scenes/overeasy_catalog/overeasy_garlic_press_v1.png",
       description:
         "Besides pressing garlic, this handy press is great whenever you need to " +
         "extrude something in the kitchen into a uniform mush.",
@@ -756,7 +756,7 @@ window.OVER_EASY_CATALOG = {
       category: "kitchen-gadgets",
       name: "Microplane",
       model: "OET-MP-1",
-      image: "../assets/scenes/overeasy_catalog/overeasy_microplane_v1.png",
+      image: "assets/scenes/overeasy_catalog/overeasy_microplane_v1.png",
       description:
         "With its ultra-fine grit and carbon-steel construction, this microplane can " +
         "turn cheese, vegetables, or even meat into the finest of shavings.",
@@ -767,7 +767,7 @@ window.OVER_EASY_CATALOG = {
       name: "Dual Egg Slicer",
       model: "OET-DES-1",
       image:
-        "../assets/scenes/overeasy_catalog/overeasy_dual_egg_slicer_v1.png",
+        "assets/scenes/overeasy_catalog/overeasy_dual_egg_slicer_v1.png",
       description:
         "Great for egg salad. Double wide design allows you to slice those eggs twice " +
         "as fast!",
@@ -777,7 +777,7 @@ window.OVER_EASY_CATALOG = {
       category: "kitchen-gadgets",
       name: "Olive Pitter",
       model: "OET-OP-1",
-      image: "../assets/scenes/overeasy_catalog/overeasy_olive_pitter_v2.png",
+      image: "assets/scenes/overeasy_catalog/overeasy_olive_pitter_v2.png",
       description:
         "Instantly pops the hard center out of cherries, olives, or even plums.",
     },
@@ -787,7 +787,7 @@ window.OVER_EASY_CATALOG = {
       name: "Meat Tenderizer",
       model: "OET-MT-1",
       image:
-        "../assets/scenes/overeasy_catalog/overeasy_meat_tenderizer_v2.png",
+        "assets/scenes/overeasy_catalog/overeasy_meat_tenderizer_v2.png",
       description: "A few good whacks and even stubborn meat gives way.",
     },
     {
@@ -795,7 +795,7 @@ window.OVER_EASY_CATALOG = {
       category: "kitchen-gadgets",
       name: "Citrus Reamer",
       model: "OET-CR-1",
-      image: "../assets/scenes/overeasy_catalog/overeasy_citrus_reamer_v1.png",
+      image: "assets/scenes/overeasy_catalog/overeasy_citrus_reamer_v1.png",
       description:
         "Simply half your desired fruit and use our patented reamer to extract every " +
         "last drop of juice.",
@@ -806,7 +806,7 @@ window.OVER_EASY_CATALOG = {
       name: "At-Home Vasectomy & Circumcision Skill Class",
       model: "OET-ST-VC-1",
       image:
-        "../assets/scenes/overeasy_catalog/overeasy_at_home_vasectomy_circumcision_class_v1.png",
+        "assets/scenes/overeasy_catalog/overeasy_at_home_vasectomy_circumcision_class_v1.png",
       tagline: "Take him off the market from your own kitchen table.",
       description:
         "Medical degrees are expensive, and a huge hassle. Doctors insist they are the " +
@@ -822,7 +822,7 @@ window.OVER_EASY_CATALOG = {
       name: "Self Defense Skill Class",
       model: "OET-ST-SD-1",
       image:
-        "../assets/scenes/overeasy_catalog/overeasy_self_defense_skill_class_v1.png",
+        "assets/scenes/overeasy_catalog/overeasy_self_defense_skill_class_v1.png",
       tagline: "Get your money's worth.",
       description:
         "Over Easy's certified self-defense curriculum teaches you to protect yourself " +
@@ -841,7 +841,7 @@ window.OVER_EASY_CATALOG = {
       name: "Michelin Star Cooking Class",
       model: "OET-ST-MC-1",
       image:
-        "../assets/scenes/overeasy_catalog/overeasy_michelin_star_cooking_class_v1.png",
+        "assets/scenes/overeasy_catalog/overeasy_michelin_star_cooking_class_v1.png",
       tagline: "Plate him like a professional.",
       description:
         "Elevate your kitchen game with techniques from Michelin-trained chefs — knife " +
@@ -861,7 +861,7 @@ window.OVER_EASY_CATALOG = {
       name: "Male Containment Chip™",
       model: "OET-MC-1",
       image:
-        "../assets/scenes/andrea_and_lucas/overeasy_male_containment_chip_remote_device_v1.png",
+        "assets/scenes/andrea_and_lucas/overeasy_male_containment_chip_remote_device_v1.png",
       tagline:
         "For the corporate manager who needs to keep male and half-male employees in " +
         "line.",

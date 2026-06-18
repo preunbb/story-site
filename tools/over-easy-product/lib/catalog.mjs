@@ -6,7 +6,7 @@ const SCENES_DIR = "assets/scenes/andrea_and_lucas";
 
 /** @param {string} repoRoot */
 export function loadCatalog(repoRoot) {
-  const path = join(repoRoot, "over-easy-products", "products.js");
+  const path = join(repoRoot, "oe-catalog", "products.js");
   const code = readFileSync(path, "utf8");
   const sandbox = { window: {} };
   createContext(sandbox);
@@ -24,7 +24,7 @@ export function findCatalogProduct(repoRoot, id) {
 
 /** @param {string} repoRoot @param {typeof catalog} catalog */
 export function writeCatalog(repoRoot, catalog) {
-  const path = join(repoRoot, "over-easy-products", "products.js");
+  const path = join(repoRoot, "oe-catalog", "products.js");
   const body = formatProductsJs(catalog);
   writeFileSync(path, body, "utf8");
   return path;
@@ -62,7 +62,7 @@ function formatProductsJs(catalog) {
  *
  * Edit this file to change copy, images, features, or add/remove products.
  * This is the single source of truth for catalog copy — oe-product tooling reads from here.
- * Paths are relative to over-easy-products/index.html
+ * Paths are relative to over-easy-products.html (repo root)
  *
  * New products: npm run oe-product -- "Product Name"
  *

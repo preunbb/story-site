@@ -7,7 +7,7 @@
  *   npm run oe-product -- "Shell Shaker" --apply
  *
  * Writes a single draft.json (image workflow scratch — not published).
- * Catalog copy lives only in over-easy-products/products.js.
+ * Catalog copy lives only in oe-catalog/products.js.
  */
 
 import { mkdirSync, writeFileSync } from "node:fs";
@@ -77,7 +77,7 @@ const imagePrompt = buildImagePrompt({
   hints,
 });
 
-const draftDir = join(repoRoot, "over-easy-products", "drafts", slug);
+const draftDir = join(repoRoot, "oe-catalog", "drafts", slug);
 mkdirSync(draftDir, { recursive: true });
 
 const referenceAssets = hints.referenceAssets ?? [];
@@ -88,7 +88,7 @@ const draft = {
   slug,
   productName: displayName,
   isNewProduct: !existingProduct,
-  catalogCopySource: "over-easy-products/products.js",
+  catalogCopySource: "oe-catalog/products.js",
   assetFilename,
   image: imageRelative,
   imagePrompt,
@@ -98,7 +98,7 @@ const draft = {
   productSpecs,
   excerpts,
   excerptsNote: "Internal research only — do not paste into products.js",
-  previewUrl: `http://localhost:8080/over-easy-products/#product-${id}`,
+  previewUrl: `http://localhost:8080/over-easy-products.html#product-${id}`,
   applyCommand: `npm run oe-product -- "${productName}" --apply`,
   ...(existingProduct ? {} : { starterCatalogEntry }),
 };
@@ -110,9 +110,9 @@ console.log(`  slug:     ${slug}`);
 console.log(`  id:       ${id}`);
 console.log(`  asset:    assets/scenes/andrea_and_lucas/${assetFilename}`);
 console.log(`  specs:    ${productSpecs.length} from story (internal)`);
-console.log(`  draft:    over-easy-products/drafts/${slug}/draft.json`);
+console.log(`  draft:    oe-catalog/drafts/${slug}/draft.json`);
 if (existingProduct) {
-  console.log(`\nCatalog copy: edit over-easy-products/products.js`);
+  console.log(`\nCatalog copy: edit oe-catalog/products.js`);
 } else {
   console.log(`\nNew product — edit products.js, then --apply adds starter entry + image`);
 }
@@ -139,7 +139,7 @@ if (apply) {
 
   const out = writeCatalog(repoRoot, catalog);
   console.log(`Wrote ${out}`);
-  console.log(`Preview: http://localhost:8080/over-easy-products/#product-${id}`);
+  console.log(`Preview: http://localhost:8080/over-easy-products.html#product-${id}`);
 }
 
 process.exit(0);

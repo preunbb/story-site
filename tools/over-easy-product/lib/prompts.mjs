@@ -1,7 +1,7 @@
 /**
  * Image/scaffold hints for oe-product tooling.
  * Catalog copy (tagline, description, features) lives only in
- * over-easy-products/products.js — not here.
+ * oe-catalog/products.js — not here.
  */
 export const PRODUCT_HINTS = {
   sterilizer: {

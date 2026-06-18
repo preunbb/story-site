@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Re-wrap long string literals in over-easy-products/products.js.
+ * Re-wrap long string literals in oe-catalog/products.js.
  * Used by format-on-save — safe to run repeatedly.
  */
 import { dirname, resolve } from "node:path";
