@@ -1434,10 +1434,10 @@ window.DATA_STORIES = [
     cover: "assets/covers/andrea_and_lucas_part_2_cover_eve_abby_kay_v1.png",
     summary:
       "Andrea takes Lucas to a Cherry Pop! concert, and shows him what a mush pit is like. Meanwhile, Tamara deals with her new medical intern under difficult circumstances. Later, she meets his family.",
+    subtitle: "Premium continuation — Part 2.",
     state: 1,
-    localOnly: true,
     series: { id: "andrea-lucas", order: 2 },
-    hideScenes: false,
+    hideScenes: true,
 
     characterIds: [
       "andrea",
@@ -1460,14 +1460,8 @@ window.DATA_STORIES = [
       "elijah",
     ],
     tags: ["Premium Story", "New to Reddit"],
-    purchaseParts: [
-      {
-        part: 1,
-        kofiUrl: "https://ko-fi.com/s/edb2b8eaa5",
-        amazonUrl: "https://www.amazon.com/dp/B0GJTZSS1D",
-      },
-    ],
     scenes: [
+      /*
       {
         path: "assets/scenes/andrea_and_lucas/ch08_cherry_pop_concert_stage_crowd_v1.png",
         caption:
@@ -1540,6 +1534,7 @@ window.DATA_STORIES = [
         caption:
           "Abby kneels before bound Elijah during his Second Rite — sweet piety on her face, anguish on his, the ceremony underway in the candlelit chamber.",
       },
+      */
     ],
   },
   {

@@ -5,7 +5,7 @@
  * This is the single source of truth for catalog copy — oe-product tooling reads from here.
  * Paths are relative to over-easy-products/index.html
  *
- * purchaseUrl — optional. Ko-fi, story reader (../#story/N/read), etc.
+ * purchaseUrl — optional. Story flyout (../#story/N), reader, Ko-fi, etc.
  * Omit for “Coming soon!” products.
  *
  * New products: npm run oe-product -- "Product Name"
@@ -159,7 +159,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "church-broken-tree-pendant",
       category: "fashion",
-      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
+      purchaseUrl: "../#story/47",
       name: "Church of the Broken Tree Devotional Pendant",
       model: "CBT-PND-1",
       image:
@@ -180,7 +180,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "cherry-pop-album",
       category: "media",
-      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
+      purchaseUrl: "../#story/47",
       name: "Cherry Pop! — Plum Dumb & Permanently Done",
       model: "CP-PDPD-001",
       image:
@@ -210,6 +210,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "gonadal-integrity-poster",
       category: "media",
+      purchaseUrl: "../#story/47",
       name: "Comparative Gonadal Integrity Poster",
       model: "OET-GIP-24",
       image:
@@ -273,7 +274,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "biopsy-gun",
       category: "medical",
-      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
+      purchaseUrl: "../#story/47",
       name: "Testicular Biopsy Gun™",
       model: "OET-TBG-1",
       image:
@@ -434,7 +435,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "nutcracker",
       category: "self-defense",
-      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
+      purchaseUrl: "../#story/47",
       name: "The Ballcracker™",
       model: "OET-BC-1",
       image:
@@ -465,6 +466,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "bell-ringer",
       category: "self-defense",
+      purchaseUrl: "../#story/47",
       name: "The BellRinger™",
       model: "OET-BR-1",
       image:
@@ -499,7 +501,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "studclamp",
       category: "discipline",
-      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
+      purchaseUrl: "../#story/47",
       name: "StudClamp™",
       model: "OET-SC-1",
       image:
@@ -687,7 +689,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "luna-identity-arm",
       category: "discipline",
-      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
+      purchaseUrl: "../#story/47",
       name: "Luna™ Identity Arm",
       model: "OET-LIA-1",
       image:
