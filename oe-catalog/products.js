@@ -5,7 +5,8 @@
  * This is the single source of truth for catalog copy — oe-product tooling reads from here.
  * Paths are relative to over-easy-products.html (repo root)
  *
- * purchaseUrl — optional. Story flyout (../#story/N), reader, Ko-fi, etc.
+ * purchaseUrl — optional. Story reader (#story/N/read), Ko-fi, etc. Hash-only
+ * story links are resolved to the site root by over-easy-products.html.
  * Omit for “Coming soon!” products.
  *
  * New products: npm run oe-product -- "Product Name"

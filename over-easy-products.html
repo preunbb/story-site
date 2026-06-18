@@ -313,11 +313,30 @@
           );
         }
 
+        function resolvePurchaseUrl(url) {
+          if (
+            !url ||
+            url.indexOf("http://") === 0 ||
+            url.indexOf("https://") === 0
+          ) {
+            return url;
+          }
+          var hashIndex = url.indexOf("#");
+          if (hashIndex === -1) return url;
+          var hash = url.slice(hashIndex);
+          var siteRoot = location.pathname
+            .replace(/\/index\.html?$/i, "")
+            .replace(/\/over-easy-products(?:\.html)?$/i, "")
+            .replace(/\/$/, "");
+          var path = (siteRoot ? siteRoot : "") + "/";
+          return new URL(path + hash, location.origin).href;
+        }
+
         function renderPurchaseButton(p) {
           if (p.purchaseDisabled) {
             return renderComingSoonButton(p);
           }
-          const url = p.purchaseUrl;
+          const url = resolvePurchaseUrl(p.purchaseUrl);
           if (!url) {
             return renderComingSoonButton(p);
           }
