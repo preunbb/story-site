@@ -6,4 +6,6 @@ window.DATA_CAPTIONS = [
   "mommy-next-day-2",
   "nevermore-keepsakes-dinner",
   "favorite-earrings-selfie",
+  "surgery-accident-1",
+  "surgery-accident-2",
 ];
