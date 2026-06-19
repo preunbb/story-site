@@ -40,4 +40,4 @@ Reformat existing reports: `node scripts/normalize-stats-format.mjs` (run on leg
 ## Andrea & Lucas
 
 Full manuscript: `npm run sync:andrea-complete` → `dist/andrea-and-lucas-complete/story.md`  
-Report: [andrea-lucas/testicle-stats-ch1-19.md](./andrea-lucas/testicle-stats-ch1-19.md)
+Report: [andrea-lucas/testicle-stats-ch1-20.md](./andrea-lucas/testicle-stats-ch1-20.md)

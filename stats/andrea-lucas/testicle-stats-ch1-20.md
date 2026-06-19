@@ -15,11 +15,11 @@
 | **Desmond** | **Popped** — Ch.11, Fiora: standing full weight on his **left** nut until it cracks and collapses. | **Popped** — Ch.11, Fiora: same balancing stunt on his **right** nut until it flattens into mush. |
 | **Nguyen Twins** (each brother) | **Popped** — Ch.11, Yvette: triple green elastrator bands cut blood flow; both twins’ **left** nuts die. | **Popped** — Ch.11, Yvette: same elastrator treatment; both twins’ **right** nuts die. *(Four testicles total across the pair.)* |
 | **Judah** | **Popped (offscreen / before Ch.15)** — already a Church half-man with only one nut when captured. | **Damaged** — Ch.15 Andrea kicks; Ch.19 Luna internal audits shred it; Ch.20 Tamara “defragments” the tattered sole gonad back into a smaller dense orb (~30% volume loss) so it can survive more scans. Still attached through Ch.20; outline Ch.21 has Eve pop it. |
-| **Matthias** | **N/A** — half-eunuch. | **Popped** — Ch.20: sprints into Izzie’s synchronized BellRinger field during the pre-pop orgy; his sole testicle is pulsed into liquid in seconds. |
+| **Matthias** | **Popped** — Ch.20: sprints into Izzie’s synchronized BellRinger field during the pre-pop orgy; his sole testicle is pulsed into liquid in seconds. | **N/A** — half-eunuch. |
 | **Isaac** | **Popped** — Ch.17, Kay: bites down and grinds his **healthy left** nut to mush in the First Rite mouth-rite (after promising to take the broken **right**). | **Damaged** — six months of Kay’s “prep” left it liquified/dead but still in the sack; not cleanly popped on-page, but functionally destroyed. |
 | **Elijah** | **Popped** — Ch.18, Abby: crushes **both** nuts at once in her fist during the Second Rite handjob (full castration, not halfstration). | **Popped** — Ch.18, Abby: same fist crush; both destroyed together. |
 | **Unnamed breeding-stable half-eunuchs (×24)** | **Popped** — Ch.19: each man’s **sole** testicle destroyed in the underground breeding stable (BellRinger pulses plus Izzie, Tamara, and Andrea finishing work). | **N/A** — each entered as a half-eunuch with one testicle only; all twenty-four sole gonads lost on-page in Ch.19. |
-| **Unnamed ritual-chamber / bugzapper victims (×43+)** | **Popped** — Ch.20: Izzie’s synchronized BellRinger disc in the pre-pop orgy room. Five stallions lose their sole nuts on the first pulse; **thirty-nine** more half-men lose theirs sprinting into range (Judah’s count); Tamara and Andrea finish **four** survivors found still solid in the entrance piles. Each victim had one testicle only. | **N/A** — half-eunuchs only. |
+| **Unnamed ritual-chamber / bugzapper victims (×43)** | **Popped** — Ch.20: five orgy stallions on the first pulse, plus **thirty-four** other half-men in Judah’s pile count (39 sprinting victims total, excluding Matthias below). Four of those thirty-nine still had solid nuts after the pulses; Tamara and Andrea finish them in the pile sweep — counted here, not as extra losses. | **N/A** — half-eunuchs only. |
 
 ## Testicles lost and female orgasms
 
@@ -44,7 +44,7 @@
 | **17** | 1 | 7+ |
 | **18** | 2 | 1 |
 | **19** | 24 | 18+ |
-| **20** | 48 | 11+ |
-| **Total** | 116 | 85+ |
+| **20** | 44 | 11+ |
+| **Total** | 112 | 85+ |
 
 _Per-chapter counts; see [notes.md](./notes.md) for methodology and commentary. Ch.21–22 are outline-only in the published doc and excluded._
