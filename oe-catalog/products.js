@@ -684,9 +684,9 @@ window.OVER_EASY_CATALOG = {
       model: "OET-FSM-1",
       image:
         "assets/scenes/andrea_and_lucas/overeasy_fail_safe_cocksleeve_device_v5.png",
-      tagline: "Hold out — or take him off the market.",
+      tagline: "A lesson he won't forget.",
       description:
-        "Tired of your pathetic prejacing sub staining your nice boots? Want to train him to actually prioritize your pleasure? With the Last Shot™ Disciplinary Milker / Elastrator, you can guarantee he'll make you cum first - or he'll cum his last. The default disciplinary duration is one hour (the average real normal man's time to ejaculation); to configure longer durations, consult the manual.",
+        "Tired of your pathetic prejacing sub staining your nice boots? Want to train him to actually prioritize your pleasure? With the Last Shot™ Disciplinary Milker / Elastrator, you can guarantee he'll either learn to last, or cum his last. The default disciplinary duration is one hour (the average real normal man's time to ejaculation); to configure longer durations, consult the manual.",
     },
     {
       id: "ball-cuff",
