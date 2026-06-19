@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "start": "python3 -m http.server 8080",
-    "sync": "node scripts/sync-stories.mjs && node scripts/generate-story-share-pages.mjs",
+    "sync": "node scripts/sync-stories.mjs && node scripts/generate-story-share-pages.mjs && node scripts/sync-captions.mjs",
+    "sync:captions": "node scripts/sync-captions.mjs",
     "sync:andrea-complete": "node scripts/sync-andrea-lucas-complete-to-dist.mjs",
     "sync:concurrent": "node scripts/sync-stories.mjs --concurrency=4 && node scripts/generate-story-share-pages.mjs",
     "pdf": "node scripts/render-story-pdf.mjs",

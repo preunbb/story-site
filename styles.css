@@ -619,20 +619,20 @@ html:not(.has-local-dist) .tabs .tab[data-tab="ratings"] {
   font-size: 0.95rem;
 }
 
-.misc-intro {
+.captions-intro {
   margin: 0 0 1.5rem;
   color: var(--ink-muted);
   font-size: 0.95rem;
 }
 
-.misc-list {
+.captions-list {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
 }
 
 @media (min-width: 56rem) {
-  .misc-list {
+  .captions-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.75rem 1.5rem;
   }

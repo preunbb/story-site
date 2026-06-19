@@ -2,32 +2,72 @@
 
 Adds black bars with centered white text around a source image.
 
-## Layouts
+## Directory layout
 
-| `--layout`     | Bar placement | `--text-a` | `--text-b` |
-|----------------|---------------|------------|------------|
-| `vertical`     | top + bottom  | top bar    | bottom bar |
-| `horizontal`   | left + right  | left bar   | right bar  |
+Point the tool at a folder containing:
 
-Bar thickness auto-sizes to fit the text (minimum 72px). Text wraps to the image width (vertical) or height (horizontal).
+| File | Required |
+|------|----------|
+| One source image (`.png`, `.jpg`, etc.) | yes — any filename **except** `final.*` |
+| `caption.txt` | yes — two labelled sections (see below) |
+
+The tool writes `final.png` into the same directory.
+
+### `caption.txt` format
+
+Horizontal side bars — use `left:` and `right:`:
+
+```
+left:
+First caption block.
+Can span multiple lines.
+
+right:
+Second caption block.
+```
+
+Vertical top/bottom bars — use `top:` and `bottom:`:
+
+```
+top:
+Caption above the image.
+
+bottom:
+Caption below the image.
+```
+
+Labels are case-insensitive. A colon is required. Text can start on the next line or inline after the label.
+
+If the directory contains exactly one other `.txt` file (and no `caption.txt`), that file is used instead.
+
+Bar thickness auto-sizes to fit the text (minimum 72px). Font size scales up to fill each bar as large as possible while keeping all lines inside.
 
 ## Usage
 
+From inside a caption project folder (uses the current directory):
+
 ```bash
-npm run image-caption -- assets/misc/photo.png \
-  -o assets/misc/photo_caption.png \
-  --layout vertical \
-  --text-a "When she explains ruptured gonadal integrity like it's weather." \
-  --text-b "The boys: sweating. The girls: blushing."
+cd assets/captions/mommy-next-day
+npm run image-caption
+```
+
+Or pass a directory explicitly:
+
+```bash
+npm run image-caption -- assets/captions/mommy-next-day/
 ```
 
 ```bash
-python3 tools/image-caption/caption.py input.png -o output.png \
-  --layout horizontal \
-  --text-a "Before" \
-  --text-b "After"
+python3 tools/image-caption/caption.py
+python3 tools/image-caption/caption.py assets/captions/mommy-next-day/
 ```
-
-If `-o` is omitted, writes `<stem>_caption<ext>` next to the input file.
 
 Requires Python 3 with [Pillow](https://pypi.org/project/pillow/) (`pip install Pillow`).
+
+After adding or updating caption folders, refresh the site index:
+
+```bash
+npm run sync:captions
+```
+
+Folders whose names start with `HIDDEN_` are skipped by the gallery (useful for drafts or retired captions).

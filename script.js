@@ -4,7 +4,7 @@
 
   var characters = [];
   var stories = [];
-  var miscellaneous = [];
+  var captions = [];
 
   /**
    * Story bodies are pre-rendered to markdown files under assets/stories/<id>.md
@@ -734,37 +734,40 @@
     });
   }
 
-  function renderMiscellaneousPanel() {
-    var root = byId("misc-list");
+  function renderCaptionsPanel() {
+    var root = byId("captions-list");
     if (!root) return;
     root.innerHTML = "";
-    if (!miscellaneous.length) {
+    if (!captions.length) {
       root.innerHTML =
-        '<p class="misc-intro">Nothing here yet — check back soon.</p>';
+        '<p class="captions-intro">Nothing here yet — run <code>npm run sync:captions</code> after adding caption folders.</p>';
       return;
     }
-    miscellaneous.forEach(function (item, index) {
+    captions.forEach(function (item, index) {
       if (!item || !item.path) return;
       var fig = document.createElement("figure");
       fig.className = "scene-figure scene-figure--zoomable";
       fig.setAttribute("tabindex", "0");
       fig.setAttribute("title", "Click to enlarge");
-      fig.setAttribute("data-misc-index", String(index));
+      fig.setAttribute("data-caption-index", String(index));
+      var capHtml = item.caption
+        ? '<figcaption class="scene-caption">' +
+          escapeHtml(item.caption) +
+          "</figcaption>"
+        : "";
       fig.innerHTML =
         '<img src="' +
         escapeHtml(item.path) +
         '" alt="' +
-        escapeHtml(item.alt || item.caption || "Miscellaneous image") +
+        escapeHtml(item.alt || item.caption || "Caption image") +
         '" class="scene-img" loading="lazy">' +
-        '<figcaption class="scene-caption">' +
-        escapeHtml(item.caption || "") +
-        "</figcaption>";
+        capHtml;
       root.appendChild(fig);
     });
   }
 
-  function miscSlides() {
-    return miscellaneous
+  function captionSlides() {
+    return captions
       .filter(function (item) {
         return item && item.path;
       })
@@ -773,14 +776,14 @@
         return {
           path: item.path,
           caption: cap,
-          alt: item.alt || cap || "Miscellaneous image",
+          alt: item.alt || cap || "Caption image",
         };
       });
   }
 
-  function openMiscLightboxForIndex(startIndex) {
+  function openCaptionLightboxForIndex(startIndex) {
     if (!sceneLightboxImg || !sceneLightbox) return;
-    var slides = miscSlides();
+    var slides = captionSlides();
     if (!slides.length) return;
     sceneLightboxProfileMode = false;
     sceneLightboxProfileName = null;
@@ -795,29 +798,29 @@
     setSceneLightboxOpen(true);
   }
 
-  function miscFigureTarget(fig) {
+  function captionFigureTarget(fig) {
     if (!fig) return null;
     var img = fig.querySelector && fig.querySelector(".scene-img");
     if (!img || !img.getAttribute("src")) return null;
-    var idxRaw = fig.getAttribute("data-misc-index");
+    var idxRaw = fig.getAttribute("data-caption-index");
     if (idxRaw == null) return null;
     var idx = parseInt(idxRaw, 10);
     if (isNaN(idx)) return null;
     return { idx: idx };
   }
 
-  function bindMiscFigureZoom(root) {
-    if (!root || root._miscZoomBound) return;
-    root._miscZoomBound = true;
+  function bindCaptionFigureZoom(root) {
+    if (!root || root._captionZoomBound) return;
+    root._captionZoomBound = true;
     root.addEventListener("click", function (e) {
       var fig =
         e.target &&
         e.target.closest &&
         e.target.closest(".scene-figure--zoomable");
       if (!fig || !root.contains(fig)) return;
-      var t = miscFigureTarget(fig);
+      var t = captionFigureTarget(fig);
       if (!t) return;
-      openMiscLightboxForIndex(t.idx);
+      openCaptionLightboxForIndex(t.idx);
     });
     root.addEventListener("keydown", function (e) {
       if (e.key !== "Enter" && e.key !== " ") return;
@@ -826,10 +829,10 @@
         e.target.closest &&
         e.target.closest(".scene-figure--zoomable");
       if (!fig || !root.contains(fig) || fig !== e.target) return;
-      var t = miscFigureTarget(fig);
+      var t = captionFigureTarget(fig);
       if (!t) return;
       e.preventDefault();
-      openMiscLightboxForIndex(t.idx);
+      openCaptionLightboxForIndex(t.idx);
     });
   }
 
@@ -1073,7 +1076,7 @@
     sceneLightbox._sceneLightboxBound = true;
     bindSceneFigureZoom(byId("scenes-list"));
     bindSceneFigureZoom(byId("story-reader-article"));
-    bindMiscFigureZoom(byId("misc-list"));
+    bindCaptionFigureZoom(byId("captions-list"));
     sceneLightbox.addEventListener("click", closeSceneLightbox);
     if (sceneLightboxPanel) {
       sceneLightboxPanel.addEventListener("click", function (e) {
@@ -1684,7 +1687,7 @@
     "characters",
     "scenes",
     "ratings",
-    "miscellaneous",
+    "captions",
     "about",
     "other-authors",
   ];
@@ -3091,7 +3094,7 @@
     characters = data.characters || [];
     normalizeCharacterProfilePictures(characters);
     stories = data.stories || [];
-    miscellaneous = data.miscellaneous || [];
+    captions = data.captions || [];
 
     initTabs();
     initCharactersGrid();
@@ -3099,7 +3102,7 @@
     initStoryFilters();
     renderStoriesGrid();
     renderScenesPanel();
-    renderMiscellaneousPanel();
+    renderCaptionsPanel();
     initSceneLightbox();
     bindStoryGridClick();
     bindCharacterGridClick();
