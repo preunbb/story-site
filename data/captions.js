@@ -8,4 +8,5 @@ window.DATA_CAPTIONS = [
   "favorite-earrings-selfie",
   "surgery-accident-1",
   "surgery-accident-2",
+  "mei-earrings-1",
 ];
