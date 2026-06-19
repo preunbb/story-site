@@ -65,26 +65,15 @@ def line_width(font: ImageFont.ImageFont, text: str) -> int:
     return math.ceil(bbox[2] - bbox[0])
 
 
-def wrap_word(word: str, font: ImageFont.ImageFont, max_width: int) -> list[str]:
-    if line_width(font, word) <= max_width:
-        return [word]
-
-    chunks: list[str] = []
-    current = ""
-    for ch in word:
-        trial = current + ch
-        if line_width(font, trial) <= max_width:
-            current = trial
-        else:
-            if current:
-                chunks.append(current)
-            current = ch
-    if current:
-        chunks.append(current)
-    return chunks or [""]
+def longest_word_width(text: str, font: ImageFont.ImageFont) -> int:
+    words = text.split()
+    if not words:
+        return 0
+    return max(line_width(font, word) for word in words)
 
 
 def wrap_text(text: str, font: ImageFont.ImageFont, max_width: int) -> list[str]:
+    """Wrap at word boundaries only; never split words mid-character."""
     max_width = max(max_width - MEASURE_SLACK, 1)
     words = text.split()
     if not words:
@@ -93,16 +82,15 @@ def wrap_text(text: str, font: ImageFont.ImageFont, max_width: int) -> list[str]
     lines: list[str] = []
     current = ""
     for word in words:
-        for chunk in wrap_word(word, font, max_width):
-            if not current:
-                current = chunk
-                continue
-            trial = f"{current} {chunk}"
-            if line_width(font, trial) <= max_width:
-                current = trial
-            else:
-                lines.append(current)
-                current = chunk
+        if not current:
+            current = word
+            continue
+        trial = f"{current} {word}"
+        if line_width(font, trial) <= max_width:
+            current = trial
+        else:
+            lines.append(current)
+            current = word
     if current:
         lines.append(current)
     return lines
@@ -192,7 +180,12 @@ def fit_largest_font(
         font = load_font(mid)
         if max_inner_h is None:
             _, text_h, lines = text_block_size(text, font, max_inner_w + MEASURE_SLACK)
-            if text_h > 0 and max(line_width(font, line) for line in lines) <= max_inner_w:
+            max_line_w = max(line_width(font, line) for line in lines) if lines else 0
+            if (
+                text_h > 0
+                and max_line_w <= max_inner_w
+                and longest_word_width(text, font) <= max_inner_w
+            ):
                 best = (mid, font, lines, max_inner_w)
                 lo = mid + 1
             else:
@@ -200,7 +193,7 @@ def fit_largest_font(
             continue
 
         wrapped = best_wrap_width(text, font, max_inner_w, max_inner_h)
-        if wrapped:
+        if wrapped and longest_word_width(text, font) <= max_inner_w:
             wrap_w, lines = wrapped
             best = (mid, font, lines, wrap_w)
             lo = mid + 1

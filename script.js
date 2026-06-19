@@ -734,13 +734,42 @@
     });
   }
 
+  function humanizeCaptionSlug(slug) {
+    return String(slug)
+      .replace(/-/g, " ")
+      .replace(/\b\w/g, function (ch) {
+        return ch.toUpperCase();
+      });
+  }
+
+  function normalizeCaptions(entries) {
+    return (entries || [])
+      .filter(function (entry) {
+        return entry != null && String(entry).trim() !== "";
+      })
+      .map(function (entry) {
+        var slug = typeof entry === "string" ? entry : entry.slug || entry.path || "";
+        slug = String(slug)
+          .trim()
+          .replace(/^assets\/captions\//, "")
+          .replace(/\/final\.png$/i, "")
+          .replace(/\/$/, "");
+        return {
+          slug: slug,
+          path: "assets/captions/" + slug + "/final.png",
+          caption: "",
+          alt: humanizeCaptionSlug(slug),
+        };
+      });
+  }
+
   function renderCaptionsPanel() {
     var root = byId("captions-list");
     if (!root) return;
     root.innerHTML = "";
     if (!captions.length) {
       root.innerHTML =
-        '<p class="captions-intro">Nothing here yet — run <code>npm run sync:captions</code> after adding caption folders.</p>';
+        '<p class="captions-intro">Nothing here yet — add folder names to <code>data/captions.js</code>.</p>';
       return;
     }
     captions.forEach(function (item, index) {
@@ -3094,7 +3123,7 @@
     characters = data.characters || [];
     normalizeCharacterProfilePictures(characters);
     stories = data.stories || [];
-    captions = data.captions || [];
+    captions = normalizeCaptions(data.captions);
 
     initTabs();
     initCharactersGrid();

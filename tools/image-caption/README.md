@@ -64,10 +64,4 @@ python3 tools/image-caption/caption.py assets/captions/mommy-next-day/
 
 Requires Python 3 with [Pillow](https://pypi.org/project/pillow/) (`pip install Pillow`).
 
-After adding or updating caption folders, refresh the site index:
-
-```bash
-npm run sync:captions
-```
-
-Folders whose names start with `HIDDEN_` are skipped by the gallery (useful for drafts or retired captions).
+To show a caption on the site, add its folder name to `data/captions.js` (the gallery loads `assets/captions/<folder>/final.png` for each entry).
