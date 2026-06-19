@@ -4,6 +4,7 @@
 
   var characters = [];
   var stories = [];
+  var miscellaneous = [];
 
   /**
    * Story bodies are pre-rendered to markdown files under assets/stories/<id>.md
@@ -733,6 +734,105 @@
     });
   }
 
+  function renderMiscellaneousPanel() {
+    var root = byId("misc-list");
+    if (!root) return;
+    root.innerHTML = "";
+    if (!miscellaneous.length) {
+      root.innerHTML =
+        '<p class="misc-intro">Nothing here yet — check back soon.</p>';
+      return;
+    }
+    miscellaneous.forEach(function (item, index) {
+      if (!item || !item.path) return;
+      var fig = document.createElement("figure");
+      fig.className = "scene-figure scene-figure--zoomable";
+      fig.setAttribute("tabindex", "0");
+      fig.setAttribute("title", "Click to enlarge");
+      fig.setAttribute("data-misc-index", String(index));
+      fig.innerHTML =
+        '<img src="' +
+        escapeHtml(item.path) +
+        '" alt="' +
+        escapeHtml(item.alt || item.caption || "Miscellaneous image") +
+        '" class="scene-img" loading="lazy">' +
+        '<figcaption class="scene-caption">' +
+        escapeHtml(item.caption || "") +
+        "</figcaption>";
+      root.appendChild(fig);
+    });
+  }
+
+  function miscSlides() {
+    return miscellaneous
+      .filter(function (item) {
+        return item && item.path;
+      })
+      .map(function (item) {
+        var cap = item.caption != null ? String(item.caption).trim() : "";
+        return {
+          path: item.path,
+          caption: cap,
+          alt: item.alt || cap || "Miscellaneous image",
+        };
+      });
+  }
+
+  function openMiscLightboxForIndex(startIndex) {
+    if (!sceneLightboxImg || !sceneLightbox) return;
+    var slides = miscSlides();
+    if (!slides.length) return;
+    sceneLightboxProfileMode = false;
+    sceneLightboxProfileName = null;
+    sceneLightboxReturnFocus = document.activeElement;
+    sceneLightboxSlides = slides;
+    var i =
+      typeof startIndex === "number" && !isNaN(startIndex)
+        ? Math.max(0, Math.min(slides.length - 1, startIndex))
+        : 0;
+    sceneLightboxIndex = i;
+    applySceneLightboxSlide();
+    setSceneLightboxOpen(true);
+  }
+
+  function miscFigureTarget(fig) {
+    if (!fig) return null;
+    var img = fig.querySelector && fig.querySelector(".scene-img");
+    if (!img || !img.getAttribute("src")) return null;
+    var idxRaw = fig.getAttribute("data-misc-index");
+    if (idxRaw == null) return null;
+    var idx = parseInt(idxRaw, 10);
+    if (isNaN(idx)) return null;
+    return { idx: idx };
+  }
+
+  function bindMiscFigureZoom(root) {
+    if (!root || root._miscZoomBound) return;
+    root._miscZoomBound = true;
+    root.addEventListener("click", function (e) {
+      var fig =
+        e.target &&
+        e.target.closest &&
+        e.target.closest(".scene-figure--zoomable");
+      if (!fig || !root.contains(fig)) return;
+      var t = miscFigureTarget(fig);
+      if (!t) return;
+      openMiscLightboxForIndex(t.idx);
+    });
+    root.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      var fig =
+        e.target &&
+        e.target.closest &&
+        e.target.closest(".scene-figure--zoomable");
+      if (!fig || !root.contains(fig) || fig !== e.target) return;
+      var t = miscFigureTarget(fig);
+      if (!t) return;
+      e.preventDefault();
+      openMiscLightboxForIndex(t.idx);
+    });
+  }
+
   var sceneLightbox = byId("scene-lightbox");
   var sceneLightboxPanel = byId("scene-lightbox-panel");
   var sceneLightboxImg = byId("scene-lightbox-img");
@@ -973,6 +1073,7 @@
     sceneLightbox._sceneLightboxBound = true;
     bindSceneFigureZoom(byId("scenes-list"));
     bindSceneFigureZoom(byId("story-reader-article"));
+    bindMiscFigureZoom(byId("misc-list"));
     sceneLightbox.addEventListener("click", closeSceneLightbox);
     if (sceneLightboxPanel) {
       sceneLightboxPanel.addEventListener("click", function (e) {
@@ -1583,6 +1684,7 @@
     "characters",
     "scenes",
     "ratings",
+    "miscellaneous",
     "about",
     "other-authors",
   ];
@@ -2989,6 +3091,7 @@
     characters = data.characters || [];
     normalizeCharacterProfilePictures(characters);
     stories = data.stories || [];
+    miscellaneous = data.miscellaneous || [];
 
     initTabs();
     initCharactersGrid();
@@ -2996,6 +3099,7 @@
     initStoryFilters();
     renderStoriesGrid();
     renderScenesPanel();
+    renderMiscellaneousPanel();
     initSceneLightbox();
     bindStoryGridClick();
     bindCharacterGridClick();
