@@ -70,8 +70,7 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "EunuchCorn™ Denim",
       model: "OET-EC-D1",
-      image:
-        "assets/scenes/andrea_and_lucas/overeasy_eunuchcorn_denim_v1.png",
+      image: "assets/scenes/andrea_and_lucas/overeasy_eunuchcorn_denim_v1.png",
       tagline: "Jeans for those out of the gene pool.",
       description:
         "Finally — denim that fits what's left. EunuchCorn jeans and shorts feature an " +
@@ -310,8 +309,7 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "Bleach Wipes™",
       model: "OET-BW-40",
-      image:
-        "assets/scenes/andrea_and_lucas/overeasy_bleach_wipes_box_v2.png",
+      image: "assets/scenes/andrea_and_lucas/overeasy_bleach_wipes_box_v2.png",
       tagline: "Snuff out those swimmers!",
       description:
         "Patented bleach wipes strong enough to neutralize every germ and ambitious " +
@@ -420,8 +418,7 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "The Sterilizer™",
       model: "CBT-22120",
-      image:
-        "assets/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
+      image: "assets/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
       images: [
         {
           path: "assets/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
@@ -462,8 +459,7 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "../#story/47",
       name: "The Ballcracker™",
       model: "OET-BC-1",
-      image:
-        "assets/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
+      image: "assets/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
       images: [
         {
           path: "assets/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
@@ -528,8 +524,7 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "../#story/47",
       name: "StudClamp™",
       model: "OET-SC-1",
-      image:
-        "assets/scenes/andrea_and_lucas/overeasy_studclamp_device_v2.png",
+      image: "assets/scenes/andrea_and_lucas/overeasy_studclamp_device_v2.png",
       images: [
         {
           path: "assets/scenes/andrea_and_lucas/overeasy_studclamp_device_v2.png",
@@ -635,8 +630,7 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "'Selfish Bitch' Strap-On System",
       model: "OET-SB-PRO",
-      image:
-        "assets/scenes/andrea_and_lucas/overeasy_strapon_device_v10.png",
+      image: "assets/scenes/andrea_and_lucas/overeasy_strapon_device_v10.png",
       images: [
         {
           path: "assets/scenes/andrea_and_lucas/overeasy_strapon_device_v10.png",
@@ -683,13 +677,24 @@ window.OVER_EASY_CATALOG = {
       ],
     },
     {
+      id: "fail-safe-cocksleeve",
+      category: "discipline",
+      purchaseUrl: "../#story/13/read",
+      name: "'Last Shot'™ Disciplinary Milker / Elastrator",
+      model: "OET-FSM-1",
+      image:
+        "assets/scenes/andrea_and_lucas/overeasy_fail_safe_cocksleeve_device_v5.png",
+      tagline: "Hold out — or take him off the market.",
+      description:
+        "Tired of your pathetic prejacing sub staining your nice boots? Want to train him to actually prioritize your pleasure? With the Last Shot™ Disciplinary Milker / Elastrator, you can guarantee he'll make you cum first - or he'll cum his last. The default disciplinary duration is one hour (the average real normal man's time to ejaculation); to configure longer durations, consult the manual.",
+    },
+    {
       id: "ball-cuff",
       category: "sex-toys",
       purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "'Choking Bull' Ball Cuff™",
       model: "OET-BCF-1",
-      image:
-        "assets/scenes/andrea_and_lucas/overeasy_ball_cuff_device_v2.png",
+      image: "assets/scenes/andrea_and_lucas/overeasy_ball_cuff_device_v2.png",
       tagline: "Streeeeeeeetch him out!",
       description:
         "Thick rubber ring made of ultra-dense silicone composite, designed to keep him " +
@@ -701,8 +706,7 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "Ball Anvil™",
       model: "OET-BA-1",
-      image:
-        "assets/scenes/andrea_and_lucas/overeasy_ball_anvil_device_v1.png",
+      image: "assets/scenes/andrea_and_lucas/overeasy_ball_anvil_device_v1.png",
       description:
         "For the woman who wants to forge a new connection with her man and hammer home " +
         "who's in charge. Our commercial Ball Anvil™ upgrades the popular open-source " +
@@ -777,8 +781,7 @@ window.OVER_EASY_CATALOG = {
       category: "kitchen-gadgets",
       name: "Dual Egg Slicer",
       model: "OET-DES-1",
-      image:
-        "assets/scenes/overeasy_catalog/overeasy_dual_egg_slicer_v1.png",
+      image: "assets/scenes/overeasy_catalog/overeasy_dual_egg_slicer_v1.png",
       description:
         "Great for egg salad. Double wide design allows you to slice those eggs twice " +
         "as fast!",
@@ -797,8 +800,7 @@ window.OVER_EASY_CATALOG = {
       category: "kitchen-gadgets",
       name: "Meat Tenderizer",
       model: "OET-MT-1",
-      image:
-        "assets/scenes/overeasy_catalog/overeasy_meat_tenderizer_v2.png",
+      image: "assets/scenes/overeasy_catalog/overeasy_meat_tenderizer_v2.png",
       description: "A few good whacks and even stubborn meat gives way.",
     },
     {

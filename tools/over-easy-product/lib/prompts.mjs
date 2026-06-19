@@ -133,6 +133,32 @@ export const PRODUCT_HINTS = {
       "assets/scenes/andrea_and_lucas/overeasy_reactive_prostate_plug_device_v1.png",
     ],
   },
+  "bioneural-lube": {
+    kind: "packaging",
+    category: "sex-toys",
+    badge: "Premium",
+    displayName: "Desire Link™ Bioneural Lubricant",
+    model: "OET-DL-1",
+    imageNotes:
+      "Squeeze bottle of personal lubricant, cloudy translucent blue gel visible through frosted plastic, silver pump cap, minimal clinical label with OVER EASY TECHNOLOGIES and DESIRE LINK™ BIONEURAL LUBRICANT, raw-egg pictogram, white studio background. No people.",
+    referenceAssets: [
+      "assets/scenes/andrea_and_lucas/overeasy_bleach_wipes_box_v2.png",
+    ],
+  },
+  "fail-safe-cocksleeve": {
+    kind: "device",
+    category: "discipline",
+    badge: "Premium",
+    displayName: "'Last Shot' Fail-Safe Milker™",
+    model: "OET-FSM-1",
+    imageNotes:
+      "Flexible wide charcoal silicone sleeve. TOP: open bore. Below opening, PERPENDICULAR elastrator head — four metal prongs in square pattern spreading thick dark green rubber band taut (livestock elastrator business end). Small green status LED only — NO ARM switch. MIDDLE: corrugated shaft. BOTTOM: collection bulb. Reference: elastrator_reference_v1.png.",
+    referenceAssets: [
+      "assets/scenes/andrea_and_lucas/overeasy_fail_safe_cocksleeve_device_v4.png",
+      "assets/scenes/andrea_and_lucas/elastrator_reference_v1.png",
+      "assets/brands/overeasy_logo_v2_raw_eggs_minimal.png",
+    ],
+  },
   "ball-cuff": {
     kind: "device",
     category: "sex-toys",
