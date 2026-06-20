@@ -60,14 +60,17 @@ function formatProductsJs(catalog) {
   return `/**
  * Over Easy Technologies — product catalog config
  *
- * Edit this file to change copy, images, features, or add/remove products.
+ * Edit this file to change copy, images, features, setlist, or add/remove products.
  * This is the single source of truth for catalog copy — oe-product tooling reads from here.
  * Paths are relative to over-easy-products.html (repo root)
+ *
+ * purchaseUrl — optional. Story reader (#story/N/read), Ko-fi, etc. Hash-only
+ * story links are resolved to the site root by over-easy-products.html.
+ * Omit for “Coming soon!” products.
  *
  * New products: npm run oe-product -- "Product Name"
  *
  * Editor: word-wrap + no autocomplete — see .vscode/settings.json (oe-catalog language).
- * Format on save: installs Run on Save extension (see .vscode/extensions.json), or run npm run format:oe-catalog.
  */
 window.OVER_EASY_CATALOG = {
   brand: {
@@ -81,46 +84,6 @@ ${products}
   ],
 };
 `;
-}
-
-/** Max chars per line when writing wrapped string literals. */
-const WRAP_COL = 88;
-
-/**
- * @param {string} str
- * @param {string} fieldIndent e.g. "      " before key, value uses +8
- */
-function formatWrappedString(str, fieldIndent = "      ") {
-  const valueIndent = `${fieldIndent}  `;
-  if (!str) return `${valueIndent}${JSON.stringify("")},`;
-
-  const maxChunk = WRAP_COL - valueIndent.length - 2;
-  const words = str.split(/\s+/);
-  const chunks = [];
-  let current = "";
-
-  for (const word of words) {
-    const candidate = current ? `${current} ${word}` : word;
-    if (candidate.length > maxChunk && current) {
-      chunks.push(current);
-      current = word;
-    } else {
-      current = candidate;
-    }
-  }
-  if (current) chunks.push(current);
-
-  if (chunks.length === 1) {
-    return `${valueIndent}${JSON.stringify(chunks[0])},`;
-  }
-
-  return chunks
-    .map((chunk, i) => {
-      const text = i < chunks.length - 1 ? `${chunk} ` : chunk;
-      const suffix = i < chunks.length - 1 ? " +" : ",";
-      return `${valueIndent}${JSON.stringify(text)}${suffix}`;
-    })
-    .join("\n");
 }
 
 /** @param {object[]} images */
@@ -160,23 +123,30 @@ function formatProductEntry(p) {
     `      id: ${JSON.stringify(p.id)},`,
   ];
   if (p.category) lines.push(`      category: ${JSON.stringify(p.category)},`);
+  if (p.purchaseUrl) {
+    lines.push(`      purchaseUrl: ${JSON.stringify(p.purchaseUrl)},`);
+  }
   lines.push(`      name: ${JSON.stringify(p.name)},`);
   if (p.model) lines.push(`      model: ${JSON.stringify(p.model)},`);
-  lines.push(`      image:`, `        ${JSON.stringify(p.image)},`);
+  lines.push(`      image: ${JSON.stringify(p.image)},`);
   if (p.images?.length) {
     lines.push(`      images: ${formatImages(p.images)},`);
   }
   if (p.tagline) {
-    lines.push(`      tagline:`);
-    lines.push(formatWrappedString(p.tagline).replace(/,$/, ","));
+    lines.push(`      tagline: ${JSON.stringify(p.tagline)},`);
   }
-  lines.push(`      description:`);
-  lines.push(formatWrappedString(p.description));
+  lines.push(`      description: ${JSON.stringify(p.description)},`);
+  if (p.setlist?.length) {
+    lines.push(`      setlist: [`);
+    for (const item of p.setlist) {
+      lines.push(`        ${JSON.stringify(item)},`);
+    }
+    lines.push(`      ],`);
+  }
   if (p.features?.length) {
     lines.push(`      features: [`);
     for (const f of p.features) {
-      const wrapped = formatWrappedString(f, "        ");
-      lines.push(wrapped.replace(/,$/, ","));
+      lines.push(`        ${JSON.stringify(f)},`);
     }
     lines.push(`      ],`);
   }

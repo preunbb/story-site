@@ -22,15 +22,5 @@
     "*": true,
     "oe-catalog": false
   },
-  "cursor.cpp.disabledLanguages": ["oe-catalog"],
-  "emeraldwalk.RunOnSave": {
-    "commands": [
-      {
-        "match": "oe-catalog/products\\.js$",
-        "cmd": "node ${workspaceFolder}/tools/over-easy-product/format-catalog.mjs",
-        "runIn": "backend",
-        "silent": true
-      }
-    ]
-  }
+  "cursor.cpp.disabledLanguages": ["oe-catalog"]
 }
