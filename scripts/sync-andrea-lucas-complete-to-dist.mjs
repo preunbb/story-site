@@ -4,6 +4,8 @@
  * dist/andrea-and-lucas-complete/ (markdown + SOURCE.json).
  *
  * dist/ is gitignored — this snapshot is not tracked by git.
+ * Publish URL and edit doc id live in repo-root `.env.local` (see
+ * `.env.local.example`); they are not stored in version control.
  *
  * After syncing, open http://localhost:8080/local-andrea-lucas.html (with
  * npm start) to read the manuscript in-browser. The main catalog "Ratings" tab
@@ -15,6 +17,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { loadEnvLocal } from "./lib/load-env-local.mjs";
 import {
   makeTurndown,
   fetchMarkdownFromPublishUrl,
@@ -23,10 +26,21 @@ import {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, "..");
 
-/** Editable Drive doc (see dist/drive_doc_ids.json for Part 1 / Part 2 mappings). */
-const EDIT_DOC_ID = "1BpovDCzcee_DMzKcEP4t6f17KLm3vMIbecE7PDXZS68";
-const PUBLISH_URL =
-  "https://docs.google.com/document/d/e/2PACX-1vSrtvzgoGYWGYgg9a-y9YsyTJijnb_F4Hj2k9H5HFLI_wMKwwAn1b3LahTprIUMALrw2K_CCx-rtpoj/pub";
+loadEnvLocal(REPO_ROOT);
+
+function requireEnv(name) {
+  const value = process.env[name]?.trim();
+  if (!value) {
+    console.error(
+      `Missing ${name}. Copy .env.local.example to .env.local and set it.`,
+    );
+    process.exit(1);
+  }
+  return value;
+}
+
+const EDIT_DOC_ID = requireEnv("ANDREA_LUCAS_EDIT_DOC_ID");
+const PUBLISH_URL = requireEnv("ANDREA_LUCAS_PUBLISH_URL");
 
 const OUT_DIR = join(REPO_ROOT, "dist", "andrea-and-lucas-complete");
 

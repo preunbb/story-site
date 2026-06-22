@@ -135,11 +135,14 @@
     })[0];
   }
 
+  /** 1 = coming soon, 2 = released (default). Legacy `state: 3` maps to released. */
   function normalizeStoryState(s) {
     var st = s.state;
-    if (st === 1 || st === 2 || st === 3) return st;
-    if (st === "1" || st === "2" || st === "3") return parseInt(st, 10);
-    return 3;
+    if (st === 1 || st === 2) return st;
+    if (st === 3) return 2;
+    if (st === "1" || st === "2") return parseInt(st, 10);
+    if (st === "3") return 2;
+    return 2;
   }
 
   /** True when served from localhost (catalog-only; not GitHub Pages). */
@@ -314,6 +317,7 @@
     );
   }
 
+  /** Released stories with a recent releaseDate show the green "New story!" badge. */
   function shouldShowNewStoryBadge(s) {
     return (
       normalizeStoryState(s) === 2 &&

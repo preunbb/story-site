@@ -18,7 +18,7 @@ window.DATA_STORIES = [
       "cathy",
       "amy",
     ],
-    state: 3,
+    state: 2,
     tags: [],
     brutalityRating: 5,
     scenes: [
@@ -64,7 +64,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vSzHrCQAe11KrCIyKxKmcF8imQnqjwi7cZ1QrmwuRtG80z9bJTo9REehUUBpbFKFoOvpPpWL4Vd_dVy/pub",
     characterIds: ["jeremy", "karen"],
-    state: 3,
+    state: 2,
     tags: [],
     brutalityRating: 3,
     scenes: [
@@ -124,7 +124,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vQljJeCPYRaaZ6RaxaIlNjYz-fh-yNNsoYER75eHB32UKFAUPSQ4rQ-ovd4q6K6Rvu_x_ZsS7Hz_S_q/pub",
     characterIds: ["jenny"],
-    state: 3,
+    state: 2,
     tags: [],
     brutalityRating: 2,
   },
@@ -149,7 +149,7 @@ window.DATA_STORIES = [
       "roger",
       "paul",
     ],
-    state: 3,
+    state: 2,
     series: { id: "ballbusting-arena", order: 1 },
     tags: [],
     brutalityRating: 5,
@@ -204,7 +204,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vRdLRm7RS8Ii9xyQ7GzfNSKP0O4AtgAs3cvpnYy9QAaPEQoThTi81fPpgCS7SgGrfDw7qsIq72rCdgL/pub",
     characterIds: ["rachel", "greg"],
-    state: 3,
+    state: 2,
     tags: [],
     brutalityRating: 3,
   },
@@ -218,7 +218,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTEnKFYNOWrlGqbFyMl3vHj7MyzTf4vJt4x_mLLEBSDlm5sr7vNbd_L86XFhXJbErYtvFzZmNyHjXs0/pub",
     characterIds: ["allan", "june", "alexa"],
-    state: 3,
+    state: 2,
     tags: ["New to Reddit"],
     brutalityRating: 3,
   },
@@ -233,7 +233,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vSrwbxvPy_ir_0ggOvgKWjAnKhgRzCtKsErNxLGWNmSdZkHtq6H8XTlR4UwXHpAnyM1f70CtaDpEQca/pub",
     characterIds: ["dennis", "serena", "erica", "kayleigh"],
-    state: 3,
+    state: 2,
     tags: [],
     scenes: [
       {
@@ -274,7 +274,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vRBtxHqI60ZsJNbBJl43GiOkLyCoN5n8Fm-lXK2qsrM_KHt0ZZkxiIYr_os0aOmTzWj7NvzgP_ykUXn/pub",
     characterIds: ["george"],
-    state: 3,
+    state: 2,
     tags: [],
   },
   {
@@ -289,7 +289,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTjujZsLMuA-lmgM6LPeed-X_FQ0STwNWLaRBQ1qRycmkdFK0UdNBVhJu7s1uA3tOWT5gXqZss0j0M7/pub",
     characterIds: ["brian", "emma", "vivian", "natalie", "vanessa", "david"],
-    state: 3,
+    state: 2,
     series: { id: "ballbusting-arena", order: 5 },
     tags: [],
     hideScenes: true,
@@ -307,7 +307,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vQ4BV7uLAAfS57qXcqPU3km0k7kepW1TLwBZFvwB4KWX0kE1fv9EJEnL2e6VfZHhXCAHRTbY7Qo_mrf/pub",
     characterIds: ["melody", "richard", "nathan", "tommy"],
-    state: 3,
+    state: 2,
     series: { id: "melody-adventures", order: 1 },
     tags: [],
   },
@@ -322,7 +322,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vQcNjbN4-u-A0mrr_00UfsUmYpGfi6UMU5xvD4CprYwOpTTsllqdXqFeuaXhxs79B9B0m2xOQq1JTOV/pub",
     characterIds: ["emma", "simon"],
-    state: 3,
+    state: 2,
     tags: ["New to Reddit"],
   },
   {
@@ -336,7 +336,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vRDqTNNakRk5cGuVVralHxnIVKjNJPYgMqpFHmFl69jqp6MIRxxsVJqAvwvU4ARWjojZX5GMwNrpDqt/pub",
     characterIds: ["jenny", "sanjay"],
-    state: 3,
+    state: 2,
     tags: [],
   },
   {
@@ -351,7 +351,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTcqX8xNsk5-s2a3en4zTxx3kZH1C43BY8KS84j1g8xBuJJpBMrKdqyglbLM037nRFyYcDbNsTC7bZT/pub",
     characterIds: ["fiona", "brad", "sofia", "amy", "wesley"],
-    state: 3,
+    state: 2,
     series: { id: "ballbusting-arena", order: 3 },
     tags: [],
     hideScenes: true,
@@ -429,7 +429,7 @@ window.DATA_STORIES = [
           "While Daniel goes under on the mat, Vanessa already has her evening framed the way she likes it—crowd, spotlight, and a new plus-one in the cheap seats.",
       },
     ],
-    state: 3,
+    state: 2,
     series: { id: "ballbusting-arena", order: 2 },
     tags: [],
   },
@@ -479,7 +479,7 @@ window.DATA_STORIES = [
           "After the timers and knees, tenderness with teeth — sidepiece learns what she did to her ex.",
       },
     ],
-    state: 3,
+    state: 2,
     series: { id: "ballbusting-arena", order: 4 },
     tags: [],
   },
@@ -503,7 +503,7 @@ window.DATA_STORIES = [
           "Late night in the office — Nikita flushed and eager, Cole nervous but willing; lap discreetly obscured.",
       },
     ],
-    state: 3,
+    state: 2,
     tags: [],
   },
   {
@@ -517,7 +517,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTt0TRq1kLbyrUtvvw1s5rH-bDx9X6hSiu_1ybmn1vKmdz-7fQ5xuwSAAdQwFSUDtZ5cuhMZWAe5Yfd/pub",
     characterIds: ["poly", "robin"],
-    state: 3,
+    state: 2,
     tags: ["New to Reddit"],
   },
   {
@@ -533,7 +533,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vR7EElMXTg5o4F_WWEu1J4RFfAKF5NJL6pe0lluaHapWP7ZNo7fouYChti7WlZrHV_0TzOk8LCoAdAO/pub",
     characterIds: ["atheras", "salei"],
-    state: 3,
+    state: 2,
     tags: ["New to Reddit"],
     hideScenes: true,
     scenes: [
@@ -595,7 +595,7 @@ window.DATA_STORIES = [
       "malcolm",
       "michelle",
     ],
-    state: 3,
+    state: 2,
     series: { id: "melody-adventures", order: 3 },
     tags: [],
     scenes: [
@@ -654,7 +654,7 @@ window.DATA_STORIES = [
     characterIds: ["hato", "naimi"],
     subtitle:
       "This takes place in the 'Red Dragon' universe, started by poiu and continued by kiwibb. Fanart by 9x9 (https://inkbunny.net/s/2226481)",
-    state: 3,
+    state: 2,
     tags: ["Furry", "New to Reddit", "Based on other authors' work"],
   },
   {
@@ -668,7 +668,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vScwbE6p1gmOjYx1gJwYRsBG4yaZxrYZOcM2eZa_7H0DPRw58GWhvUEwmD5aWjkagnEC3DiuGTrepJa/pub",
     characterIds: [],
-    state: 3,
+    state: 2,
     tags: ["New to Reddit"],
   },
   {
@@ -686,7 +686,7 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vSmRTiAPjYMYME6TkjqBo2WIALcx0zF8bwSBtoiAcpB29emdpneSkyBUzTQOmqxI8WW0F0EHiFLL1G9/pub",
     audioUrl: "Castration Appointment at the Kink Agency.m4a",
     characterIds: [],
-    state: 3,
+    state: 2,
     tags: [],
   },
   {
@@ -700,7 +700,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vSkCwlzQvhfAUEGIKey5gPeAsLdLNPfLBejwsRtqt53HtEQIgBPCYxnr_Oue17IT1xLzRFhEk5KgX-m/pub",
     characterIds: ["emma", "jose"],
-    state: 3,
+    state: 2,
     tags: [],
     scenes: [
       {
@@ -738,7 +738,7 @@ window.DATA_STORIES = [
       "cathy",
       "michelle",
     ],
-    state: 3,
+    state: 2,
     tags: [],
     scenes: [
       {
@@ -774,7 +774,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vSCFSsYv9k5JNRuwqyMvtMBCESmShx9HFjIHjnnUFwG0DKcMhN4Lkx-AvSzawnOHyHDv1HylaLObYYm/pub",
     characterIds: ["melody", "eric", "bryan"],
-    state: 3,
+    state: 2,
     series: { id: "melody-adventures", order: 2 },
     tags: ["New to Reddit"],
     scenes: [
@@ -813,7 +813,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vS0bA6zQ9zU7aFW-AqA_k8k0VfL5VcfC8s43Z4kr1Fa71x3QuNeL9ujwSPiGzP2xJwtkl8TBKdgpR8C/pub",
     characterIds: ["genovia", "sylvana", "sean_witches"],
-    state: 3,
+    state: 2,
     tags: [],
     scenes: [
       {
@@ -858,7 +858,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTAU43kVpZAcbYWpK5C8qNpyBgG1PZuYL9WrxJOUK741wmXWHxxkqzK0qDyGI6s4z6Hh1-X5OHA05LG/pub",
     characterIds: ["steven", "kaitlin", "amy", "june", "serena"],
-    state: 3,
+    state: 2,
     tags: [],
     scenes: [
       {
@@ -899,7 +899,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vQp_4y7LJnHity8IKFUGkj_ScJ66i4HpU-yKIUslA2qmWCe8agtSxLe-_W7-Cza9tY3MCmi9JEF_uui/pub",
     characterIds: ["ross", "the_nurse"],
-    state: 3,
+    state: 2,
     tags: [],
   },
   {
@@ -921,7 +921,7 @@ window.DATA_STORIES = [
       "the_nurse",
     ],
     subtitle: "Commission for a continuation between two captions.",
-    state: 3,
+    state: 2,
     tags: ["New to Reddit", "Based on other authors' work"],
     scenes: [
       {
@@ -973,7 +973,7 @@ window.DATA_STORIES = [
     characterIds: [],
     subtitle:
       "Followup to a beautiful RP I did with someone on tumblr way back in the day.",
-    state: 3,
+    state: 2,
     tags: ["New to Reddit"],
   },
   {
@@ -1002,7 +1002,7 @@ window.DATA_STORIES = [
         caption: "Now, for the next experiment...",
       },
     ],
-    state: 3,
+    state: 2,
     tags: ["New to Reddit"],
   },
   {
@@ -1016,7 +1016,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vT_B6lDYNi_ICH9IOVhhhMWE6YTtkKSbvma4E7nO4TxlxOMa9KGVO9lq3BiZqgnhMn3gJSYvSJepL71/pub",
     characterIds: [],
-    state: 3,
+    state: 2,
     tags: ["New to Reddit"],
   },
   {
@@ -1031,7 +1031,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vQWfM9IddQtsF4pQ9zXVzFNSu9xSB13fIIoo8XktLz5j_k_Ov5wqc1IZ5az6XJfIZruQfxFb554pptK/pub",
     characterIds: [],
-    state: 3,
+    state: 2,
     series: { id: "no-nut-narrator", order: 1 },
     tags: ["New to Reddit"],
   },
@@ -1047,7 +1047,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vSYLqxpzpv0avqu9uBNT8-ejRcsIX9V5fKfEzarP_lCWpV9oqrQItoKQeK0rRk0D3cer6TgM2Y57TR3/pub",
     characterIds: [],
-    state: 3,
+    state: 2,
     series: { id: "no-nut-narrator", order: 2 },
     tags: ["New to Reddit", "No Nut Narrator"],
   },
@@ -1062,7 +1062,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vRETewpFyT0mnciKkMK8R97T-pDEcqkZ3siKhKg1oxgtWrgOe08CN7dLQLJ3c56bmZNcx86DyPlzGyZ/pub",
     characterIds: ["officer_alice", "ivan", "lieutenant_maria"],
-    state: 3,
+    state: 2,
     tags: ["New to Reddit"],
     scenes: [
       {
@@ -1107,7 +1107,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vQWua-pQJOAP2ZSyU5sFNSozli-i0KnBK1AkISCJMkY_xMpL4zcwkaiTkJbogDyeFWNYvYaNne5N762/pub",
     characterIds: [],
-    state: 3,
+    state: 2,
     tags: [],
   },
   {
@@ -1122,7 +1122,7 @@ window.DATA_STORIES = [
       " This was a commission to extend an existing story whose source I've since lost. Part 3 is the only part I've written.",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vSU4uTw0_e32omJ7hRARitDiwSdX-MiuPuyLde4BYZk6DSU6wxhVcenbKDREtxuox9NSGnuyZ5svd1r/pub",
-    state: 3,
+    state: 2,
     tags: ["New to Reddit", "Based on other authors' work"],
   },
   {
@@ -1136,7 +1136,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vRQEaO-eWJxiU6v7YmbiL2Fwo5G8O3Z9zgjmQ2BTfuufLcKvf5LxU4cjMiA9eFxKBNpFBIu_1lc8Dyb/pub",
     characterIds: ["jenny"],
-    state: 3,
+    state: 2,
     tags: ["New to Reddit", "Based on other authors' work"],
   },
   {
@@ -1152,7 +1152,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTUG5kvCCVa1GAQuZALyLUYM6smQs0mg2kAmF9UXScDNTBeM6rp7JhmXQEqoLJKT0fR5EWmAymSGu6X/pub",
     characterIds: ["kayla"],
-    state: 3,
+    state: 2,
     tags: ["Furry", "Based on other authors' work", "New to Reddit"],
     scenes: [
       {

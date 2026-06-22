@@ -35,8 +35,8 @@ When adding or editing character bios, use `data/characters.js`. For story summa
 
 ## Story `state` and `releaseDate`
 
-- **`state`** (number): `1` = coming soon (blue “Coming soon!” badge on the grid), `2` = new (green “New story!” badge), `3` = released (no badge). Omit or use `3` for normal catalog entries.
-- **`releaseDate`**: ISO date string (e.g. `"2020-01-01"`) used to sort stories on the grid within the same `state`. Stories without a date sort after dated ones in that state, then by title.
+- **`state`** (number): `1` = coming soon (blue “Coming soon!” badge on the grid), `2` = released (normal catalog entry). Omit or use `2` for published stories.
+- **`releaseDate`**: ISO date string (e.g. `"2020-01-01"`) used to sort released stories on the grid (newest first). Released stories whose `releaseDate` falls within the last three months also get a green “New story!” badge. Stories without a date sort after dated ones, then by title.
 
 ---
 
