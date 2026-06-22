@@ -1299,15 +1299,12 @@ window.DATA_STORIES = [
       "hunter",
     ],
     tags: ["Premium Story", "New to Reddit"],
-    driveUrl:
-      "https://docs.google.com/document/d/e/2PACX-1vSrtvzgoGYWGYgg9a-y9YsyTJijnb_F4Hj2k9H5HFLI_wMKwwAn1b3LahTprIUMALrw2K_CCx-rtpoj/pub",
     purchaseParts: [
       {
         part: 1,
         kofiUrl: "https://ko-fi.com/s/edb2b8eaa5",
         amazonUrl: "https://www.amazon.com/dp/B0GJTZSS1D",
       },
-      { part: 2, kofiUrl: null, amazonUrl: null },
     ],
     scenes: [
       {
