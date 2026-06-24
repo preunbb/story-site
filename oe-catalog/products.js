@@ -50,11 +50,11 @@ window.OVER_EASY_CATALOG = {
           caption:
             "As stylish as they are dangerous, these functional heels will keep you sexy and safe.",
         },
-        {
-          path: "assets/scenes/overeasy_catalog/overeasy_ball_killers_dept_store_demo_caption_v1.png",
-          caption:
-            "Tungsten toes for when sorry isn't enough — shattered testicles, zero regrets.",
-        },
+        // {
+        //   path: "assets/scenes/overeasy_catalog/overeasy_ball_killers_dept_store_demo_caption_v1.png",
+        //   caption:
+        //     "Tungsten toes for when sorry isn't enough — shattered testicles, zero regrets.",
+        // },
       ],
       tagline: "Fashionable. Functional. Pointed.",
       description:
@@ -577,7 +577,7 @@ window.OVER_EASY_CATALOG = {
         {
           path: "assets/scenes/andrea_and_lucas/overeasy_strapon_device_v10.png",
           caption:
-            "Selfish Bitch™ OET-SB-PRO — dual-ended piezoreactive harness, osmium false balls",
+            "Selfish Bitch™ - when you want to make him feel what you want, instead of what he wants.",
         },
         // {
         //   path: "assets/scenes/andrea_and_lucas/overeasy_strapon_selfish_bitch_andrea_lucas_scared_v2.png",
@@ -612,7 +612,7 @@ window.OVER_EASY_CATALOG = {
       id: "fail-safe-cocksleeve",
       category: "discipline",
       purchaseUrl: "../#story/13/read",
-      name: "'Last Shot'™ Disciplinary Milker / Elastrator",
+      name: "Last Shot™ Disciplinary Milker / Elastrator",
       model: "OET-FSM-1",
       image:
         "assets/scenes/andrea_and_lucas/overeasy_fail_safe_cocksleeve_device_v5.png",

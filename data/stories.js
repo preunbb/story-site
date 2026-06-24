@@ -1531,6 +1531,41 @@ window.DATA_STORIES = [
         caption:
           "Abby kneels before bound Elijah during his Second Rite — sweet piety on her face, anguish on his, the ceremony underway in the candlelit chamber.",
       },
+      {
+        path: "assets/scenes/andrea_and_lucas/ch19_luna_elevator_internal_scan_judah_v1.png",
+        caption:
+          "Luna's elevator scanner fails Judah's external identity check after Andrea's kicks bruise his lone ball — so the Church tech overrides safety protocols and stirs, sucks, and samples him from the inside instead.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/ch19_izzie_bellringer_stable_boys_v1.png",
+        caption:
+          "Izzie finally gets to demo the BellRinger™ on twenty-four breeding-stable stallions. Each invisible THUM hits like a full-force kick — and the girls are enjoying it almost as much as the boys aren't.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/ch20_bugzapper_matthias_bellringer_disc_v1.png",
+        caption:
+          "Izzie's torn pack of BellRingers synchronizes into a bug-zapper disc on the ritual-chamber floor. Matthias sprints straight into the pulse field chasing female pleasure — and loses his last nut in seconds.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/ch20_bugzapper_two_panel_comic_v1.png",
+        caption:
+          "Left: Izzie, Andrea, and Tamara tally nut scores in the hallway alcove while Judah sobs through the pulses. Right: the synchronized BellRinger disc pulses through the pre-pop orgy — five Mistresses climax as five stallions clutch their ruined lone nuts.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/ch20_tamara_judah_testicular_defragmentation_v1.png",
+        caption:
+          "Tamara performs emergency testicular defragmentation on Judah between scans — squishing his shredded gonad back into a dense, round keycard so Luna can keep drilling him for door access.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/ch20_kay_unequal_trinity_mark_macro_v3_veiny_hairy_wrinkled.png",
+        caption:
+          "Kay completes the Mark of the Unequal Trinity — macro close-up of her sharp stiletto nail beside two crescent vents and her diagonal slash on Lucas's veiny, ruined nut.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/ch20_ritual_chamber_aftermath_score_count_v1.png",
+        caption:
+          "After two hours of synchronized BellRinger pulses, the ritual chamber is testicular carnage — and Tamara, Andrea, and Izzie are still arguing over the pop count.",
+      },
       */
     ],
   },
