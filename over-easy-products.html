@@ -14,7 +14,7 @@
     />
     <meta property="og:title" content="Over Easy Technologies — Product Catalog" />
     <meta property="og:description" content="Premium lifestyle hardware for the modern woman." />
-    <meta property="og:image" content="https://preunbb.github.io/story-site/assets/brands/overeasy_logo_v2_raw_eggs_minimal.png" />
+    <meta property="og:image" content="https://preunbb.github.io/story-site/assets/over-easy/brands/overeasy_logo_v2_raw_eggs_minimal.png" />
     <meta property="og:image:width" content="1536" />
     <meta property="og:image:height" content="1024" />
     <meta property="og:url" content="https://preunbb.github.io/story-site/over-easy-products" />
@@ -23,7 +23,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Over Easy Technologies — Product Catalog" />
     <meta name="twitter:description" content="Premium lifestyle hardware for the modern woman." />
-    <meta name="twitter:image" content="https://preunbb.github.io/story-site/assets/brands/overeasy_logo_v2_raw_eggs_minimal.png" />
+    <meta name="twitter:image" content="https://preunbb.github.io/story-site/assets/over-easy/brands/overeasy_logo_v2_raw_eggs_minimal.png" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap"
@@ -130,10 +130,14 @@
         if (!catalog) return;
 
         const { brand, categories, products } = catalog;
+        const NEW_ARRIVALS_ID = "new-arrivals";
         const visibleCategories = categories.filter(function (c) {
           return !c.hidden;
         });
-        let activeCategory = visibleCategories[0]?.id ?? "";
+        const tabItems = [
+          { id: NEW_ARRIVALS_ID, label: "New Arrivals!" },
+        ].concat(visibleCategories);
+        let activeTab = NEW_ARRIVALS_ID;
 
         // Brand header
         document.getElementById("oe-brand-name").innerHTML = brand.name.replace(
@@ -154,27 +158,27 @@
         const sectionTitle = document.getElementById("oe-section-title");
         const desktopTabsMq = window.matchMedia("(min-width: 769px)");
 
-        tabsInner.innerHTML = visibleCategories
-          .map(function (cat) {
+        tabsInner.innerHTML = tabItems
+          .map(function (tab) {
             return (
               '<button type="button" class="oe-tab" data-category="' +
-              escapeHtml(cat.id) +
+              escapeHtml(tab.id) +
               '" aria-selected="false">' +
               '<span class="oe-tab__label">' +
-              escapeHtml(cat.label) +
+              escapeHtml(tab.label) +
               "</span>" +
               "</button>"
             );
           })
           .join("");
 
-        categorySelect.innerHTML = visibleCategories
-          .map(function (cat) {
+        categorySelect.innerHTML = tabItems
+          .map(function (tab) {
             return (
               '<option value="' +
-              escapeHtml(cat.id) +
+              escapeHtml(tab.id) +
               '">' +
-              escapeHtml(cat.label) +
+              escapeHtml(tab.label) +
               "</option>"
             );
           })
@@ -190,15 +194,20 @@
         }
 
         function renderProducts() {
-          const visible = products.filter(function (p) {
-            return p.category === activeCategory;
-          });
-          const catLabel =
-            categories.find(function (c) {
-              return c.id === activeCategory;
+          const visible =
+            activeTab === NEW_ARRIVALS_ID
+              ? products.filter(function (p) {
+                  return p.newArrival;
+                })
+              : products.filter(function (p) {
+                  return p.category === activeTab;
+                });
+          const tabLabel =
+            tabItems.find(function (t) {
+              return t.id === activeTab;
             })?.label ?? "Current lineup";
 
-          sectionTitle.textContent = catLabel;
+          sectionTitle.textContent = tabLabel;
 
           grid.innerHTML = visible
             .map(function (p) {
@@ -207,12 +216,12 @@
             .join("");
 
           tabsInner.querySelectorAll(".oe-tab").forEach(function (btn) {
-            const selected = btn.dataset.category === activeCategory;
+            const selected = btn.dataset.category === activeTab;
             btn.classList.toggle("oe-tab--active", selected);
             btn.setAttribute("aria-selected", selected ? "true" : "false");
           });
-          if (categorySelect.value !== activeCategory) {
-            categorySelect.value = activeCategory;
+          if (categorySelect.value !== activeTab) {
+            categorySelect.value = activeTab;
           }
           if (desktopTabsMq.matches) {
             requestAnimationFrame(updateTabIndicator);
@@ -372,7 +381,7 @@
 
         function renderCardMedia(p) {
           const imgs = productImages(p);
-          const thumb = imgs[0]?.path || p.image || "";
+          const thumb = p.image || imgs[0]?.path || "";
           if (!thumb) return '<div class="oe-card__media"></div>';
 
           const payload = escapeHtml(
@@ -388,6 +397,9 @@
             ? '<span class="oe-card__media-count" aria-hidden="true">' +
               imgs.length +
               " photos</span>"
+            : "";
+          const newBadge = p.newArrival
+            ? '<span class="oe-new-badge" aria-label="New product"><span class="oe-new-badge-text">New!</span></span>'
             : "";
 
           return (
@@ -405,6 +417,7 @@
             '" alt="' +
             escapeHtml(p.name) +
             '" loading="lazy" />' +
+            newBadge +
             countBadge +
             "</figure>"
           );
@@ -476,15 +489,17 @@
           );
         }
 
+        function isValidTab(tabId) {
+          return tabItems.some(function (t) {
+            return t.id === tabId;
+          });
+        }
+
         function setCategory(categoryId, options) {
-          if (
-            !visibleCategories.some(function (c) {
-              return c.id === categoryId;
-            })
-          ) {
+          if (!isValidTab(categoryId)) {
             return;
           }
-          activeCategory = categoryId;
+          activeTab = categoryId;
           renderProducts();
           if (!options || !options.skipHash) {
             history.replaceState(null, "", "#category-" + categoryId);
@@ -505,21 +520,17 @@
 
         function resolveHash() {
           const hash = location.hash.replace(/^#/, "");
-          const defaultCategory = visibleCategories[0]?.id ?? "";
+          const defaultTab = NEW_ARRIVALS_ID;
           if (!hash) {
-            setCategory(defaultCategory, { skipHash: true });
+            setCategory(defaultTab, { skipHash: true });
             return;
           }
           if (hash.indexOf("category-") === 0) {
             const categoryId = hash.slice("category-".length);
-            if (
-              visibleCategories.some(function (c) {
-                return c.id === categoryId;
-              })
-            ) {
+            if (isValidTab(categoryId)) {
               setCategory(categoryId, { skipHash: true });
             } else {
-              setCategory(defaultCategory, { skipHash: true });
+              setCategory(defaultTab, { skipHash: true });
             }
             return;
           }
@@ -540,12 +551,12 @@
                     el.scrollIntoView({ behavior: "smooth", block: "start" });
                 });
               } else {
-                setCategory(defaultCategory, { skipHash: true });
+                setCategory(defaultTab, { skipHash: true });
               }
               return;
             }
           }
-          setCategory(defaultCategory, { skipHash: true });
+          setCategory(defaultTab, { skipHash: true });
         }
 
         tabsEl.addEventListener("click", function (event) {

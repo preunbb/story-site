@@ -45,7 +45,7 @@ const model = hints.model ?? modelCode(slug);
 const basename = assetBasename(slug, hints.kind ?? "device");
 const version = nextAssetVersion(repoRoot, basename);
 const assetFilename = `${basename}_v${version}.png`;
-const imageRelative = `../assets/scenes/andrea_and_lucas/${assetFilename}`;
+const imageRelative = `assets/over-easy/scenes/andrea_and_lucas/${assetFilename}`;
 
 const excerpts = searchStoryForProduct(repoRoot, productName);
 const productSpecs = extractProductSpecs(excerpts);
@@ -68,6 +68,7 @@ const starterCatalogEntry = {
   description: copy.description,
   features: copy.features,
   badge: existingProduct?.badge ?? hints.badge ?? "Hardware",
+  newArrival: existingProduct?.newArrival ?? true,
 };
 
 const imagePrompt = buildImagePrompt({
@@ -108,7 +109,7 @@ writeFileSync(join(draftDir, "draft.json"), JSON.stringify(draft, null, 2) + "\n
 console.log(`\nOver Easy product draft: ${displayName}`);
 console.log(`  slug:     ${slug}`);
 console.log(`  id:       ${id}`);
-console.log(`  asset:    assets/scenes/andrea_and_lucas/${assetFilename}`);
+console.log(`  asset:    assets/over-easy/scenes/andrea_and_lucas/${assetFilename}`);
 console.log(`  specs:    ${productSpecs.length} from story (internal)`);
 console.log(`  draft:    oe-catalog/drafts/${slug}/draft.json`);
 if (existingProduct) {

@@ -1337,7 +1337,7 @@ window.DATA_STORIES = [
 
   {
     id: 44,
-    wordCount: 3698,
+    wordCount: 3700,
     title: "Courtroom Wedding",
     summary:
       "Mal'ko and Taviri are excited to get married, but the insanity of the Red Dragon marital industrial complex is offputting. They opt for a simple, quick courtroom wedding.",
@@ -1535,6 +1535,26 @@ window.DATA_STORIES = [
         path: "assets/scenes/andrea_and_lucas/ch19_luna_elevator_internal_scan_judah_v1.png",
         caption:
           "Luna's elevator scanner fails Judah's external identity check after Andrea's kicks bruise his lone ball — so the Church tech overrides safety protocols and stirs, sucks, and samples him from the inside instead.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/ch19_judah_luna_scan_series_01_v2.png",
+        caption:
+          "Scan 1 of 4 — Judah's first Luna internal identity audit. Corner cross-section: small but healthy lone nut, still full.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/ch19_judah_luna_scan_series_02_v2.png",
+        caption:
+          "Scan 2 of 4 — stubble fading, cheeks softening. Corner cross-section: first needle-track voids, a little emptied.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/ch19_judah_luna_scan_series_03_v2.png",
+        caption:
+          "Scan 3 of 4 — longer hair, clean-shaven soft jaw. Corner cross-section: heavily depleted parenchyma, mostly hollow cavities.",
+      },
+      {
+        path: "assets/scenes/andrea_and_lucas/ch19_judah_luna_scan_series_04_v2.png",
+        caption:
+          "Scan 4 of 4 — final audit complete, face drained and demasculinized. Corner cross-section: nearly empty organ, spent shell.",
       },
       {
         path: "assets/scenes/andrea_and_lucas/ch19_izzie_bellringer_stable_boys_v1.png",

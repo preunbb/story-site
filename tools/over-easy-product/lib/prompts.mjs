@@ -13,7 +13,7 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Black handheld taser, angled prods, snub nose, blue arc between prongs. Switch labeled LOW / MEDIUM / HIGH. Model CBT-22120 on body. White STERILIZER label.",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
+      "assets/over-easy/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
     ],
   },
   studclamp: {
@@ -24,7 +24,7 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Matte-black C-clamp control unit, steel disc jaw pads, red LED, power button on top.",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/overeasy_studclamp_device_v2.png",
+      "assets/over-easy/scenes/andrea_and_lucas/overeasy_studclamp_device_v2.png",
     ],
   },
   nutcracker: {
@@ -35,7 +35,7 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Brushed steel cylinder, black ribbed grip, conical tip, keychain ring, BALLCRACKER label.",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
+      "assets/over-easy/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
     ],
   },
   "bell-ringer": {
@@ -47,7 +47,7 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Matte-black sphere same diameter as US quarter, quarter coin beside it for scale, white background. Cyan-orange sonar-ring glow bands, equator seam, top power ring. No labels or logos on device.",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/overeasy_bell_ringer_device_v1.png",
+      "assets/over-easy/scenes/andrea_and_lucas/overeasy_bell_ringer_device_v1.png",
     ],
   },
   "ball-killers": {
@@ -58,7 +58,7 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Shiny black patent heel pair, blood-red soles, 'ball' and 'killer' in bright red on each shoe, tungsten-capped points at heel and toe.",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/overeasy_ball_killers_heels_v1.png",
+      "assets/over-easy/scenes/andrea_and_lucas/overeasy_ball_killers_heels_v1.png",
     ],
   },
   "bronze-trophy-earrings": {
@@ -70,7 +70,7 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Pair of antiqued bronze dangle earrings on black velvet stand, white background. Each drop charm shaped like a testicle orb with asymmetric form and fine etched vein-map paths. Bronze hook wires.",
     referenceAssets: [
-      "assets/scenes/one_night_stand/overeasy_bronze_testicle_earrings_v1.png",
+      "assets/over-easy/scenes/nevermore-keepsakes/overeasy_bronze_testicle_earrings_v1.png",
     ],
   },
   "church-broken-tree-pendant": {
@@ -83,7 +83,7 @@ export const PRODUCT_HINTS = {
       "Circular pewter pendant on silver cable chain, white background. Raised relief broken-tree emblem matching church_broken_tree_emblem_v1 — trunk, roots, leafy branches, jagged broken upper branch, oxidized recess, antique silver finish.",
     referenceAssets: [
       "assets/brands/church_broken_tree_emblem_v1.png",
-      "assets/scenes/andrea_and_lucas/church_broken_tree_pendant_product_v1.png",
+      "assets/over-easy/scenes/andrea_and_lucas/church_broken_tree_pendant_product_v1.png",
     ],
   },
   "bleach-wipes": {
@@ -95,7 +95,7 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Retail wipe box, orange/white Over Easy branding, dense cartoony terrified sperm mascots with long tails being dissolved/wiped (PG cartoon).",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/overeasy_bleach_wipes_box_v2.png",
+      "assets/over-easy/scenes/andrea_and_lucas/overeasy_bleach_wipes_box_v2.png",
     ],
   },
   strapon: {
@@ -106,7 +106,7 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Solid opaque matte-black rubber harness, heavy stiff false balls, minimal leather straps, internal g-spot bulb visible from angle, leather scrotum tether cuff, Over Easy logo. NO cutaway.",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/overeasy_strapon_device_v10.png",
+      "assets/over-easy/scenes/andrea_and_lucas/overeasy_strapon_device_v10.png",
     ],
   },
   "ball-anvil": {
@@ -118,7 +118,7 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Rectangular matte-black injection-molded plastic slab, twin oval depressions with polished steel pointed bolts centered in each, blood-red heart graphics around bolts, Over Easy egg logo embossed on edge.",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/overeasy_ball_anvil_device_v1.png",
+      "assets/over-easy/scenes/andrea_and_lucas/overeasy_ball_anvil_device_v1.png",
     ],
   },
   "reactive-buttplug": {
@@ -130,7 +130,7 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Matte black telescopic segmented butt plug, reactive sex-tech aesthetic, LED ring at base, Over Easy egg logo on cap.",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/overeasy_reactive_prostate_plug_device_v1.png",
+      "assets/over-easy/scenes/andrea_and_lucas/overeasy_reactive_prostate_plug_device_v1.png",
     ],
   },
   "bioneural-lube": {
@@ -142,7 +142,7 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Squeeze bottle of personal lubricant, cloudy translucent blue gel visible through frosted plastic, silver pump cap, minimal clinical label with OVER EASY TECHNOLOGIES and DESIRE LINK™ BIONEURAL LUBRICANT, raw-egg pictogram, white studio background. No people.",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/overeasy_bleach_wipes_box_v2.png",
+      "assets/over-easy/scenes/andrea_and_lucas/overeasy_bleach_wipes_box_v2.png",
     ],
   },
   "fail-safe-cocksleeve": {
@@ -168,7 +168,7 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Thick charcoal grey rubber scrotal ring, bull-and-lasso cartoon stamp on outer surface, Over Easy egg logo.",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/overeasy_ball_cuff_device_v2.png",
+      "assets/over-easy/scenes/andrea_and_lucas/overeasy_ball_cuff_device_v2.png",
     ],
   },
   "male-containment-chip": {
@@ -180,7 +180,7 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Tiny silver microchip on sterile card plus white corporate remote with 0–5 level dial, OVER EASY TECHNOLOGIES branding.",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/overeasy_male_containment_chip_remote_device_v1.png",
+      "assets/over-easy/scenes/andrea_and_lucas/overeasy_male_containment_chip_remote_device_v1.png",
     ],
   },
   "auto-milker": {
@@ -192,7 +192,7 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Matte charcoal rubber cocksleeve + scrotum pouch, metal electrostim contacts inside pouch, WARMUP/EXTRACT toggles, collection hose to graduated vial, medical tray, Over Easy logo.",
     referenceAssets: [
-      "assets/scenes/school_bully/overeasy_auto_milker_device_v1.png",
+      "assets/over-easy/scenes/school_bully/overeasy_auto_milker_device_v1.png",
     ],
   },
   "biopsy-gun": {
@@ -203,7 +203,7 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Beige pistol-grip biopsy gun, long coring needle, graduated rear vial.",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/testicular_biopsy_gun_device_v2.png",
+      "assets/over-easy/scenes/andrea_and_lucas/testicular_biopsy_gun_device_v2.png",
     ],
   },
   "eunuchcorn-denim": {
@@ -215,7 +215,7 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Dark indigo EunuchCorn jeans and matching jean shorts flat lay, ultra-high seam, flat tight crotch, eunuch arch fit, Over Easy egg logo on back pocket.",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/overeasy_eunuchcorn_denim_v1.png",
+      "assets/over-easy/scenes/andrea_and_lucas/overeasy_eunuchcorn_denim_v1.png",
     ],
   },
   "onenut-cup": {
@@ -227,7 +227,7 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Obviously lopsided athletic cup — one full dome chamber (rightie), other side completely flat and empty. OneNut branding, size M/RIGHTIE label.",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/overeasy_onenut_cup_v1.png",
+      "assets/over-easy/scenes/andrea_and_lucas/overeasy_onenut_cup_v1.png",
     ],
   },
   "testicular-implants": {
@@ -239,7 +239,7 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Retail box with two skin-tone silicone cosmetic ovoid inserts, crossed-out icons for fertility/hormones/sensation, Over Easy branding.",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/overeasy_testicular_implants_v2.png",
+      "assets/over-easy/scenes/andrea_and_lucas/overeasy_testicular_implants_v2.png",
     ],
   },
   "cherry-pop-album": {
@@ -264,8 +264,8 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Framed wall poster — two catalog editions: (1) current full-color realistic cross-section plate with labeled margins; (2) vintage sepia medical engraving. Black frame, white studio product shot.",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_realistic_v1.png",
-      "assets/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_v1.png",
+      "assets/over-easy/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_realistic_v1.png",
+      "assets/over-easy/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_v1.png",
       "assets/brands/crushed_testicles_xray_crosssection_v3_reference_plate.png",
     ],
   },
@@ -278,8 +278,8 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Two catalog modes: (1) feminine pass — green-lit UPC-style flat scanner head on highly articulate sci-fi telescoping arm; (2) male escort — cruel six-fingered mechanical hand, red audit ring, forearm laser barrel, prehensile steel thread. Wall panel with Luna wordmark and raw-egg Over Easy logo.",
     referenceAssets: [
-      "assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_scanner_mode_v2.png",
-      "assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_audit_mode_v4.png",
+      "assets/over-easy/scenes/andrea_and_lucas/overeasy_luna_identity_arm_scanner_mode_v2.png",
+      "assets/over-easy/scenes/andrea_and_lucas/overeasy_luna_identity_arm_audit_mode_v4.png",
     ],
   },
 };

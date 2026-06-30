@@ -3,11 +3,14 @@
  *
  * Edit this file to change copy, images, features, setlist, or add/remove products.
  * This is the single source of truth for catalog copy — oe-product tooling reads from here.
- * Paths are relative to over-easy-products.html (repo root)
+ * Paths are relative to over-easy-products.html (repo root), under assets/over-easy/
  *
  * purchaseUrl — optional. Story reader (#story/N/read), Ko-fi, etc. Hash-only
  * story links are resolved to the site root by over-easy-products.html.
  * Omit for “Coming soon!” products.
+ *
+ * newArrival — optional boolean. Tagged products show a green “New!” badge on
+ * the thumbnail and appear in the New Arrivals! tab (default catalog landing).
  *
  * New products: npm run oe-product -- "Product Name"
  *
@@ -17,7 +20,7 @@ window.OVER_EASY_CATALOG = {
   brand: {
     name: "Over Easy Technologies",
     tagline: "Premium lifestyle hardware for the modern woman.",
-    logo: "assets/brands/overeasy_logo_v2_raw_eggs_minimal.png",
+    logo: "assets/over-easy/brands/overeasy_logo_v2_raw_eggs_minimal.png",
   },
 
   categories: [
@@ -39,19 +42,24 @@ window.OVER_EASY_CATALOG = {
       name: "Ball Killers™",
       model: "OET-BK-1",
       image:
-        "assets/scenes/andrea_and_lucas/overeasy_ball_killers_heels_v1.png",
+        "assets/over-easy/scenes/andrea_and_lucas/overeasy_ball_killers_heels_v1.png",
       images: [
         {
-          path: "assets/scenes/andrea_and_lucas/overeasy_ball_killers_heels_v1.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_ball_killers_heels_v1.png",
           caption: "Ball Killers™ — patent pumps on white background",
         },
         {
-          path: "assets/ballkiller.png",
+          path: "assets/over-easy/ballkiller.png",
           caption:
             "As stylish as they are dangerous, these functional heels will keep you sexy and safe.",
         },
+        {
+          path: "assets/over-easy/brands/healthy_testicles_bilateral_external_izzie_punctured_hold_ball_killers_v3.png",
+          caption:
+            "Izzie just used her Ball Killers™ to enforce some very firm boundaries on the dance floor. That's one girl who knows her worth - and one boy who's never going to have kids! He's getting carted off to the hospital to get his scrotum sewed back together. She's heading to the bathroom to wipe off the breeding hazard he rudely spurted onto her Ball Killer ™.",
+        },
         // {
-        //   path: "assets/scenes/overeasy_catalog/overeasy_ball_killers_dept_store_demo_caption_v1.png",
+        //   path: "assets/over-easy/scenes/overeasy_catalog/overeasy_ball_killers_dept_store_demo_caption_v1.png",
         //   caption:
         //     "Tungsten toes for when sorry isn't enough — shattered testicles, zero regrets.",
         // },
@@ -66,7 +74,7 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "EunuchCorn™ Denim",
       model: "OET-EC-D1",
-      image: "assets/scenes/andrea_and_lucas/overeasy_eunuchcorn_denim_v1.png",
+      image: "assets/over-easy/scenes/andrea_and_lucas/overeasy_eunuchcorn_denim_v1.png",
       tagline: "Jeans for those out of the gene pool.",
       description:
         "Finally — denim that fits what's left. EunuchCorn jeans and shorts feature an ultra-high seam and extra-tight flat front: no embarrassing loose crotch, no pointless zipper bulge, just the confident silhouette of a man who's already said goodbye to his legacy.",
@@ -105,46 +113,52 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "../#story/12/read",
       name: "Nevermore™ Keepsakes Custom-Made Bronze Earrings",
       model: "OET-BTE-1",
-      image: "assets/wearing_bronze.png",
+      image:
+        "assets/over-easy/scenes/nevermore-keepsakes/overeasy_bronze_testicle_earrings_v1.png",
       images: [
         {
-          path: "assets/scenes/one_night_stand/overeasy_bronze_testicle_earrings_v1.png",
+          path: "assets/over-easy/scenes/nevermore-keepsakes/overeasy_bronze_testicle_earrings_v1.png",
           caption: "Every pair of Nevermore™ Keepsakes is completely unique.",
         },
         {
-          path: "assets/asdf.png",
+          path: "assets/over-easy/asdf.png",
           caption:
             "Nevermore™ aren't just for high fashion - her son's Keepsakes on her ears answers all those pesky questions about why she doesn't have grandkids yet.",
         },
         {
-          path: "assets/nurse_bronze.png",
+          path: "assets/over-easy/nurse_bronze.png",
           caption:
             "Even appropriate for the professional woman, Nurse Sarah subtly shows off her husband's love to her coworkers and patients via her Nevermores™.",
         },
         {
-          path: "assets/wearing_bronze.png",
+          path: "assets/over-easy/wearing_bronze.png",
           caption:
             "Model Asta wears her newest set of Nevermore™ Keepsakes, given to her by her latest one night stand (whose name unfortunately escapes her).",
         },
         {
-          path: "assets/college bronze.png",
+          path: "assets/over-easy/college bronze.png",
           caption:
             "Lucia is embarassed to admit it, but deep down she loves being the first of her friends to get her own pair of Nevermores™ - she really has the best boyfriend on campus!",
         },
         {
-          path: "assets/mom_earring.png",
+          path: "assets/over-easy/mom_earring.png",
           caption:
             "After you break up with him, you can wear the pair of Nevermores™ your ex gave you to first dates so men know you know your worth.",
         },
         {
-          path: "assets/scenes/one_night_stand/overeasy_nevermore_keepsakes_two_pairs_men_cringing_v1.png",
+          path: "assets/over-easy/scenes/nevermore-keepsakes/overeasy_nevermore_keepsakes_two_pairs_men_cringing_v1.png",
           caption:
             "When you've got two beaus you can't decide between - ask them both for their Keepsakes and see which one is more devoted. And if they're BOTH truly in love with you, that extra pair can make a fantastic white elephant gifts for your girlfriends.",
         },
         {
-          path: "assets/scenes/one_night_stand/overeasy_nevermore_keepsakes_two_friends_chatting_v2.png",
+          path: "assets/over-easy/scenes/nevermore-keepsakes/overeasy_nevermore_keepsakes_two_friends_chatting_v2.png",
           caption:
             "Pendant Nevermores™ available when your lover has a little less (or more!) to donate and you'd like your jewelry symmetrical.",
+        },
+        {
+          path: "assets/over-easy/brands/healthy_testicles_bilateral_external_earrings_latina_curvy_v3.png",
+          caption:
+            "If bronze is too heavyweight for you, Nevermore Clarity Keepsakes are for you. With a patented rosin plasticine coating, these beautiful pieces let you and your eunuch admire all those gorgeous veins and vesicles that used to supply his balls with life. Try wearing them while you sit on his face to really cement his understanding of your dominance.",
         },
       ],
       tagline: "His loss is your gain.",
@@ -158,14 +172,14 @@ window.OVER_EASY_CATALOG = {
       name: "Church of the Broken Tree Devotional Pendant",
       model: "CBT-PND-1",
       image:
-        "assets/scenes/andrea_and_lucas/church_broken_tree_pendant_product_v1.png",
+        "assets/over-easy/scenes/andrea_and_lucas/church_broken_tree_pendant_product_v1.png",
       images: [
         {
-          path: "assets/scenes/andrea_and_lucas/church_broken_tree_pendant_product_v1.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/church_broken_tree_pendant_product_v1.png",
           caption: "Devotional pendant — pewter on silver cable chain",
         },
-        { path: "assets/characters/kay_final.png", caption: "Model: Kay" },
-        { path: "assets/characters/abby_final.png", caption: "Model: Abby" },
+        { path: "assets/over-easy/characters/kay_final.png", caption: "Model: Kay" },
+        { path: "assets/over-easy/characters/abby_final.png", caption: "Model: Abby" },
       ],
       tagline: "Wear your faith where he can see it.",
       description:
@@ -178,18 +192,18 @@ window.OVER_EASY_CATALOG = {
       name: "Cherry Pop! — Plum Dumb & Permanently Done",
       model: "CP-PDPD-001",
       image:
-        "assets/scenes/andrea_and_lucas/cherry_pop_album_cover_product_v1.png",
+        "assets/over-easy/scenes/andrea_and_lucas/cherry_pop_album_cover_product_v1.png",
       images: [
         {
-          path: "assets/scenes/andrea_and_lucas/cherry_pop_album_cover_product_v1.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/cherry_pop_album_cover_product_v1.png",
           caption: "Album cover — Plum Dumb & Permanently Done",
         },
         {
-          path: "assets/scenes/andrea_and_lucas/cherry_pop_album_vinyl_record_v1.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/cherry_pop_album_vinyl_record_v1.png",
           caption: "Vinyl LP",
         },
         {
-          path: "assets/scenes/andrea_and_lucas/cherry_pop_album_cd_jewel_v1.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/cherry_pop_album_cd_jewel_v1.png",
           caption: "CD jewel case",
         },
       ],
@@ -218,14 +232,14 @@ window.OVER_EASY_CATALOG = {
       name: "Comparative Gonadal Integrity Poster",
       model: "OET-GIP-24",
       image:
-        "assets/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_realistic_v1.png",
+        "assets/over-easy/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_realistic_v1.png",
       images: [
         {
-          path: "assets/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_realistic_v1.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_realistic_v1.png",
           caption: "Current edition — full-color anatomical plate",
         },
         {
-          path: "assets/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_v1.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_v1.png",
           caption: "Vintage edition — sepia medical engraving",
         },
       ],
@@ -258,13 +272,107 @@ window.OVER_EASY_CATALOG = {
       ],
     },
     {
+      id: "testicular-lifecycle-prints",
+      category: "media",
+      purchaseUrl: "../#story/47",
+      name: "Life stages of a Testicle — Framed Print Set",
+      newArrival: true,
+
+      model: "OET-TL-6",
+      image:
+        "assets/over-easy/scenes/andrea_and_lucas/ch19_judah_luna_scan_crosssection_timelapse/ch19_judah_luna_scan_crosssection_timelapse_print_set_cover_v1.png",
+      images: [
+        {
+          path: "assets/over-easy/scenes/andrea_and_lucas/ch19_judah_luna_scan_crosssection_timelapse/00_healthy_framed_v1.png",
+          caption: "01 - Healthy",
+        },
+        {
+          path: "assets/over-easy/scenes/andrea_and_lucas/ch19_judah_luna_scan_crosssection_timelapse/01_bruised_framed_v3.png",
+          caption: "02 - Bruised",
+        },
+        {
+          path: "assets/over-easy/scenes/andrea_and_lucas/ch19_judah_luna_scan_crosssection_timelapse/02_damaged_framed_v2.png",
+          caption: "03 - Damaged",
+        },
+        {
+          path: "assets/over-easy/scenes/andrea_and_lucas/ch19_judah_luna_scan_crosssection_timelapse/03_emaciated_framed_v2.png",
+          caption: "04 - Emaciated",
+        },
+        {
+          path: "assets/over-easy/scenes/andrea_and_lucas/ch19_judah_luna_scan_crosssection_timelapse/04_still_barely_alive_framed_v1.png",
+          caption: "05 - Still Barely Alive",
+        },
+        {
+          path: "assets/over-easy/scenes/andrea_and_lucas/ch19_judah_luna_scan_crosssection_timelapse/05_ruptured_framed_v1.png",
+          caption: "06 - Ruptured",
+        },
+      ],
+      tagline: "Educate, then disintegrate.",
+      description:
+        "Six framed clinical cross-sections documenting the lifecycles of a testicle — from healthy and fertile to bruised, irreversibly compromised, hollowed out, stubbornly clinging on to life, and finally, POPPED. Educate your roommates, step-sons, patients and boyfriends on what you could put them through with these classy, full-color anatomical prints.",
+    },
+    {
+      id: "gonadal-trauma-reference-plates",
+      category: "media",
+      name: "Testicular Trauma Reference Plates",
+      newArrival: true,
+
+      model: "OET-GTR-8",
+      image: "assets/over-easy/brands/lopsided.png",
+      images: [
+        {
+          path: "assets/over-easy/brands/lopsided.png",
+          caption:
+            "Even without a rupture, a severe kick can have permanently implications for your manhood. This man recieved an incredibly hard kick to his testicles from a young woman who was participating in a social media 'prank' trend. As a result, his right testicle has completely withered away, and no longer produces either sperm or testosterone. We recommended a unilateral orchiectomy to remove the dysfunctional gonad, but he insisted he keep it...for sentimental reasons, if not reproductive ones.",
+        },
+        {
+          path: "assets/over-easy/brands/punctured.png",
+          caption:
+            "Be careful of a recently punctured testicle - the high pressure jet of raw semen shooting out from directly inside his gonad can be especially sticky! This injury is the result of a well-prepared woman defending herself from her attacked with her patended BallKillers. Although we couldn't ethically remove the pervert's remaining functional testicle, we may have 'accidentally' forgotten to give him anesthesia before clumsily removing the injured organ.",
+        },
+        {
+          path: "assets/over-easy/brands/healthy_testicles_bilateral_external_neq_gouge_leak_v4.png",
+          caption:
+            "This poor man's partner wanted to show him exactly what the inequality inherent to the patriarchy feels like to a woman. He'll be a much better feminist now! Testing showed that he's still got a fair amount of testosterone and sperm sloshing around in those slashed up testicles, so we'll just stitch him back up and send him on his way.",
+        },
+        {
+          path: "assets/over-easy/brands/healthy_testicles_bilateral_external_torsion_v1.png",
+          caption:
+            "A testicular torsion might not look as scary as some of the other injuries, but it's just as permanent and damaging if left untreated for too long. Remember, boys, if you feel ANY pain in your balls, don't risk it - head to the hospital immediately! This poor man wasn't quite fast enough, unfortunately. His balls have been without circulation for much too long to salvage; we'll have to snip them off.",
+        },
+        {
+          path: "assets/over-easy/brands/healthy_testicles_bilateral_external_bruised_v3.png",
+          caption:
+            "Bruising balls can usually recover their sperm count eventually, but this subject won't be so lucky. Our doctors determine his injuries are severe enough that each testicle only has a 30% chance recovery. This is low enough that our medical guidelines recommend immediate removal. He's about to be informed of the bad news so we can obtain his consent to remove both of his barely functioning testicles.",
+        },
+        {
+          path: "assets/over-easy/brands/healthy_testicles_bilateral_external_exploded_v1.png",
+          caption:
+            "A classic ruptured testicle, symptomatic of an overly sarcastic male. We performed his orchiectomy right away, followed by a quick reminder of why he needs to remember to be polite to women at all time. A lesson he won't soon forget! Luckily, he'll live a perfectly happy life - a man truly only needs one testicle to get by!",
+        },
+        {
+          path: "assets/over-easy/brands/tied_off_2.png",
+          caption:
+            "This patient was initial perfectly healthy, but a slight mixup with his paperwork resulted in our intern treating him inappropriately with her elastrator. Unfortunately, by the time it was discovered, the damage was already done - his deadened testicles were promptly removed.",
+        },
+        {
+          path: "assets/over-easy/brands/healthy_testicles_bilateral_external_nail_squeeze_rupture_v1.png",
+          caption:
+            "Live, unanesthetized vivisections can be uncomfortable for our subjects, but it's one of the most effective ways for a woman to truly understand the inner workings of a man's testicles. These pair were completely healthy when dissection started. They're still salvageable for now, but once the student has finished her assignment, they definitely won't be. She'll be sliding her forceps in carefully, extracting the delicate nutmeat inside bit by bit until he's fully castrated. Ignoring his screams is a big part of her challenge!",
+        },
+      ],
+      tagline: "A rainbow of testicular trauma.",
+      description:
+        "A set of cross-section plates showing off every variety of testicular trauma, from the standard explosive rupture to the rarer gougings and twistings that can occur.",
+    },
+    {
       id: "hypersecretory-disorder-poster",
       category: "media",
       purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "Hypersecretory Disorder Clinical Poster",
       model: "OET-HSD-24",
       image:
-        "assets/scenes/andrea_and_lucas/lucas_hyperspermia_scrotum_textbook_diagram_v2.png",
+        "assets/over-easy/scenes/andrea_and_lucas/lucas_hyperspermia_scrotum_textbook_diagram_v2.png",
       description:
         "Vintage textbook plate illustrating the effects of 'hypersecretory disorder', an antiquated name for what doctors now call 'hyperactive testicular disorder'. A great gift for the man who insists he has this mythical condition .",
     },
@@ -275,7 +383,7 @@ window.OVER_EASY_CATALOG = {
       name: "Testicular Biopsy Gun™",
       model: "OET-TBG-1",
       image:
-        "assets/scenes/andrea_and_lucas/testicular_biopsy_gun_device_v2.png",
+        "assets/over-easy/scenes/andrea_and_lucas/testicular_biopsy_gun_device_v2.png",
       description:
         "Hospital-grade instrument for removing testicular tissue samples for analysis. Extra thick collection needle ensures adequate retrieval for even the toughest diagnoses. For recrational usage instead of sampling, simply detach the removable vial.",
     },
@@ -285,7 +393,7 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "Bleach Wipes™",
       model: "OET-BW-40",
-      image: "assets/scenes/andrea_and_lucas/overeasy_bleach_wipes_box_v2.png",
+      image: "assets/over-easy/scenes/andrea_and_lucas/overeasy_bleach_wipes_box_v2.png",
       tagline: "Snuff out those swimmers!",
       description:
         "Patented bleach wipes strong enough to neutralize every germ and ambitious future heir they touch, yet gentle enough for your most delicate bits. Essential for cleaning up any serious breeding hazard after a night of fun with a boy.",
@@ -314,7 +422,7 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "../#story/1/read",
       name: "OneNut© Cup",
       model: "OET-ONC-1",
-      image: "assets/scenes/andrea_and_lucas/overeasy_onenut_cup_v1.png",
+      image: "assets/over-easy/scenes/andrea_and_lucas/overeasy_onenut_cup_v1.png",
       tagline: "Better safe than sorry.",
       description:
         "For men with only one remaining testicle, standard cups leave too much room — your lone survivor bounces, pinches, and slides into the gap. OneNut© cups are molded just for you, to protect what little you have left.",
@@ -348,15 +456,15 @@ window.OVER_EASY_CATALOG = {
       name: "Contour Restoration Inserts™",
       model: "OET-TI-2",
       image:
-        "assets/scenes/andrea_and_lucas/overeasy_testicular_implants_v2.png",
+        "assets/over-easy/scenes/andrea_and_lucas/overeasy_testicular_implants_v2.png",
       images: [
         {
-          path: "assets/scenes/andrea_and_lucas/overeasy_testicular_implants_v2.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_testicular_implants_v2.png",
           caption:
             "Contour Restoration Inserts™ — cosmetic silicone, display use only.",
         },
         {
-          path: "assets/scenes/andrea_and_lucas/overeasy_contour_restoration_inserts_xxxs_model_v1.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_contour_restoration_inserts_xxxs_model_v1.png",
           caption:
             "Model fit — our specialists know how to highlight your best features, even when there isn't much to work with.",
         },
@@ -385,24 +493,24 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "The Sterilizer™",
       model: "CBT-22120",
-      image: "assets/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
+      image: "assets/over-easy/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
       images: [
         {
-          path: "assets/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
           caption:
             "Sterilizer™ CBT-22120 — angled prods, three-setting voltage selector",
         },
         {
-          path: "assets/scenes/andrea_and_lucas/overeasy_sterilizer_crosssection_voltage_graded_v3.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_sterilizer_crosssection_voltage_graded_v3.png",
           caption:
             "Voltage-graded injury — LOW, MEDIUM, and HIGH, with cross-sections to show the devastating internal effects.",
         },
         {
-          path: "assets/scenes/andrea_and_lucas/overeasy_sterilizer_crosssection_voltage_graded_v2_schematic.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_sterilizer_crosssection_voltage_graded_v2_schematic.png",
           caption:
             "Boring medical details - but very helpful for his urologist to understand the severity of his injuries after you've done what you need to keep yourself safe.",
         },
-        // { path: "assets/scenes/overeasy_catalog/overeasy_sterilizer_trade_show_demo_caption_v1.png", caption: "HIGH setting turns his nuts into mush before he finishes the waiver." },
+        // { path: "assets/over-easy/scenes/overeasy_catalog/overeasy_sterilizer_trade_show_demo_caption_v1.png", caption: "HIGH setting turns his nuts into mush before he finishes the waiver." },
       ],
       tagline: "One zap. Zero kids.",
       description:
@@ -418,15 +526,15 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "../#story/47",
       name: "The Ballcracker™",
       model: "OET-BC-1",
-      image: "assets/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
+      image: "assets/over-easy/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
       images: [
         {
-          path: "assets/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
           caption:
             "Ballcracker™ OET-BC-1 — brushed steel, ribbed grip, keychain-ready",
         },
         {
-          path: "assets/scenes/andrea_and_lucas/overeasy_ballcracker_crosssection_pneumatic_epididymis_v2_schematic.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_ballcracker_crosssection_pneumatic_epididymis_v2_schematic.png",
           caption:
             "In-depth trauma mechanism - subtly crack him open by hand, or pop him instantly",
         },
@@ -446,20 +554,20 @@ window.OVER_EASY_CATALOG = {
       name: "The BellRinger™",
       model: "OET-BR-1",
       image:
-        "assets/scenes/andrea_and_lucas/overeasy_bell_ringer_device_v1.png",
+        "assets/over-easy/scenes/andrea_and_lucas/overeasy_bell_ringer_device_v1.png",
       images: [
         {
-          path: "assets/scenes/andrea_and_lucas/overeasy_bell_ringer_device_v1.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_bell_ringer_device_v1.png",
           caption:
             "Small enough to fit dozens in your purse, ensuring you're never caught without a fresh BellRinger™.",
         },
         {
-          path: "assets/scenes/andrea_and_lucas/overeasy_bell_ringer_resonant_field_poster_realistic_v1.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_bell_ringer_resonant_field_poster_realistic_v1.png",
           caption:
             "Wide range and depth of effect ensures the BellRinger™ can keep a whole room of men on their knees until deactivated.",
         },
         {
-          path: "assets/scenes/andrea_and_lucas/overeasy_bell_ringer_resonant_field_poster_vintage_v1.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_bell_ringer_resonant_field_poster_vintage_v1.png",
           caption:
             "Vintage and modern product posters available for purchase upon request.",
         },
@@ -475,15 +583,15 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "../#story/47",
       name: "StudClamp™",
       model: "OET-SC-1",
-      image: "assets/scenes/andrea_and_lucas/overeasy_studclamp_device_v2.png",
+      image: "assets/over-easy/scenes/andrea_and_lucas/overeasy_studclamp_device_v2.png",
       images: [
         {
-          path: "assets/scenes/andrea_and_lucas/overeasy_studclamp_device_v2.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_studclamp_device_v2.png",
           caption:
             "StudClamp™ mobile app and compatible smart phone required for full functionality",
         },
         {
-          path: "assets/scenes/andrea_and_lucas/overeasy_gonadal_integrity_intact_studclamp_flattened_crosssection_v1.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_gonadal_integrity_intact_studclamp_flattened_crosssection_v1.png",
           caption:
             "Artist's rendition of the cross-section of the subject during his successful StudClamp™ interrogation.",
         },
@@ -510,24 +618,26 @@ window.OVER_EASY_CATALOG = {
     },
     {
       id: "auto-milker",
+      newArrival: true,
+
       category: "medical",
       purchaseUrl: "../#story/20/read",
       name: "Auto-Milker™",
       model: "OET-AM-1",
-      image: "assets/scenes/school_bully/overeasy_auto_milker_device_v1.png",
+      image: "assets/over-easy/scenes/school_bully/overeasy_auto_milker_device_v1.png",
       images: [
         {
-          path: "assets/scenes/school_bully/overeasy_auto_milker_device_v1.png",
+          path: "assets/over-easy/scenes/school_bully/overeasy_auto_milker_device_v1.png",
           caption:
             "Auto-Milker™ OET-AM-1 — electrostim sleeve, scrotal compression, graduated collection vial",
         },
         {
-          path: "assets/automilker_in_use_tamara_v1.png",
+          path: "assets/over-easy/automilker_in_use_tamara_v1.png",
           caption:
             "Dr. Tamara after a cumpletely successful extraction from an especially productive (and lucky!) patient.",
         },
         {
-          path: "assets/too_much.png",
+          path: "assets/over-easy/too_much.png",
           caption:
             "Warning: only licensed doctors may operate the Auto-Milker™ alone! Interns can be helpful, but their naive enthusiasm often has drastic consequences for patients' fertility.",
         },
@@ -572,15 +682,15 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "'Selfish Bitch' Strap-On System",
       model: "OET-SB-PRO",
-      image: "assets/scenes/andrea_and_lucas/overeasy_strapon_device_v10.png",
+      image: "assets/over-easy/scenes/andrea_and_lucas/overeasy_strapon_device_v10.png",
       images: [
         {
-          path: "assets/scenes/andrea_and_lucas/overeasy_strapon_device_v10.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_strapon_device_v10.png",
           caption:
             "Selfish Bitch™ - when you want to make him feel what you want, instead of what he wants.",
         },
         // {
-        //   path: "assets/scenes/andrea_and_lucas/overeasy_strapon_selfish_bitch_andrea_lucas_scared_v2.png",
+        //   path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_strapon_selfish_bitch_andrea_lucas_scared_v2.png",
         //   caption: "Andrea models the harness; Lucas knows what's coming.",
         // },
       ],
@@ -598,7 +708,7 @@ window.OVER_EASY_CATALOG = {
       name: "'Broken Boy' Reactive Prostate Plug™",
       model: "OET-RPP-1",
       image:
-        "assets/scenes/andrea_and_lucas/overeasy_reactive_prostate_plug_device_v1.png",
+        "assets/over-easy/scenes/andrea_and_lucas/overeasy_reactive_prostate_plug_device_v1.png",
       tagline: "Break him. Plug him. Make him cum the hard way.",
       description:
         "Not your normal plug. Over Easy's reactive architecture reads his resistance and answers it — expanding, contracting, thrusting, and finding his sensitive little love button whether he cooperates or not. The harder he tries to push it out, the harder it pushes in. Trained for hands-free control while you watch him squirm and leak.",
@@ -615,7 +725,7 @@ window.OVER_EASY_CATALOG = {
       name: "Last Shot™ Disciplinary Milker / Elastrator",
       model: "OET-FSM-1",
       image:
-        "assets/scenes/andrea_and_lucas/overeasy_fail_safe_cocksleeve_device_v5.png",
+        "assets/over-easy/scenes/andrea_and_lucas/overeasy_fail_safe_cocksleeve_device_v5.png",
       tagline: "A lesson he won't forget.",
       description:
         "Tired of your pathetic prejacing sub staining your nice boots? Want to train him to actually prioritize your pleasure? With the Last Shot™ Disciplinary Milker / Elastrator, you can guarantee he'll either learn to last, or cum his last. The default disciplinary duration is one hour (the average real normal man's time to ejaculation); to configure longer durations, consult the manual.",
@@ -626,7 +736,7 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "'Choking Bull' Ball Cuff™",
       model: "OET-BCF-1",
-      image: "assets/scenes/andrea_and_lucas/overeasy_ball_cuff_device_v2.png",
+      image: "assets/over-easy/scenes/andrea_and_lucas/overeasy_ball_cuff_device_v2.png",
       tagline: "Streeeeeeeetch him out!",
       description:
         "Thick rubber ring made of ultra-dense silicone composite, designed to keep him packaged up nice and tight for your pleasure.",
@@ -637,7 +747,7 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "Ball Anvil™",
       model: "OET-BA-1",
-      image: "assets/scenes/andrea_and_lucas/overeasy_ball_anvil_device_v1.png",
+      image: "assets/over-easy/scenes/andrea_and_lucas/overeasy_ball_anvil_device_v1.png",
       description:
         "For the woman who wants to forge a new connection with her man and hammer home who's in charge. Our commercial Ball Anvil™ upgrades the popular open-source design into injection-molded black plastic with twin oval wells — sized so his fragile lumps of ore have enough room to spread flat between your cheeks, but are still kept in place so he can't escape the points beneath.",
     },
@@ -648,18 +758,18 @@ window.OVER_EASY_CATALOG = {
       name: "Luna™ Identity Arm",
       model: "OET-LIA-1",
       image:
-        "assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_scanner_mode_v2.png",
+        "assets/over-easy/scenes/andrea_and_lucas/overeasy_luna_identity_arm_scanner_mode_v2.png",
       images: [
         {
-          path: "assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_scanner_mode_v2.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_luna_identity_arm_scanner_mode_v2.png",
           caption: "Non-invasive ultra-fast female identification mode",
         },
         {
-          path: "assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_audit_mode_v4.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_luna_identity_arm_audit_mode_v4.png",
           caption: "Thorough, secure and reliable male identification mode",
         },
         {
-          path: "assets/scenes/andrea_and_lucas/overeasy_luna_identity_arm_audit_crosssection_clinical_v3.png",
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_luna_identity_arm_audit_crosssection_clinical_v3.png",
           caption:
             "Demonstration of the internal testicular cross-section after a particularly thorough identity audit. Luna's left him with just enough nutmeat intact that he'll be able to recover his fertility. Eventually.",
         },
@@ -680,7 +790,7 @@ window.OVER_EASY_CATALOG = {
       category: "kitchen-gadgets",
       name: "Garlic Press",
       model: "OET-GP-1",
-      image: "assets/scenes/overeasy_catalog/overeasy_garlic_press_v1.png",
+      image: "assets/over-easy/scenes/overeasy_catalog/overeasy_garlic_press_v1.png",
       description:
         "Besides pressing garlic, this handy press is great whenever you need to extrude something in the kitchen into a uniform mush.",
     },
@@ -689,7 +799,7 @@ window.OVER_EASY_CATALOG = {
       category: "kitchen-gadgets",
       name: "Microplane",
       model: "OET-MP-1",
-      image: "assets/scenes/overeasy_catalog/overeasy_microplane_v1.png",
+      image: "assets/over-easy/scenes/overeasy_catalog/overeasy_microplane_v1.png",
       description:
         "With its ultra-fine grit and carbon-steel construction, this microplane can turn cheese, vegetables, or even meat into the finest of shavings.",
     },
@@ -698,7 +808,7 @@ window.OVER_EASY_CATALOG = {
       category: "kitchen-gadgets",
       name: "Dual Egg Slicer",
       model: "OET-DES-1",
-      image: "assets/scenes/overeasy_catalog/overeasy_dual_egg_slicer_v1.png",
+      image: "assets/over-easy/scenes/overeasy_catalog/overeasy_dual_egg_slicer_v1.png",
       description:
         "Great for egg salad. Double wide design allows you to slice those eggs twice as fast!",
     },
@@ -707,7 +817,7 @@ window.OVER_EASY_CATALOG = {
       category: "kitchen-gadgets",
       name: "Olive Pitter",
       model: "OET-OP-1",
-      image: "assets/scenes/overeasy_catalog/overeasy_olive_pitter_v2.png",
+      image: "assets/over-easy/scenes/overeasy_catalog/overeasy_olive_pitter_v2.png",
       description:
         "Instantly pops the hard center out of cherries, olives, or even plums.",
     },
@@ -716,7 +826,7 @@ window.OVER_EASY_CATALOG = {
       category: "kitchen-gadgets",
       name: "Meat Tenderizer",
       model: "OET-MT-1",
-      image: "assets/scenes/overeasy_catalog/overeasy_meat_tenderizer_v2.png",
+      image: "assets/over-easy/scenes/overeasy_catalog/overeasy_meat_tenderizer_v2.png",
       description: "A few good whacks and even stubborn meat gives way.",
     },
     {
@@ -724,7 +834,7 @@ window.OVER_EASY_CATALOG = {
       category: "kitchen-gadgets",
       name: "Citrus Reamer",
       model: "OET-CR-1",
-      image: "assets/scenes/overeasy_catalog/overeasy_citrus_reamer_v1.png",
+      image: "assets/over-easy/scenes/overeasy_catalog/overeasy_citrus_reamer_v1.png",
       description:
         "Simply half your desired fruit and use our patented reamer to extract every last drop of juice.",
     },
@@ -734,7 +844,7 @@ window.OVER_EASY_CATALOG = {
       name: "At-Home Vasectomy & Circumcision Skill Class",
       model: "OET-ST-VC-1",
       image:
-        "assets/scenes/overeasy_catalog/overeasy_at_home_vasectomy_circumcision_class_v1.png",
+        "assets/over-easy/scenes/overeasy_catalog/overeasy_at_home_vasectomy_circumcision_class_v1.png",
       tagline: "Take him off the market from your own kitchen table.",
       description:
         "Medical degrees are expensive, and a huge hassle. Doctors insist they are the only ones who can do even the simplest of procedures, then charge an arm and a leg for their bills.Shouldn't there be an easy way? With OverEasy's hands-on SkillUp class, we provide you with experienced instructors and an endless supply of practice materials so you can take control of your own home life and learn how to disconnect his little babymakers for good.",
@@ -745,7 +855,7 @@ window.OVER_EASY_CATALOG = {
       name: "Self Defense Skill Class",
       model: "OET-ST-SD-1",
       image:
-        "assets/scenes/overeasy_catalog/overeasy_self_defense_skill_class_v1.png",
+        "assets/over-easy/scenes/overeasy_catalog/overeasy_self_defense_skill_class_v1.png",
       tagline: "Get your money's worth.",
       description:
         "Over Easy's certified self-defense curriculum teaches you to protect yourself — and make every lesson count when someone needs a very direct reminder of where he's vulnerable. Reflex drills, boundary-setting techniques, and below-the-belt precision that leaves a permanent impression.",
@@ -761,7 +871,7 @@ window.OVER_EASY_CATALOG = {
       name: "Michelin Star Cooking Class",
       model: "OET-ST-MC-1",
       image:
-        "assets/scenes/overeasy_catalog/overeasy_michelin_star_cooking_class_v1.png",
+        "assets/over-easy/scenes/overeasy_catalog/overeasy_michelin_star_cooking_class_v1.png",
       tagline: "Plate him like a professional.",
       description:
         "Elevate your kitchen game with techniques from Michelin-trained chefs — knife skills, precise trimming, and how to reduce stubborn ingredients to their essential parts. Perfect for the hostess who wants dinner to end with nothing left on his plate.",
@@ -778,7 +888,7 @@ window.OVER_EASY_CATALOG = {
       name: "Male Containment Chip™",
       model: "OET-MC-1",
       image:
-        "assets/scenes/andrea_and_lucas/overeasy_male_containment_chip_remote_device_v1.png",
+        "assets/over-easy/scenes/andrea_and_lucas/overeasy_male_containment_chip_remote_device_v1.png",
       tagline:
         "For the corporate manager who needs to keep male and half-male employees in line.",
       description:

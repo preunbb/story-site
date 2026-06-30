@@ -339,6 +339,28 @@ img {
   pointer-events: none;
 }
 
+.oe-new-badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: rgba(25, 120, 55, 0.95);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.oe-new-badge-text {
+  white-space: nowrap;
+}
+
 body.scene-lightbox-open {
   overflow: hidden;
 }

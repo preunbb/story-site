@@ -636,14 +636,14 @@ window.DATA_CHARACTERS = [
     name: "Kay",
     gender: "F",
     testiclesKilled: 5,
-    bio: "Lucas's older stepsister who grew up in the Church of the Broken Tree. Inherited her mother's sadism. Celebrated by the whole congregation for her piety and strength. She's an atheist at heart, but she loves ballbusting and dominating men so much she's participated in MANY rites and involuntary 'conversion' missions.",
+    bio: "Lucas's older stepsister who grew up in the Church of the Broken Tree. Lithe and fit, she inherited her mother's toned legs and unbridled sadism. She's an atheist at heart, but she loves ballbusting and dominating men so much she's participated in MANY rites and involuntary 'conversion' missions.",
     profilePictures: ["assets/characters/kay_final.png"],
   },
   {
     id: "abby",
     name: "Abby",
     gender: "F",
-    bio: "Lucas's younger stepsister. Inherited her mother's piety. She was horrified when she learned about the First Rite, but she's always trusted her Goddess above all else - she doesn't enjoy castration the way the other girls in the Church do, but she's a devout Daughter and knows better than to let her personal weakness get in the way of service to her Goddess. Has performed many, many rites. Love for her goddess and her creations helps her ignore the screams and cries of the poor men she neuters.",
+    bio: "Lucas's younger stepsister. Devout daughter of the Church of the Broken Tree. Sweet, earnest, and soft-spoken. Her innocent face sweet demanor, and generously stacked figure have helped her lure in dozens of men to their Second Rite. Abby was horrified of the Goddess's demands when she first learned of them, but she's long since learned to accept the beautiful, orgasmically pious joy that accompanies the horrific pain she lovingly inflicts on her new male acolytes and converts.",
     profilePictures: ["assets/characters/abby_final.png"],
   },
   {

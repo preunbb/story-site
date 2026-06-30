@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { createContext, Script } from "node:vm";
 
-const SCENES_DIR = "assets/scenes/andrea_and_lucas";
+const SCENES_DIR = "assets/over-easy/scenes/andrea_and_lucas";
 
 /** @param {string} repoRoot */
 export function loadCatalog(repoRoot) {
@@ -62,11 +62,14 @@ function formatProductsJs(catalog) {
  *
  * Edit this file to change copy, images, features, setlist, or add/remove products.
  * This is the single source of truth for catalog copy — oe-product tooling reads from here.
- * Paths are relative to over-easy-products.html (repo root)
+ * Paths are relative to over-easy-products.html (repo root), under assets/over-easy/
  *
  * purchaseUrl — optional. Story reader (#story/N/read), Ko-fi, etc. Hash-only
  * story links are resolved to the site root by over-easy-products.html.
  * Omit for “Coming soon!” products.
+ *
+ * newArrival — optional boolean. Tagged products show a green “New!” badge on
+ * the thumbnail and appear in the New Arrivals! tab (default catalog landing).
  *
  * New products: npm run oe-product -- "Product Name"
  *
@@ -154,6 +157,7 @@ function formatProductEntry(p) {
     lines.push(`      sizeOptions: ${formatSizeOptions(p.sizeOptions)},`);
   }
   if (p.badge) lines.push(`      badge: ${JSON.stringify(p.badge)},`);
+  if (p.newArrival) lines.push("      newArrival: true,");
   lines.push("    }");
   return lines.join("\n");
 }
