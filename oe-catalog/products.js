@@ -280,7 +280,7 @@ window.OVER_EASY_CATALOG = {
 
       model: "OET-TL-6",
       image:
-        "assets/over-easy/scenes/andrea_and_lucas/ch19_judah_luna_scan_crosssection_timelapse/ch19_judah_luna_scan_crosssection_timelapse_print_set_cover_v1.png",
+        "assets/over-easy/previews/overeasy_testicular_lifecycle_warning_preview_v1.png",
       images: [
         {
           path: "assets/over-easy/scenes/andrea_and_lucas/ch19_judah_luna_scan_crosssection_timelapse/00_healthy_framed_v1.png",
@@ -318,7 +318,8 @@ window.OVER_EASY_CATALOG = {
       newArrival: true,
 
       model: "OET-GTR-8",
-      image: "assets/over-easy/brands/lopsided.png",
+      image:
+        "assets/over-easy/previews/overeasy_testicular_trauma_plates_warning_preview_v1.png",
       images: [
         {
           path: "assets/over-easy/brands/lopsided.png",
