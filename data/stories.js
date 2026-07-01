@@ -847,7 +847,7 @@ window.DATA_STORIES = [
   },
   {
     id: 28,
-    wordCount: 7058,
+    wordCount: 7061,
     title: "Testy",
     brutalityRating: 4,
     summary:
