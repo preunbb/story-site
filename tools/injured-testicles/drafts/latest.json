@@ -1,0 +1,16 @@
+{
+  "tool": "injured-testicles",
+  "referenceImage": "assets/brands/healthy_veiny.png",
+  "referenceImageNote": "Canonical healthy bilateral veiny testes plate — pass as reference_image_paths to GenerateImage",
+  "injuryDescription": "sliced in half horizontally into equal top and bottom hemispheres - no intact whole testes, only four equal halves in 2x2 grid",
+  "injurySlug": "sliced_in_half_horizontally_into_equal_top_and_b",
+  "imagePrompt": "Clinical medical illustration of a bilateral pair of human testes (testicles),\nsame composition and camera angle as the reference image: two oval testes side by side,\nconnected at the top by thick spermatic cords, resting on a plain neutral off-white surface.\n\nMATCH THE REFERENCE EXACTLY for baseline anatomy and style:\n- pale pink-tan glistening tissue\n- dense visible vascular network: deep blue-purple larger veins branching from the cords,\n  fine red capillary webbing across the entire surface\n- taut smooth tunica, soft even clinical lighting, photo-real or high-end medical 3D render\n- no scrotal skin — bare testes only, same scale and framing as reference\n\nINJURY / DAMAGE (apply faithfully):\nsliced in half horizontally into equal top and bottom hemispheres - no intact whole testes, only four equal halves in 2x2 grid\n\nShow the described trauma clearly on the tissue. Bruising, rupture, puncture, swelling,\nasymmetry, fluid leaks, deflation, laceration, torsion discoloration, etc. as specified.\nKeep the same bilateral specimen presentation — no people, no hands, no bodies, no text,\nno labels, no logos. White or neutral background only.",
+  "negativePromptHints": "cartoon, anime, comic, text, labels, watermark, hands, faces, full body, scrotum skin, fried egg, cooked egg",
+  "assetFilename": "healthy_veiny_sliced_in_half_horizontally_into_equal_top_and_b_v1.png",
+  "image": "assets/over-easy/brands/healthy_veiny_sliced_in_half_horizontally_into_equal_top_and_b_v1.png",
+  "generateSteps": [
+    "Read assets/brands/healthy_veiny.png with the Read tool.",
+    "Call remote GenerateImage with reference_image_paths including that file.",
+    "Save output to assets/over-easy/brands/healthy_veiny_sliced_in_half_horizontally_into_equal_top_and_b_v1.png (never overwrite an existing file)."
+  ]
+}
