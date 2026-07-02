@@ -74,7 +74,8 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "EunuchCorn™ Denim",
       model: "OET-EC-D1",
-      image: "assets/over-easy/scenes/andrea_and_lucas/overeasy_eunuchcorn_denim_v1.png",
+      image:
+        "assets/over-easy/scenes/andrea_and_lucas/overeasy_eunuchcorn_denim_v1.png",
       tagline: "Jeans for those out of the gene pool.",
       description:
         "Finally — denim that fits what's left. EunuchCorn jeans and shorts feature an ultra-high seam and extra-tight flat front: no embarrassing loose crotch, no pointless zipper bulge, just the confident silhouette of a man who's already said goodbye to his legacy.",
@@ -178,8 +179,14 @@ window.OVER_EASY_CATALOG = {
           path: "assets/over-easy/scenes/andrea_and_lucas/church_broken_tree_pendant_product_v1.png",
           caption: "Devotional pendant — pewter on silver cable chain",
         },
-        { path: "assets/over-easy/characters/kay_final.png", caption: "Model: Kay" },
-        { path: "assets/over-easy/characters/abby_final.png", caption: "Model: Abby" },
+        {
+          path: "assets/over-easy/characters/kay_final.png",
+          caption: "Model: Kay",
+        },
+        {
+          path: "assets/over-easy/characters/abby_final.png",
+          caption: "Model: Abby",
+        },
       ],
       tagline: "Wear your faith where he can see it.",
       description:
@@ -342,6 +349,21 @@ window.OVER_EASY_CATALOG = {
             "A testicular torsion might not look as scary as some of the other injuries, but it's just as permanent and damaging if left untreated for too long. Remember, boys, if you feel ANY pain in your balls, don't risk it - head to the hospital immediately! This poor man wasn't quite fast enough, unfortunately. His balls have been without circulation for much too long to salvage; we'll have to snip them off.",
         },
         {
+          path: "assets/over-easy/brands/healthy_veiny_two_veiny_naked_balls_pressed_so_flat_they_will__v1.png",
+          caption:
+            "Contrary to popular belief, testicles can be pressed incredibly flat without permanent damage. Even pancake-flat ones can be reinflated, with suitably competent treatment. Not these ones, though. This is way too flat. This man will not be having children.",
+        },
+        {
+          path: "assets/over-easy/brands/healthy_veiny_four_hemispheres_inside_intact_scrotal_skin_sack_v1.png",
+          caption:
+            "Similar to tree rings, the best way to tell how old a testicle is is to slice it in half and look inside. The especially thick and healthy tubules inside this one tells us that this young man was especially fertile, likely with a sperm count that dwarfed others in his age group. If our enthusiastic young intern hadn't so hastily bisected his gonads for no reason, he likely would've gone on to have many children.",
+        },
+        {
+          path: "assets/over-easy/brands/healthy_veiny_trio_of_three_testicles_of_different_sizes_side__v2.png",
+          caption:
+            "Triorchidism is more common than most people think. Unfortunately, the condition correlates strongly with testicular injuries. It's common for women of all ages to see his extra organ as an opportunity to more thoroughly experiment with more esoteric testicular torture, especially when all three gonads vary in size so drastically. This poor man was lucky enough to get away with some severe bruising, but we expect to see him in our clinic again soon.",
+        },
+        {
           path: "assets/over-easy/brands/healthy_testicles_bilateral_external_bruised_v3.png",
           caption:
             "Bruising balls can usually recover their sperm count eventually, but this subject won't be so lucky. Our doctors determine his injuries are severe enough that each testicle only has a 30% chance recovery. This is low enough that our medical guidelines recommend immediate removal. He's about to be informed of the bad news so we can obtain his consent to remove both of his barely functioning testicles.",
@@ -394,7 +416,8 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "Bleach Wipes™",
       model: "OET-BW-40",
-      image: "assets/over-easy/scenes/andrea_and_lucas/overeasy_bleach_wipes_box_v2.png",
+      image:
+        "assets/over-easy/scenes/andrea_and_lucas/overeasy_bleach_wipes_box_v2.png",
       tagline: "Snuff out those swimmers!",
       description:
         "Patented bleach wipes strong enough to neutralize every germ and ambitious future heir they touch, yet gentle enough for your most delicate bits. Essential for cleaning up any serious breeding hazard after a night of fun with a boy.",
@@ -423,7 +446,8 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "../#story/1/read",
       name: "OneNut© Cup",
       model: "OET-ONC-1",
-      image: "assets/over-easy/scenes/andrea_and_lucas/overeasy_onenut_cup_v1.png",
+      image:
+        "assets/over-easy/scenes/andrea_and_lucas/overeasy_onenut_cup_v1.png",
       tagline: "Better safe than sorry.",
       description:
         "For men with only one remaining testicle, standard cups leave too much room — your lone survivor bounces, pinches, and slides into the gap. OneNut© cups are molded just for you, to protect what little you have left.",
@@ -494,7 +518,8 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "The Sterilizer™",
       model: "CBT-22120",
-      image: "assets/over-easy/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
+      image:
+        "assets/over-easy/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
       images: [
         {
           path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_sterilizer_device_v3.png",
@@ -527,7 +552,8 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "../#story/47",
       name: "The Ballcracker™",
       model: "OET-BC-1",
-      image: "assets/over-easy/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
+      image:
+        "assets/over-easy/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
       images: [
         {
           path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_nutcracker_device_v2.png",
@@ -584,7 +610,8 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "../#story/47",
       name: "StudClamp™",
       model: "OET-SC-1",
-      image: "assets/over-easy/scenes/andrea_and_lucas/overeasy_studclamp_device_v2.png",
+      image:
+        "assets/over-easy/scenes/andrea_and_lucas/overeasy_studclamp_device_v2.png",
       images: [
         {
           path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_studclamp_device_v2.png",
@@ -625,7 +652,8 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "../#story/20/read",
       name: "Auto-Milker™",
       model: "OET-AM-1",
-      image: "assets/over-easy/scenes/school_bully/overeasy_auto_milker_device_v1.png",
+      image:
+        "assets/over-easy/scenes/school_bully/overeasy_auto_milker_device_v1.png",
       images: [
         {
           path: "assets/over-easy/scenes/school_bully/overeasy_auto_milker_device_v1.png",
@@ -683,7 +711,8 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "'Selfish Bitch' Strap-On System",
       model: "OET-SB-PRO",
-      image: "assets/over-easy/scenes/andrea_and_lucas/overeasy_strapon_device_v10.png",
+      image:
+        "assets/over-easy/scenes/andrea_and_lucas/overeasy_strapon_device_v10.png",
       images: [
         {
           path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_strapon_device_v10.png",
@@ -737,7 +766,8 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "'Choking Bull' Ball Cuff™",
       model: "OET-BCF-1",
-      image: "assets/over-easy/scenes/andrea_and_lucas/overeasy_ball_cuff_device_v2.png",
+      image:
+        "assets/over-easy/scenes/andrea_and_lucas/overeasy_ball_cuff_device_v2.png",
       tagline: "Streeeeeeeetch him out!",
       description:
         "Thick rubber ring made of ultra-dense silicone composite, designed to keep him packaged up nice and tight for your pleasure.",
@@ -748,7 +778,8 @@ window.OVER_EASY_CATALOG = {
       purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
       name: "Ball Anvil™",
       model: "OET-BA-1",
-      image: "assets/over-easy/scenes/andrea_and_lucas/overeasy_ball_anvil_device_v1.png",
+      image:
+        "assets/over-easy/scenes/andrea_and_lucas/overeasy_ball_anvil_device_v1.png",
       description:
         "For the woman who wants to forge a new connection with her man and hammer home who's in charge. Our commercial Ball Anvil™ upgrades the popular open-source design into injection-molded black plastic with twin oval wells — sized so his fragile lumps of ore have enough room to spread flat between your cheeks, but are still kept in place so he can't escape the points beneath.",
     },
@@ -791,7 +822,8 @@ window.OVER_EASY_CATALOG = {
       category: "kitchen-gadgets",
       name: "Garlic Press",
       model: "OET-GP-1",
-      image: "assets/over-easy/scenes/overeasy_catalog/overeasy_garlic_press_v1.png",
+      image:
+        "assets/over-easy/scenes/overeasy_catalog/overeasy_garlic_press_v1.png",
       description:
         "Besides pressing garlic, this handy press is great whenever you need to extrude something in the kitchen into a uniform mush.",
     },
@@ -800,7 +832,8 @@ window.OVER_EASY_CATALOG = {
       category: "kitchen-gadgets",
       name: "Microplane",
       model: "OET-MP-1",
-      image: "assets/over-easy/scenes/overeasy_catalog/overeasy_microplane_v1.png",
+      image:
+        "assets/over-easy/scenes/overeasy_catalog/overeasy_microplane_v1.png",
       description:
         "With its ultra-fine grit and carbon-steel construction, this microplane can turn cheese, vegetables, or even meat into the finest of shavings.",
     },
@@ -809,7 +842,8 @@ window.OVER_EASY_CATALOG = {
       category: "kitchen-gadgets",
       name: "Dual Egg Slicer",
       model: "OET-DES-1",
-      image: "assets/over-easy/scenes/overeasy_catalog/overeasy_dual_egg_slicer_v1.png",
+      image:
+        "assets/over-easy/scenes/overeasy_catalog/overeasy_dual_egg_slicer_v1.png",
       description:
         "Great for egg salad. Double wide design allows you to slice those eggs twice as fast!",
     },
@@ -818,7 +852,8 @@ window.OVER_EASY_CATALOG = {
       category: "kitchen-gadgets",
       name: "Olive Pitter",
       model: "OET-OP-1",
-      image: "assets/over-easy/scenes/overeasy_catalog/overeasy_olive_pitter_v2.png",
+      image:
+        "assets/over-easy/scenes/overeasy_catalog/overeasy_olive_pitter_v2.png",
       description:
         "Instantly pops the hard center out of cherries, olives, or even plums.",
     },
@@ -827,7 +862,8 @@ window.OVER_EASY_CATALOG = {
       category: "kitchen-gadgets",
       name: "Meat Tenderizer",
       model: "OET-MT-1",
-      image: "assets/over-easy/scenes/overeasy_catalog/overeasy_meat_tenderizer_v2.png",
+      image:
+        "assets/over-easy/scenes/overeasy_catalog/overeasy_meat_tenderizer_v2.png",
       description: "A few good whacks and even stubborn meat gives way.",
     },
     {
@@ -835,7 +871,8 @@ window.OVER_EASY_CATALOG = {
       category: "kitchen-gadgets",
       name: "Citrus Reamer",
       model: "OET-CR-1",
-      image: "assets/over-easy/scenes/overeasy_catalog/overeasy_citrus_reamer_v1.png",
+      image:
+        "assets/over-easy/scenes/overeasy_catalog/overeasy_citrus_reamer_v1.png",
       description:
         "Simply half your desired fruit and use our patented reamer to extract every last drop of juice.",
     },

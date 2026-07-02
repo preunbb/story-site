@@ -2203,6 +2203,41 @@
     return s;
   }
 
+  var DOC_FONT_SPAN_RE =
+    /<span class="(doc-font-(?:mono|serif|comic))">([\s\S]*?)<\/span>/g;
+
+  function formatBodyInline(block) {
+    if (block.indexOf('class="doc-font-') === -1) {
+      var escapedOnly = escapeHtml(block).replace(/\r\n/g, "\n");
+      return readerFormatEscapedInline(escapedOnly).replace(/\n/g, "<br />");
+    }
+    DOC_FONT_SPAN_RE.lastIndex = 0;
+    var out = "";
+    var last = 0;
+    var m;
+    while ((m = DOC_FONT_SPAN_RE.exec(block))) {
+      var before = block.slice(last, m.index);
+      if (before) {
+        var escapedBefore = escapeHtml(before).replace(/\r\n/g, "\n");
+        out += readerFormatEscapedInline(escapedBefore).replace(/\n/g, "<br />");
+      }
+      var inner = escapeHtml(m[2]).replace(/\r\n/g, "\n");
+      out +=
+        '<span class="' +
+        m[1] +
+        '">' +
+        readerFormatEscapedInline(inner).replace(/\n/g, "<br />") +
+        "</span>";
+      last = m.index + m[0].length;
+    }
+    var tail = block.slice(last);
+    if (tail) {
+      var escapedTail = escapeHtml(tail).replace(/\r\n/g, "\n");
+      out += readerFormatEscapedInline(escapedTail).replace(/\n/g, "<br />");
+    }
+    return out;
+  }
+
   /**
    * Match an inline scene tag (`[[scene:identifier]]`) standing alone as its
    * own paragraph. Whitespace inside the brackets is permitted so users can
@@ -2313,22 +2348,12 @@
               '" class="story-reader-md-image-img" loading="lazy" decoding="async"></figure>',
           );
         } else {
-          var escapedPara = escapeHtml(block).replace(/\r\n/g, "\n");
-          html.push(
-            "<p>" +
-              readerFormatEscapedInline(escapedPara).replace(/\n/g, "<br />") +
-              "</p>",
-          );
+          html.push("<p>" + formatBodyInline(block) + "</p>");
         }
       } else if (/^\s*(?:[-*_]\s*)+$/.test(block)) {
         html.push('<hr class="story-reader-divider" />');
       } else {
-        var escapedPara = escapeHtml(block).replace(/\r\n/g, "\n");
-        html.push(
-          "<p>" +
-            readerFormatEscapedInline(escapedPara).replace(/\n/g, "<br />") +
-            "</p>",
-        );
+        html.push("<p>" + formatBodyInline(block) + "</p>");
       }
     }
     return html.join("");

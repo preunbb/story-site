@@ -19,6 +19,13 @@ export const STORIES_JS = join(repoRoot, "data", "stories.js");
 export const STORIES_DIR = join(repoRoot, "assets", "stories");
 export const COVERS_DIR = join(repoRoot, "assets", "covers");
 export const DEFAULT_OUT_DIR = join(repoRoot, "dist");
+export const ANDREA_LUCAS_COMPLETE_STORY_ID = 43;
+export const ANDREA_LUCAS_COMPLETE_MD = join(
+  repoRoot,
+  "dist",
+  "andrea-and-lucas-complete",
+  "story.md",
+);
 
 /* ---------- Story metadata loading ---------- */
 
@@ -40,6 +47,44 @@ export function findStory(stories, id) {
 
 export function readStoryMarkdown(storyId) {
   return readFileSync(join(STORIES_DIR, `${storyId}.md`), "utf8");
+}
+
+/** True when PDF/EPUB export should use the full Google Doc manuscript. */
+export function isAndreaLucasCompleteExport(storyId) {
+  return Number(storyId) === ANDREA_LUCAS_COMPLETE_STORY_ID;
+}
+
+/**
+ * Markdown source for export scripts. Story id 43 (Andrea and Lucas) reads
+ * dist/andrea-and-lucas-complete/story.md — synced from the canonical Google
+ * Doc via `npm run sync:andrea-complete` — instead of assets/stories/43.md.
+ */
+export function readStoryMarkdownForExport(storyId) {
+  if (isAndreaLucasCompleteExport(storyId)) {
+    if (!existsSync(ANDREA_LUCAS_COMPLETE_MD)) {
+      throw new Error(
+        `Missing ${ANDREA_LUCAS_COMPLETE_MD}. Run \`npm run sync:andrea-complete\` first.`,
+      );
+    }
+    return readFileSync(ANDREA_LUCAS_COMPLETE_MD, "utf8");
+  }
+  return readStoryMarkdown(storyId);
+}
+
+/**
+ * Story metadata for export when the full Andrea & Lucas manuscript is used.
+ * Merges Part 1 + Part 2 scene lists and uses the combined title.
+ */
+export function storyForExport(baseStory, stories, { titleOverride = null } = {}) {
+  if (!isAndreaLucasCompleteExport(baseStory.id)) {
+    return titleOverride ? { ...baseStory, title: titleOverride } : baseStory;
+  }
+  const merged = mergeAndreaLucasStory(stories);
+  return {
+    ...(merged || baseStory),
+    id: baseStory.id,
+    title: titleOverride || "Andrea and Lucas",
+  };
 }
 
 export function slugify(s) {
@@ -212,6 +257,24 @@ export const PDF_SCENE_FIGURE_CSS = `
     text-align: center;
   }`;
 
+/** CSS for Google Doc font-family spans preserved through sync. */
+export const DOC_FONT_CSS = `
+  .story-reader-article .doc-font-mono,
+  .chapter-body .doc-font-mono {
+    font-family: ui-monospace, "Courier New", Courier, monospace;
+  }
+  .story-reader-article .doc-font-serif,
+  .chapter-body .doc-font-serif {
+    font-family: "Times New Roman", Times, Georgia, serif;
+  }
+  .story-reader-article .doc-font-comic,
+  .chapter-body .doc-font-comic {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+  }`;
+
+const DOC_FONT_SPAN_RE =
+  /<span class="(doc-font-(?:mono|serif|comic))">([\s\S]*?)<\/span>/g;
+
 /**
  * Merge Andrea and Lucas Part 1 + Part 2 scene lists for full-manuscript exports.
  */
@@ -232,8 +295,9 @@ export function mergeAndreaLucasStory(stories) {
  */
 export function makePdfSceneRenderer(story, opts = {}) {
   const root = opts.repoRoot || repoRoot;
+  const strip = opts.imageMode === "strip" || opts.strip === true;
   return function sceneRenderer(identifier) {
-    if (storyHidesScenes(story)) return "";
+    if (storyHidesScenes(story) || strip) return "";
     const match = findStorySceneByIdentifier(story, identifier);
     if (!match) {
       return (
@@ -300,13 +364,38 @@ function splitBlocks(markdown) {
     .filter((b) => b.length > 0);
 }
 
+function formatBodyInline(block, opts) {
+  if (!block.includes('class="doc-font-')) {
+    const escaped = escapeHtml(block).replace(/\r\n/g, "\n");
+    return readerFormatEscapedInline(escaped, opts).replace(/\n/g, "<br />");
+  }
+  DOC_FONT_SPAN_RE.lastIndex = 0;
+  let out = "";
+  let last = 0;
+  let m;
+  while ((m = DOC_FONT_SPAN_RE.exec(block))) {
+    const before = block.slice(last, m.index);
+    if (before) {
+      const escaped = escapeHtml(before).replace(/\r\n/g, "\n");
+      out += readerFormatEscapedInline(escaped, opts).replace(/\n/g, "<br />");
+    }
+    const inner = escapeHtml(m[2]).replace(/\r\n/g, "\n");
+    out +=
+      `<span class="${m[1]}">` +
+      readerFormatEscapedInline(inner, opts).replace(/\n/g, "<br />") +
+      `</span>`;
+    last = m.index + m[0].length;
+  }
+  const tail = block.slice(last);
+  if (tail) {
+    const escaped = escapeHtml(tail).replace(/\r\n/g, "\n");
+    out += readerFormatEscapedInline(escaped, opts).replace(/\n/g, "<br />");
+  }
+  return out;
+}
+
 function renderParagraph(block, opts) {
-  const escaped = escapeHtml(block).replace(/\r\n/g, "\n");
-  return (
-    "<p>" +
-    readerFormatEscapedInline(escaped, opts).replace(/\n/g, "<br />") +
-    "</p>"
-  );
+  return "<p>" + formatBodyInline(block, opts) + "</p>";
 }
 
 /* ---------- Public renderers ---------- */

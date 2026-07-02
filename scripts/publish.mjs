@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /*
- * Build a publish-ready cover + a pair of EPUBs for a story.
+ * Build a publish-ready cover + a pair of EPUBs and PDFs for a story.
  *
- * Wraps two existing scripts:
+ * Wraps these scripts:
  *   1. scripts/make_cover.py   — generates the JPEG cover with the chosen
  *                                title overlaid (in the project's standard
  *                                Optima-on-dark-margin style).
@@ -17,6 +17,9 @@
  *                                    want the illustrated experience.
  *      Both are built WITHOUT a cover page; the cover JPEG is intended to be
  *      uploaded separately (e.g. to KDP).
+ *   3. scripts/render-story-pdf.mjs — same two variants as PDF:
+ *        - <slug>.pdf             : text-only
+ *        - <slug>-illustrated.pdf : with inline scene images
  *
  * Usage:
  *   node scripts/publish.mjs <storyId> "<title>"
@@ -26,6 +29,8 @@
  *   dist/covers/<title-slug>.jpg
  *   dist/<title-slug>.epub
  *   dist/<title-slug>-illustrated.epub
+ *   dist/<title-slug>.pdf
+ *   dist/<title-slug>-illustrated.pdf
  */
 
 import { spawnSync } from "node:child_process";
@@ -101,6 +106,8 @@ function main() {
   const slug = slugify(title) || "story";
   const textOnlyPath = `dist/${slug}.epub`;
   const illustratedPath = `dist/${slug}-illustrated.epub`;
+  const textOnlyPdfPath = `dist/${slug}.pdf`;
+  const illustratedPdfPath = `dist/${slug}-illustrated.pdf`;
 
   run("rendering text-only epub", "node", [
     "scripts/render-story-epub.mjs",
@@ -119,9 +126,26 @@ function main() {
     `--out=${illustratedPath}`,
   ]);
 
+  run("rendering text-only pdf", "node", [
+    "scripts/render-story-pdf.mjs",
+    String(id),
+    `--title=${title}`,
+    "--no-images",
+    `--out=${textOnlyPdfPath}`,
+  ]);
+
+  run("rendering illustrated pdf", "node", [
+    "scripts/render-story-pdf.mjs",
+    String(id),
+    `--title=${title}`,
+    `--out=${illustratedPdfPath}`,
+  ]);
+
   console.log("\n[publish] done.");
   console.log(`[publish]   text-only:    ${textOnlyPath}`);
   console.log(`[publish]   illustrated:  ${illustratedPath}`);
+  console.log(`[publish]   text-only pdf:    ${textOnlyPdfPath}`);
+  console.log(`[publish]   illustrated pdf:  ${illustratedPdfPath}`);
 }
 
 main();

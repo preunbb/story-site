@@ -23,6 +23,7 @@ import {
   findStorySceneByIdentifier,
   repoRoot,
   storyHidesScenes,
+  DOC_FONT_CSS,
 } from "./story-render.mjs";
 
 /* ---------- Constants ---------- */
@@ -600,5 +601,6 @@ body.story-separator { margin: 0; padding: 0; }
   margin: 1.5em 0 0;
   opacity: 0.7;
 }
+${DOC_FONT_CSS}
 `;
 }

@@ -17,8 +17,41 @@ export function makeTurndown() {
     linkStyle: "inlined",
   });
   td.addRule("dropImages", { filter: "img", replacement: () => "" });
+  td.addRule("docFontSpan", {
+    filter(node) {
+      return (
+        node.nodeName === "SPAN" &&
+        /\bdoc-font-/.test(node.getAttribute("class") || "")
+      );
+    },
+    replacement(content, node) {
+      const cls = (node.getAttribute("class") || "")
+        .split(/\s+/)
+        .filter((c) => c.startsWith("doc-font-"))
+        .join(" ");
+      return `<span class="${cls}">${content}</span>`;
+    },
+  });
   td.escape = (s) => s;
   return td;
+}
+
+function normalizeFontFamily(value) {
+  if (!value) return null;
+  const v = value.toLowerCase().replace(/["']/g, "").trim();
+  if (/courier|consolas|monaco|monospace/.test(v)) return "mono";
+  if (/comic/.test(v)) return "comic";
+  if (/times|georgia|garamond|palatino|serif/.test(v) && !/sans/.test(v)) {
+    return "serif";
+  }
+  if (/arial|roboto|google sans|helvetica|sans/.test(v)) return "sans";
+  return null;
+}
+
+function fontFamilyToDocClass(fontFamily) {
+  const kind = normalizeFontFamily(fontFamily);
+  if (!kind || kind === "sans") return null;
+  return `doc-font-${kind}`;
 }
 
 function parseStyleClassFormatting($) {
@@ -30,11 +63,17 @@ function parseStyleClassFormatting($) {
     while ((m = ruleRe.exec(css))) {
       const name = m[1];
       const decl = m[2];
-      const flags = map.get(name) || { italic: false, bold: false };
+      const flags = map.get(name) || {
+        italic: false,
+        bold: false,
+        fontFamily: null,
+      };
       if (/font-style\s*:\s*italic/i.test(decl)) flags.italic = true;
       if (/font-weight\s*:\s*(?:bold|bolder|[6-9]00)\b/i.test(decl)) {
         flags.bold = true;
       }
+      const ff = decl.match(/font-family\s*:\s*([^;]+)/i);
+      if (ff) flags.fontFamily = ff[1].trim();
       map.set(name, flags);
     }
     ruleRe.lastIndex = 0;
@@ -42,31 +81,48 @@ function parseStyleClassFormatting($) {
   return map;
 }
 
-function inlineStyleFormatting(styleAttr) {
+function parseInlineStyleFormatting(styleAttr) {
   if (!styleAttr) return null;
-  const flags = { italic: false, bold: false };
+  const flags = { italic: false, bold: false, fontFamily: null };
   if (/font-style\s*:\s*italic/i.test(styleAttr)) flags.italic = true;
   if (/font-weight\s*:\s*(?:bold|bolder|[6-9]00)\b/i.test(styleAttr)) {
     flags.bold = true;
   }
-  return flags.italic || flags.bold ? flags : null;
+  const ff = styleAttr.match(/font-family\s*:\s*([^;]+)/i);
+  if (ff) flags.fontFamily = ff[1].trim();
+  return flags.italic || flags.bold || flags.fontFamily ? flags : null;
+}
+
+function resolveElementFormatting($el, classFormatting) {
+  const flags = { italic: false, bold: false, fontFamily: null };
+  const classes = ($el.attr("class") || "").split(/\s+/).filter(Boolean);
+  for (const cls of classes) {
+    const f = classFormatting.get(cls);
+    if (!f) continue;
+    if (f.italic) flags.italic = true;
+    if (f.bold) flags.bold = true;
+    if (f.fontFamily) flags.fontFamily = f.fontFamily;
+  }
+  const inline = parseInlineStyleFormatting($el.attr("style"));
+  if (inline) {
+    flags.italic = flags.italic || inline.italic;
+    flags.bold = flags.bold || inline.bold;
+    if (inline.fontFamily) flags.fontFamily = inline.fontFamily;
+  }
+  return flags;
 }
 
 function wrapStyledFormatting($, body, classFormatting) {
   body.find("[class],[style]").each((_, el) => {
     const $el = $(el);
-    const flags = { italic: false, bold: false };
-    const classes = ($el.attr("class") || "").split(/\s+/).filter(Boolean);
-    for (const cls of classes) {
-      const f = classFormatting.get(cls);
-      if (!f) continue;
-      if (f.italic) flags.italic = true;
-      if (f.bold) flags.bold = true;
-    }
-    const inline = inlineStyleFormatting($el.attr("style"));
-    if (inline) {
-      flags.italic = flags.italic || inline.italic;
-      flags.bold = flags.bold || inline.bold;
+    const flags = resolveElementFormatting($el, classFormatting);
+    const fontClass = fontFamilyToDocClass(flags.fontFamily);
+    if (fontClass) {
+      const keep = ($el.attr("class") || "")
+        .split(/\s+/)
+        .filter((c) => !c.startsWith("doc-font-"));
+      keep.push(fontClass);
+      $el.attr("class", keep.join(" "));
     }
     if (!flags.italic && !flags.bold) return;
     const tag = el.tagName ? el.tagName.toLowerCase() : "";

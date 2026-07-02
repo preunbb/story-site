@@ -7,9 +7,17 @@
  *
  * Usage:
  *   node scripts/render-story-pdf.mjs [storyId] [--out=path.pdf]
+ *                                       [--title="..."] [--no-images]
  *
- * Defaults to story id 1 (Three Strikes). Output defaults to
- * dist/<slugified-title>.pdf.
+ * Defaults to story id 1 (Three Strikes). Story id 43 (Andrea and Lucas) reads
+ * the full manuscript from dist/andrea-and-lucas-complete/story.md (synced from
+ * the canonical Google Doc via `npm run sync:andrea-complete`). Unless --out is
+ * set, writes two PDFs (mirroring the EPUB publish convention):
+ *   dist/<slug>.pdf             — text-only, scene illustrations stripped
+ *   dist/<slug>-illustrated.pdf — same text plus inline scene images
+ *
+ * With --out=, renders a single PDF to that path. Add --no-images to strip
+ * scene illustrations from that single export.
  */
 
 import {
@@ -24,7 +32,9 @@ import { tmpdir } from "node:os";
 import {
   loadStories,
   findStory,
-  readStoryMarkdown,
+  readStoryMarkdownForExport,
+  storyForExport,
+  ANDREA_LUCAS_COMPLETE_STORY_ID,
   slugify,
   escapeHtml,
   storyMarkdownToSafeHtml,
@@ -33,6 +43,7 @@ import {
   PDF_SCENE_FIGURE_CSS,
   PDF_END_PAGE_CSS,
   PDF_PRINT_PALETTE,
+  DOC_FONT_CSS,
   buildEndPageHtml,
   DEFAULT_OUT_DIR,
 } from "./lib/story-render.mjs";
@@ -52,10 +63,14 @@ const CHROME_CANDIDATES = [
 ];
 
 function parseArgs(argv) {
-  const out = { id: 1, output: null };
+  const out = { id: 1, output: null, title: null, noImages: false };
   for (const arg of argv) {
     if (arg.startsWith("--out=")) {
       out.output = arg.slice("--out=".length);
+    } else if (arg.startsWith("--title=")) {
+      out.title = arg.slice("--title=".length);
+    } else if (arg === "--no-images" || arg === "--text-only") {
+      out.noImages = true;
     } else if (/^\d+$/.test(arg)) {
       out.id = Number(arg);
     } else if (!arg.startsWith("--")) {
@@ -265,6 +280,7 @@ function buildHtmlDocument({ story, bodyHtml, chapters }) {
     text-underline-offset: 0.12em;
   }
 ${PDF_SCENE_FIGURE_CSS}
+${DOC_FONT_CSS}
 ${PDF_END_PAGE_CSS}
 </style>
 </head>
@@ -280,27 +296,11 @@ ${endHtml}
 
 /* ---------- main ---------- */
 
-function main() {
-  const args = parseArgs(process.argv.slice(2));
-  const stories = loadStories();
-  const story = findStory(stories, args.id);
-  if (!story) {
-    console.error(`No story with id ${args.id} in data/stories.js`);
-    process.exit(1);
-  }
-
-  let markdown;
-  try {
-    markdown = readStoryMarkdown(story.id);
-  } catch (e) {
-    console.error(`Could not read story ${story.id} markdown: ${e.message}`);
-    console.error(`Run \`npm run sync -- --only=${story.id}\` first.`);
-    process.exit(1);
-  }
-
+function renderPdf({ story, markdown, outPath, noImages }) {
+  const imageMode = noImages ? "strip" : "embed";
   const bodyHtml = storyMarkdownToSafeHtml(markdown, {
     ...READER_OPTS,
-    sceneRenderer: makePdfSceneRenderer(story),
+    sceneRenderer: makePdfSceneRenderer(story, { imageMode }),
   });
   const chapters = extractChapters(markdown);
   const html = buildHtmlDocument({
@@ -309,16 +309,18 @@ function main() {
     chapters,
   });
 
-  const outPath = args.output
-    ? resolve(args.output)
-    : join(DEFAULT_OUT_DIR, `${slugify(story.title)}.pdf`);
-  mkdirSync(dirname(outPath), { recursive: true });
+  const resolvedOut = resolve(outPath);
+  mkdirSync(dirname(resolvedOut), { recursive: true });
 
-  const tempHtmlPath = join(tmpdir(), `story-${story.id}-${Date.now()}.html`);
+  const tempHtmlPath = join(
+    tmpdir(),
+    `story-${story.id}-${imageMode}-${Date.now()}.html`,
+  );
   writeFileSync(tempHtmlPath, html, "utf8");
 
   const chrome = process.env.CHROME_BIN || findChrome();
-  console.log(`Rendering "${story.title}" -> ${outPath}`);
+  const label = noImages ? "text-only" : "illustrated";
+  console.log(`Rendering "${story.title}" (${label}) -> ${resolvedOut}`);
   const result = spawnSync(
     chrome,
     [
@@ -327,7 +329,7 @@ function main() {
       "--no-sandbox",
       "--no-pdf-header-footer",
       "--virtual-time-budget=10000",
-      `--print-to-pdf=${outPath}`,
+      `--print-to-pdf=${resolvedOut}`,
       `file://${tempHtmlPath}`,
     ],
     { stdio: "inherit" },
@@ -343,7 +345,72 @@ function main() {
     console.error(`Chrome exited with status ${result.status}`);
     process.exit(result.status || 1);
   }
-  console.log(`Wrote ${outPath}`);
+  console.log(`Wrote ${resolvedOut}`);
+}
+
+function main() {
+  const args = parseArgs(process.argv.slice(2));
+  const stories = loadStories();
+  const baseStory = findStory(stories, args.id);
+  if (!baseStory) {
+    console.error(`No story with id ${args.id} in data/stories.js`);
+    process.exit(1);
+  }
+
+  const story = storyForExport(baseStory, stories, {
+    titleOverride: args.title,
+  });
+
+  let markdown;
+  try {
+    markdown = readStoryMarkdownForExport(story.id);
+  } catch (e) {
+    console.error(`Could not read story ${story.id} markdown: ${e.message}`);
+    if (story.id === ANDREA_LUCAS_COMPLETE_STORY_ID) {
+      console.error("Run `npm run sync:andrea-complete` first.");
+    } else {
+      console.error(`Run \`npm run sync -- --only=${story.id}\` first.`);
+    }
+    process.exit(1);
+  }
+
+  const slug = slugify(story.title);
+
+  if (args.output) {
+    renderPdf({
+      story,
+      markdown,
+      outPath: args.output,
+      noImages: args.noImages,
+    });
+    return;
+  }
+
+  const textOnlyPath = join(DEFAULT_OUT_DIR, `${slug}.pdf`);
+  const illustratedPath = join(DEFAULT_OUT_DIR, `${slug}-illustrated.pdf`);
+
+  if (args.noImages) {
+    renderPdf({
+      story,
+      markdown,
+      outPath: textOnlyPath,
+      noImages: true,
+    });
+    return;
+  }
+
+  renderPdf({
+    story,
+    markdown,
+    outPath: textOnlyPath,
+    noImages: true,
+  });
+  renderPdf({
+    story,
+    markdown,
+    outPath: illustratedPath,
+    noImages: false,
+  });
 }
 
 main();

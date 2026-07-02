@@ -1584,6 +1584,18 @@ body.preun-local-andrea .local-andrea-status {
   font-weight: 700;
 }
 
+.story-reader-article .doc-font-mono {
+  font-family: ui-monospace, "Courier New", Courier, monospace;
+}
+
+.story-reader-article .doc-font-serif {
+  font-family: "Times New Roman", Times, Georgia, serif;
+}
+
+.story-reader-article .doc-font-comic {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
 .story-reader-article .story-reader-inline-link {
   color: var(--red-bright);
   text-decoration: underline;
