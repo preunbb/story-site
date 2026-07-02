@@ -366,7 +366,7 @@ window.OVER_EASY_CATALOG = {
         {
           path: "assets/over-easy/brands/healthy_testicles_bilateral_external_bruised_v3.png",
           caption:
-            "Bruising balls can usually recover their sperm count eventually, but this subject won't be so lucky. Our doctors determine his injuries are severe enough that each testicle only has a 30% chance recovery. This is low enough that our medical guidelines recommend immediate removal. He's about to be informed of the bad news so we can obtain his consent to remove both of his barely functioning testicles.",
+            "Bruised testicles can usually recover their sperm count eventually, but this subject won't be so lucky. Our doctors determine his injuries are severe enough that each testicle only has a 30% chance recovery. This is low enough that our medical guidelines recommend immediate removal. He's about to be informed of the bad news so we can obtain his consent to remove both of his barely functioning gonads.",
         },
         {
           path: "assets/over-easy/brands/healthy_testicles_bilateral_external_exploded_v1.png",
