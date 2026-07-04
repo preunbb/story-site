@@ -371,7 +371,7 @@ window.OVER_EASY_CATALOG = {
         {
           path: "assets/over-easy/brands/healthy_testicles_bilateral_external_exploded_v1.png",
           caption:
-            "A classic ruptured testicle, symptomatic of an overly sarcastic male. We performed his orchiectomy right away, followed by a quick reminder of why he needs to remember to be polite to women at all time. A lesson he won't soon forget! Luckily, he'll live a perfectly happy life - a man truly only needs one testicle to get by!",
+            "A classic ruptured testicle, symptomatic of an overly sarcastic male. We performed his orchiectomy right away, followed by a quick reminder of why he needs to remember to be polite to women at all time. A lesson he won't soon forget! Luckily, he'll live a perfectly happy life - a man truly only needs one ball to get by!",
         },
         {
           path: "assets/over-easy/brands/tied_off_2.png",

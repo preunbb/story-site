@@ -162,8 +162,126 @@
   function isStoryScenesVisibleOnSite(story) {
     if (!story || story.hideScenes === true) return false;
     if (!Array.isArray(story.scenes) || story.scenes.length === 0) return false;
-    if (normalizeStoryState(story) === 1 && !isLocalDevHost()) return false;
+    if (
+      normalizeStoryState(story) === 1 &&
+      !isLocalDevHost() &&
+      !story.scenesPublic
+    ) {
+      return false;
+    }
     return true;
+  }
+
+  function storyHasPreviewRead(story) {
+    return !!(story && story.previewRead && story.previewRead.md);
+  }
+
+  function isHttpUrl(url) {
+    return typeof url === "string" && /^https?:\/\//i.test(url.trim());
+  }
+
+  function storyPreviewPurchasePart(story) {
+    if (
+      !story ||
+      !Array.isArray(story.purchaseParts) ||
+      !story.purchaseParts.length
+    ) {
+      return null;
+    }
+    var order =
+      story.series && typeof story.series.order === "number"
+        ? story.series.order
+        : null;
+    if (order != null) {
+      for (var i = 0; i < story.purchaseParts.length; i++) {
+        if (story.purchaseParts[i].part === order)
+          return story.purchaseParts[i];
+      }
+    }
+    return story.purchaseParts[story.purchaseParts.length - 1];
+  }
+
+  function storyPreviewKofiUrl(story) {
+    var part = storyPreviewPurchasePart(story);
+    if (!part || typeof part.kofiUrl !== "string") return null;
+    var url = part.kofiUrl.trim();
+    return url || null;
+  }
+
+  function storyPreviewAmazonUrl(story) {
+    var part = storyPreviewPurchasePart(story);
+    if (!part || typeof part.amazonUrl !== "string") return null;
+    var url = part.amazonUrl.trim();
+    return url || null;
+  }
+
+  function storyPreviewPurchaseLink(url, label, variant, tooltip) {
+    if (!url) return "";
+    var cls =
+      "story-reader-preview-cta-link story-reader-preview-cta-link--" +
+      escapeHtml(variant);
+    var external = isHttpUrl(url)
+      ? ' target="_blank" rel="noopener noreferrer"'
+      : "";
+    var tipAttrs = tooltip
+      ? ' data-kofi-pref-tooltip="' +
+        escapeHtml(tooltip) +
+        '" title="' +
+        escapeHtml(tooltip) +
+        '"'
+      : "";
+    return (
+      '<a class="' +
+      cls +
+      '" href="' +
+      escapeHtml(url) +
+      '"' +
+      external +
+      tipAttrs +
+      ">" +
+      escapeHtml(label) +
+      "</a>"
+    );
+  }
+
+  function formatStoryPreviewPurchaseHtml(story) {
+    if (!storyHasPreviewRead(story)) return "";
+    var kofiUrl = storyPreviewKofiUrl(story);
+    var amazonUrl = storyPreviewAmazonUrl(story);
+    if (!kofiUrl && !amazonUrl) return "";
+    var text =
+      "If you enjoyed this, and want to read hundreds more pages about shattered testicles, ruined reproductive abilities, and all sorts of man-destroying, woman-dominating exploits, the rest of part 2 is now available on Ko-fi!";
+    var links = [
+      storyPreviewPurchaseLink(kofiUrl, "Buy for $7.99 on Ko-Fi", "kofi", null),
+      storyPreviewPurchaseLink(
+        amazonUrl,
+        "Buy for $9.99 on Amazon",
+        "amazon",
+        null,
+      ),
+    ]
+      .filter(Boolean)
+      .join("");
+    var kofiNote =
+      kofiUrl && amazonUrl
+        ? '<p class="story-reader-preview-cta-note"><em>(Ko-Fi is cheaper for you and pays me more)</em></p>'
+        : "";
+    return (
+      '<aside class="story-reader-preview-cta">' +
+      '<p class="story-reader-preview-cta-text">' +
+      text +
+      "</p>" +
+      '<div class="story-reader-preview-cta-actions">' +
+      links +
+      "</div>" +
+      kofiNote +
+      "</aside>"
+    );
+  }
+
+  function storyReaderMarkdownUrl(story) {
+    if (storyHasPreviewRead(story)) return story.previewRead.md;
+    return STORY_MD_PREFIX + story.id + ".md";
   }
 
   var LENGTH_TAG_PREFIX = "Length: ";
@@ -234,7 +352,6 @@
   }
 
   function storyWordCountFlyoutHtml(story) {
-    if (story.fullLengthNovel) return "";
     var n = story.wordCount;
     if (typeof n !== "number" || !isFinite(n) || n < 0) return "";
     var formatted = n.toLocaleString(undefined, { maximumFractionDigits: 0 });
@@ -325,7 +442,7 @@
     );
   }
 
-  var BRUT_MAX = 5;
+  var BRUT_MAX = 6;
 
   function intRange(lo, hi) {
     var a = [];
@@ -349,7 +466,7 @@
       .join("");
   }
 
-  /** 1–5 busted coconuts (🥥) for flyout; empty if missing/invalid */
+  /** 1–6 busted coconuts (🥥) for flyout; empty if missing/invalid */
   function formatBrutalityRatingFlyoutHtml(story) {
     var n = getStoryBrutalityRating(story);
     if (isNaN(n)) return "";
@@ -640,13 +757,15 @@
   function renderScenesPanel() {
     var root = byId("scenes-list");
     if (!root) return;
-    var withScenes = stories.filter(function (s) {
-      return isStoryVisibleInCatalog(s) && storyHasScenes(s);
-    }).sort(function (a, b) {
-      return (a.title || "").localeCompare(b.title || "", undefined, {
-        sensitivity: "base",
+    var withScenes = stories
+      .filter(function (s) {
+        return isStoryVisibleInCatalog(s) && storyHasScenes(s);
+      })
+      .sort(function (a, b) {
+        return (a.title || "").localeCompare(b.title || "", undefined, {
+          sensitivity: "base",
+        });
       });
-    });
     root.innerHTML = "";
     if (!withScenes.length) {
       root.innerHTML =
@@ -752,7 +871,8 @@
         return entry != null && String(entry).trim() !== "";
       })
       .map(function (entry) {
-        var slug = typeof entry === "string" ? entry : entry.slug || entry.path || "";
+        var slug =
+          typeof entry === "string" ? entry : entry.slug || entry.path || "";
         slug = String(slug)
           .trim()
           .replace(/^assets\/captions\//, "")
@@ -2203,37 +2323,66 @@
     return s;
   }
 
-  var DOC_FONT_SPAN_RE =
-    /<span class="(doc-font-(?:mono|serif|comic))">([\s\S]*?)<\/span>/g;
+  var DOC_INLINE_CLASS = "(?:doc-(?:font-(?:mono|serif|comic)|size-[\\d.]+pt))";
+  var PRESERVED_INLINE_CHUNK_RE = new RegExp(
+    '<span class="(' +
+      DOC_INLINE_CLASS +
+      "(?:\\s+" +
+      DOC_INLINE_CLASS +
+      ')*)">([\\s\\S]*?)<\\/span>|<u>([\\s\\S]*?)<\\/u>',
+    "g",
+  );
+
+  function hasPreservedInlineHtml(block) {
+    return /class="doc-(?:font|size)-|<\/?u>/i.test(block);
+  }
+
+  function formatPreservedInner(inner) {
+    if (hasPreservedInlineHtml(inner)) {
+      return formatBodyInline(inner);
+    }
+    var escaped = escapeHtml(inner).replace(/\r\n/g, "\n");
+    return readerFormatEscapedInline(escaped).replace(/\n/g, "<br />");
+  }
 
   function formatBodyInline(block) {
-    if (block.indexOf('class="doc-font-') === -1) {
+    if (!hasPreservedInlineHtml(block)) {
       var escapedOnly = escapeHtml(block).replace(/\r\n/g, "\n");
       return readerFormatEscapedInline(escapedOnly).replace(/\n/g, "<br />");
     }
-    DOC_FONT_SPAN_RE.lastIndex = 0;
+    PRESERVED_INLINE_CHUNK_RE.lastIndex = 0;
     var out = "";
     var last = 0;
     var m;
-    while ((m = DOC_FONT_SPAN_RE.exec(block))) {
+    var matched = false;
+    while ((m = PRESERVED_INLINE_CHUNK_RE.exec(block))) {
+      matched = true;
       var before = block.slice(last, m.index);
       if (before) {
-        var escapedBefore = escapeHtml(before).replace(/\r\n/g, "\n");
-        out += readerFormatEscapedInline(escapedBefore).replace(/\n/g, "<br />");
+        out += formatPreservedInner(before);
       }
-      var inner = escapeHtml(m[2]).replace(/\r\n/g, "\n");
-      out +=
-        '<span class="' +
-        m[1] +
-        '">' +
-        readerFormatEscapedInline(inner).replace(/\n/g, "<br />") +
-        "</span>";
+      if (m[1] != null) {
+        out +=
+          '<span class="' +
+          m[1] +
+          '">' +
+          formatPreservedInner(m[2]) +
+          "</span>";
+      } else if (m[3] != null) {
+        out += "<u>" + formatPreservedInner(m[3]) + "</u>";
+      }
       last = m.index + m[0].length;
+    }
+    if (!matched) {
+      var escapedFallback = escapeHtml(block).replace(/\r\n/g, "\n");
+      return readerFormatEscapedInline(escapedFallback).replace(
+        /\n/g,
+        "<br />",
+      );
     }
     var tail = block.slice(last);
     if (tail) {
-      var escapedTail = escapeHtml(tail).replace(/\r\n/g, "\n");
-      out += readerFormatEscapedInline(escapedTail).replace(/\n/g, "<br />");
+      out += formatPreservedInner(tail);
     }
     return out;
   }
@@ -2303,7 +2452,9 @@
     var chapterIndex = 0;
     function chapterHeading(level, trimmed) {
       var tag = level === 2 ? "h2" : "h3";
-      var inner = readerFormatEscapedInline(escapeHtml(trimmed));
+      var inner = hasPreservedInlineHtml(trimmed)
+        ? formatBodyInline(trimmed)
+        : readerFormatEscapedInline(escapeHtml(trimmed));
       var id = "story-ch-" + chapterIndex++;
       return (
         "<" +
@@ -2545,7 +2696,7 @@
     storyReaderStatus.hidden = false;
     storyReaderStatus.textContent = "Loading…";
 
-    var mdUrl = STORY_MD_PREFIX + story.id + ".md";
+    var mdUrl = storyReaderMarkdownUrl(story);
     fetch(mdUrl, {
       signal: readerAbort.signal,
       credentials: "omit",
@@ -2567,7 +2718,9 @@
           }) +
           "</div>";
         storyReaderArticle.innerHTML =
-          coverHtml + storyMarkdownToSafeHtml(text, story);
+          coverHtml +
+          storyMarkdownToSafeHtml(text, story) +
+          formatStoryPreviewPurchaseHtml(story);
         setupStoryReaderChapters();
       })
       .catch(function (err) {
@@ -2693,6 +2846,7 @@
   ];
 
   function purchaseVendorGridHtml(parts, vendor) {
+    var labelKey = vendor.variant === "kofi" ? "kofiLabel" : "amazonLabel";
     var cells = parts
       .map(function (p, i) {
         var n = typeof p.part === "number" && !isNaN(p.part) ? p.part : i + 1;
@@ -2700,9 +2854,11 @@
           vendor.variant === "amazon" && p.kofiUrl
             ? KOFI_PREFERENCE_TOOLTIP
             : null;
+        var cellLabel =
+          p[labelKey] || "Buy part " + n + " on " + vendor.label + "!";
         return purchasePartCell(
           p[vendor.urlKey],
-          "Buy part " + n + " on " + vendor.label + "!",
+          cellLabel,
           vendor.variant,
           tooltip,
         );
@@ -2780,9 +2936,12 @@
         }),
       );
     }
-    if (normalizeStoryState(story) !== 1) {
+    if (normalizeStoryState(story) !== 1 || storyHasPreviewRead(story)) {
       var readerCtaLabel;
-      if (story.purchaseParts && story.purchaseParts.length) {
+      if (
+        storyHasPreviewRead(story) ||
+        (story.purchaseParts && story.purchaseParts.length)
+      ) {
         readerCtaLabel = "Free Preview";
       } else if (story.audioUrl) {
         readerCtaLabel = "Full Script Here!";

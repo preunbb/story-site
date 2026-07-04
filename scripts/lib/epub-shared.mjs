@@ -24,6 +24,8 @@ import {
   repoRoot,
   storyHidesScenes,
   DOC_FONT_CSS,
+  renderBodyBlocks,
+  plainTextFromInlineMarkdown,
 } from "./story-render.mjs";
 
 /* ---------- Constants ---------- */
@@ -35,6 +37,13 @@ export const READER_OPTS = {
   linkClass: "story-link",
   dividerClass: "scene-break",
 };
+
+/** Plain chapter label for EPUB nav/NCX/headers when titles carry doc HTML. */
+export function chapterPlainTitle(title, fallback = "") {
+  if (!title) return fallback;
+  const plain = plainTextFromInlineMarkdown(title);
+  return plain || fallback;
+}
 
 export const CONTAINER_XML = `<?xml version="1.0" encoding="UTF-8"?>
 <container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
@@ -274,8 +283,6 @@ export function makeEpubSceneRenderer({ story, imageMode, sceneImageMap }) {
 
 /* ---------- Shared chapter rendering ---------- */
 
-import { renderBodyBlocks } from "./story-render.mjs";
-
 /**
  * Render one chapter to XHTML.
  *
@@ -304,17 +311,19 @@ export function buildChapterPage({
     }),
   };
   const bodyHtml = renderBodyBlocks(blocks, opts);
+  const titlePlain = chapterPlainTitle(title, "");
+  const titleHtml = titlePlain ? escapeHtml(titlePlain) : "";
   // When a chapter has no title (e.g. a single-chapter story with no
   // markdown headings), suppress the visible chapter header entirely;
   // the surrounding title page already establishes context.
-  const header = title
+  const header = titlePlain
     ? `    <header class="chapter-header">\n` +
       `      <p class="chapter-eyebrow">Chapter ${num} of ${total}</p>\n` +
-      `      <h1 class="chapter-title">${escapeHtml(title)}</h1>\n` +
+      `      <h1 class="chapter-title">${titleHtml}</h1>\n` +
       `    </header>\n`
     : "";
   return xhtmlPage({
-    title: title || `Chapter ${num}`,
+    title: titlePlain || `Chapter ${num}`,
     bodyClass: "chapter",
     body:
       `  <section epub:type="chapter" class="chapter">\n` +

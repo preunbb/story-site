@@ -1,3 +1,16 @@
+var ANDREA_LUCAS_PURCHASE_PARTS = [
+  {
+    part: 1,
+    kofiUrl: "https://ko-fi.com/s/edb2b8eaa5",
+    amazonUrl: "https://www.amazon.com/dp/B0GJTZSS1D",
+  },
+  {
+    part: 2,
+    kofiUrl: "https://ko-fi.com/s/6e786316fd",
+    // amazonUrl: "AmazonPart2",
+  },
+];
+
 window.DATA_STORIES = [
   {
     id: 1,
@@ -1299,13 +1312,7 @@ window.DATA_STORIES = [
       "hunter",
     ],
     tags: ["Premium Story", "New to Reddit"],
-    purchaseParts: [
-      {
-        part: 1,
-        kofiUrl: "https://ko-fi.com/s/edb2b8eaa5",
-        amazonUrl: "https://www.amazon.com/dp/B0GJTZSS1D",
-      },
-    ],
+    purchaseParts: ANDREA_LUCAS_PURCHASE_PARTS,
     scenes: [
       {
         path: "assets/scenes/andrea_and_lucas/izzie_and_sterilizer.png",
@@ -1426,15 +1433,20 @@ window.DATA_STORIES = [
   {
     id: 47,
     fullLengthNovel: true,
+    wordCount: 85930,
     title: "Andrea and Lucas: Part 2",
-    brutalityRating: 5,
+    brutalityRating: 6,
     cover: "assets/covers/andrea_and_lucas_part_2_cover_eve_abby_kay_v1.png",
     summary:
-      "Andrea takes Lucas to a Cherry Pop! concert, and shows him what a mush pit is like. Meanwhile, Tamara deals with her new medical intern under difficult circumstances. Later, she meets his family.",
-    subtitle: "Premium continuation — Part 2.",
-    state: 1,
+      'Andrea and Lucas\'s ballcracking adventures continue in part 2! On their third date at the Cherry Pop! concert, Lucas learns exactly what a "mush pit entails", while Tamara deals with her incompetent new medical intern. Afterwards, Andrea shows him a new way to submit to her. And when Lucas has a sudden involuntary "family" reunion, it\'s up to Izzie, Andrea and Tamara to save him from the clutches of the brutal Church of the Broken Tree.',
+    state: 2,
+    releaseDate: "2026-07-04",
     series: { id: "andrea-lucas", order: 2 },
-    hideScenes: true,
+    previewRead: {
+      md: "assets/stories/47-preview.md",
+      fromChapter: 8,
+      toChapter: 10,
+    },
 
     characterIds: [
       "andrea",
@@ -1457,17 +1469,12 @@ window.DATA_STORIES = [
       "elijah",
     ],
     tags: ["Premium Story", "New to Reddit"],
+    purchaseParts: ANDREA_LUCAS_PURCHASE_PARTS,
     scenes: [
-      /*
       {
         path: "assets/scenes/andrea_and_lucas/ch08_cherry_pop_concert_stage_crowd_v1.png",
         caption:
-          "Cherry Pop! takes the stage as Andrea and Lucas arrive to the Mush Pit. The crowd is already electric, and a couple of unlucky guys up front look like they're not going to make it through the night intact.",
-      },
-      {
-        path: "assets/scenes/andrea_and_lucas/ch10_cherry_pop_bar_standing_tether_stunning_bartender_remote_v7.png",
-        caption:
-          "Lucas tries to order a drink for Andrea, but he can't seem to get the simple order out. She helps him remember with a boot to the groin every time he messes up.",
+          "Cherry Pop! is Andrea's favorite band, and tonight's mush pit promises to be epic.",
       },
       {
         path: "assets/scenes/andrea_and_lucas/yvette_operates_on_sunni.png",
@@ -1496,97 +1503,31 @@ window.DATA_STORIES = [
           "Tamara, in the aftermath of the Cherry Pop! concert, deals with the insanely erotic clusterfuck that was the onsite medical tent, and the dozens of unnecessarily severed organs Yvette left lying around.",
       },
       {
-        path: "assets/scenes/andrea_and_lucas/izzie_studclamp_interrogation_v2_disc_jaws.png",
-        caption:
-          "Izzie interrogates a one-nut Church security guard with her new StudClamp, cranking compression on her phone while Andrea watches. His lone testicle is squeezed into a pinched donut around the steel disc jaws.",
-      },
-      {
-        path: "assets/scenes/andrea_and_lucas/tamara_biopsy_gun_cult_guard_v2_thin_worms_tattoos.png",
-        caption:
-          "Tamara attempts to extract information from a Church cult member as she slowly extracts his nutmeat.",
-      },
-
-      {
-        path: "assets/scenes/andrea_and_lucas/ch12_pre_intimacy_straps_ambiguous_v2.png",
-        caption:
-          "At Andrea's place after the concert, Lucas discovers what Sunday morning prayers really means.",
-      },
-      {
         path: "assets/scenes/andrea_and_lucas/ch12_end_under_sheets_joint_v3.png",
         caption:
           "Freshly fucked and feeling especially safe with his Goddess of a girlfriend, Lucas finally opens up about his past.",
       },
       {
-        path: "assets/scenes/andrea_and_lucas/ch18_abby_elijah_second_rite_dais_v8.png",
+        path: "assets/scenes/andrea_and_lucas/tamara_biopsy_gun_cult_guard_v2_thin_worms_tattoos.png",
         caption:
-          "Abby confronts bound Elijah on the dais during his Second Rite — yellow striped tee, ultrashort jean shorts, and a promise he was never going to keep.",
+          "Tamara attempts to extract information from a Church cult member. She only succeeds at extracting his nutmeat.",
+      },
+
+      {
+        path: "assets/scenes/andrea_and_lucas/ch20_tamara_judah_testicular_defragmentation_v3.png",
+        caption:
+          "Testicular defragmentation is an especially painful medical procedure, but Tamara is an expert at it.",
       },
       {
-        path: "assets/scenes/andrea_and_lucas/ch18_abby_elijah_second_rite_revelation_v6.png",
+        path: "assets/scenes/andrea_and_lucas/ch20_judah_testicular_defrag_before_after_v3.png",
         caption:
-          "Before the congregation assembles, Abby whispers the truth to Elijah in the ritual chamber. He still thinks he's only getting a handjob.",
-      },
-      {
-        path: "assets/scenes/andrea_and_lucas/ch18_abby_elijah_second_rite_neutering_v10_kneeling_lookup.png",
-        caption:
-          "Abby kneels before bound Elijah during his Second Rite — sweet piety on her face, anguish on his, the ceremony underway in the candlelit chamber.",
-      },
-      {
-        path: "assets/scenes/andrea_and_lucas/ch19_luna_elevator_internal_scan_judah_v1.png",
-        caption:
-          "Luna's elevator scanner fails Judah's external identity check after Andrea's kicks bruise his lone ball — so the Church tech overrides safety protocols and stirs, sucks, and samples him from the inside instead.",
-      },
-      {
-        path: "assets/scenes/andrea_and_lucas/ch19_judah_luna_scan_series_01_v2.png",
-        caption:
-          "Scan 1 of 4 — Judah's first Luna internal identity audit. Corner cross-section: small but healthy lone nut, still full.",
-      },
-      {
-        path: "assets/scenes/andrea_and_lucas/ch19_judah_luna_scan_series_02_v2.png",
-        caption:
-          "Scan 2 of 4 — stubble fading, cheeks softening. Corner cross-section: first needle-track voids, a little emptied.",
-      },
-      {
-        path: "assets/scenes/andrea_and_lucas/ch19_judah_luna_scan_series_03_v2.png",
-        caption:
-          "Scan 3 of 4 — longer hair, clean-shaven soft jaw. Corner cross-section: heavily depleted parenchyma, mostly hollow cavities.",
-      },
-      {
-        path: "assets/scenes/andrea_and_lucas/ch19_judah_luna_scan_series_04_v2.png",
-        caption:
-          "Scan 4 of 4 — final audit complete, face drained and demasculinized. Corner cross-section: nearly empty organ, spent shell.",
-      },
-      {
-        path: "assets/scenes/andrea_and_lucas/ch19_izzie_bellringer_stable_boys_v1.png",
-        caption:
-          "Izzie finally gets to demo the BellRinger™ on twenty-four breeding-stable stallions. Each invisible THUM hits like a full-force kick — and the girls are enjoying it almost as much as the boys aren't.",
-      },
-      {
-        path: "assets/scenes/andrea_and_lucas/ch20_bugzapper_matthias_bellringer_disc_v1.png",
-        caption:
-          "Izzie's torn pack of BellRingers synchronizes into a bug-zapper disc on the ritual-chamber floor. Matthias sprints straight into the pulse field chasing female pleasure — and loses his last nut in seconds.",
-      },
-      {
-        path: "assets/scenes/andrea_and_lucas/ch20_bugzapper_two_panel_comic_v1.png",
-        caption:
-          "Left: Izzie, Andrea, and Tamara tally nut scores in the hallway alcove while Judah sobs through the pulses. Right: the synchronized BellRinger disc pulses through the pre-pop orgy — five Mistresses climax as five stallions clutch their ruined lone nuts.",
-      },
-      {
-        path: "assets/scenes/andrea_and_lucas/ch20_tamara_judah_testicular_defragmentation_v1.png",
-        caption:
-          "Tamara performs emergency testicular defragmentation on Judah between scans — squishing his shredded gonad back into a dense, round keycard so Luna can keep drilling him for door access.",
+          "Defragmentation may be excruciatingly painful, but a successful one can save a man's fertility. Especially if he's unlucky enough to have only one testicle.",
       },
       {
         path: "assets/scenes/andrea_and_lucas/ch20_kay_unequal_trinity_mark_macro_v3_veiny_hairy_wrinkled.png",
         caption:
-          "Kay completes the Mark of the Unequal Trinity — macro close-up of her sharp stiletto nail beside two crescent vents and her diagonal slash on Lucas's veiny, ruined nut.",
+          "The Mark of the Unequal Trinity. Lucas will never be the same again.",
       },
-      {
-        path: "assets/scenes/andrea_and_lucas/ch20_ritual_chamber_aftermath_score_count_v1.png",
-        caption:
-          "After two hours of synchronized BellRinger pulses, the ritual chamber is testicular carnage — and Tamara, Andrea, and Izzie are still arguing over the pop count.",
-      },
-      */
     ],
   },
   {

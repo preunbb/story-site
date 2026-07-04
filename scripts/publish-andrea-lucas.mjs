@@ -6,12 +6,19 @@
  *   node scripts/publish-andrea-lucas.mjs [--skip-sync] [--end-page]
  *   npm run publish:andrea-lucas
  *
+ * When sync is enabled (default), also refreshes assets/stories/47-preview.md.
+ * For doc → preview → all publish outputs in one shot (with end page), use:
+ *   npm run rebuild:andrea-from-doc
+ *
  * Outputs (gitignored under dist/):
+ *   dist/andrea-lucas-published/part-1.pdf
+ *   dist/andrea-lucas-published/part-1-illustrated.pdf
  *   dist/andrea-lucas-published/part-2.pdf
  *   dist/andrea-lucas-published/part-2-illustrated.pdf
  *   dist/andrea-lucas-published/part-2.epub
  *   dist/andrea-lucas-published/complete.pdf
  *   dist/andrea-lucas-published/complete-illustrated.pdf
+ *   dist/andrea-lucas-published/covers/part-1.jpg
  *   dist/andrea-lucas-published/covers/part-2.jpg
  *   dist/andrea-lucas-published/covers/complete.jpg
  *   dist/andrea-lucas-published/manifest.json
@@ -31,6 +38,7 @@ import { writeStoryEpub } from "./lib/build-story-epub.mjs";
 import {
   ANDREA_LUCAS_PUBLISH_DIR,
   countWords,
+  extractChapterRange,
   extractFromChapter,
   readAndreaCompleteMarkdown,
   renderAndreaLucasPdf,
@@ -39,6 +47,10 @@ import {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, "..");
 
+const PART_1_FROM_CHAPTER = 1;
+const PART_1_TO_CHAPTER = 7;
+const PART_1_TITLE = "Andrea and Lucas: Part 1";
+const PART_1_SUBTITLE = "Part 1";
 const PART_2_FROM_CHAPTER = 8;
 const PART_2_TITLE = "Andrea and Lucas: Part 2";
 const PART_2_SUBTITLE = "Part 2";
@@ -88,21 +100,55 @@ function main() {
 
   if (!args.skipSync) {
     run("sync", "node", ["scripts/sync-andrea-lucas-complete-to-dist.mjs"]);
+    run("preview", "node", ["scripts/sync-andrea-part2-preview-md.mjs"]);
   }
 
   const markdown = readAndreaCompleteMarkdown();
+  const part1Markdown = extractChapterRange(
+    markdown,
+    PART_1_FROM_CHAPTER,
+    PART_1_TO_CHAPTER,
+  );
   const part2Markdown = extractFromChapter(markdown, PART_2_FROM_CHAPTER);
 
   mkdirSync(join(ANDREA_LUCAS_PUBLISH_DIR, "covers"), { recursive: true });
 
   const stories = loadStories();
+  const part1Story = findStory(stories, 43);
   const part2Story = {
     ...findStory(stories, 47),
     title: PART_2_TITLE,
     scenes: (mergeAndreaLucasStory(stories) || {}).scenes || [],
   };
 
+  const part1Cover = join(ANDREA_LUCAS_PUBLISH_DIR, "covers", "part-1.jpg");
+  const part2Cover = join(ANDREA_LUCAS_PUBLISH_DIR, "covers", "part-2.jpg");
+  const completeCover = join(ANDREA_LUCAS_PUBLISH_DIR, "covers", "complete.jpg");
+  makeCover(43, PART_1_TITLE, part1Cover);
+  makeCover(47, PART_2_TITLE, part2Cover);
+  makeCover(43, COMPLETE_TITLE, completeCover);
+
   const outputs = {};
+
+  outputs["part-1.pdf"] = renderAndreaLucasPdf({
+    markdown: part1Markdown,
+    title: PART_1_TITLE,
+    subtitle: PART_1_SUBTITLE,
+    outPath: join(ANDREA_LUCAS_PUBLISH_DIR, "part-1.pdf"),
+    noImages: true,
+    endPage: args.endPage,
+    story: part1Story,
+  });
+
+  outputs["part-1-illustrated.pdf"] = renderAndreaLucasPdf({
+    markdown: part1Markdown,
+    title: PART_1_TITLE,
+    subtitle: PART_1_SUBTITLE,
+    outPath: join(ANDREA_LUCAS_PUBLISH_DIR, "part-1-illustrated.pdf"),
+    noImages: false,
+    endPage: args.endPage,
+    story: part1Story,
+  });
 
   outputs["part-2.pdf"] = renderAndreaLucasPdf({
     markdown: part2Markdown,
@@ -111,6 +157,7 @@ function main() {
     outPath: join(ANDREA_LUCAS_PUBLISH_DIR, "part-2.pdf"),
     noImages: true,
     endPage: args.endPage,
+    story: part2Story,
   });
 
   outputs["part-2-illustrated.pdf"] = renderAndreaLucasPdf({
@@ -120,13 +167,14 @@ function main() {
     outPath: join(ANDREA_LUCAS_PUBLISH_DIR, "part-2-illustrated.pdf"),
     noImages: false,
     endPage: args.endPage,
+    story: part2Story,
   });
 
   outputs["part-2.epub"] = writeStoryEpub({
     story: part2Story,
     markdown: part2Markdown,
     outPath: join(ANDREA_LUCAS_PUBLISH_DIR, "part-2.epub"),
-    noCover: true,
+    coverPath: part2Cover,
     noImages: true,
   });
 
@@ -148,18 +196,19 @@ function main() {
     endPage: args.endPage,
   });
 
-  const part2Cover = join(ANDREA_LUCAS_PUBLISH_DIR, "covers", "part-2.jpg");
-  const completeCover = join(ANDREA_LUCAS_PUBLISH_DIR, "covers", "complete.jpg");
-  makeCover(47, PART_2_TITLE, part2Cover);
-  makeCover(43, COMPLETE_TITLE, completeCover);
-  outputs["covers/part-2.jpg"] = part2Cover;
-  outputs["covers/complete.jpg"] = completeCover;
+  const part1CoverOut = part1Cover;
+  const part2CoverOut = part2Cover;
+  const completeCoverOut = completeCover;
+  outputs["covers/part-1.jpg"] = part1CoverOut;
+  outputs["covers/part-2.jpg"] = part2CoverOut;
+  outputs["covers/complete.jpg"] = completeCoverOut;
 
   const manifest = {
     generatedAt: new Date().toISOString(),
     source: ANDREA_LUCAS_COMPLETE_MD,
     wordCounts: {
       complete: countWords(markdown),
+      part1: countWords(part1Markdown),
       part2: countWords(part2Markdown),
     },
     outputs,

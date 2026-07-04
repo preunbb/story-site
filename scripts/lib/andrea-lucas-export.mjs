@@ -18,6 +18,7 @@ import {
   storyMarkdownToSafeHtml,
   extractChapters,
   escapeHtml,
+  plainTextFromInlineMarkdown,
   mergeAndreaLucasStory,
   makePdfSceneRenderer,
   PDF_SCENE_FIGURE_CSS,
@@ -49,7 +50,9 @@ const CHROME_CANDIDATES = [
   "/usr/bin/chromium-browser",
 ];
 
-const CHAPTER_HEADING_RE = /^# Chapter (\d+):[^\n]*/gm;
+/** Matches `# Chapter N:` and `# <span …>Chapter N:…</span>` from synced Google Docs. */
+const CHAPTER_HEADING_RE =
+  /^# (?:<span[^>]*>)?Chapter (\d+):[^\n]*/gm;
 
 export function readAndreaCompleteMarkdown() {
   if (!existsSync(ANDREA_LUCAS_COMPLETE_MD)) {
@@ -68,6 +71,20 @@ export function extractFromChapter(markdown, fromChapter) {
     throw new Error(`Chapter ${fromChapter} not found in complete manuscript`);
   }
   return markdown.slice(start.index).trim() + "\n";
+}
+
+/** Slice from `# Chapter from:` through end of `# Chapter to:` (inclusive). */
+export function extractChapterRange(markdown, fromChapter, toChapter) {
+  const matches = [...markdown.matchAll(CHAPTER_HEADING_RE)];
+  const start = matches.find((m) => Number(m[1]) === fromChapter);
+  if (!start) {
+    throw new Error(`Chapter ${fromChapter} not found in complete manuscript`);
+  }
+  const afterEnd = matches.find((m) => Number(m[1]) === toChapter + 1);
+  const slice = afterEnd
+    ? markdown.slice(start.index, afterEnd.index)
+    : markdown.slice(start.index);
+  return slice.trim() + "\n";
 }
 
 export function countWords(md) {
@@ -122,7 +139,7 @@ function buildTocHtml({ title, chapters }) {
   let topNum = 0;
   const items = chapters
     .map((ch) => {
-      const linkTitle = escapeHtml(ch.title);
+      const linkTitle = escapeHtml(plainTextFromInlineMarkdown(ch.title));
       const href = "#" + ch.id;
       topNum += 1;
       return (
@@ -291,6 +308,7 @@ export function loadAndreaExportStory() {
  * @param {string} opts.outPath
  * @param {boolean} opts.noImages
  * @param {boolean} [opts.endPage]
+ * @param {object} [opts.story] — scene list for illustrated PDFs (defaults to merged Part 1+2)
  */
 export function renderAndreaLucasPdf({
   markdown,
@@ -299,8 +317,9 @@ export function renderAndreaLucasPdf({
   outPath,
   noImages,
   endPage = false,
+  story: sceneStory,
 }) {
-  const story = loadAndreaExportStory();
+  const story = sceneStory || loadAndreaExportStory();
   const imageMode = noImages ? "strip" : "embed";
   const bodyHtml = storyMarkdownToSafeHtml(markdown, {
     ...READER_OPTS,

@@ -49,6 +49,7 @@ import {
   buildAboutPage,
   buildChapterPage,
   buildCoverPage,
+  chapterPlainTitle,
   buildStylesheet,
   collectReferencedSceneImages,
   deterministicUuid,
@@ -109,7 +110,7 @@ function buildNavPage({ story, chapters, hasCover }) {
     .map((ch, i) => {
       const num = i + 1;
       const href = chapterFilename(ch);
-      const label = ch.title || story.title;
+      const label = chapterPlainTitle(ch.title, story.title);
       return `      <li><a href="${href}"><span class="toc-num">${num}.</span> <span class="toc-name">${escapeHtml(
         label,
       )}</span></a></li>`;
@@ -272,7 +273,7 @@ function buildNcx({ story, chapters, cover }) {
       `    </navPoint>`,
   );
   for (const ch of chapters) {
-    const label = ch.title || story.title;
+    const label = chapterPlainTitle(ch.title, story.title);
     navPoints.push(
       `    <navPoint id="navp-ch${ch.index + 1}" playOrder="${order++}">\n` +
         `      <navLabel><text>${escapeHtml(label)}</text></navLabel>\n` +

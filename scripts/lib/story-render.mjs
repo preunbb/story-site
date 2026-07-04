@@ -257,7 +257,7 @@ export const PDF_SCENE_FIGURE_CSS = `
     text-align: center;
   }`;
 
-/** CSS for Google Doc font-family spans preserved through sync. */
+/** CSS for Google Doc inline formatting preserved through sync. */
 export const DOC_FONT_CSS = `
   .story-reader-article .doc-font-mono,
   .chapter-body .doc-font-mono {
@@ -270,10 +270,40 @@ export const DOC_FONT_CSS = `
   .story-reader-article .doc-font-comic,
   .chapter-body .doc-font-comic {
     font-family: "Comic Sans MS", "Comic Sans", cursive;
-  }`;
+  }
+  .story-reader-article u,
+  .chapter-body u {
+    text-decoration: underline;
+  }
+  .story-reader-article .doc-size-14pt,
+  .chapter-body .doc-size-14pt { font-size: 14pt; }
+  .story-reader-article .doc-size-15pt,
+  .chapter-body .doc-size-15pt { font-size: 15pt; }
+  .story-reader-article .doc-size-18pt,
+  .chapter-body .doc-size-18pt { font-size: 18pt; }
+  .story-reader-article .doc-size-20pt,
+  .chapter-body .doc-size-20pt { font-size: 20pt; }
+  .story-reader-article .doc-size-26pt,
+  .chapter-body .doc-size-26pt { font-size: 26pt; }`;
 
-const DOC_FONT_SPAN_RE =
-  /<span class="(doc-font-(?:mono|serif|comic))">([\s\S]*?)<\/span>/g;
+const DOC_INLINE_CLASS =
+  "(?:doc-(?:font-(?:mono|serif|comic)|size-[\\d.]+pt))";
+const PRESERVED_INLINE_CHUNK_RE = new RegExp(
+  `<span class="(${DOC_INLINE_CLASS}(?:\\s+${DOC_INLINE_CLASS})*)">([\\s\\S]*?)<\\/span>|<u>([\\s\\S]*?)<\\/u>`,
+  "g",
+);
+
+function hasPreservedInlineHtml(block) {
+  return /class="doc-(?:font|size)-|<\/?u>/i.test(block);
+}
+
+function formatPreservedInner(inner, opts) {
+  if (hasPreservedInlineHtml(inner)) {
+    return formatBodyInline(inner, opts);
+  }
+  const escaped = escapeHtml(inner).replace(/\r\n/g, "\n");
+  return readerFormatEscapedInline(escaped, opts).replace(/\n/g, "<br />");
+}
 
 /**
  * Merge Andrea and Lucas Part 1 + Part 2 scene lists for full-manuscript exports.
@@ -365,31 +395,38 @@ function splitBlocks(markdown) {
 }
 
 function formatBodyInline(block, opts) {
-  if (!block.includes('class="doc-font-')) {
+  if (!hasPreservedInlineHtml(block)) {
     const escaped = escapeHtml(block).replace(/\r\n/g, "\n");
     return readerFormatEscapedInline(escaped, opts).replace(/\n/g, "<br />");
   }
-  DOC_FONT_SPAN_RE.lastIndex = 0;
+  PRESERVED_INLINE_CHUNK_RE.lastIndex = 0;
   let out = "";
   let last = 0;
   let m;
-  while ((m = DOC_FONT_SPAN_RE.exec(block))) {
+  let matched = false;
+  while ((m = PRESERVED_INLINE_CHUNK_RE.exec(block))) {
+    matched = true;
     const before = block.slice(last, m.index);
     if (before) {
-      const escaped = escapeHtml(before).replace(/\r\n/g, "\n");
-      out += readerFormatEscapedInline(escaped, opts).replace(/\n/g, "<br />");
+      out += formatPreservedInner(before, opts);
     }
-    const inner = escapeHtml(m[2]).replace(/\r\n/g, "\n");
-    out +=
-      `<span class="${m[1]}">` +
-      readerFormatEscapedInline(inner, opts).replace(/\n/g, "<br />") +
-      `</span>`;
+    if (m[1] != null) {
+      out +=
+        `<span class="${m[1]}">` +
+        formatPreservedInner(m[2], opts) +
+        `</span>`;
+    } else if (m[3] != null) {
+      out += `<u>${formatPreservedInner(m[3], opts)}</u>`;
+    }
     last = m.index + m[0].length;
+  }
+  if (!matched) {
+    const escaped = escapeHtml(block).replace(/\r\n/g, "\n");
+    return readerFormatEscapedInline(escaped, opts).replace(/\n/g, "<br />");
   }
   const tail = block.slice(last);
   if (tail) {
-    const escaped = escapeHtml(tail).replace(/\r\n/g, "\n");
-    out += readerFormatEscapedInline(escaped, opts).replace(/\n/g, "<br />");
+    out += formatPreservedInner(tail, opts);
   }
   return out;
 }
@@ -432,11 +469,28 @@ export function renderBodyBlock(block, opts) {
  * chapter body blocks to standalone HTML (e.g. Reddit-section exports for
  * Google Docs) where sub-headings inside a chapter are still plain blocks.
  */
+export function formatBodyInlineHtml(block, opts) {
+  return formatBodyInline(block, opts);
+}
+
+/** Plain-text title for EPUB/OPF metadata when headings carry inline HTML. */
+export function plainTextFromInlineMarkdown(block) {
+  return String(block)
+    .replace(/<[^>]+>/g, "")
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/\*([^*]+)\*/g, "$1")
+    .replace(/__([^_]+)__/g, "$1")
+    .replace(/_([^_]+)_/g, "$1")
+    .trim();
+}
+
 export function renderFlowBlock(block, opts) {
   const heading = parseChapterHeading(block);
   if (heading) {
     const tag = heading.level === 2 ? "h2" : "h3";
-    const inner = readerFormatEscapedInline(escapeHtml(heading.title), opts);
+    const inner = hasPreservedInlineHtml(heading.title)
+      ? formatBodyInline(heading.title, opts)
+      : readerFormatEscapedInline(escapeHtml(heading.title), opts);
     return `<${tag}>${inner}</${tag}>`;
   }
   return renderBodyBlock(block, opts);
@@ -462,7 +516,9 @@ export function storyMarkdownToSafeHtml(markdown, opts) {
     const heading = parseChapterHeading(block);
     if (heading) {
       const tag = heading.level === 2 ? "h2" : "h3";
-      const inner = readerFormatEscapedInline(escapeHtml(heading.title), opts);
+      const inner = hasPreservedInlineHtml(heading.title)
+        ? formatBodyInline(heading.title, opts)
+        : readerFormatEscapedInline(escapeHtml(heading.title), opts);
       const id = "story-ch-" + chapterIndex++;
       out.push(
         `<${tag} id="${id}" class="story-reader-chapter story-reader-chapter--h${heading.level}">${inner}</${tag}>`,
