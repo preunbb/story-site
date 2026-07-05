@@ -199,7 +199,7 @@ window.DATA_CHARACTERS = [
     id: "natalie",
     name: "Natalie",
     gender: "F",
-    testiclesKilled: 2,
+    testiclesKilled: 6,
     bio: "Shy, mousy, cloud of brown curls. David's ex. Comes to the arena to watch. Drawn to sweet, loving guys.",
     profilePictures: ["assets/characters/natalie.jpg"],
   },
