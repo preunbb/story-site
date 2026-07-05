@@ -7,7 +7,7 @@ var ANDREA_LUCAS_PURCHASE_PARTS = [
   {
     part: 2,
     kofiUrl: "https://ko-fi.com/s/6e786316fd",
-    // amazonUrl: "AmazonPart2",
+    amazonUrl: "https://www.amazon.com/dp/B0H7Q3LLRC",
   },
 ];
 

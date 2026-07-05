@@ -250,7 +250,7 @@
     var amazonUrl = storyPreviewAmazonUrl(story);
     if (!kofiUrl && !amazonUrl) return "";
     var text =
-      "If you enjoyed this, and want to read hundreds more pages about shattered testicles, ruined reproductive abilities, and all sorts of man-destroying, woman-dominating exploits, the rest of part 2 is now available on Ko-fi!";
+      "If you enjoyed this, and want to read hundreds more pages about shattered testicles, ruined reproductive abilities, and all sorts of man-destroying, woman-dominating exploits, the rest of part 2 is now available on Ko-fi and Amazon!";
     var links = [
       storyPreviewPurchaseLink(kofiUrl, "Buy for $7.99 on Ko-Fi", "kofi", null),
       storyPreviewPurchaseLink(
