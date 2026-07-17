@@ -16,8 +16,15 @@ window.DATA_CAPTIONS = [
   "surgery-accident-1",
   "surgery-accident-2",
   "mei-earrings-1",
-  "andrea-nurse-bruised-squeeze-diptych",
-  "yvette-kick",
-  "yvette-scalpel",
-  "medical-consult",
+  {
+    slug: "andrea-nurse-bruised-squeeze-diptych",
+    graphicWarning: true,
+  },
+  { slug: "yvette-kick", graphicWarning: true },
+  { slug: "yvette-scalpel", graphicWarning: true },
+  {
+    slug: "medical-consult",
+    graphicWarning: true,
+    graphicWarningCover: "assets/captions/graphic_warning_cover_square_v1.png",
+  },
 ];

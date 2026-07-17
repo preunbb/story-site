@@ -873,9 +873,15 @@
       .map(function (entry) {
         var slug = "";
         var media = "final.png";
+        var graphicWarning = false;
+        var graphicWarningCover = "";
         if (typeof entry === "object") {
           slug = entry.slug || entry.path || "";
           media = entry.media || entry.output || "final.png";
+          graphicWarning = !!entry.graphicWarning;
+          graphicWarningCover = entry.graphicWarningCover
+            ? String(entry.graphicWarningCover)
+            : "";
         } else {
           slug = entry;
         }
@@ -889,9 +895,14 @@
           path: "assets/captions/" + slug + "/" + media,
           caption: "",
           alt: humanizeCaptionSlug(slug),
+          graphicWarning: graphicWarning,
+          graphicWarningCover: graphicWarningCover,
         };
       });
   }
+
+  var DEFAULT_GRAPHIC_WARNING_COVER =
+    "assets/captions/graphic_warning_cover_v1.png";
 
   function renderCaptionsPanel() {
     var root = byId("captions-list");
@@ -914,15 +925,43 @@
           escapeHtml(item.caption) +
           "</figcaption>"
         : "";
-      fig.innerHTML =
+      var mediaHtml =
         '<img src="' +
         escapeHtml(item.path) +
         '" alt="' +
         escapeHtml(item.alt || item.caption || "Caption image") +
-        '" class="scene-img" loading="lazy">' +
-        capHtml;
+        '" class="scene-img" loading="lazy">';
+      if (item.graphicWarning) {
+        fig.classList.add("scene-figure--graphic-warning");
+        fig.setAttribute("title", "Click to reveal graphic content");
+        var coverSrc =
+          item.graphicWarningCover || DEFAULT_GRAPHIC_WARNING_COVER;
+        mediaHtml =
+          '<div class="caption-graphic-wrap">' +
+          mediaHtml +
+          '<button type="button" class="caption-graphic-cover" aria-label="Warning: graphically exposed testicles. Click to reveal.">' +
+          '<img src="' +
+          escapeHtml(coverSrc) +
+          '" alt="" class="caption-graphic-cover-img" draggable="false">' +
+          '<span class="caption-graphic-cover-hint">Click to reveal</span>' +
+          "</button>" +
+          "</div>";
+      }
+      fig.innerHTML = mediaHtml + capHtml;
       root.appendChild(fig);
     });
+  }
+
+  function revealCaptionGraphic(fig) {
+    if (!fig || !fig.classList.contains("scene-figure--graphic-warning")) {
+      return false;
+    }
+    if (fig.classList.contains("is-revealed")) return false;
+    fig.classList.add("is-revealed");
+    fig.setAttribute("title", "Click to enlarge");
+    var cover = fig.querySelector(".caption-graphic-cover");
+    if (cover) cover.setAttribute("aria-hidden", "true");
+    return true;
   }
 
   function captionSlides() {
@@ -977,21 +1016,36 @@
         e.target.closest &&
         e.target.closest(".scene-figure--zoomable");
       if (!fig || !root.contains(fig)) return;
+      if (revealCaptionGraphic(fig)) {
+        e.preventDefault();
+        return;
+      }
       var t = captionFigureTarget(fig);
       if (!t) return;
       openCaptionLightboxForIndex(t.idx);
     });
     root.addEventListener("keydown", function (e) {
       if (e.key !== "Enter" && e.key !== " ") return;
+      var cover =
+        e.target &&
+        e.target.closest &&
+        e.target.closest(".caption-graphic-cover");
       var fig =
         e.target &&
         e.target.closest &&
         e.target.closest(".scene-figure--zoomable");
-      if (!fig || !root.contains(fig) || fig !== e.target) return;
-      var t = captionFigureTarget(fig);
-      if (!t) return;
-      e.preventDefault();
-      openCaptionLightboxForIndex(t.idx);
+      if (!fig || !root.contains(fig)) return;
+      if (cover || fig === e.target) {
+        if (revealCaptionGraphic(fig)) {
+          e.preventDefault();
+          return;
+        }
+        if (fig !== e.target && !cover) return;
+        var t = captionFigureTarget(fig);
+        if (!t) return;
+        e.preventDefault();
+        openCaptionLightboxForIndex(t.idx);
+      }
     });
   }
 
