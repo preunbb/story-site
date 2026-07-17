@@ -1,5 +1,12 @@
-// Caption gallery — folder names under assets/captions/ (each must contain final.png).
+// Caption gallery — folder names under assets/captions/ (each needs final.png or final.gif).
+// For animated outputs use: { slug: "folder-name", media: "final.gif" }
 window.DATA_CAPTIONS = [
+  "squeeze",
+  "bentoverbigtits",
+  "goingdown",
+  "bestie",
+  "dhl-back-kick",
+  "back-from-hospital",
   "abby-gonadal-class-meme",
   "abby-gonadal-lesson-green",
   "mommy-next-day",

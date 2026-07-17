@@ -1370,6 +1370,20 @@ body.scene-lightbox-open {
     border-color 0.15s ease;
 }
 
+button.story-reader-share-link {
+  width: 100%;
+  font: inherit;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+button.story-reader-share-link--copied {
+  color: var(--ink);
+  background: rgba(176, 122, 133, 0.12);
+  border-color: var(--border);
+}
+
 .story-reader-share-link:hover {
   color: var(--ink);
   background: rgba(176, 122, 133, 0.12);

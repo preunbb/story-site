@@ -21,7 +21,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(__dirname, "..");
 const storiesPath = join(repoRoot, "data", "stories.js");
 const catalogPath = join(repoRoot, "oe-catalog", "products.js");
-const outDir = join(repoRoot, "share");
+const shareOutDir = join(repoRoot, "share");
 const OE_SHARE_IMAGE = "assets/brands/overeasy_logo_v2_raw_eggs_minimal.png";
 const OE_SHARE_IMAGE_WIDTH = "1536";
 const OE_SHARE_IMAGE_HEIGHT = "1024";
@@ -163,7 +163,7 @@ function buildOverEasySharePageHtml(catalog) {
 
 function main() {
   const stories = loadStories();
-  mkdirSync(outDir, { recursive: true });
+  mkdirSync(shareOutDir, { recursive: true });
   const ids = new Set();
   for (const s of stories) {
     if (s == null || s.id == null) continue;
@@ -172,19 +172,20 @@ function main() {
       continue;
     }
     ids.add(s.id);
-    const file = join(outDir, `${s.id}.html`);
-    writeFileSync(file, buildPageHtml(s), "utf8");
+    const html = buildPageHtml(s);
+    writeFileSync(join(shareOutDir, `${s.id}.html`), html, "utf8");
   }
 
   const catalog = loadOverEasyCatalog();
+  const oeHtml = buildOverEasySharePageHtml(catalog);
   writeFileSync(
-    join(outDir, "over-easy-products.html"),
-    buildOverEasySharePageHtml(catalog),
+    join(shareOutDir, "over-easy-products.html"),
+    oeHtml,
     "utf8",
   );
 
   console.log(
-    `[share-pages] wrote ${ids.size} story files + over-easy-products.html to share/ (origin ${SITE_ORIGIN})`,
+    `[share-pages] wrote ${ids.size} files to share/ (origin ${SITE_ORIGIN})`,
   );
 }
 

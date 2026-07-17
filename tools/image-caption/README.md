@@ -11,13 +11,18 @@ Point the tool at a folder containing:
 | One source image (`.png`, `.jpg`, etc.) | yes — any filename **except** `final.*` |
 | `caption.txt` | yes — two labelled sections (see below) |
 
-The tool writes `final.png` into the same directory.
+The tool writes `final.png` into the same directory, or `final.gif` when the source is an animated GIF.
 
 ### `caption.txt` format
 
 **Bar layouts** — one composite image plus labelled caption sections.
 
-Horizontal side bars — use `left:` and `right:`:
+Horizontal side bars — use `left:` and/or `right:` (either or both):
+
+```
+right:
+Caption on one side only.
+```
 
 ```
 left:
@@ -27,10 +32,20 @@ right:
 Second caption block.
 ```
 
-Vertical top/bottom bars — use `top:` and `bottom:`:
+Set a fixed bar width (in pixels) on the label line — bar height still matches the image:
 
 ```
-top:
+left:400px
+First caption block.
+
+right:200px
+Second caption block.
+```
+
+Vertical top/bottom bars — use `top:` and `bottom:` (same `NNNpx` syntax sets bar height):
+
+```
+top:120px
 Caption above the image.
 
 bottom:
@@ -65,9 +80,40 @@ Labels are case-insensitive. A colon is required. Text can start on the next lin
 
 Within each section, single line breaks start a new line and blank lines separate paragraphs.
 
+Wrap text in `*asterisks*` to render it in italics (e.g. `*crunch*`).
+
+Insert inline wordart and clipart with `[[name]]` — assets live in `assets/caption_inserts/`.
+
+**Intensity ladder** (15 assets: 5 words × 3 levels):
+
+| Tag | Meaning |
+|-----|---------|
+| `[[crunch_1]]` … `[[splut_3]]` | `{word}_{intensity}` — e.g. `crunch_2`, `pop_3` |
+| **1** | Cartoon hit — black/blue bruise theme |
+| **2** | Crushing blow / permanent damage — wetness, faint pink-white, dead cells |
+| **3** | Rupture / pop — pink-white spray, X-eyed defeated cells |
+
+Words: `crunch`, `squick`, `pop`, `splish`, `splut`.
+
+**Ballsack clipart decay ladder** (`testicles_1` … `testicles_5`):
+
+| Level | State |
+|-------|--------|
+| **1** | Healthy intact scrotum |
+| **2** | Slightly bruised sack |
+| **3** | Badly bruised sack |
+| **4** | Falling apart / leaking |
+| **5** | Fully popped / ruptured |
+
+Use as `[[testicles_3]]` or `[[testicles_5]]:64px`.
+
+Set an explicit height with `[[name]]:40px` (height in pixels). Unknown tags render as literal text.
+
+Legacy single-file assets (`pop.png`, `crunch_v2.png`, etc.) still work if present.
+
 If the directory contains exactly one other `.txt` file (and no `caption.txt`), that file is used instead.
 
-Bar thickness auto-sizes to fit the text (minimum 72px). Font size scales to fill each bar when copy is short; longer captions shrink the type and cap bar height so the image stays larger than the text bands (combined caption height ≤ 75% of image height).
+Bar thickness auto-sizes to fit the text (minimum 72px). Font size scales up to fill each bar's available area — copy wraps to the full inner width and the largest type that fits the height is chosen. Fixed `NNNpx` bars use the same fill logic.
 
 ## Usage
 
@@ -91,7 +137,7 @@ python3 tools/image-caption/caption.py assets/captions/mommy-next-day/
 
 Requires Python 3 with [Pillow](https://pypi.org/project/pillow/) (`pip install Pillow`).
 
-To show a caption on the site, add its folder name to `data/captions.js` (the gallery loads `assets/captions/<folder>/final.png` for each entry).
+To show a caption on the site, add its folder name to `data/captions.js`. The gallery loads `assets/captions/<folder>/final.png` by default. Animated outputs use `final.gif` — register them as `{ slug: "folder-name", media: "final.gif" }`.
 
 ## Triptych compositing
 
