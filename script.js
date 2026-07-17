@@ -871,16 +871,22 @@
         return entry != null && String(entry).trim() !== "";
       })
       .map(function (entry) {
-        var slug =
-          typeof entry === "string" ? entry : entry.slug || entry.path || "";
+        var slug = "";
+        var media = "final.png";
+        if (typeof entry === "object") {
+          slug = entry.slug || entry.path || "";
+          media = entry.media || entry.output || "final.png";
+        } else {
+          slug = entry;
+        }
         slug = String(slug)
           .trim()
           .replace(/^assets\/captions\//, "")
-          .replace(/\/final\.png$/i, "")
+          .replace(/\/final\.(png|gif|webp)$/i, "")
           .replace(/\/$/, "");
         return {
           slug: slug,
-          path: "assets/captions/" + slug + "/final.png",
+          path: "assets/captions/" + slug + "/" + media,
           caption: "",
           alt: humanizeCaptionSlug(slug),
         };
@@ -2661,6 +2667,60 @@
     },
   ];
 
+  var discordShareCopiedTimer = null;
+
+  function copyTextToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        if (document.execCommand("copy")) resolve();
+        else reject(new Error("copy failed"));
+      } catch (e) {
+        reject(e);
+      } finally {
+        document.body.removeChild(ta);
+      }
+    });
+  }
+
+  function flashDiscordShareCopied(btn) {
+    var label = btn.querySelector(".story-reader-share-label");
+    if (!label) return;
+    var original = label.textContent;
+    label.textContent = "Copied!";
+    btn.classList.add("story-reader-share-link--copied");
+    if (discordShareCopiedTimer) clearTimeout(discordShareCopiedTimer);
+    discordShareCopiedTimer = setTimeout(function () {
+      label.textContent = original;
+      btn.classList.remove("story-reader-share-link--copied");
+      discordShareCopiedTimer = null;
+    }, 2000);
+  }
+
+  function bindStoryReaderDiscordShare() {
+    var btn = byId("story-reader-share-discord");
+    if (!btn || btn.dataset.bound === "1") return;
+    btn.dataset.bound = "1";
+    btn.addEventListener("click", function () {
+      var url = btn.getAttribute("data-share-url");
+      if (!url) return;
+      copyTextToClipboard(url)
+        .then(function () {
+          flashDiscordShareCopied(btn);
+        })
+        .catch(function () {});
+    });
+  }
+
   function updateStoryReaderShareLinks(story) {
     var url = storyReaderSharePageUrl(story.id);
     var title = story.title || "Story";
@@ -2668,6 +2728,8 @@
       var el = byId(cfg.id);
       if (el) el.href = cfg.build(title, url);
     });
+    var discordBtn = byId("story-reader-share-discord");
+    if (discordBtn) discordBtn.setAttribute("data-share-url", url);
   }
 
   function closeStoryReaderUi() {
@@ -3367,6 +3429,7 @@
         if (readerStory) loadStoryReaderContent(readerStory);
       });
     }
+    bindStoryReaderDiscordShare();
     document.addEventListener("keydown", function (e) {
       var lbOpen = sceneLightbox && sceneLightbox.classList.contains("open");
       if (lbOpen && (e.key === "ArrowLeft" || e.key === "ArrowRight")) {
