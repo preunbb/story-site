@@ -1,4 +1,4 @@
-right:1000px
+ursright:1000px
 Thank you so much for helping me practice my self-defense moves!
 
 [[crunch_1]]:75px

@@ -1,6 +1,8 @@
 # Image caption bars
 
-Adds black bars with centered white text around a source image.
+Adds caption bars around a source image. Bar background matches the approximate
+average background color of the source; text is black on light bars and white on
+dark bars. Body copy uses a sensual readable serif (Hoefler Text when available).
 
 ## Directory layout
 
@@ -32,14 +34,25 @@ right:
 Second caption block.
 ```
 
-Set a fixed bar width (in pixels) on the label line — bar height still matches the image:
+Set a fixed bar width (in pixels) on the label line — bar height still matches the image.
+Optionally force text color with `white` or `black` (default: auto from background luminance):
 
 ```
 left:400px
 First caption block.
 
-right:200px
+right:200px:black
 Second caption block.
+```
+
+```
+right:800px:white
+Light bar? Force white text anyway.
+```
+
+```
+caption:black
+Quad caption with forced black text.
 ```
 
 Vertical top/bottom bars — use `top:` and `bottom:` (same `NNNpx` syntax sets bar height):

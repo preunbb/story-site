@@ -1,23 +1,8 @@
 #!/usr/bin/env python3
-"""Add black caption bars with white text to an image.
+"""Add caption bars to an image.
 
-Directory mode (default):
-  npm run image-caption -- path/to/caption-dir/
-
-  Bar layouts — one source image plus caption.txt with:
-    left:/right:  or  top:/bottom:
-
-  Quad layout — three panel images plus caption in a fourth quadrant:
-    image1:   (optional path; auto-discovered if blank)
-    image2:
-    image3:
-    caption:
-    <text>
-
-  Writes final.png into the same directory.
-
-Usage:
-  python3 tools/image-caption/caption.py path/to/caption-dir/
+Bar background uses the approximate average color of the source image;
+text is black or white for contrast. Body copy uses a readable sensual serif.
 """
 
 from __future__ import annotations
@@ -50,21 +35,30 @@ MIN_BAR_PX = 72
 MEASURE_SLACK = 4
 # Combined top+bottom caption height may not exceed this fraction of image height.
 MAX_CAPTION_TO_IMAGE_RATIO = 0.75
+# Relative luminance above this → black text; otherwise white.
+LIGHT_BG_LUMINANCE = 0.55
 PARA_BREAK = object()
 IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".bmp", ".tif", ".tiff"}
+# Sensual-but-readable serifs first; each entry is (path, face_index).
 FONT_CANDIDATES = (
-    "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
-    "/System/Library/Fonts/Supplemental/Arial.ttf",
-    "/Library/Fonts/Arial Bold.ttf",
-    "/Library/Fonts/Arial.ttf",
-    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
-    "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+    ("/System/Library/Fonts/Supplemental/Hoefler Text.ttc", 0),
+    ("/System/Library/Fonts/Supplemental/Baskerville.ttc", 0),
+    ("/System/Library/Fonts/Supplemental/Didot.ttc", 0),
+    ("/System/Library/Fonts/Supplemental/Georgia.ttf", 0),
+    ("/System/Library/Fonts/Supplemental/Arial.ttf", 0),
+    ("/Library/Fonts/Arial.ttf", 0),
+    ("/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf", 0),
+    ("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 0),
 )
 ITALIC_FONT_CANDIDATES = (
-    "/System/Library/Fonts/Supplemental/Arial Italic.ttf",
-    "/Library/Fonts/Arial Italic.ttf",
-    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Oblique.ttf",
-    "/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf",
+    ("/System/Library/Fonts/Supplemental/Hoefler Text.ttc", 2),
+    ("/System/Library/Fonts/Supplemental/Baskerville.ttc", 2),
+    ("/System/Library/Fonts/Supplemental/Didot.ttc", 1),
+    ("/System/Library/Fonts/Supplemental/Georgia Italic.ttf", 0),
+    ("/System/Library/Fonts/Supplemental/Arial Italic.ttf", 0),
+    ("/Library/Fonts/Arial Italic.ttf", 0),
+    ("/usr/share/fonts/truetype/dejavu/DejaVuSerif-Italic.ttf", 0),
+    ("/usr/share/fonts/truetype/dejavu/DejaVuSans-Oblique.ttf", 0),
 )
 ITALIC_MARKUP_RE = re.compile(r"\*([^*]+)\*")
 INLINE_ASSET_RE = re.compile(r"\[\[([a-z0-9_-]+)\]\](?::(\d+)px)?", re.IGNORECASE)
@@ -294,6 +288,67 @@ def wrap_units(text: str) -> list[str]:
     return WRAP_UNIT_RE.findall(text)
 
 
+def italic_wrap_units(text: str) -> list[tuple[str, bool]]:
+    """Split into wrap units with italic flags; surrounding asterisks are consumed."""
+    units: list[tuple[str, bool]] = []
+    pos = 0
+    while pos < len(text):
+        asset_match = INLINE_ASSET_RE.match(text, pos)
+        if asset_match:
+            units.append((asset_match.group(0), False))
+            pos = asset_match.end()
+            continue
+        next_asset = INLINE_ASSET_RE.search(text, pos)
+        end = next_asset.start() if next_asset else len(text)
+        chunk = text[pos:end]
+        for segment, is_italic in parse_markup_segments(chunk):
+            for unit in WRAP_UNIT_RE.findall(segment):
+                units.append((unit, is_italic))
+        pos = end
+    return units
+
+
+def encode_wrap_unit(unit: str, italic: bool) -> str:
+    """Re-apply per-unit asterisk markup so italics survive line wrapping."""
+    if not italic or INLINE_ASSET_RE.fullmatch(unit):
+        return unit
+    return f"*{unit}*"
+
+
+def wrap_text(text: str, font: ImageFont.ImageFont, max_width: int) -> list[str]:
+    """Wrap at word boundaries only; never split words mid-character.
+
+    Italic ``*spans*`` are resolved before wrapping so a phrase that breaks
+    across lines stays italic on every wrapped line.
+    """
+    italic_font = paired_italic_font(font)
+    max_width = max(max_width - MEASURE_SLACK, 1)
+    units = italic_wrap_units(text)
+    if not units:
+        return [""]
+
+    lines: list[str] = []
+    current: list[tuple[str, bool]] = []
+
+    def current_text() -> str:
+        return " ".join(encode_wrap_unit(unit, italic) for unit, italic in current)
+
+    for unit, italic in units:
+        encoded = encode_wrap_unit(unit, italic)
+        if not current:
+            current = [(unit, italic)]
+            continue
+        trial = f"{current_text()} {encoded}"
+        if line_width_inline(trial, font, italic_font) <= max_width:
+            current.append((unit, italic))
+        else:
+            lines.append(current_text())
+            current = [(unit, italic)]
+    if current:
+        lines.append(current_text())
+    return lines
+
+
 def unit_width(
     unit: str,
     font: ImageFont.ImageFont,
@@ -308,9 +363,11 @@ def unit_width(
         )
         if dims is not None:
             return dims[0]
-        return line_width_markup(asset_token_label(
-            InlineToken("asset", name, height_px=height_px)
-        ), font, italic_font)
+        return line_width_markup(
+            asset_token_label(InlineToken("asset", name, height_px=height_px)),
+            font,
+            italic_font,
+        )
     return line_width_markup(unit, font, italic_font)
 
 
@@ -421,20 +478,20 @@ def draw_inline_line(
 
 
 def load_font(size: int) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
-    for path in FONT_CANDIDATES:
+    for path, index in FONT_CANDIDATES:
         if Path(path).exists():
             try:
-                return ImageFont.truetype(path, size)
+                return ImageFont.truetype(path, size, index=index)
             except OSError:
                 continue
     return ImageFont.load_default()
 
 
 def load_italic_font(size: int) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
-    for path in ITALIC_FONT_CANDIDATES:
+    for path, index in ITALIC_FONT_CANDIDATES:
         if Path(path).exists():
             try:
-                return ImageFont.truetype(path, size)
+                return ImageFont.truetype(path, size, index=index)
             except OSError:
                 continue
     return load_font(size)
@@ -443,6 +500,75 @@ def load_italic_font(size: int) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
 def paired_italic_font(font: ImageFont.ImageFont) -> ImageFont.ImageFont:
     return load_italic_font(getattr(font, "size", 12))
 
+
+def relative_luminance(rgb: tuple[int, int, int]) -> float:
+    def channel(c: int) -> float:
+        x = c / 255.0
+        return x / 12.92 if x <= 0.04045 else ((x + 0.055) / 1.055) ** 2.4
+
+    r, g, b = rgb
+    return 0.2126 * channel(r) + 0.7152 * channel(g) + 0.0722 * channel(b)
+
+
+def text_fill_for_background(bg: tuple[int, int, int]) -> str:
+    return "black" if relative_luminance(bg) >= LIGHT_BG_LUMINANCE else "white"
+
+
+def average_background_color(
+    image: Image.Image, *, corner_fraction: float = 0.22
+) -> tuple[int, int, int]:
+    """Approximate background color from the four corner regions.
+
+    Corners are usually wall/sky/room rather than the subject, so they track
+    "background" better than a whole-image mean.
+    """
+    from PIL import ImageStat
+
+    rgb = image.convert("RGB")
+    w, h = rgb.size
+    if w < 2 or h < 2:
+        return (0, 0, 0)
+
+    cw = max(1, int(w * corner_fraction))
+    ch = max(1, int(h * corner_fraction))
+    corners = [
+        rgb.crop((0, 0, cw, ch)),
+        rgb.crop((w - cw, 0, w, ch)),
+        rgb.crop((0, h - ch, cw, h)),
+        rgb.crop((w - cw, h - ch, w, h)),
+    ]
+
+    total_r = total_g = total_b = 0.0
+    weight = 0
+    for corner in corners:
+        n = corner.width * corner.height
+        med = ImageStat.Stat(corner).median
+        total_r += med[0] * n
+        total_g += med[1] * n
+        total_b += med[2] * n
+        weight += n
+
+    if weight == 0:
+        return (0, 0, 0)
+    return (
+        int(round(total_r / weight)),
+        int(round(total_g / weight)),
+        int(round(total_b / weight)),
+    )
+
+
+def average_images_background(
+    images: list[Image.Image],
+) -> tuple[int, int, int]:
+    if not images:
+        return (0, 0, 0)
+    colors = [average_background_color(img) for img in images]
+    n = len(colors)
+    return (
+        sum(c[0] for c in colors) // n,
+        sum(c[1] for c in colors) // n,
+        sum(c[2] for c in colors) // n,
+    )
 
 def parse_markup_segments(text: str) -> list[tuple[str, bool]]:
     if "*" not in text:
@@ -499,10 +625,16 @@ def longest_word_width(
     italic_font: ImageFont.ImageFont | None = None,
 ) -> int:
     italic_font = italic_font or paired_italic_font(font)
-    units = wrap_units(text)
+    units = italic_wrap_units(text)
     if not units:
         return 0
-    return max(unit_width(word, font, italic_font) for word in units)
+    widths = []
+    for unit, is_italic in units:
+        if is_italic and not INLINE_ASSET_RE.fullmatch(unit):
+            widths.append(line_width(italic_font, unit))
+        else:
+            widths.append(unit_width(unit, font, italic_font))
+    return max(widths)
 
 
 def longest_word_width_preserved(text: str, font: ImageFont.ImageFont) -> int:
@@ -558,31 +690,6 @@ def lines_block_height(lines: list[str | object], font: ImageFont.ImageFont) -> 
     return height - LINE_SPACING
 
 
-def wrap_text(text: str, font: ImageFont.ImageFont, max_width: int) -> list[str]:
-    """Wrap at word boundaries only; never split words mid-character."""
-    italic_font = paired_italic_font(font)
-    max_width = max(max_width - MEASURE_SLACK, 1)
-    units = wrap_units(text)
-    if not units:
-        return [""]
-
-    lines: list[str] = []
-    current = ""
-    for unit in units:
-        if not current:
-            current = unit
-            continue
-        trial = f"{current} {unit}"
-        if line_width_inline(trial, font, italic_font) <= max_width:
-            current = trial
-        else:
-            lines.append(current)
-            current = unit
-    if current:
-        lines.append(current)
-    return lines
-
-
 def text_block_size(
     text: str, font: ImageFont.ImageFont, max_width: int
 ) -> tuple[int, int, list[str | object]]:
@@ -607,6 +714,8 @@ def draw_centered_text(
     box: tuple[int, int, int, int],
     lines: list[str | object],
     font: ImageFont.ImageFont,
+    *,
+    fill: str = "white",
 ) -> None:
     left, top, right, bottom = box
     inner = (left + PADDING, top + PADDING, right - PADDING, bottom - PADDING)
@@ -647,6 +756,7 @@ def draw_centered_text(
             italic_font,
             slot_h,
             asset_only=is_asset_only_line(line_text),
+            fill=fill,
         )
         y += slot_h
 
@@ -945,12 +1055,20 @@ def compose_quad(
     caption_text: str,
     *,
     reference_size: tuple[int, int],
+    caption_fill: str | None = None,
 ) -> Image.Image:
     """2×2 grid: three images plus caption text in the bottom-right quadrant."""
     panel_w, panel_h = panel_geometry(reference_size, 3)
     canvas = compose_quad_images(image1, image2, image3, panel_w, panel_h)
+    bar_bg = average_images_background([image1, image2, image3])
+    text_fill = resolve_text_fill(bar_bg, caption_fill)
+    # Fill caption quadrant with matched background before drawing text.
+    draw = ImageDraw.Draw(canvas)
+    draw.rectangle(
+        (panel_w, panel_h, panel_w * 2 - 1, panel_h * 2 - 1),
+        fill=bar_bg,
+    )
     if caption_text.strip():
-        draw = ImageDraw.Draw(canvas)
         font, lines = layout_quad_caption(caption_text, panel_w, panel_h)
         draw_centered_text(
             canvas,
@@ -958,6 +1076,7 @@ def compose_quad(
             (panel_w, panel_h, panel_w * 2, panel_h * 2),
             lines,
             font,
+            fill=text_fill,
         )
     return canvas
 
@@ -1003,6 +1122,8 @@ class HorizontalLayout:
     left_lines: list[str | object]
     right_font: ImageFont.ImageFont
     right_lines: list[str | object]
+    left_fill: str | None = None
+    right_fill: str | None = None
 
 
 @dataclass(frozen=True)
@@ -1013,6 +1134,16 @@ class VerticalLayout:
     top_lines: list[str | object]
     bottom_font: ImageFont.ImageFont
     bottom_lines: list[str | object]
+    top_fill: str | None = None
+    bottom_fill: str | None = None
+
+
+def resolve_text_fill(
+    bar_bg: tuple[int, int, int], override: str | None
+) -> str:
+    if override in ("white", "black"):
+        return override
+    return text_fill_for_background(bar_bg)
 
 
 def prepare_horizontal_layout(
@@ -1023,6 +1154,8 @@ def prepare_horizontal_layout(
     *,
     left_bar_w: int | None = None,
     right_bar_w: int | None = None,
+    left_fill: str | None = None,
+    right_fill: str | None = None,
 ) -> HorizontalLayout:
     base_max_bar_w = min(max(img_w // 3, MIN_BAR_PX), max(img_h // 2, MIN_BAR_PX), 560)
     only_one_side = bool(text_a.strip()) ^ bool(text_b.strip())
@@ -1035,7 +1168,14 @@ def prepare_horizontal_layout(
         text_b, img_h, max_bar_w, fixed_bar_w=right_bar_w
     )
     return HorizontalLayout(
-        left_w, right_w, left_font, left_lines, right_font, right_lines
+        left_w,
+        right_w,
+        left_font,
+        left_lines,
+        right_font,
+        right_lines,
+        left_fill,
+        right_fill,
     )
 
 
@@ -1044,13 +1184,19 @@ def compose_horizontal_with_layout(
 ) -> Image.Image:
     img_w, img_h = image.size
     out_w = layout.left_w + img_w + layout.right_w
-    canvas = Image.new("RGB", (out_w, img_h), "black")
+    bar_bg = average_background_color(image)
+    canvas = Image.new("RGB", (out_w, img_h), bar_bg)
     canvas.paste(image, (layout.left_w, 0))
 
     draw = ImageDraw.Draw(canvas)
     if layout.left_w > 0:
         draw_centered_text(
-            canvas, draw, (0, 0, layout.left_w, img_h), layout.left_lines, layout.left_font
+            canvas,
+            draw,
+            (0, 0, layout.left_w, img_h),
+            layout.left_lines,
+            layout.left_font,
+            fill=resolve_text_fill(bar_bg, layout.left_fill),
         )
     if layout.right_w > 0:
         draw_centered_text(
@@ -1059,6 +1205,7 @@ def compose_horizontal_with_layout(
             (layout.left_w + img_w, 0, out_w, img_h),
             layout.right_lines,
             layout.right_font,
+            fill=resolve_text_fill(bar_bg, layout.right_fill),
         )
     return canvas
 
@@ -1071,6 +1218,8 @@ def prepare_vertical_layout(
     *,
     top_bar_h: int | None = None,
     bottom_bar_h: int | None = None,
+    top_fill: str | None = None,
+    bottom_fill: str | None = None,
 ) -> VerticalLayout:
     top_max, bot_max = vertical_caption_budgets(img_h, text_a, text_b)
     top_h, top_font, top_lines = layout_vertical_bar(
@@ -1079,7 +1228,16 @@ def prepare_vertical_layout(
     bot_h, bot_font, bot_lines = layout_vertical_bar(
         text_b, img_w, bot_max, fixed_bar_h=bottom_bar_h
     )
-    return VerticalLayout(top_h, bot_h, top_font, top_lines, bot_font, bot_lines)
+    return VerticalLayout(
+        top_h,
+        bot_h,
+        top_font,
+        top_lines,
+        bot_font,
+        bot_lines,
+        top_fill,
+        bottom_fill,
+    )
 
 
 def compose_vertical_with_layout(
@@ -1087,13 +1245,19 @@ def compose_vertical_with_layout(
 ) -> Image.Image:
     img_w, img_h = image.size
     out_h = layout.top_h + img_h + layout.bottom_h
-    canvas = Image.new("RGB", (img_w, out_h), "black")
+    bar_bg = average_background_color(image)
+    canvas = Image.new("RGB", (img_w, out_h), bar_bg)
     canvas.paste(image, (0, layout.top_h))
 
     draw = ImageDraw.Draw(canvas)
     if layout.top_h > 0:
         draw_centered_text(
-            canvas, draw, (0, 0, img_w, layout.top_h), layout.top_lines, layout.top_font
+            canvas,
+            draw,
+            (0, 0, img_w, layout.top_h),
+            layout.top_lines,
+            layout.top_font,
+            fill=resolve_text_fill(bar_bg, layout.top_fill),
         )
     if layout.bottom_h > 0:
         draw_centered_text(
@@ -1102,6 +1266,7 @@ def compose_vertical_with_layout(
             (0, layout.top_h + img_h, img_w, out_h),
             layout.bottom_lines,
             layout.bottom_font,
+            fill=resolve_text_fill(bar_bg, layout.bottom_fill),
         )
     return canvas
 
@@ -1183,6 +1348,8 @@ def compose_bar_spec_frames(
             spec.text_b,
             top_bar_h=spec.bar_a_px,
             bottom_bar_h=spec.bar_b_px,
+            top_fill=spec.text_a_fill,
+            bottom_fill=spec.text_b_fill,
         )
         return [compose_vertical_with_layout(frame, layout) for frame in normalized]
 
@@ -1193,6 +1360,8 @@ def compose_bar_spec_frames(
         spec.text_b,
         left_bar_w=spec.bar_a_px,
         right_bar_w=spec.bar_b_px,
+        left_fill=spec.text_a_fill,
+        right_fill=spec.text_b_fill,
     )
     return [compose_horizontal_with_layout(frame, layout) for frame in normalized]
 
@@ -1206,6 +1375,8 @@ def compose_bar_spec(image: Image.Image, spec: CaptionSpec) -> Image.Image:
             spec.text_b,
             top_bar_h=spec.bar_a_px,
             bottom_bar_h=spec.bar_b_px,
+            top_fill=spec.text_a_fill,
+            bottom_fill=spec.text_b_fill,
         )
         return compose_vertical_with_layout(image, layout)
     layout = prepare_horizontal_layout(
@@ -1215,6 +1386,8 @@ def compose_bar_spec(image: Image.Image, spec: CaptionSpec) -> Image.Image:
         spec.text_b,
         left_bar_w=spec.bar_a_px,
         right_bar_w=spec.bar_b_px,
+        left_fill=spec.text_a_fill,
+        right_fill=spec.text_b_fill,
     )
     return compose_horizontal_with_layout(image, layout)
 
@@ -1266,6 +1439,7 @@ SECTION_HEADER_RE = re.compile(
     re.IGNORECASE,
 )
 BAR_SIZE_INLINE_RE = re.compile(r"^(\d+)\s*px$", re.IGNORECASE)
+TEXT_COLOR_INLINE_RE = re.compile(r"^(white|black)$", re.IGNORECASE)
 
 
 @dataclass(frozen=True)
@@ -1275,20 +1449,57 @@ class CaptionSpec:
     text_b: str = ""
     bar_a_px: int | None = None
     bar_b_px: int | None = None
+    text_a_fill: str | None = None  # "white" | "black" | None (auto)
+    text_b_fill: str | None = None
     image_paths: tuple[str, str, str] = ("", "", "")
     caption: str = ""
+    caption_fill: str | None = None
+
+
+def parse_section_inline_meta(
+    inline: str,
+) -> tuple[int | None, str | None] | None:
+    """Parse bar size / text color metadata from a section header inline.
+
+    Accepts forms like ``800px``, ``white``, ``800px:black``, ``black:800px``.
+    Returns ``(size, color)`` when the whole inline is metadata only.
+    Returns ``None`` when the inline should be treated as caption text.
+    """
+    raw = inline.strip()
+    if not raw:
+        return (None, None)
+
+    size: int | None = None
+    color: str | None = None
+    for part in raw.split(":"):
+        part = part.strip()
+        if not part:
+            continue
+        size_match = BAR_SIZE_INLINE_RE.fullmatch(part)
+        if size_match:
+            size = int(size_match.group(1))
+            continue
+        color_match = TEXT_COLOR_INLINE_RE.fullmatch(part)
+        if color_match:
+            color = color_match.group(1).lower()
+            continue
+        return None
+    return (size, color)
 
 
 def parse_bar_size_inline(inline: str) -> int | None:
-    match = BAR_SIZE_INLINE_RE.match(inline.strip())
-    if match is None:
+    meta = parse_section_inline_meta(inline)
+    if meta is None:
         return None
-    return int(match.group(1))
+    return meta[0]
 
 
-def parse_sectioned_caption(content: str) -> tuple[dict[str, str], dict[str, int]]:
+def parse_sectioned_caption(
+    content: str,
+) -> tuple[dict[str, str], dict[str, int], dict[str, str]]:
     sections: dict[str, str] = {}
     bar_sizes: dict[str, int] = {}
+    text_colors: dict[str, str] = {}
     current_key: str | None = None
     current_lines: list[str] = []
 
@@ -1304,9 +1515,13 @@ def parse_sectioned_caption(content: str) -> tuple[dict[str, str], dict[str, int
             flush()
             current_key = match.group(1).lower()
             inline = match.group(2).strip()
-            bar_size = parse_bar_size_inline(inline)
-            if bar_size is not None:
-                bar_sizes[current_key] = bar_size
+            meta = parse_section_inline_meta(inline)
+            if meta is not None:
+                bar_size, text_color = meta
+                if bar_size is not None:
+                    bar_sizes[current_key] = bar_size
+                if text_color is not None:
+                    text_colors[current_key] = text_color
                 current_lines = []
             else:
                 current_lines = [inline] if inline else []
@@ -1315,11 +1530,11 @@ def parse_sectioned_caption(content: str) -> tuple[dict[str, str], dict[str, int
             current_lines.append(line)
 
     flush()
-    return sections, bar_sizes
+    return sections, bar_sizes, text_colors
 
 
 def parse_caption_file(content: str) -> CaptionSpec:
-    sections, bar_sizes = parse_sectioned_caption(content)
+    sections, bar_sizes, text_colors = parse_sectioned_caption(content)
 
     has_quad = all(key in sections for key in ("image1", "image2", "image3", "caption"))
     has_horizontal = "left" in sections or "right" in sections
@@ -1340,6 +1555,7 @@ def parse_caption_file(content: str) -> CaptionSpec:
                 sections["image3"],
             ),
             caption=sections["caption"],
+            caption_fill=text_colors.get("caption"),
         )
     if has_horizontal:
         return CaptionSpec(
@@ -1348,6 +1564,8 @@ def parse_caption_file(content: str) -> CaptionSpec:
             text_b=sections.get("right", ""),
             bar_a_px=bar_sizes.get("left"),
             bar_b_px=bar_sizes.get("right"),
+            text_a_fill=text_colors.get("left"),
+            text_b_fill=text_colors.get("right"),
         )
     if has_vertical:
         return CaptionSpec(
@@ -1356,6 +1574,8 @@ def parse_caption_file(content: str) -> CaptionSpec:
             text_b=sections.get("bottom", ""),
             bar_a_px=bar_sizes.get("top"),
             bar_b_px=bar_sizes.get("bottom"),
+            text_a_fill=text_colors.get("top"),
+            text_b_fill=text_colors.get("bottom"),
         )
 
     raise ValueError(
@@ -1463,6 +1683,7 @@ def main(argv: list[str] | None = None) -> int:
             image3,
             spec.caption,
             reference_size=reference_size,
+            caption_fill=spec.caption_fill,
         )
         result.save(output_path, quality=95)
         print(output_path)

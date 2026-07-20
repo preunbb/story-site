@@ -5,6 +5,7 @@
   var characters = [];
   var stories = [];
   var captions = [];
+  var captionSections = [];
 
   /**
    * Story bodies are pre-rendered to markdown files under assets/stories/<id>.md
@@ -865,90 +866,179 @@
       });
   }
 
-  function normalizeCaptions(entries) {
-    return (entries || [])
-      .filter(function (entry) {
-        return entry != null && String(entry).trim() !== "";
-      })
-      .map(function (entry) {
-        var slug = "";
-        var media = "final.png";
-        var graphicWarning = false;
-        var graphicWarningCover = "";
-        if (typeof entry === "object") {
-          slug = entry.slug || entry.path || "";
-          media = entry.media || entry.output || "final.png";
-          graphicWarning = !!entry.graphicWarning;
-          graphicWarningCover = entry.graphicWarningCover
-            ? String(entry.graphicWarningCover)
-            : "";
-        } else {
-          slug = entry;
+  function normalizeCaptionEntry(entry) {
+    if (entry == null || String(entry).trim() === "") return null;
+    var slug = "";
+    var media = "final.png";
+    var graphicWarning = false;
+    var graphicWarningCover = "";
+    if (typeof entry === "object") {
+      slug = entry.slug || entry.path || "";
+      media = entry.media || entry.output || "final.png";
+      graphicWarning = !!entry.graphicWarning;
+      graphicWarningCover = entry.graphicWarningCover
+        ? String(entry.graphicWarningCover)
+        : "";
+    } else {
+      slug = entry;
+    }
+    slug = String(slug)
+      .trim()
+      .replace(/^assets\/captions\//, "")
+      .replace(/\/final\.(png|gif|webp)$/i, "")
+      .replace(/\/$/, "");
+    if (!slug) return null;
+    return {
+      slug: slug,
+      path: "assets/captions/" + slug + "/" + media,
+      caption: "",
+      alt: humanizeCaptionSlug(slug),
+      graphicWarning: graphicWarning,
+      graphicWarningCover: graphicWarningCover,
+    };
+  }
+
+  /**
+   * Accepts either a flat caption list (legacy) or section objects:
+   *   { title: "…", captions: [ "slug", { slug, graphicWarning }, … ] }
+   * Returns { sections, captions } where captions is the flat list used by
+   * the lightbox (global indexes via data-caption-index).
+   */
+  function normalizeCaptionSections(entries) {
+    var sections = [];
+    var flat = [];
+    (entries || []).forEach(function (entry) {
+      if (entry == null) return;
+      if (
+        typeof entry === "object" &&
+        entry.title != null &&
+        Array.isArray(entry.captions)
+      ) {
+        var items = [];
+        entry.captions.forEach(function (cap) {
+          var item = normalizeCaptionEntry(cap);
+          if (!item) return;
+          item.globalIndex = flat.length;
+          flat.push(item);
+          items.push(item);
+        });
+        if (items.length) {
+          sections.push({
+            title: String(entry.title),
+            items: items,
+          });
         }
-        slug = String(slug)
-          .trim()
-          .replace(/^assets\/captions\//, "")
-          .replace(/\/final\.(png|gif|webp)$/i, "")
-          .replace(/\/$/, "");
-        return {
-          slug: slug,
-          path: "assets/captions/" + slug + "/" + media,
-          caption: "",
-          alt: humanizeCaptionSlug(slug),
-          graphicWarning: graphicWarning,
-          graphicWarningCover: graphicWarningCover,
-        };
-      });
+        return;
+      }
+      var item = normalizeCaptionEntry(entry);
+      if (!item) return;
+      item.globalIndex = flat.length;
+      flat.push(item);
+      if (!sections.length || sections[sections.length - 1].title !== "") {
+        sections.push({ title: "", items: [] });
+      }
+      sections[sections.length - 1].items.push(item);
+    });
+    return { sections: sections, captions: flat };
   }
 
   var DEFAULT_GRAPHIC_WARNING_COVER =
     "assets/captions/graphic_warning_cover_v1.png";
 
+  function buildCaptionFigure(item) {
+    var fig = document.createElement("figure");
+    fig.className = "scene-figure scene-figure--zoomable";
+    fig.setAttribute("tabindex", "0");
+    fig.setAttribute("title", "Click to enlarge");
+    fig.setAttribute("data-caption-index", String(item.globalIndex));
+    var capHtml = item.caption
+      ? '<figcaption class="scene-caption">' +
+        escapeHtml(item.caption) +
+        "</figcaption>"
+      : "";
+    var mediaHtml =
+      '<img src="' +
+      escapeHtml(item.path) +
+      '" alt="' +
+      escapeHtml(item.alt || item.caption || "Caption image") +
+      '" class="scene-img" loading="lazy">';
+    if (item.graphicWarning) {
+      fig.classList.add("scene-figure--graphic-warning");
+      fig.setAttribute("title", "Click to reveal graphic content");
+      var coverSrc = item.graphicWarningCover || DEFAULT_GRAPHIC_WARNING_COVER;
+      mediaHtml =
+        '<div class="caption-graphic-wrap">' +
+        mediaHtml +
+        '<button type="button" class="caption-graphic-cover" aria-label="Warning: graphically exposed testicles. Click to reveal.">' +
+        '<img src="' +
+        escapeHtml(coverSrc) +
+        '" alt="" class="caption-graphic-cover-img" draggable="false">' +
+        '<span class="caption-graphic-cover-hint">Click to reveal</span>' +
+        "</button>" +
+        "</div>";
+    }
+    fig.innerHTML = mediaHtml + capHtml;
+    return fig;
+  }
+
   function renderCaptionsPanel() {
     var root = byId("captions-list");
     if (!root) return;
     root.innerHTML = "";
-    if (!captions.length) {
+    root.className = "captions-list";
+    if (!captionSections.length) {
       root.innerHTML =
-        '<p class="captions-intro">Nothing here yet — add folder names to <code>data/captions.js</code>.</p>';
+        '<p class="captions-intro">Nothing here yet — add sections to <code>data/captions.js</code>.</p>';
       return;
     }
-    captions.forEach(function (item, index) {
-      if (!item || !item.path) return;
-      var fig = document.createElement("figure");
-      fig.className = "scene-figure scene-figure--zoomable";
-      fig.setAttribute("tabindex", "0");
-      fig.setAttribute("title", "Click to enlarge");
-      fig.setAttribute("data-caption-index", String(index));
-      var capHtml = item.caption
-        ? '<figcaption class="scene-caption">' +
-          escapeHtml(item.caption) +
-          "</figcaption>"
-        : "";
-      var mediaHtml =
-        '<img src="' +
-        escapeHtml(item.path) +
-        '" alt="' +
-        escapeHtml(item.alt || item.caption || "Caption image") +
-        '" class="scene-img" loading="lazy">';
-      if (item.graphicWarning) {
-        fig.classList.add("scene-figure--graphic-warning");
-        fig.setAttribute("title", "Click to reveal graphic content");
-        var coverSrc =
-          item.graphicWarningCover || DEFAULT_GRAPHIC_WARNING_COVER;
-        mediaHtml =
-          '<div class="caption-graphic-wrap">' +
-          mediaHtml +
-          '<button type="button" class="caption-graphic-cover" aria-label="Warning: graphically exposed testicles. Click to reveal.">' +
-          '<img src="' +
-          escapeHtml(coverSrc) +
-          '" alt="" class="caption-graphic-cover-img" draggable="false">' +
-          '<span class="caption-graphic-cover-hint">Click to reveal</span>' +
-          "</button>" +
-          "</div>";
+
+    var hasNamedSections = captionSections.some(function (sec) {
+      return sec.title;
+    });
+    if (hasNamedSections) {
+      root.classList.add("captions-list--sections");
+    }
+
+    captionSections.forEach(function (sec) {
+      if (!sec.items.length) return;
+      if (!sec.title) {
+        var bare = document.createElement("div");
+        bare.className = "captions-section-body";
+        sec.items.forEach(function (item) {
+          bare.appendChild(buildCaptionFigure(item));
+        });
+        root.appendChild(bare);
+        return;
       }
-      fig.innerHTML = mediaHtml + capHtml;
-      root.appendChild(fig);
+
+      var det = document.createElement("details");
+      det.className = "captions-accordion";
+
+      var sum = document.createElement("summary");
+      sum.className = "captions-accordion-summary";
+      var countLabel =
+        sec.items.length +
+        " caption" +
+        (sec.items.length === 1 ? "" : "s");
+      sum.innerHTML =
+        '<span class="captions-accordion-chevron" aria-hidden="true"></span>' +
+        '<span class="captions-accordion-heading">' +
+        '<span class="captions-accordion-title">' +
+        escapeHtml(sec.title) +
+        "</span>" +
+        '<span class="captions-accordion-count">' +
+        countLabel +
+        "</span>" +
+        "</span>";
+      det.appendChild(sum);
+
+      var body = document.createElement("div");
+      body.className = "captions-accordion-body";
+      sec.items.forEach(function (item) {
+        body.appendChild(buildCaptionFigure(item));
+      });
+      det.appendChild(body);
+      root.appendChild(det);
     });
   }
 
@@ -3427,7 +3517,9 @@
     characters = data.characters || [];
     normalizeCharacterProfilePictures(characters);
     stories = data.stories || [];
-    captions = normalizeCaptions(data.captions);
+    var normalizedCaptions = normalizeCaptionSections(data.captions);
+    captions = normalizedCaptions.captions;
+    captionSections = normalizedCaptions.sections;
 
     initTabs();
     initCharactersGrid();

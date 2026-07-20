@@ -703,10 +703,119 @@ html:not(.has-local-dist) .tabs .tab[data-tab="ratings"] {
   gap: 1.5rem;
 }
 
+.captions-list--sections {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
 @media (min-width: 56rem) {
-  .captions-list {
+  .captions-list:not(.captions-list--sections) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.75rem 1.5rem;
+  }
+}
+
+.captions-accordion {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--grey-soft);
+  overflow: hidden;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.captions-accordion[open] {
+  border-color: var(--red-dim);
+  box-shadow: 0 6px 28px var(--red-glow);
+}
+
+.captions-accordion-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1rem;
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease;
+}
+
+.captions-accordion-summary::-webkit-details-marker {
+  display: none;
+}
+.captions-accordion-summary::marker {
+  content: "";
+}
+
+.captions-accordion-summary:hover {
+  background: rgba(176, 122, 133, 0.1);
+}
+
+.captions-accordion-summary:focus {
+  outline: none;
+}
+
+.captions-accordion-summary:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--red-dim);
+}
+
+.captions-accordion-chevron {
+  flex-shrink: 0;
+  width: 0.5em;
+  height: 0.5em;
+  border-right: 2px solid var(--red-dim);
+  border-bottom: 2px solid var(--red-dim);
+  transform: rotate(-45deg);
+  transition: transform 0.2s ease;
+  margin-right: 0.1rem;
+}
+
+.captions-accordion[open] .captions-accordion-chevron {
+  transform: rotate(45deg);
+}
+
+.captions-accordion-heading {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  line-height: 1.25;
+}
+
+.captions-accordion-title {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.captions-accordion-count {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+}
+
+.captions-accordion-body,
+.captions-section-body {
+  padding: 0.5rem 1rem 1.25rem;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 56rem) {
+  .captions-accordion-body,
+  .captions-section-body {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem 1.5rem;
+    padding: 1rem 1.25rem 1.5rem;
   }
 }
 
