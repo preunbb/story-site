@@ -15,6 +15,7 @@ window.DATA_CAPTIONS = [
       "bestie",
       "dhl-back-kick",
       "back-from-hospital",
+      "please",
     ],
   },
   {

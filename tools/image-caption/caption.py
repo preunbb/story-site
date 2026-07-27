@@ -315,6 +315,25 @@ def encode_wrap_unit(unit: str, italic: bool) -> str:
     return f"*{unit}*"
 
 
+# Punctuation that should stick to the previous word (no leading space), so
+# ``That *pop*, and`` does not become ``That *pop* , and`` after re-encoding.
+_ATTACH_PUNCT_RE = re.compile(r"^[.,!?;:…'\"’”)\]]+")
+
+
+def join_wrap_units(units: list[tuple[str, bool]]) -> str:
+    if not units:
+        return ""
+    parts = [encode_wrap_unit(units[0][0], units[0][1])]
+    for unit, italic in units[1:]:
+        encoded = encode_wrap_unit(unit, italic)
+        if _ATTACH_PUNCT_RE.match(encoded):
+            parts.append(encoded)
+        else:
+            parts.append(" ")
+            parts.append(encoded)
+    return "".join(parts)
+
+
 def wrap_text(text: str, font: ImageFont.ImageFont, max_width: int) -> list[str]:
     """Wrap at word boundaries only; never split words mid-character.
 
@@ -330,22 +349,18 @@ def wrap_text(text: str, font: ImageFont.ImageFont, max_width: int) -> list[str]
     lines: list[str] = []
     current: list[tuple[str, bool]] = []
 
-    def current_text() -> str:
-        return " ".join(encode_wrap_unit(unit, italic) for unit, italic in current)
-
     for unit, italic in units:
-        encoded = encode_wrap_unit(unit, italic)
         if not current:
             current = [(unit, italic)]
             continue
-        trial = f"{current_text()} {encoded}"
+        trial = join_wrap_units([*current, (unit, italic)])
         if line_width_inline(trial, font, italic_font) <= max_width:
             current.append((unit, italic))
         else:
-            lines.append(current_text())
+            lines.append(join_wrap_units(current))
             current = [(unit, italic)]
     if current:
-        lines.append(current_text())
+        lines.append(join_wrap_units(current))
     return lines
 
 
