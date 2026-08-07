@@ -1,8 +1,9 @@
 # Image caption bars
 
 Adds caption bars around a source image. Bar background matches the approximate
-average background color of the source; text is black on light bars and white on
-dark bars. Body copy uses a sensual readable serif (Hoefler Text when available).
+center color of the source; text is black on light bars and white on dark bars
+(luminance threshold 0.4 — black more often than a mid-gray split). Body copy
+uses a sensual readable serif (Hoefler Text when available).
 
 ## Directory layout
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Add caption bars to an image.
 
-Bar background uses the approximate average color of the source image;
+Bar background uses the approximate center color of the source image;
 text is black or white for contrast. Body copy uses a readable sensual serif.
 """
 
@@ -12,6 +12,7 @@ import math
 import os
 import re
 import sys
+from collections import deque
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -36,7 +37,7 @@ MEASURE_SLACK = 4
 # Combined top+bottom caption height may not exceed this fraction of image height.
 MAX_CAPTION_TO_IMAGE_RATIO = 0.75
 # Relative luminance above this → black text; otherwise white.
-LIGHT_BG_LUMINANCE = 0.55
+LIGHT_BG_LUMINANCE = 0.4
 PARA_BREAK = object()
 IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".bmp", ".tif", ".tiff"}
 # Sensual-but-readable serifs first; each entry is (path, face_index).
@@ -104,6 +105,48 @@ def caption_asset_path(name: str) -> Path | None:
     return caption_insert_path(name)
 
 
+def knockout_edge_black_background(
+    img: Image.Image, threshold: int = 28
+) -> Image.Image:
+    """Make edge-connected near-black pixels transparent.
+
+    Preserves intentional black ink inside the graphic (letter outlines, etc.)
+    by only clearing background that floods in from the image edges.
+    """
+    rgba = img.convert("RGBA")
+    w, h = rgba.size
+    pixels = rgba.load()
+    visited = [[False] * w for _ in range(h)]
+    queue: deque[tuple[int, int]] = deque()
+
+    def is_bg(x: int, y: int) -> bool:
+        r, g, b, a = pixels[x, y]
+        if a < 16:
+            return True
+        return r <= threshold and g <= threshold and b <= threshold
+
+    def try_enqueue(x: int, y: int) -> None:
+        if 0 <= x < w and 0 <= y < h and not visited[y][x] and is_bg(x, y):
+            visited[y][x] = True
+            queue.append((x, y))
+
+    for x in range(w):
+        try_enqueue(x, 0)
+        try_enqueue(x, h - 1)
+    for y in range(h):
+        try_enqueue(0, y)
+        try_enqueue(w - 1, y)
+
+    while queue:
+        x, y = queue.popleft()
+        r, g, b, a = pixels[x, y]
+        if a >= 16 and r <= threshold and g <= threshold and b <= threshold:
+            pixels[x, y] = (r, g, b, 0)
+        for nx, ny in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)):
+            try_enqueue(nx, ny)
+    return rgba
+
+
 def load_caption_asset(name: str) -> Image.Image | None:
     key = name.lower()
     if key in _ASSET_CACHE:
@@ -112,7 +155,7 @@ def load_caption_asset(name: str) -> Image.Image | None:
     if path is None:
         return None
     with Image.open(path) as src:
-        img = src.convert("RGBA")
+        img = knockout_edge_black_background(src.convert("RGBA"))
     _ASSET_CACHE[key] = img
     return img
 
@@ -530,13 +573,9 @@ def text_fill_for_background(bg: tuple[int, int, int]) -> str:
 
 
 def average_background_color(
-    image: Image.Image, *, corner_fraction: float = 0.22
+    image: Image.Image, *, center_fraction: float = 0.22
 ) -> tuple[int, int, int]:
-    """Approximate background color from the four corner regions.
-
-    Corners are usually wall/sky/room rather than the subject, so they track
-    "background" better than a whole-image mean.
-    """
+    """Approximate bar color from the center region of the source image."""
     from PIL import ImageStat
 
     rgb = image.convert("RGB")
@@ -544,32 +583,13 @@ def average_background_color(
     if w < 2 or h < 2:
         return (0, 0, 0)
 
-    cw = max(1, int(w * corner_fraction))
-    ch = max(1, int(h * corner_fraction))
-    corners = [
-        rgb.crop((0, 0, cw, ch)),
-        rgb.crop((w - cw, 0, w, ch)),
-        rgb.crop((0, h - ch, cw, h)),
-        rgb.crop((w - cw, h - ch, w, h)),
-    ]
-
-    total_r = total_g = total_b = 0.0
-    weight = 0
-    for corner in corners:
-        n = corner.width * corner.height
-        med = ImageStat.Stat(corner).median
-        total_r += med[0] * n
-        total_g += med[1] * n
-        total_b += med[2] * n
-        weight += n
-
-    if weight == 0:
-        return (0, 0, 0)
-    return (
-        int(round(total_r / weight)),
-        int(round(total_g / weight)),
-        int(round(total_b / weight)),
-    )
+    cw = max(1, int(w * center_fraction))
+    ch = max(1, int(h * center_fraction))
+    left = max(0, (w - cw) // 2)
+    top = max(0, (h - ch) // 2)
+    center = rgb.crop((left, top, left + cw, top + ch))
+    med = ImageStat.Stat(center).median
+    return (int(med[0]), int(med[1]), int(med[2]))
 
 
 def average_images_background(
