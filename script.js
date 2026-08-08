@@ -194,6 +194,13 @@
   }
 
   function getStoryById(id) {
+    var full = window.DATA_ANDREA_LUCAS_FULL;
+    if (
+      full &&
+      (id === full.id || String(id) === String(full.id))
+    ) {
+      return full;
+    }
     return stories.filter(function (s) {
       return s.id === id || Number(s.id) === Number(id);
     })[0];
@@ -238,6 +245,183 @@
 
   function storyHasPreviewRead(story) {
     return !!(story && story.previewRead && story.previewRead.md);
+  }
+
+  function storyPasswordProtected(story) {
+    return !!(
+      story &&
+      story.access === "password" &&
+      story.storyCiphertext &&
+      story.passwordGateHash
+    );
+  }
+
+  function andreaLucasFullStory() {
+    return window.DATA_ANDREA_LUCAS_FULL || null;
+  }
+
+  function storyShowsAndreaLucasFullLink(story) {
+    return !!(
+      story &&
+      story.series &&
+      story.series.id === "andrea-lucas" &&
+      !story.catalogHidden
+    );
+  }
+
+  var PASSWORD_GATE_DOMAIN = "story-site:andrea-lucas:gate:";
+  var PASSWORD_KEY_DOMAIN = "story-site:andrea-lucas:key:";
+
+  function bytesToHex(bytes) {
+    var hex = "";
+    for (var i = 0; i < bytes.length; i++) {
+      var h = bytes[i].toString(16);
+      hex += h.length === 1 ? "0" + h : h;
+    }
+    return hex;
+  }
+
+  function base64ToBytes(b64) {
+    var bin = atob(b64);
+    var out = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+    return out;
+  }
+
+  function sha256Utf8Bytes(text) {
+    var data = new TextEncoder().encode(text);
+    return crypto.subtle.digest("SHA-256", data).then(function (buf) {
+      return new Uint8Array(buf);
+    });
+  }
+
+  function decryptPasswordStoryMarkdown(password, payload) {
+    return sha256Utf8Bytes(PASSWORD_KEY_DOMAIN + password).then(function (
+      keyBytes,
+    ) {
+      return crypto.subtle
+        .importKey("raw", keyBytes, { name: "AES-GCM" }, false, ["decrypt"])
+        .then(function (key) {
+          var iv = base64ToBytes(payload.iv);
+          var tag = base64ToBytes(payload.tag);
+          var ct = base64ToBytes(payload.ciphertext);
+          var combined = new Uint8Array(ct.length + tag.length);
+          combined.set(ct, 0);
+          combined.set(tag, ct.length);
+          return crypto.subtle.decrypt(
+            { name: "AES-GCM", iv: iv },
+            key,
+            combined,
+          );
+        })
+        .then(function (plainBuf) {
+          return new TextDecoder("utf-8").decode(plainBuf);
+        });
+    });
+  }
+
+  function verifyStoryPasswordGate(password, gateHashHex) {
+    return sha256Utf8Bytes(PASSWORD_GATE_DOMAIN + password).then(function (
+      digest,
+    ) {
+      return bytesToHex(digest) === String(gateHashHex).toLowerCase();
+    });
+  }
+
+  function renderStoryReaderMarkdown(story, text) {
+    var coverHtml = "";
+    if (getAiImagesEnabled()) {
+      coverHtml =
+        '<div class="story-reader-cover-wrap">' +
+        imgHtml({
+          src: story.cover,
+          alt: story.title || "Cover",
+          className: "story-reader-cover-img",
+          placeholder: PLACEHOLDER_COVER,
+        }) +
+        "</div>";
+    }
+    storyReaderArticle.innerHTML =
+      coverHtml +
+      storyMarkdownToSafeHtml(text, story) +
+      formatStoryPreviewPurchaseHtml(story);
+    setupStoryReaderChapters();
+  }
+
+  function storyReaderUnlockFormHtml(story) {
+    var buyNote = "";
+    if (story.purchaseParts && story.purchaseParts.length) {
+      buyNote =
+        '<p class="story-reader-unlock-buy">Don\'t have the password yet? Purchase Part 1 or Part 2 — buyers get the unlock password with their copy.</p>';
+    }
+    return (
+      '<div class="story-reader-unlock">' +
+      "<h3 class=\"story-reader-unlock-title\">Password required</h3>" +
+      '<p class="story-reader-unlock-text">This novel is encrypted on the site. Enter the reader password to decrypt and read it in your browser.</p>' +
+      '<p class="story-reader-unlock-hint"><strong>Hint:</strong> the password is the title of Chapter 23, minus the first and last letters.</p>' +
+      buyNote +
+      '<form class="story-reader-unlock-form" id="story-reader-unlock-form">' +
+      '<label class="story-reader-unlock-label" for="story-reader-unlock-input">Password</label>' +
+      '<input class="story-reader-unlock-input" id="story-reader-unlock-input" type="password" name="password" autocomplete="current-password" required />' +
+      '<button type="submit" class="story-reader-unlock-submit">Unlock</button>' +
+      '<p class="story-reader-unlock-error" id="story-reader-unlock-error" hidden></p>' +
+      "</form></div>"
+    );
+  }
+
+  function bindStoryReaderUnlockForm(story) {
+    var form = byId("story-reader-unlock-form");
+    var input = byId("story-reader-unlock-input");
+    var err = byId("story-reader-unlock-error");
+    if (!form || !input) return;
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var password = input.value;
+      if (!password) return;
+      if (err) {
+        err.hidden = true;
+        err.textContent = "";
+      }
+      var submitBtn = form.querySelector(".story-reader-unlock-submit");
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Unlocking…";
+      }
+      verifyStoryPasswordGate(password, story.passwordGateHash)
+        .then(function (ok) {
+          if (!ok) throw new Error("bad-password");
+          return fetch(story.storyCiphertext, {
+            signal: readerAbort ? readerAbort.signal : undefined,
+            credentials: "omit",
+          }).then(function (res) {
+            if (!res.ok) throw new Error("HTTP " + res.status);
+            return res.json();
+          });
+        })
+        .then(function (payload) {
+          return decryptPasswordStoryMarkdown(password, payload);
+        })
+        .then(function (text) {
+          if (!readerStory || readerStory.id !== story.id) return;
+          storyReaderStatus.hidden = true;
+          renderStoryReaderMarkdown(story, text);
+        })
+        .catch(function (ex) {
+          if (ex && ex.name === "AbortError") return;
+          if (!readerStory || readerStory.id !== story.id) return;
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Unlock";
+          }
+          if (err) {
+            err.hidden = false;
+            err.textContent =
+              ex && ex.message === "bad-password"
+                ? "Incorrect password."
+                : "Could not unlock the story. Check the password and try again.";
+          }
+        });
+    });
   }
 
   function isHttpUrl(url) {
@@ -313,8 +497,26 @@
     var kofiUrl = storyPreviewKofiUrl(story);
     var amazonUrl = storyPreviewAmazonUrl(story);
     if (!kofiUrl && !amazonUrl) return "";
+    var partOrder =
+      story.series && typeof story.series.order === "number"
+        ? story.series.order
+        : null;
+    var restLabel =
+      partOrder != null ? "the rest of part " + partOrder : "the rest";
     var text =
-      "If you enjoyed this, and want to read hundreds more pages about shattered testicles, ruined reproductive abilities, and all sorts of man-destroying, woman-dominating exploits, the rest of part 2 is now available on Ko-fi and Amazon!";
+      "If you enjoyed this, and want to read hundreds more pages about shattered testicles, ruined reproductive abilities, and all sorts of man-destroying, woman-dominating exploits, " +
+      restLabel +
+      " is now available on Ko-fi and Amazon!";
+    var fullStory = andreaLucasFullStory();
+    var fullLink =
+      fullStory && storyShowsAndreaLucasFullLink(story)
+        ? storyPreviewPurchaseLink(
+            "#story/" + fullStory.id + "/read",
+            "View full story (password)",
+            "full",
+            null,
+          )
+        : "";
     var links = [
       storyPreviewPurchaseLink(kofiUrl, "Buy for $7.99 on Ko-Fi", "kofi", null),
       storyPreviewPurchaseLink(
@@ -323,6 +525,7 @@
         "amazon",
         null,
       ),
+      fullLink,
     ]
       .filter(Boolean)
       .join("");
@@ -570,6 +773,18 @@
           variant: "read",
         }),
       );
+    }
+    if (storyShowsAndreaLucasFullLink(story)) {
+      var fullStory = andreaLucasFullStory();
+      if (fullStory) {
+        buttons.push(
+          storyTextListActionButton({
+            href: "#story/" + fullStory.id + "/read",
+            label: "Read full story",
+            variant: "read",
+          }),
+        );
+      }
     }
     var amazonUrl = storyCatalogAmazonUrl(story);
     if (amazonUrl) {
@@ -3162,6 +3377,15 @@
     storyReaderStatus.hidden = false;
     storyReaderStatus.textContent = "Loading…";
 
+    if (storyPasswordProtected(story)) {
+      storyReaderStatus.hidden = true;
+      storyReaderArticle.innerHTML = storyReaderUnlockFormHtml(story);
+      bindStoryReaderUnlockForm(story);
+      var unlockInput = byId("story-reader-unlock-input");
+      if (unlockInput) unlockInput.focus();
+      return;
+    }
+
     var mdUrl = storyReaderMarkdownUrl(story);
     fetch(mdUrl, {
       signal: readerAbort.signal,
@@ -3174,23 +3398,7 @@
       .then(function (text) {
         if (!readerStory || readerStory.id !== story.id) return;
         storyReaderStatus.hidden = true;
-        var coverHtml = "";
-        if (getAiImagesEnabled()) {
-          coverHtml =
-            '<div class="story-reader-cover-wrap">' +
-            imgHtml({
-              src: story.cover,
-              alt: story.title || "Cover",
-              className: "story-reader-cover-img",
-              placeholder: PLACEHOLDER_COVER,
-            }) +
-            "</div>";
-        }
-        storyReaderArticle.innerHTML =
-          coverHtml +
-          storyMarkdownToSafeHtml(text, story) +
-          formatStoryPreviewPurchaseHtml(story);
-        setupStoryReaderChapters();
+        renderStoryReaderMarkdown(story, text);
       })
       .catch(function (err) {
         if (err.name === "AbortError") return;
@@ -3252,7 +3460,9 @@
     setFlyoutPanelOpen(false);
 
     storyReaderTitle.textContent = story.title || "";
-    storyReaderDetails.href = "#story/" + story.id;
+    var detailsId =
+      story.detailsStoryId != null ? story.detailsStoryId : story.id;
+    storyReaderDetails.href = "#story/" + detailsId;
     updateStoryReaderShareLinks(story);
 
     storyReaderEl.setAttribute("aria-hidden", "false");
@@ -3407,7 +3617,9 @@
     }
     if (normalizeStoryState(story) !== 1 || storyHasPreviewRead(story)) {
       var readerCtaLabel;
-      if (
+      if (storyPasswordProtected(story)) {
+        readerCtaLabel = "View Full Story";
+      } else if (
         storyHasPreviewRead(story) ||
         (story.purchaseParts && story.purchaseParts.length)
       ) {
@@ -3417,13 +3629,27 @@
       } else {
         readerCtaLabel = "Full Story Here!";
       }
-      ctaParts.push(
-        flyoutCtaButton({
-          href: "#story/" + story.id + "/read",
-          label: readerCtaLabel,
-          rawHref: true,
-        }),
-      );
+      if (!storyPasswordProtected(story)) {
+        ctaParts.push(
+          flyoutCtaButton({
+            href: "#story/" + story.id + "/read",
+            label: readerCtaLabel,
+            rawHref: true,
+          }),
+        );
+      }
+      if (storyShowsAndreaLucasFullLink(story)) {
+        var fullStory = andreaLucasFullStory();
+        if (fullStory) {
+          ctaParts.push(
+            flyoutCtaButton({
+              href: "#story/" + fullStory.id + "/read",
+              label: "View Full Story",
+              rawHref: true,
+            }),
+          );
+        }
+      }
     }
     if (story.amazonUrl) {
       ctaParts.push(
@@ -3613,7 +3839,10 @@
 
     if (state.readMode && state.storyId !== undefined) {
       var storyRead = getStoryById(state.storyId);
-      if (storyRead && isStoryVisibleInCatalog(storyRead)) {
+      if (
+        storyRead &&
+        (isStoryVisibleInCatalog(storyRead) || storyPasswordProtected(storyRead))
+      ) {
         openStoryReader(storyRead);
       } else {
         closeStoryReaderUi();
@@ -3630,13 +3859,17 @@
       else closeFlyout();
     } else if (state.storyId !== undefined) {
       var story = getStoryById(state.storyId);
-      if (!getAiImagesEnabled()) {
+      if (story && storyPasswordProtected(story) && story.catalogHidden) {
+        openStoryReader(story);
+      } else if (!getAiImagesEnabled()) {
         setFlyoutPanelOpen(false);
         location.hash = "stories";
         return;
+      } else if (story && isStoryVisibleInCatalog(story)) {
+        openStoryFlyout(story);
+      } else {
+        closeFlyout();
       }
-      if (story && isStoryVisibleInCatalog(story)) openStoryFlyout(story);
-      else closeFlyout();
     } else {
       setFlyoutPanelOpen(false);
       if (state.scenesStoryId !== undefined) {

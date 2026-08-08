@@ -11,6 +11,10 @@
  * npm start) to read the manuscript in-browser. The main catalog "Ratings" tab
  * also appears only when SOURCE.json is present.
  *
+ * To publish the encrypted on-site reader copy:
+ *   npm run encrypt:andrea-lucas
+ * (requires ANDREA_LUCAS_READER_PASSWORD in .env.local; commits ciphertext only)
+ *
  * Usage: node scripts/sync-andrea-lucas-complete-to-dist.mjs
  */
 
@@ -22,6 +26,7 @@ import {
   makeTurndown,
   fetchMarkdownFromPublishUrl,
 } from "./lib/published-doc-markdown.mjs";
+import { stripGoogleDocsFrontMatter } from "./lib/andrea-lucas-export.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, "..");
@@ -53,7 +58,9 @@ function countWords(md) {
 async function main() {
   mkdirSync(OUT_DIR, { recursive: true });
   const td = makeTurndown();
-  const md = await fetchMarkdownFromPublishUrl(PUBLISH_URL, td);
+  const md = stripGoogleDocsFrontMatter(
+    await fetchMarkdownFromPublishUrl(PUBLISH_URL, td),
+  );
   const words = countWords(md);
   const syncedAt = new Date().toISOString();
 

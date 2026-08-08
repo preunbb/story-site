@@ -41,6 +41,18 @@ const READER_OPTS = {
   dividerClass: "story-reader-divider",
 };
 
+/**
+ * Drop Google Docs export chrome before the first real heading:
+ * default tab title ("Tab 1"), in-doc Table of Contents links, etc.
+ * Chapter sidebar in the on-site reader is built from `#` headings, not this TOC.
+ */
+export function stripGoogleDocsFrontMatter(markdown) {
+  const md = String(markdown || "");
+  const match = md.match(/^#\s+/m);
+  if (!match || match.index == null) return md;
+  return md.slice(match.index);
+}
+
 const CHROME_CANDIDATES = [
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
   "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary",
