@@ -6,6 +6,7 @@
     "start": "python3 -m http.server 8080",
     "sync": "node scripts/sync-stories.mjs && node scripts/generate-story-share-pages.mjs",
     "sync:andrea-complete": "node scripts/sync-andrea-lucas-complete-to-dist.mjs",
+    "encrypt:andrea-lucas": "node scripts/encrypt-andrea-lucas.mjs",
     "sync:andrea-part2-preview": "node scripts/sync-andrea-part2-preview-md.mjs",
     "rebuild:andrea-from-doc": "node scripts/rebuild-andrea-from-doc.mjs",
     "sync:concurrent": "node scripts/sync-stories.mjs --concurrency=4 && node scripts/generate-story-share-pages.mjs",

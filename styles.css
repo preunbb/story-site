@@ -2011,6 +2011,79 @@ button.story-reader-share-link--copied {
   color: var(--ink-muted);
 }
 
+.story-reader-unlock {
+  max-width: 28rem;
+  margin: 2rem auto 0;
+  padding: 1.5rem 1.35rem;
+  border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
+}
+
+.story-reader-unlock-title {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.story-reader-unlock-text,
+.story-reader-unlock-buy,
+.story-reader-unlock-hint {
+  margin: 0 0 0.85rem;
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.story-reader-unlock-hint {
+  color: var(--ink);
+}
+
+.story-reader-unlock-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.story-reader-unlock-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.story-reader-unlock-input {
+  font: inherit;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.35rem;
+  border: 1px solid color-mix(in srgb, var(--ink) 28%, transparent);
+  background: var(--bg, #111);
+  color: var(--ink);
+}
+
+.story-reader-unlock-submit {
+  margin-top: 0.35rem;
+  align-self: flex-start;
+  font: inherit;
+  font-weight: 600;
+  padding: 0.55rem 1rem;
+  border-radius: 0.35rem;
+  border: none;
+  cursor: pointer;
+  background: var(--ink);
+  color: var(--bg, #111);
+}
+
+.story-reader-unlock-submit:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.story-reader-unlock-error {
+  margin: 0.35rem 0 0;
+  color: #c44;
+  font-size: 0.9rem;
+}
+
 .story-reader-article {
   max-width: 40rem;
   margin: 0 auto;

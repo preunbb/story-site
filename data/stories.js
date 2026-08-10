@@ -11,6 +11,25 @@ var ANDREA_LUCAS_PURCHASE_PARTS = [
   },
 ];
 
+/**
+ * Password-gated complete novel. Not listed in the stories grid — opened via
+ * "View Full Story" on Part 1 / Part 2 (#story/andrea-lucas-full/read).
+ */
+window.DATA_ANDREA_LUCAS_FULL = {
+  id: "andrea-lucas-full",
+  title: "Andrea and Lucas",
+  cover: "assets/covers/andrea_and_lucas_part_2_cover_eve_abby_kay_v1.png",
+  access: "password",
+  storyCiphertext: "assets/stories/andrea-and-lucas.enc.json",
+  passwordGateHash:
+    "cca1173d9083b337f1c1fa11fa6385b93b3cbe2339aec8133e4e7090a4f86370",
+  purchaseParts: ANDREA_LUCAS_PURCHASE_PARTS,
+  series: { id: "andrea-lucas", order: 0 },
+  /** Catalog card opened by the reader "Details" link. */
+  detailsStoryId: 43,
+  catalogHidden: true,
+};
+
 window.DATA_STORIES = [
   {
     id: 1,
@@ -1315,6 +1334,11 @@ window.DATA_STORIES = [
     ],
     tags: ["Premium Story", "New to Reddit"],
     purchaseParts: ANDREA_LUCAS_PURCHASE_PARTS,
+    previewRead: {
+      md: "assets/stories/43.md",
+      fromChapter: 1,
+      toChapter: 2,
+    },
     scenes: [
       {
         path: "assets/scenes/andrea_and_lucas/izzie_and_sterilizer.png",
@@ -1545,7 +1569,7 @@ window.DATA_STORIES = [
   },
   {
     id: 49,
-    wordCount: 5256,
+    wordCount: 5259,
     title: "Bereavement Therapy",
     brutalityRating: 1,
     summary:
