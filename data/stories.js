@@ -22,7 +22,7 @@ window.DATA_ANDREA_LUCAS_FULL = {
   access: "password",
   storyCiphertext: "assets/stories/andrea-and-lucas.enc.json",
   passwordGateHash:
-    "f13c16546c2f99eb1141d1b95a0357ff97a2f44ce9b9c601034b72e052eea793",
+    "cca1173d9083b337f1c1fa11fa6385b93b3cbe2339aec8133e4e7090a4f86370",
   purchaseParts: ANDREA_LUCAS_PURCHASE_PARTS,
   series: { id: "andrea-lucas", order: 0 },
   /** Catalog card opened by the reader "Details" link. */
@@ -1569,7 +1569,7 @@ window.DATA_STORIES = [
   },
   {
     id: 49,
-    wordCount: 5256,
+    wordCount: 5259,
     title: "Bereavement Therapy",
     brutalityRating: 1,
     summary:

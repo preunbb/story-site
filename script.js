@@ -195,10 +195,7 @@
 
   function getStoryById(id) {
     var full = window.DATA_ANDREA_LUCAS_FULL;
-    if (
-      full &&
-      (id === full.id || String(id) === String(full.id))
-    ) {
+    if (full && (id === full.id || String(id) === String(full.id))) {
       return full;
     }
     return stories.filter(function (s) {
@@ -296,36 +293,36 @@
   }
 
   function decryptPasswordStoryMarkdown(password, payload) {
-    return sha256Utf8Bytes(PASSWORD_KEY_DOMAIN + password).then(function (
-      keyBytes,
-    ) {
-      return crypto.subtle
-        .importKey("raw", keyBytes, { name: "AES-GCM" }, false, ["decrypt"])
-        .then(function (key) {
-          var iv = base64ToBytes(payload.iv);
-          var tag = base64ToBytes(payload.tag);
-          var ct = base64ToBytes(payload.ciphertext);
-          var combined = new Uint8Array(ct.length + tag.length);
-          combined.set(ct, 0);
-          combined.set(tag, ct.length);
-          return crypto.subtle.decrypt(
-            { name: "AES-GCM", iv: iv },
-            key,
-            combined,
-          );
-        })
-        .then(function (plainBuf) {
-          return new TextDecoder("utf-8").decode(plainBuf);
-        });
-    });
+    return sha256Utf8Bytes(PASSWORD_KEY_DOMAIN + password).then(
+      function (keyBytes) {
+        return crypto.subtle
+          .importKey("raw", keyBytes, { name: "AES-GCM" }, false, ["decrypt"])
+          .then(function (key) {
+            var iv = base64ToBytes(payload.iv);
+            var tag = base64ToBytes(payload.tag);
+            var ct = base64ToBytes(payload.ciphertext);
+            var combined = new Uint8Array(ct.length + tag.length);
+            combined.set(ct, 0);
+            combined.set(tag, ct.length);
+            return crypto.subtle.decrypt(
+              { name: "AES-GCM", iv: iv },
+              key,
+              combined,
+            );
+          })
+          .then(function (plainBuf) {
+            return new TextDecoder("utf-8").decode(plainBuf);
+          });
+      },
+    );
   }
 
   function verifyStoryPasswordGate(password, gateHashHex) {
-    return sha256Utf8Bytes(PASSWORD_GATE_DOMAIN + password).then(function (
-      digest,
-    ) {
-      return bytesToHex(digest) === String(gateHashHex).toLowerCase();
-    });
+    return sha256Utf8Bytes(PASSWORD_GATE_DOMAIN + password).then(
+      function (digest) {
+        return bytesToHex(digest) === String(gateHashHex).toLowerCase();
+      },
+    );
   }
 
   function renderStoryReaderMarkdown(story, text) {
@@ -351,14 +348,36 @@
   function storyReaderUnlockFormHtml(story) {
     var buyNote = "";
     if (story.purchaseParts && story.purchaseParts.length) {
+      var part1 = null;
+      var part2 = null;
+      for (var i = 0; i < story.purchaseParts.length; i++) {
+        var p = story.purchaseParts[i];
+        if (p.part === 1) part1 = p;
+        if (p.part === 2) part2 = p;
+      }
+      var part1Link =
+        part1 && part1.kofiUrl
+          ? '<a href="' +
+            escapeHtml(part1.kofiUrl) +
+            '" target="_blank" rel="noopener noreferrer">Part 1</a>'
+          : "Part 1";
+      var part2Link =
+        part2 && part2.kofiUrl
+          ? '<a href="' +
+            escapeHtml(part2.kofiUrl) +
+            '" target="_blank" rel="noopener noreferrer">Part 2</a>'
+          : "Part 2";
       buyNote =
-        '<p class="story-reader-unlock-buy">Don\'t have the password yet? Purchase Part 1 or Part 2 — buyers get the unlock password with their copy.</p>';
+        '<p class="story-reader-unlock-buy">Don\'t have the password yet? Purchase ' +
+        part1Link +
+        " and " +
+        part2Link +
+        ".</p>";
     }
     return (
       '<div class="story-reader-unlock">' +
-      "<h3 class=\"story-reader-unlock-title\">Password required</h3>" +
-      '<p class="story-reader-unlock-text">This novel is encrypted on the site. Enter the reader password to decrypt and read it in your browser.</p>' +
-      '<p class="story-reader-unlock-hint"><strong>Hint:</strong> the password is the title of Chapter 23, minus the first and last letters.</p>' +
+      '<h3 class="story-reader-unlock-title">Password required</h3>' +
+      '<p class="story-reader-unlock-hint">The password is the first word of chapter 7 followed by the first word of chapter 23. All lowercase, no spaces or punctuation.</p>' +
       buyNote +
       '<form class="story-reader-unlock-form" id="story-reader-unlock-form">' +
       '<label class="story-reader-unlock-label" for="story-reader-unlock-input">Password</label>' +
@@ -638,6 +657,13 @@
   function storyIsReadable(story) {
     if (!story) return false;
     return normalizeStoryState(story) !== 1 || storyHasPreviewRead(story);
+  }
+
+  /** Hash target for cast / character-flyout story links. */
+  function storyCatalogHref(story) {
+    if (!story) return "#stories";
+    if (storyIsReadable(story)) return "#story/" + story.id + "/read";
+    return "#story/" + story.id;
   }
 
   function storyTextListMetaHtml(story) {
@@ -1489,9 +1515,7 @@
       var sum = document.createElement("summary");
       sum.className = "captions-accordion-summary";
       var countLabel =
-        sec.items.length +
-        " caption" +
-        (sec.items.length === 1 ? "" : "s");
+        sec.items.length + " caption" + (sec.items.length === 1 ? "" : "s");
       sum.innerHTML =
         '<span class="captions-accordion-chevron" aria-hidden="true"></span>' +
         '<span class="captions-accordion-heading">' +
@@ -2647,7 +2671,7 @@
           var h3 = document.createElement("h3");
           h3.className = "characters-story-title";
           var storyLink = document.createElement("a");
-          storyLink.href = "#story/" + story.id;
+          storyLink.href = storyCatalogHref(story);
           storyLink.textContent = story.title || "Story " + story.id;
           h3.appendChild(storyLink);
           sub.appendChild(h3);
@@ -3841,7 +3865,8 @@
       var storyRead = getStoryById(state.storyId);
       if (
         storyRead &&
-        (isStoryVisibleInCatalog(storyRead) || storyPasswordProtected(storyRead))
+        (isStoryVisibleInCatalog(storyRead) ||
+          storyPasswordProtected(storyRead))
       ) {
         openStoryReader(storyRead);
       } else {
@@ -4068,7 +4093,9 @@
           return;
         }
         var sid = btn.getAttribute("data-story-id");
-        if (sid) location.hash = "story/" + sid;
+        if (sid) {
+          location.hash = storyCatalogHref(getStoryById(sid)).slice(1);
+        }
       });
       bindCoverFlipKeydown(flyoutBody);
     }
