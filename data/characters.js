@@ -741,4 +741,11 @@ window.DATA_CHARACTERS = [
     bio: "Poorly hung low-level male member of the Cult of the Broken Tree, Judah wants to keep his last ball intact no matter what - even if he has to betray dozens of his brethren to the demonic trio descending upon them.",
     profilePictures: ["assets/characters/judah_cult_cast_v2.png"],
   },
+  {
+    id: "stuart",
+    name: "Stuart",
+    gender: "M",
+    bio: "Losing his first ball has left Stuart in a bad mental state. Hopefully, his new therapist can help him navigate his newly lopsided life, and get what little mojo he had back.",
+    profilePictures: ["assets/characters/stuart_v1.png"],
+  },
 ];

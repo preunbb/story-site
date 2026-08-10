@@ -14,7 +14,7 @@ var ANDREA_LUCAS_PURCHASE_PARTS = [
 window.DATA_STORIES = [
   {
     id: 1,
-    wordCount: 24257,
+    wordCount: 24270,
     title: "Three Strikes",
     summary:
       "A college senior has an unusually blessed anatomy and a very demanding swim coach. She insists on some minor modifications to improve his speed, which he politely declines. She enlists three eager assistants to help change his mind: a Goth, a cheerleader, and an science wiz. Sam does his best to keep all of his blessings safe from the girls, but it's not easy, and all three girls make some very convincing arguments.",
@@ -67,7 +67,7 @@ window.DATA_STORIES = [
   },
   {
     id: 2,
-    wordCount: 7731,
+    wordCount: 8084,
     title: "Castration Anxiety",
     summary:
       "Jeremy's having the weirdest, most painful nightmares. He's desperately hoping his therapist can help him figure things out.",
@@ -237,7 +237,7 @@ window.DATA_STORIES = [
   },
   {
     id: 8,
-    wordCount: 5083,
+    wordCount: 5086,
     brutalityRating: 3,
     title: "Club Fight",
     summary:
@@ -309,7 +309,7 @@ window.DATA_STORIES = [
   },
   {
     id: 11,
-    wordCount: 5699,
+    wordCount: 5700,
     brutalityRating: 5,
     title: "Melody's First Time",
     summary:
@@ -403,7 +403,7 @@ window.DATA_STORIES = [
   },
   {
     id: 15,
-    wordCount: 3729,
+    wordCount: 3916,
     brutalityRating: 3,
     title: "The Ballbusting Arena 2: Sofia's Choice",
     summary:
@@ -521,7 +521,7 @@ window.DATA_STORIES = [
   },
   {
     id: 18,
-    wordCount: 1845,
+    wordCount: 1846,
     brutalityRating: 3,
     title: "The Cult",
     summary:
@@ -535,7 +535,7 @@ window.DATA_STORIES = [
   },
   {
     id: 19,
-    wordCount: 14490,
+    wordCount: 14498,
     title: "The Amazon's Fruits",
     brutalityRating: 4,
     summary:
@@ -590,7 +590,7 @@ window.DATA_STORIES = [
   },
   {
     id: 20,
-    wordCount: 25525,
+    wordCount: 25534,
     title: "School Bully",
     brutalityRating: 5,
     summary:
@@ -704,7 +704,7 @@ window.DATA_STORIES = [
   },
   {
     id: 24,
-    wordCount: 3786,
+    wordCount: 3789,
     title: "Food for Thot",
     brutalityRating: 4,
     summary:
@@ -732,7 +732,7 @@ window.DATA_STORIES = [
   },
   {
     id: 25,
-    wordCount: 20092,
+    wordCount: 20099,
     title: "Friendzoned",
     brutalityRating: 5,
     summary:
@@ -778,12 +778,14 @@ window.DATA_STORIES = [
   },
   {
     id: 26,
-    wordCount: 10516,
+    wordCount: 10520,
     title: "Busted by the Babysitter",
     brutalityRating: 4,
     summary:
       "Alise hires the girl next door to watch her LEGALLY ADULT stepsons for the weekend. Eric's sure he can finally get with Melody—but she's been watching him too, and her 'accidents' have a way of adding up.",
     cover: "assets/covers/busted_by_the_babysitter.jpg",
+    amazonUrl:
+      "https://www.amazon.com/Neutered-Girl-Next-Door-Adventures-ebook/dp/B0GZPX5V9R",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vSCFSsYv9k5JNRuwqyMvtMBCESmShx9HFjIHjnnUFwG0DKcMhN4Lkx-AvSzawnOHyHDv1HylaLObYYm/pub",
     characterIds: ["melody", "eric", "bryan"],
@@ -815,7 +817,7 @@ window.DATA_STORIES = [
   },
   {
     id: 27,
-    wordCount: 9320,
+    wordCount: 9324,
     title: "Living with Ballbusting Witches",
     brutalityRating: 3,
     summary:
@@ -860,7 +862,7 @@ window.DATA_STORIES = [
   },
   {
     id: 28,
-    wordCount: 7061,
+    wordCount: 7063,
     title: "Testy",
     brutalityRating: 4,
     summary:
@@ -917,7 +919,7 @@ window.DATA_STORIES = [
   },
   {
     id: 30,
-    wordCount: 6420,
+    wordCount: 6425,
     title: "Postop",
     brutalityRating: 3,
     summary:
@@ -1066,7 +1068,7 @@ window.DATA_STORIES = [
   },
   {
     id: 36,
-    wordCount: 8016,
+    wordCount: 8021,
     title: "Paperwork",
     brutalityRating: 5,
     summary:
@@ -1125,7 +1127,7 @@ window.DATA_STORIES = [
   },
   {
     id: 38,
-    wordCount: 11745,
+    wordCount: 11749,
     title: "James' Big Balls",
     summary:
       "James's cousin Sarah stays at his place for the weekend. What begins as secret ballbusting during a family movie turns into a brutal weekend alone together.",
@@ -1154,7 +1156,7 @@ window.DATA_STORIES = [
   },
   {
     id: 40,
-    wordCount: 67340,
+    wordCount: 67355,
     brutalityRating: 5,
     title: "Dragon Slaying Alternative Chapter 13: Kayla",
     summary:
@@ -1267,7 +1269,7 @@ window.DATA_STORIES = [
 
   {
     id: 42,
-    wordCount: 9970,
+    wordCount: 10385,
     title: "The Ballbusting Arena 6: Natalie Enters the Ring",
     brutalityRating: 4,
     cover: "assets/covers/arena_6.png",
@@ -1393,7 +1395,7 @@ window.DATA_STORIES = [
   },
   {
     id: 46,
-    wordCount: 12803,
+    wordCount: 12805,
     title: "Melody Seduces a Virgin",
     summary:
       "Melody's castration kink is back in full force, ever since her son lost his balls. She's been craving a chance to explore her awakened urges, and the nervous, virginal Ryan is just the guy to help her.",
@@ -1539,6 +1541,21 @@ window.DATA_STORIES = [
       "Over Easy Technologies sells gear and gadgets for many different cases - from automatically extracting semen samples from men to disciplinary devices to self-defense weapons that target one part of the male anatomy in particular. Olivia is excited for her first day on the prestigious job, and can't wait to see behind the scenes exactly how Over Easy keeps the quality of their products consistently high.",
     state: 1,
     characterIds: ["zennia", "cathy", "olivia"],
+    tags: ["New to Reddit"],
+  },
+  {
+    id: 49,
+    wordCount: 5256,
+    title: "Bereavement Therapy",
+    brutalityRating: 1,
+    summary:
+      "Dr. Karen sees a new patient dealing with a particularly sensitive injury.",
+    cover: "assets/covers/bereavement.png",
+    driveUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vQvaHoeI871FaxJyLlR2MXUHfKNBG1yvbPVnA2N-LIn9HqEhHK8Sy64xpqh75XlDISXp2v_By3BRcrx/pub",
+    characterIds: ["karen", "stuart"],
+    state: 2,
+    releaseDate: "2026-08-09",
     tags: ["New to Reddit"],
   },
 ];
