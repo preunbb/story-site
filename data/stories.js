@@ -311,7 +311,7 @@ window.DATA_STORIES = [
   },
   {
     id: 10,
-    wordCount: 7937,
+    wordCount: 7943,
     brutalityRating: 4,
     title: "The Ballbusting Arena 5: First Times",
     summary:
