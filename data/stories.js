@@ -1570,7 +1570,7 @@ window.DATA_STORIES = [
   {
     id: 49,
     wordCount: 5259,
-    title: "Bereavement Therapy",
+    title: "Bereavement Counseling",
     brutalityRating: 1,
     summary:
       "Dr. Karen sees a new patient dealing with a particularly sensitive injury.",
