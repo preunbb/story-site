@@ -86,7 +86,7 @@ window.DATA_STORIES = [
   },
   {
     id: 2,
-    wordCount: 8084,
+    wordCount: 8110,
     title: "Castration Anxiety",
     summary:
       "Jeremy's having the weirdest, most painful nightmares. He's desperately hoping his therapist can help him figure things out.",

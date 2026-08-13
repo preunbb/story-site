@@ -388,7 +388,10 @@ function isDividerBlock(block) {
 }
 
 function splitBlocks(markdown) {
-  return markdown
+  const normalized = String(markdown || "")
+    .replace(/^(\[\[\s*scene\s*:[^\]]+\]\])[ \t]*$/gim, "\n$1\n")
+    .replace(/\n{3,}/g, "\n\n");
+  return normalized
     .split(/\n\n+/)
     .map((b) => b.trim())
     .filter((b) => b.length > 0);

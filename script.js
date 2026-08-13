@@ -3093,7 +3093,11 @@
   }
 
   function storyMarkdownToSafeHtml(markdown, story) {
-    var blocks = markdown.split(/\n\n+/);
+    // Isolate scene-only lines that lack a blank line before/after.
+    var normalized = String(markdown || "")
+      .replace(/^(\[\[\s*scene\s*:[^\]]+\]\])[ \t]*$/gim, "\n$1\n")
+      .replace(/\n{3,}/g, "\n\n");
+    var blocks = normalized.split(/\n\n+/);
     var html = [];
     var chapterIndex = 0;
     function chapterHeading(level, trimmed) {

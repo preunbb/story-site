@@ -25,6 +25,10 @@ export function makeTurndown() {
       );
     },
     replacement(content, node) {
+      // Scene tags must stay bare paragraphs for the reader regex; never wrap them.
+      if (/^\s*\[\[\s*scene\s*:[^\]]+\]\]\s*$/i.test(content)) {
+        return content.trim();
+      }
       const cls = (node.getAttribute("class") || "")
         .split(/\s+/)
         .filter((c) => c.startsWith("doc-font-") || c.startsWith("doc-size-"))
@@ -270,8 +274,15 @@ export function extractBodyHtml(html) {
 export function postProcessMarkdown(md) {
   return (
     md
-      .replace(/^(\[\[scene:[^\]]+\]\]) +(\S.*)$/gm, "$1\n\n$2")
+      // Scene tags must be bare, standalone paragraphs for the reader.
+      .replace(
+        /^(?:<span class="doc-(?:font|size)-[^"]*">\s*)*\[\[\s*scene\s*:([^\]]+)\]\]\s*(?:<\/span>\s*)*$/gim,
+        "[[scene:$1]]",
+      )
       .replace(/^\*\[\[scene:([^\]]+)\]\]\*$/gm, "[[scene:$1]]")
+      // Ensure blank lines around scene tags so split(/\n\n+/) isolates them.
+      .replace(/^(\[\[\s*scene\s*:[^\]]+\]\])[ \t]*$/gim, "\n$1\n")
+      .replace(/^(\[\[scene:[^\]]+\]\]) +(\S.*)$/gm, "$1\n\n$2")
       .replace(/\n{3,}/g, "\n\n")
       .replace(/[ \t]+$/gm, "")
       .trim() + "\n"
