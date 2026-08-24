@@ -118,7 +118,7 @@ window.DATA_STORIES = [
       {
         path: "assets/scenes/castration_anxiety/scene_soccer_v3_foot_on_shoulder.jpg",
         caption:
-          "The nightmare continues with his nightly neutering at the hands of the soccer team. When he wakes up, he realizes his nightmmarish shrinkage is horribly real.",
+          "The nightmare continues with his nightly neutering at the hands of the soccer team. When he wakes up, he realizes his nightmarish shrinkage is horribly real.",
       },
       {
         path: "assets/scenes/castration_anxiety/scene_burdizzo_v5_pre_horror.png",
@@ -1016,7 +1016,7 @@ window.DATA_STORIES = [
     title: "Nash Equilibrium",
     brutalityRating: 5,
     summary:
-      "Cathy runs a game theory experiment. Three male subjects are strapped in and must each cast a vote—selfless or selfish—that will determine the consequences for all of them.",
+      "Cathy runs a fascinating experiment studying the effects of testicular peril on the prisoner dilemma.",
     cover: "assets/scenes/nash_equilibrium/scene_lab_triplets_cathy_v2.png",
     subtitle:
       "The perfect story for the guy looking for more math in their ballbusting stories. Published on Amazon as part of a collection with the title 'Ballbusting Lab'.",
@@ -1558,14 +1558,66 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
+    wordCount: 7215,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
     summary:
       "Over Easy Technologies sells gear and gadgets for many different cases - from automatically extracting semen samples from men to disciplinary devices to self-defense weapons that target one part of the male anatomy in particular. Olivia is excited for her first day on the prestigious job, and can't wait to see behind the scenes exactly how Over Easy keeps the quality of their products consistently high.",
-    state: 1,
+    driveUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vQXqlu0dHrk6GfTY8bRhWB7Nce14VAm8pmWVWoMZanhDSOhhw4IFHZlKY-4OA5dzmn1WTE77fPbp6VJ/pub",
     characterIds: ["zennia", "cathy", "olivia"],
+    state: 2,
+    releaseDate: "2026-08-24",
+    chaptersToPublish: 1,
     tags: ["New to Reddit"],
+    scenes: [
+      {
+        path: "assets/scenes/quality_control/ch01_olivia_attaching_milker_v1.png",
+        caption:
+          "Olivia inspects the XXXL Auto-Milker sleeve before fitting it onto her first QC subject.",
+      },
+      {
+        path: "assets/scenes/quality_control/ch01_milker_first_pump_v1.png",
+        caption:
+          "The milker fires up — Olivia watches the first extraction hit the collection vessel while Cathy tracks his OETF readout.",
+      },
+      {
+        path: "assets/scenes/quality_control/ch01_automilker_first_zap_v1.png",
+        caption:
+          "Cathy and Olivia watch the wall projection as the AutoMilker's electrodes whir to life — gamete count, testosterone, and OETF all begin ticking down.",
+      },
+      {
+        path: "assets/scenes/quality_control/ch01_automilker_zap_readouts_v1.png",
+        caption:
+          "The testicular perfusion monitor flares yellow as active stimulation hits — sperm concentration, testosterone, and fertility index all in freefall while Olivia grins.",
+      },
+      {
+        path: "assets/scenes/quality_control/olivia_milker_pop_macro_v1.png",
+        caption:
+          "Olivia squeezes his left gonad through the stuck milker ring — the shell gives way and its innards squirt through in a wet clump.",
+      },
+      {
+        path: "assets/scenes/quality_control/ch01_left_ball_pop_face_v1.png",
+        caption:
+          "The instant his left ball pops through the ring — his face locks on the wreckage in disbelief.",
+      },
+      {
+        path: "assets/scenes/quality_control/ch01_left_ball_pop_face_olivia_v1.png",
+        caption:
+          "Olivia strains at the stuck milker ring as his left nut finally gives; he screams down at her.",
+      },
+      {
+        path: "assets/scenes/quality_control/olivia_pop_monitor_moment_v1.png",
+        caption:
+          "The wall projection goes red as his left testicle catastrophically ruptures; Olivia watches the OETF crater while he screams behind the glass.",
+      },
+      {
+        path: "assets/scenes/quality_control/olivia_pop_reaction_faces_v1.png",
+        caption:
+          "He shrieks that she popped his ball; Olivia offers an awkward, thrilled half-apology.",
+      },
+    ],
   },
   {
     id: 49,

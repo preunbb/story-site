@@ -325,6 +325,47 @@
     );
   }
 
+  /** True when a markdown block is a chapter heading shown in the reader sidebar. */
+  function isStoryReaderChapterHeadingBlock(block) {
+    return (
+      block.indexOf("### ") === 0 ||
+      block.indexOf("## ") === 0 ||
+      block.indexOf("# ") === 0
+    );
+  }
+
+  /**
+   * Keep only the first `maxChapters` sidebar chapter headings and the prose
+   * under them. Used by `story.chaptersToPublish`. Prefatory content before the
+   * first heading is kept. Omit / non-positive values leave markdown unchanged.
+   */
+  function truncateMarkdownToPublishedChapters(markdown, maxChapters) {
+    if (
+      typeof maxChapters !== "number" ||
+      !isFinite(maxChapters) ||
+      maxChapters < 1
+    ) {
+      return markdown;
+    }
+    var normalized = String(markdown || "")
+      .replace(/^(\[\[\s*scene\s*:[^\]]+\]\])[ \t]*$/gim, "\n$1\n")
+      .replace(/\n{3,}/g, "\n\n");
+    var blocks = normalized.split(/\n\n+/);
+    var out = [];
+    var chapterCount = 0;
+    var i;
+    for (i = 0; i < blocks.length; i++) {
+      var block = blocks[i].trim();
+      if (!block) continue;
+      if (isStoryReaderChapterHeadingBlock(block)) {
+        chapterCount++;
+        if (chapterCount > maxChapters) break;
+      }
+      out.push(block);
+    }
+    return out.join("\n\n");
+  }
+
   function renderStoryReaderMarkdown(story, text) {
     var coverHtml = "";
     if (getAiImagesEnabled()) {
@@ -338,9 +379,13 @@
         }) +
         "</div>";
     }
+    var bodyMd = truncateMarkdownToPublishedChapters(
+      text,
+      story && story.chaptersToPublish,
+    );
     storyReaderArticle.innerHTML =
       coverHtml +
-      storyMarkdownToSafeHtml(text, story) +
+      storyMarkdownToSafeHtml(bodyMd, story) +
       formatStoryPreviewPurchaseHtml(story);
     setupStoryReaderChapters();
   }
