@@ -466,6 +466,11 @@ html:not(.has-local-dist) .tabs .tab[data-tab="ratings"] {
   color: #fff;
 }
 
+.story-state-badge--in-progress {
+  background: rgba(150, 90, 20, 0.95);
+  color: #fff;
+}
+
 .story-state-badge--new {
   background: rgba(25, 120, 55, 0.95);
   color: #fff;
@@ -3215,7 +3220,7 @@ body.preun-local-andrea .local-andrea-status {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
   }
 
-  /* Narrow $ pill to the right of "Coming soon!" / "New story!" */
+  /* Narrow $ pill to the right of "Coming soon!" / "In progress!" / "New story!" */
   .story-premium-tag--in-row {
     display: inline-flex;
     position: static;

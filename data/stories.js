@@ -1567,7 +1567,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vQXqlu0dHrk6GfTY8bRhWB7Nce14VAm8pmWVWoMZanhDSOhhw4IFHZlKY-4OA5dzmn1WTE77fPbp6VJ/pub",
     characterIds: ["zennia", "cathy", "olivia"],
-    state: 2,
+    state: 3,
     releaseDate: "2026-08-24",
     chaptersToPublish: 1,
     tags: ["New to Reddit"],

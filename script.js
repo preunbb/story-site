@@ -203,14 +203,17 @@
     })[0];
   }
 
-  /** 1 = coming soon, 2 = released (default). Legacy `state: 3` maps to released. */
+  /** 1 = coming soon, 2 = released (default), 3 = in progress (partial / ongoing). */
   function normalizeStoryState(s) {
     var st = s.state;
-    if (st === 1 || st === 2) return st;
-    if (st === 3) return 2;
-    if (st === "1" || st === "2") return parseInt(st, 10);
-    if (st === "3") return 2;
+    if (st === 1 || st === 2 || st === 3) return st;
+    if (st === "1" || st === "2" || st === "3") return parseInt(st, 10);
     return 2;
+  }
+
+  /** Coming soon sorts first; released and in-progress share a tier (then by date). */
+  function storyStateSortKey(s) {
+    return normalizeStoryState(s) === 1 ? 0 : 1;
   }
 
   /** True when served from localhost (catalog-only; not GitHub Pages). */
@@ -701,7 +704,8 @@
 
   function storyIsReadable(story) {
     if (!story) return false;
-    return normalizeStoryState(story) !== 1 || storyHasPreviewRead(story);
+    var st = normalizeStoryState(story);
+    return st !== 1 || storyHasPreviewRead(story);
   }
 
   /** Hash target for cast / character-flyout story links. */
@@ -1007,8 +1011,8 @@
   }
 
   function compareStories(a, b) {
-    var sa = normalizeStoryState(a);
-    var sb = normalizeStoryState(b);
+    var sa = storyStateSortKey(a);
+    var sb = storyStateSortKey(b);
     if (sa !== sb) return sa - sb;
     var ta = releaseDateSortKey(a);
     var tb = releaseDateSortKey(b);
@@ -1095,16 +1099,27 @@
   }
 
   function storyStateBadgeHtml(kind, place) {
-    var soon = kind === "soon";
+    var label =
+      kind === "soon"
+        ? "Coming soon"
+        : kind === "in-progress"
+          ? "In progress"
+          : "New story";
+    var text =
+      kind === "soon"
+        ? "Coming soon!"
+        : kind === "in-progress"
+          ? "In progress!"
+          : "New story!";
     return (
       '<span class="story-state-badge story-state-badge--' +
       kind +
       " story-state-badge--" +
       place +
       '" aria-label="' +
-      (soon ? "Coming soon" : "New story") +
+      label +
       '"><span class="story-state-badge-text">' +
-      (soon ? "Coming soon!" : "New story!") +
+      text +
       "</span></span>"
     );
   }
@@ -1130,6 +1145,8 @@
     var html = "";
     if (st === 1) {
       html += storyStateBadgeHtml("soon", "on-cover");
+    } else if (st === 3) {
+      html += storyStateBadgeHtml("in-progress", "on-cover");
     } else if (st === 2 && shouldShowNewStoryBadge(s)) {
       html += storyStateBadgeHtml("new", "on-cover");
     }
@@ -1248,6 +1265,8 @@
       var rowBadgeHtml = "";
       if (st === 1) {
         rowBadgeHtml = storyStateBadgeHtml("soon", "in-row");
+      } else if (st === 3) {
+        rowBadgeHtml = storyStateBadgeHtml("in-progress", "in-row");
       } else if (st === 2 && shouldShowNewStoryBadge(s)) {
         rowBadgeHtml = storyStateBadgeHtml("new", "in-row");
       }
@@ -3688,7 +3707,7 @@
         }),
       );
     }
-    if (normalizeStoryState(story) !== 1 || storyHasPreviewRead(story)) {
+    if (storyIsReadable(story)) {
       var readerCtaLabel;
       if (storyPasswordProtected(story)) {
         readerCtaLabel = "View Full Story";
