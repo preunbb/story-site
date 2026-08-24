@@ -1569,7 +1569,7 @@ window.DATA_STORIES = [
     characterIds: ["zennia", "cathy", "olivia"],
     state: 3,
     releaseDate: "2026-08-24",
-    chaptersToPublish: 1,
+    chaptersToPublish: 2,
     tags: ["New to Reddit"],
     scenes: [
       {
