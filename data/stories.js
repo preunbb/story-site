@@ -86,7 +86,7 @@ window.DATA_STORIES = [
   },
   {
     id: 2,
-    wordCount: 8110,
+    wordCount: 8108,
     title: "Castration Anxiety",
     summary:
       "Jeremy's having the weirdest, most painful nightmares. He's desperately hoping his therapist can help him figure things out.",
@@ -311,7 +311,7 @@ window.DATA_STORIES = [
   },
   {
     id: 10,
-    wordCount: 7943,
+    wordCount: 7935,
     brutalityRating: 4,
     title: "The Ballbusting Arena 5: First Times",
     summary:
@@ -1558,7 +1558,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 7215,
+    wordCount: 7212,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
