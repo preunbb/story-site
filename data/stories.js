@@ -836,7 +836,7 @@ window.DATA_STORIES = [
   },
   {
     id: 27,
-    wordCount: 9324,
+    wordCount: 9326,
     title: "Living with Ballbusting Witches",
     brutalityRating: 3,
     summary:
@@ -1558,7 +1558,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 7212,
+    wordCount: 13636,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
@@ -1569,7 +1569,7 @@ window.DATA_STORIES = [
     characterIds: ["zennia", "cathy", "olivia"],
     state: 3,
     releaseDate: "2026-08-24",
-    chaptersToPublish: 2,
+    chaptersToPublish: 3,
     tags: ["New to Reddit"],
     scenes: [
       {
@@ -1616,6 +1616,11 @@ window.DATA_STORIES = [
         path: "assets/scenes/quality_control/olivia_pop_reaction_faces_v1.png",
         caption:
           "He shrieks that she popped his ball; Olivia offers an awkward, thrilled half-apology.",
+      },
+      {
+        path: "assets/scenes/quality_control/ch02_boysnapper_device_v1.png",
+        caption:
+          "The BoySnapper™ scrotal stretcher — twin steel plates, central iris clamp, and Over Easy branding.",
       },
     ],
   },

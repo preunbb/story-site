@@ -1,0 +1,261 @@
+[full story](https://preunbb.github.io/story-site/share/48.html)
+
+# Chapter 1: XXXL AutoMilker
+
+Inside was a clear, rubbery object, shaped like some combination of an oversized chastity belt and a fleshlight. A droopy translucent sack hung below its long phallic body. The whole thing was clear rubber, save for the stiff black ring at its base.
+
+Olivia could take a guess where she would attach it, but she made sure to read the instructions inside the tube first.
+
+“An…automilker?”
+
+“Yup. I’m sure you can guess what it does; it’s basically what it sounds like. We sell them to hospitals for taking semen samples from unconscious or unwilling men, and to prisons for wardens to use as rewards for obedient inmates…or, sometimes, punishment.”
+
+“Punishment? Doesn’t it…’milk’ them? I don’t see how that can be a punishment.” Olivia picked up the thing with two fingers, looking at it disgustedly. It was definitely not one of the self-defense tools she’d been hoping to test. The nude stud strapped to the wall was staring at it, wide-eyed but eager, his previous objections to testing forgotten.
+
+“A single milking? Yeah, it’s not much of a punishment. But this lil guy can suck absolutely every drop of cum out of a man, even when he’s well past enjoying it. Trust me, a denied inmate or patient might be grateful for the first, second, or even third sample it extracts, but once he’s well into his thirtieth cumshot and his overstimulated cock can barely produce a painful trickle of water, he’ll beg to stop. The best part is, the courts ruled that it’s technically not torture!” The naked stud’s optimistic look had vanished. He now struggled and shook against his restraints again, even as his cock gave an involuntary twitch at the promise of what was to come. Cathy and Olivia ignored him.
+
+“There should be a set of test procedures in the tube. Read them thoroughly, then follow them, then report any irregularity.” Cathy unfolded the square of paper and read it through.
+
+“Let’s see. You’ll need an erection first, sir.” Olivia eyed the half-hard cock before her. “This shouldn’t be too hard.”
+
+Donning a pair of latex gloves, Olivia squirted a few dollops of lube from the nearby dispenser and got to work. One hand wasn't quite enough to fit all the way around his cock, so she circled his glans with both and slid her hands down, slowly and lovingly coating his entire length in slipperiness. Then she began to jerk, her hand sliding smoothly up and down the massive pink organ. She looked up at him and smiled, well aware he had a great vantage point to look directly down her rhythmically jiggling cleavage.
+
+As much as she loved destroying their balls, Olivia was well acquainted with the less painful bits of male anatomy, and in no time she had his flagging cock stiff and quivering. When she’d got him right on the edge, as indicated by the fine spray of precum each rapid stroke liberated out of his cock and onto her expensive new blouse, she stopped. His moans took on a whiny tone as she unclipped the ring at the base of the milker.
+
+The thing was massive, the label proclaiming it “XXXL”, yet the stiff plastic ring looked just barely large enough to fit around the base of his cock and balls. She slid the sleeve over his slippery member, then lifted his balls up and attempted to navigate them into the matching translucent silicone pouch below.
+
+A generous dollop of lube smeared around his nutsack helped ease them inside, but even so, she had to use a fair amount of force to stretch the pouch large enough to cram both plum-sized gonads inside. Ignoring his pained squeaks, she pulled the ring down around the entirety of his cock and balls and forced it closed, securing the entire package neatly inside its slick, tight prison. Snapping the ring shut around the base of the constrained manhood took just about all of her strength.
+
+“Good job! Don't be afraid to put your back into it. That's definitely a tight fit.”
+
+“Should we have sized him up?” Olivia asked. “Tested a larger model on him?”
+
+“If we *had* a larger model, sure. But this is the largest milker we make. It doesn’t quite fit guys way on the end of the size distribution, like our well-endowed subject here, but it's just not economical to manufacture a special size for the one in ten thousand men too large to fit in an XXXL milker. If a hospital or prison actually needed to milk him for some reason, they'd have to cram him into one this size anyway.”
+
+Cathy smirked. “Besides, you can see from his readout his fertility is still well within healthy bounds, despite the discomfort he's feeling.”
+
+The translucent silicone was stretched taut, and his formerly relaxed, saggy balls bulged against it. Olivia could see the flesh-colored orbs gradually turning white, angry blue veins pulsing against the surface.
+
+“And they tend to shrink a bit as their cum drains out. Here, attach the collection tube and let's fire it up.” The man was whimpering, but Olivia couldn't tell if it was from pain or anticipation. She screwed the rubber hose connecting the large empty cylinder to the collection port at the top of his cock. Then she flipped the switch on the side of the contraption, and the silicone sleeve whirred to life.
+
+The rubber cock sleeve began pumping, contracting and expanding slowly and rhythmically, squelching wetly with lube and precum. Olivia watched as it squeezed the head of his cock, then contracted down his shaft, then expanded again, the pouch stuffed full with his balls doing the same. She could see his balls roiling inside the tight rubber pouch, squeezed one way and then another, their sensitive insides warped and rearranged as the medical device attempted to shake loose every possible sperm inside. He whimpered and drooled behind the gag, but Olivia could see his cock disobeying his wishes, his knees turning inwards as the pitch of his whimpers rose, the sleeve speeding up and tightening and twisting until —
+
+“Ggh! *MMMMFFGGGHH!*”
+
+A gout of white goo squirted into the collection vessel, the lucky subject bucking his hips forward as his orgasm was forcibly pulled out of him. The sleeve milked him mercilessly, speeding up even as his climax seemed to subside, cruelly rubbing against his overstimulated cock until another weak stream of cum dribbled out pathetically, much to his obvious chagrin. Then the sleeve went still.
+
+Olivia turned her attention to the testicular readout. Both balls had gone from a healthy green to a slightly yellowish shade of green, the meter readouts indicating that a significant amount of sperm had been dislodged (unsurprisingly) and (more surprisingly) that his sperm count had been slightly reduced.
+
+“Hm. His fertility’s down a little — that’s irreversible, right? I think the pouch actually is too small for him.”
+
+Cathy squinted and nodded slowly. “Good catch. Looks like we might want to consider actually making a larger line of milkers — the FDA could fine us if they find out especially large guys can get permanently injured from this one.” She rolled her eyes. “Ugh, that’s going to be expensive.”
+
+“You said this wasn’t one of the quality control tests we should be breaking balls in, and we’re literally killing his balls here, right? So should we stop our test?”
+
+Cathy stared at Olivia for a silent beat. Then she broke into laughter.
+
+“You’re hilarious!” Cathy wiped the tears from her eyes when she finished laughing. “Of course we need to make sure this one’s working as expected. We can still sell it for like, guys who are large — just not freaks like him.”
+
+Olivia smiled. “Okay. Cool! I mean, I figured with how you were talking about it, we’d need to be more careful, but to be honest…I’m glad I get to start killing balls right away.” Her eyes widened at what she’d just said out loud. “I mean, I’m dedicated to the Over Easy mission, of course, but —”
+
+“But you were most excited about this internship because you knew you’d get to bust an endless series of restrained testicles, and hopefully lower some sperm counts,” Cathy finished for her. “Of course. That’s perfectly natural; lord knows that’s why I started my career here.” She winked. “You’re a little turned on by castration, aren’t you?”
+
+Olivia blushed.
+
+“Relax. If we fired every girl who was a little kinky, we’d have no employees left.”
+
+“Y…yeah. Sorry, I’m a little embarrassed about it. But I’ve always found it so fucking *hot* when a guy loses his balls. I’ve just never met someone who talks about it so openly.”
+
+The subject on the wall let out an agonized wail, his balls flattened as the milker forcibly squeezed another orgasm out of him like toothpaste from a tube.
+
+“Welcome to Over Easy! You’ll get used to it. That’s the benefit of a company by women, for women, and *of* women. We don’t have to hide our natural urges from each other or be embarrassed or ashamed of our kinks. There’s a break room down the hall when you take your break. You can do a little unstructured ‘quality control’ on our line of sex toys, vibrators, and dildos. Trust me, you’ll need to blow off steam to keep your head in the game here. Just make sure to clean them off when you’re done for the next girl; there’s a little sanitization station in there for after you’re done cumming your brains out.”
+
+“Thanks, that’s…really convenient.” Olivia blushed, deeply embarrassed but already starting to get wet between her thighs. Over Easy sex toys were *legendary*, and while she had a couple vibrators, she couldn’t afford the pricier product lines. She couldn’t wait to try them out.
+
+“Mmmmmmmmfff…MmmfffmffffHN*NNNGGGH!!*”
+
+The male subject’s protests were muffled behind his gag. He bucked forward, his eyes rolling back into his head as the sleeve chafed and twisted around his bright-red cockhead. Overstimulated as it was, the milker needed to stroke him extra hard and fast to force another painful orgasm out of his tortured ballsack. It barely gave him seconds for a refractory period this time, stopping briefly then resuming with even more vigor. In the plastic sack, his balls were a kaleidoscope of colors; dull white where the milker was currently squeezing him pancake-flat, dark blue and purple in places it had stopped squeezing and left him badly bruised, and an unfortunately deep black in a few badly crushed regions. Comparing his balls to the projection, Olivia could see the regions of his balls that would be permanently dead, as well as the healthier regions slowly but surely degrading beneath the pressure of the undersized device.
+
+She casually watched for the entire duration of the test. It seemed to take forever. She counted his orgasms manually before seeing that a helpful display tracked it for her, right beneath the array of numbers showing his sperm count being slowly whittled down.
+
+At twenty orgasms, his begging faded, and he went limp against his restraints. He’d finally accepted the overstimulation and pressure and torture he’d signed up for. Olivia walked up to him and removed his ballgag.
+
+“Okay. Okay. It’s okay. I’ll live. I just need to…need to finish. This hurts, and it’s so sensitive, but I…I can get used to —”
+
+The electrodes hidden in the testicular sleeve whirred to life, and his eyes went wide.
+
+“Oh, I always *love* this part,” Cathy said.
+
+**ZAP**
+
+“AAAAUGH! Why, god *WHY!* MY BALLS….It’s frying my fucking BALLS! Turn it off, *please!*”
+
+“Good luck getting used to that!” Olivia quipped. The sleeve went back to squeezing and milking him, harder and faster and even more merciless than before.
+
+“See, the voltage being driven through his nuts is totally random,” Cathy explained. “The milker might send a moderately high voltage for a second, then ramp down to a pleasant buzz, then go up to the absolute limits of its safety parameters, all totally at random, and totally non-repeating. Guys tend to get used to the squeezing and the milking at some point but the electrostimulation really keeps them on their toes. That sort of novel sensation — even if it’s not exactly *pleasant* — sort of resets all the sensations the milker’s already saturated, and lets us go beyond what his body thinks is possible. We can milk semen out of him from deep inside his testicles, even some that’s raw or barely formed, in a way that no natural orgasm ever could.”
+
+He shrieked in agony.
+
+“It’s…a bit of a unique sensation, so I’m told.”
+
+“I bet,” Olivia replied, staring avariciously at the testicles frying before her. She imagined the current flowing through them, an errant twitch of voltage frying millions of potential children, sperm going belly-up and disintegrating without the dream of a chance of ever reproducing. His sobbing had returned, and while he no longer wasted his breath begging, he babbled an endless stream of pain-soaked sounds, nearly comprehensible but nothing quite forming into words as the electrical shocks through his testicles repeatedly sent him gasping and coughing in pain.
+
+The shocks got louder and louder, growing and fading in intensity more erratically as his orgasm counter slowly but steadily ticked up. Each painful cumshot took marginally longer to extract than the last, and by forty-five, the milker only managed to pull a thin string of greyish white every ten minutes. By fifty, he was finally completely limp. The device went to maximum stimulation in a final attempt to get everything out of his balls, and Olivia watched and listened in glee to the wet crackling of electricity pulsing through his nuts, the sound of nutmeat boiling into sterility nearly loud enough to drown out his screaming. Above his ballsack, the cocksleeve pumped away as hard and fast as it could, but the limp worm inside failed to respond.
+
+His prodigious cock had shrunk up into a tiny macaroni, all vigor finally pulled out of it. Beneath, his formerly impressive ballbag had shrivelled up similarly. No longer taut and pulsing with billions of teeming, living sperm, the orbs were probably a full third smaller in volume than when he came in, and their smooth healthy surface was now pitted with electrical burns and softened divots where the milker had squeezed especially hard.
+
+Olivia read through his chart. His active sperm count was zero, obviously; not a single living swimmer lived anywhere in his ballsack. His predicted sperm count looked to be about 50% of what he had when he entered; the device had certainly done extensive damage, but he’d have no particular difficulty reproducing. And his hormones appeared to be completely unchanged; she hadn’t lowered his testosterone a drop. Olivia tried to keep her demeanor professional over her disappointment.
+
+Anyway, there were still so many other tests to go through, and she’d been lucky enough that she’d got to see a guy lose half his sperm count to a test that should’ve been completely non-damaging.
+
+“Alright! Great first test, Olivia. Looks like our lucky guy is finally tapped out.”
+
+“Thank…thank God. Jesus Christ, my fucking *balls*. And my dick. That thing…that thing is *horrific*. That’s torture. I’d rather die than go through that. How…how is that *legal*?!” He bawled.
+
+“It’s just a seminal milking, sir. Hospitals all around the world perform thousands of these a day. I’m sorry you’re not accustomed to the feeling, but we’re medical professionals here, and trust us, there’s nothing wrong with the product. Admittedly, your testicles were a bit too large for this model, but that’s really an issue with *you*, not the milker,” Cathy informed him smugly.
+
+“Now Olivia, just unclip the milker and detach it from him, and we can move on to our next test.”
+
+“Sure thing!” She reached around the ring at the base of his dick and attempted to unlatch it.
+
+“Um, it’s not opening.”
+
+“Hm. The milker should automatically release the ring when it detects he’s emptied. There’s not really anything to unlatch.” Cathy frowned.
+
+“Please…please just get this thing off me and let me go home,” the subject begged them weakly.
+
+“Sir, please remain silent. Okay, I’ve seen this happen before. This is super annoying” Cathy sighed.
+
+“We recently changed suppliers on our testicular rings to cut costs, and the new supplier uses much cheaper sensors to detect when they’re supposed to release. About one in a thousand are fully defective, like this, and the milker will never release. Looks like we got one of the duds.”
+
+“Oh. So, we just let him take it home?”
+
+“Olivia, that is a two hundred and fifty thousand dollar piece of medical equipment.”
+
+“Right. So…”
+
+“So we have to get it off of him.”
+
+“How?” asked Olivia.
+
+“Yeah, how…Oh no. No no *no*,” he whispered, visibly distressed by the answer all three of them had converged on.
+
+“Ah.” Olivia looked up at Cathy, who nodded her approval, then turned to the drained pair of gonads trapped before her.
+
+“Sorry, sir,” Olivia said, not bothering to hide her grin. “I’m going to need to pull it off you.”
+
+“That…How would that work? How *can* that work?” He said, in growing horror.
+
+“Well, I’ll have to remove each of your testicles from their pouch, then sort of…squeeze them through the ring. I know it’s a tight fit, but there’s a bit of a gap between the hard plastic and your penis, and with your balls shrunken down and your dick mostly flaccid, I think it’ll work.”
+
+He stared down at the base of his dick. Despite their abuse, his balls were still at least the size of chicken eggs, and the tiny gap between the plastic ring and his cock was barely a centimeter wide.
+
+“No. No, no no. It…they can’t fit. No way can they fit.”
+
+“Relax. Gonads are more malleable than you think. I’ll get this off you and send you on your way in no time,” Olivia said sweetly.
+
+“NO!” But she ignored him. Grabbing his slightly smaller right ball, Olivia rotated it around, lining up the thinnest part of his gonad, the top, with the ring at the base of his dick. Then she set both of her thumbs against the other side and began to push.
+
+At first, she made no progress, the testicle unwilling to yield its shape to slip through the gap. Biting her lip and squinting, Olivia pressed both thumbs into the bottom of the thing as hard as she could. She was rewarded with earsplitting screeches from him and a sickeningly wet *crunch* from his testicle, and finally, a bubble of shiny taut nutflesh appeared on the other side of the ring. Encouraged, she continued pressing in hard hard, feeling the internals of his babymaker warping beneath her fingers. She imagined the tightly-wound squiggles of nutmeat between her fingers, loosening and shifting and rearranging until they could fit through the tiny gap and squirt out the other side. The readout on the screen confirmed his sperm count was still dropping precipitously.
+
+Minutes passed as she agonizing chunk after chunk of nutmeat squirted through the gap through, until finally, she was halfway through. The plastic ring was cinched tightly halfway down his nut, distorting the former oval into a pinched hourglass shake. Olivia removed one hand from the trapped half of his nut and grabbed the much softer region that had made it past the ring. Pinching the sensitive bubble of loosened nutflesh, she began to *pull*.
+
+“*AAAAIIIIII! NOT THE OTHER HALF, PLEASE STOP PINCHING STOP STOP STOP IT’S TOO SENSITIVE! OH GOD! FUCKING JESUS* ***CHRIST*** *HOW CAN ANYTHING HURT THIS MUCH?!”*
+
+“Please, sir, we’re almost there. Take a deep breath and calm down, it’s just a little pain.” *And a much lower sperm count,* Olivia thought to herself, grinning.
+
+She could tell there was a sort of density gradient on each of the two sides. The trapped half of his ball was still fairly solid feeling, but after it had passed through the milker’s harness, it felt much mushier, its texture closer to soft taffy than healthy testicle. The readout on the projection confirmed her intuition: being extruded through a gap a tenth of its width was doing no favors to his fertility. He wouldn’t be completely sterile when she was finished, but he’d be making a fraction of the swimmers he used to. She savored the feeling of sperm ducts twisting around and epididymal walls giving way as she finished freeing half of his manhood from the faulty device, pushing and pulling it apart from both directions.
+
+Finally, his right ball hung entirely outside the silicone pouch, liberated at last. The man’s breathing was shallow and hitched, his eyelids fluttering as he skated on the brink of a nutpain-induced coma.
+
+“There we go! The big guy is free at last! Although, he’s not quite as big as he used to be.” She wiggled the freed ball around beneath him. It jiggled like a loosely filled water balloon, its volume clearly less than a half of what it had been, and he groaned in pain at the minuscule stimulation. The chart on the wall showed his OETF down to 37.5%. Olivia figured that meant his freed right ball was down to a quarter of its potential, and his still-trapped left one was only half-dead. By the time she was done extruding it too, he’d probably only have a quarter of his manhood left. The thought made her drench her pantyhose.
+
+“Now, for the left ball.”
+
+“Please…I can’t take any more.” He was trembling in fear. “My left one is bigger. I…I don’t think it’ll fit.”
+
+“Sir, it’s fine. The size difference between your testicles is minimal. I’m sure I’ll be able to work it through with a bit of elbow grease. Just try to think of something else to get through the pain, okay?”
+
+“Something else.” He said dully.
+
+“Yeah. Think of something pleasant, or complicated, or just…I don’t know, anything. A movie you saw recently, maybe. It’s just a bit of pain. You really can get over it if you try a bit harder.”
+
+“A bit of pain.” He repeated.
+
+“Yeah.” Olivia swallowed, then shrugged. “I mean…I guess. I don’t know what it feels like. I just have to do my job, and my job is taking your milker off. So, let’s get to it.”
+
+She gripped his slightly larger left ball. Twisting it around again, lining it up with the gap, she repeated her previous procedure. Pressing in hard, her thumbs sank into the bottom of his nut, but even with all of her weight pressing down the thing wouldn’t budge.
+
+“*STOP!”* He shook his body, uselessly trying to get her off his trapped, healthier nut.
+
+“I promise, sir, this will all be over soon.” She redoubled her efforts, and her thumbs sank deeply into his ball. She felt the promising *crunches* beneath, his testicular matter rearranging itself haphazardly against her fingers, but his ball still stubbornly refused to go through the gap, even as it gave way beneath, her thumb dimpling his drained-dry nut. Pressing harder and harder, his ball gradually yielded and softened beneath her pressure but refused to squirt through the gap.
+
+He stared gape-jawed at the diagram of his balls, watching the OETF meter slowly creep down as the red splotches across his left ball spread and spread, healthy green giving way to warning yellow, yellow giving way to red, and still Olivia pressed in, deeper and harder and *stronger*, her toned arms quivering with effort, beads of sweat clouding her vision, so sure that the tiny difference in size between the two balls didn’t matter, if his right fit through his left should too, she just needed to squash it until it was flat enough to —
+
+All at once, his left ball shot through the gap.
+
+*Pop*
+
+…And emerged on the other side in pieces, the backside of his nut’s shell blasting apart as it finally gave up and expelled its innards in a clump of limp mush. Fully separated from each other, his nutshell and ballmeat formed two separate discrete chunks, splurting through the gap and pooling limply together at the bottom of his scrotum. The larger chunk, made up of the ultra sensitive, important tangle of cords and ductules that had previously made up the internals of his gonad, held their spherical shape for an instant before untangling into formlessness. His OETF abruptly dropped down from 37.5% to 12.5%.
+
+“Oh. Oops.”
+
+He stared at the diagram for a beat, the image of his left ball now entirely black. Errors and klaxons cluttered up the display, helpfully informing him that he’d just experienced a catastrophic testicular rupture.
+
+Then the pain finished travelling up his nerve endings, and his brain made sense of the inhumanly high signals radiating from his crotch, and he shrieked.
+
+“MY BALL! YOU POPPED MY *BALL!*” Turning his head to the side, he dry-heaved, before resuming his shrieks. “Oh god, it’s mush, it’s fucking *mush!* WHAT DID YOU DO?!”
+
+“Yeah…” Olivia said awkwardly. “Sorry about that. We can try to get you to the hospital, but I really don’t think there’s enough left to sew up.”
+
+“Ah.” Cathy joined Olivia in front of the man, using her pen to roll his ballsack around and inspect its contents, poking and further untangling the slippery mush that had been half of his manhood. “Yeah, that's a total rupture.”
+
+“STOP…STOP *POKING IT!*” He coughed and gagged, as if he was physically choking on his balls, then his eyes rolled back into his head and he finally passed out. As much as Olivia loved hearing his shrieks of pain, the talking was starting to get truly annoying.
+
+“Yeah. I’m sorry, I just —”
+
+“No, it’s fine. The waiver he signed absolved us of all culpability, and gives us complete rights to any testicular or penile injuries, removals, or destructions necessary to carry out our quality control process. I’m just noting it for the record. These things happen. And frankly, I didn’t see another way to get the device off him without damaging it.”
+
+“Couldn’t we just have snapped the ring off and replaced it without breaking the whole device? You said they were pretty cheap, right?”
+
+“That’s not our usual protocol.”
+
+“It would’ve saved his testicle though, right?”
+
+“Olivia, look. The point is, you did your job just fine. The milker operated well within expected parameters. We’ll just need to tell our sales reps to remind customers not to overstuff the device with statistically anomalous testicles. Besides that, this test went off without a hitch.”
+
+Cathy’s pen probed further into the mush-filled ballsack in front of her face, sliding into the hole in his busted nutshell and poking against the tattered remains of his left epididymis. Its owner groaned and stirred awake, forcibly pulled from the painlessness of sleep back to the cruel real world with his real ruptured testicle. He sobbed quietly as Cathy twirled her pen around, thoughtlessly grinding it against the inside of his emaciated testicle.
+
+“Now that our test is done, we can debrief our subject. Pay attention to how I do it; I’ll let you do the next one,” Cathy smiled. “And, as hot as this is, OverEasy does need you to stay professional until your break. Olivia.”
+
+Olivia realized her hand had crept beneath her waistband without her even noticing. Mortified, she yanked it away, gasping in denial as her fingers left her clit. Cathy turned to face the man.
+
+“So, you’re finished with your milker test. As I'm sure you’re aware, your left testicle did undergo an irreversible rupture. I’m not technically a doctor, but I’ve seen my fair share of testicular injuries, and I just want to give you a heads up — it is going to have to be removed.”
+
+She maintained eye contact with him. Olivia thought it was a stupidly obvious thing to say, but she could tell from the light leaving his eyes he’d still been hoping to salvage it. She tried to capture a mental photograph of that exact instant, an expression of total defeat settling on his tear-soaked face. She’d emptied her fair share of scrotums with her trusty self-defense weapons, but she never got to stick around and really see the effects of their testicular ruptures on her attackers. Getting to watch a guy have to deal with the aftermath and go through the total mental anguish that came with the destruction of his body, his sexuality, and the core of his male identity all at once was so exquisitely deliciously erotic. Olivia bit her lip as wetness seeped down her thighs.
+
+“Your right testicle is down to about a quarter of its fertility and hormonal capacity, but it still technically works. You should be able to father children, eventually. Although you’ll be shooting blanks for at least a month after a milking that thorough.
+
+“Thank…thank God.” His voice was hoarse and high-pitched. Rivulets of cold sweat coursed down his sculpted six-pack, dripping off his limp cock and lopsided ballsack.
+
+“Hopefully your next test is a little easier on your last gonad.”
+
+He blinked in confusion.
+
+“Next…test?”
+
+“Yeah. If you remember your contract, you signed over *both* your testicles in the waiver, and OverEasy reserves the right to continue testing you as long as you’re able to fill part of that bargain,” Cathy explained helpfully.
+
+“But…you said. You said I was done. I don’t…I can’t make any more cum. You took it all. Before you’d even popped my nut, it…you *drained* me.”
+
+“I said the *milker* test was done. You’re right, obviously we can’t milk anything more out of you now; this girl sucked every drop of fertility you had to give us right out you! But there’s tons of other quality control labs in this building alone! Let me see if any of those girls need you.” Cathy tapped away at the control pad until it lit up green and chimed a confirmation sound.
+
+“Yup! Looks like Home Goods can use you. They’ve got this new line of kitchen gadgets — garlic presses, citrus reamers, egg slicers, that sort of thing — they’re looking to test out. And they’ve only tested on full ballsacks so far. They really need to see how the products perform with a half-man like you, and they don’t need you to have any sperm left in your ball for their tests.”
+
+Cathy pretended to wince in sympathy, but Olivia could see her grinning. “Oof. Looks like it’s mostly about seeing how the products hold up in comparison to your last gonad’s structural integrity. If you really wanted to have kids, well…best of luck up there!”
+
+“*WHAT?!* NO!” He shrieked. But Cathy just pressed a button, and the motors on the wheels of his frame whirred to life. He rolled along the rails behind, still tightly tied to the frame, shrieking with each mechanical jolt of his shattered ball.
+
+“Okay! That went really well. On to our next test!” Cathy said cheerily.
+
+---

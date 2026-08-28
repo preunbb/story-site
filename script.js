@@ -2544,6 +2544,7 @@
   }
 
   // Hash: tabs (#stories, …), #character/<id>, #story/<id>, #story/<id>/read,
+  //       #story/<id>/read/<n> (1-based chapter from the reader sidebar),
   //       #scenes/<id> (auto-expand that story's accordion)
   var TAB_IDS = [
     "stories",
@@ -2597,7 +2598,17 @@
       var num = parseInt(storyIdRaw, 10);
       var sid = String(num) === storyIdRaw ? num : storyIdRaw;
       var readMode = parts[2] === "read";
-      return { tab: "stories", storyId: sid, readMode: readMode };
+      var chapter = null;
+      if (readMode && parts[3]) {
+        var chNum = parseInt(parts[3], 10);
+        if (String(chNum) === parts[3] && chNum >= 1) chapter = chNum;
+      }
+      return {
+        tab: "stories",
+        storyId: sid,
+        readMode: readMode,
+        chapter: chapter,
+      };
     }
     if (first === "scenes" && parts[1]) {
       var scStoryRaw = parts[1];
@@ -2936,6 +2947,12 @@
   var readerChapterScrollHandler = null;
   var readerChapterHeads = [];
   var readerChapterBtns = [];
+  /** 1-based chapter to scroll to after markdown renders; cleared once used. */
+  var pendingReaderChapter = null;
+  /** Last 0-based chapter written to the hash via scroll/click sync. */
+  var lastSyncedReaderChapter = null;
+  /** Skip scroll-spy hash writes during programmatic chapter jumps. */
+  var suppressChapterHashSync = false;
 
   function decodeMarkdownUrlEntities(s) {
     return s
@@ -3253,8 +3270,69 @@
         active = i;
       }
     }
+    setStoryReaderChapterHighlight(active);
+    syncStoryReaderChapterHash(active);
+  }
+
+  /**
+   * Reader deep-link: #story/<id>/read or #story/<id>/read/<n> (1-based sidebar
+   * chapter index). Uses replaceState so scroll sync does not re-fire applyHash.
+   */
+  function storyReaderHash(storyId, chapterOneBased) {
+    var h = "#story/" + String(storyId) + "/read";
+    if (
+      typeof chapterOneBased === "number" &&
+      isFinite(chapterOneBased) &&
+      chapterOneBased >= 1
+    ) {
+      h += "/" + Math.floor(chapterOneBased);
+    }
+    return h;
+  }
+
+  function replaceStoryReaderHash(storyId, chapterOneBased) {
+    var newHash = storyReaderHash(storyId, chapterOneBased);
+    var cur = "#" + (location.hash || "").replace(/^#/, "");
+    if (cur.toLowerCase() === newHash.toLowerCase()) return;
+    try {
+      history.replaceState(null, "", newHash);
+    } catch (_e) {
+      location.hash = newHash.replace(/^#/, "");
+    }
+  }
+
+  function syncStoryReaderChapterHash(chapterIndex0) {
+    if (suppressChapterHashSync) return;
+    if (!readerStory || readerStory.id == null) return;
+    if (
+      typeof chapterIndex0 !== "number" ||
+      !isFinite(chapterIndex0) ||
+      chapterIndex0 < 0
+    ) {
+      return;
+    }
+    if (lastSyncedReaderChapter === chapterIndex0) return;
+    var oneBased = chapterIndex0 + 1;
+    var state = parseHash();
+    // Keep bare #story/<id>/read while still on the first chapter unless the
+    // URL already named a chapter (or the user jumped via the sidebar).
+    if (
+      state.readMode &&
+      String(state.storyId) === String(readerStory.id) &&
+      state.chapter == null &&
+      oneBased === 1
+    ) {
+      lastSyncedReaderChapter = chapterIndex0;
+      return;
+    }
+    lastSyncedReaderChapter = chapterIndex0;
+    replaceStoryReaderHash(readerStory.id, oneBased);
+  }
+
+  function setStoryReaderChapterHighlight(activeIndex) {
+    var i;
     for (i = 0; i < readerChapterBtns.length; i++) {
-      var on = i === active;
+      var on = i === activeIndex;
       readerChapterBtns[i].classList.toggle("is-active", on);
       if (on) {
         readerChapterBtns[i].setAttribute("aria-current", "location");
@@ -3262,6 +3340,45 @@
         readerChapterBtns[i].removeAttribute("aria-current");
       }
     }
+  }
+
+  function scrollStoryReaderToChapter(chapterOneBased, behavior) {
+    if (!storyReaderScroll) return false;
+    if (
+      typeof chapterOneBased !== "number" ||
+      !isFinite(chapterOneBased) ||
+      chapterOneBased < 1
+    ) {
+      suppressChapterHashSync = true;
+      storyReaderScroll.scrollTop = 0;
+      setStoryReaderChapterHighlight(0);
+      lastSyncedReaderChapter = 0;
+      suppressChapterHashSync = false;
+      return true;
+    }
+    if (!readerChapterHeads.length) return false;
+    var idx = Math.floor(chapterOneBased) - 1;
+    if (idx < 0) idx = 0;
+    if (idx >= readerChapterHeads.length) idx = readerChapterHeads.length - 1;
+    var head = readerChapterHeads[idx];
+    if (!head) return false;
+    suppressChapterHashSync = true;
+    head.scrollIntoView({
+      behavior: behavior || "auto",
+      block: "start",
+    });
+    setStoryReaderChapterHighlight(idx);
+    lastSyncedReaderChapter = idx;
+    if (readerStory && readerStory.id != null) {
+      replaceStoryReaderHash(readerStory.id, idx + 1);
+    }
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        suppressChapterHashSync = false;
+        updateStoryReaderChapterHighlight();
+      });
+    });
+    return true;
   }
 
   function teardownStoryReaderChapters() {
@@ -3274,6 +3391,7 @@
     }
     readerChapterHeads = [];
     readerChapterBtns = [];
+    lastSyncedReaderChapter = null;
     if (storyReaderChaptersNav) {
       storyReaderChaptersNav.innerHTML = "";
       storyReaderChaptersNav.hidden = true;
@@ -3294,7 +3412,7 @@
     var ul = document.createElement("ul");
     ul.className = "story-reader-chapters-list";
     for (var i = 0; i < readerChapterHeads.length; i++) {
-      (function (head) {
+      (function (head, chapterIndex0) {
         var li = document.createElement("li");
         var level = head.classList.contains("story-reader-chapter--h2")
           ? "h2"
@@ -3305,12 +3423,12 @@
         btn.className = "story-reader-chapters-link";
         btn.textContent = head.textContent || "";
         btn.addEventListener("click", function () {
-          head.scrollIntoView({ behavior: "smooth", block: "start" });
+          scrollStoryReaderToChapter(chapterIndex0 + 1, "smooth");
         });
         li.appendChild(btn);
         ul.appendChild(li);
         readerChapterBtns.push(btn);
-      })(readerChapterHeads[i]);
+      })(readerChapterHeads[i], i);
     }
     storyReaderChaptersNav.appendChild(ul);
 
@@ -3327,7 +3445,25 @@
     storyReaderScroll.addEventListener("scroll", readerChapterScrollHandler, {
       passive: true,
     });
-    updateStoryReaderChapterHighlight();
+
+    var pending = pendingReaderChapter;
+    pendingReaderChapter = null;
+    if (pending == null) {
+      var hashState = parseHash();
+      if (
+        hashState.readMode &&
+        readerStory &&
+        String(hashState.storyId) === String(readerStory.id) &&
+        hashState.chapter != null
+      ) {
+        pending = hashState.chapter;
+      }
+    }
+    if (pending != null) {
+      scrollStoryReaderToChapter(pending, "auto");
+    } else {
+      updateStoryReaderChapterHighlight();
+    }
   }
 
   /**
@@ -3344,41 +3480,7 @@
     return new URL(path, location.origin).href;
   }
 
-  var SHARE_LINK_BUILDERS = [
-    {
-      id: "story-reader-share-twitter",
-      build: function (title, url) {
-        return (
-          "https://twitter.com/intent/tweet?text=" +
-          encodeURIComponent(title) +
-          "&url=" +
-          encodeURIComponent(url)
-        );
-      },
-    },
-    {
-      id: "story-reader-share-bluesky",
-      build: function (title, url) {
-        return (
-          "https://bsky.app/intent/compose?text=" +
-          encodeURIComponent(title + " " + url)
-        );
-      },
-    },
-    {
-      id: "story-reader-share-reddit",
-      build: function (title, url) {
-        return (
-          "https://www.reddit.com/submit?url=" +
-          encodeURIComponent(url) +
-          "&title=" +
-          encodeURIComponent(title)
-        );
-      },
-    },
-  ];
-
-  var discordShareCopiedTimer = null;
+  var shareCopiedTimer = null;
 
   function copyTextToClipboard(text) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -3403,22 +3505,19 @@
     });
   }
 
-  function flashDiscordShareCopied(btn) {
-    var label = btn.querySelector(".story-reader-share-label");
-    if (!label) return;
-    var original = label.textContent;
-    label.textContent = "Copied!";
-    btn.classList.add("story-reader-share-link--copied");
-    if (discordShareCopiedTimer) clearTimeout(discordShareCopiedTimer);
-    discordShareCopiedTimer = setTimeout(function () {
-      label.textContent = original;
-      btn.classList.remove("story-reader-share-link--copied");
-      discordShareCopiedTimer = null;
+  function flashShareCopied(btn) {
+    btn.textContent = "Copied!";
+    btn.classList.add("story-reader-share-btn--copied");
+    if (shareCopiedTimer) clearTimeout(shareCopiedTimer);
+    shareCopiedTimer = setTimeout(function () {
+      btn.textContent = "Share";
+      btn.classList.remove("story-reader-share-btn--copied");
+      shareCopiedTimer = null;
     }, 2000);
   }
 
-  function bindStoryReaderDiscordShare() {
-    var btn = byId("story-reader-share-discord");
+  function bindStoryReaderShare() {
+    var btn = byId("story-reader-share");
     if (!btn || btn.dataset.bound === "1") return;
     btn.dataset.bound = "1";
     btn.addEventListener("click", function () {
@@ -3426,21 +3525,15 @@
       if (!url) return;
       copyTextToClipboard(url)
         .then(function () {
-          flashDiscordShareCopied(btn);
+          flashShareCopied(btn);
         })
         .catch(function () {});
     });
   }
 
   function updateStoryReaderShareLinks(story) {
-    var url = storyReaderSharePageUrl(story.id);
-    var title = story.title || "Story";
-    SHARE_LINK_BUILDERS.forEach(function (cfg) {
-      var el = byId(cfg.id);
-      if (el) el.href = cfg.build(title, url);
-    });
-    var discordBtn = byId("story-reader-share-discord");
-    if (discordBtn) discordBtn.setAttribute("data-share-url", url);
+    var btn = byId("story-reader-share");
+    if (btn) btn.setAttribute("data-share-url", storyReaderSharePageUrl(story.id));
   }
 
   function closeStoryReaderUi() {
@@ -3547,9 +3640,19 @@
     } catch (e) {}
   }
 
-  function openStoryReader(story) {
+  function openStoryReader(story, chapterOneBased) {
     if (!story || !storyReaderEl) return;
     setFlyoutPanelOpen(false);
+
+    if (
+      typeof chapterOneBased === "number" &&
+      isFinite(chapterOneBased) &&
+      chapterOneBased >= 1
+    ) {
+      pendingReaderChapter = Math.floor(chapterOneBased);
+    } else {
+      pendingReaderChapter = null;
+    }
 
     storyReaderTitle.textContent = story.title || "";
     var detailsId =
@@ -3936,7 +4039,20 @@
         (isStoryVisibleInCatalog(storyRead) ||
           storyPasswordProtected(storyRead))
       ) {
-        openStoryReader(storyRead);
+        var readerOpen =
+          storyReaderEl &&
+          storyReaderEl.classList.contains("open") &&
+          readerStory &&
+          String(readerStory.id) === String(storyRead.id);
+        if (
+          readerOpen &&
+          !storyPasswordProtected(storyRead) &&
+          readerChapterHeads.length
+        ) {
+          scrollStoryReaderToChapter(state.chapter, "smooth");
+          return;
+        }
+        openStoryReader(storyRead, state.chapter);
       } else {
         closeStoryReaderUi();
         setFlyoutPanelOpen(false);
@@ -3953,7 +4069,7 @@
     } else if (state.storyId !== undefined) {
       var story = getStoryById(state.storyId);
       if (story && storyPasswordProtected(story) && story.catalogHidden) {
-        openStoryReader(story);
+        openStoryReader(story, state.chapter);
       } else if (!getAiImagesEnabled()) {
         setFlyoutPanelOpen(false);
         location.hash = "stories";
@@ -4177,7 +4293,7 @@
         if (readerStory) loadStoryReaderContent(readerStory);
       });
     }
-    bindStoryReaderDiscordShare();
+    bindStoryReaderShare();
     document.addEventListener("keydown", function (e) {
       var lbOpen = sceneLightbox && sceneLightbox.classList.contains("open");
       if (lbOpen && (e.key === "ArrowLeft" || e.key === "ArrowRight")) {

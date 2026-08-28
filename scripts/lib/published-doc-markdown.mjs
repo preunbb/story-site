@@ -252,12 +252,42 @@ function convertDashDividersToHr($, body) {
   });
 }
 
+/**
+ * Google publish HTML often splits one visually uniform heading into spans where
+ * only part of the line inherits the doc-size class (e.g. "Chapter 2: Foo" bare,
+ * "™" at 27pt, subtitle at 20pt). Propagate the chapter body size to unstyled
+ * sibling spans so the reader matches Docs.
+ */
+function normalizeHeadingFontSizes($, body) {
+  body.find("h1,h2,h3,h4,h5,h6").each((_, el) => {
+    const $heading = $(el);
+    let bodySize = null;
+    $heading.find("[class]").addBack().each((_, node) => {
+      const cls = $(node).attr("class") || "";
+      const m = cls.match(/doc-size-(\d+)pt/);
+      if (!m) return;
+      const pt = parseInt(m[1], 10);
+      // Skip trademark/superscript sizes; prefer 20pt chapter titles.
+      if (pt >= 24) return;
+      if (pt === 20 || !bodySize) bodySize = m[0];
+    });
+    if (!bodySize) return;
+    $heading.find("span").each((_, node) => {
+      const $span = $(node);
+      const cls = $span.attr("class") || "";
+      if (/doc-size-\d+pt/.test(cls)) return;
+      $span.addClass(bodySize);
+    });
+  });
+}
+
 export function extractBodyHtml(html) {
   const $ = cheerio.load(html, { decodeEntities: false });
   const body = $(".doc-content").first();
   if (!body.length) return null;
   const classFormatting = parseStyleClassFormatting($);
   wrapStyledFormatting($, body, classFormatting);
+  normalizeHeadingFontSizes($, body);
   unwrapAllGoogleRedirectors($, body);
   convertDashDividersToHr($, body);
   body.find("p").each((_, el) => {
