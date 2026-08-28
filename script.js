@@ -3272,6 +3272,9 @@
     }
     setStoryReaderChapterHighlight(active);
     syncStoryReaderChapterHash(active);
+    if (readerStory) {
+      updateStoryReaderShareLinks(readerStory, active + 1);
+    }
   }
 
   /**
@@ -3469,13 +3472,40 @@
   /**
    * URL for social / chat apps: static share/<id>.html carries og:* tags (hash
    * reader URLs are invisible to servers). Opens the story reader via redirect.
+   * Optional chapterOneBased uses share/<id>-<n>.html when configured in
+   * story.chapterShares.
    */
-  function storyReaderSharePageUrl(storyId) {
+  function storyChapterShareConfig(story, chapterOneBased) {
+    if (
+      !story ||
+      !Array.isArray(story.chapterShares) ||
+      typeof chapterOneBased !== "number" ||
+      !isFinite(chapterOneBased) ||
+      chapterOneBased < 1
+    ) {
+      return null;
+    }
+    var n = Math.floor(chapterOneBased);
+    for (var i = 0; i < story.chapterShares.length; i++) {
+      var cfg = story.chapterShares[i];
+      if (cfg && cfg.chapter === n) return cfg;
+    }
+    return null;
+  }
+
+  function storyReaderSharePageUrl(storyId, chapterOneBased, story) {
     var prefix = location.pathname
       .replace(/\/index\.html?$/i, "")
       .replace(/\/$/, "");
+    var fileName = String(storyId);
+    if (
+      story &&
+      storyChapterShareConfig(story, chapterOneBased)
+    ) {
+      fileName += "-" + Math.floor(chapterOneBased);
+    }
     var path =
-      (prefix ? prefix + "/" : "") + "share/" + String(storyId) + ".html";
+      (prefix ? prefix + "/" : "") + "share/" + fileName + ".html";
     if (path.charAt(0) !== "/") path = "/" + path;
     return new URL(path, location.origin).href;
   }
@@ -3531,9 +3561,13 @@
     });
   }
 
-  function updateStoryReaderShareLinks(story) {
+  function updateStoryReaderShareLinks(story, chapterOneBased) {
     var btn = byId("story-reader-share");
-    if (btn) btn.setAttribute("data-share-url", storyReaderSharePageUrl(story.id));
+    if (!btn) return;
+    btn.setAttribute(
+      "data-share-url",
+      storyReaderSharePageUrl(story.id, chapterOneBased, story),
+    );
   }
 
   function closeStoryReaderUi() {
@@ -3658,7 +3692,10 @@
     var detailsId =
       story.detailsStoryId != null ? story.detailsStoryId : story.id;
     storyReaderDetails.href = "#story/" + detailsId;
-    updateStoryReaderShareLinks(story);
+    updateStoryReaderShareLinks(
+      story,
+      pendingReaderChapter != null ? pendingReaderChapter : null,
+    );
 
     storyReaderEl.setAttribute("aria-hidden", "false");
     storyReaderEl.classList.add("open");

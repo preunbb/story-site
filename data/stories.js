@@ -1558,7 +1558,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 13654,
+    wordCount: 13753,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
@@ -1571,6 +1571,15 @@ window.DATA_STORIES = [
     releaseDate: "2026-08-24",
     chaptersToPublish: 3,
     tags: ["New to Reddit"],
+    chapterShares: [
+      {
+        chapter: 3,
+        cover: "assets/covers/quality_control_ch02_cover_v1.jpg",
+        title: "Quality Control — Chapter 2: BoySnapper™ Scrotal Stretcher",
+        description:
+          "Olivia's second QC test pairs her with a familiar face — and the BoySnapper™ scrotal stretcher.",
+      },
+    ],
     scenes: [
       {
         path: "assets/scenes/quality_control/ch01_olivia_attaching_milker_v1.png",

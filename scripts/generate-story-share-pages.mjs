@@ -65,12 +65,16 @@ function absoluteCoverUrl(cover) {
   return `${SITE_ORIGIN}/${path}`;
 }
 
-function readerUrlForStory(storyId) {
-  return `${SITE_ORIGIN}/#story/${encodeURIComponent(String(storyId))}/read`;
-}
-
-function catalogUrl() {
-  return `${SITE_ORIGIN}/over-easy-products`;
+function readerUrlForStory(storyId, chapterOneBased) {
+  let url = `${SITE_ORIGIN}/#story/${encodeURIComponent(String(storyId))}/read`;
+  if (
+    typeof chapterOneBased === "number" &&
+    Number.isFinite(chapterOneBased) &&
+    chapterOneBased >= 1
+  ) {
+    url += `/${Math.floor(chapterOneBased)}`;
+  }
+  return url;
 }
 
 function buildPageHtml(story) {
@@ -78,6 +82,54 @@ function buildPageHtml(story) {
   const description = story.summary || "";
   const readerUrl = readerUrlForStory(story.id);
   const img = absoluteCoverUrl(story.cover);
+  const titleEsc = escapeAttr(title);
+  const descEsc = escapeAttr(description);
+  const readerEsc = escapeAttr(readerUrl);
+  const readerJson = JSON.stringify(readerUrl);
+  const imgEsc = escapeAttr(img);
+  const refreshUrl = readerUrl.replace(/'/g, "%27");
+
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>${titleEsc}</title>
+    <link rel="canonical" href="${readerEsc}" />
+    <meta property="og:title" content="${titleEsc}" />
+    <meta property="og:description" content="${descEsc}" />
+    <meta property="og:image" content="${imgEsc}" />
+    <meta property="og:url" content="${readerEsc}" />
+    <meta property="og:type" content="article" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${titleEsc}" />
+    <meta name="twitter:description" content="${descEsc}" />
+    <meta name="twitter:image" content="${imgEsc}" />
+    <meta http-equiv="refresh" content='0;url=${refreshUrl}' />
+    <script>
+      location.replace(${readerJson});
+    </script>
+  </head>
+  <body>
+    <p><a href="${readerEsc}">Continue to the story reader…</a></p>
+  </body>
+</html>
+`;
+}
+
+function catalogUrl() {
+  return `${SITE_ORIGIN}/over-easy-products`;
+}
+
+function buildChapterPageHtml(story, chapterShare) {
+  const title =
+    chapterShare.title ||
+    `${story.title || "Story"} — Chapter ${chapterShare.chapter}`;
+  const description =
+    chapterShare.description || story.summary || "";
+  const readerUrl = readerUrlForStory(story.id, chapterShare.chapter);
+  const img = absoluteCoverUrl(chapterShare.cover || story.cover);
   const titleEsc = escapeAttr(title);
   const descEsc = escapeAttr(description);
   const readerEsc = escapeAttr(readerUrl);
@@ -165,6 +217,7 @@ function main() {
   const stories = loadStories();
   mkdirSync(shareOutDir, { recursive: true });
   const ids = new Set();
+  let chapterPages = 0;
   for (const s of stories) {
     if (s == null || s.id == null) continue;
     if (ids.has(s.id)) {
@@ -174,6 +227,19 @@ function main() {
     ids.add(s.id);
     const html = buildPageHtml(s);
     writeFileSync(join(shareOutDir, `${s.id}.html`), html, "utf8");
+
+    if (Array.isArray(s.chapterShares)) {
+      for (const chapterShare of s.chapterShares) {
+        if (chapterShare == null || chapterShare.chapter == null) continue;
+        const chapterHtml = buildChapterPageHtml(s, chapterShare);
+        writeFileSync(
+          join(shareOutDir, `${s.id}-${chapterShare.chapter}.html`),
+          chapterHtml,
+          "utf8",
+        );
+        chapterPages++;
+      }
+    }
   }
 
   const catalog = loadOverEasyCatalog();
@@ -185,7 +251,7 @@ function main() {
   );
 
   console.log(
-    `[share-pages] wrote ${ids.size} files to share/ (origin ${SITE_ORIGIN})`,
+    `[share-pages] wrote ${ids.size} story files and ${chapterPages} chapter files to share/ (origin ${SITE_ORIGIN})`,
   );
 }
 
