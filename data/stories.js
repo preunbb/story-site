@@ -1558,7 +1558,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 15318,
+    wordCount: 15800,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
@@ -1603,7 +1603,7 @@ window.DATA_STORIES = [
       },
       {
         chapter: 4,
-        cover: "assets/covers/quality_control_cover_v1.jpg",
+        cover: "assets/covers/quality_control_ch03_cover_v1.jpg",
         title: "Quality Control — Chapter 3: SeedSpray™ seminal extraction nanobots",
         description:
           "Zennia sits in on Olivia's SeedSpray™ nanobot extraction test — and an old Over Easy employee.",
@@ -1659,6 +1659,11 @@ window.DATA_STORIES = [
         path: "assets/scenes/quality_control/ch02_boysnapper_device_v1.png",
         caption:
           "The BoySnapper™ scrotal stretcher — twin steel plates, central iris clamp, and Over Easy branding.",
+      },
+      {
+        path: "assets/scenes/quality_control/ch03_seedspray_zennia_olivia_v4.png",
+        caption:
+          "Zennia holds the SeedSpray™ vial while Olivia checks Theodore on the X-frame.",
       },
     ],
   },
