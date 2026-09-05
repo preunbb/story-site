@@ -942,6 +942,100 @@
     return RELEASE_MONTH_NAMES[p.m - 1] + " " + p.d + ", " + p.y;
   }
 
+  /** ISO release date for a 1-based reader chapter index, or null. */
+  function getStoryChapterReleaseIso(story, chapterOneBased) {
+    if (
+      !story ||
+      !Array.isArray(story.chapterReleases) ||
+      typeof chapterOneBased !== "number" ||
+      !isFinite(chapterOneBased) ||
+      chapterOneBased < 1
+    ) {
+      return null;
+    }
+    var n = Math.floor(chapterOneBased);
+    for (var i = 0; i < story.chapterReleases.length; i++) {
+      var entry = story.chapterReleases[i];
+      if (entry && entry.chapter === n && typeof entry.releaseDate === "string") {
+        return entry.releaseDate.trim() || null;
+      }
+    }
+    return null;
+  }
+
+  function formatStoryChapterReleaseDateLabel(story, chapterOneBased) {
+    return formatStoryReleaseDateLabel(
+      getStoryChapterReleaseIso(story, chapterOneBased),
+    );
+  }
+
+  /** Latest releaseDate among published chapters (respects chaptersToPublish). */
+  function getLatestPublishedChapterReleaseIso(story) {
+    if (!story || !Array.isArray(story.chapterReleases)) return null;
+    var maxChapter =
+      typeof story.chaptersToPublish === "number" &&
+      isFinite(story.chaptersToPublish)
+        ? Math.floor(story.chaptersToPublish)
+        : Number.POSITIVE_INFINITY;
+    var latestIso = null;
+    var latestKey = -1;
+    for (var i = 0; i < story.chapterReleases.length; i++) {
+      var entry = story.chapterReleases[i];
+      if (
+        !entry ||
+        typeof entry.chapter !== "number" ||
+        entry.chapter < 1 ||
+        entry.chapter > maxChapter
+      ) {
+        continue;
+      }
+      var p = parseReleaseYyyyMmDd(entry.releaseDate);
+      if (!p) continue;
+      var key = releaseYmdSortNumber(p);
+      if (key > latestKey) {
+        latestKey = key;
+        latestIso = entry.releaseDate.trim();
+      }
+    }
+    return latestIso;
+  }
+
+  function formatStoryChapterReleasesFlyoutHtml(story) {
+    if (!story || !Array.isArray(story.chapterReleases) || !story.chapterReleases.length) {
+      return "";
+    }
+    var sorted = story.chapterReleases.slice().sort(function (a, b) {
+      return (a.chapter || 0) - (b.chapter || 0);
+    });
+    var items = "";
+    for (var i = 0; i < sorted.length; i++) {
+      var entry = sorted[i];
+      if (!entry || typeof entry.chapter !== "number") continue;
+      var dateLabel = formatStoryReleaseDateLabel(entry.releaseDate);
+      if (!dateLabel) continue;
+      var title =
+        entry.title && String(entry.title).trim()
+          ? String(entry.title).trim()
+          : "Chapter " + entry.chapter;
+      items +=
+        '<li class="flyout-chapter-release-item">' +
+        '<span class="flyout-chapter-release-title">' +
+        escapeHtml(title) +
+        "</span> " +
+        '<em class="flyout-chapter-release-date">' +
+        escapeHtml(dateLabel) +
+        "</em></li>";
+    }
+    if (!items) return "";
+    return (
+      '<div class="flyout-chapter-releases">' +
+      '<h3 class="flyout-chapter-releases-heading">Chapter releases</h3>' +
+      '<ul class="flyout-chapter-releases-list">' +
+      items +
+      "</ul></div>"
+    );
+  }
+
   function isReleaseWithinLastThreeMonths(iso) {
     var rel = parseReleaseYyyyMmDd(iso);
     if (!rel) return false;
@@ -1098,28 +1192,43 @@
     return true;
   }
 
-  function storyStateBadgeHtml(kind, place) {
-    var label =
-      kind === "soon"
-        ? "Coming soon"
-        : kind === "in-progress"
-          ? "In progress"
-          : "New story";
-    var text =
-      kind === "soon"
-        ? "Coming soon!"
-        : kind === "in-progress"
-          ? "In progress!"
-          : "New story!";
+  function storyStateBadgeHtml(kind, place, story) {
+    var label;
+    var text;
+    if (kind === "soon") {
+      label = "Coming soon";
+      text = "Coming soon!";
+    } else if (kind === "in-progress") {
+      label = "In progress";
+      text = "In progress!";
+      var lastChapterLabel =
+        story &&
+        formatStoryReleaseDateLabel(
+          getLatestPublishedChapterReleaseIso(story),
+        );
+      if (lastChapterLabel) {
+        text += " Last chapter released: " + lastChapterLabel;
+        label += ". Last chapter released: " + lastChapterLabel;
+      }
+    } else {
+      label = "New story";
+      text = "New story!";
+      var releaseLabel =
+        story && formatStoryReleaseDateLabel(story.releaseDate);
+      if (releaseLabel) {
+        text += " " + releaseLabel;
+        label += ". Released " + releaseLabel;
+      }
+    }
     return (
       '<span class="story-state-badge story-state-badge--' +
       kind +
       " story-state-badge--" +
       place +
       '" aria-label="' +
-      label +
+      escapeHtml(label) +
       '"><span class="story-state-badge-text">' +
-      text +
+      escapeHtml(text) +
       "</span></span>"
     );
   }
@@ -1144,11 +1253,11 @@
     var st = normalizeStoryState(s);
     var html = "";
     if (st === 1) {
-      html += storyStateBadgeHtml("soon", "on-cover");
+      html += storyStateBadgeHtml("soon", "on-cover", s);
     } else if (st === 3) {
-      html += storyStateBadgeHtml("in-progress", "on-cover");
+      html += storyStateBadgeHtml("in-progress", "on-cover", s);
     } else if (st === 2 && shouldShowNewStoryBadge(s)) {
-      html += storyStateBadgeHtml("new", "on-cover");
+      html += storyStateBadgeHtml("new", "on-cover", s);
     }
     if (storyHasPremiumTag(s)) {
       html += storyPremiumTagHtml("on-cover");
@@ -1264,11 +1373,11 @@
       var st = normalizeStoryState(s);
       var rowBadgeHtml = "";
       if (st === 1) {
-        rowBadgeHtml = storyStateBadgeHtml("soon", "in-row");
+        rowBadgeHtml = storyStateBadgeHtml("soon", "in-row", s);
       } else if (st === 3) {
-        rowBadgeHtml = storyStateBadgeHtml("in-progress", "in-row");
+        rowBadgeHtml = storyStateBadgeHtml("in-progress", "in-row", s);
       } else if (st === 2 && shouldShowNewStoryBadge(s)) {
-        rowBadgeHtml = storyStateBadgeHtml("new", "in-row");
+        rowBadgeHtml = storyStateBadgeHtml("new", "in-row", s);
       }
       var rowPremiumHtml = "";
       if (storyHasPremiumTag(s)) {
@@ -3050,7 +3159,8 @@
     return s;
   }
 
-  var DOC_INLINE_CLASS = "(?:doc-(?:font-(?:mono|serif|comic)|size-[\\d.]+pt))";
+  var DOC_INLINE_CLASS =
+    "(?:doc-(?:font-(?:mono|serif|comic)|size-[\\d.]+pt|color-[0-9a-fA-F]{3,8}))";
   var PRESERVED_INLINE_CHUNK_RE = new RegExp(
     '<span class="(' +
       DOC_INLINE_CLASS +
@@ -3061,7 +3171,7 @@
   );
 
   function hasPreservedInlineHtml(block) {
-    return /class="doc-(?:font|size)-|<\/?u>/i.test(block);
+    return /class="doc-(?:font|size|color)-|<\/?u>/i.test(block);
   }
 
   function formatPreservedInner(inner) {
@@ -3070,6 +3180,36 @@
     }
     var escaped = escapeHtml(inner).replace(/\r\n/g, "\n");
     return readerFormatEscapedInline(escaped).replace(/\n/g, "<br />");
+  }
+
+  /** Turn doc-color-ff0000 class tokens into an inline style (safe hex only). */
+  function docInlineSpanOpenTag(classList) {
+    var classes = String(classList || "")
+      .split(/\s+/)
+      .filter(Boolean);
+    var colorHex = null;
+    var i;
+    for (i = 0; i < classes.length; i++) {
+      var m = /^doc-color-([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.exec(
+        classes[i],
+      );
+      if (!m) continue;
+      colorHex = m[1].length === 3
+        ? m[1]
+            .split("")
+            .map(function (c) {
+              return c + c;
+            })
+            .join("")
+        : m[1].slice(0, 6);
+      colorHex = colorHex.toLowerCase();
+      break;
+    }
+    var tag = '<span class="' + classes.join(" ") + '"';
+    if (colorHex) {
+      tag += ' style="color:#' + colorHex + '"';
+    }
+    return tag + ">";
   }
 
   function formatBodyInline(block) {
@@ -3089,12 +3229,7 @@
         out += formatPreservedInner(before);
       }
       if (m[1] != null) {
-        out +=
-          '<span class="' +
-          m[1] +
-          '">' +
-          formatPreservedInner(m[2]) +
-          "</span>";
+        out += docInlineSpanOpenTag(m[1]) + formatPreservedInner(m[2]) + "</span>";
       } else if (m[3] != null) {
         out += "<u>" + formatPreservedInner(m[3]) + "</u>";
       }
@@ -3424,7 +3559,23 @@
         var btn = document.createElement("button");
         btn.type = "button";
         btn.className = "story-reader-chapters-link";
-        btn.textContent = head.textContent || "";
+        var chapterTitle = head.textContent || "";
+        var chapterDateLabel = readerStory
+          ? formatStoryChapterReleaseDateLabel(
+              readerStory,
+              chapterIndex0 + 1,
+            )
+          : null;
+        if (chapterDateLabel) {
+          btn.innerHTML =
+            '<span class="story-reader-chapters-link-label">' +
+            escapeHtml(chapterTitle) +
+            '</span><span class="story-reader-chapters-link-date">' +
+            escapeHtml(chapterDateLabel) +
+            "</span>";
+        } else {
+          btn.textContent = chapterTitle;
+        }
         btn.addEventListener("click", function () {
           scrollStoryReaderToChapter(chapterIndex0 + 1, "smooth");
         });
@@ -3907,6 +4058,7 @@
           escapeHtml(releaseLabel) +
           "</em></p>"
         : "";
+    var chapterReleasesHtml = formatStoryChapterReleasesFlyoutHtml(story);
 
     var subtitleHtml =
       story.subtitle && story.subtitle.trim()
@@ -3970,6 +4122,7 @@
       escapeHtml(story.summary || "") +
       "</p>" +
       releaseHtml +
+      chapterReleasesHtml +
       subtitleHtml +
       wordCountHtml +
       tagsHtml +

@@ -287,14 +287,14 @@ export const DOC_FONT_CSS = `
   .chapter-body .doc-size-26pt { font-size: 26pt; }`;
 
 const DOC_INLINE_CLASS =
-  "(?:doc-(?:font-(?:mono|serif|comic)|size-[\\d.]+pt))";
+  "(?:doc-(?:font-(?:mono|serif|comic)|size-[\\d.]+pt|color-[0-9a-fA-F]{3,8}))";
 const PRESERVED_INLINE_CHUNK_RE = new RegExp(
   `<span class="(${DOC_INLINE_CLASS}(?:\\s+${DOC_INLINE_CLASS})*)">([\\s\\S]*?)<\\/span>|<u>([\\s\\S]*?)<\\/u>`,
   "g",
 );
 
 function hasPreservedInlineHtml(block) {
-  return /class="doc-(?:font|size)-|<\/?u>/i.test(block);
+  return /class="doc-(?:font|size|color)-|<\/?u>/i.test(block);
 }
 
 function formatPreservedInner(inner, opts) {
@@ -303,6 +303,31 @@ function formatPreservedInner(inner, opts) {
   }
   const escaped = escapeHtml(inner).replace(/\r\n/g, "\n");
   return readerFormatEscapedInline(escaped, opts).replace(/\n/g, "<br />");
+}
+
+function docInlineSpanOpenTag(classList) {
+  const classes = String(classList || "")
+    .split(/\s+/)
+    .filter(Boolean);
+  let colorHex = null;
+  for (const cls of classes) {
+    const m = /^doc-color-([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.exec(
+      cls,
+    );
+    if (!m) continue;
+    colorHex =
+      m[1].length === 3
+        ? m[1]
+            .split("")
+            .map((c) => c + c)
+            .join("")
+        : m[1].slice(0, 6);
+    colorHex = colorHex.toLowerCase();
+    break;
+  }
+  let tag = `<span class="${classes.join(" ")}"`;
+  if (colorHex) tag += ` style="color:#${colorHex}"`;
+  return tag + ">";
 }
 
 /**
@@ -415,7 +440,7 @@ function formatBodyInline(block, opts) {
     }
     if (m[1] != null) {
       out +=
-        `<span class="${m[1]}">` +
+        docInlineSpanOpenTag(m[1]) +
         formatPreservedInner(m[2], opts) +
         `</span>`;
     } else if (m[3] != null) {

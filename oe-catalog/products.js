@@ -283,7 +283,6 @@ window.OVER_EASY_CATALOG = {
       category: "media",
       purchaseUrl: "../#story/47",
       name: "Life stages of a Testicle — Framed Print Set",
-      newArrival: true,
 
       model: "OET-TL-6",
       image:
@@ -322,7 +321,6 @@ window.OVER_EASY_CATALOG = {
       id: "gonadal-trauma-reference-plates",
       category: "media",
       name: "Testicular Trauma Reference Plates",
-      newArrival: true,
 
       model: "OET-GTR-8",
       image:
@@ -646,7 +644,6 @@ window.OVER_EASY_CATALOG = {
     },
     {
       id: "auto-milker",
-      newArrival: true,
 
       category: "medical",
       purchaseUrl: "../#story/20/read",
@@ -703,6 +700,30 @@ window.OVER_EASY_CATALOG = {
             },
           ],
         },
+      ],
+    },
+    {
+      id: "boysnapper",
+      category: "sex-toys",
+      newArrival: true,
+      purchaseUrl: "../#story/48/read/3",
+      name: "BoySnapper™ Scrotal Stretcher",
+      model: "OET-BS-1",
+      image: "assets/scenes/quality_control/ch02_boysnapper_device_v1.png",
+      images: [
+        {
+          path: "assets/scenes/quality_control/ch02_boysnapper_device_v1.png",
+          caption:
+            "BoySnapper™ OET-BS-1 — twin steel plates, iris clamps, and app-controlled separation",
+        },
+      ],
+      tagline: "Pull them right out of him.",
+      description:
+        "For the woman who wants his most delicate anatomy pulled out, pinned down, and held at her mercy. Twin brushed-steel plates with synchronized iris clamps moor him at both ends while the companion app dials separation in precise increments. Testicular safety and continued attachment not guaranteed - read the manual thoroughly before use.",
+      features: [
+        "Bluetooth app for precise separation control",
+        "Twin iris clamps ensure his most important bits won't slip out.",
+        "Industrial motor rated for stretching the toughest of nutcords",
       ],
     },
     {

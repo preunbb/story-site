@@ -21,7 +21,7 @@ export function makeTurndown() {
     filter(node) {
       return (
         node.nodeName === "SPAN" &&
-        /\bdoc-(?:font|size)-/.test(node.getAttribute("class") || "")
+        /\bdoc-(?:font|size|color)-/.test(node.getAttribute("class") || "")
       );
     },
     replacement(content, node) {
@@ -31,7 +31,12 @@ export function makeTurndown() {
       }
       const cls = (node.getAttribute("class") || "")
         .split(/\s+/)
-        .filter((c) => c.startsWith("doc-font-") || c.startsWith("doc-size-"))
+        .filter(
+          (c) =>
+            c.startsWith("doc-font-") ||
+            c.startsWith("doc-size-") ||
+            c.startsWith("doc-color-"),
+        )
         .join(" ");
       return `<span class="${cls}">${content}</span>`;
     },
@@ -84,7 +89,51 @@ function emptyFormattingFlags() {
     underline: false,
     fontFamily: null,
     fontSize: null,
+    color: null,
   };
+}
+
+/** Normalize CSS color to lowercase hex without '#', or null if unparseable / default ink. */
+function cssColorToDocHex(value) {
+  if (!value) return null;
+  const v = String(value).trim().toLowerCase();
+  let hex = null;
+  const hexM = v.match(/^#([0-9a-f]{3}|[0-9a-f]{6}|[0-9a-f]{8})$/i);
+  if (hexM) {
+    let h = hexM[1];
+    if (h.length === 3) {
+      h = h
+        .split("")
+        .map((c) => c + c)
+        .join("");
+    }
+    if (h.length === 8) h = h.slice(0, 6);
+    hex = h.toLowerCase();
+  } else {
+    const rgbM = v.match(
+      /^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:\s*,\s*[\d.]+)?\s*\)$/,
+    );
+    if (rgbM) {
+      hex = [rgbM[1], rgbM[2], rgbM[3]]
+        .map((n) => {
+          const x = Math.max(0, Math.min(255, parseInt(n, 10)));
+          return x.toString(16).padStart(2, "0");
+        })
+        .join("");
+    }
+  }
+  if (!hex) return null;
+  const r = parseInt(hex.slice(0, 2), 16);
+  const g = parseInt(hex.slice(2, 4), 16);
+  const b = parseInt(hex.slice(4, 6), 16);
+  // Skip near-black / default Docs body ink so we don't wrap every run.
+  if (r <= 0x40 && g <= 0x40 && b <= 0x40) return null;
+  return hex;
+}
+
+function colorToDocClass(color) {
+  const hex = cssColorToDocHex(color);
+  return hex ? `doc-color-${hex}` : null;
 }
 
 function propsToFormattingFlags(props) {
@@ -104,6 +153,7 @@ function propsToFormattingFlags(props) {
   }
   if (props["font-family"]) flags.fontFamily = props["font-family"];
   if (props["font-size"]) flags.fontSize = props["font-size"];
+  if (props.color) flags.color = props.color;
   return flags;
 }
 
@@ -149,11 +199,15 @@ function parseInlineStyleFormatting(styleAttr) {
   if (ff) flags.fontFamily = ff[1].trim();
   const fs = styleAttr.match(/font-size\s*:\s*([^;]+)/i);
   if (fs) flags.fontSize = fs[1].trim();
+  // Avoid matching background-color.
+  const colorM = styleAttr.match(/(?:^|;)\s*color\s*:\s*([^;]+)/i);
+  if (colorM) flags.color = colorM[1].trim();
   return flags.italic ||
     flags.bold ||
     flags.underline ||
     flags.fontFamily ||
-    flags.fontSize
+    flags.fontSize ||
+    flags.color
     ? flags
     : null;
 }
@@ -169,6 +223,7 @@ function resolveElementFormatting($el, classFormatting) {
     if (f.underline) flags.underline = true;
     if (f.fontFamily) flags.fontFamily = f.fontFamily;
     if (f.fontSize) flags.fontSize = f.fontSize;
+    if (f.color) flags.color = f.color;
   }
   const inline = parseInlineStyleFormatting($el.attr("style"));
   if (inline) {
@@ -177,6 +232,7 @@ function resolveElementFormatting($el, classFormatting) {
     flags.underline = flags.underline || inline.underline;
     if (inline.fontFamily) flags.fontFamily = inline.fontFamily;
     if (inline.fontSize) flags.fontSize = inline.fontSize;
+    if (inline.color) flags.color = inline.color;
   }
   return flags;
 }
@@ -184,14 +240,19 @@ function resolveElementFormatting($el, classFormatting) {
 function applyDocInlineClasses($el, flags) {
   const fontClass = fontFamilyToDocClass(flags.fontFamily);
   const sizeClass = fontSizeToDocClass(flags.fontSize);
-  if (!fontClass && !sizeClass) return;
+  const colorClass = colorToDocClass(flags.color);
+  if (!fontClass && !sizeClass && !colorClass) return;
   const keep = ($el.attr("class") || "")
     .split(/\s+/)
     .filter(
-      (c) => !c.startsWith("doc-font-") && !c.startsWith("doc-size-"),
+      (c) =>
+        !c.startsWith("doc-font-") &&
+        !c.startsWith("doc-size-") &&
+        !c.startsWith("doc-color-"),
     );
   if (fontClass) keep.push(fontClass);
   if (sizeClass) keep.push(sizeClass);
+  if (colorClass) keep.push(colorClass);
   $el.attr("class", keep.join(" "));
 }
 
@@ -281,6 +342,22 @@ function normalizeHeadingFontSizes($, body) {
   });
 }
 
+/**
+ * Docs sometimes accidentally applies Heading 1 to long body paragraphs (product
+ * blurbs, dialogue). Those become sidebar chapters and truncate serial publishes.
+ * Demote obvious accidents to <p> before turndown.
+ */
+function demoteAccidentalHeadings($, body) {
+  body.find("h1,h2,h3,h4,h5,h6").each((_, el) => {
+    const $el = $(el);
+    const text = $el.text().replace(/\s+/g, " ").trim();
+    if (!text) return;
+    const accidental = text.length > 100 || /^[“"«]/.test(text);
+    if (!accidental) return;
+    $el.replaceWith(`<p>${$el.html() || ""}</p>`);
+  });
+}
+
 export function extractBodyHtml(html) {
   const $ = cheerio.load(html, { decodeEntities: false });
   const body = $(".doc-content").first();
@@ -288,6 +365,7 @@ export function extractBodyHtml(html) {
   const classFormatting = parseStyleClassFormatting($);
   wrapStyledFormatting($, body, classFormatting);
   normalizeHeadingFontSizes($, body);
+  demoteAccidentalHeadings($, body);
   unwrapAllGoogleRedirectors($, body);
   convertDashDividersToHr($, body);
   body.find("p").each((_, el) => {
@@ -306,7 +384,7 @@ export function postProcessMarkdown(md) {
     md
       // Scene tags must be bare, standalone paragraphs for the reader.
       .replace(
-        /^(?:<span class="doc-(?:font|size)-[^"]*">\s*)*\[\[\s*scene\s*:([^\]]+)\]\]\s*(?:<\/span>\s*)*$/gim,
+        /^(?:<span class="doc-(?:font|size|color)-[^"]*">\s*)*\[\[\s*scene\s*:([^\]]+)\]\]\s*(?:<\/span>\s*)*$/gim,
         "[[scene:$1]]",
       )
       .replace(/^\*\[\[scene:([^\]]+)\]\]\*$/gm, "[[scene:$1]]")

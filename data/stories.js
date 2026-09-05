@@ -1558,7 +1558,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 13753,
+    wordCount: 15318,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
@@ -1566,10 +1566,32 @@ window.DATA_STORIES = [
       "Over Easy Technologies sells gear and gadgets for many different cases - from automatically extracting semen samples from men to disciplinary devices to self-defense weapons that target one part of the male anatomy in particular. Olivia is excited for her first day on the prestigious job, and can't wait to see behind the scenes exactly how Over Easy keeps the quality of their products consistently high.",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vQXqlu0dHrk6GfTY8bRhWB7Nce14VAm8pmWVWoMZanhDSOhhw4IFHZlKY-4OA5dzmn1WTE77fPbp6VJ/pub",
-    characterIds: ["zennia", "cathy", "olivia"],
+    characterIds: ["zennia", "cathy", "olivia", "elliot"],
     state: 3,
     releaseDate: "2026-08-24",
-    chaptersToPublish: 3,
+    chaptersToPublish: 4,
+    chapterReleases: [
+      {
+        chapter: 1,
+        title: "Introduction: Corporate Orientation",
+        releaseDate: "2026-08-24",
+      },
+      {
+        chapter: 2,
+        title: "Chapter 1: XXXL AutoMilker",
+        releaseDate: "2026-08-24",
+      },
+      {
+        chapter: 3,
+        title: "Chapter 2: BoySnapper™ Scrotal Stretcher",
+        releaseDate: "2026-08-28",
+      },
+      {
+        chapter: 4,
+        title: "Chapter 3: SeedSpray™ seminal extraction nanobots",
+        releaseDate: "2026-09-04",
+      },
+    ],
     tags: ["New to Reddit"],
     chapterShares: [
       {
@@ -1578,6 +1600,13 @@ window.DATA_STORIES = [
         title: "Quality Control — Chapter 2: BoySnapper™ Scrotal Stretcher",
         description:
           "Olivia's second QC test pairs her with a familiar face — and the BoySnapper™ scrotal stretcher.",
+      },
+      {
+        chapter: 4,
+        cover: "assets/covers/quality_control_cover_v1.jpg",
+        title: "Quality Control — Chapter 3: SeedSpray™ seminal extraction nanobots",
+        description:
+          "Zennia sits in on Olivia's SeedSpray™ nanobot extraction test — and an old Over Easy employee.",
       },
     ],
     scenes: [

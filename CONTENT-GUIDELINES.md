@@ -38,6 +38,7 @@ When adding or editing character bios, use `data/characters.js`. For story summa
 - **`state`** (number): `1` = coming soon (blue “Coming soon!” badge; not readable unless it has a preview), `2` = released (normal catalog entry), `3` = in progress (readable; amber “In progress!” badge — use for stories publishing chapter-by-chapter). Omit or use `2` for fully published stories.
 - **`releaseDate`**: ISO date string (e.g. `"2020-01-01"`) used to sort released stories on the grid (newest first). Released stories whose `releaseDate` falls within the last three months also get a green “New story!” badge. Stories without a date sort after dated ones, then by title.
 - **`chaptersToPublish`** (number, optional): When set, the reader only shows the first N chapter headings from the synced markdown (the same `#` / `##` / `###` headers that appear in the chapter sidebar), plus the prose under them. Later chapters stay in the Drive doc / `assets/stories/<id>.md` but are not shown on the site. Omit to publish the full story.
+- **`chapterReleases`** (array, optional): Per-chapter release schedule for serial stories. Each entry: `{ chapter: <1-based reader index>, title: "<sidebar heading>", releaseDate: "YYYY-MM-DD" }`. Dates display in the reader sidebar and story flyout (e.g. “August 28, 2026”). Use the same 1-based index as `#story/<id>/read/<n>` and `share/<id>-<n>.html`.
 
 ---
 

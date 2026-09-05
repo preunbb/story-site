@@ -710,8 +710,8 @@ window.DATA_CHARACTERS = [
     id: "zennia",
     name: "Zennia",
     gender: "F",
-    bio: "CEO of Over Easy Technologies—the premium lifestyle brand built on groin-adjacent chaos. She's built her career on one simple principle: Woman want to pop balls, and the market hasn't provided them efficient ways to carry this out.",
-    profilePictures: ["assets/characters/zennia_v2_redhair_cover_match.jpg"],
+    bio: "CEO of Over Easy Technologies—the premium lifestyle brand built on testicular chaos and female empowerment. She's built her career on one simple principle: Woman want to pop balls, and the market hasn't provided them efficient ways to carry this out.",
+    profilePictures: ["assets/characters/zennia_v3_nevermore_keepsakes.jpg"],
   },
   {
     id: "olivia",
@@ -719,6 +719,16 @@ window.DATA_CHARACTERS = [
     gender: "F",
     bio: "Perky new college-age intern at Over Easy—short. She's eager to get started at her first real job, and will do whatever it takes to prove herself.",
     profilePictures: ["assets/characters/olivia.jpg"],
+  },
+  {
+    id: "elliot",
+    name: "Elliot",
+    gender: "M",
+    bio: "Olivia's shy college classmate — thin, wimpy, and broke enough to sign up as an Over Easy QC test subject. He showed up with a unusually small, tight sack and left with his nutcords snapped and his balls dangling loose in an empty scrotum.",
+    profilePictures: [
+      "assets/characters/elliot_cast_before_v1.png",
+      "assets/characters/elliot_cast_after_v1.png",
+    ],
   },
   {
     id: "elijah",
