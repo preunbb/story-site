@@ -1558,7 +1558,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 20991,
+    wordCount: 21245,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
@@ -1589,7 +1589,7 @@ window.DATA_STORIES = [
       {
         chapter: 4,
         title: "Chapter 3: SeedSpray™ seminal extraction nanobots",
-        releaseDate: "2026-09-04",
+        releaseDate: "2026-09-14",
       },
     ],
     tags: ["New to Reddit"],
