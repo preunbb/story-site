@@ -1558,7 +1558,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 21298,
+    wordCount: 21303,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
@@ -1670,8 +1670,9 @@ window.DATA_STORIES = [
   },
   {
     id: 49,
-    wordCount: 5259,
-    title: "Bereavement Counseling",
+    wordCount: 12170,
+    title:
+      "Bereavement Counseling: The Five Stages of Grieving a Testicle",
     brutalityRating: 1,
     summary:
       "Dr. Karen sees a new patient dealing with a particularly sensitive injury.",
@@ -1679,8 +1680,21 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vQvaHoeI871FaxJyLlR2MXUHfKNBG1yvbPVnA2N-LIn9HqEhHK8Sy64xpqh75XlDISXp2v_By3BRcrx/pub",
     characterIds: ["karen", "stuart"],
-    state: 2,
+    state: 3,
     releaseDate: "2026-08-09",
-    tags: ["New to Reddit"],
+    chaptersToPublish: 1,
+    chapterReleases: [
+      {
+        chapter: 1,
+        title: "Chapter 1: Denial",
+        releaseDate: "2026-08-09",
+      },
+    ],
+    tags: ["Premium Story", "New to Reddit"],
+    previewRead: {
+      md: "assets/stories/49-preview.md",
+      fromChapter: 1,
+      toChapter: 1,
+    },
   },
 ];

@@ -21,6 +21,7 @@ import {
   makeTurndown,
   fetchMarkdownFromPublishUrl,
 } from "./lib/published-doc-markdown.mjs";
+import { extractChapterRange } from "./lib/andrea-lucas-export.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -204,11 +205,38 @@ async function syncOne(story, td) {
   const md = await fetchMarkdownFromPublishUrl(story.driveUrl, td);
   const outPath = join(OUT_DIR, `${story.id}.md`);
   writeFileSync(outPath, md, "utf8");
+
+  let preview = null;
+  const pr = story.previewRead;
+  if (
+    pr &&
+    typeof pr.md === "string" &&
+    pr.md.trim() &&
+    typeof pr.fromChapter === "number" &&
+    Number.isFinite(pr.fromChapter) &&
+    typeof pr.toChapter === "number" &&
+    Number.isFinite(pr.toChapter)
+  ) {
+    const previewPath = resolve(repoRoot, pr.md);
+    if (previewPath !== outPath) {
+      const previewMd = extractChapterRange(md, pr.fromChapter, pr.toChapter);
+      writeFileSync(previewPath, previewMd, "utf8");
+      preview = {
+        path: pr.md,
+        bytes: previewMd.length,
+        words: countWords(previewMd),
+        fromChapter: pr.fromChapter,
+        toChapter: pr.toChapter,
+      };
+    }
+  }
+
   return {
     id: story.id,
     bytes: md.length,
     words: countWords(md),
     title: story.title,
+    preview,
   };
 }
 
@@ -236,6 +264,8 @@ function pruneOrphans(validIds) {
   const removed = [];
   for (const f of readdirSync(OUT_DIR)) {
     if (!f.endsWith(".md")) continue;
+    // Keep dedicated preview extracts like `43-preview.md` / `49-preview.md`.
+    if (/^\d+-preview\.md$/.test(f)) continue;
     const id = f.slice(0, -3);
     const idNum = Number(id);
     const key = Number.isFinite(idNum) && String(idNum) === id ? idNum : id;
@@ -283,6 +313,11 @@ async function main() {
       console.log(
         `  ok    #${s.id} "${s.title}" (${r.bytes} bytes, ${r.words} words)`,
       );
+      if (r.preview) {
+        console.log(
+          `  preview #${s.id}: ${r.preview.path} (ch ${r.preview.fromChapter}-${r.preview.toChapter}, ${r.preview.words} words)`,
+        );
+      }
       wcUpdates.push({
         id: s.id,
         words: r.words,

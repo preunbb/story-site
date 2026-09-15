@@ -727,6 +727,32 @@ window.OVER_EASY_CATALOG = {
       ],
     },
     {
+      id: "seedspray",
+      category: "medical",
+      newArrival: true,
+      purchaseUrl: "../#story/48/read/4",
+      name: "SeedSpray™ Cavitation Nanobots",
+      model: "OET-SS-1",
+      image:
+        "assets/over-easy/scenes/quality_control/overeasy_seedspray_device_v3.png",
+      images: [
+        {
+          path: "assets/over-easy/scenes/quality_control/overeasy_seedspray_device_v3.png",
+          caption:
+            "SeedSpray™ OET-SS-1 — living silvery nanobot suspension, applicator tip, and graduated collection vials",
+        },
+      ],
+      tagline: "When he can't produce — make him.",
+      description:
+        "Clinical-grade seminal extraction for donors who freeze up, claim they're empty, or just won't cooperate with a cup. SeedSpray™ cavitation nanobots deploy as a living silvery suspension, distribute themselves where his contributions are stored, and harvest ultra-concentrated samples through irregular micro-pulses — so his anatomy never gets a chance to adapt. Collection vials included. Continued fertility not part of the warranty.",
+      features: [
+        "Self-distributing nanobot suspension — no clumsy manual targeting required",
+        "Irregular cavitation rhythm keeps him guessing (and leaking) until the vial is full",
+        "Graduated collection vials capture pure, undiluted samples — not the watery nonsense of a normal orgasm",
+        "Spare vial and clinical applicator tip in every kit",
+      ],
+    },
+    {
       id: "strapon",
       category: "sex-toys",
       purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",

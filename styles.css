@@ -799,6 +799,29 @@ html.ai-images-off .story-card-action--read:focus-visible {
   outline-color: #ff5555;
 }
 
+html.ai-images-off .story-card-action--soon,
+html.ai-images-off .story-card-action--disabled {
+  color: #e8f1ff;
+  background: linear-gradient(180deg, #4a7ab5 0%, #2f5f96 100%);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 3px 12px rgba(47, 95, 150, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  cursor: default;
+  opacity: 0.72;
+  transform: none;
+}
+
+html.ai-images-off .story-card-action--soon:hover,
+html.ai-images-off .story-card-action--disabled:hover {
+  color: #e8f1ff;
+  background: linear-gradient(180deg, #4a7ab5 0%, #2f5f96 100%);
+  box-shadow:
+    0 3px 12px rgba(47, 95, 150, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  transform: none;
+}
+
 html.ai-images-off .story-card-action:focus {
   outline: none;
 }
@@ -2399,6 +2422,29 @@ body.preun-local-andrea .local-andrea-status {
 .flyout-full-story-cta:focus-visible {
   outline: 2px solid #56d364;
   outline-offset: 3px;
+}
+
+.flyout-full-story-cta--disabled,
+.flyout-full-story-cta--soon {
+  color: #e8f1ff;
+  background: linear-gradient(180deg, #4a7ab5 0%, #2f5f96 100%);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 4px 16px rgba(47, 95, 150, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  cursor: default;
+  opacity: 0.72;
+  transform: none;
+}
+
+.flyout-full-story-cta--disabled:hover,
+.flyout-full-story-cta--soon:hover {
+  color: #e8f1ff;
+  background: linear-gradient(180deg, #4a7ab5 0%, #2f5f96 100%);
+  box-shadow:
+    0 4px 16px rgba(47, 95, 150, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transform: none;
 }
 
 .flyout-purchase-block {

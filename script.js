@@ -805,6 +805,21 @@
   }
 
   function storyTextListActionButton(opts) {
+    if (opts.disabled) {
+      return (
+        '<span class="story-card-action story-card-action--' +
+        escapeHtml(opts.variant) +
+        ' story-card-action--disabled" aria-disabled="true"' +
+        (opts.tooltip
+          ? ' title="' + escapeHtml(opts.tooltip) + '"'
+          : "") +
+        ">" +
+        storyTextListActionIcon(opts.variant) +
+        '<span class="story-card-action-label">' +
+        escapeHtml(opts.label) +
+        "</span></span>"
+      );
+    }
     var attrs =
       ' class="story-card-action story-card-action--' +
       escapeHtml(opts.variant) +
@@ -838,6 +853,15 @@
     return "Read";
   }
 
+  /** Preview + unfinished serial: show a non-clickable "Coming soon" beside Read preview. */
+  function storyShowsComingSoonAction(story) {
+    return (
+      !!story &&
+      storyHasPreviewRead(story) &&
+      normalizeStoryState(story) === 3
+    );
+  }
+
   function storyTextListActionsHtml(story) {
     var buttons = [];
     if (storyIsReadable(story)) {
@@ -846,6 +870,16 @@
           href: "#story/" + story.id + "/read",
           label: storyTextListReadLabel(story),
           variant: "read",
+        }),
+      );
+    }
+    if (storyShowsComingSoonAction(story)) {
+      buttons.push(
+        storyTextListActionButton({
+          label: "Coming soon",
+          variant: "soon",
+          disabled: true,
+          tooltip: "More chapters coming soon",
         }),
       );
     }
@@ -3950,6 +3984,22 @@
    * download/external attributes vary.
    */
   function flyoutCtaButton(opts) {
+    if (opts.disabled) {
+      return (
+        '<div class="flyout-full-story-wrap">' +
+        '<span class="flyout-full-story-cta flyout-full-story-cta--disabled' +
+        (opts.variant
+          ? " flyout-full-story-cta--" + escapeHtml(opts.variant)
+          : "") +
+        '" aria-disabled="true"' +
+        (opts.tooltip
+          ? ' title="' + escapeHtml(opts.tooltip) + '"'
+          : "") +
+        ">" +
+        escapeHtml(opts.label) +
+        "</span></div>"
+      );
+    }
     var href = opts.rawHref ? opts.href : escapeHtml(opts.href);
     var attrs = "";
     if (opts.download) attrs += " download";
@@ -4018,6 +4068,16 @@
             href: "#story/" + story.id + "/read",
             label: readerCtaLabel,
             rawHref: true,
+          }),
+        );
+      }
+      if (storyShowsComingSoonAction(story)) {
+        ctaParts.push(
+          flyoutCtaButton({
+            label: "Coming soon",
+            variant: "soon",
+            disabled: true,
+            tooltip: "More chapters coming soon",
           }),
         );
       }
