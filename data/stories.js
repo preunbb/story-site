@@ -1558,14 +1558,14 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 16162,
+    wordCount: 20991,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
     summary:
       "Over Easy Technologies sells gear and gadgets for many different cases - from automatically extracting semen samples from men to disciplinary devices to self-defense weapons that target one part of the male anatomy in particular. Olivia is excited for her first day on the prestigious job, and can't wait to see behind the scenes exactly how Over Easy keeps the quality of their products consistently high.",
     driveUrl:
-      "https://docs.google.com/document/d/e/2PACX-1vQXqlu0dHrk6GfTY8bRhWB7Nce14VAm8pmWVWoMZanhDSOhhw4IFHZlKY-4OA5dzmn1WTE77fPbp6VJ/pub",
+      "https://docs.google.com/document/d/e/2PACX-1vRLlzxx4u0Di4oHyD8zt285omUHIqPwV57dQlrc6UqLZJBrbBbB2FFxGWG84OWUkRpEy0AW_6AjfCNs/pub",
     characterIds: ["zennia", "cathy", "olivia", "elliot"],
     state: 3,
     releaseDate: "2026-08-24",
@@ -1604,7 +1604,8 @@ window.DATA_STORIES = [
       {
         chapter: 4,
         cover: "assets/covers/quality_control_ch03_cover_v1.jpg",
-        title: "Quality Control — Chapter 3: SeedSpray™ seminal extraction nanobots",
+        title:
+          "Quality Control — Chapter 3: SeedSpray™ seminal extraction nanobots",
         description:
           "Zennia sits in on Olivia's SeedSpray™ nanobot extraction test — and an old Over Easy employee.",
       },
