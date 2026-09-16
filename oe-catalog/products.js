@@ -717,13 +717,61 @@ window.OVER_EASY_CATALOG = {
             "BoySnapper™ OET-BS-1 — twin steel plates, iris clamps, and app-controlled separation",
         },
       ],
-      tagline: "Pull them right out of him.",
+      tagline: "Yank those gonads right out of him.",
       description:
         "For the woman who wants his most delicate anatomy pulled out, pinned down, and held at her mercy. Twin brushed-steel plates with synchronized iris clamps moor him at both ends while the companion app dials separation in precise increments. Testicular safety and continued attachment not guaranteed - read the manual thoroughly before use.",
       features: [
         "Bluetooth app for precise separation control",
         "Twin iris clamps ensure his most important bits won't slip out.",
-        "Industrial motor rated for stretching the toughest of nutcords",
+        "Industrial motor rated for nearly unlimited torque, to stretch out the toughest of nutcords",
+      ],
+    },
+    {
+      id: "invertcage",
+      category: "sex-toys",
+      newArrival: true,
+      purchaseUrl: "../#story/49",
+      name: "CockCrusher™ Inverted Chastity Cage",
+      model: "OET-IC-XS",
+      image:
+        "assets/over-easy/scenes/bereavement_counseling/overeasy_invertcage_device_v9.png",
+      images: [
+        {
+          path: "assets/over-easy/scenes/bereavement_counseling/overeasy_invertcage_device_v9.png",
+        },
+      ],
+      tagline: "He doesn't need all that length.",
+      description:
+        "For the woman who's tired of pointless erections cluttering up his day. The CockCrusher™ cage sits fully flush against him, tamping down even the hslightest erection. If you want to shrink his penis permanently, ask our sales rep about the inversion attachment!",
+      features: [
+        "With inversion attachment, OverEasy guarantees permanent reduction of at least an inch of penis length",
+        "Warning: prolonged wear may have irreversibly deleterious effects on erectile function.",
+      ],
+      sizeOptions: [
+        {
+          id: "cage-size",
+          label: "Cage size",
+          options: [
+            {
+              value: "xxs",
+              label: 'xxs (for 1.5-2.5" erections)',
+            },
+            {
+              value: "xs",
+              label: 'xs (for 2.5-3.5" erections)',
+            },
+            {
+              value: "s",
+              label: 's (for 3.5-5" erections)',
+            },
+            {
+              value: "n/a",
+              label:
+                "Larger sizes not supported - OverEasy does not support caging real men",
+              disabled: true,
+            },
+          ],
+        },
       ],
     },
     {
@@ -741,10 +789,20 @@ window.OVER_EASY_CATALOG = {
           caption:
             "SeedSpray™ OET-SS-1 — living silvery nanobot suspension, applicator tip, and graduated collection vials",
         },
+        {
+          path: "assets/over-easy/scenes/quality_control/overeasy_seedspray_nanobot_filled_testes_v1.png",
+          caption:
+            "After deployment: each gland packed full of SeedSpray™ colonies — subtle silver bulges under the tunica mean the bots have nested in every cubic millimeter and are ready to cavitate on command.",
+        },
+        {
+          path: "assets/over-easy/scenes/quality_control/overeasy_seedspray_nanobot_cavitated_aftermath_v1.png",
+          caption:
+            "After the cavitation sequence: honeycomb pits, collapsed spongy parenchyma, and spent residue — nothing left worth collecting.",
+        },
       ],
-      tagline: "When he can't produce — make him.",
+      tagline: "When his balls refuse to give you the pregnancy you deserve.",
       description:
-        "Clinical-grade seminal extraction for donors who freeze up, claim they're empty, or just won't cooperate with a cup. SeedSpray™ cavitation nanobots deploy as a living silvery suspension, distribute themselves where his contributions are stored, and harvest ultra-concentrated samples through irregular micro-pulses — so his anatomy never gets a chance to adapt. Collection vials included. Continued fertility not part of the warranty.",
+        "Cutting edge cavitation technology can harvest concentrated samples from even the most recalcitrant donors. SeedSpray™ nanobots deploy directly into his testicles, avoiding the need for messy or pleasurable orgasms. They distribute themselves where his contributions are stored, and harvest ultra-dense semen samples through irregular detonations and cavitations — so his anatomy never gets a chance to adapt. Collection vials included. Continued fertility not part of the warranty.",
       features: [
         "Self-distributing nanobot suspension — no clumsy manual targeting required",
         "Irregular cavitation rhythm keeps him guessing (and leaking) until the vial is full",

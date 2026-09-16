@@ -132,7 +132,7 @@ He swallowed loudly, but her hard stare didn’t waver.
 
 Reluctantly, Stuart slipped off his shoes, then slid his jeans and briefs down to expose what was left of his manhood to her.
 
-His cock jutted out, all four rock-hard inches twitching eagerly. Below it, his one solitary testicle hung low in the unnatural slack of his half-filled scrotum.
+His cock jutted out, all two and a half rock-hard inches twitching eagerly. Below it, his one solitary testicle hung low in the unnatural slack of his half-filled scrotum.
 
 “I see.” This time, he was sure he heard her giggle. “Did you have any insecurities about your manhood before your accident, Stuart?”
 

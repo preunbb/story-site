@@ -721,6 +721,26 @@ window.DATA_CHARACTERS = [
     profilePictures: ["assets/characters/olivia.jpg"],
   },
   {
+    id: "charlotte",
+    name: "Charlotte",
+    gender: "F",
+    bio: "Head of Self-Defense product development at Over Easy Technologies. She met her husband, Theodore, at work, but their marriage has been strained by his fertility issues and her own inconstant desire for both freedom and children. She's gone back and forth on the issue of having children multiple times, and her husband has stuck by her side through it all.",
+    profilePictures: [
+      "assets/characters/charlotte_v2_overeasy_retreat_lab.png",
+      "assets/characters/charlotte_v1.png",
+    ],
+  },
+  {
+    id: "theodore",
+    name: "Theodore",
+    gender: "M",
+    bio: "Charlotte's soft-spoken husband — a former early Over Easy employee who recruited test subjects for the self-defense line. Hefty low-hanging balls with both epididymides missing from earlier product demos; still produces sperm, but can't deliver it the usual way.",
+    profilePictures: [
+      "assets/characters/theodore_v1.png",
+      "assets/characters/theodore_epididymis_absent_testes_v1.png",
+    ],
+  },
+  {
     id: "elliot",
     name: "Elliot",
     gender: "M",

@@ -1566,7 +1566,7 @@ window.DATA_STORIES = [
       "Over Easy Technologies sells gear and gadgets for many different cases - from automatically extracting semen samples from men to disciplinary devices to self-defense weapons that target one part of the male anatomy in particular. Olivia is excited for her first day on the prestigious job, and can't wait to see behind the scenes exactly how Over Easy keeps the quality of their products consistently high.",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vRLlzxx4u0Di4oHyD8zt285omUHIqPwV57dQlrc6UqLZJBrbBbB2FFxGWG84OWUkRpEy0AW_6AjfCNs/pub",
-    characterIds: ["zennia", "cathy", "olivia", "elliot"],
+    characterIds: ["zennia", "cathy", "olivia", "elliot", "charlotte", "theodore"],
     state: 3,
     releaseDate: "2026-08-24",
     chaptersToPublish: 4,
@@ -1666,11 +1666,26 @@ window.DATA_STORIES = [
         caption:
           "Zennia holds the SeedSpray™ vial while Olivia checks Theodore on the X-frame.",
       },
+      {
+        path: "assets/scenes/quality_control/ch03_zennia_final_extraction_faces_v2.png",
+        caption:
+          "Zennia finishes extracting the last dud nanobots — Theodore screams while Olivia watches flushed and thrilled.",
+      },
+      {
+        path: "assets/scenes/quality_control/ch03_olivia_presents_samples_charlotte_v2.png",
+        caption:
+          "Olivia proudly offers Charlotte three overflowing vials of Theodore's last semen; Charlotte declines.",
+      },
+      {
+        path: "assets/scenes/quality_control/ch03_last_sample_vial_shattered_v3.png",
+        caption:
+          "Zennia 'accidentally' drops Theodore's last vial — his final chance at a bloodline shatters on the lab floor.",
+      },
     ],
   },
   {
     id: 49,
-    wordCount: 12170,
+    wordCount: 16288,
     title:
       "Bereavement Counseling: The Five Stages of Grieving a Testicle",
     brutalityRating: 1,
