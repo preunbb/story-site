@@ -742,7 +742,7 @@ window.OVER_EASY_CATALOG = {
       ],
       tagline: "He doesn't need all that length.",
       description:
-        "For the woman who's tired of pointless erections cluttering up his day. The CockCrusher™ cage sits fully flush against him, tamping down even the hslightest erection. If you want to shrink his penis permanently, ask our sales rep about the inversion attachment!",
+        "For the woman who's tired of pointless erections cluttering up his day. The CockCrusher™ cage sits fully flush against him, tamping down even the sllightest erection. If you want to shrink his penis permanently, ask our sales rep about the inversion attachment!",
       features: [
         "With inversion attachment, OverEasy guarantees permanent reduction of at least an inch of penis length",
         "Warning: prolonged wear may have irreversibly deleterious effects on erectile function.",

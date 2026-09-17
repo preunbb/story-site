@@ -1083,6 +1083,25 @@ html.ai-images-off .story-card-action:focus-visible {
   gap: 1.25rem;
 }
 
+.fanart-figure {
+  margin: 0;
+}
+
+.fanart-figure img {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  border-radius: var(--radius);
+  background: var(--grey-card);
+}
+
+.fanart-figure figcaption {
+  margin-top: 0.5rem;
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+}
+
 .captions-list {
   display: grid;
   grid-template-columns: 1fr;
