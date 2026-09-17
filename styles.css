@@ -1056,6 +1056,17 @@ html.ai-images-off .story-card-action:focus-visible {
   font-size: 0.95rem;
 }
 
+.fanart-intro {
+  margin: 0 0 1.5rem;
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+}
+
+.fanart-list {
+  display: grid;
+  gap: 1.25rem;
+}
+
 .captions-list {
   display: grid;
   grid-template-columns: 1fr;

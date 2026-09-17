@@ -1566,7 +1566,15 @@ window.DATA_STORIES = [
       "Over Easy Technologies sells gear and gadgets for many different cases - from automatically extracting semen samples from men to disciplinary devices to self-defense weapons that target one part of the male anatomy in particular. Olivia is excited for her first day on the prestigious job, and can't wait to see behind the scenes exactly how Over Easy keeps the quality of their products consistently high.",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vRLlzxx4u0Di4oHyD8zt285omUHIqPwV57dQlrc6UqLZJBrbBbB2FFxGWG84OWUkRpEy0AW_6AjfCNs/pub",
-    characterIds: ["zennia", "cathy", "olivia", "elliot", "charlotte", "theodore"],
+    characterIds: [
+      "zennia",
+      "cathy",
+      "olivia",
+      "elliot",
+      "charlotte",
+      "theodore",
+      "nameless_volunteers",
+    ],
     state: 3,
     releaseDate: "2026-08-24",
     chaptersToPublish: 4,
@@ -1686,15 +1694,14 @@ window.DATA_STORIES = [
   {
     id: 49,
     wordCount: 16288,
-    title:
-      "Bereavement Counseling: The Five Stages of Grieving a Testicle",
+    title: "Bereavement Counseling: The Five Stages of Grieving a Testicle",
     brutalityRating: 1,
     summary:
       "Dr. Karen sees a new patient dealing with a particularly sensitive injury.",
     cover: "assets/covers/bereavement.png",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vQvaHoeI871FaxJyLlR2MXUHfKNBG1yvbPVnA2N-LIn9HqEhHK8Sy64xpqh75XlDISXp2v_By3BRcrx/pub",
-    characterIds: ["karen", "stuart"],
+    characterIds: ["karen", "stuart", "michelle"],
     state: 3,
     releaseDate: "2026-08-09",
     chaptersToPublish: 1,

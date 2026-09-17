@@ -6,6 +6,7 @@
   var stories = [];
   var captions = [];
   var captionSections = [];
+  var fanart = [];
 
   /**
    * Story bodies are pre-rendered to markdown files under assets/stories/<id>.md
@@ -1745,6 +1746,37 @@
     });
   }
 
+  function renderFanartPanel() {
+    var root = byId("fanart-list");
+    if (!root) return;
+    root.innerHTML = "";
+    root.className = "fanart-list";
+    if (!fanart.length) {
+      root.innerHTML =
+        '<p class="fanart-intro">Nothing here yet — fan art coming soon.</p>';
+      return;
+    }
+    fanart.forEach(function (item) {
+      if (!item || !item.path) return;
+      var fig = document.createElement("figure");
+      fig.className = "fanart-figure";
+      var img = document.createElement("img");
+      img.src = item.path;
+      img.alt = item.alt || item.caption || "Fan art";
+      img.loading = "lazy";
+      fig.appendChild(img);
+      if (item.caption || item.credit) {
+        var cap = document.createElement("figcaption");
+        var parts = [];
+        if (item.caption) parts.push(escapeHtml(item.caption));
+        if (item.credit) parts.push("<em>" + escapeHtml(item.credit) + "</em>");
+        cap.innerHTML = parts.join(" — ");
+        fig.appendChild(cap);
+      }
+      root.appendChild(fig);
+    });
+  }
+
   function revealCaptionGraphic(fig) {
     if (!fig || !fig.classList.contains("scene-figure--graphic-warning")) {
       return false;
@@ -2695,6 +2727,7 @@
     "scenes",
     "ratings",
     "captions",
+    "fanart",
     "about",
     "other-authors",
   ];
@@ -4485,6 +4518,7 @@
     var normalizedCaptions = normalizeCaptionSections(data.captions);
     captions = normalizedCaptions.captions;
     captionSections = normalizedCaptions.sections;
+    fanart = data.fanart || [];
 
     initTabs();
     initCharactersGrid();
@@ -4494,6 +4528,7 @@
     renderStoriesGrid();
     renderScenesPanel();
     renderCaptionsPanel();
+    renderFanartPanel();
     initSceneLightbox();
     bindStoryGridClick();
     bindCharacterGridClick();

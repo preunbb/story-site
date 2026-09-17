@@ -735,10 +735,7 @@ window.DATA_CHARACTERS = [
     name: "Theodore",
     gender: "M",
     bio: "Charlotte's soft-spoken husband — a former early Over Easy employee who recruited test subjects for the self-defense line. Hefty low-hanging balls with both epididymides missing from earlier product demos; still produces sperm, but can't deliver it the usual way.",
-    profilePictures: [
-      "assets/characters/theodore_v1.png",
-      "assets/characters/theodore_epididymis_absent_testes_v1.png",
-    ],
+    profilePictures: ["assets/characters/theodore_v1.png"],
   },
   {
     id: "elliot",
@@ -747,7 +744,18 @@ window.DATA_CHARACTERS = [
     bio: "Olivia's shy college classmate — thin, wimpy, and broke enough to sign up as an Over Easy QC test subject. He showed up with a unusually small, tight sack and left with his nutcords snapped and his balls dangling loose in an empty scrotum.",
     profilePictures: [
       "assets/characters/elliot_cast_before_v1.png",
-      "assets/characters/elliot_cast_after_v1.png",
+      "assets/characters/elliot_testes_stage1_small_short_cords_v1.png",
+      "assets/characters/elliot_testes_stage2_boysnapper_stretch_v1.png",
+      "assets/characters/elliot_testes_stage3_pulled_off_ragged_cords_v1.png",
+    ],
+  },
+  {
+    id: "nameless_volunteers",
+    name: "Nameless Legions of 'Volunteers'",
+    gender: "M",
+    bio: "OverEasy's quality control department has access to a depthless well of oversexed men who don't read the fine print on their contracts. Bound to their X-Frames in the storage room, they dangle precariously until a technician requisitions them for a product test.",
+    profilePictures: [
+      "assets/characters/nameless_volunteers_xframes_v10_abs_crotches.png",
     ],
   },
   {
