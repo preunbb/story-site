@@ -2802,8 +2802,9 @@
 
     tabs.forEach(function (tab) {
       tab.addEventListener("click", function (e) {
-        e.preventDefault();
         var name = tab.getAttribute("data-tab");
+        if (!name) return; // e.g. OverEasy Catalogue → real page link
+        e.preventDefault();
         showTab(name);
         location.hash = name;
       });

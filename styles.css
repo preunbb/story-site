@@ -43,9 +43,9 @@ a:hover {
 
 .site-header {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem 1rem;
+  gap: 0.75rem;
   padding: 1rem 1.5rem;
   background: var(--grey-soft);
   border-bottom: 1px solid var(--border);
@@ -60,6 +60,8 @@ a:hover {
   font-weight: 600;
   letter-spacing: 0.02em;
   color: var(--ink);
+  line-height: 1.25;
+  text-align: center;
 }
 .logo:hover {
   color: var(--red-bright);
@@ -159,6 +161,7 @@ html:not(.ai-images-off) .ai-images-toggle-label--tiles {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  justify-content: center;
 }
 
 .tab {
@@ -176,6 +179,19 @@ html:not(.ai-images-off) .ai-images-toggle-label--tiles {
   color: var(--ink);
   background: var(--red-dim);
   box-shadow: 0 0 20px var(--red-glow);
+}
+
+.tab--oe-catalog {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.tab-oe-logo {
+  height: 1.35em;
+  width: auto;
+  flex-shrink: 0;
+  display: block;
 }
 
 .tab-text-short {
@@ -3014,15 +3030,12 @@ body.preun-local-andrea .local-andrea-status {
 
 @media (max-width: 768px) {
   .site-header {
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 0.6rem;
     padding: 0.75rem 1rem;
   }
 
   .logo {
-    font-size: 1.2rem;
-    flex: 1 1 auto;
-    min-width: 0;
+    font-size: 1.15rem;
   }
 
   .ai-images-toggle-label {
@@ -3038,7 +3051,7 @@ body.preun-local-andrea .local-andrea-status {
     display: flex;
     flex-wrap: nowrap;
     gap: 0.2rem;
-    justify-content: stretch;
+    justify-content: center;
   }
 
   .tab {
