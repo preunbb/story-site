@@ -802,12 +802,11 @@ window.OVER_EASY_CATALOG = {
       ],
       tagline: "When his balls refuse to give you the pregnancy you deserve.",
       description:
-        "Cutting edge cavitation technology can harvest concentrated samples from even the most recalcitrant donors. SeedSpray™ nanobots deploy directly into his testicles, avoiding the need for messy or pleasurable orgasms. They distribute themselves where his contributions are stored, and harvest ultra-dense semen samples through irregular detonations and cavitations — so his anatomy never gets a chance to adapt. Collection vials included. Continued fertility not part of the warranty.",
+        "Cutting edge cavitation technology can harvest concentrated samples from even the most recalcitrant donors. SeedSpray™ nanobots deploy directly into his testicles, avoiding the need for messy or pleasurable orgasms. They distribute themselves where his contributions are stored, and harvest ultra-dense semen samples through unpredictable detonations and cavitations. Testicular viability post-procedure not guaranteed.",
       features: [
-        "Self-distributing nanobot suspension — no clumsy manual targeting required",
-        "Irregular cavitation rhythm keeps him guessing (and leaking) until the vial is full",
-        "Graduated collection vials capture pure, undiluted samples — not the watery nonsense of a normal orgasm",
-        "Spare vial and clinical applicator tip in every kit",
+        "Self-distributing nanobot suspension ensures every single semen cell is harvested, no matter how deeply they're hidden within his gonads",
+        "Irregular cavitation rhythm keeps him guessing and leaking until the vial is full",
+        "Graduated collection vials capture pure, undiluted samples, with upwards of 40 times the sperm count of a normal orgasm",
       ],
     },
     {
