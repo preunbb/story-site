@@ -734,10 +734,10 @@ window.OVER_EASY_CATALOG = {
       name: "CockCrusher™ Inverted Chastity Cage",
       model: "OET-IC-XS",
       image:
-        "assets/over-easy/scenes/bereavement_counseling/overeasy_invertcage_device_v9.png",
+        "assets/over-easy/scenes/bereavement_counseling/overeasy_invertcage_device_v12_no_box_inversion.png",
       images: [
         {
-          path: "assets/over-easy/scenes/bereavement_counseling/overeasy_invertcage_device_v9.png",
+          path: "assets/over-easy/scenes/bereavement_counseling/overeasy_invertcage_device_v12_no_box_inversion.png",
         },
       ],
       tagline: "He doesn't need all that length.",

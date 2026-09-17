@@ -585,14 +585,14 @@
             null,
           )
         : "";
+    var purchasePart = storyPreviewPurchasePart(story);
+    var kofiBuyLabel =
+      (purchasePart && purchasePart.kofiLabel) || "Buy for $7.99 on Ko-Fi";
+    var amazonBuyLabel =
+      (purchasePart && purchasePart.amazonLabel) || "Buy for $9.99 on Amazon";
     var links = [
-      storyPreviewPurchaseLink(kofiUrl, "Buy for $7.99 on Ko-Fi", "kofi", null),
-      storyPreviewPurchaseLink(
-        amazonUrl,
-        "Buy for $9.99 on Amazon",
-        "amazon",
-        null,
-      ),
+      storyPreviewPurchaseLink(kofiUrl, kofiBuyLabel, "kofi", null),
+      storyPreviewPurchaseLink(amazonUrl, amazonBuyLabel, "amazon", null),
       fullLink,
     ]
       .filter(Boolean)

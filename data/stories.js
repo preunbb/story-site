@@ -3,11 +3,15 @@ var ANDREA_LUCAS_PURCHASE_PARTS = [
     part: 1,
     kofiUrl: "https://ko-fi.com/s/edb2b8eaa5",
     amazonUrl: "https://www.amazon.com/dp/B0GJTZSS1D",
+    kofiLabel: "Buy part 1 for $5.99 on Ko-Fi!",
+    amazonLabel: "Buy part 1 for $7.99 on Amazon!",
   },
   {
     part: 2,
     kofiUrl: "https://ko-fi.com/s/6e786316fd",
     amazonUrl: "https://www.amazon.com/dp/B0H7Q3LLRC",
+    kofiLabel: "Buy part 2 for $7.99 on Ko-Fi!",
+    amazonLabel: "Buy part 2 for $9.99 on Amazon!",
   },
 ];
 
