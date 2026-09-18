@@ -1780,6 +1780,277 @@
 
   var connectionsGraphState = null;
 
+  function connectionLabelForViewer(edge, viewerId) {
+    if (!edge) return "Connection";
+    if (viewerId && edge.to === viewerId && edge.reverseLabel) {
+      return edge.reverseLabel;
+    }
+    return edge.label || edge.reverseLabel || "Connection";
+  }
+
+  /** Turn a stored label into a phrase that fits: "Is {phrase} in {Story}." */
+  function connectionSentencePhrase(rawLabel, otherName) {
+    var label = String(rawLabel || "").trim();
+    if (!label) return "connected";
+    var m;
+    if ((m = /^Mother of (.+)$/i.exec(label))) return m[1] + "'s mother";
+    if ((m = /^Son of (.+)$/i.exec(label))) return m[1] + "'s son";
+    if ((m = /^Daughter of (.+)$/i.exec(label))) return m[1] + "'s daughter";
+    if ((m = /^Sister of (.+)$/i.exec(label))) return m[1] + "'s sister";
+    if ((m = /^Stepmom (.+)$/i.exec(label))) return "stepmother who " + m[1];
+    if ((m = /^Stepsister (\w+) (.+)$/i.exec(label)))
+      return "stepsister who " + m[2];
+    if ((m = /^Roommates with (.+)$/i.exec(label)))
+      return "roommates with " + m[1];
+    if ((m = /^Married to (.+)$/i.exec(label))) return "married to " + m[1];
+    if ((m = /^Dates (.+)$/i.exec(label))) return "dating " + m[1];
+    if ((m = /^Dated and owned by (.+)$/i.exec(label)))
+      return "dated and owned by " + m[1];
+    if ((m = /^Dates and owns (.+)$/i.exec(label)))
+      return "dating and owning " + m[1];
+    if ((m = /^Owns (.+)$/i.exec(label))) return "owner of " + m[1];
+    if ((m = /^Owned by (.+)$/i.exec(label))) return "owned by " + m[1];
+    if ((m = /^Castrates (.+)$/i.exec(label)))
+      return "the one who castrates " + m[1];
+    if ((m = /^Castrated by (.+)$/i.exec(label)))
+      return "castrated by " + m[1];
+
+    var lower;
+    // Keep leading proper-name possessives capitalized (e.g. "Nathan's …").
+    if (/^[A-Z][\w'.-]*'s\b/.test(label)) {
+      lower = label;
+    } else {
+      lower = label.charAt(0).toLowerCase() + label.slice(1);
+    }
+    // Passives / status phrases already read fine after "Is …"
+    if (
+      /\bby\b/i.test(label) ||
+      /^(in |on |at |with |after |for |from |to )/i.test(lower) ||
+      /^(left|right|both|last|dead|wedding|remaining|damaged|ruptured|chosen|blue-?balled|balls?|testicles?|scrotum|fertility|devices|surgeries|castration|seedspray|boysnapper|prisoner|practice|subject|intern|receptionist|billing|fight|fights|cheats|onboarded|checked|authorized|commanded|encouraged|held|helped|kneed|stomped|punted|grabbed|squeezed|twisted|slapped|kicked|milked|tested|trained|teased|edged|dumped|dated|owned|ordered|assessed|compared|extracted|filmed|finished|handled|hunted|inspected|lured|met|neglected|orchiectomized|presented|practiced|pushed|raced|received|removed|rescued|sabotaged|sent|sterilized|supplied|supervised|targeted|tormented|tortured|watched|mother|son|daughter|sister|stepmother|stepsister|roommates|married|dating|owner)\b/i.test(
+        lower,
+      )
+    ) {
+      return lower;
+    }
+    // Active agent labels → "the one who …"
+    return "the one who " + lower;
+  }
+
+  function formatConnectionSentenceHtml(edge, viewerId) {
+    var otherId = edge.from === viewerId ? edge.to : edge.from;
+    var other = getCharacterById(otherId);
+    var otherName = other ? other.name : otherId;
+    var story = getStoryById(edge.storyId);
+    var storyTitle = story ? story.title || "a story" : "a story";
+    var href = story ? storyCatalogHref(story) : "#stories";
+    var phrase = connectionSentencePhrase(
+      connectionLabelForViewer(edge, viewerId),
+      otherName,
+    );
+
+    var charLink =
+      '<button type="button" class="connections-char-link" data-character-id="' +
+      escapeHtml(otherId) +
+      '">' +
+      escapeHtml(otherName) +
+      "</button>";
+    var storyLink =
+      '<a class="connections-story-link" href="' +
+      escapeHtml(href) +
+      '">' +
+      escapeHtml(storyTitle) +
+      "</a>";
+
+    // Wrap the other character's name wherever it appears in the phrase.
+    var linkedPhrase = phrase;
+    if (otherName) {
+      var nameRe = new RegExp(
+        otherName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
+        "gi",
+      );
+      linkedPhrase = phrase.replace(nameRe, charLink);
+    }
+    // If the name wasn't in the phrase, append a linked mention.
+    if (linkedPhrase === phrase) {
+      linkedPhrase = phrase + " (" + charLink + ")";
+    }
+
+    // Avoid "Is … in … in Story" when the phrase already uses "in".
+    if (/\bin\b/i.test(phrase)) {
+      return "Is " + linkedPhrase + ", from " + storyLink + ".";
+    }
+    return "Is " + linkedPhrase + " in " + storyLink + ".";
+  }
+
+  /** Edge kind colors: severe=red, single=yellow, pain=green, family=blue, relationship=pink */
+  var CONNECTION_KIND_ORDER = [
+    "family",
+    "relationship",
+    "severe",
+    "single",
+    "pain",
+  ];
+  var CONNECTION_KIND_COLORS = {
+    severe: "#e25555",
+    single: "#e0c14a",
+    pain: "#5cbf6a",
+    family: "#4a8fdb",
+    relationship: "#e07ab0",
+  };
+  var CONNECTION_KIND_LABELS = {
+    family: "Family",
+    relationship: "Relationship",
+    severe: "Castration / both balls lost",
+    single: "Single testicle lost",
+    pain: "Pain, no permanent damage",
+  };
+  var connectionsKindEnabled = {
+    family: true,
+    relationship: true,
+    severe: true,
+    single: true,
+    pain: true,
+  };
+
+  function connectionEdgePassesKindFilter(edge) {
+    var kinds = connectionEdgeKinds(edge);
+    for (var i = 0; i < kinds.length; i++) {
+      if (connectionsKindEnabled[kinds[i]]) return true;
+    }
+    return false;
+  }
+
+  function renderConnectionsKindFilters() {
+    var host = byId("connections-kind-filters");
+    if (!host) return;
+    host.innerHTML =
+      '<h3 class="connections-kind-filters-title">Show connections</h3>' +
+      '<ul class="connections-kind-filter-list">' +
+      CONNECTION_KIND_ORDER.map(function (kind) {
+        var checked = connectionsKindEnabled[kind] ? " checked" : "";
+        return (
+          '<li class="connections-kind-filter-item">' +
+          '<label class="connections-kind-filter-label">' +
+          '<input type="checkbox" class="connections-kind-filter-input" data-kind="' +
+          escapeHtml(kind) +
+          '"' +
+          checked +
+          " />" +
+          '<span class="connections-kind-swatch" style="background:' +
+          CONNECTION_KIND_COLORS[kind] +
+          '" aria-hidden="true"></span>' +
+          '<span class="connections-kind-filter-text">' +
+          escapeHtml(CONNECTION_KIND_LABELS[kind] || kind) +
+          "</span>" +
+          "</label></li>"
+        );
+      }).join("") +
+      "</ul>";
+  }
+
+  function bindConnectionsKindFilters() {
+    var host = byId("connections-kind-filters");
+    if (!host || host._connectionsKindBound) return;
+    host._connectionsKindBound = true;
+    host.addEventListener("change", function (ev) {
+      var input =
+        ev.target &&
+        ev.target.closest &&
+        ev.target.closest(".connections-kind-filter-input");
+      if (!input) return;
+      var kind = input.getAttribute("data-kind");
+      if (!kind) return;
+      connectionsKindEnabled[kind] = !!input.checked;
+      if (connectionsGraphState && connectionsGraphState.repaint) {
+        connectionsGraphState.repaint();
+      } else {
+        initConnectionsGraph(true);
+      }
+      // Refresh detail list for current selection if any.
+      if (connectionsGraphState && connectionsGraphState.selectedId) {
+        renderConnectionsDetail(connectionsGraphState.selectedId);
+      }
+    });
+  }
+
+  function connectionEdgeKinds(edge) {
+    if (edge && Array.isArray(edge.kinds) && edge.kinds.length) {
+      return CONNECTION_KIND_ORDER.filter(function (k) {
+        return edge.kinds.indexOf(k) !== -1;
+      });
+    }
+    var text = (
+      (edge && edge.label ? edge.label : "") +
+      " " +
+      (edge && edge.reverseLabel ? edge.reverseLabel : "")
+    ).toLowerCase();
+    var kinds = [];
+
+    function add(k) {
+      if (kinds.indexOf(k) === -1) kinds.push(k);
+    }
+
+    if (
+      /\b(mother|son of|daughter of|sister|stepmom|stepson|stepsister|stepbrother|step-sister|step-brother)\b/.test(
+        text,
+      )
+    ) {
+      add("family");
+    }
+    if (
+      /\b(dates|dated|married|roommates|owns|owned|fiancé|fiance|dumps|dumped|cheats|boyfriend|girlfriend|receptionist|intern)\b/.test(
+        text,
+      )
+    ) {
+      add("relationship");
+    }
+
+    var severe =
+      !/\bcastration stories\b/.test(text) &&
+      (/\b(castrat|orchiectom|penectom|steriliz|elastrator|three-thumb|defragmentation|prisoner's-dilemma)\w*/.test(
+        text,
+      ) ||
+        /\bboth (of )?(his |the )?testicles\b/.test(text) ||
+        /\bdestroys?\b.*\btesticles\b/.test(text) ||
+        /\btesticles destroyed\b/.test(text) ||
+        /\bdead testicles removed\b/.test(text) ||
+        /\btesticles popped and penectomized\b/.test(text) ||
+        /\bfertility finished\b/.test(text) ||
+        (/\blast testicle\b/.test(text) &&
+          /\b(pop|popped|castrat|liquif|destroy|destroyed|orchiectom|removes?|removed|heel-pop|ruptur)\w*/.test(
+            text,
+          )));
+
+    var single =
+      !severe &&
+      (/\b(pops?|popped|ruptures?|ruptured|heel-pops?|heel-popped)\b/.test(
+        text,
+      ) ||
+        /\b(left|right|chosen|wedding) testicle\b/.test(text) ||
+        /\btesticle (popped|ruptured|heel-popped|extracted)\b/.test(text) ||
+        /\bstomped and ruptured\b/.test(text) ||
+        /\bseedspray-tested\b/.test(text) ||
+        /\bboysnapper-tested\b/.test(text));
+
+    var pain =
+      !severe &&
+      !single &&
+      (/\b(knees?|kneed|stomps?|stomped|squeezes?|squeezed|slaps?|slapped|twists?|twisted|edges?|edged|torments?|tormented|grabs?|grabbed|practices?|fights?|kicks?|kicked|holds?|held|blueballs?|blueballed|punts?|punted|lap-dances?|teases?|teased|inspects?|inspected|watches?|watched|encourages?|mistakenly targets?|hunts?|hunted|targets?|targeted|neglects?|neglected|authorizes?|asses+es?|assessed|films?|orders?|oversees?|sabotages?|trains?|trained|commands?|commanded|onboards?|presents?|compares?|pushes?|milks?|milked|therap)/.test(
+        text,
+      ) ||
+        /\bgroin\b/.test(text) ||
+        /\bscrotum\b/.test(text));
+
+    if (severe) add("severe");
+    else if (single) add("single");
+    else if (pain) add("pain");
+
+    if (!kinds.length) add("pain");
+    return CONNECTION_KIND_ORDER.filter(function (k) {
+      return kinds.indexOf(k) !== -1;
+    });
+  }
+
   function connectionsEdgesForCharacter(charId) {
     return connections.filter(function (e) {
       return e && (e.from === charId || e.to === charId);
@@ -1853,7 +2124,9 @@
       },
     );
 
-    var edges = connectionsEdgesForCharacter(charId);
+    var edges = connectionsEdgesForCharacter(charId).filter(
+      connectionEdgePassesKindFilter,
+    );
     var linksHtml = "";
     if (edges.length) {
       linksHtml =
@@ -1861,25 +2134,18 @@
         '<ul class="connections-edge-list">' +
         edges
           .map(function (e) {
-            var story = getStoryById(e.storyId);
-            var href = story ? storyCatalogHref(story) : "#stories";
-            var otherId = e.from === charId ? e.to : e.from;
-            var other = getCharacterById(otherId);
-            var otherName = other ? other.name : otherId;
             return (
-              '<li><a class="connections-edge-link" href="' +
-              escapeHtml(href) +
-              '">' +
-              escapeHtml(e.label || "Connection") +
-              "</a>" +
-              '<span class="connections-edge-meta"> · ' +
-              escapeHtml(otherName) +
-              (story ? " · " + escapeHtml(story.title || "") : "") +
-              "</span></li>"
+              '<li class="connections-edge-sentence">' +
+              formatConnectionSentenceHtml(e, charId) +
+              "</li>"
             );
           })
           .join("") +
         "</ul></div>";
+    } else {
+      linksHtml =
+        '<div class="flyout-section"><h3 class="flyout-section-title">Connections</h3>' +
+        '<p class="connections-detail-empty">No visible connections for the selected types.</p></div>';
     }
 
     detail.innerHTML =
@@ -1906,6 +2172,18 @@
     if (detail && !detail._connectionsBound) {
       detail._connectionsBound = true;
       detail.addEventListener("click", function (e) {
+        var charBtn =
+          e.target &&
+          e.target.closest &&
+          e.target.closest(".connections-char-link");
+        if (charBtn && detail.contains(charBtn)) {
+          var focusId = charBtn.getAttribute("data-character-id");
+          if (focusId && connectionsGraphState && connectionsGraphState.setSelected) {
+            e.preventDefault();
+            connectionsGraphState.setSelected(focusId);
+          }
+          return;
+        }
         var pz =
           e.target &&
           e.target.closest &&
@@ -2000,6 +2278,8 @@
         from: e.from,
         to: e.to,
         label: e.label || "",
+        reverseLabel: e.reverseLabel || "",
+        kinds: connectionEdgeKinds(e),
         storyId: e.storyId,
         source: nodeById[e.from],
         target: nodeById[e.to],
@@ -2100,10 +2380,10 @@
       return !isHub[n.id] && !n.hubId;
     });
 
-    // Wheel radii — tight chords so spokes stay short.
+    // Compact circular clusters — short spokes, packed in a grid (not one big ring).
     function wheelRadius(spokeCount) {
       var n = Math.max(spokeCount, 1);
-      return Math.max(48, (n * 54) / (2 * Math.PI));
+      return Math.max(36, (n * 42) / (2 * Math.PI));
     }
 
     var wheelMeta = hubs.map(function (h) {
@@ -2112,6 +2392,10 @@
         spokes: spokesByHub[h.id],
         r: wheelRadius(spokesByHub[h.id].length),
       };
+    });
+    // Sort largest wheels first for denser packing.
+    wheelMeta.sort(function (a, b) {
+      return b.r - a.r || b.spokes.length - a.spokes.length;
     });
     if (orphans.length) {
       wheelMeta.push({
@@ -2122,28 +2406,47 @@
       });
     }
 
-    var wheelGap = 24;
-    var maxWheelR = 0;
-    wheelMeta.forEach(function (w) {
-      if (w.r > maxWheelR) maxWheelR = w.r;
-    });
-    var metaR =
-      wheelMeta.length <= 1
-        ? 0
-        : Math.max(
-            maxWheelR + 16,
-            ((wheelMeta.length * (maxWheelR * 2 + wheelGap)) / (2 * Math.PI)) *
-              0.72,
-          );
-    var pad = 56;
-    var width = Math.ceil(2 * (metaR + maxWheelR) + pad * 2);
-    var height = Math.ceil(2 * (metaR + maxWheelR) + pad * 2);
-    width = Math.max(width, 640);
-    height = Math.max(height, 640);
-    var cx = width / 2;
-    var cy = height / 2;
+    var clusterGap = 48;
+    var pad = 40;
+    // Prefer a wide short grid so the canvas stays compact in the viewport.
+    var targetCols = Math.max(
+      2,
+      Math.min(5, Math.ceil(Math.sqrt(wheelMeta.length * 1.6))),
+    );
+    var cols = Math.min(targetCols, wheelMeta.length);
+    var rows = Math.ceil(wheelMeta.length / cols);
 
-    var zoom = 1.35;
+    // Per-column / per-row max radius so cells hug their wheels.
+    var colMaxR = [];
+    var rowMaxR = [];
+    for (var ci = 0; ci < cols; ci++) colMaxR[ci] = 0;
+    for (var ri = 0; ri < rows; ri++) rowMaxR[ri] = 0;
+    wheelMeta.forEach(function (w, i) {
+      var c = i % cols;
+      var r = Math.floor(i / cols);
+      if (w.r > colMaxR[c]) colMaxR[c] = w.r;
+      if (w.r > rowMaxR[r]) rowMaxR[r] = w.r;
+    });
+
+    var colCenter = [];
+    var x = pad;
+    for (ci = 0; ci < cols; ci++) {
+      colCenter[ci] = x + colMaxR[ci];
+      x += colMaxR[ci] * 2 + clusterGap;
+    }
+    var rowCenter = [];
+    var y = pad;
+    for (ri = 0; ri < rows; ri++) {
+      rowCenter[ri] = y + rowMaxR[ri];
+      y += rowMaxR[ri] * 2 + clusterGap;
+    }
+
+    var width = Math.ceil(x - clusterGap + pad);
+    var height = Math.ceil(y - clusterGap + pad);
+    width = Math.max(width, 480);
+    height = Math.max(height, 360);
+
+    var zoom = 1.15;
     var zoomMin = 0.5;
     var zoomMax = 3;
     var zoomStep = 0.2;
@@ -2161,12 +2464,10 @@
     applyZoom();
 
     wheelMeta.forEach(function (w, wi) {
-      var angle =
-        wheelMeta.length <= 1
-          ? 0
-          : (wi / wheelMeta.length) * Math.PI * 2 - Math.PI / 2;
-      var wx = cx + Math.cos(angle) * metaR;
-      var wy = cy + Math.sin(angle) * metaR;
+      var c = wi % cols;
+      var r = Math.floor(wi / cols);
+      var wx = colCenter[c];
+      var wy = rowCenter[r];
       w.cx = wx;
       w.cy = wy;
       if (w.hub) {
@@ -2175,16 +2476,14 @@
       }
       w.spokes.forEach(function (s, si) {
         var a =
-          (si / Math.max(w.spokes.length, 1)) * Math.PI * 2 -
-          Math.PI / 2 +
-          angle * 0.15;
+          (si / Math.max(w.spokes.length, 1)) * Math.PI * 2 - Math.PI / 2;
         s.x = wx + Math.cos(a) * w.r;
         s.y = wy + Math.sin(a) * w.r;
       });
     });
 
-    var selectedId = null;
-    var hoveredEdge = null;
+    var selectedId =
+      (connectionsGraphState && connectionsGraphState.selectedId) || null;
 
     function paint() {
       var ns = "http://www.w3.org/2000/svg";
@@ -2215,57 +2514,67 @@
 
       var gEdges = document.createElementNS(ns, "g");
       gEdges.setAttribute("class", "connections-edges");
-      var gLabels = document.createElementNS(ns, "g");
-      gLabels.setAttribute("class", "connections-edge-labels");
       var gNodes = document.createElementNS(ns, "g");
       gNodes.setAttribute("class", "connections-nodes");
 
       simEdges.forEach(function (e, idx) {
         if (!e.source || !e.target) return;
+        if (!connectionEdgePassesKindFilter(e)) return;
         var active =
           selectedId && (e.from === selectedId || e.to === selectedId);
-        var line = document.createElementNS(ns, "line");
-        line.setAttribute("x1", e.source.x);
-        line.setAttribute("y1", e.source.y);
-        line.setAttribute("x2", e.target.x);
-        line.setAttribute("y2", e.target.y);
-        line.setAttribute(
+        var kinds =
+          e.kinds && e.kinds.length ? e.kinds : ["pain"];
+        // Only paint enabled kind stripes
+        kinds = kinds.filter(function (k) {
+          return connectionsKindEnabled[k];
+        });
+        if (!kinds.length) return;
+        var group = document.createElementNS(ns, "g");
+        group.setAttribute(
           "class",
-          "connections-edge" + (active ? " is-active" : ""),
+          "connections-edge-group" + (active ? " is-active" : ""),
         );
-        line.setAttribute("data-edge-index", String(idx));
-        gEdges.appendChild(line);
+        group.setAttribute("data-edge-index", String(idx));
 
-        if (active || hoveredEdge === idx) {
-          var mx = (e.source.x + e.target.x) / 2;
-          var my = (e.source.y + e.target.y) / 2;
-          var story = getStoryById(e.storyId);
-          var href = story ? storyCatalogHref(story) : "#stories";
-          var a = document.createElementNS(ns, "a");
-          a.setAttributeNS("http://www.w3.org/1999/xlink", "href", href);
-          a.setAttribute("href", href);
-          a.setAttribute("class", "connections-edge-label-link");
-          var bg = document.createElementNS(ns, "rect");
-          var text = document.createElementNS(ns, "text");
-          text.setAttribute("x", mx);
-          text.setAttribute("y", my);
-          text.setAttribute("class", "connections-edge-label");
-          text.textContent = e.label;
-          a.appendChild(bg);
-          a.appendChild(text);
-          gLabels.appendChild(a);
-          try {
-            var bb = text.getBBox();
-            bg.setAttribute("x", bb.x - 4);
-            bg.setAttribute("y", bb.y - 2);
-            bg.setAttribute("width", bb.width + 8);
-            bg.setAttribute("height", bb.height + 4);
-            bg.setAttribute("rx", "4");
-            bg.setAttribute("class", "connections-edge-label-bg");
-          } catch (err) {
-            /* ignore */
+        // Invisible wide hit target
+        var hit = document.createElementNS(ns, "line");
+        hit.setAttribute("x1", e.source.x);
+        hit.setAttribute("y1", e.source.y);
+        hit.setAttribute("x2", e.target.x);
+        hit.setAttribute("y2", e.target.y);
+        hit.setAttribute("class", "connections-edge-hit");
+        hit.setAttribute("data-edge-index", String(idx));
+        group.appendChild(hit);
+
+        var dashLen = 10;
+        var nKinds = kinds.length;
+        kinds.forEach(function (kind, ki) {
+          var line = document.createElementNS(ns, "line");
+          line.setAttribute("x1", e.source.x);
+          line.setAttribute("y1", e.source.y);
+          line.setAttribute("x2", e.target.x);
+          line.setAttribute("y2", e.target.y);
+          line.setAttribute(
+            "class",
+            "connections-edge connections-edge--" + kind,
+          );
+          line.setAttribute("data-edge-index", String(idx));
+          line.style.stroke =
+            CONNECTION_KIND_COLORS[kind] || CONNECTION_KIND_COLORS.pain;
+          if (nKinds > 1) {
+            var gap = dashLen * (nKinds - 1);
+            line.setAttribute(
+              "stroke-dasharray",
+              String(dashLen) + " " + String(gap),
+            );
+            line.setAttribute(
+              "stroke-dashoffset",
+              String(-ki * dashLen),
+            );
           }
-        }
+          group.appendChild(line);
+        });
+        gEdges.appendChild(group);
       });
 
       nodes.forEach(function (n) {
@@ -2286,7 +2595,7 @@
         var clip = document.createElementNS(ns, "clipPath");
         clip.setAttribute("id", clipId);
         var clipCircle = document.createElementNS(ns, "circle");
-        var portraitR = isHub[n.id] ? 26 : 20;
+        var portraitR = isHub[n.id] ? 20 : 15;
         clipCircle.setAttribute("r", String(portraitR));
         clip.appendChild(clipCircle);
         defs.appendChild(clip);
@@ -2323,7 +2632,6 @@
 
       svg.appendChild(gGuides);
       svg.appendChild(gEdges);
-      svg.appendChild(gLabels);
       svg.appendChild(gNodes);
     }
 
@@ -2334,17 +2642,16 @@
         var id = nodeEl.getAttribute("data-character-id");
         if (!id || !nodeById[id]) return;
         selectedId = id;
+        if (connectionsGraphState) connectionsGraphState.selectedId = id;
         renderConnectionsDetail(id);
         paint();
         return;
       }
       var line =
         ev.target &&
-        ev.target.classList &&
-        ev.target.classList.contains("connections-edge")
-          ? ev.target
-          : null;
-      if (!line) return;
+        ev.target.closest &&
+        ev.target.closest("[data-edge-index]");
+      if (!line || line.classList.contains("connections-node")) return;
       var idx = parseInt(line.getAttribute("data-edge-index"), 10);
       var e = simEdges[idx];
       if (!e) return;
@@ -2352,26 +2659,8 @@
       if (story) location.hash = storyCatalogHref(story).replace(/^#/, "");
     };
 
-    svg.onmouseover = function (ev) {
-      if (
-        ev.target &&
-        ev.target.classList &&
-        ev.target.classList.contains("connections-edge")
-      ) {
-        hoveredEdge = parseInt(ev.target.getAttribute("data-edge-index"), 10);
-        paint();
-      }
-    };
-    svg.onmouseout = function (ev) {
-      if (
-        ev.target &&
-        ev.target.classList &&
-        ev.target.classList.contains("connections-edge")
-      ) {
-        hoveredEdge = null;
-        paint();
-      }
-    };
+    svg.onmouseover = null;
+    svg.onmouseout = null;
     svg.onmousedown = null;
 
     function setZoom(next) {
@@ -2392,7 +2681,7 @@
         if (action === "in") connectionsGraphState.setZoom(connectionsGraphState.zoom + zoomStep);
         else if (action === "out")
           connectionsGraphState.setZoom(connectionsGraphState.zoom - zoomStep);
-        else if (action === "reset") connectionsGraphState.setZoom(1.35);
+        else if (action === "reset") connectionsGraphState.setZoom(1.15);
       });
     }
 
@@ -2410,6 +2699,7 @@
       width: width,
       height: height,
       zoom: zoom,
+      selectedId: selectedId,
       setZoom: function (z) {
         setZoom(z);
         connectionsGraphState.zoom = zoom;
@@ -2423,12 +2713,17 @@
       },
       setSelected: function (id) {
         selectedId = id;
+        connectionsGraphState.selectedId = id;
         renderConnectionsDetail(id);
+        paint();
+      },
+      repaint: function () {
         paint();
       },
     };
 
     paint();
+    if (selectedId) renderConnectionsDetail(selectedId);
   }
 
   var CONNECTIONS_UNLOCK_KEY = "connectionsBetaUnlocked";
@@ -2487,6 +2782,8 @@
 
   function renderConnectionsPanel() {
     bindConnectionsGate();
+    bindConnectionsKindFilters();
+    renderConnectionsKindFilters();
     if (!syncConnectionsGateUi()) {
       var input = byId("connections-gate-input");
       if (input) {
