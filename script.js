@@ -3790,7 +3790,7 @@
     if (name === "ratings" && !localDistRatingsEnabled()) name = "stories";
     if (TAB_IDS.indexOf(name) === -1) name = "stories";
     var panels = qsAll(".panel");
-    var tabs = qsAll(".tab");
+    var tabs = qsAll(".tab[data-tab]");
     tabs.forEach(function (t) {
       t.classList.toggle("active", t.getAttribute("data-tab") === name);
     });
@@ -3798,12 +3798,64 @@
       p.classList.toggle("active", p.id === "panel-" + name);
     });
     document.body.classList.toggle("tab-connections", name === "connections");
+    syncTabsOtherActive(name);
+    closeTabsOther();
     if (name === "connections") {
       // Layout size is only reliable once the panel is visible.
       requestAnimationFrame(function () {
         renderConnectionsPanel();
       });
     }
+  }
+
+  function closeTabsOther() {
+    var wrap = document.querySelector(".tabs-other");
+    var toggle = byId("tabs-other-toggle");
+    var menu = byId("tabs-other-menu");
+    if (wrap) wrap.classList.remove("is-open");
+    if (toggle) toggle.setAttribute("aria-expanded", "false");
+    if (menu) menu.hidden = true;
+  }
+
+  function syncTabsOtherActive(name) {
+    var toggle = byId("tabs-other-toggle");
+    if (!toggle) return;
+    var inOther = false;
+    qsAll(".tabs-other-menu .tab[data-tab]").forEach(function (t) {
+      if (t.getAttribute("data-tab") === name) inOther = true;
+    });
+    toggle.classList.toggle("is-active", inOther);
+  }
+
+  function initTabsOtherMenu() {
+    var wrap = document.querySelector(".tabs-other");
+    var toggle = byId("tabs-other-toggle");
+    var menu = byId("tabs-other-menu");
+    if (!wrap || !toggle || !menu || wrap._tabsOtherBound) return;
+    wrap._tabsOtherBound = true;
+
+    toggle.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var open = !wrap.classList.contains("is-open");
+      if (open) {
+        wrap.classList.add("is-open");
+        toggle.setAttribute("aria-expanded", "true");
+        menu.hidden = false;
+      } else {
+        closeTabsOther();
+      }
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!wrap.classList.contains("is-open")) return;
+      if (wrap.contains(e.target)) return;
+      closeTabsOther();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeTabsOther();
+    });
   }
 
   function parseHash() {
@@ -3843,8 +3895,8 @@
   }
 
   function initTabs() {
-    var panels = qsAll(".panel");
-    var tabs = qsAll(".tab");
+    initTabsOtherMenu();
+    var tabs = qsAll(".tab[data-tab]");
 
     tabs.forEach(function (tab) {
       tab.addEventListener("click", function (e) {
