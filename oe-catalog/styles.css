@@ -887,3 +887,23 @@ body.scene-lightbox-open {
     letter-spacing: 0.14em;
   }
 }
+
+/* Ko-fi "Support me" — top right (matches main site) */
+.floatingchat-container-wrap,
+.floatingchat-container-wrap-mobi {
+  left: auto !important;
+  right: 1rem !important;
+  top: 1rem !important;
+  bottom: auto !important;
+}
+.floating-chat-kofi-popup-iframe,
+.floating-chat-kofi-popup-iframe-mobi {
+  left: auto !important;
+  right: 1rem !important;
+  top: 4rem !important;
+  bottom: auto !important;
+}
+.floating-chat-kofi-popup-iframe-closer-mobi {
+  left: auto !important;
+  right: 1rem !important;
+}

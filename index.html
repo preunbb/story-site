@@ -71,6 +71,10 @@
           >Captions</a
         >
         <a href="#fanart" class="tab" data-tab="fanart">Fanart</a>
+        <a href="#connections" class="tab" data-tab="connections"
+          ><span class="tab-text-full">Connections</span
+          ><span class="tab-text-short" aria-hidden="true">Links</span></a
+        >
         <a
           href="over-easy-products.html"
           class="tab tab--oe-catalog"
@@ -303,6 +307,94 @@
         <h1>Fanart</h1>
         <div class="fanart-list" id="fanart-list">
           <!-- Injected by JS from data/fanart.js -->
+        </div>
+      </section>
+
+      <section id="panel-connections" class="panel">
+        <div
+          class="connections-gate"
+          id="connections-gate"
+          hidden
+        >
+          <form class="connections-gate-form" id="connections-gate-form">
+            <h2 class="connections-gate-title">Connections (beta)</h2>
+            <p class="connections-gate-hint">
+              Enter the beta keyword to open the character web.
+            </p>
+            <label class="connections-gate-label" for="connections-gate-input"
+              >Keyword</label
+            >
+            <input
+              class="connections-gate-input"
+              id="connections-gate-input"
+              type="password"
+              name="keyword"
+              autocomplete="off"
+              required
+            />
+            <button type="submit" class="connections-gate-submit">Unlock</button>
+            <p class="connections-gate-error" id="connections-gate-error" hidden>
+              Incorrect keyword.
+            </p>
+          </form>
+        </div>
+        <div class="connections-unlocked" id="connections-unlocked" hidden>
+          <h1>Connections</h1>
+          <p class="connections-intro">
+            A web of who did what to whom. Click a portrait for their full cast
+            info in the side panel; click a link (or its label) to open that
+            story.
+          </p>
+          <div class="connections-layout">
+            <div class="connections-graph-wrap" id="connections-graph-wrap">
+              <div
+                class="connections-zoom"
+                id="connections-zoom"
+                role="group"
+                aria-label="Graph zoom"
+              >
+                <button
+                  type="button"
+                  class="connections-zoom-btn"
+                  data-zoom-action="out"
+                  aria-label="Zoom out"
+                >
+                  −
+                </button>
+                <button
+                  type="button"
+                  class="connections-zoom-btn connections-zoom-label"
+                  data-zoom-action="reset"
+                  aria-label="Reset zoom"
+                >
+                  100%
+                </button>
+                <button
+                  type="button"
+                  class="connections-zoom-btn"
+                  data-zoom-action="in"
+                  aria-label="Zoom in"
+                >
+                  +
+                </button>
+              </div>
+              <svg
+                id="connections-graph"
+                class="connections-graph"
+                role="img"
+                aria-label="Character connection graph"
+              ></svg>
+            </div>
+            <aside
+              class="connections-detail"
+              id="connections-detail"
+              aria-live="polite"
+            >
+              <p class="connections-detail-empty">
+                Select a character node to see their cast info and links.
+              </p>
+            </aside>
+          </div>
         </div>
       </section>
 
@@ -561,6 +653,7 @@
     <script src="data/otherAuthors.js"></script>
     <script src="data/captions.js"></script>
     <script src="data/fanart.js"></script>
+    <script src="data/connections.js"></script>
     <script src="data/source.js"></script>
     <script src="data/analytics.js"></script>
     <script src="script.js"></script>

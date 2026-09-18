@@ -7,6 +7,7 @@
   var captions = [];
   var captionSections = [];
   var fanart = [];
+  var connections = [];
 
   /**
    * Story bodies are pre-rendered to markdown files under assets/stories/<id>.md
@@ -1777,6 +1778,729 @@
     });
   }
 
+  var connectionsGraphState = null;
+
+  function connectionsEdgesForCharacter(charId) {
+    return connections.filter(function (e) {
+      return e && (e.from === charId || e.to === charId);
+    });
+  }
+
+  function renderConnectionsDetail(charId) {
+    var detail = byId("connections-detail");
+    if (!detail) return;
+    var character = getCharacterById(charId);
+    if (!character) {
+      detail.innerHTML =
+        '<p class="connections-detail-empty">Select a character node to see their cast info and links.</p>';
+      return;
+    }
+
+    var pics =
+      character.profilePictures && character.profilePictures.length
+        ? character.profilePictures
+        : [PLACEHOLDER_CHAR];
+    var picsHtml =
+      '<div class="flyout-profiles connections-detail-profiles">' +
+      pics
+        .map(function (src, idx) {
+          return (
+            '<div class="flyout-profile-wrap">' +
+            '<button type="button" class="flyout-profile-zoom" aria-label="' +
+            escapeHtml(
+              (character.name || "Character") +
+                " — enlarge portrait" +
+                (pics.length > 1 ? " (" + (idx + 1) + ")" : ""),
+            ) +
+            '" data-zoom-character="' +
+            escapeHtml(character.id) +
+            '" data-profile-index="' +
+            idx +
+            '">' +
+            imgHtml({
+              src: src,
+              alt: "",
+              className: "flyout-profile-img",
+              placeholder: PLACEHOLDER_CHAR,
+            }) +
+            "</button></div>"
+          );
+        })
+        .join("") +
+      "</div>";
+
+    var genderSymbol = character.gender === "F" ? "\u2640" : "\u2642";
+    var metaHtml =
+      '<p class="flyout-character-meta">' + escapeHtml(genderSymbol);
+    if (
+      character.gender === "F" &&
+      typeof character.testiclesKilled === "number"
+    ) {
+      metaHtml += " &middot; Testicles killed: " + character.testiclesKilled;
+    }
+    metaHtml += "</p>";
+
+    var charStories = getStoriesForCharacter(character.id);
+    var storiesHtml = flyoutInlineLinkSection(
+      "Stories",
+      charStories,
+      "data-story-id",
+      function (s) {
+        return s.id;
+      },
+      function (s) {
+        return s.title;
+      },
+    );
+
+    var edges = connectionsEdgesForCharacter(charId);
+    var linksHtml = "";
+    if (edges.length) {
+      linksHtml =
+        '<div class="flyout-section"><h3 class="flyout-section-title">Connections</h3>' +
+        '<ul class="connections-edge-list">' +
+        edges
+          .map(function (e) {
+            var story = getStoryById(e.storyId);
+            var href = story ? storyCatalogHref(story) : "#stories";
+            var otherId = e.from === charId ? e.to : e.from;
+            var other = getCharacterById(otherId);
+            var otherName = other ? other.name : otherId;
+            return (
+              '<li><a class="connections-edge-link" href="' +
+              escapeHtml(href) +
+              '">' +
+              escapeHtml(e.label || "Connection") +
+              "</a>" +
+              '<span class="connections-edge-meta"> · ' +
+              escapeHtml(otherName) +
+              (story ? " · " + escapeHtml(story.title || "") : "") +
+              "</span></li>"
+            );
+          })
+          .join("") +
+        "</ul></div>";
+    }
+
+    detail.innerHTML =
+      '<div class="connections-detail-card">' +
+      picsHtml +
+      '<h2 class="flyout-title">' +
+      escapeHtml(character.name || "") +
+      "</h2>" +
+      metaHtml +
+      '<p class="flyout-summary">' +
+      escapeHtml(character.bio || "") +
+      "</p>" +
+      storiesHtml +
+      linksHtml +
+      "</div>";
+  }
+
+  function initConnectionsGraph(forceRestart) {
+    var svg = byId("connections-graph");
+    var wrap = byId("connections-graph-wrap");
+    var detail = byId("connections-detail");
+    if (!svg || !wrap) return;
+
+    if (detail && !detail._connectionsBound) {
+      detail._connectionsBound = true;
+      detail.addEventListener("click", function (e) {
+        var pz =
+          e.target &&
+          e.target.closest &&
+          e.target.closest(".flyout-profile-zoom");
+        if (pz && detail.contains(pz)) {
+          var cid = pz.getAttribute("data-zoom-character");
+          var idxRaw = pz.getAttribute("data-profile-index");
+          var ch = cid ? getCharacterById(cid) : null;
+          var idx = typeof idxRaw === "string" ? parseInt(idxRaw, 10) : NaN;
+          if (ch && !isNaN(idx) && idx >= 0) {
+            e.preventDefault();
+            openCharacterProfileLightbox(ch, idx);
+            return;
+          }
+        }
+        var storyBtn =
+          e.target &&
+          e.target.closest &&
+          e.target.closest(".flyout-inline-link[data-story-id]");
+        if (storyBtn && detail.contains(storyBtn)) {
+          var sid = storyBtn.getAttribute("data-story-id");
+          if (sid) {
+            location.hash = storyCatalogHref(getStoryById(sid)).slice(1);
+          }
+        }
+      });
+    }
+
+    // Already drawn — keep it (static layout; no live sim to resize).
+    if (
+      connectionsGraphState &&
+      connectionsGraphState.alive &&
+      !forceRestart
+    ) {
+      return;
+    }
+
+    if (connectionsGraphState && connectionsGraphState.teardown) {
+      connectionsGraphState.teardown();
+    }
+    if (connectionsGraphState && connectionsGraphState.raf) {
+      cancelAnimationFrame(connectionsGraphState.raf);
+    }
+
+    var edges = (connections || []).filter(function (e) {
+      return (
+        e &&
+        e.from &&
+        e.to &&
+        getCharacterById(e.from) &&
+        getCharacterById(e.to)
+      );
+    });
+
+    var seenIds = {};
+    var nodes = [];
+    function addNode(id) {
+      if (!id || seenIds[id] || !getCharacterById(id)) return;
+      seenIds[id] = true;
+      var c = getCharacterById(id);
+      nodes.push({
+        id: id,
+        name: (c && c.name) || id,
+        gender: (c && c.gender) || "",
+        pic:
+          (c && c.profilePictures && c.profilePictures[0]) || PLACEHOLDER_CHAR,
+        x: 0,
+        y: 0,
+        hubId: null,
+      });
+    }
+    (characters || []).forEach(function (c) {
+      if (c && c.id) addNode(c.id);
+    });
+    edges.forEach(function (e) {
+      addNode(e.from);
+      addNode(e.to);
+    });
+
+    if (!nodes.length) {
+      svg.innerHTML = "";
+      connectionsGraphState = null;
+      return;
+    }
+
+    var nodeById = {};
+    nodes.forEach(function (n) {
+      nodeById[n.id] = n;
+    });
+    var simEdges = edges.map(function (e) {
+      return {
+        from: e.from,
+        to: e.to,
+        label: e.label || "",
+        storyId: e.storyId,
+        source: nodeById[e.from],
+        target: nodeById[e.to],
+      };
+    });
+
+    // --- Spoke-and-wheel clustering ---
+    var degree = {};
+    var adj = {};
+    edges.forEach(function (e) {
+      degree[e.from] = (degree[e.from] || 0) + 1;
+      degree[e.to] = (degree[e.to] || 0) + 1;
+      if (!adj[e.from]) adj[e.from] = {};
+      if (!adj[e.to]) adj[e.to] = {};
+      adj[e.from][e.to] = (adj[e.from][e.to] || 0) + 1;
+      adj[e.to][e.from] = (adj[e.to][e.from] || 0) + 1;
+    });
+
+    var ranked = nodes.slice().sort(function (a, b) {
+      return (degree[b.id] || 0) - (degree[a.id] || 0);
+    });
+    var isHub = {};
+    var hubs = [];
+    var maxHubs = 16;
+    ranked.forEach(function (n) {
+      if (hubs.length >= maxHubs) return;
+      if ((degree[n.id] || 0) < 3) return;
+      // Prefer hubs that aren't already a neighbor of an existing hub.
+      var tooClose = hubs.some(function (h) {
+        return adj[n.id] && adj[n.id][h.id];
+      });
+      if (tooClose && hubs.length >= 4) return;
+      isHub[n.id] = true;
+      hubs.push(n);
+    });
+    // Fallback: if almost no hubs, use top-degree characters.
+    if (!hubs.length) {
+      ranked.slice(0, Math.min(8, ranked.length)).forEach(function (n) {
+        if ((degree[n.id] || 0) < 1) return;
+        isHub[n.id] = true;
+        hubs.push(n);
+      });
+    }
+
+    var spokesByHub = {};
+    hubs.forEach(function (h) {
+      spokesByHub[h.id] = [];
+      h.hubId = h.id;
+    });
+
+    nodes.forEach(function (n) {
+      if (isHub[n.id]) return;
+      var best = null;
+      var bestScore = -1;
+      hubs.forEach(function (h) {
+        var score = (adj[n.id] && adj[n.id][h.id]) || 0;
+        if (score > bestScore) {
+          bestScore = score;
+          best = h;
+        }
+      });
+      if (best && bestScore > 0) {
+        n.hubId = best.id;
+        spokesByHub[best.id].push(n);
+      } else {
+        n.hubId = null;
+      }
+    });
+
+    // Pull in characters linked through spokes (multi-hop) so wheels fill out.
+    var grew = true;
+    while (grew) {
+      grew = false;
+      nodes.forEach(function (n) {
+        if (isHub[n.id] || n.hubId || !adj[n.id]) return;
+        var bestHub = null;
+        var bestScore = -1;
+        Object.keys(adj[n.id]).forEach(function (otherId) {
+          var other = nodeById[otherId];
+          if (!other) return;
+          var hid = isHub[other.id] ? other.id : other.hubId;
+          if (!hid || !spokesByHub[hid]) return;
+          var score = adj[n.id][otherId] || 0;
+          if (score > bestScore) {
+            bestScore = score;
+            bestHub = hid;
+          }
+        });
+        if (bestHub) {
+          n.hubId = bestHub;
+          spokesByHub[bestHub].push(n);
+          grew = true;
+        }
+      });
+    }
+
+    var orphans = nodes.filter(function (n) {
+      return !isHub[n.id] && !n.hubId;
+    });
+
+    // Wheel radii — tight chords so spokes stay short.
+    function wheelRadius(spokeCount) {
+      var n = Math.max(spokeCount, 1);
+      return Math.max(48, (n * 54) / (2 * Math.PI));
+    }
+
+    var wheelMeta = hubs.map(function (h) {
+      return {
+        hub: h,
+        spokes: spokesByHub[h.id],
+        r: wheelRadius(spokesByHub[h.id].length),
+      };
+    });
+    if (orphans.length) {
+      wheelMeta.push({
+        hub: null,
+        spokes: orphans,
+        r: wheelRadius(orphans.length),
+        orphan: true,
+      });
+    }
+
+    var wheelGap = 24;
+    var maxWheelR = 0;
+    wheelMeta.forEach(function (w) {
+      if (w.r > maxWheelR) maxWheelR = w.r;
+    });
+    var metaR =
+      wheelMeta.length <= 1
+        ? 0
+        : Math.max(
+            maxWheelR + 16,
+            ((wheelMeta.length * (maxWheelR * 2 + wheelGap)) / (2 * Math.PI)) *
+              0.72,
+          );
+    var pad = 56;
+    var width = Math.ceil(2 * (metaR + maxWheelR) + pad * 2);
+    var height = Math.ceil(2 * (metaR + maxWheelR) + pad * 2);
+    width = Math.max(width, 640);
+    height = Math.max(height, 640);
+    var cx = width / 2;
+    var cy = height / 2;
+
+    var zoom = 1.35;
+    var zoomMin = 0.5;
+    var zoomMax = 3;
+    var zoomStep = 0.2;
+
+    function applyZoom() {
+      svg.setAttribute("viewBox", "0 0 " + width + " " + height);
+      svg.setAttribute("width", String(Math.round(width * zoom)));
+      svg.setAttribute("height", String(Math.round(height * zoom)));
+      var label = wrap.querySelector(
+        '.connections-zoom-btn[data-zoom-action="reset"]',
+      );
+      if (label) label.textContent = Math.round(zoom * 100) + "%";
+    }
+
+    applyZoom();
+
+    wheelMeta.forEach(function (w, wi) {
+      var angle =
+        wheelMeta.length <= 1
+          ? 0
+          : (wi / wheelMeta.length) * Math.PI * 2 - Math.PI / 2;
+      var wx = cx + Math.cos(angle) * metaR;
+      var wy = cy + Math.sin(angle) * metaR;
+      w.cx = wx;
+      w.cy = wy;
+      if (w.hub) {
+        w.hub.x = wx;
+        w.hub.y = wy;
+      }
+      w.spokes.forEach(function (s, si) {
+        var a =
+          (si / Math.max(w.spokes.length, 1)) * Math.PI * 2 -
+          Math.PI / 2 +
+          angle * 0.15;
+        s.x = wx + Math.cos(a) * w.r;
+        s.y = wy + Math.sin(a) * w.r;
+      });
+    });
+
+    var selectedId = null;
+    var hoveredEdge = null;
+
+    function paint() {
+      var ns = "http://www.w3.org/2000/svg";
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+      var gGuides = document.createElementNS(ns, "g");
+      gGuides.setAttribute("class", "connections-guides");
+      wheelMeta.forEach(function (w) {
+        var ring = document.createElementNS(ns, "circle");
+        ring.setAttribute("cx", w.cx);
+        ring.setAttribute("cy", w.cy);
+        ring.setAttribute("r", w.r);
+        ring.setAttribute("class", "connections-wheel-ring");
+        gGuides.appendChild(ring);
+        // Hub-to-spoke guide lines (the "spokes")
+        if (w.hub) {
+          w.spokes.forEach(function (s) {
+            var spoke = document.createElementNS(ns, "line");
+            spoke.setAttribute("x1", w.hub.x);
+            spoke.setAttribute("y1", w.hub.y);
+            spoke.setAttribute("x2", s.x);
+            spoke.setAttribute("y2", s.y);
+            spoke.setAttribute("class", "connections-spoke");
+            gGuides.appendChild(spoke);
+          });
+        }
+      });
+
+      var gEdges = document.createElementNS(ns, "g");
+      gEdges.setAttribute("class", "connections-edges");
+      var gLabels = document.createElementNS(ns, "g");
+      gLabels.setAttribute("class", "connections-edge-labels");
+      var gNodes = document.createElementNS(ns, "g");
+      gNodes.setAttribute("class", "connections-nodes");
+
+      simEdges.forEach(function (e, idx) {
+        if (!e.source || !e.target) return;
+        var active =
+          selectedId && (e.from === selectedId || e.to === selectedId);
+        var line = document.createElementNS(ns, "line");
+        line.setAttribute("x1", e.source.x);
+        line.setAttribute("y1", e.source.y);
+        line.setAttribute("x2", e.target.x);
+        line.setAttribute("y2", e.target.y);
+        line.setAttribute(
+          "class",
+          "connections-edge" + (active ? " is-active" : ""),
+        );
+        line.setAttribute("data-edge-index", String(idx));
+        gEdges.appendChild(line);
+
+        if (active || hoveredEdge === idx) {
+          var mx = (e.source.x + e.target.x) / 2;
+          var my = (e.source.y + e.target.y) / 2;
+          var story = getStoryById(e.storyId);
+          var href = story ? storyCatalogHref(story) : "#stories";
+          var a = document.createElementNS(ns, "a");
+          a.setAttributeNS("http://www.w3.org/1999/xlink", "href", href);
+          a.setAttribute("href", href);
+          a.setAttribute("class", "connections-edge-label-link");
+          var bg = document.createElementNS(ns, "rect");
+          var text = document.createElementNS(ns, "text");
+          text.setAttribute("x", mx);
+          text.setAttribute("y", my);
+          text.setAttribute("class", "connections-edge-label");
+          text.textContent = e.label;
+          a.appendChild(bg);
+          a.appendChild(text);
+          gLabels.appendChild(a);
+          try {
+            var bb = text.getBBox();
+            bg.setAttribute("x", bb.x - 4);
+            bg.setAttribute("y", bb.y - 2);
+            bg.setAttribute("width", bb.width + 8);
+            bg.setAttribute("height", bb.height + 4);
+            bg.setAttribute("rx", "4");
+            bg.setAttribute("class", "connections-edge-label-bg");
+          } catch (err) {
+            /* ignore */
+          }
+        }
+      });
+
+      nodes.forEach(function (n) {
+        var g = document.createElementNS(ns, "g");
+        g.setAttribute(
+          "class",
+          "connections-node" +
+            (selectedId === n.id ? " is-selected" : "") +
+            (isHub[n.id] ? " is-hub" : "") +
+            (n.gender === "F" ? " is-f" : " is-m"),
+        );
+        g.setAttribute("transform", "translate(" + n.x + "," + n.y + ")");
+        g.setAttribute("data-character-id", n.id);
+        g.style.cursor = "pointer";
+
+        var clipId = "cn-clip-" + n.id.replace(/[^a-z0-9_-]/gi, "_");
+        var defs = document.createElementNS(ns, "defs");
+        var clip = document.createElementNS(ns, "clipPath");
+        clip.setAttribute("id", clipId);
+        var clipCircle = document.createElementNS(ns, "circle");
+        var portraitR = isHub[n.id] ? 26 : 20;
+        clipCircle.setAttribute("r", String(portraitR));
+        clip.appendChild(clipCircle);
+        defs.appendChild(clip);
+        g.appendChild(defs);
+
+        var ring = document.createElementNS(ns, "circle");
+        ring.setAttribute("r", String(portraitR + 2));
+        ring.setAttribute("class", "connections-node-ring");
+        g.appendChild(ring);
+
+        var img = document.createElementNS(ns, "image");
+        img.setAttributeNS(
+          "http://www.w3.org/1999/xlink",
+          "href",
+          n.pic || PLACEHOLDER_CHAR,
+        );
+        img.setAttribute("href", n.pic || PLACEHOLDER_CHAR);
+        img.setAttribute("x", String(-portraitR));
+        img.setAttribute("y", String(-portraitR));
+        img.setAttribute("width", String(portraitR * 2));
+        img.setAttribute("height", String(portraitR * 2));
+        img.setAttribute("clip-path", "url(#" + clipId + ")");
+        img.setAttribute("preserveAspectRatio", "xMidYMid slice");
+        g.appendChild(img);
+
+        var label = document.createElementNS(ns, "text");
+        label.setAttribute("y", String(portraitR + 14));
+        label.setAttribute("class", "connections-node-label");
+        label.textContent = n.name;
+        g.appendChild(label);
+
+        gNodes.appendChild(g);
+      });
+
+      svg.appendChild(gGuides);
+      svg.appendChild(gEdges);
+      svg.appendChild(gLabels);
+      svg.appendChild(gNodes);
+    }
+
+    svg.onclick = function (ev) {
+      var nodeEl =
+        ev.target.closest && ev.target.closest(".connections-node");
+      if (nodeEl) {
+        var id = nodeEl.getAttribute("data-character-id");
+        if (!id || !nodeById[id]) return;
+        selectedId = id;
+        renderConnectionsDetail(id);
+        paint();
+        return;
+      }
+      var line =
+        ev.target &&
+        ev.target.classList &&
+        ev.target.classList.contains("connections-edge")
+          ? ev.target
+          : null;
+      if (!line) return;
+      var idx = parseInt(line.getAttribute("data-edge-index"), 10);
+      var e = simEdges[idx];
+      if (!e) return;
+      var story = getStoryById(e.storyId);
+      if (story) location.hash = storyCatalogHref(story).replace(/^#/, "");
+    };
+
+    svg.onmouseover = function (ev) {
+      if (
+        ev.target &&
+        ev.target.classList &&
+        ev.target.classList.contains("connections-edge")
+      ) {
+        hoveredEdge = parseInt(ev.target.getAttribute("data-edge-index"), 10);
+        paint();
+      }
+    };
+    svg.onmouseout = function (ev) {
+      if (
+        ev.target &&
+        ev.target.classList &&
+        ev.target.classList.contains("connections-edge")
+      ) {
+        hoveredEdge = null;
+        paint();
+      }
+    };
+    svg.onmousedown = null;
+
+    function setZoom(next) {
+      zoom = Math.max(zoomMin, Math.min(zoomMax, next));
+      applyZoom();
+    }
+
+    var zoomBar = byId("connections-zoom");
+    if (zoomBar && !zoomBar._connectionsBound) {
+      zoomBar._connectionsBound = true;
+      zoomBar.addEventListener("click", function (ev) {
+        var btn =
+          ev.target &&
+          ev.target.closest &&
+          ev.target.closest("[data-zoom-action]");
+        if (!btn || !connectionsGraphState) return;
+        var action = btn.getAttribute("data-zoom-action");
+        if (action === "in") connectionsGraphState.setZoom(connectionsGraphState.zoom + zoomStep);
+        else if (action === "out")
+          connectionsGraphState.setZoom(connectionsGraphState.zoom - zoomStep);
+        else if (action === "reset") connectionsGraphState.setZoom(1.35);
+      });
+    }
+
+    function onWheelZoom(ev) {
+      if (!ev.ctrlKey && !ev.metaKey) return;
+      ev.preventDefault();
+      var delta = ev.deltaY > 0 ? -zoomStep : zoomStep;
+      setZoom(zoom + delta);
+    }
+    wrap.addEventListener("wheel", onWheelZoom, { passive: false });
+
+    connectionsGraphState = {
+      alive: true,
+      raf: 0,
+      width: width,
+      height: height,
+      zoom: zoom,
+      setZoom: function (z) {
+        setZoom(z);
+        connectionsGraphState.zoom = zoom;
+      },
+      resize: function () {},
+      teardown: function () {
+        svg.onclick = null;
+        svg.onmouseover = null;
+        svg.onmouseout = null;
+        wrap.removeEventListener("wheel", onWheelZoom);
+      },
+      setSelected: function (id) {
+        selectedId = id;
+        renderConnectionsDetail(id);
+        paint();
+      },
+    };
+
+    paint();
+  }
+
+  var CONNECTIONS_UNLOCK_KEY = "connectionsBetaUnlocked";
+  var CONNECTIONS_KEYWORD = "beta";
+
+  function connectionsIsUnlocked() {
+    try {
+      return localStorage.getItem(CONNECTIONS_UNLOCK_KEY) === "1";
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function setConnectionsUnlocked(on) {
+    try {
+      if (on) localStorage.setItem(CONNECTIONS_UNLOCK_KEY, "1");
+      else localStorage.removeItem(CONNECTIONS_UNLOCK_KEY);
+    } catch (e) {
+      /* ignore */
+    }
+  }
+
+  function syncConnectionsGateUi() {
+    var gate = byId("connections-gate");
+    var unlocked = byId("connections-unlocked");
+    var open = connectionsIsUnlocked();
+    if (gate) gate.hidden = open;
+    if (unlocked) unlocked.hidden = !open;
+    document.body.classList.toggle("connections-unlocked-on", open);
+    return open;
+  }
+
+  function bindConnectionsGate() {
+    var form = byId("connections-gate-form");
+    if (!form || form._connectionsGateBound) return;
+    form._connectionsGateBound = true;
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var input = byId("connections-gate-input");
+      var err = byId("connections-gate-error");
+      var value = input ? String(input.value || "").trim() : "";
+      if (value.toLowerCase() === CONNECTIONS_KEYWORD) {
+        setConnectionsUnlocked(true);
+        if (err) err.hidden = true;
+        syncConnectionsGateUi();
+        renderConnectionsPanel();
+        return;
+      }
+      if (err) err.hidden = false;
+      if (input) {
+        input.select();
+        input.focus();
+      }
+    });
+  }
+
+  function renderConnectionsPanel() {
+    bindConnectionsGate();
+    if (!syncConnectionsGateUi()) {
+      var input = byId("connections-gate-input");
+      if (input) {
+        requestAnimationFrame(function () {
+          try {
+            input.focus();
+          } catch (e) {}
+        });
+      }
+      return;
+    }
+    initConnectionsGraph(true);
+  }
+
   function revealCaptionGraphic(fig) {
     if (!fig || !fig.classList.contains("scene-figure--graphic-warning")) {
       return false;
@@ -2728,6 +3452,7 @@
     "ratings",
     "captions",
     "fanart",
+    "connections",
     "about",
     "other-authors",
   ];
@@ -2758,6 +3483,13 @@
     panels.forEach(function (p) {
       p.classList.toggle("active", p.id === "panel-" + name);
     });
+    document.body.classList.toggle("tab-connections", name === "connections");
+    if (name === "connections") {
+      // Layout size is only reliable once the panel is visible.
+      requestAnimationFrame(function () {
+        renderConnectionsPanel();
+      });
+    }
   }
 
   function parseHash() {
@@ -4520,6 +5252,7 @@
     captions = normalizedCaptions.captions;
     captionSections = normalizedCaptions.sections;
     fanart = data.fanart || [];
+    connections = data.connections || [];
 
     initTabs();
     initCharactersGrid();
@@ -4530,6 +5263,7 @@
     renderScenesPanel();
     renderCaptionsPanel();
     renderFanartPanel();
+    renderConnectionsPanel();
     initSceneLightbox();
     bindStoryGridClick();
     bindCharacterGridClick();
