@@ -2129,19 +2129,6 @@
     }
     metaHtml += "</p>";
 
-    var charStories = getStoriesForCharacter(character.id);
-    var storiesHtml = flyoutInlineLinkSection(
-      "Stories",
-      charStories,
-      "data-story-id",
-      function (s) {
-        return s.id;
-      },
-      function (s) {
-        return s.title;
-      },
-    );
-
     var edges = connectionsEdgesForCharacter(charId).filter(
       connectionEdgePassesKindFilter,
     );
@@ -2176,7 +2163,6 @@
       '<p class="flyout-summary">' +
       escapeHtml(character.bio || "") +
       "</p>" +
-      storiesHtml +
       linksHtml +
       "</div>";
   }
