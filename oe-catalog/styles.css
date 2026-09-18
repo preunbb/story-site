@@ -907,3 +907,15 @@ body.scene-lightbox-open {
   left: auto !important;
   right: 1rem !important;
 }
+
+@media (max-width: 900px) {
+  .floatingchat-container-wrap,
+  .floatingchat-container-wrap-mobi,
+  .floating-chat-kofi-popup-iframe,
+  .floating-chat-kofi-popup-iframe-mobi,
+  .floating-chat-kofi-popup-iframe-closer-mobi {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}

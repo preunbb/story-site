@@ -714,6 +714,13 @@ window.DATA_CHARACTERS = [
     profilePictures: ["assets/characters/zennia_v3_nevermore_keepsakes.jpg"],
   },
   {
+    id: "cherry_pop",
+    name: "Cherry Pop!",
+    gender: "F",
+    bio: "Andrea, Kay, and Olivia's favorite ballbusting rock band. Sold-out mush-pit shows, sterile-forever merch, and a corporate parent in Over Easy Technologies — Zennia owns the label.",
+    profilePictures: ["assets/characters/cherry_pop_cast_v1.png"],
+  },
+  {
     id: "olivia",
     name: "Olivia",
     gender: "F",
@@ -778,6 +785,15 @@ window.DATA_CHARACTERS = [
     gender: "M",
     bio: "Poorly hung low-level male member of the Cult of the Broken Tree, Judah wants to keep his last ball intact no matter what - even if he has to betray dozens of his brethren to the demonic trio descending upon them.",
     profilePictures: ["assets/characters/judah_cult_cast_v2.png"],
+  },
+  {
+    id: "broken_tree_cultists",
+    name: "Brainwashed Male Cultists of the Church of the Broken Tree",
+    gender: "M",
+    bio: "Anonymous ranks of Church half-men and converts. Brainwashed into worshipping Kay as high priestess and obeying Abby and Kay as their superior female cultists. When Andrea, Izzie, and Tamara storm the compound, these devoted males are neutered en masse.",
+    profilePictures: [
+      "assets/characters/broken_tree_cultists_cast_v1.png",
+    ],
   },
   {
     id: "stuart",

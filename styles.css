@@ -1415,22 +1415,115 @@ html.ai-images-off .story-card-action:focus-visible {
     min-height: 0;
   }
 
+  .connections-kind-filters {
+    display: none !important;
+  }
+
   .connections-detail {
     position: static;
   }
 
+  .connections-graph-wrap {
+    min-height: 0;
+    max-height: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .connections-graph {
+    touch-action: pan-x pan-y;
+  }
+
+  .connections-zoom {
+    top: 0.4rem;
+    margin: 0.4rem 0.4rem 0 0;
+    padding: 0.15rem;
+  }
+
+  .connections-zoom-btn {
+    min-width: 2.4rem;
+    height: 2.4rem;
+    font-size: 1.15rem;
+  }
+
+  .connections-zoom-label {
+    min-width: 3rem;
+    font-size: 0.7rem;
+  }
+
+  .connections-node-label {
+    font-size: 13px;
+    font-weight: 600;
+    paint-order: stroke fill;
+    stroke: rgba(28, 28, 32, 0.85);
+    stroke-width: 3px;
+    stroke-linejoin: round;
+  }
+
+  .connections-edge {
+    stroke-width: 2.75;
+  }
+
+  .connections-edge-hit {
+    stroke-width: 18;
+  }
+
+  .connections-edge-sentence {
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  .connections-detail-card .flyout-title {
+    font-size: 1.15rem;
+  }
+
+  .connections-detail-card .flyout-summary {
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .connections-detail-profiles {
+    display: none !important;
+  }
+
+  .connections-detail-profiles .flyout-profile-wrap {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  body.tab-connections .site-header {
+    padding: 0.35rem 0.5rem;
+  }
+
+  body.tab-connections .tabs {
+    gap: 0.15rem;
+  }
+
+  body.tab-connections .tab {
+    font-size: 0.72rem;
+    padding: 0.4rem 0.35rem;
+  }
+
   body.tab-connections .connections-layout {
-    grid-template-rows: minmax(0, 1fr) minmax(220px, 38vh);
+    grid-template-rows: minmax(0, 1fr) minmax(140px, 34vh);
   }
 
   body.tab-connections .connections-sidebar {
     border-left: none;
     border-top: 1px solid var(--border);
+    padding: 0.55rem 0.65rem;
+    gap: 0;
+    overflow: hidden;
   }
 
   body.tab-connections .connections-graph-wrap {
     border-right: none;
     border-bottom: 1px solid var(--border);
+  }
+
+  body.tab-connections .connections-detail {
+    padding: 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
@@ -1578,6 +1671,20 @@ body.tab-connections .connections-sidebar {
 body.tab-connections .connections-kind-filters {
   flex-shrink: 0;
   border: 1px solid var(--border);
+}
+
+@media (max-width: 900px) {
+  body.tab-connections .connections-kind-filters,
+  .connections-kind-filters {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    pointer-events: none !important;
+  }
 }
 
 body.tab-connections .connections-graph-wrap {
@@ -3332,6 +3439,18 @@ body.preun-local-andrea .local-andrea-status {
 .floating-chat-kofi-popup-iframe-closer-mobi {
   left: auto !important;
   right: 1rem !important;
+}
+
+@media (max-width: 900px) {
+  .floatingchat-container-wrap,
+  .floatingchat-container-wrap-mobi,
+  .floating-chat-kofi-popup-iframe,
+  .floating-chat-kofi-popup-iframe-mobi,
+  .floating-chat-kofi-popup-iframe-closer-mobi {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
 }
 
 /* --- Story catalog ratings (docs/story-catalog-ratings.md) --- */

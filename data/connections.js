@@ -369,9 +369,10 @@ window.DATA_CONNECTIONS = [
   {
     "from": "alyssa",
     "to": "jon",
-    "label": "Three-thumb castrates Jon",
-    "reverseLabel": "Three-thumb castrated by Alyssa",
-    "storyId": 25
+    "label": "Dates and castrates Jon",
+    "reverseLabel": "Dated and castrated by Alyssa",
+    "storyId": 25,
+    "kinds": ["relationship", "left", "right", "dick"]
   },
   {
     "from": "monique",
@@ -668,6 +669,50 @@ window.DATA_CONNECTIONS = [
     "storyId": 47
   },
   {
+    "from": "andrea",
+    "to": "judah",
+    "label": "Testicle torture",
+    "reverseLabel": "Testicles tortured by Andrea",
+    "storyId": 47
+  },
+  {
+    "from": "andrea",
+    "to": "broken_tree_cultists",
+    "label": "Neuters Church cultists",
+    "reverseLabel": "Neutered by Andrea",
+    "storyId": 47
+  },
+  {
+    "from": "izzie",
+    "to": "broken_tree_cultists",
+    "label": "Neuters Church cultists",
+    "reverseLabel": "Neutered by Izzie",
+    "storyId": 47
+  },
+  {
+    "from": "tamara",
+    "to": "broken_tree_cultists",
+    "label": "Neuters Church cultists",
+    "reverseLabel": "Neutered by Tamara",
+    "storyId": 47
+  },
+  {
+    "from": "kay",
+    "to": "broken_tree_cultists",
+    "label": "High priestess and superior female cultist; castrates Church males",
+    "reverseLabel": "Worship Kay as high priestess and superior",
+    "storyId": 47,
+    "kinds": ["relationship", "left", "right"]
+  },
+  {
+    "from": "abby",
+    "to": "broken_tree_cultists",
+    "label": "Superior female cultist over Church males",
+    "reverseLabel": "Obey Abby as superior female cultist",
+    "storyId": 47,
+    "kinds": ["relationship"]
+  },
+  {
     "from": "izzie",
     "to": "lucas",
     "label": "Helps rescue Lucas from the Church",
@@ -869,5 +914,57 @@ window.DATA_CONNECTIONS = [
     "label": "Mother of Yvette",
     "reverseLabel": "Daughter of Zennia",
     "storyId": 47
+  },
+  {
+    "from": "zennia",
+    "to": "olivia",
+    "label": "Employs Olivia",
+    "reverseLabel": "Employed by Zennia",
+    "storyId": 48
+  },
+  {
+    "from": "zennia",
+    "to": "cathy",
+    "label": "Employs Cathy",
+    "reverseLabel": "Employed by Zennia",
+    "storyId": 48
+  },
+  {
+    "from": "zennia",
+    "to": "charlotte",
+    "label": "Employs Charlotte",
+    "reverseLabel": "Employed by Zennia",
+    "storyId": 48
+  },
+  {
+    "from": "zennia",
+    "to": "cherry_pop",
+    "label": "Owns Cherry Pop!",
+    "reverseLabel": "Owned by Zennia",
+    "storyId": 47
+  },
+  {
+    "from": "andrea",
+    "to": "cherry_pop",
+    "label": "Favorite band",
+    "reverseLabel": "Andrea's favorite band",
+    "storyId": 47,
+    "kinds": ["relationship"]
+  },
+  {
+    "from": "kay",
+    "to": "cherry_pop",
+    "label": "Favorite band",
+    "reverseLabel": "Kay's favorite band",
+    "storyId": 47,
+    "kinds": ["relationship"]
+  },
+  {
+    "from": "olivia",
+    "to": "cherry_pop",
+    "label": "Favorite band",
+    "reverseLabel": "Olivia's favorite band",
+    "storyId": 48,
+    "kinds": ["relationship"]
   }
 ];

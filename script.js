@@ -1788,52 +1788,20 @@
     return edge.label || edge.reverseLabel || "Connection";
   }
 
-  /** Turn a stored label into a phrase that fits: "Is {phrase} in {Story}." */
+  /** Turn a stored label into a phrase that fits: "{phrase} in {Story}." */
   function connectionSentencePhrase(rawLabel, otherName) {
     var label = String(rawLabel || "").trim();
-    if (!label) return "connected";
+    if (!label) return "Connected";
     var m;
     if ((m = /^Mother of (.+)$/i.exec(label))) return m[1] + "'s mother";
     if ((m = /^Son of (.+)$/i.exec(label))) return m[1] + "'s son";
     if ((m = /^Daughter of (.+)$/i.exec(label))) return m[1] + "'s daughter";
     if ((m = /^Sister of (.+)$/i.exec(label))) return m[1] + "'s sister";
-    if ((m = /^Stepmom (.+)$/i.exec(label))) return "stepmother who " + m[1];
+    if ((m = /^Stepmom (.+)$/i.exec(label))) return "Stepmother who " + m[1];
     if ((m = /^Stepsister (\w+) (.+)$/i.exec(label)))
-      return "stepsister who " + m[2];
-    if ((m = /^Roommates with (.+)$/i.exec(label)))
-      return "roommates with " + m[1];
-    if ((m = /^Married to (.+)$/i.exec(label))) return "married to " + m[1];
-    if ((m = /^Dates (.+)$/i.exec(label))) return "dating " + m[1];
-    if ((m = /^Dated and owned by (.+)$/i.exec(label)))
-      return "dated and owned by " + m[1];
-    if ((m = /^Dates and owns (.+)$/i.exec(label)))
-      return "dating and owning " + m[1];
-    if ((m = /^Owns (.+)$/i.exec(label))) return "owner of " + m[1];
-    if ((m = /^Owned by (.+)$/i.exec(label))) return "owned by " + m[1];
-    if ((m = /^Castrates (.+)$/i.exec(label)))
-      return "the one who castrates " + m[1];
-    if ((m = /^Castrated by (.+)$/i.exec(label)))
-      return "castrated by " + m[1];
-
-    var lower;
-    // Keep leading proper-name possessives capitalized (e.g. "Nathan's …").
-    if (/^[A-Z][\w'.-]*'s\b/.test(label)) {
-      lower = label;
-    } else {
-      lower = label.charAt(0).toLowerCase() + label.slice(1);
-    }
-    // Passives / status phrases already read fine after "Is …"
-    if (
-      /\bby\b/i.test(label) ||
-      /^(in |on |at |with |after |for |from |to )/i.test(lower) ||
-      /^(left|right|both|last|dead|wedding|remaining|damaged|ruptured|chosen|blue-?balled|balls?|testicles?|scrotum|fertility|devices|surgeries|castration|seedspray|boysnapper|prisoner|practice|subject|intern|receptionist|billing|fight|fights|cheats|onboarded|checked|authorized|commanded|encouraged|held|helped|kneed|stomped|punted|grabbed|squeezed|twisted|slapped|kicked|milked|tested|trained|teased|edged|dumped|dated|owned|ordered|assessed|compared|extracted|filmed|finished|handled|hunted|inspected|lured|met|neglected|orchiectomized|presented|practiced|pushed|raced|received|removed|rescued|sabotaged|sent|sterilized|supplied|supervised|targeted|tormented|tortured|watched|mother|son|daughter|sister|stepmother|stepsister|roommates|married|dating|owner)\b/i.test(
-        lower,
-      )
-    ) {
-      return lower;
-    }
-    // Active agent labels → "the one who …"
-    return "the one who " + lower;
+      return "Stepsister who " + m[2];
+    // Keep stored labels as written (sentence-cased already in data).
+    return label;
   }
 
   function formatConnectionSentenceHtml(edge, viewerId) {
@@ -1875,40 +1843,44 @@
       linkedPhrase = phrase + " (" + charLink + ")";
     }
 
-    // Avoid "Is … in … in Story" when the phrase already uses "in".
+    // Avoid "… in … in Story" when the phrase already uses "in".
     if (/\bin\b/i.test(phrase)) {
-      return "Is " + linkedPhrase + ", from " + storyLink + ".";
+      return linkedPhrase + ", from " + storyLink + ".";
     }
-    return "Is " + linkedPhrase + " in " + storyLink + ".";
+    return linkedPhrase + " in " + storyLink + ".";
   }
 
-  /** Edge kind colors: severe=red, single=yellow, pain=green, family=blue, relationship=pink */
+  /** Edge kind colors */
   var CONNECTION_KIND_ORDER = [
     "family",
     "relationship",
-    "severe",
-    "single",
+    "left",
+    "right",
+    "dick",
     "pain",
   ];
   var CONNECTION_KIND_COLORS = {
-    severe: "#e25555",
-    single: "#e0c14a",
-    pain: "#5cbf6a",
     family: "#4a8fdb",
     relationship: "#e07ab0",
+    left: "#e0c14a",
+    right: "#e25555",
+    dick: "#8b6cf0",
+    pain: "#5cbf6a",
   };
   var CONNECTION_KIND_LABELS = {
     family: "Family",
     relationship: "Relationship",
-    severe: "Castration / both balls lost",
-    single: "Single testicle lost",
+    left: "Left ball popped",
+    right: "Right ball popped",
+    dick: "Dick broken",
     pain: "Pain, no permanent damage",
   };
   var connectionsKindEnabled = {
     family: true,
     relationship: true,
-    severe: true,
-    single: true,
+    left: true,
+    right: true,
+    dick: true,
     pain: true,
   };
 
@@ -1923,6 +1895,14 @@
   function renderConnectionsKindFilters() {
     var host = byId("connections-kind-filters");
     if (!host) return;
+    var isNarrow =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(max-width: 900px)").matches;
+    host.hidden = !!isNarrow;
+    if (isNarrow) {
+      host.innerHTML = "";
+      return;
+    }
     host.innerHTML =
       '<h3 class="connections-kind-filters-title">Show connections</h3>' +
       '<ul class="connections-kind-filter-list">' +
@@ -1971,6 +1951,14 @@
         renderConnectionsDetail(connectionsGraphState.selectedId);
       }
     });
+    if (typeof window.matchMedia === "function") {
+      var mq = window.matchMedia("(max-width: 900px)");
+      var onNarrowChange = function () {
+        renderConnectionsKindFilters();
+      };
+      if (mq.addEventListener) mq.addEventListener("change", onNarrowChange);
+      else if (mq.addListener) mq.addListener(onNarrowChange);
+    }
   }
 
   function connectionEdgeKinds(edge) {
@@ -1987,7 +1975,8 @@
     var kinds = [];
 
     function add(k) {
-      if (kinds.indexOf(k) === -1) kinds.push(k);
+      if (kinds.indexOf(k) !== -1) return;
+      kinds.push(k);
     }
 
     if (
@@ -1998,52 +1987,81 @@
       add("family");
     }
     if (
-      /\b(dates|dated|married|roommates|owns|owned|fiancé|fiance|dumps|dumped|cheats|boyfriend|girlfriend|receptionist|intern)\b/.test(
+      /\b(dates|dated|married|roommates|owns|owned|fiancé|fiance|dumps|dumped|cheats|boyfriend|girlfriend|receptionist|intern|employs|employed|employer|employee|favorite band|high priestess|superior female)\b/.test(
         text,
       )
     ) {
       add("relationship");
     }
 
-    var severe =
-      !/\bcastration stories\b/.test(text) &&
-      (/\b(castrat|orchiectom|penectom|steriliz|elastrator|three-thumb|defragmentation|prisoner's-dilemma)\w*/.test(
+    var skipCastrationStories = /\bcastration stories\b/.test(text);
+
+    var hasLeft = /\bleft (testicle|ball|nut)\b/.test(text);
+    var hasRight = /\bright (testicle|ball|nut)\b/.test(text);
+
+    var bothBalls =
+      !skipCastrationStories &&
+      (/\b(castrat|orchiectom|steriliz|elastrator|three-thumb|defragmentation|prisoner's-dilemma|neuter)\w*/.test(
         text,
       ) ||
         /\bboth (of )?(his |the )?testicles\b/.test(text) ||
         /\bdestroys?\b.*\btesticles\b/.test(text) ||
         /\btesticles destroyed\b/.test(text) ||
         /\bdead testicles removed\b/.test(text) ||
-        /\btesticles popped and penectomized\b/.test(text) ||
+        /\btesticles (popped|psychically ruptured)\b/.test(text) ||
         /\bfertility finished\b/.test(text) ||
+        /\b(pops?|popped) .*\btesticles\b/.test(text) ||
         (/\blast testicle\b/.test(text) &&
           /\b(pop|popped|castrat|liquif|destroy|destroyed|orchiectom|removes?|removed|heel-pop|ruptur)\w*/.test(
             text,
           )));
 
-    var single =
-      !severe &&
-      (/\b(pops?|popped|ruptures?|ruptured|heel-pops?|heel-popped)\b/.test(
-        text,
-      ) ||
-        /\b(left|right|chosen|wedding) testicle\b/.test(text) ||
+    if (hasLeft) add("left");
+    if (hasRight) add("right");
+    if (bothBalls) {
+      add("left");
+      add("right");
+    }
+
+    // Unspecified single-ball permanent damage (no side named, not a full castration).
+    var singleUnspecified =
+      !hasLeft &&
+      !hasRight &&
+      !bothBalls &&
+      (/\b(chosen|wedding) testicle\b/.test(text) ||
+        (/\b(pops?|popped|ruptures?|ruptured|heel-pops?|heel-popped)\b/.test(
+          text,
+        ) &&
+          /\btesticle\b/.test(text)) ||
         /\btesticle (popped|ruptured|heel-popped|extracted)\b/.test(text) ||
         /\bstomped and ruptured\b/.test(text) ||
         /\bseedspray-tested\b/.test(text) ||
         /\bboysnapper-tested\b/.test(text));
+    if (singleUnspecified) {
+      // Side unknown in the label — show as left until the edge is annotated.
+      add("left");
+    }
+
+    if (
+      /\b(penectom|penectomy)\w*/.test(text) ||
+      /\b(dick|penis|cock)\b/.test(text) &&
+        /\b(break|broke|broken|breaks|remov|cut|slice|snaps?|snapped)\w*/.test(
+          text,
+        )
+    ) {
+      add("dick");
+    }
 
     var pain =
-      !severe &&
-      !single &&
+      kinds.indexOf("left") === -1 &&
+      kinds.indexOf("right") === -1 &&
+      kinds.indexOf("dick") === -1 &&
       (/\b(knees?|kneed|stomps?|stomped|squeezes?|squeezed|slaps?|slapped|twists?|twisted|edges?|edged|torments?|tormented|grabs?|grabbed|practices?|fights?|kicks?|kicked|holds?|held|blueballs?|blueballed|punts?|punted|lap-dances?|teases?|teased|inspects?|inspected|watches?|watched|encourages?|mistakenly targets?|hunts?|hunted|targets?|targeted|neglects?|neglected|authorizes?|asses+es?|assessed|films?|orders?|oversees?|sabotages?|trains?|trained|commands?|commanded|onboards?|presents?|compares?|pushes?|milks?|milked|therap)/.test(
         text,
       ) ||
         /\bgroin\b/.test(text) ||
         /\bscrotum\b/.test(text));
-
-    if (severe) add("severe");
-    else if (single) add("single");
-    else if (pain) add("pain");
+    if (pain) add("pain");
 
     if (!kinds.length) add("pain");
     return CONNECTION_KIND_ORDER.filter(function (k) {
@@ -2446,8 +2464,11 @@
     width = Math.max(width, 480);
     height = Math.max(height, 360);
 
-    var zoom = 1.15;
-    var zoomMin = 0.5;
+    var isNarrow =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(max-width: 900px)").matches;
+    var zoom = isNarrow ? 0.7 : 1.15;
+    var zoomMin = isNarrow ? 0.4 : 0.5;
     var zoomMax = 3;
     var zoomStep = 0.2;
 
@@ -2595,7 +2616,13 @@
         var clip = document.createElementNS(ns, "clipPath");
         clip.setAttribute("id", clipId);
         var clipCircle = document.createElementNS(ns, "circle");
-        var portraitR = isHub[n.id] ? 20 : 15;
+        var portraitR = isHub[n.id]
+          ? isNarrow
+            ? 26
+            : 20
+          : isNarrow
+            ? 20
+            : 15;
         clipCircle.setAttribute("r", String(portraitR));
         clip.appendChild(clipCircle);
         defs.appendChild(clip);
@@ -2622,9 +2649,13 @@
         g.appendChild(img);
 
         var label = document.createElementNS(ns, "text");
-        label.setAttribute("y", String(portraitR + 14));
+        label.setAttribute("y", String(portraitR + (isNarrow ? 16 : 14)));
         label.setAttribute("class", "connections-node-label");
-        label.textContent = n.name;
+        var displayName = n.name || "";
+        if (isNarrow && displayName.length > 18) {
+          displayName = displayName.slice(0, 16).trim() + "…";
+        }
+        label.textContent = displayName;
         g.appendChild(label);
 
         gNodes.appendChild(g);
@@ -2681,7 +2712,7 @@
         if (action === "in") connectionsGraphState.setZoom(connectionsGraphState.zoom + zoomStep);
         else if (action === "out")
           connectionsGraphState.setZoom(connectionsGraphState.zoom - zoomStep);
-        else if (action === "reset") connectionsGraphState.setZoom(1.15);
+        else if (action === "reset") connectionsGraphState.setZoom(isNarrow ? 0.7 : 1.15);
       });
     }
 
