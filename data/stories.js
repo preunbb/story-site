@@ -309,7 +309,7 @@ window.DATA_STORIES = [
       "https://www.amazon.com/Dating-Serial-Castratrix-Commitment-Relationship-ebook/dp/B07X2KSMT9",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vRBtxHqI60ZsJNbBJl43GiOkLyCoN5n8Fm-lXK2qsrM_KHt0ZZkxiIYr_os0aOmTzWj7NvzgP_ykUXn/pub",
-    characterIds: ["george"],
+    characterIds: [],
     state: 2,
     tags: [],
   },

@@ -397,6 +397,18 @@
           </p>
           <div class="connections-layout">
             <div class="connections-graph-wrap" id="connections-graph-wrap">
+              <label
+                class="connections-names-toggle"
+                title="Show or hide character names on the graph"
+              >
+                <input
+                  type="checkbox"
+                  id="connections-names-toggle"
+                  class="connections-names-toggle-input"
+                  checked
+                />
+                <span>Names</span>
+              </label>
               <div
                 class="connections-zoom"
                 id="connections-zoom"
@@ -455,6 +467,52 @@
           </div>
         </div>
       </section>
+
+      <div
+        id="connections-spoiler-modal"
+        class="connections-spoiler-modal"
+        hidden
+      >
+        <button
+          type="button"
+          class="connections-spoiler-modal-backdrop"
+          data-spoiler-dismiss
+          aria-label="Cancel"
+        ></button>
+        <div
+          class="connections-spoiler-modal-panel"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="connections-spoiler-modal-title"
+        >
+          <h2
+            class="connections-spoiler-modal-title"
+            id="connections-spoiler-modal-title"
+          >
+            Show spoilers?
+          </h2>
+          <p
+            class="connections-spoiler-modal-body"
+            id="connections-spoiler-modal-body"
+          ></p>
+          <div class="connections-spoiler-modal-actions">
+            <button
+              type="button"
+              class="connections-spoiler-modal-btn connections-spoiler-modal-btn--cancel"
+              data-spoiler-dismiss
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="connections-spoiler-modal-btn connections-spoiler-modal-btn--confirm"
+              id="connections-spoiler-confirm"
+            >
+              Show spoilers
+            </button>
+          </div>
+        </div>
+      </div>
 
       <section id="panel-ratings" class="panel">
         <h1>Catalog ratings</h1>

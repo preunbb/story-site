@@ -182,13 +182,6 @@ window.DATA_CHARACTERS = [
     profilePictures: [],
   },
   {
-    id: "george",
-    name: "George",
-    gender: "M",
-    bio: "Meets her at a bar. Buys her a drink and compliments her jewelry.",
-    profilePictures: [],
-  },
-  {
     id: "brian",
     name: "Brian",
     gender: "M",
@@ -252,7 +245,7 @@ window.DATA_CHARACTERS = [
     name: "Simon",
     gender: "M",
     bio: "6', curly brown hair, well-defined biceps. Meets Emma at a bar; she takes him home and ties him to her bed.",
-    profilePictures: [],
+    profilePictures: ["assets/characters/simon_profile_v1.png"],
   },
   {
     id: "jose",
@@ -714,11 +707,38 @@ window.DATA_CHARACTERS = [
     profilePictures: ["assets/characters/zennia_v3_nevermore_keepsakes.jpg"],
   },
   {
+    id: "overeasy_technologies",
+    name: "OverEasy Technologies",
+    entityType: "faction",
+    gender: "",
+    bio: "Premium lifestyle brand built on testicular chaos and female empowerment — gadgets, clinics, QC labs, and the occasional rock label.",
+    profilePictures: ["assets/brands/overeasy_eggs_avatar_v1.png"],
+  },
+  {
+    id: "church_broken_tree",
+    name: "Church of the Broken Tree",
+    entityType: "faction",
+    gender: "",
+    bio: "Femdom cult devoted to the Goddess. Rites strip male converts of their testicles; high priestesses and superior cultists lead the flock.",
+    profilePictures: ["assets/brands/church_broken_tree_avatar_v1.png"],
+  },
+  {
+    id: "ballbusting_arena",
+    name: "The Ballbusting Arena",
+    entityType: "faction",
+    gender: "",
+    bio: "Underground fighting venue where women compete and men leave lighter — if they leave at all.",
+    profilePictures: ["assets/brands/ballbusting_arena_avatar_v1.png"],
+  },
+  {
     id: "cherry_pop",
     name: "Cherry Pop!",
     gender: "F",
     bio: "Andrea, Kay, and Olivia's favorite ballbusting rock band. Sold-out mush-pit shows, sterile-forever merch, and a corporate parent in Over Easy Technologies — Zennia owns the label.",
-    profilePictures: ["assets/characters/cherry_pop_cast_v1.png"],
+    profilePictures: [
+      "assets/brands/cherry_pop_avatar_v1.png",
+      "assets/characters/cherry_pop_cast_v1.png",
+    ],
   },
   {
     id: "olivia",
@@ -792,7 +812,7 @@ window.DATA_CHARACTERS = [
     gender: "M",
     bio: "Anonymous ranks of Church half-men and converts. Brainwashed into worshipping Kay as high priestess and obeying Abby and Kay as their superior female cultists. When Andrea, Izzie, and Tamara storm the compound, these devoted males are neutered en masse.",
     profilePictures: [
-      "assets/characters/broken_tree_cultists_cast_v1.png",
+      "assets/characters/broken_tree_cultists_cast_v3.png",
     ],
   },
   {

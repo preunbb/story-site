@@ -1804,6 +1804,33 @@
     return label;
   }
 
+  var connectionsAndreaLucasSpoilersRevealed = {};
+  var connectionsSpoilerPendingPart = null;
+
+  function andreaLucasPartForStoryId(storyId) {
+    var story = getStoryById(storyId);
+    if (!story || !story.series || story.series.id !== "andrea-lucas") {
+      return null;
+    }
+    var order = story.series.order;
+    return typeof order === "number" && order >= 1 ? order : null;
+  }
+
+  function andreaLucasSpoilersRevealedForPart(part) {
+    return !!(part && connectionsAndreaLucasSpoilersRevealed[part]);
+  }
+
+  function connectionSpoilerTextHtml(text, part) {
+    if (!text) return "";
+    return (
+      '<span class="connections-spoiler-text" tabindex="0" data-al-part="' +
+      escapeHtml(String(part)) +
+      '" title="Click to reveal spoilers">' +
+      escapeHtml(text) +
+      "</span>"
+    );
+  }
+
   function formatConnectionSentenceHtml(edge, viewerId) {
     var otherId = edge.from === viewerId ? edge.to : edge.from;
     var other = getCharacterById(otherId);
@@ -1815,6 +1842,10 @@
       connectionLabelForViewer(edge, viewerId),
       otherName,
     );
+    var part = andreaLucasPartForStoryId(edge.storyId);
+    var spoil =
+      part != null && !andreaLucasSpoilersRevealedForPart(part);
+    var otherIsFaction = !!(other && other.entityType === "faction");
 
     var charLink =
       '<button type="button" class="connections-char-link" data-character-id="' +
@@ -1829,31 +1860,118 @@
       escapeHtml(storyTitle) +
       "</a>";
 
-    // Wrap the other character's name wherever it appears in the phrase.
-    var linkedPhrase = phrase;
+    function textBit(t) {
+      if (!t) return "";
+      return spoil ? connectionSpoilerTextHtml(t, part) : escapeHtml(t);
+    }
+
+    // Build phrase with character/faction name linked; spoil remaining words.
+    var linkedPhrase = "";
+    var nameMatched = false;
     if (otherName) {
       var nameRe = new RegExp(
         otherName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
         "gi",
       );
-      linkedPhrase = phrase.replace(nameRe, charLink);
+      var last = 0;
+      var m;
+      nameRe.lastIndex = 0;
+      while ((m = nameRe.exec(phrase))) {
+        nameMatched = true;
+        linkedPhrase += textBit(phrase.slice(last, m.index));
+        linkedPhrase += charLink;
+        last = m.index + m[0].length;
+      }
+      linkedPhrase += textBit(phrase.slice(last));
+    } else {
+      linkedPhrase = textBit(phrase);
     }
-    // If the name wasn't in the phrase, append a linked mention.
-    if (linkedPhrase === phrase) {
-      linkedPhrase = phrase + " (" + charLink + ")";
+    if (!nameMatched) {
+      linkedPhrase += textBit(" (") + charLink + textBit(")");
     }
 
-    // Avoid "… in … in Story" when the phrase already uses "in".
-    if (/\bin\b/i.test(phrase)) {
-      return linkedPhrase + ", from " + storyLink + ".";
+    // Faction settings: "Fought in the Ballbusting Arena." — no story suffix.
+    if (otherIsFaction) {
+      if (/\.\s*$/.test(linkedPhrase)) return linkedPhrase;
+      return linkedPhrase + textBit(".");
     }
-    return linkedPhrase + " in " + storyLink + ".";
+
+    if (/\bin\b/i.test(phrase)) {
+      return linkedPhrase + textBit(", from ") + storyLink + textBit(".");
+    }
+    return linkedPhrase + textBit(" in ") + storyLink + textBit(".");
+  }
+
+  function closeConnectionsSpoilerModal() {
+    var modal = byId("connections-spoiler-modal");
+    if (modal) modal.hidden = true;
+    connectionsSpoilerPendingPart = null;
+    document.body.classList.remove("connections-spoiler-modal-open");
+  }
+
+  function openConnectionsSpoilerModal(part) {
+    var modal = byId("connections-spoiler-modal");
+    var body = byId("connections-spoiler-modal-body");
+    if (!modal || !body || part == null) return;
+    connectionsSpoilerPendingPart = part;
+    body.textContent =
+      "Are you sure you want to see Andrea & Lucas Part " +
+      part +
+      " spoilers?";
+    modal.hidden = false;
+    document.body.classList.add("connections-spoiler-modal-open");
+    var confirmBtn = byId("connections-spoiler-confirm");
+    if (confirmBtn) {
+      try {
+        confirmBtn.focus();
+      } catch (e) {}
+    }
+  }
+
+  function bindConnectionsSpoilerModal() {
+    var modal = byId("connections-spoiler-modal");
+    if (!modal || modal._connectionsSpoilerBound) return;
+    modal._connectionsSpoilerBound = true;
+    modal.addEventListener("click", function (ev) {
+      var dismiss =
+        ev.target &&
+        ev.target.closest &&
+        ev.target.closest("[data-spoiler-dismiss]");
+      if (dismiss) {
+        ev.preventDefault();
+        closeConnectionsSpoilerModal();
+        return;
+      }
+      var confirm =
+        ev.target &&
+        ev.target.closest &&
+        ev.target.closest("#connections-spoiler-confirm");
+      if (confirm) {
+        ev.preventDefault();
+        var part = connectionsSpoilerPendingPart;
+        if (part != null) {
+          connectionsAndreaLucasSpoilersRevealed[part] = true;
+          closeConnectionsSpoilerModal();
+          if (connectionsGraphState && connectionsGraphState.selectedId) {
+            renderConnectionsDetail(connectionsGraphState.selectedId);
+          }
+        } else {
+          closeConnectionsSpoilerModal();
+        }
+      }
+    });
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key !== "Escape") return;
+      if (!modal.hidden) closeConnectionsSpoilerModal();
+    });
   }
 
   /** Edge kind colors */
   var CONNECTION_KIND_ORDER = [
     "family",
     "relationship",
+    "knows",
+    "faction",
     "left",
     "right",
     "dick",
@@ -1862,6 +1980,8 @@
   var CONNECTION_KIND_COLORS = {
     family: "#4a8fdb",
     relationship: "#e07ab0",
+    knows: "#5bb8c4",
+    faction: "#8a9099",
     left: "#e0c14a",
     right: "#e25555",
     dick: "#8b6cf0",
@@ -1870,6 +1990,8 @@
   var CONNECTION_KIND_LABELS = {
     family: "Family",
     relationship: "Relationship",
+    knows: "Knows each other",
+    faction: "Setting / faction",
     left: "Left ball popped",
     right: "Right ball popped",
     dick: "Dick broken",
@@ -1878,11 +2000,34 @@
   var connectionsKindEnabled = {
     family: true,
     relationship: true,
+    knows: true,
+    faction: true,
     left: true,
     right: true,
     dick: true,
     pain: true,
   };
+  var connectionsShowNames = true;
+
+  function syncConnectionsNamesVisibility() {
+    var wrap = byId("connections-graph-wrap");
+    var input = byId("connections-names-toggle");
+    if (input) input.checked = !!connectionsShowNames;
+    if (wrap) {
+      wrap.classList.toggle("names-hidden", !connectionsShowNames);
+    }
+  }
+
+  function bindConnectionsNamesToggle() {
+    var input = byId("connections-names-toggle");
+    if (!input || input._connectionsNamesBound) return;
+    input._connectionsNamesBound = true;
+    input.addEventListener("change", function () {
+      connectionsShowNames = !!input.checked;
+      syncConnectionsNamesVisibility();
+    });
+    syncConnectionsNamesVisibility();
+  }
 
   function connectionEdgePassesKindFilter(edge) {
     var kinds = connectionEdgeKinds(edge);
@@ -1993,6 +2138,16 @@
     ) {
       add("relationship");
     }
+    if (/\bknows each other\b/.test(text)) {
+      add("knows");
+    }
+    if (
+      /\b(over\s*easy|church of the broken tree|ballbusting arena|fought in the|employed by|formerly employed|test subject|high priestess of the church|convert of the church|member of the church|targeted by the church|owned by overeasy)\b/.test(
+        text,
+      )
+    ) {
+      add("faction");
+    }
 
     var skipCastrationStories = /\bcastration stories\b/.test(text);
 
@@ -2089,8 +2244,11 @@
       character.profilePictures && character.profilePictures.length
         ? character.profilePictures
         : [PLACEHOLDER_CHAR];
+    var isFactionDetail = character.entityType === "faction";
     var picsHtml =
-      '<div class="flyout-profiles connections-detail-profiles">' +
+      '<div class="flyout-profiles connections-detail-profiles' +
+      (isFactionDetail ? " is-faction" : "") +
+      '">' +
       pics
         .map(function (src, idx) {
           return (
@@ -2118,16 +2276,22 @@
         .join("") +
       "</div>";
 
-    var genderSymbol = character.gender === "F" ? "\u2640" : "\u2642";
-    var metaHtml =
-      '<p class="flyout-character-meta">' + escapeHtml(genderSymbol);
-    if (
-      character.gender === "F" &&
-      typeof character.testiclesKilled === "number"
-    ) {
-      metaHtml += " &middot; Testicles killed: " + character.testiclesKilled;
+    var metaHtml = "";
+    if (isFactionDetail) {
+      metaHtml =
+        '<p class="flyout-character-meta">Setting / faction</p>';
+    } else {
+      var genderSymbol = character.gender === "F" ? "\u2640" : "\u2642";
+      metaHtml =
+        '<p class="flyout-character-meta">' + escapeHtml(genderSymbol);
+      if (
+        character.gender === "F" &&
+        typeof character.testiclesKilled === "number"
+      ) {
+        metaHtml += " &middot; Testicles killed: " + character.testiclesKilled;
+      }
+      metaHtml += "</p>";
     }
-    metaHtml += "</p>";
 
     var edges = connectionsEdgesForCharacter(charId).filter(
       connectionEdgePassesKindFilter,
@@ -2176,6 +2340,25 @@
     if (detail && !detail._connectionsBound) {
       detail._connectionsBound = true;
       detail.addEventListener("click", function (e) {
+        var spoilerEl =
+          e.target &&
+          e.target.closest &&
+          e.target.closest(".connections-spoiler-text");
+        if (spoilerEl && detail.contains(spoilerEl)) {
+          e.preventDefault();
+          var partRaw = spoilerEl.getAttribute("data-al-part");
+          var part = partRaw ? parseInt(partRaw, 10) : NaN;
+          if (!isNaN(part) && part >= 1) {
+            if (andreaLucasSpoilersRevealedForPart(part)) {
+              renderConnectionsDetail(
+                connectionsGraphState && connectionsGraphState.selectedId,
+              );
+            } else {
+              openConnectionsSpoilerModal(part);
+            }
+          }
+          return;
+        }
         var charBtn =
           e.target &&
           e.target.closest &&
@@ -2252,6 +2435,7 @@
         id: id,
         name: (c && c.name) || id,
         gender: (c && c.gender) || "",
+        entityType: (c && c.entityType) || "",
         pic:
           (c && c.profilePictures && c.profilePictures[0]) || PLACEHOLDER_CHAR,
         x: 0,
@@ -2308,8 +2492,17 @@
     var isHub = {};
     var hubs = [];
     var maxHubs = 16;
+    // Settings / factions always get their own wheels when connected.
     ranked.forEach(function (n) {
       if (hubs.length >= maxHubs) return;
+      if (n.entityType !== "faction") return;
+      if ((degree[n.id] || 0) < 1) return;
+      isHub[n.id] = true;
+      hubs.push(n);
+    });
+    ranked.forEach(function (n) {
+      if (hubs.length >= maxHubs) return;
+      if (isHub[n.id]) return;
       if ((degree[n.id] || 0) < 3) return;
       // Prefer hubs that aren't already a neighbor of an existing hub.
       var tooClose = hubs.some(function (h) {
@@ -2387,7 +2580,25 @@
     // Compact circular clusters — short spokes, packed in a grid (not one big ring).
     function wheelRadius(spokeCount) {
       var n = Math.max(spokeCount, 1);
-      return Math.max(36, (n * 42) / (2 * Math.PI));
+      return Math.max(44, (n * 54) / (2 * Math.PI));
+    }
+
+    function peripheralGridMeta(list) {
+      var cell = 58;
+      var gridCols = Math.max(1, Math.ceil(Math.sqrt(list.length)));
+      var gridRows = Math.max(1, Math.ceil(list.length / gridCols));
+      var halfW = ((gridCols - 1) * cell) / 2;
+      var halfH = ((gridRows - 1) * cell) / 2;
+      return {
+        hub: null,
+        spokes: list,
+        r: Math.max(halfW, halfH) + 28,
+        orphan: true,
+        grid: true,
+        gridCols: gridCols,
+        gridRows: gridRows,
+        cell: cell,
+      };
     }
 
     var wheelMeta = hubs.map(function (h) {
@@ -2402,16 +2613,11 @@
       return b.r - a.r || b.spokes.length - a.spokes.length;
     });
     if (orphans.length) {
-      wheelMeta.push({
-        hub: null,
-        spokes: orphans,
-        r: wheelRadius(orphans.length),
-        orphan: true,
-      });
+      wheelMeta.push(peripheralGridMeta(orphans));
     }
 
-    var clusterGap = 48;
-    var pad = 40;
+    var clusterGap = 80;
+    var pad = 56;
     // Prefer a wide short grid so the canvas stays compact in the viewport.
     var targetCols = Math.max(
       2,
@@ -2481,12 +2687,23 @@
         w.hub.x = wx;
         w.hub.y = wy;
       }
-      w.spokes.forEach(function (s, si) {
-        var a =
-          (si / Math.max(w.spokes.length, 1)) * Math.PI * 2 - Math.PI / 2;
-        s.x = wx + Math.cos(a) * w.r;
-        s.y = wy + Math.sin(a) * w.r;
-      });
+      if (w.grid) {
+        var originX = wx - ((w.gridCols - 1) * w.cell) / 2;
+        var originY = wy - ((w.gridRows - 1) * w.cell) / 2;
+        w.spokes.forEach(function (s, si) {
+          var gc = si % w.gridCols;
+          var gr = Math.floor(si / w.gridCols);
+          s.x = originX + gc * w.cell;
+          s.y = originY + gr * w.cell;
+        });
+      } else {
+        w.spokes.forEach(function (s, si) {
+          var a =
+            (si / Math.max(w.spokes.length, 1)) * Math.PI * 2 - Math.PI / 2;
+          s.x = wx + Math.cos(a) * w.r;
+          s.y = wy + Math.sin(a) * w.r;
+        });
+      }
     });
 
     var selectedId =
@@ -2499,6 +2716,7 @@
       var gGuides = document.createElementNS(ns, "g");
       gGuides.setAttribute("class", "connections-guides");
       wheelMeta.forEach(function (w) {
+        if (w.grid || w.orphan) return;
         var ring = document.createElementNS(ns, "circle");
         ring.setAttribute("cx", w.cx);
         ring.setAttribute("cy", w.cy);
@@ -2585,13 +2803,14 @@
       });
 
       nodes.forEach(function (n) {
+        var isFaction = n.entityType === "faction";
         var g = document.createElementNS(ns, "g");
         g.setAttribute(
           "class",
           "connections-node" +
             (selectedId === n.id ? " is-selected" : "") +
             (isHub[n.id] ? " is-hub" : "") +
-            (n.gender === "F" ? " is-f" : " is-m"),
+            (isFaction ? " is-faction" : n.gender === "F" ? " is-f" : " is-m"),
         );
         g.setAttribute("transform", "translate(" + n.x + "," + n.y + ")");
         g.setAttribute("data-character-id", n.id);
@@ -2609,6 +2828,9 @@
           : isNarrow
             ? 20
             : 15;
+        if (isFaction && isHub[n.id]) {
+          portraitR = isNarrow ? 30 : 24;
+        }
         clipCircle.setAttribute("r", String(portraitR));
         clip.appendChild(clipCircle);
         defs.appendChild(clip);
@@ -2631,6 +2853,7 @@
         img.setAttribute("width", String(portraitR * 2));
         img.setAttribute("height", String(portraitR * 2));
         img.setAttribute("clip-path", "url(#" + clipId + ")");
+        // Faction avatars are pre-cropped circular squares — fill the node.
         img.setAttribute("preserveAspectRatio", "xMidYMid slice");
         g.appendChild(img);
 
@@ -2799,8 +3022,11 @@
 
   function renderConnectionsPanel() {
     bindConnectionsGate();
+    bindConnectionsSpoilerModal();
     bindConnectionsKindFilters();
+    bindConnectionsNamesToggle();
     renderConnectionsKindFilters();
+    syncConnectionsNamesVisibility();
     if (!syncConnectionsGateUi()) {
       var input = byId("connections-gate-input");
       if (input) {
@@ -4035,7 +4261,7 @@
         });
 
       var orphans = characters.filter(function (c) {
-        return !placedInAnyStory[c.id];
+        return !placedInAnyStory[c.id] && c.entityType !== "faction";
       });
       if (orphans.length) {
         orphans.sort(nameSort);
@@ -4058,6 +4284,7 @@
 
     var byGender = { F: [], M: [] };
     characters.forEach(function (c) {
+      if (c.entityType === "faction") return;
       var g = c.gender || "M";
       if (byGender[g]) byGender[g].push(c);
     });

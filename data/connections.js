@@ -117,9 +117,10 @@ window.DATA_CONNECTIONS = [
   {
     "from": "rachel",
     "to": "greg",
-    "label": "Squeezes Greg's balls",
-    "reverseLabel": "Balls squeezed by Rachel",
-    "storyId": 6
+    "label": "Pops Greg's left and right testicles",
+    "reverseLabel": "Left and right testicles popped by Rachel",
+    "storyId": 6,
+    "kinds": ["left", "right"]
   },
   {
     "from": "june",
@@ -157,6 +158,14 @@ window.DATA_CONNECTIONS = [
     "storyId": 8
   },
   {
+    "from": "serena",
+    "to": "erica",
+    "label": "Knows each other",
+    "reverseLabel": "Knows each other",
+    "storyId": 8,
+    "kinds": ["knows"]
+  },
+  {
     "from": "kayleigh",
     "to": "dennis",
     "label": "Dates Dennis",
@@ -166,23 +175,18 @@ window.DATA_CONNECTIONS = [
   {
     "from": "vivian",
     "to": "david",
-    "label": "Knees David until mush",
-    "reverseLabel": "Kneed until mush by Vivian",
-    "storyId": 10
+    "label": "Dates David",
+    "reverseLabel": "Dates Vivian",
+    "storyId": 10,
+    "kinds": ["relationship"]
   },
   {
     "from": "natalie",
     "to": "david",
-    "label": "Pops both of David's testicles",
-    "reverseLabel": "Both testicles popped by Natalie",
-    "storyId": 10
-  },
-  {
-    "from": "vanessa",
-    "to": "david",
-    "label": "Fights David (flashback)",
-    "reverseLabel": "Fights Vanessa (flashback)",
-    "storyId": 10
+    "label": "Dated David; pops both testicles",
+    "reverseLabel": "Dated Natalie; both testicles popped by Natalie",
+    "storyId": 10,
+    "kinds": ["relationship", "left", "right"]
   },
   {
     "from": "emma",
@@ -211,6 +215,30 @@ window.DATA_CONNECTIONS = [
     "label": "Pops Nathan's testicles",
     "reverseLabel": "Nathan's testicles popped by Melody",
     "storyId": 11
+  },
+  {
+    "from": "nathan",
+    "to": "tommy",
+    "label": "Knows each other",
+    "reverseLabel": "Knows each other",
+    "storyId": 11,
+    "kinds": ["knows"]
+  },
+  {
+    "from": "nathan",
+    "to": "richard",
+    "label": "Knows each other",
+    "reverseLabel": "Knows each other",
+    "storyId": 11,
+    "kinds": ["knows"]
+  },
+  {
+    "from": "tommy",
+    "to": "richard",
+    "label": "Knows each other",
+    "reverseLabel": "Knows each other",
+    "storyId": 11,
+    "kinds": ["knows"]
   },
   {
     "from": "emma",
@@ -332,6 +360,14 @@ window.DATA_CONNECTIONS = [
     "storyId": 20
   },
   {
+    "from": "melody",
+    "to": "malcolm",
+    "label": "Pops Malcolm's left testicle",
+    "reverseLabel": "Left testicle popped by Melody",
+    "storyId": 20,
+    "kinds": ["left"]
+  },
+  {
     "from": "maria",
     "to": "robert",
     "label": "Milks Robert's remaining testicle",
@@ -355,9 +391,10 @@ window.DATA_CONNECTIONS = [
   {
     "from": "naimi",
     "to": "hato",
-    "label": "Pops Hato's chosen testicle",
-    "reverseLabel": "Chosen testicle popped by Naimi",
-    "storyId": 21
+    "label": "Dates and ballbusts Hato",
+    "reverseLabel": "Dated and ballbusted by Naimi",
+    "storyId": 21,
+    "kinds": ["relationship", "pain"]
   },
   {
     "from": "emma",
@@ -452,6 +489,14 @@ window.DATA_CONNECTIONS = [
     "storyId": 28
   },
   {
+    "from": "serena",
+    "to": "kaitlin",
+    "label": "Knows each other",
+    "reverseLabel": "Knows each other",
+    "storyId": 28,
+    "kinds": ["knows"]
+  },
+  {
     "from": "the_nurse",
     "to": "ross",
     "label": "Assesses Ross for penile removal",
@@ -496,9 +541,10 @@ window.DATA_CONNECTIONS = [
   {
     "from": "officer_alice",
     "to": "ivan",
-    "label": "Pops Ivan's testicles and penectomizes him",
-    "reverseLabel": "Testicles popped and penectomized by Officer Alice",
-    "storyId": 36
+    "label": "Pops both of Ivan's balls and breaks his dick",
+    "reverseLabel": "Both balls popped and dick broken by Officer Alice",
+    "storyId": 36,
+    "kinds": ["left", "right", "dick"]
   },
   {
     "from": "lieutenant_maria",
@@ -676,6 +722,14 @@ window.DATA_CONNECTIONS = [
     "storyId": 47
   },
   {
+    "from": "eve",
+    "to": "judah",
+    "label": "Destroys Judah's left and right testicles",
+    "reverseLabel": "Left and right testicles destroyed by Eve",
+    "storyId": 47,
+    "kinds": ["left", "right"]
+  },
+  {
     "from": "andrea",
     "to": "broken_tree_cultists",
     "label": "Neuters Church cultists",
@@ -809,13 +863,6 @@ window.DATA_CONNECTIONS = [
     "label": "Year-long denial experiment on Allan",
     "reverseLabel": "Subject of Cathy's year-long denial experiment",
     "storyId": 1
-  },
-  {
-    "from": "jenny",
-    "to": "george",
-    "label": "Meets George after her latest castration",
-    "reverseLabel": "Meets Jenny after her latest castration",
-    "storyId": 9
   },
   {
     "from": "sofia",
@@ -966,5 +1013,272 @@ window.DATA_CONNECTIONS = [
     "reverseLabel": "Olivia's favorite band",
     "storyId": 48,
     "kinds": ["relationship"]
+  },
+
+  {
+    "from": "zennia",
+    "to": "overeasy_technologies",
+    "label": "Owns OverEasy Technologies",
+    "reverseLabel": "Owned by Zennia",
+    "storyId": 48,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "cathy",
+    "to": "overeasy_technologies",
+    "label": "Employed by OverEasy Technologies",
+    "reverseLabel": "Employs Cathy",
+    "storyId": 48,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "olivia",
+    "to": "overeasy_technologies",
+    "label": "Employed by OverEasy Technologies",
+    "reverseLabel": "Employs Olivia",
+    "storyId": 48,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "izzie",
+    "to": "overeasy_technologies",
+    "label": "Employed by OverEasy Technologies",
+    "reverseLabel": "Employs Izzie",
+    "storyId": 43,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "charlotte",
+    "to": "overeasy_technologies",
+    "label": "Employed by OverEasy Technologies",
+    "reverseLabel": "Employs Charlotte",
+    "storyId": 48,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "elliot",
+    "to": "overeasy_technologies",
+    "label": "Used as test subject by OverEasy Technologies",
+    "reverseLabel": "Uses Elliot as a test subject",
+    "storyId": 48,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "theodore",
+    "to": "overeasy_technologies",
+    "label": "Formerly employed by, and now used as test subject for OverEasy Technologies",
+    "reverseLabel": "Former employer; now uses Theodore as a test subject",
+    "storyId": 48,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "nameless_volunteers",
+    "to": "overeasy_technologies",
+    "label": "Used as test subjects by OverEasy Technologies",
+    "reverseLabel": "Uses nameless volunteers as test subjects",
+    "storyId": 48,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "cherry_pop",
+    "to": "overeasy_technologies",
+    "label": "Owned by OverEasy Technologies",
+    "reverseLabel": "Owns Cherry Pop!",
+    "storyId": 47,
+    "kinds": ["faction"]
+  },
+
+  {
+    "from": "eve",
+    "to": "church_broken_tree",
+    "label": "High priestess of the Church of the Broken Tree",
+    "reverseLabel": "High priestess Eve",
+    "storyId": 47,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "kay",
+    "to": "church_broken_tree",
+    "label": "Superior female cultist of the Church of the Broken Tree",
+    "reverseLabel": "Superior female cultist Kay",
+    "storyId": 47,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "abby",
+    "to": "church_broken_tree",
+    "label": "Superior female cultist of the Church of the Broken Tree",
+    "reverseLabel": "Superior female cultist Abby",
+    "storyId": 47,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "isaac",
+    "to": "church_broken_tree",
+    "label": "Convert of the Church of the Broken Tree",
+    "reverseLabel": "Convert Isaac",
+    "storyId": 47,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "elijah",
+    "to": "church_broken_tree",
+    "label": "Convert of the Church of the Broken Tree",
+    "reverseLabel": "Convert Elijah",
+    "storyId": 47,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "judah",
+    "to": "church_broken_tree",
+    "label": "Member of the Church of the Broken Tree",
+    "reverseLabel": "Member Judah",
+    "storyId": 47,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "broken_tree_cultists",
+    "to": "church_broken_tree",
+    "label": "Members of the Church of the Broken Tree",
+    "reverseLabel": "Brainwashed male cultists",
+    "storyId": 47,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "lucas",
+    "to": "church_broken_tree",
+    "label": "Targeted by the Church of the Broken Tree",
+    "reverseLabel": "Targets Lucas",
+    "storyId": 47,
+    "kinds": ["faction"]
+  },
+
+  {
+    "from": "britt",
+    "to": "ballbusting_arena",
+    "label": "Fought in The Ballbusting Arena",
+    "reverseLabel": "Fighter",
+    "storyId": 5,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "emma",
+    "to": "ballbusting_arena",
+    "label": "Fought in The Ballbusting Arena",
+    "reverseLabel": "Fighter",
+    "storyId": 5,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "vivian",
+    "to": "ballbusting_arena",
+    "label": "Fought in The Ballbusting Arena",
+    "reverseLabel": "Fighter",
+    "storyId": 5,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "sofia",
+    "to": "ballbusting_arena",
+    "label": "Fought in The Ballbusting Arena",
+    "reverseLabel": "Fighter",
+    "storyId": 5,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "dan",
+    "to": "ballbusting_arena",
+    "label": "Fought in The Ballbusting Arena",
+    "reverseLabel": "Fighter",
+    "storyId": 5,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "venn",
+    "to": "ballbusting_arena",
+    "label": "Fought in The Ballbusting Arena",
+    "reverseLabel": "Fighter",
+    "storyId": 5,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "roger",
+    "to": "ballbusting_arena",
+    "label": "Fought in The Ballbusting Arena",
+    "reverseLabel": "Fighter",
+    "storyId": 5,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "paul",
+    "to": "ballbusting_arena",
+    "label": "Fought in The Ballbusting Arena",
+    "reverseLabel": "Fighter",
+    "storyId": 5,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "vanessa",
+    "to": "ballbusting_arena",
+    "label": "Fought in The Ballbusting Arena",
+    "reverseLabel": "Fighter",
+    "storyId": 15,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "daniel",
+    "to": "ballbusting_arena",
+    "label": "Fought in The Ballbusting Arena",
+    "reverseLabel": "Fighter",
+    "storyId": 15,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "fiona",
+    "to": "ballbusting_arena",
+    "label": "Fought in The Ballbusting Arena",
+    "reverseLabel": "Fighter",
+    "storyId": 14,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "brad",
+    "to": "ballbusting_arena",
+    "label": "Fought in The Ballbusting Arena",
+    "reverseLabel": "Fighter",
+    "storyId": 14,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "amy",
+    "to": "ballbusting_arena",
+    "label": "Fought in The Ballbusting Arena",
+    "reverseLabel": "Fighter",
+    "storyId": 14,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "wesley",
+    "to": "ballbusting_arena",
+    "label": "Fought in The Ballbusting Arena",
+    "reverseLabel": "Fighter",
+    "storyId": 14,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "natalie",
+    "to": "ballbusting_arena",
+    "label": "Fought in The Ballbusting Arena",
+    "reverseLabel": "Fighter",
+    "storyId": 42,
+    "kinds": ["faction"]
+  },
+  {
+    "from": "nguyen_twins",
+    "to": "ballbusting_arena",
+    "label": "Fought in The Ballbusting Arena",
+    "reverseLabel": "Fighters",
+    "storyId": 42,
+    "kinds": ["faction"]
   }
 ];
