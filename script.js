@@ -1788,6 +1788,161 @@
     return edge.label || edge.reverseLabel || "Connection";
   }
 
+  function connectionLinksForViewer(edge, viewerId) {
+    if (!edge) return [];
+    if (viewerId && edge.to === viewerId && edge.reverseLabel) {
+      return edge.reverseLabelLinks || edge.links || [];
+    }
+    return edge.labelLinks || edge.links || [];
+  }
+
+  function escapeRegExp(s) {
+    return String(s || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  function connectionCharLinkButton(characterId, displayText) {
+    return (
+      '<button type="button" class="connections-char-link" data-character-id="' +
+      escapeHtml(characterId) +
+      '">' +
+      escapeHtml(displayText) +
+      "</button>"
+    );
+  }
+
+  function connectionStoryLinkAnchor(story, displayText) {
+    if (!story) return escapeHtml(displayText || "");
+    var href = storyCatalogHref(story);
+    return (
+      '<a class="connections-story-link" href="' +
+      escapeHtml(href) +
+      '">' +
+      escapeHtml(displayText || story.title || "a story") +
+      "</a>"
+    );
+  }
+
+  /** Default visible texts that should link to a character. */
+  function connectionAutoMatchTextsForCharacter(characterId) {
+    var c = getCharacterById(characterId);
+    if (!c || !c.name) return [];
+    var texts = [c.name];
+    var parts = String(c.name).split(/\s+/).filter(Boolean);
+    if (parts.length > 1 && parts[0].length >= 3) {
+      texts.push(parts[0]);
+    }
+    var withoutTitle = String(c.name).replace(
+      /^(Goddess|Ms\.|Mrs\.|Mr\.|Dr\.)\s+/i,
+      "",
+    );
+    if (withoutTitle && withoutTitle !== c.name) {
+      texts.push(withoutTitle);
+    }
+    return texts;
+  }
+
+  /**
+   * Resolve a links[] entry to match texts.
+   * Character: { id, match? } — match defaults to name + first-name alias
+   * Story: { storyId, match? } — match defaults to story.title
+   */
+  function connectionLinkMatchTexts(link) {
+    if (!link) return [];
+    if (link.match) return [String(link.match)];
+    if (link.storyId != null) {
+      var story = getStoryById(link.storyId);
+      return story && story.title ? [story.title] : [];
+    }
+    if (link.id) {
+      return connectionAutoMatchTextsForCharacter(link.id);
+    }
+    return [];
+  }
+
+  /**
+   * Link character/story mentions inside a connection phrase.
+   * Returns { html, otherMatched }.
+   */
+  function linkifyConnectionPhrase(phrase, links, otherId, textBit) {
+    var candidates = [];
+
+    function addMatchTexts(target, matchTexts, kind) {
+      (matchTexts || []).forEach(function (mt) {
+        if (!mt) return;
+        var re = new RegExp(escapeRegExp(mt), "gi");
+        var m;
+        while ((m = re.exec(phrase))) {
+          candidates.push({
+            start: m.index,
+            end: m.index + m[0].length,
+            text: m[0],
+            kind: kind,
+            id: target.id,
+            storyId: target.storyId,
+          });
+        }
+      });
+    }
+
+    (links || []).forEach(function (link) {
+      if (!link) return;
+      if (link.storyId != null) {
+        addMatchTexts(
+          { storyId: link.storyId },
+          connectionLinkMatchTexts(link),
+          "story",
+        );
+      } else if (link.id) {
+        addMatchTexts({ id: link.id }, connectionLinkMatchTexts(link), "char");
+      }
+    });
+
+    if (otherId) {
+      addMatchTexts(
+        { id: otherId },
+        connectionAutoMatchTextsForCharacter(otherId),
+        "char",
+      );
+    }
+
+    candidates.sort(function (a, b) {
+      var lenA = a.end - a.start;
+      var lenB = b.end - b.start;
+      if (lenA !== lenB) return lenB - lenA;
+      return a.start - b.start;
+    });
+
+    var chosen = [];
+    candidates.forEach(function (c) {
+      var overlaps = chosen.some(function (x) {
+        return !(c.end <= x.start || c.start >= x.end);
+      });
+      if (!overlaps) chosen.push(c);
+    });
+    chosen.sort(function (a, b) {
+      return a.start - b.start;
+    });
+
+    var otherMatched = chosen.some(function (c) {
+      return c.kind === "char" && c.id === otherId;
+    });
+
+    var html = "";
+    var last = 0;
+    chosen.forEach(function (c) {
+      html += textBit(phrase.slice(last, c.start));
+      if (c.kind === "story") {
+        html += connectionStoryLinkAnchor(getStoryById(c.storyId), c.text);
+      } else {
+        html += connectionCharLinkButton(c.id, c.text);
+      }
+      last = c.end;
+    });
+    html += textBit(phrase.slice(last));
+
+    return { html: html, otherMatched: otherMatched };
+  }
+
   /** Turn a stored label into a phrase that fits: "{phrase} in {Story}." */
   function connectionSentencePhrase(rawLabel, otherName) {
     var label = String(rawLabel || "").trim();
@@ -1837,7 +1992,6 @@
     var otherName = other ? other.name : otherId;
     var story = getStoryById(edge.storyId);
     var storyTitle = story ? story.title || "a story" : "a story";
-    var href = story ? storyCatalogHref(story) : "#stories";
     var phrase = connectionSentencePhrase(
       connectionLabelForViewer(edge, viewerId),
       otherName,
@@ -1847,47 +2001,26 @@
       part != null && !andreaLucasSpoilersRevealedForPart(part);
     var otherIsFaction = !!(other && other.entityType === "faction");
 
-    var charLink =
-      '<button type="button" class="connections-char-link" data-character-id="' +
-      escapeHtml(otherId) +
-      '">' +
-      escapeHtml(otherName) +
-      "</button>";
-    var storyLink =
-      '<a class="connections-story-link" href="' +
-      escapeHtml(href) +
-      '">' +
-      escapeHtml(storyTitle) +
-      "</a>";
+    var storyLink = connectionStoryLinkAnchor(story, storyTitle);
 
     function textBit(t) {
       if (!t) return "";
       return spoil ? connectionSpoilerTextHtml(t, part) : escapeHtml(t);
     }
 
-    // Build phrase with character/faction name linked; spoil remaining words.
-    var linkedPhrase = "";
-    var nameMatched = false;
-    if (otherName) {
-      var nameRe = new RegExp(
-        otherName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
-        "gi",
-      );
-      var last = 0;
-      var m;
-      nameRe.lastIndex = 0;
-      while ((m = nameRe.exec(phrase))) {
-        nameMatched = true;
-        linkedPhrase += textBit(phrase.slice(last, m.index));
-        linkedPhrase += charLink;
-        last = m.index + m[0].length;
-      }
-      linkedPhrase += textBit(phrase.slice(last));
-    } else {
-      linkedPhrase = textBit(phrase);
-    }
-    if (!nameMatched) {
-      linkedPhrase += textBit(" (") + charLink + textBit(")");
+    var linked = linkifyConnectionPhrase(
+      phrase,
+      connectionLinksForViewer(edge, viewerId),
+      otherId,
+      textBit,
+    );
+    var linkedPhrase = linked.html;
+
+    if (!linked.otherMatched && otherId) {
+      linkedPhrase +=
+        textBit(" (") +
+        connectionCharLinkButton(otherId, otherName) +
+        textBit(")");
     }
 
     // Faction settings: "Fought in the Ballbusting Arena." — no story suffix.
@@ -2984,9 +3117,9 @@
     }
 
 
-    svg.onclick = function (ev) {
-      var nodeEl =
-        ev.target.closest && ev.target.closest(".connections-node");
+    function handleGraphClickTarget(target) {
+      if (!target || !target.closest) return;
+      var nodeEl = target.closest(".connections-node");
       if (nodeEl) {
         var id = nodeEl.getAttribute("data-character-id");
         if (!id || !nodeById[id]) return;
@@ -2996,10 +3129,7 @@
         paint();
         return;
       }
-      var line =
-        ev.target &&
-        ev.target.closest &&
-        ev.target.closest("[data-edge-index]");
+      var line = target.closest("[data-edge-index]");
       if (line && !line.classList.contains("connections-node")) {
         var idx = parseInt(line.getAttribute("data-edge-index"), 10);
         var e = simEdges[idx];
@@ -3017,6 +3147,10 @@
           '<p class="connections-detail-empty">Select a character node to see their cast info and links.</p>';
       }
       paint();
+    }
+
+    svg.onclick = function (ev) {
+      handleGraphClickTarget(ev.target);
     };
 
     svg.onmousemove = function (ev) {
@@ -3119,6 +3253,9 @@
           sl0: wrap.scrollLeft,
           st0: wrap.scrollTop,
           moved: false,
+          // Remember hit target so a tap still selects even if the browser
+          // drops the synthetic click after our touch handlers run.
+          startTarget: ev.target,
         };
       }
     }
@@ -3167,6 +3304,7 @@
             sl0: wrap.scrollLeft,
             st0: wrap.scrollTop,
             moved: false,
+            startTarget: ev.target,
           };
           return;
         }
@@ -3174,6 +3312,8 @@
         return;
       }
       if (ev.touches.length === 0) {
+        var wasTap = !graphGesture.moved;
+        var tapTarget = graphGesture.startTarget;
         if (graphGesture.moved) {
           wrap._connectionsSuppressClick = true;
           setTimeout(function () {
@@ -3181,6 +3321,15 @@
           }, 0);
         }
         endGraphGesture();
+        if (wasTap && tapTarget && !connectionsIsChromeControl(tapTarget)) {
+          // Handle selection here; suppress the following synthetic click so
+          // we don't double-fire (select then immediately clear).
+          wrap._connectionsSuppressClick = true;
+          setTimeout(function () {
+            wrap._connectionsSuppressClick = false;
+          }, 400);
+          handleGraphClickTarget(tapTarget);
+        }
       }
     }
 
@@ -3188,6 +3337,8 @@
       if (ev.pointerType === "touch") return;
       if (ev.button !== 0) return;
       if (connectionsIsChromeControl(ev.target)) return;
+      // Do not capture yet — capturing on the wrap retargets click away from
+      // nodes/edges and breaks selection. Capture only after a real pan starts.
       graphGesture = {
         mode: "pan",
         pointerId: ev.pointerId,
@@ -3196,10 +3347,8 @@
         sl0: wrap.scrollLeft,
         st0: wrap.scrollTop,
         moved: false,
+        captured: false,
       };
-      try {
-        wrap.setPointerCapture(ev.pointerId);
-      } catch (err) {}
     }
 
     function onGraphPointerMove(ev) {
@@ -3217,6 +3366,12 @@
         graphGesture.moved = true;
         wrap.classList.add("is-panning");
         hideConnectionsEdgeTooltip();
+        if (!graphGesture.captured) {
+          graphGesture.captured = true;
+          try {
+            wrap.setPointerCapture(ev.pointerId);
+          } catch (err) {}
+        }
       }
       if (graphGesture.moved) {
         wrap.scrollLeft = graphGesture.sl0 - dx;
@@ -3238,6 +3393,15 @@
         setTimeout(function () {
           wrap._connectionsSuppressClick = false;
         }, 0);
+      }
+      if (
+        graphGesture &&
+        graphGesture.captured &&
+        graphGesture.pointerId != null
+      ) {
+        try {
+          wrap.releasePointerCapture(graphGesture.pointerId);
+        } catch (err) {}
       }
       endGraphGesture();
     }
@@ -3305,79 +3469,46 @@
     if (selectedId) renderConnectionsDetail(selectedId);
   }
 
-  var CONNECTIONS_UNLOCK_KEY = "connectionsBetaUnlocked";
-  var CONNECTIONS_KEYWORD = "beta";
+  var connectionsDataPromise = null;
+  var connectionsDataReady = false;
 
-  function connectionsIsUnlocked() {
-    try {
-      return localStorage.getItem(CONNECTIONS_UNLOCK_KEY) === "1";
-    } catch (e) {
-      return false;
+  function ensureConnectionsData() {
+    if (connectionsDataReady) return Promise.resolve();
+    if (window.DATA_CONNECTIONS) {
+      connections = window.DATA_CONNECTIONS || [];
+      connectionsDataReady = true;
+      return Promise.resolve();
     }
-  }
-
-  function setConnectionsUnlocked(on) {
-    try {
-      if (on) localStorage.setItem(CONNECTIONS_UNLOCK_KEY, "1");
-      else localStorage.removeItem(CONNECTIONS_UNLOCK_KEY);
-    } catch (e) {
-      /* ignore */
-    }
-  }
-
-  function syncConnectionsGateUi() {
-    var gate = byId("connections-gate");
-    var unlocked = byId("connections-unlocked");
-    var open = connectionsIsUnlocked();
-    if (gate) gate.hidden = open;
-    if (unlocked) unlocked.hidden = !open;
-    document.body.classList.toggle("connections-unlocked-on", open);
-    return open;
-  }
-
-  function bindConnectionsGate() {
-    var form = byId("connections-gate-form");
-    if (!form || form._connectionsGateBound) return;
-    form._connectionsGateBound = true;
-    form.addEventListener("submit", function (ev) {
-      ev.preventDefault();
-      var input = byId("connections-gate-input");
-      var err = byId("connections-gate-error");
-      var value = input ? String(input.value || "").trim() : "";
-      if (value.toLowerCase() === CONNECTIONS_KEYWORD) {
-        setConnectionsUnlocked(true);
-        if (err) err.hidden = true;
-        syncConnectionsGateUi();
-        renderConnectionsPanel();
-        return;
-      }
-      if (err) err.hidden = false;
-      if (input) {
-        input.select();
-        input.focus();
-      }
+    if (connectionsDataPromise) return connectionsDataPromise;
+    connectionsDataPromise = new Promise(function (resolve) {
+      var s = document.createElement("script");
+      s.src = "data/connections.js";
+      s.onload = function () {
+        connections = window.DATA_CONNECTIONS || [];
+        connectionsDataReady = true;
+        resolve();
+      };
+      s.onerror = function () {
+        connections = [];
+        connectionsDataReady = true;
+        resolve();
+      };
+      document.head.appendChild(s);
     });
+    return connectionsDataPromise;
   }
 
   function renderConnectionsPanel() {
-    bindConnectionsGate();
     bindConnectionsSpoilerModal();
     bindConnectionsKindFilters();
     bindConnectionsNamesToggle();
     renderConnectionsKindFilters();
     syncConnectionsNamesVisibility();
-    if (!syncConnectionsGateUi()) {
-      var input = byId("connections-gate-input");
-      if (input) {
-        requestAnimationFrame(function () {
-          try {
-            input.focus();
-          } catch (e) {}
-        });
-      }
-      return;
-    }
-    initConnectionsGraph(true);
+    ensureConnectionsData().then(function () {
+      var needRestart =
+        !connectionsGraphState || !connectionsGraphState.alive;
+      initConnectionsGraph(needRestart);
+    });
   }
 
   function revealCaptionGraphic(fig) {
@@ -4365,11 +4496,32 @@
     document.body.classList.toggle("tab-connections", name === "connections");
     syncTabsOtherActive(name);
     closeTabsOther();
+    ensureLazyTabPanel(name);
+  }
+
+  var lazyTabPanelsDone = {};
+  var pendingOtherAuthors = null;
+
+  function ensureLazyTabPanel(name) {
     if (name === "connections") {
-      // Layout size is only reliable once the panel is visible.
       requestAnimationFrame(function () {
         renderConnectionsPanel();
       });
+      return;
+    }
+    if (lazyTabPanelsDone[name]) return;
+    if (name === "scenes") {
+      lazyTabPanelsDone.scenes = true;
+      renderScenesPanel();
+    } else if (name === "captions") {
+      lazyTabPanelsDone.captions = true;
+      renderCaptionsPanel();
+    } else if (name === "fanart") {
+      lazyTabPanelsDone.fanart = true;
+      renderFanartPanel();
+    } else if (name === "other-authors") {
+      lazyTabPanelsDone["other-authors"] = true;
+      renderOtherAuthors(pendingOtherAuthors);
     }
   }
 
@@ -6213,18 +6365,17 @@
     captions = normalizedCaptions.captions;
     captionSections = normalizedCaptions.sections;
     fanart = data.fanart || [];
-    connections = data.connections || [];
+    pendingOtherAuthors = data.otherAuthors || [];
+
+    try {
+      localStorage.removeItem("connectionsBetaUnlocked");
+    } catch (e) {}
 
     initTabs();
     initCharactersGrid();
-    renderOtherAuthors(data.otherAuthors);
     initStoryFilters();
     bindAiImagesToggle();
     renderStoriesGrid();
-    renderScenesPanel();
-    renderCaptionsPanel();
-    renderFanartPanel();
-    renderConnectionsPanel();
     initSceneLightbox();
     bindStoryGridClick();
     bindCharacterGridClick();

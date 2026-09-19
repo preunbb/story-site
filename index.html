@@ -32,10 +32,20 @@
       content="https://preunbb.github.io/story-site/assets/previewfinal.png"
     />
     <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap"
+      />
+    </noscript>
     <link rel="stylesheet" href="styles.css" />
     <script>
       try {
@@ -361,34 +371,7 @@
       </section>
 
       <section id="panel-connections" class="panel">
-        <div
-          class="connections-gate"
-          id="connections-gate"
-          hidden
-        >
-          <form class="connections-gate-form" id="connections-gate-form">
-            <h2 class="connections-gate-title">Connections (beta)</h2>
-            <p class="connections-gate-hint">
-              Enter the beta keyword to open the character web.
-            </p>
-            <label class="connections-gate-label" for="connections-gate-input"
-              >Keyword</label
-            >
-            <input
-              class="connections-gate-input"
-              id="connections-gate-input"
-              type="password"
-              name="keyword"
-              autocomplete="off"
-              required
-            />
-            <button type="submit" class="connections-gate-submit">Unlock</button>
-            <p class="connections-gate-error" id="connections-gate-error" hidden>
-              Incorrect keyword.
-            </p>
-          </form>
-        </div>
-        <div class="connections-unlocked" id="connections-unlocked" hidden>
+        <div class="connections-panel" id="connections-panel">
           <h1>Connections</h1>
           <p class="connections-intro">
             A web of who did what to whom. Click a portrait for their full cast
@@ -771,22 +754,29 @@
       </div>
     </div>
 
-    <script src="data/characters.js"></script>
-    <script src="data/stories.js"></script>
-    <script src="data/otherAuthors.js"></script>
-    <script src="data/captions.js"></script>
-    <script src="data/fanart.js"></script>
-    <script src="data/connections.js"></script>
-    <script src="data/source.js"></script>
-    <script src="data/analytics.js"></script>
-    <script src="script.js"></script>
-    <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
+    <script defer src="data/characters.js"></script>
+    <script defer src="data/stories.js"></script>
+    <script defer src="data/otherAuthors.js"></script>
+    <script defer src="data/captions.js"></script>
+    <script defer src="data/fanart.js"></script>
+    <script defer src="data/source.js"></script>
+    <script defer src="data/analytics.js"></script>
+    <script defer src="script.js"></script>
     <script>
-      kofiWidgetOverlay.draw("T6T4CR9D", {
-        type: "floating-chat",
-        "floating-chat.donateButton.text": "Support me",
-        "floating-chat.donateButton.background-color": "#00b9fe",
-        "floating-chat.donateButton.text-color": "#fff",
+      window.addEventListener("load", function () {
+        var s = document.createElement("script");
+        s.src = "https://storage.ko-fi.com/cdn/scripts/overlay-widget.js";
+        s.async = true;
+        s.onload = function () {
+          if (!window.kofiWidgetOverlay) return;
+          window.kofiWidgetOverlay.draw("T6T4CR9D", {
+            type: "floating-chat",
+            "floating-chat.donateButton.text": "Support me",
+            "floating-chat.donateButton.background-color": "#00b9fe",
+            "floating-chat.donateButton.text-color": "#fff",
+          });
+        };
+        document.body.appendChild(s);
       });
     </script>
   </body>

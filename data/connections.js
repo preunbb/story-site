@@ -1,7 +1,17 @@
 // Character relationship graph for the Connections tab.
-// Each edge: { from, to, label, reverseLabel, storyId, kinds }
+// Each edge: { from, to, label, reverseLabel, storyId, kinds, links? }
 // label = from→to perspective; reverseLabel = to→from perspective.
 // kinds is required: family | relationship | knows | faction | left | right | dick | pain
+//
+// links (optional): character/story mentions to hyperlink inside the active label.
+//   [{ id: "sam" }]                         — match defaults to name (+ first name)
+//   [{ id: "joan_white", match: "Joan" }]    — custom visible text (optional; first name is defaulted)
+//   [{ id: "nameless_volunteers", match: "triplets" }]
+//   [{ storyId: 1 }]                         — match defaults to story.title
+// Prefer labelLinks / reverseLabelLinks when forward and reverse need different maps;
+// otherwise `links` applies to whichever label is shown.
+// The other endpoint is always auto-linked (full name + first name). If it matches
+// in the phrase, it is not also appended in parentheses.
 window.DATA_CONNECTIONS = [
   {
     "from": "jenny",
@@ -72,6 +82,10 @@ window.DATA_CONNECTIONS = [
     "storyId": 1,
     "kinds": [
       "knows"
+    ],
+    "links": [
+      { "id": "sam" },
+      { "id": "joan_white", "match": "Joan" }
     ]
   },
   {
@@ -82,6 +96,10 @@ window.DATA_CONNECTIONS = [
     "storyId": 1,
     "kinds": [
       "knows"
+    ],
+    "links": [
+      { "id": "sam" },
+      { "id": "joan_white", "match": "Joan" }
     ]
   },
   {
@@ -92,6 +110,10 @@ window.DATA_CONNECTIONS = [
     "storyId": 1,
     "kinds": [
       "knows"
+    ],
+    "links": [
+      { "id": "sam" },
+      { "id": "joan_white", "match": "Joan" }
     ]
   },
   {
@@ -439,12 +461,12 @@ window.DATA_CONNECTIONS = [
   },
   {
     "from": "cathy",
-    "to": "sanjay",
-    "label": "Supplies devices used on Sanjay",
-    "reverseLabel": "Devices used on him supplied by Cathy",
+    "to": "jenny",
+    "label": "Supplies Jenny with devices",
+    "reverseLabel": "Gets devices supplied by Cathy",
     "storyId": 13,
     "kinds": [
-      "pain"
+      "knows"
     ]
   },
   {
@@ -1388,6 +1410,9 @@ window.DATA_CONNECTIONS = [
     "kinds": [
       "left",
       "right"
+    ],
+    "links": [
+      { "id": "nameless_volunteers", "match": "triplets" }
     ]
   },
   {
