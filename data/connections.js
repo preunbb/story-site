@@ -1,118 +1,240 @@
 // Character relationship graph for the Connections tab.
-// Each edge: { from, to, label, reverseLabel, storyId }
+// Each edge: { from, to, label, reverseLabel, storyId, kinds }
 // label = from→to perspective; reverseLabel = to→from perspective.
+// kinds is required: family | relationship | knows | faction | left | right | dick | pain
 window.DATA_CONNECTIONS = [
   {
     "from": "jenny",
     "to": "sam",
     "label": "Pops Sam's left testicle",
     "reverseLabel": "Left testicle popped by Jenny",
-    "storyId": 1
+    "storyId": 1,
+    "kinds": [
+      "left"
+    ]
   },
   {
     "from": "michelle",
     "to": "sam",
     "label": "Pops Sam's right testicle",
     "reverseLabel": "Right testicle popped by Michelle",
-    "storyId": 1
+    "storyId": 1,
+    "kinds": [
+      "right"
+    ]
+  },
+  {
+    "from": "joan_white",
+    "to": "sam",
+    "label": "Pops Sam's last testicle",
+    "reverseLabel": "Last testicle popped by Joan",
+    "storyId": 1,
+    "kinds": [
+      "left",
+      "right"
+    ]
+  },
+  {
+    "from": "joan_white",
+    "to": "sam",
+    "label": "Squeezes Sam's balls in her office",
+    "reverseLabel": "Balls squeezed by Joan in her office",
+    "storyId": 1,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "cathy",
     "to": "sam",
-    "label": "Castrates Sam",
-    "reverseLabel": "Castrated by Cathy",
-    "storyId": 1
+    "label": "Plans and weakens Sam's last testicle",
+    "reverseLabel": "Last testicle weakened under Cathy's plan",
+    "storyId": 1,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "amy",
     "to": "sam",
     "label": "Inspects Sam's remaining testicles",
     "reverseLabel": "Remaining testicles inspected by Amy",
-    "storyId": 1
+    "storyId": 1,
+    "kinds": [
+      "pain"
+    ]
+  },
+  {
+    "from": "joan_white",
+    "to": "jenny",
+    "label": "Recruits Jenny to destroy Sam's balls",
+    "reverseLabel": "Recruited by Joan to destroy Sam's balls",
+    "storyId": 1,
+    "kinds": [
+      "knows"
+    ]
+  },
+  {
+    "from": "joan_white",
+    "to": "michelle",
+    "label": "Recruits Michelle to destroy Sam's balls",
+    "reverseLabel": "Recruited by Joan to destroy Sam's balls",
+    "storyId": 1,
+    "kinds": [
+      "knows"
+    ]
+  },
+  {
+    "from": "joan_white",
+    "to": "cathy",
+    "label": "Recruits Cathy to destroy Sam's balls",
+    "reverseLabel": "Recruited by Joan to destroy Sam's balls",
+    "storyId": 1,
+    "kinds": [
+      "knows"
+    ]
+  },
+  {
+    "from": "joan_white",
+    "to": "amy",
+    "label": "Nurse friend; refers castrations together",
+    "reverseLabel": "Nurse friend of Joan; shares castration referrals",
+    "storyId": 1,
+    "kinds": [
+      "knows"
+    ]
+  },
+  {
+    "from": "joan_white",
+    "to": "monique",
+    "label": "Covers for Monique with counselors",
+    "reverseLabel": "Covered by Ms. White with counselors",
+    "storyId": 25,
+    "kinds": [
+      "knows"
+    ]
   },
   {
     "from": "karen",
     "to": "jeremy",
     "label": "Knees Jeremy in therapy",
     "reverseLabel": "Kneed in therapy by Karen",
-    "storyId": 2
+    "storyId": 2,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "karen",
     "to": "jeremy",
     "label": "Castrates Jeremy",
     "reverseLabel": "Castrated by Karen",
-    "storyId": 2
+    "storyId": 2,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "britt",
     "to": "dan",
     "label": "Knees and stomps Dan",
     "reverseLabel": "Kneed and stomped by Britt",
-    "storyId": 5
+    "storyId": 5,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "sofia",
     "to": "dan",
     "label": "Pops Dan's left testicle",
     "reverseLabel": "Left testicle popped by Sofia",
-    "storyId": 5
+    "storyId": 5,
+    "kinds": [
+      "left"
+    ]
   },
   {
     "from": "sofia",
     "to": "venn",
     "label": "Pops Venn's testicle",
     "reverseLabel": "Testicle popped by Sofia",
-    "storyId": 5
+    "storyId": 5,
+    "kinds": [
+      "left"
+    ]
   },
   {
     "from": "emma",
     "to": "roger",
     "label": "Destroys Roger's testicles",
     "reverseLabel": "Testicles destroyed by Emma",
-    "storyId": 5
+    "storyId": 5,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "vivian",
     "to": "roger",
     "label": "Holds Roger for Emma",
     "reverseLabel": "Held for Emma by Vivian",
-    "storyId": 5
+    "storyId": 5,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "britt",
     "to": "roger",
     "label": "Holds Roger for Emma",
     "reverseLabel": "Held for Emma by Britt",
-    "storyId": 5
+    "storyId": 5,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "emma",
     "to": "paul",
     "label": "Helps crush Paul's testicles",
     "reverseLabel": "Testicles crushed with help from Emma",
-    "storyId": 5
+    "storyId": 5,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "vivian",
     "to": "paul",
     "label": "Helps crush Paul's testicles",
     "reverseLabel": "Testicles crushed with help from Vivian",
-    "storyId": 5
+    "storyId": 5,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "sofia",
     "to": "paul",
     "label": "Helps crush Paul's testicles",
     "reverseLabel": "Testicles crushed with help from Sofia",
-    "storyId": 5
+    "storyId": 5,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "britt",
     "to": "paul",
     "label": "Helps crush Paul's testicles",
     "reverseLabel": "Testicles crushed with help from Britt",
-    "storyId": 5
+    "storyId": 5,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "rachel",
@@ -130,28 +252,41 @@ window.DATA_CONNECTIONS = [
     "to": "allan",
     "label": "Slaps Allan's balls",
     "reverseLabel": "Balls slapped by June",
-    "storyId": 7
+    "storyId": 7,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "alexa",
     "to": "allan",
     "label": "Tortures Allan",
     "reverseLabel": "Tortured by Goddess Alexa",
-    "storyId": 7
+    "storyId": 7,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "serena",
     "to": "dennis",
     "label": "Knees Dennis in demo",
     "reverseLabel": "Kneed in demo by Serena",
-    "storyId": 8
+    "storyId": 8,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "erica",
     "to": "dennis",
     "label": "Pops Dennis's last testicle",
     "reverseLabel": "Last testicle popped by Erica",
-    "storyId": 8
+    "storyId": 8,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "serena",
@@ -210,28 +345,42 @@ window.DATA_CONNECTIONS = [
     "to": "brian",
     "label": "Swaps castration stories",
     "reverseLabel": "Swaps castration stories with Emma",
-    "storyId": 10
+    "storyId": 10,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "melody",
     "to": "richard",
     "label": "Castrates Richard",
     "reverseLabel": "Castrated by Melody",
-    "storyId": 11
+    "storyId": 11,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "melody",
     "to": "tommy",
     "label": "Ruptures Tommy's left testicle",
     "reverseLabel": "Left testicle ruptured by Melody",
-    "storyId": 11
+    "storyId": 11,
+    "kinds": [
+      "left"
+    ]
   },
   {
     "from": "melody",
     "to": "nathan",
     "label": "Pops Nathan's testicles",
     "reverseLabel": "Nathan's testicles popped by Melody",
-    "storyId": 11
+    "storyId": 11,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "nathan",
@@ -268,42 +417,64 @@ window.DATA_CONNECTIONS = [
     "to": "simon",
     "label": "Castrates Simon",
     "reverseLabel": "Castrated by Emma",
-    "storyId": 12
+    "storyId": 12,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "jenny",
     "to": "sanjay",
     "label": "Castrates Sanjay",
     "reverseLabel": "Castrated by Jenny",
-    "storyId": 13
+    "storyId": 13,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "cathy",
     "to": "sanjay",
     "label": "Supplies devices used on Sanjay",
     "reverseLabel": "Devices used on him supplied by Cathy",
-    "storyId": 13
+    "storyId": 13,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "sofia",
     "to": "wesley",
     "label": "Pops Wesley's testicle",
     "reverseLabel": "Testicle popped by Sofia",
-    "storyId": 14
+    "storyId": 14,
+    "kinds": [
+      "left"
+    ]
   },
   {
     "from": "amy",
     "to": "wesley",
     "label": "Castrates Wesley",
     "reverseLabel": "Castrated by Amy",
-    "storyId": 14
+    "storyId": 14,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "fiona",
     "to": "brad",
     "label": "Pops Brad's last testicle",
     "reverseLabel": "Last testicle popped by Fiona",
-    "storyId": 14
+    "storyId": 14,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "fiona",
@@ -320,35 +491,53 @@ window.DATA_CONNECTIONS = [
     "to": "daniel",
     "label": "Castrates Daniel",
     "reverseLabel": "Castrated by Sofia",
-    "storyId": 15
+    "storyId": 15,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "vanessa",
     "to": "daniel",
     "label": "Sends Daniel into the arena",
     "reverseLabel": "Sent into the arena by Vanessa",
-    "storyId": 15
+    "storyId": 15,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "vanessa",
     "to": "brian",
     "label": "Edges Brian with castration timer",
     "reverseLabel": "Edged with castration timer by Vanessa",
-    "storyId": 16
+    "storyId": 16,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "vanessa",
     "to": "brian",
     "label": "Knees Brian after ruined orgasm",
     "reverseLabel": "Kneed by Vanessa after ruined orgasm",
-    "storyId": 16
+    "storyId": 16,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "nikita",
     "to": "cole",
     "label": "Castrates Cole",
     "reverseLabel": "Castrated by Nikita",
-    "storyId": 17
+    "storyId": 17,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "poly",
@@ -365,21 +554,31 @@ window.DATA_CONNECTIONS = [
     "to": "atheras",
     "label": "Castrates Atheras",
     "reverseLabel": "Castrated by Salei",
-    "storyId": 19
+    "storyId": 19,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "monique",
     "to": "robert",
     "label": "Stomps and ruptures Robert",
     "reverseLabel": "Stomped and ruptured by Monique",
-    "storyId": 20
+    "storyId": 20,
+    "kinds": [
+      "left"
+    ]
   },
   {
     "from": "melody",
     "to": "robert",
     "label": "Mother of Robert",
     "reverseLabel": "Son of Melody",
-    "storyId": 20
+    "storyId": 20,
+    "kinds": [
+      "family"
+    ]
   },
   {
     "from": "melody",
@@ -408,14 +607,20 @@ window.DATA_CONNECTIONS = [
     "to": "robert",
     "label": "Milks Robert's remaining testicle",
     "reverseLabel": "Remaining testicle milked by Maria",
-    "storyId": 20
+    "storyId": 20,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "michelle",
     "to": "robert",
     "label": "Pushes Drip-n-Snip on Robert",
     "reverseLabel": "Pushed toward Drip-n-Snip by Michelle",
-    "storyId": 20
+    "storyId": 20,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "monique",
@@ -443,7 +648,11 @@ window.DATA_CONNECTIONS = [
     "to": "jose",
     "label": "Castrates Jose",
     "reverseLabel": "Castrated by Emma",
-    "storyId": 24
+    "storyId": 24,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "alyssa",
@@ -463,70 +672,106 @@ window.DATA_CONNECTIONS = [
     "to": "jon",
     "label": "Castrates Jon with elastrator",
     "reverseLabel": "Castrated with elastrator by Monique",
-    "storyId": 25
+    "storyId": 25,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "dr_s",
     "to": "jon",
     "label": "Orchiectomizes Jon",
     "reverseLabel": "Orchiectomized by Dr. S",
-    "storyId": 25
+    "storyId": 25,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "cathy",
     "to": "jon",
     "label": "Assists on Jon's surgeries",
     "reverseLabel": "Surgeries assisted by Cathy",
-    "storyId": 25
+    "storyId": 25,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "melody",
     "to": "eric",
     "label": "Castrates Eric",
     "reverseLabel": "Castrated by Melody",
-    "storyId": 26
+    "storyId": 26,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "melody",
     "to": "bryan",
     "label": "Liquifies Bryan's last testicle",
     "reverseLabel": "Last testicle liquified by Melody",
-    "storyId": 26
+    "storyId": 26,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "genovia",
     "to": "sean_witches",
     "label": "Psychically ruptures Sean's testicles",
     "reverseLabel": "Testicles psychically ruptured by Genovia",
-    "storyId": 27
+    "storyId": 27,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "sylvana",
     "to": "sean_witches",
     "label": "Knees Sean's blue-balled testicles",
     "reverseLabel": "Blue-balled testicles kneed by Sylvana",
-    "storyId": 27
+    "storyId": 27,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "kaitlin",
     "to": "steven",
     "label": "Sabotages Steven into full castration",
     "reverseLabel": "Sabotaged into full castration by Kaitlin",
-    "storyId": 28
+    "storyId": 28,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "june",
     "to": "steven",
     "label": "Grabs Steven's scrotum in class",
     "reverseLabel": "Scrotum grabbed by June in class",
-    "storyId": 28
+    "storyId": 28,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "amy",
     "to": "steven",
     "label": "Practices groin strikes on Steven",
     "reverseLabel": "Practice groin-strike target of Amy",
-    "storyId": 28
+    "storyId": 28,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "serena",
@@ -553,42 +798,64 @@ window.DATA_CONNECTIONS = [
     "to": "ross",
     "label": "Assesses Ross for penile removal",
     "reverseLabel": "Assessed for penile removal by The Nurse",
-    "storyId": 29
+    "storyId": 29,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "diane_postop",
     "to": "james_postop",
     "label": "Orders James's double orchiectomy",
     "reverseLabel": "Double orchiectomy ordered by Diane",
-    "storyId": 30
+    "storyId": 30,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "the_nurse",
     "to": "james_postop",
     "label": "Oversees James's castration recovery",
     "reverseLabel": "Castration recovery overseen by The Nurse",
-    "storyId": 30
+    "storyId": 30,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "amanda_postop",
     "to": "james_postop",
     "label": "Teases James post-castration",
     "reverseLabel": "Teased post-castration by Amanda",
-    "storyId": 30
+    "storyId": 30,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "amber_postop",
     "to": "james_postop",
     "label": "Films James's castration video",
     "reverseLabel": "Castration video filmed by Amber",
-    "storyId": 30
+    "storyId": 30,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "shardene",
     "to": "james_postop",
     "label": "Lap-dances limp James",
     "reverseLabel": "Lap-danced while limp by Shardene",
-    "storyId": 30
+    "storyId": 30,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "officer_alice",
@@ -617,14 +884,21 @@ window.DATA_CONNECTIONS = [
     "to": "nguyen_twins",
     "label": "Castrates the Nguyen twins",
     "reverseLabel": "Castrated by Natalie",
-    "storyId": 42
+    "storyId": 42,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "brian",
     "to": "natalie",
     "label": "Watches Natalie fight",
     "reverseLabel": "Fight watched by Brian",
-    "storyId": 42
+    "storyId": 42,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "andrea",
@@ -641,28 +915,41 @@ window.DATA_CONNECTIONS = [
     "to": "hunter",
     "label": "Ruptures Hunter's testicle",
     "reverseLabel": "Testicle ruptured by Andrea",
-    "storyId": 43
+    "storyId": 43,
+    "kinds": [
+      "left"
+    ]
   },
   {
     "from": "izzie",
     "to": "nate",
     "label": "Sterilizes Nate for content",
     "reverseLabel": "Sterilized for content by Izzie",
-    "storyId": 43
+    "storyId": 43,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "bridget",
     "to": "nate",
     "label": "Punts Nate in jeans-store skit",
     "reverseLabel": "Punted in jeans-store skit by Bridget",
-    "storyId": 43
+    "storyId": 43,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "andrea",
     "to": "tamara",
     "label": "Sister of Tamara",
     "reverseLabel": "Sister of Andrea",
-    "storyId": 43
+    "storyId": 43,
+    "kinds": [
+      "family"
+    ]
   },
   {
     "from": "andrea",
@@ -679,14 +966,21 @@ window.DATA_CONNECTIONS = [
     "to": "malko",
     "label": "Pops Mal'ko's wedding testicle",
     "reverseLabel": "Wedding testicle popped by Taviri",
-    "storyId": 44
+    "storyId": 44,
+    "kinds": [
+      "left"
+    ]
   },
   {
     "from": "melody",
     "to": "ryan",
     "label": "Castrates Ryan",
     "reverseLabel": "Castrated by Melody",
-    "storyId": 46
+    "storyId": 46,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "andrea",
@@ -703,7 +997,10 @@ window.DATA_CONNECTIONS = [
     "to": "sunni",
     "label": "Kicks Sunni's testicles",
     "reverseLabel": "Testicles kicked by Andrea",
-    "storyId": 47
+    "storyId": 47,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "andrea",
@@ -720,7 +1017,10 @@ window.DATA_CONNECTIONS = [
     "to": "lucas",
     "label": "Mistakenly targets Lucas",
     "reverseLabel": "Mistakenly targeted by Emma",
-    "storyId": 47
+    "storyId": 47,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "tamara",
@@ -757,49 +1057,74 @@ window.DATA_CONNECTIONS = [
     "to": "lucas",
     "label": "Stepmom hunts Lucas's testicles",
     "reverseLabel": "Stepson hunted by Eve",
-    "storyId": 47
+    "storyId": 47,
+    "kinds": [
+      "family",
+      "pain"
+    ]
   },
   {
     "from": "kay",
     "to": "lucas",
     "label": "Stepsister Kay targets Lucas",
     "reverseLabel": "Targeted by stepsister Kay",
-    "storyId": 47
+    "storyId": 47,
+    "kinds": [
+      "family",
+      "pain"
+    ]
   },
   {
     "from": "abby",
     "to": "lucas",
     "label": "Stepsister Abby targets Lucas",
     "reverseLabel": "Targeted by stepsister Abby",
-    "storyId": 47
+    "storyId": 47,
+    "kinds": [
+      "family",
+      "pain"
+    ]
   },
   {
     "from": "kay",
     "to": "isaac",
     "label": "Blueballs Isaac through Church rite",
     "reverseLabel": "Blueballed through Church rite by Kay",
-    "storyId": 47
+    "storyId": 47,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "abby",
     "to": "elijah",
     "label": "Lures Elijah to Second Rite",
     "reverseLabel": "Lured to Second Rite by Abby",
-    "storyId": 47
+    "storyId": 47,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "tamara",
     "to": "judah",
     "label": "Testicular defragmentation on Judah",
     "reverseLabel": "Testicular defragmentation by Tamara",
-    "storyId": 47
+    "storyId": 47,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "andrea",
     "to": "judah",
     "label": "Testicle torture",
     "reverseLabel": "Testicles tortured by Andrea",
-    "storyId": 47
+    "storyId": 47,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "eve",
@@ -817,21 +1142,33 @@ window.DATA_CONNECTIONS = [
     "to": "broken_tree_cultists",
     "label": "Neuters Church cultists",
     "reverseLabel": "Neutered by Andrea",
-    "storyId": 47
+    "storyId": 47,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "izzie",
     "to": "broken_tree_cultists",
     "label": "Neuters Church cultists",
     "reverseLabel": "Neutered by Izzie",
-    "storyId": 47
+    "storyId": 47,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "tamara",
     "to": "broken_tree_cultists",
     "label": "Neuters Church cultists",
     "reverseLabel": "Neutered by Tamara",
-    "storyId": 47
+    "storyId": 47,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "kay",
@@ -859,7 +1196,10 @@ window.DATA_CONNECTIONS = [
     "to": "lucas",
     "label": "Helps rescue Lucas from the Church",
     "reverseLabel": "Rescued from the Church with help from Izzie",
-    "storyId": 47
+    "storyId": 47,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "cathy",
@@ -876,21 +1216,30 @@ window.DATA_CONNECTIONS = [
     "to": "elliot",
     "label": "Tests BoySnapper on Elliot",
     "reverseLabel": "BoySnapper-tested by Olivia",
-    "storyId": 48
+    "storyId": 48,
+    "kinds": [
+      "left"
+    ]
   },
   {
     "from": "olivia",
     "to": "theodore",
     "label": "Tests SeedSpray on Theodore",
     "reverseLabel": "SeedSpray-tested by Olivia",
-    "storyId": 48
+    "storyId": 48,
+    "kinds": [
+      "left"
+    ]
   },
   {
     "from": "olivia",
     "to": "nameless_volunteers",
     "label": "Pops volunteer's left testicle",
     "reverseLabel": "Left testicle popped by Olivia",
-    "storyId": 48
+    "storyId": 48,
+    "kinds": [
+      "left"
+    ]
   },
   {
     "from": "zennia",
@@ -907,7 +1256,11 @@ window.DATA_CONNECTIONS = [
     "to": "theodore",
     "label": "Finishes destroying Theodore's fertility",
     "reverseLabel": "Fertility finished off by Zennia",
-    "storyId": 48
+    "storyId": 48,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "charlotte",
@@ -934,14 +1287,20 @@ window.DATA_CONNECTIONS = [
     "to": "stuart",
     "label": "Therapies Stuart after lost testicle",
     "reverseLabel": "In therapy with Karen after lost testicle",
-    "storyId": 49
+    "storyId": 49,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "michelle",
     "to": "stuart",
     "label": "Handles Stuart's billing and taunts",
     "reverseLabel": "Billing and taunts from Michelle",
-    "storyId": 49
+    "storyId": 49,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "michelle",
@@ -958,21 +1317,33 @@ window.DATA_CONNECTIONS = [
     "to": "richard",
     "label": "Castrates stepson Richard in the cup shop",
     "reverseLabel": "Castrated by stepmom Karen in the cup shop",
-    "storyId": 1
+    "storyId": 1,
+    "kinds": [
+      "family",
+      "left",
+      "right"
+    ]
   },
   {
     "from": "cathy",
     "to": "allan",
     "label": "Year-long denial experiment on Allan",
     "reverseLabel": "Subject of Cathy's year-long denial experiment",
-    "storyId": 1
+    "storyId": 1,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "sofia",
     "to": "daniel",
     "label": "Pops Daniel's last testicle onstage",
     "reverseLabel": "Last testicle popped onstage by Sofia",
-    "storyId": 16
+    "storyId": 16,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "vanessa",
@@ -999,58 +1370,91 @@ window.DATA_CONNECTIONS = [
     "to": "jon",
     "label": "Checks Jon into the clinic",
     "reverseLabel": "Checked into the clinic by Michelle",
-    "storyId": 25
+    "storyId": 25,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "monique",
     "to": "jon",
     "label": "Knees Jon in the hallway",
     "reverseLabel": "Kneed in the hallway by Monique",
-    "storyId": 25
+    "storyId": 25,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "cathy",
     "to": "nameless_volunteers",
     "label": "Prisoner's-dilemma castrations on triplets",
     "reverseLabel": "Prisoner's-dilemma castration subject of Cathy",
-    "storyId": 32
+    "storyId": 32,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "kaitlin",
     "to": "felix",
     "label": "Twists Felix's balls at Cherry Pop!",
     "reverseLabel": "Balls twisted by Kaitlin at Cherry Pop!",
-    "storyId": 47
+    "storyId": 47,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "yvette",
     "to": "felix",
     "label": "Neglects Felix's torsion until it's fatal",
     "reverseLabel": "Torsion neglected by Yvette until fatal",
-    "storyId": 47
+    "storyId": 47,
+    "kinds": [
+      "pain"
+    ]
   },
   {
     "from": "tamara",
     "to": "felix",
     "label": "Removes Felix's dead testicles",
     "reverseLabel": "Dead testicles removed by Tamara",
-    "storyId": 47
+    "storyId": 47,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "andrea",
     "to": "trinn",
-    "label": "Heel-pops Trinn's testicle",
-    "reverseLabel": "Testicle heel-popped by Andrea",
-    "storyId": 47
+    "label": "Pops one of Trinn's testicles",
+    "reverseLabel": "One testicle popped by Andrea",
+    "storyId": 47,
+    "kinds": [
+      "left"
+    ]
   },
   {
     "from": "emma",
     "to": "trinn",
-    "label": "Dates Trinn; fails to protect his balls",
-    "reverseLabel": "Dates Emma; balls left unprotected",
+    "label": "Dates Trinn",
+    "reverseLabel": "Dates Emma",
     "storyId": 47,
     "kinds": [
       "relationship"
+    ]
+  },
+  {
+    "from": "tamara",
+    "to": "trinn",
+    "label": "Unnecessarily removes Trinn's other testicle",
+    "reverseLabel": "Other testicle unnecessarily removed by Tamara",
+    "storyId": 47,
+    "kinds": [
+      "right"
     ]
   },
   {
@@ -1058,7 +1462,11 @@ window.DATA_CONNECTIONS = [
     "to": "sunni",
     "label": "Gives completely unnecessary double orchiectomy to Sunni",
     "reverseLabel": "Has the terrible luck to be treated by Yvette",
-    "storyId": 47
+    "storyId": 47,
+    "kinds": [
+      "left",
+      "right"
+    ]
   },
   {
     "from": "melody",
@@ -1075,7 +1483,10 @@ window.DATA_CONNECTIONS = [
     "to": "yvette",
     "label": "Mother of Yvette",
     "reverseLabel": "Daughter of Zennia",
-    "storyId": 47
+    "storyId": 47,
+    "kinds": [
+      "family"
+    ]
   },
   {
     "from": "zennia",
@@ -1114,7 +1525,7 @@ window.DATA_CONNECTIONS = [
     "reverseLabel": "Owned by Zennia",
     "storyId": 47,
     "kinds": [
-      "knows"
+      "faction"
     ]
   },
   {
@@ -1124,7 +1535,7 @@ window.DATA_CONNECTIONS = [
     "reverseLabel": "Andrea's favorite band",
     "storyId": 47,
     "kinds": [
-      "knows"
+      "faction"
     ]
   },
   {
@@ -1134,7 +1545,7 @@ window.DATA_CONNECTIONS = [
     "reverseLabel": "Kay's favorite band",
     "storyId": 47,
     "kinds": [
-      "knows"
+      "faction"
     ]
   },
   {
@@ -1144,7 +1555,17 @@ window.DATA_CONNECTIONS = [
     "reverseLabel": "Olivia's favorite band",
     "storyId": 48,
     "kinds": [
-      "knows"
+      "faction"
+    ]
+  },
+  {
+    "from": "sunni",
+    "to": "cherry_pop",
+    "label": "Cherry Pop! fan",
+    "reverseLabel": "Fan",
+    "storyId": 47,
+    "kinds": [
+      "faction"
     ]
   },
   {
@@ -1403,6 +1824,16 @@ window.DATA_CONNECTIONS = [
     "label": "Fought in The Ballbusting Arena",
     "reverseLabel": "Fighter",
     "storyId": 15,
+    "kinds": [
+      "faction"
+    ]
+  },
+  {
+    "from": "brian",
+    "to": "ballbusting_arena",
+    "label": "Watches from the stands",
+    "reverseLabel": "Spectator",
+    "storyId": 16,
     "kinds": [
       "faction"
     ]

@@ -1551,7 +1551,7 @@ body.connections-spoiler-modal-open {
 
 .connections-detail-profiles.is-faction .flyout-profile-wrap {
   aspect-ratio: 1 / 1;
-  border-radius: 50%;
+  border-radius: 10px;
   background: #1a1a1c;
 }
 

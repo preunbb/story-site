@@ -40,6 +40,14 @@ window.DATA_CHARACTERS = [
     profilePictures: ["assets/characters/sam_three_strikes_cover_match_v1.png"],
   },
   {
+    id: "joan_white",
+    name: "Joan White",
+    gender: "F",
+    testiclesKilled: 14,
+    bio: "Western University swim coach—voluminous red hair, legs like a pinup, and a whistle she uses like a weapon. Obsessed with making her boys more hydrodynamic, one gonad at a time. Later teaches math after too many PE 'accidents.'",
+    profilePictures: ["assets/characters/joan_white_v1.jpg"],
+  },
+  {
     id: "jeremy",
     name: "Jeremy",
     gender: "M",
@@ -668,7 +676,6 @@ window.DATA_CHARACTERS = [
     profilePictures: [
       "assets/characters/felix_androgyn_miniskirt_cherrypop_arena_v1.png",
       "assets/characters/felix_v2_age25_blonde_curvyhips_fullbody_nobar_v1.png",
-      "assets/characters/felix.png",
     ],
   },
   {
@@ -735,11 +742,8 @@ window.DATA_CHARACTERS = [
     name: "Cherry Pop!",
     entityType: "faction",
     gender: "",
-    bio: "Andrea, Kay, and Olivia's favorite new wave feminist punkdustrialballbusting rock band. Produced under the OverEasy entertainment label.",
-    profilePictures: [
-      "assets/brands/cherry_pop_avatar_v1.png",
-      "assets/characters/cherry_pop_cast_v1.png",
-    ],
+    bio: "Andrea, Kay, and Olivia's favorite new wave feminist punkdustrial ballbusting rock band. Produced under the OverEasy entertainment label.",
+    profilePictures: ["assets/brands/cherry_pop_avatar_v6_punk.png"],
   },
   {
     id: "olivia",

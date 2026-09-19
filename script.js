@@ -2190,6 +2190,15 @@
       return a.gender === "F" && b.gender === "F";
     }
 
+    function involvesFaction(e) {
+      var a = e && getCharacterById(e.from);
+      var b = e && getCharacterById(e.to);
+      return !!(
+        (a && a.entityType === "faction") ||
+        (b && b.entityType === "faction")
+      );
+    }
+
     function stripDamagingBetweenWomen(kindsList) {
       if (!bothEndsWomen(edge)) return kindsList;
       var safe = kindsList.filter(function (k) {
@@ -2199,126 +2208,19 @@
       return safe;
     }
 
-    if (edge && Array.isArray(edge.kinds) && edge.kinds.length) {
-      return stripDamagingBetweenWomen(
-        CONNECTION_KIND_ORDER.filter(function (k) {
-          return edge.kinds.indexOf(k) !== -1;
-        }),
-      );
+    // Faction edges are always grey (setting / faction kind).
+    if (involvesFaction(edge)) return ["faction"];
+
+    var kinds =
+      edge && Array.isArray(edge.kinds) && edge.kinds.length
+        ? CONNECTION_KIND_ORDER.filter(function (k) {
+            return edge.kinds.indexOf(k) !== -1;
+          })
+        : [];
+    if (!kinds.length) {
+      kinds = [bothEndsWomen(edge) ? "knows" : "pain"];
     }
-    var text = (
-      (edge && edge.label ? edge.label : "") +
-      " " +
-      (edge && edge.reverseLabel ? edge.reverseLabel : "")
-    ).toLowerCase();
-    var kinds = [];
-
-    function add(k) {
-      if (kinds.indexOf(k) !== -1) return;
-      kinds.push(k);
-    }
-
-    if (
-      /\b(mother|son of|daughter of|sister|stepmom|stepson|stepsister|stepbrother|step-sister|step-brother)\b/.test(
-        text,
-      )
-    ) {
-      add("family");
-    }
-    if (
-      /\b(dates|dated|married|fiancé|fiance|dumps|dumped|cheats|boyfriend|girlfriend|keeps him as a sub|as a sub)\b/.test(
-        text,
-      )
-    ) {
-      add("relationship");
-    }
-    if (/\bknows each other\b/.test(text)) {
-      add("knows");
-    }
-    if (
-      /\b(over\s*easy|church of the broken tree|ballbusting arena|fought in the|employed by|formerly employed|test subject|high priestess of the church|convert of the church|member of the church|targeted by the church|owned by overeasy)\b/.test(
-        text,
-      )
-    ) {
-      add("faction");
-    }
-
-    var skipCastrationStories = /\bcastration stories\b/.test(text);
-
-    var hasLeft = /\bleft (testicle|ball|nut)\b/.test(text);
-    var hasRight = /\bright (testicle|ball|nut)\b/.test(text);
-
-    var bothBalls =
-      !skipCastrationStories &&
-      (/\b(castrat|orchiectom|steriliz|elastrator|three-thumb|defragmentation|prisoner's-dilemma|neuter)\w*/.test(
-        text,
-      ) ||
-        /\bboth (of )?(his |the )?testicles\b/.test(text) ||
-        /\bdestroys?\b.*\btesticles\b/.test(text) ||
-        /\btesticles destroyed\b/.test(text) ||
-        /\bdead testicles removed\b/.test(text) ||
-        /\btesticles (popped|psychically ruptured)\b/.test(text) ||
-        /\bfertility finished\b/.test(text) ||
-        /\b(pops?|popped) .*\btesticles\b/.test(text) ||
-        (/\blast testicle\b/.test(text) &&
-          /\b(pop|popped|castrat|liquif|destroy|destroyed|orchiectom|removes?|removed|heel-pop|ruptur)\w*/.test(
-            text,
-          )));
-
-    // Damaging kinds only apply when at least one end is male (or a faction edge).
-    if (!bothEndsWomen(edge)) {
-      if (hasLeft) add("left");
-      if (hasRight) add("right");
-      if (bothBalls) {
-        add("left");
-        add("right");
-      }
-
-      var singleUnspecified =
-        !hasLeft &&
-        !hasRight &&
-        !bothBalls &&
-        (/\b(chosen|wedding) testicle\b/.test(text) ||
-          (/\b(pops?|popped|ruptures?|ruptured|heel-pops?|heel-popped)\b/.test(
-            text,
-          ) &&
-            /\btesticle\b/.test(text)) ||
-          /\btesticle (popped|ruptured|heel-popped|extracted)\b/.test(text) ||
-          /\bstomped and ruptured\b/.test(text) ||
-          /\bseedspray-tested\b/.test(text) ||
-          /\bboysnapper-tested\b/.test(text));
-      if (singleUnspecified) {
-        add("left");
-      }
-
-      if (
-        /\b(penectom|penectomy)\w*/.test(text) ||
-        (/\b(dick|penis|cock)\b/.test(text) &&
-          /\b(break|broke|broken|breaks|remov|cut|slice|snaps?|snapped)\w*/.test(
-            text,
-          ))
-      ) {
-        add("dick");
-      }
-
-      var pain =
-        kinds.indexOf("left") === -1 &&
-        kinds.indexOf("right") === -1 &&
-        kinds.indexOf("dick") === -1 &&
-        (/\b(knees?|kneed|stomps?|stomped|squeezes?|squeezed|slaps?|slapped|twists?|twisted|edges?|edged|torments?|tormented|grabs?|grabbed|practices?|fights?|kicks?|kicked|holds?|held|blueballs?|blueballed|punts?|punted|lap-dances?|teases?|teased|inspects?|inspected|watches?|watched|encourages?|mistakenly targets?|hunts?|hunted|targets?|targeted|neglects?|neglected|authorizes?|asses+es?|assessed|films?|orders?|oversees?|sabotages?|trains?|trained|commands?|commanded|onboards?|presents?|compares?|pushes?|milks?|milked|therap)/.test(
-          text,
-        ) ||
-          /\bgroin\b/.test(text) ||
-          /\bscrotum\b/.test(text));
-      if (pain) add("pain");
-    }
-
-    if (!kinds.length) add(bothEndsWomen(edge) ? "knows" : "pain");
-    return stripDamagingBetweenWomen(
-      CONNECTION_KIND_ORDER.filter(function (k) {
-        return kinds.indexOf(k) !== -1;
-      }),
-    );
+    return stripDamagingBetweenWomen(kinds);
   }
 
   function connectionsEdgesForCharacter(charId) {
@@ -2975,7 +2877,6 @@
         var defs = document.createElementNS(ns, "defs");
         var clip = document.createElementNS(ns, "clipPath");
         clip.setAttribute("id", clipId);
-        var clipCircle = document.createElementNS(ns, "circle");
         var portraitR = isHub[n.id]
           ? isNarrow
             ? 26
@@ -2986,15 +2887,43 @@
         if (isFaction && isHub[n.id]) {
           portraitR = isNarrow ? 30 : 24;
         }
-        clipCircle.setAttribute("r", String(portraitR));
-        clip.appendChild(clipCircle);
+        if (isFaction) {
+          var factionCorner = Math.max(4, Math.round(portraitR * 0.28));
+          var clipRect = document.createElementNS(ns, "rect");
+          clipRect.setAttribute("x", String(-portraitR));
+          clipRect.setAttribute("y", String(-portraitR));
+          clipRect.setAttribute("width", String(portraitR * 2));
+          clipRect.setAttribute("height", String(portraitR * 2));
+          clipRect.setAttribute("rx", String(factionCorner));
+          clipRect.setAttribute("ry", String(factionCorner));
+          clip.appendChild(clipRect);
+        } else {
+          var clipCircle = document.createElementNS(ns, "circle");
+          clipCircle.setAttribute("r", String(portraitR));
+          clip.appendChild(clipCircle);
+        }
         defs.appendChild(clip);
         g.appendChild(defs);
 
-        var ring = document.createElementNS(ns, "circle");
-        ring.setAttribute("r", String(portraitR + 2));
-        ring.setAttribute("class", "connections-node-ring");
-        g.appendChild(ring);
+        var ringPad = 2;
+        if (isFaction) {
+          var ringCorner = Math.max(4, Math.round(portraitR * 0.28)) + ringPad;
+          var ringSize = (portraitR + ringPad) * 2;
+          var ring = document.createElementNS(ns, "rect");
+          ring.setAttribute("x", String(-(portraitR + ringPad)));
+          ring.setAttribute("y", String(-(portraitR + ringPad)));
+          ring.setAttribute("width", String(ringSize));
+          ring.setAttribute("height", String(ringSize));
+          ring.setAttribute("rx", String(ringCorner));
+          ring.setAttribute("ry", String(ringCorner));
+          ring.setAttribute("class", "connections-node-ring");
+          g.appendChild(ring);
+        } else {
+          var ring = document.createElementNS(ns, "circle");
+          ring.setAttribute("r", String(portraitR + ringPad));
+          ring.setAttribute("class", "connections-node-ring");
+          g.appendChild(ring);
+        }
 
         var img = document.createElementNS(ns, "image");
         img.setAttributeNS(

@@ -47,6 +47,7 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vTX9nnN1Igz0Nvpk3kpY6rjkJ26Lz5diQpx6G77hbuwGDXZ03x-aUrf7ni0nQv1hx1QzQ7X4ClVoUuR/pub",
     characterIds: [
       "sam",
+      "joan_white",
       "jenny",
       "michelle",
       "stephanie",
@@ -630,6 +631,7 @@ window.DATA_STORIES = [
       "maria",
       "malcolm",
       "michelle",
+      "joan_white",
     ],
     state: 2,
     series: { id: "melody-adventures", order: 3 },
@@ -773,6 +775,7 @@ window.DATA_STORIES = [
       "dr_s",
       "cathy",
       "michelle",
+      "joan_white",
     ],
     state: 2,
     tags: [],
