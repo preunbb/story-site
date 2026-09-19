@@ -1989,7 +1989,7 @@
   };
   var CONNECTION_KIND_LABELS = {
     family: "Family",
-    relationship: "Relationship",
+    relationship: "Romantically involved",
     knows: "Knows each other",
     faction: "Setting / faction",
     left: "Left ball popped",
@@ -2000,8 +2000,8 @@
   var connectionsKindEnabled = {
     family: true,
     relationship: true,
-    knows: false,
-    faction: false,
+    knows: true,
+    faction: true,
     left: true,
     right: true,
     dick: true,
@@ -2226,7 +2226,7 @@
       add("family");
     }
     if (
-      /\b(dates|dated|married|roommates|owns|owned|fiancé|fiance|dumps|dumped|cheats|boyfriend|girlfriend|receptionist|intern|employs|employed|employer|employee|favorite band|high priestess|superior female)\b/.test(
+      /\b(dates|dated|married|fiancé|fiance|dumps|dumped|cheats|boyfriend|girlfriend|keeps him as a sub|as a sub)\b/.test(
         text,
       )
     ) {
