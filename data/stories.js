@@ -52,6 +52,7 @@ window.DATA_STORIES = [
       "michelle",
       "stephanie",
       "karen",
+      "richard_stepson",
       "cathy",
       "amy",
       "allan",

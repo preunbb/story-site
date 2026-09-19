@@ -374,7 +374,7 @@ window.DATA_CONNECTIONS = [
   {
     "from": "melody",
     "to": "richard",
-    "label": "Castrates Richard",
+    "label": "Castrates Richard (class partner)",
     "reverseLabel": "Castrated by Melody",
     "storyId": 11,
     "kinds": [
@@ -1188,16 +1188,6 @@ window.DATA_CONNECTIONS = [
     ]
   },
   {
-    "from": "kay",
-    "to": "broken_tree_cultists",
-    "label": "Superior female cultist; takes Church males' right testicles",
-    "reverseLabel": "Worship Kay as superior female cultist",
-    "storyId": 47,
-    "kinds": [
-      "right"
-    ]
-  },
-  {
     "from": "abby",
     "to": "broken_tree_cultists",
     "label": "Superior female cultist over Church males",
@@ -1331,14 +1321,13 @@ window.DATA_CONNECTIONS = [
   },
   {
     "from": "karen",
-    "to": "richard",
-    "label": "Castrates stepson Richard in the cup shop",
-    "reverseLabel": "Castrated by stepmom Karen in the cup shop",
+    "to": "richard_stepson",
+    "label": "Pops stepson's last testicle in the cup shop",
+    "reverseLabel": "Last testicle popped by stepmom Karen in the cup shop",
     "storyId": 1,
     "kinds": [
       "family",
-      "left",
-      "right"
+      "left"
     ]
   },
   {

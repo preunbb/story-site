@@ -243,10 +243,17 @@ window.DATA_CHARACTERS = [
   },
   {
     id: "richard",
-    name: "Richard",
+    name: "Richard (Melody's class partner)",
     gender: "M",
-    bio: "Nerdy study group member. Has a crush on Melody and a dumb plan to get her alone.",
+    bio: "Nerdy study group member. Has a crush on Melody and a dumb plan to get her alone. Melody castrates him during their 'biology project.'",
     profilePictures: ["assets/characters/richard_v1.png"],
+  },
+  {
+    id: "richard_stepson",
+    name: "Richard (Dr. Karen's stepson)",
+    gender: "M",
+    bio: "Karen's stepson. Already down to one ball when she finishes him in Stephanie's cup shop.",
+    profilePictures: [],
   },
   {
     id: "nathan",

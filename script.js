@@ -371,6 +371,44 @@
     return out.join("\n\n");
   }
 
+  function formatStoryReaderBuyBarHtml(story) {
+    if (!story) return "";
+    if (story.purchaseParts && story.purchaseParts.length) {
+      var partsHtml = formatPurchasePartsFlyoutHtml(story);
+      if (!partsHtml) return "";
+      return (
+        '<div class="story-reader-buy-bar" role="navigation" aria-label="Buy this story">' +
+        partsHtml +
+        "</div>"
+      );
+    }
+    var kofiUrl = storyCatalogKofiUrl(story);
+    var amazonUrl = storyCatalogAmazonUrl(story);
+    if (!kofiUrl && !amazonUrl) return "";
+    var links = [];
+    if (kofiUrl) {
+      links.push(
+        storyPreviewPurchaseLink(kofiUrl, "Buy on Ko-fi", "kofi", null),
+      );
+    }
+    if (amazonUrl) {
+      links.push(
+        storyPreviewPurchaseLink(
+          amazonUrl,
+          "Buy on Amazon",
+          "amazon",
+          kofiUrl ? KOFI_PREFERENCE_TOOLTIP : null,
+        ),
+      );
+    }
+    return (
+      '<div class="story-reader-buy-bar" role="navigation" aria-label="Buy this story">' +
+      '<div class="story-reader-buy-bar-actions">' +
+      links.join("") +
+      "</div></div>"
+    );
+  }
+
   function renderStoryReaderMarkdown(story, text) {
     var coverHtml = "";
     if (getAiImagesEnabled()) {
@@ -388,9 +426,12 @@
       text,
       story && story.chaptersToPublish,
     );
+    var buyBarHtml = formatStoryReaderBuyBarHtml(story);
     storyReaderArticle.innerHTML =
       coverHtml +
+      buyBarHtml +
       storyMarkdownToSafeHtml(bodyMd, story) +
+      buyBarHtml +
       formatStoryPreviewPurchaseHtml(story);
     setupStoryReaderChapters();
   }
@@ -4917,58 +4958,68 @@
     });
   }
 
-  function bindStoryKofiPrefTipUi() {
-    if (!flyoutBody || flyoutBody._storyKofiPrefTipBound) return;
-    flyoutBody._storyKofiPrefTipBound = true;
-    flyoutBody.addEventListener("pointerover", function (e) {
+  function bindKofiPrefTipRoot(root) {
+    if (!root || root._storyKofiPrefTipBound) return;
+    root._storyKofiPrefTipBound = true;
+    root.addEventListener("pointerover", function (e) {
       var anchor =
         e.target &&
         e.target.closest &&
         e.target.closest("[data-kofi-pref-tooltip]");
-      if (!anchor || !flyoutBody.contains(anchor)) return;
+      if (!anchor || !root.contains(anchor)) return;
       var msg = anchor.getAttribute("data-kofi-pref-tooltip");
       if (!msg) return;
       showStoryKofiPrefTip(anchor, msg);
     });
-    flyoutBody.addEventListener("pointerout", function (e) {
+    root.addEventListener("pointerout", function (e) {
       var anchor =
         e.target &&
         e.target.closest &&
         e.target.closest("[data-kofi-pref-tooltip]");
-      if (!anchor || !flyoutBody.contains(anchor)) return;
+      if (!anchor || !root.contains(anchor)) return;
       var rt = e.relatedTarget;
       if (rt && anchor.contains(rt)) return;
       if (document.activeElement === anchor) return;
       hideStoryKofiPrefTip();
     });
-    flyoutBody.addEventListener("focusin", function (e) {
+    root.addEventListener("focusin", function (e) {
       var anchor =
         e.target &&
         e.target.closest &&
         e.target.closest("[data-kofi-pref-tooltip]");
-      if (!anchor || !flyoutBody.contains(anchor)) return;
+      if (!anchor || !root.contains(anchor)) return;
       var msg = anchor.getAttribute("data-kofi-pref-tooltip");
       if (!msg) return;
       showStoryKofiPrefTip(anchor, msg);
     });
-    flyoutBody.addEventListener("focusout", function (e) {
+    root.addEventListener("focusout", function (e) {
       var anchor =
         e.target &&
         e.target.closest &&
         e.target.closest("[data-kofi-pref-tooltip]");
-      if (!anchor || !flyoutBody.contains(anchor)) return;
+      if (!anchor || !root.contains(anchor)) return;
       var rt = e.relatedTarget;
       if (rt && anchor.contains(rt)) return;
       storyKofiPrefTipHideTimer = setTimeout(function () {
         hideStoryKofiPrefTip();
       }, 0);
     });
-    if (flyoutPanel) {
+    root.addEventListener("scroll", hideStoryKofiPrefTip, { passive: true });
+  }
+
+  function bindStoryKofiPrefTipUi() {
+    bindKofiPrefTipRoot(flyoutBody);
+    bindKofiPrefTipRoot(storyReaderScroll || storyReaderEl);
+    if (flyoutPanel && !flyoutPanel._storyKofiPrefTipScrollBound) {
+      flyoutPanel._storyKofiPrefTipScrollBound = true;
       flyoutPanel.addEventListener("scroll", hideStoryKofiPrefTip, {
         passive: true,
       });
     }
-    window.addEventListener("resize", hideStoryKofiPrefTip);
+    if (!window._storyKofiPrefTipResizeBound) {
+      window._storyKofiPrefTipResizeBound = true;
+      window.addEventListener("resize", hideStoryKofiPrefTip);
+    }
   }
 
   function setFlyoutPanelOpen(on) {
@@ -6171,7 +6222,16 @@
       location.hash = "stories";
       return;
     }
-    if (state.characterId || state.storyId !== undefined) {
+    if (state.characterId) {
+      location.hash = state.tab;
+      return;
+    }
+    if (state.storyId !== undefined) {
+      var story = getStoryById(state.storyId);
+      if (story && storyIsReadable(story)) {
+        location.hash = "story/" + state.storyId + "/read";
+        return;
+      }
       location.hash = state.tab;
       return;
     }
@@ -6220,10 +6280,6 @@
       var story = getStoryById(state.storyId);
       if (story && storyPasswordProtected(story) && story.catalogHidden) {
         openStoryReader(story, state.chapter);
-      } else if (!getAiImagesEnabled()) {
-        setFlyoutPanelOpen(false);
-        location.hash = "stories";
-        return;
       } else if (story && isStoryVisibleInCatalog(story)) {
         openStoryFlyout(story);
       } else {
@@ -6248,7 +6304,10 @@
       if (!getAiImagesEnabled()) return;
       var id = card.getAttribute("data-story");
       if (!id) return;
-      location.hash = "story/" + id;
+      var story = getStoryById(id);
+      if (!story) return;
+      var href = storyCatalogHref(story);
+      location.hash = href.charAt(0) === "#" ? href.slice(1) : href;
     });
     bindCoverFlipKeydown(storiesGrid);
   }

@@ -7,7 +7,7 @@
 | **Sam Johnson** | **Popped** — Jenny stomps left (Target); scar from orchiectomy. | **Popped** — Michelle heel-cheer destroys right (Victim). | **Popped** — Joan pulps last surviving nut at Taylor's dungeon (Doctor). |
 | **Billy** (freshman) | **Popped** — Joan thumb-ruptures in pool lesson (Epilogue). | **Healthy (damaged)** — Joan tears cords; still conscious begging. | — |
 | **M** (European businessman, Jenny's client) | **Popped** — Jenny foot-pops both; fist finishes left remnants (Epilogue). | **Popped** — same. | — |
-| **Richard** (Karen's stepson) | **Popped** — Karen thumb-castrates in dressing room (Businesswoman). | **Popped** — only had one; same event. | — |
+| **Richard** (Karen's stepson) | **Popped** — Karen thumbs his last remaining nut in the cup-shop dressing room (Businesswoman). | **Lost (offscreen)** — already gone before the scene; he arrives as a one-nut. | — |
 | **James** (Joan ex, flashback) | **Popped** — Joan heel in Coach section. | **Popped** — Amy EMT fist finishes. | — |
 | **Andy** (flashback) | **Popped** — Jenny thumbs left in car (Goth). | **Popped** — heel ruptures right. | — |
 | **Allan** (Scientist) | **Popped** — Cathy's knee rupture during experiment. | **Popped** — Cathy's weight pops right. | — |

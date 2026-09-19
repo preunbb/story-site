@@ -2965,6 +2965,38 @@ body.preun-local-andrea .local-andrea-status {
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
 }
 
+.story-reader-buy-bar {
+  margin: 0 0 1.5rem;
+  padding: 0 0 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.story-reader-article > .story-reader-buy-bar:last-of-type {
+  margin-top: 2rem;
+  margin-bottom: 0;
+  padding-top: 1rem;
+  padding-bottom: 0;
+  border-bottom: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.story-reader-buy-bar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.story-reader-buy-bar .flyout-purchase-block {
+  margin: 0;
+}
+
+.story-reader-buy-bar .flyout-purchase-grids {
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
 .story-reader-article .story-reader-cover-wrap + .story-reader-chapter {
   margin-top: 0;
 }
