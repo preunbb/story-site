@@ -4,7 +4,7 @@
 
 | Male character | Left testicle | Right testicle |
 | --- | --- | --- |
-| **Allan** | **Popped** — three-hour clamp/heel/tool session with June and Goddess Alexa ends in full castration; final stomp at station. | **Popped** — same session; clamps and repeated torture liquefy both nuts before eunuch passes out. |
+| **William** | **Popped** — three-hour clamp/heel/tool session with Elara and Goddess Alexa ends in full castration; final stomp at station. | **Popped** — same session; clamps and repeated torture liquefy both nuts before eunuch passes out. |
 
 ## Testicles lost and female orgasms
 

@@ -54,6 +54,7 @@ window.DATA_STORIES = [
       "karen",
       "cathy",
       "amy",
+      "allan",
     ],
     state: 2,
     tags: [],
@@ -91,7 +92,7 @@ window.DATA_STORIES = [
   },
   {
     id: 2,
-    wordCount: 8108,
+    wordCount: 8451,
     title: "Castration Anxiety",
     summary:
       "Jeremy's having the weirdest, most painful nightmares. He's desperately hoping his therapist can help him figure things out.",
@@ -247,14 +248,14 @@ window.DATA_STORIES = [
   },
   {
     id: 7,
-    wordCount: 2365,
+    wordCount: 2364,
     title: "A Painful Train Ride",
     summary:
-      "Allan's private train compartment is invaded by two women—June and Goddess Alexa.",
+      "William's private train compartment is invaded by two women—Elara and Goddess Alexa.",
     cover: "assets/covers/a_painful_train_ride.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTEnKFYNOWrlGqbFyMl3vHj7MyzTf4vJt4x_mLLEBSDlm5sr7vNbd_L86XFhXJbErYtvFzZmNyHjXs0/pub",
-    characterIds: ["allan", "june", "alexa"],
+    characterIds: ["william", "elara", "alexa"],
     state: 2,
     tags: ["New to Reddit"],
     brutalityRating: 3,
@@ -427,7 +428,7 @@ window.DATA_STORIES = [
   },
   {
     id: 15,
-    wordCount: 3916,
+    wordCount: 4103,
     brutalityRating: 3,
     title: "The Ballbusting Arena 2: Sofia's Choice",
     summary:
@@ -559,7 +560,7 @@ window.DATA_STORIES = [
   },
   {
     id: 19,
-    wordCount: 14498,
+    wordCount: 14499,
     title: "The Amazon's Fruits",
     brutalityRating: 4,
     summary:
@@ -614,7 +615,7 @@ window.DATA_STORIES = [
   },
   {
     id: 20,
-    wordCount: 25534,
+    wordCount: 25536,
     title: "School Bully",
     brutalityRating: 5,
     summary:
@@ -843,7 +844,7 @@ window.DATA_STORIES = [
   },
   {
     id: 27,
-    wordCount: 9326,
+    wordCount: 9333,
     title: "Living with Ballbusting Witches",
     brutalityRating: 3,
     summary:
@@ -1153,7 +1154,7 @@ window.DATA_STORIES = [
   },
   {
     id: 38,
-    wordCount: 11749,
+    wordCount: 11980,
     title: "James' Big Balls",
     summary:
       "James's cousin Sarah stays at his place for the weekend. What begins as secret ballbusting during a family movie turns into a brutal weekend alone together.",
@@ -1182,7 +1183,7 @@ window.DATA_STORIES = [
   },
   {
     id: 40,
-    wordCount: 67355,
+    wordCount: 67358,
     brutalityRating: 5,
     title: "Dragon Slaying Alternative Chapter 13: Kayla",
     summary:
@@ -1377,7 +1378,7 @@ window.DATA_STORIES = [
 
   {
     id: 44,
-    wordCount: 3700,
+    wordCount: 3701,
     title: "Courtroom Wedding",
     summary:
       "Mal'ko and Taviri are excited to get married, but the insanity of the Red Dragon marital industrial complex is offputting. They opt for a simple, quick courtroom wedding.",
@@ -1412,7 +1413,7 @@ window.DATA_STORIES = [
 
   {
     id: 45,
-    wordCount: 3671,
+    wordCount: 3672,
     title: "Courtroom Wedding (Human Edition)",
     summary: "Human version of Courtroom Wedding.",
     cover: "assets/covers/courtroom_human.png",
@@ -1567,7 +1568,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 21303,
+    wordCount: 21345,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
@@ -1703,7 +1704,7 @@ window.DATA_STORIES = [
   },
   {
     id: 49,
-    wordCount: 16288,
+    wordCount: 18263,
     title: "Bereavement Counseling: The Five Stages of Grieving a Testicle",
     brutalityRating: 1,
     summary:

@@ -248,23 +248,35 @@ window.DATA_CONNECTIONS = [
     ]
   },
   {
-    "from": "june",
-    "to": "allan",
-    "label": "Slaps Allan's balls",
-    "reverseLabel": "Balls slapped by June",
+    "from": "elara",
+    "to": "william",
+    "label": "Clamps and castrates William",
+    "reverseLabel": "Clamped and castrated by Elara",
     "storyId": 7,
     "kinds": [
-      "pain"
+      "left",
+      "right"
     ]
   },
   {
     "from": "alexa",
-    "to": "allan",
-    "label": "Tortures Allan",
-    "reverseLabel": "Tortured by Goddess Alexa",
+    "to": "william",
+    "label": "Tortures and castrates William",
+    "reverseLabel": "Tortured and castrated by Goddess Alexa",
     "storyId": 7,
     "kinds": [
-      "pain"
+      "left",
+      "right"
+    ]
+  },
+  {
+    "from": "elara",
+    "to": "alexa",
+    "label": "Travels and teams with Goddess Alexa",
+    "reverseLabel": "Travels and teams with Elara",
+    "storyId": 7,
+    "kinds": [
+      "knows"
     ]
   },
   {

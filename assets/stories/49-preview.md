@@ -80,7 +80,7 @@ Next time?!
 
 “It…no, it wasn’t a relief! I mean, from the pain, yeah. But now I’m like…half a man, or something. And I can’t stop thinking about it. How easily she killed one of my balls. Popped it like a grape. I keep thinking — does she know what she did? Was it on purpose? She just didn’t like the way I looked at her and decided I needed to lose half of my sperm count for life?
 
-“Or does she *not* know? Like, was it just an accident? Obviously I know she kneed me in the crotch on purpose — but did she pop my ball by accident? Are my balls so fragile a girl can destroy one without even trying?
+“Or does she *not* know? Like, was it just an accident? Obviously I know she kneed me in the crotch on purpose — but are my balls so fragile a girl can destroy one without even trying?
 
 “I imagine you’re most worried about losing the last one, though,” Dr. Karen cut in. Stuart blinked.
 

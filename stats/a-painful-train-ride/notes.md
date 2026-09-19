@@ -9,19 +9,13 @@
 ## Female orgasm review
 
 - **Total:** 0
-- **By character:** June, Goddess Alexa — sadistic pleasure, no counted orgasms.
+- **By character:** Elara, Goddess Alexa — sadistic pleasure, no counted orgasms.
 
 ---
 
 ## Known narration bugs
 
-- Dommes promise doctor at trip end then abandon Allan — plot beat, not a ball-side continuity error.
-
----
-
-## Known narration bugs
-
-- Dommes promise doctor at trip end then abandon Allan — plot beat, not a ball-side continuity error.
+- Dommes promise doctor at trip end then abandon William — plot beat, not a ball-side continuity error.
 
 ---
 
