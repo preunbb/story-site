@@ -1366,10 +1366,6 @@ body.connections-spoiler-modal-open {
   width: max-content;
 }
 
-.connections-neighborhood-toggle {
-  margin-left: 0.4rem;
-}
-
 .connections-names-toggle-input {
   margin: 0;
   accent-color: var(--red-bright);
@@ -1437,22 +1433,8 @@ body.connections-spoiler-modal-open {
   font-size: 0.75rem;
 }
 
-.connections-edge-group.is-dimmed {
-  opacity: 0.12;
-  pointer-events: none;
-}
-
-.connections-node.is-dimmed {
-  opacity: 0.18;
-  pointer-events: none;
-}
-
 .connections-edge-group.is-active .connections-edge {
   stroke-width: 3.25;
-  opacity: 1;
-}
-
-.connections-edge-group.is-dimmed .connections-edge {
   opacity: 1;
 }
 
@@ -1716,10 +1698,6 @@ body.connections-spoiler-modal-open {
     font-size: 0.8rem;
   }
 
-  .connections-neighborhood-toggle {
-    margin-left: 0.35rem;
-  }
-
   .connections-zoom-btn {
     min-width: 2.4rem;
     height: 2.4rem;
@@ -1776,7 +1754,7 @@ body.connections-spoiler-modal-open {
   }
 
   body.tab-connections .connections-layout {
-    grid-template-rows: minmax(0, 1fr) minmax(160px, 40vh);
+    grid-template-rows: minmax(0, 1fr) minmax(184px, 46vh);
   }
 
   body.tab-connections .connections-sidebar {
@@ -1810,10 +1788,6 @@ body.connections-spoiler-modal-open {
     border: 1px solid var(--border);
     border-radius: 10px;
     background: var(--grey-card);
-  }
-
-  .connections-neighborhood-toggle {
-    margin-left: 0.35rem;
   }
 }
 

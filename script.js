@@ -2008,8 +2008,6 @@
     pain: true,
   };
   var connectionsShowNames = true;
-  /** When a node is selected, hide non-neighbors (data kept; toggle restores). */
-  var connectionsNeighborhoodOnly = true;
 
   function syncConnectionsNamesVisibility() {
     var wrap = byId("connections-graph-wrap");
@@ -2029,32 +2027,6 @@
       syncConnectionsNamesVisibility();
     });
     syncConnectionsNamesVisibility();
-  }
-
-  function syncConnectionsNeighborhoodToggle() {
-    var wrap = byId("connections-graph-wrap");
-    var input = byId("connections-neighborhood-toggle");
-    if (input) input.checked = !!connectionsNeighborhoodOnly;
-    if (wrap) {
-      wrap.classList.toggle(
-        "neighborhood-only",
-        !!connectionsNeighborhoodOnly,
-      );
-    }
-  }
-
-  function bindConnectionsNeighborhoodToggle() {
-    var input = byId("connections-neighborhood-toggle");
-    if (!input || input._connectionsNeighborhoodBound) return;
-    input._connectionsNeighborhoodBound = true;
-    input.addEventListener("change", function () {
-      connectionsNeighborhoodOnly = !!input.checked;
-      syncConnectionsNeighborhoodToggle();
-      if (connectionsGraphState && connectionsGraphState.repaint) {
-        connectionsGraphState.repaint();
-      }
-    });
-    syncConnectionsNeighborhoodToggle();
   }
 
   function hideConnectionsEdgeTooltip() {
@@ -2809,11 +2781,6 @@
       }
     });
 
-    nodes.forEach(function (n) {
-      n.baseX = n.x;
-      n.baseY = n.y;
-    });
-
     function clusterOf(n) {
       if (!n) return null;
       if (isHub[n.id]) return n.id;
@@ -2856,97 +2823,33 @@
 
     var selectedId =
       (connectionsGraphState && connectionsGraphState.selectedId) || null;
-    var fullWidth = width;
-    var fullHeight = height;
-    var egoActive = false;
-
-    function neighborIdsFor(selId) {
-      var set = {};
-      if (!selId) return set;
-      set[selId] = true;
-      simEdges.forEach(function (e) {
-        if (!connectionEdgePassesKindFilter(e)) return;
-        if (e.from === selId) set[e.to] = true;
-        if (e.to === selId) set[e.from] = true;
-      });
-      return set;
-    }
-
-    function applyLayoutPositions() {
-      egoActive = !!(selectedId && connectionsNeighborhoodOnly);
-      if (!egoActive) {
-        nodes.forEach(function (n) {
-          n.x = n.baseX;
-          n.y = n.baseY;
-        });
-        width = fullWidth;
-        height = fullHeight;
-        return;
-      }
-      var neighSet = neighborIdsFor(selectedId);
-      var neigh = nodes.filter(function (n) {
-        return neighSet[n.id] && n.id !== selectedId;
-      });
-      var cx = 220;
-      var cy = 200;
-      var egoR = Math.max(100, 48 + neigh.length * 12);
-      var sel = nodeById[selectedId];
-      if (sel) {
-        sel.x = cx;
-        sel.y = cy;
-      }
-      neigh.forEach(function (n, i) {
-        var a =
-          (i / Math.max(neigh.length, 1)) * Math.PI * 2 - Math.PI / 2;
-        n.x = cx + Math.cos(a) * egoR;
-        n.y = cy + Math.sin(a) * egoR;
-      });
-      nodes.forEach(function (n) {
-        if (!neighSet[n.id]) {
-          n.x = n.baseX;
-          n.y = n.baseY;
-        }
-      });
-      width = Math.ceil(cx + egoR + 80);
-      height = Math.ceil(cy + egoR + 80);
-      width = Math.max(width, 360);
-      height = Math.max(height, 320);
-    }
 
     function paint() {
       var ns = "http://www.w3.org/2000/svg";
       while (svg.firstChild) svg.removeChild(svg.firstChild);
 
-      applyLayoutPositions();
-      applyZoom();
-
-      var neighSet = selectedId ? neighborIdsFor(selectedId) : null;
-      var focusOn = !!selectedId;
-
       var gGuides = document.createElementNS(ns, "g");
       gGuides.setAttribute("class", "connections-guides");
-      if (!egoActive) {
-        wheelMeta.forEach(function (w) {
-          if (w.grid || w.orphan) return;
-          var ring = document.createElementNS(ns, "circle");
-          ring.setAttribute("cx", w.cx);
-          ring.setAttribute("cy", w.cy);
-          ring.setAttribute("r", w.r);
-          ring.setAttribute("class", "connections-wheel-ring");
-          gGuides.appendChild(ring);
-          if (w.hub) {
-            w.spokes.forEach(function (s) {
-              var spoke = document.createElementNS(ns, "line");
-              spoke.setAttribute("x1", w.hub.x);
-              spoke.setAttribute("y1", w.hub.y);
-              spoke.setAttribute("x2", s.x);
-              spoke.setAttribute("y2", s.y);
-              spoke.setAttribute("class", "connections-spoke");
-              gGuides.appendChild(spoke);
-            });
-          }
-        });
-      }
+      wheelMeta.forEach(function (w) {
+        if (w.grid || w.orphan) return;
+        var ring = document.createElementNS(ns, "circle");
+        ring.setAttribute("cx", w.cx);
+        ring.setAttribute("cy", w.cy);
+        ring.setAttribute("r", w.r);
+        ring.setAttribute("class", "connections-wheel-ring");
+        gGuides.appendChild(ring);
+        if (w.hub) {
+          w.spokes.forEach(function (s) {
+            var spoke = document.createElementNS(ns, "line");
+            spoke.setAttribute("x1", w.hub.x);
+            spoke.setAttribute("y1", w.hub.y);
+            spoke.setAttribute("x2", s.x);
+            spoke.setAttribute("y2", s.y);
+            spoke.setAttribute("class", "connections-spoke");
+            gGuides.appendChild(spoke);
+          });
+        }
+      });
 
       var gEdges = document.createElementNS(ns, "g");
       gEdges.setAttribute("class", "connections-edges");
@@ -2956,35 +2859,24 @@
       simEdges.forEach(function (e, idx) {
         if (!e.source || !e.target) return;
         if (!connectionEdgePassesKindFilter(e)) return;
-        var incident =
+        var active =
           selectedId && (e.from === selectedId || e.to === selectedId);
-        if (
-          focusOn &&
-          connectionsNeighborhoodOnly &&
-          selectedId &&
-          !incident
-        ) {
-          return;
-        }
         var kinds = e.kinds && e.kinds.length ? e.kinds : ["pain"];
         kinds = kinds.filter(function (k) {
           return connectionsKindEnabled[k];
         });
         if (!kinds.length) return;
 
-        var dimmed = focusOn && !incident;
         var group = document.createElementNS(ns, "g");
         group.setAttribute(
           "class",
-          "connections-edge-group" +
-            (incident ? " is-active" : "") +
-            (dimmed ? " is-dimmed" : ""),
+          "connections-edge-group" + (active ? " is-active" : ""),
         );
         group.setAttribute("data-edge-index", String(idx));
 
         var cA = clusterOf(e.source);
         var cB = clusterOf(e.target);
-        var curved = !egoActive && cA && cB && cA !== cB;
+        var curved = !!(cA && cB && cA !== cB);
         var d = edgePathD(
           e.source.x,
           e.source.y,
@@ -3028,24 +2920,13 @@
       });
 
       nodes.forEach(function (n) {
-        var inNeigh = !neighSet || !!neighSet[n.id];
-        if (
-          focusOn &&
-          connectionsNeighborhoodOnly &&
-          selectedId &&
-          !inNeigh
-        ) {
-          return;
-        }
         var isFaction = n.entityType === "faction";
-        var dimmed = focusOn && !inNeigh;
         var g = document.createElementNS(ns, "g");
         g.setAttribute(
           "class",
           "connections-node" +
             (selectedId === n.id ? " is-selected" : "") +
             (isHub[n.id] ? " is-hub" : "") +
-            (dimmed ? " is-dimmed" : "") +
             (isFaction ? " is-faction" : n.gender === "F" ? " is-f" : " is-m"),
         );
         g.setAttribute("transform", "translate(" + n.x + "," + n.y + ")");
@@ -3066,9 +2947,6 @@
             : 15;
         if (isFaction && isHub[n.id]) {
           portraitR = isNarrow ? 30 : 24;
-        }
-        if (egoActive && selectedId === n.id) {
-          portraitR = isNarrow ? 32 : 26;
         }
         clipCircle.setAttribute("r", String(portraitR));
         clip.appendChild(clipCircle);
@@ -3112,6 +2990,7 @@
       svg.appendChild(gEdges);
       svg.appendChild(gNodes);
     }
+
 
     svg.onclick = function (ev) {
       var nodeEl =
@@ -3296,10 +3175,8 @@
     bindConnectionsSpoilerModal();
     bindConnectionsKindFilters();
     bindConnectionsNamesToggle();
-    bindConnectionsNeighborhoodToggle();
     renderConnectionsKindFilters();
     syncConnectionsNamesVisibility();
-    syncConnectionsNeighborhoodToggle();
     if (!syncConnectionsGateUi()) {
       var input = byId("connections-gate-input");
       if (input) {
