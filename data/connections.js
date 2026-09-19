@@ -1148,46 +1148,52 @@ window.DATA_CONNECTIONS = [
     ]
   },
   {
-    "from": "andrea",
+    "from": "eve",
     "to": "broken_tree_cultists",
-    "label": "Neuters Church cultists",
-    "reverseLabel": "Neutered by Andrea",
+    "label": "High mistress; takes cultists' left testicles",
+    "reverseLabel": "Worship Eve as high mistress; left testicle taken by Eve",
     "storyId": 47,
     "kinds": [
-      "left",
+      "left"
+    ]
+  },
+  {
+    "from": "andrea",
+    "to": "broken_tree_cultists",
+    "label": "Takes cultists' remaining right testicles",
+    "reverseLabel": "Remaining right testicle taken by Andrea",
+    "storyId": 47,
+    "kinds": [
       "right"
     ]
   },
   {
     "from": "izzie",
     "to": "broken_tree_cultists",
-    "label": "Neuters Church cultists",
-    "reverseLabel": "Neutered by Izzie",
+    "label": "Takes cultists' remaining right testicles",
+    "reverseLabel": "Remaining right testicle taken by Izzie",
     "storyId": 47,
     "kinds": [
-      "left",
       "right"
     ]
   },
   {
     "from": "tamara",
     "to": "broken_tree_cultists",
-    "label": "Neuters Church cultists",
-    "reverseLabel": "Neutered by Tamara",
+    "label": "Takes cultists' remaining right testicles",
+    "reverseLabel": "Remaining right testicle taken by Tamara",
     "storyId": 47,
     "kinds": [
-      "left",
       "right"
     ]
   },
   {
     "from": "kay",
     "to": "broken_tree_cultists",
-    "label": "Superior female cultist; castrates Church males",
+    "label": "Superior female cultist; takes Church males' right testicles",
     "reverseLabel": "Worship Kay as superior female cultist",
     "storyId": 47,
     "kinds": [
-      "left",
       "right"
     ]
   },

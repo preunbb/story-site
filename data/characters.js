@@ -378,8 +378,8 @@ window.DATA_CHARACTERS = [
     id: "robert",
     name: "Robert",
     gender: "M",
-    bio: "AP Calc student; gets partnered with Monique. His mom is Melody; he just wants to get through the day.",
-    profilePictures: [],
+    bio: "Melody's son and Monique's math partner / victim.",
+    profilePictures: ["assets/characters/robert_v1.png"],
   },
   {
     id: "monique",
@@ -829,7 +829,7 @@ window.DATA_CHARACTERS = [
     id: "broken_tree_cultists",
     name: "Brainwashed Male Cultists of the Church of the Broken Tree",
     gender: "M",
-    bio: "Anonymous ranks of Church half-men and converts. Brainwashed into worshipping Kay as high priestess and obeying Abby and Kay as their superior female cultists. When Andrea, Izzie, and Tamara storm the compound, these devoted males are neutered en masse.",
+    bio: "Anonymous ranks of Church half-men and converts. Brainwashed into worshipping Eve as high mistress and obeying Abby and Kay as their superior female cultists. Eve takes their left testicles; when Andrea, Izzie, and Tamara storm the compound, these devoted males lose their remaining right ones en masse.",
     profilePictures: ["assets/characters/broken_tree_cultists_cast_v3.png"],
   },
   {
