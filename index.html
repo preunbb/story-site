@@ -409,6 +409,18 @@
                 />
                 <span>Names</span>
               </label>
+              <label
+                class="connections-names-toggle connections-neighborhood-toggle"
+                title="When a character is selected, show only their neighborhood"
+              >
+                <input
+                  type="checkbox"
+                  id="connections-neighborhood-toggle"
+                  class="connections-names-toggle-input"
+                  checked
+                />
+                <span>Focus</span>
+              </label>
               <div
                 class="connections-zoom"
                 id="connections-zoom"
@@ -467,6 +479,13 @@
           </div>
         </div>
       </section>
+
+      <div
+        id="connections-edge-tooltip"
+        class="connections-edge-tooltip"
+        hidden
+        role="tooltip"
+      ></div>
 
       <div
         id="connections-spoiler-modal"
