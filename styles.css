@@ -1324,6 +1324,14 @@ body.connections-spoiler-modal-open {
   border-radius: var(--radius);
   background: var(--grey-card);
   overflow: auto;
+  touch-action: none;
+  cursor: grab;
+  overscroll-behavior: contain;
+}
+
+.connections-graph-wrap.is-panning {
+  cursor: grabbing;
+  user-select: none;
 }
 
 .connections-zoom {
@@ -1691,10 +1699,11 @@ body.connections-spoiler-modal-open {
     min-height: 0;
     max-height: none;
     -webkit-overflow-scrolling: touch;
+    touch-action: none;
   }
 
   .connections-graph {
-    touch-action: pan-x pan-y;
+    touch-action: none;
   }
 
   .connections-zoom {

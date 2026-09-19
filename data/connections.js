@@ -57,8 +57,8 @@ window.DATA_CONNECTIONS = [
   {
     "from": "amy",
     "to": "sam",
-    "label": "Inspects Sam's remaining testicles",
-    "reverseLabel": "Remaining testicles inspected by Amy",
+    "label": "Kneads Sam's remaining ball nearly to ruin",
+    "reverseLabel": "Remaining ball kneaded nearly to ruin by Amy",
     "storyId": 1,
     "kinds": [
       "pain"
@@ -138,11 +138,11 @@ window.DATA_CONNECTIONS = [
   {
     "from": "britt",
     "to": "dan",
-    "label": "Knees and stomps Dan",
-    "reverseLabel": "Kneed and stomped by Britt",
+    "label": "Finishes Dan — pops his last testicle",
+    "reverseLabel": "Last testicle popped by Britt",
     "storyId": 5,
     "kinds": [
-      "pain"
+      "right"
     ]
   },
   {
@@ -158,11 +158,12 @@ window.DATA_CONNECTIONS = [
   {
     "from": "sofia",
     "to": "venn",
-    "label": "Pops Venn's testicle",
-    "reverseLabel": "Testicle popped by Sofia",
+    "label": "Castrates Venn",
+    "reverseLabel": "Castrated by Sofia",
     "storyId": 5,
     "kinds": [
-      "left"
+      "left",
+      "right"
     ]
   },
   {
@@ -305,16 +306,6 @@ window.DATA_CONNECTIONS = [
     "to": "erica",
     "label": "Trains Erica to ballbust",
     "reverseLabel": "Trained to ballbust by Serena",
-    "storyId": 8,
-    "kinds": [
-      "knows"
-    ]
-  },
-  {
-    "from": "serena",
-    "to": "erica",
-    "label": "Knows each other",
-    "reverseLabel": "Knows each other",
     "storyId": 8,
     "kinds": [
       "knows"
@@ -607,7 +598,7 @@ window.DATA_CONNECTIONS = [
     "to": "malcolm",
     "label": "Pops Malcolm's left testicle, hurts his last, and keeps him as a sub",
     "reverseLabel": "Left testicle popped, last hurt, and kept as Melody's sub",
-    "storyId": 46,
+    "storyId": 20,
     "kinds": [
       "relationship",
       "left",
@@ -637,11 +628,11 @@ window.DATA_CONNECTIONS = [
   {
     "from": "monique",
     "to": "malcolm",
-    "label": "Knows each other",
-    "reverseLabel": "Knows each other",
+    "label": "Digs into Malcolm's last nut hard enough to leave lasting damage",
+    "reverseLabel": "Last nut dug into by Monique, lasting damage",
     "storyId": 20,
     "kinds": [
-      "knows"
+      "pain"
     ]
   },
   {
@@ -682,33 +673,32 @@ window.DATA_CONNECTIONS = [
   {
     "from": "monique",
     "to": "jon",
-    "label": "Castrates Jon with elastrator",
-    "reverseLabel": "Castrated with elastrator by Monique",
+    "label": "Bands Jon's last nut and helps pulp it",
+    "reverseLabel": "Last nut banded and helped pulp by Monique",
     "storyId": 25,
     "kinds": [
-      "left",
       "right"
     ]
   },
   {
     "from": "dr_s",
     "to": "jon",
-    "label": "Orchiectomizes Jon",
-    "reverseLabel": "Orchiectomized by Dr. S",
+    "label": "Orchiectomizes Jon's left testicle",
+    "reverseLabel": "Left testicle orchiectomized by Dr. S",
     "storyId": 25,
     "kinds": [
-      "left",
-      "right"
+      "left"
     ]
   },
   {
     "from": "cathy",
     "to": "jon",
-    "label": "Assists on Jon's surgeries",
-    "reverseLabel": "Surgeries assisted by Cathy",
+    "label": "Botches Jon's penectomy and helps finish his castration",
+    "reverseLabel": "Penectomy botched and castration finished with Cathy",
     "storyId": 25,
     "kinds": [
-      "pain"
+      "right",
+      "dick"
     ]
   },
   {
@@ -790,16 +780,6 @@ window.DATA_CONNECTIONS = [
     "to": "kaitlin",
     "label": "Trains Kaitlin in self-defense",
     "reverseLabel": "Trained in self-defense by Serena",
-    "storyId": 28,
-    "kinds": [
-      "knows"
-    ]
-  },
-  {
-    "from": "serena",
-    "to": "kaitlin",
-    "label": "Knows each other",
-    "reverseLabel": "Knows each other",
     "storyId": 28,
     "kinds": [
       "knows"
@@ -1001,7 +981,7 @@ window.DATA_CONNECTIONS = [
     "reverseLabel": "Owned by Andrea at Cherry Pop!",
     "storyId": 47,
     "kinds": [
-      "knows"
+      "relationship"
     ]
   },
   {
@@ -1047,11 +1027,11 @@ window.DATA_CONNECTIONS = [
   {
     "from": "tamara",
     "to": "greyson",
-    "label": "Snips off Greyson's last testicle",
-    "reverseLabel": "Last testicle snipped off by Tamara",
+    "label": "Poised to take Greyson's last testicle (epilogue)",
+    "reverseLabel": "Last testicle threatened by Tamara in epilogue",
     "storyId": 47,
     "kinds": [
-      "right"
+      "pain"
     ]
   },
   {
@@ -1100,21 +1080,23 @@ window.DATA_CONNECTIONS = [
   {
     "from": "kay",
     "to": "isaac",
-    "label": "Blueballs Isaac through Church rite",
-    "reverseLabel": "Blueballed through Church rite by Kay",
+    "label": "Castrates Isaac in Church rite (liquifies right, bites out left)",
+    "reverseLabel": "Castrated in Church rite by Kay",
     "storyId": 47,
     "kinds": [
-      "pain"
+      "left",
+      "right"
     ]
   },
   {
     "from": "abby",
     "to": "elijah",
-    "label": "Lures Elijah to Second Rite",
-    "reverseLabel": "Lured to Second Rite by Abby",
+    "label": "Fist-castrates Elijah in Second Rite",
+    "reverseLabel": "Fist-castrated in Second Rite by Abby",
     "storyId": 47,
     "kinds": [
-      "pain"
+      "left",
+      "right"
     ]
   },
   {
@@ -1141,12 +1123,11 @@ window.DATA_CONNECTIONS = [
   {
     "from": "eve",
     "to": "judah",
-    "label": "Destroys Judah's left and right testicles",
-    "reverseLabel": "Left and right testicles destroyed by Eve",
+    "label": "Pops Judah's last testicle",
+    "reverseLabel": "Last testicle popped by Eve",
     "storyId": 47,
     "kinds": [
-      "left",
-      "right"
+      "left"
     ]
   },
   {
@@ -1185,8 +1166,8 @@ window.DATA_CONNECTIONS = [
   {
     "from": "kay",
     "to": "broken_tree_cultists",
-    "label": "High priestess and superior female cultist; castrates Church males",
-    "reverseLabel": "Worship Kay as high priestess and superior",
+    "label": "Superior female cultist; castrates Church males",
+    "reverseLabel": "Worship Kay as superior female cultist",
     "storyId": 47,
     "kinds": [
       "left",
@@ -1216,8 +1197,8 @@ window.DATA_CONNECTIONS = [
   {
     "from": "cathy",
     "to": "olivia",
-    "label": "Knows each other",
-    "reverseLabel": "Knows each other",
+    "label": "Onboards and supervises Olivia at OverEasy",
+    "reverseLabel": "Onboarded and supervised by Cathy at OverEasy",
     "storyId": 48,
     "kinds": [
       "knows"
@@ -1226,11 +1207,12 @@ window.DATA_CONNECTIONS = [
   {
     "from": "olivia",
     "to": "elliot",
-    "label": "Tests BoySnapper on Elliot",
-    "reverseLabel": "BoySnapper-tested by Olivia",
+    "label": "Snaps Elliot's spermatic cords with BoySnapper",
+    "reverseLabel": "Spermatic cords snapped by Olivia's BoySnapper",
     "storyId": 48,
     "kinds": [
-      "left"
+      "left",
+      "right"
     ]
   },
   {
@@ -1246,8 +1228,8 @@ window.DATA_CONNECTIONS = [
   {
     "from": "olivia",
     "to": "nameless_volunteers",
-    "label": "Pops volunteer's left testicle",
-    "reverseLabel": "Left testicle popped by Olivia",
+    "label": "Crushes volunteer's left testicle in AutoMilker",
+    "reverseLabel": "Left testicle crushed in AutoMilker by Olivia",
     "storyId": 48,
     "kinds": [
       "left"
@@ -1561,16 +1543,6 @@ window.DATA_CONNECTIONS = [
     ]
   },
   {
-    "from": "olivia",
-    "to": "cherry_pop",
-    "label": "Favorite band",
-    "reverseLabel": "Olivia's favorite band",
-    "storyId": 48,
-    "kinds": [
-      "faction"
-    ]
-  },
-  {
     "from": "sunni",
     "to": "cherry_pop",
     "label": "Cherry Pop! fan",
@@ -1613,8 +1585,8 @@ window.DATA_CONNECTIONS = [
   {
     "from": "izzie",
     "to": "overeasy_technologies",
-    "label": "Employed by OverEasy Technologies",
-    "reverseLabel": "Employs Izzie",
+    "label": "Sponsored influencer for OverEasy product demos",
+    "reverseLabel": "Sponsors Izzie for product demos",
     "storyId": 43,
     "kinds": [
       "faction"

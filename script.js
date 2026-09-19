@@ -2673,6 +2673,31 @@
       if (label) label.textContent = Math.round(zoom * 100) + "%";
     }
 
+    function setZoom(next) {
+      zoom = Math.max(zoomMin, Math.min(zoomMax, next));
+      applyZoom();
+      if (connectionsGraphState) connectionsGraphState.zoom = zoom;
+    }
+
+    /** Zoom while keeping the content under (clientX, clientY) stable. */
+    function setZoomAt(next, clientX, clientY) {
+      var rect = wrap.getBoundingClientRect();
+      var prev = zoom;
+      var nextZoom = Math.max(zoomMin, Math.min(zoomMax, next));
+      if (nextZoom === prev) return;
+      var localX = clientX - rect.left;
+      var localY = clientY - rect.top;
+      var contentX = wrap.scrollLeft + localX;
+      var contentY = wrap.scrollTop + localY;
+      var fx = contentX / Math.max(1, width * prev);
+      var fy = contentY / Math.max(1, height * prev);
+      zoom = nextZoom;
+      applyZoom();
+      if (connectionsGraphState) connectionsGraphState.zoom = zoom;
+      wrap.scrollLeft = fx * width * zoom - localX;
+      wrap.scrollTop = fy * height * zoom - localY;
+    }
+
     applyZoom();
 
     wheelMeta.forEach(function (w, wi) {
@@ -3015,11 +3040,6 @@
       hideConnectionsEdgeTooltip();
     };
 
-    function setZoom(next) {
-      zoom = Math.max(zoomMin, Math.min(zoomMax, next));
-      applyZoom();
-    }
-
     var zoomBar = byId("connections-zoom");
     if (zoomBar && !zoomBar._connectionsBound) {
       zoomBar._connectionsBound = true;
@@ -3043,9 +3063,203 @@
       if (!ev.ctrlKey && !ev.metaKey) return;
       ev.preventDefault();
       var delta = ev.deltaY > 0 ? -zoomStep : zoomStep;
-      setZoom(zoom + delta);
+      setZoomAt(zoom + delta, ev.clientX, ev.clientY);
     }
     wrap.addEventListener("wheel", onWheelZoom, { passive: false });
+
+    function connectionsTouchDist(touches) {
+      var a = touches[0];
+      var b = touches[1];
+      var dx = a.clientX - b.clientX;
+      var dy = a.clientY - b.clientY;
+      return Math.sqrt(dx * dx + dy * dy) || 1;
+    }
+    function connectionsTouchCenter(touches) {
+      return {
+        x: (touches[0].clientX + touches[1].clientX) / 2,
+        y: (touches[0].clientY + touches[1].clientY) / 2,
+      };
+    }
+    function connectionsIsChromeControl(el) {
+      return !!(
+        el &&
+        el.closest &&
+        (el.closest(".connections-zoom") ||
+          el.closest(".connections-names-toggle") ||
+          el.closest(".connections-kind-filters"))
+      );
+    }
+
+    var graphGesture = null;
+
+    function endGraphGesture() {
+      wrap.classList.remove("is-panning");
+      graphGesture = null;
+    }
+
+    function onGraphTouchStart(ev) {
+      if (connectionsIsChromeControl(ev.target)) return;
+      if (ev.touches.length === 2) {
+        var c = connectionsTouchCenter(ev.touches);
+        graphGesture = {
+          mode: "pinch",
+          dist0: connectionsTouchDist(ev.touches),
+          zoom0: zoom,
+        };
+        wrap.classList.remove("is-panning");
+        ev.preventDefault();
+        return;
+      }
+      if (ev.touches.length === 1) {
+        var t = ev.touches[0];
+        graphGesture = {
+          mode: "pan",
+          x0: t.clientX,
+          y0: t.clientY,
+          sl0: wrap.scrollLeft,
+          st0: wrap.scrollTop,
+          moved: false,
+        };
+      }
+    }
+
+    function onGraphTouchMove(ev) {
+      if (!graphGesture) return;
+      if (graphGesture.mode === "pinch") {
+        if (ev.touches.length < 2) return;
+        ev.preventDefault();
+        var dist = connectionsTouchDist(ev.touches);
+        var center = connectionsTouchCenter(ev.touches);
+        setZoomAt(
+          graphGesture.zoom0 * (dist / graphGesture.dist0),
+          center.x,
+          center.y,
+        );
+        return;
+      }
+      if (graphGesture.mode === "pan" && ev.touches.length === 1) {
+        var t = ev.touches[0];
+        var dx = t.clientX - graphGesture.x0;
+        var dy = t.clientY - graphGesture.y0;
+        if (!graphGesture.moved && (Math.abs(dx) > 6 || Math.abs(dy) > 6)) {
+          graphGesture.moved = true;
+          wrap.classList.add("is-panning");
+          hideConnectionsEdgeTooltip();
+        }
+        if (graphGesture.moved) {
+          ev.preventDefault();
+          wrap.scrollLeft = graphGesture.sl0 - dx;
+          wrap.scrollTop = graphGesture.st0 - dy;
+        }
+      }
+    }
+
+    function onGraphTouchEnd(ev) {
+      if (!graphGesture) return;
+      if (graphGesture.mode === "pinch") {
+        if (ev.touches.length >= 2) return;
+        if (ev.touches.length === 1) {
+          var t = ev.touches[0];
+          graphGesture = {
+            mode: "pan",
+            x0: t.clientX,
+            y0: t.clientY,
+            sl0: wrap.scrollLeft,
+            st0: wrap.scrollTop,
+            moved: false,
+          };
+          return;
+        }
+        endGraphGesture();
+        return;
+      }
+      if (ev.touches.length === 0) {
+        if (graphGesture.moved) {
+          wrap._connectionsSuppressClick = true;
+          setTimeout(function () {
+            wrap._connectionsSuppressClick = false;
+          }, 0);
+        }
+        endGraphGesture();
+      }
+    }
+
+    function onGraphPointerDown(ev) {
+      if (ev.pointerType === "touch") return;
+      if (ev.button !== 0) return;
+      if (connectionsIsChromeControl(ev.target)) return;
+      graphGesture = {
+        mode: "pan",
+        pointerId: ev.pointerId,
+        x0: ev.clientX,
+        y0: ev.clientY,
+        sl0: wrap.scrollLeft,
+        st0: wrap.scrollTop,
+        moved: false,
+      };
+      try {
+        wrap.setPointerCapture(ev.pointerId);
+      } catch (err) {}
+    }
+
+    function onGraphPointerMove(ev) {
+      if (!graphGesture || graphGesture.mode !== "pan") return;
+      if (ev.pointerType === "touch") return;
+      if (
+        graphGesture.pointerId != null &&
+        ev.pointerId !== graphGesture.pointerId
+      ) {
+        return;
+      }
+      var dx = ev.clientX - graphGesture.x0;
+      var dy = ev.clientY - graphGesture.y0;
+      if (!graphGesture.moved && (Math.abs(dx) > 4 || Math.abs(dy) > 4)) {
+        graphGesture.moved = true;
+        wrap.classList.add("is-panning");
+        hideConnectionsEdgeTooltip();
+      }
+      if (graphGesture.moved) {
+        wrap.scrollLeft = graphGesture.sl0 - dx;
+        wrap.scrollTop = graphGesture.st0 - dy;
+      }
+    }
+
+    function onGraphPointerUp(ev) {
+      if (ev.pointerType === "touch") return;
+      if (
+        graphGesture &&
+        graphGesture.pointerId != null &&
+        ev.pointerId !== graphGesture.pointerId
+      ) {
+        return;
+      }
+      if (graphGesture && graphGesture.moved) {
+        wrap._connectionsSuppressClick = true;
+        setTimeout(function () {
+          wrap._connectionsSuppressClick = false;
+        }, 0);
+      }
+      endGraphGesture();
+    }
+
+    wrap.addEventListener("touchstart", onGraphTouchStart, { passive: false });
+    wrap.addEventListener("touchmove", onGraphTouchMove, { passive: false });
+    wrap.addEventListener("touchend", onGraphTouchEnd, { passive: false });
+    wrap.addEventListener("touchcancel", endGraphGesture, { passive: true });
+    wrap.addEventListener("pointerdown", onGraphPointerDown);
+    wrap.addEventListener("pointermove", onGraphPointerMove);
+    wrap.addEventListener("pointerup", onGraphPointerUp);
+    wrap.addEventListener("pointercancel", onGraphPointerUp);
+
+    var boundSvgClick = svg.onclick;
+    svg.onclick = function (ev) {
+      if (wrap._connectionsSuppressClick) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        return;
+      }
+      if (typeof boundSvgClick === "function") boundSvgClick.call(svg, ev);
+    };
 
     connectionsGraphState = {
       alive: true,
@@ -3056,7 +3270,6 @@
       selectedId: selectedId,
       setZoom: function (z) {
         setZoom(z);
-        connectionsGraphState.zoom = zoom;
       },
       resize: function () {},
       teardown: function () {
@@ -3067,6 +3280,15 @@
         svg.onmouseout = null;
         hideConnectionsEdgeTooltip();
         wrap.removeEventListener("wheel", onWheelZoom);
+        wrap.removeEventListener("touchstart", onGraphTouchStart);
+        wrap.removeEventListener("touchmove", onGraphTouchMove);
+        wrap.removeEventListener("touchend", onGraphTouchEnd);
+        wrap.removeEventListener("touchcancel", endGraphGesture);
+        wrap.removeEventListener("pointerdown", onGraphPointerDown);
+        wrap.removeEventListener("pointermove", onGraphPointerMove);
+        wrap.removeEventListener("pointerup", onGraphPointerUp);
+        wrap.removeEventListener("pointercancel", onGraphPointerUp);
+        wrap.classList.remove("is-panning");
       },
       setSelected: function (id) {
         selectedId = id;
