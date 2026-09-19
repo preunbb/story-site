@@ -1433,8 +1433,20 @@ body.connections-spoiler-modal-open {
   font-size: 0.75rem;
 }
 
+.connections-edge-group.is-dimmed {
+  opacity: 0.12;
+}
+
+.connections-node.is-dimmed {
+  opacity: 0.22;
+}
+
 .connections-edge-group.is-active .connections-edge {
   stroke-width: 3.25;
+  opacity: 1;
+}
+
+.connections-edge-group.is-dimmed .connections-edge {
   opacity: 1;
 }
 

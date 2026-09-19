@@ -2182,10 +2182,29 @@
   }
 
   function connectionEdgeKinds(edge) {
-    if (edge && Array.isArray(edge.kinds) && edge.kinds.length) {
-      return CONNECTION_KIND_ORDER.filter(function (k) {
-        return edge.kinds.indexOf(k) !== -1;
+    function bothEndsWomen(e) {
+      var a = e && getCharacterById(e.from);
+      var b = e && getCharacterById(e.to);
+      if (!a || !b) return false;
+      if (a.entityType === "faction" || b.entityType === "faction") return false;
+      return a.gender === "F" && b.gender === "F";
+    }
+
+    function stripDamagingBetweenWomen(kindsList) {
+      if (!bothEndsWomen(edge)) return kindsList;
+      var safe = kindsList.filter(function (k) {
+        return k !== "left" && k !== "right" && k !== "dick" && k !== "pain";
       });
+      if (!safe.length) safe = ["knows"];
+      return safe;
+    }
+
+    if (edge && Array.isArray(edge.kinds) && edge.kinds.length) {
+      return stripDamagingBetweenWomen(
+        CONNECTION_KIND_ORDER.filter(function (k) {
+          return edge.kinds.indexOf(k) !== -1;
+        }),
+      );
     }
     var text = (
       (edge && edge.label ? edge.label : "") +
@@ -2246,57 +2265,60 @@
             text,
           )));
 
-    if (hasLeft) add("left");
-    if (hasRight) add("right");
-    if (bothBalls) {
-      add("left");
-      add("right");
-    }
+    // Damaging kinds only apply when at least one end is male (or a faction edge).
+    if (!bothEndsWomen(edge)) {
+      if (hasLeft) add("left");
+      if (hasRight) add("right");
+      if (bothBalls) {
+        add("left");
+        add("right");
+      }
 
-    // Unspecified single-ball permanent damage (no side named, not a full castration).
-    var singleUnspecified =
-      !hasLeft &&
-      !hasRight &&
-      !bothBalls &&
-      (/\b(chosen|wedding) testicle\b/.test(text) ||
-        (/\b(pops?|popped|ruptures?|ruptured|heel-pops?|heel-popped)\b/.test(
+      var singleUnspecified =
+        !hasLeft &&
+        !hasRight &&
+        !bothBalls &&
+        (/\b(chosen|wedding) testicle\b/.test(text) ||
+          (/\b(pops?|popped|ruptures?|ruptured|heel-pops?|heel-popped)\b/.test(
+            text,
+          ) &&
+            /\btesticle\b/.test(text)) ||
+          /\btesticle (popped|ruptured|heel-popped|extracted)\b/.test(text) ||
+          /\bstomped and ruptured\b/.test(text) ||
+          /\bseedspray-tested\b/.test(text) ||
+          /\bboysnapper-tested\b/.test(text));
+      if (singleUnspecified) {
+        add("left");
+      }
+
+      if (
+        /\b(penectom|penectomy)\w*/.test(text) ||
+        (/\b(dick|penis|cock)\b/.test(text) &&
+          /\b(break|broke|broken|breaks|remov|cut|slice|snaps?|snapped)\w*/.test(
+            text,
+          ))
+      ) {
+        add("dick");
+      }
+
+      var pain =
+        kinds.indexOf("left") === -1 &&
+        kinds.indexOf("right") === -1 &&
+        kinds.indexOf("dick") === -1 &&
+        (/\b(knees?|kneed|stomps?|stomped|squeezes?|squeezed|slaps?|slapped|twists?|twisted|edges?|edged|torments?|tormented|grabs?|grabbed|practices?|fights?|kicks?|kicked|holds?|held|blueballs?|blueballed|punts?|punted|lap-dances?|teases?|teased|inspects?|inspected|watches?|watched|encourages?|mistakenly targets?|hunts?|hunted|targets?|targeted|neglects?|neglected|authorizes?|asses+es?|assessed|films?|orders?|oversees?|sabotages?|trains?|trained|commands?|commanded|onboards?|presents?|compares?|pushes?|milks?|milked|therap)/.test(
           text,
-        ) &&
-          /\btesticle\b/.test(text)) ||
-        /\btesticle (popped|ruptured|heel-popped|extracted)\b/.test(text) ||
-        /\bstomped and ruptured\b/.test(text) ||
-        /\bseedspray-tested\b/.test(text) ||
-        /\bboysnapper-tested\b/.test(text));
-    if (singleUnspecified) {
-      // Side unknown in the label — show as left until the edge is annotated.
-      add("left");
+        ) ||
+          /\bgroin\b/.test(text) ||
+          /\bscrotum\b/.test(text));
+      if (pain) add("pain");
     }
 
-    if (
-      /\b(penectom|penectomy)\w*/.test(text) ||
-      /\b(dick|penis|cock)\b/.test(text) &&
-        /\b(break|broke|broken|breaks|remov|cut|slice|snaps?|snapped)\w*/.test(
-          text,
-        )
-    ) {
-      add("dick");
-    }
-
-    var pain =
-      kinds.indexOf("left") === -1 &&
-      kinds.indexOf("right") === -1 &&
-      kinds.indexOf("dick") === -1 &&
-      (/\b(knees?|kneed|stomps?|stomped|squeezes?|squeezed|slaps?|slapped|twists?|twisted|edges?|edged|torments?|tormented|grabs?|grabbed|practices?|fights?|kicks?|kicked|holds?|held|blueballs?|blueballed|punts?|punted|lap-dances?|teases?|teased|inspects?|inspected|watches?|watched|encourages?|mistakenly targets?|hunts?|hunted|targets?|targeted|neglects?|neglected|authorizes?|asses+es?|assessed|films?|orders?|oversees?|sabotages?|trains?|trained|commands?|commanded|onboards?|presents?|compares?|pushes?|milks?|milked|therap)/.test(
-        text,
-      ) ||
-        /\bgroin\b/.test(text) ||
-        /\bscrotum\b/.test(text));
-    if (pain) add("pain");
-
-    if (!kinds.length) add("pain");
-    return CONNECTION_KIND_ORDER.filter(function (k) {
-      return kinds.indexOf(k) !== -1;
-    });
+    if (!kinds.length) add(bothEndsWomen(edge) ? "knows" : "pain");
+    return stripDamagingBetweenWomen(
+      CONNECTION_KIND_ORDER.filter(function (k) {
+        return kinds.indexOf(k) !== -1;
+      }),
+    );
   }
 
   function connectionsEdgesForCharacter(charId) {
@@ -2828,6 +2850,17 @@
       var ns = "http://www.w3.org/2000/svg";
       while (svg.firstChild) svg.removeChild(svg.firstChild);
 
+      var neighSet = null;
+      if (selectedId) {
+        neighSet = {};
+        neighSet[selectedId] = true;
+        simEdges.forEach(function (e) {
+          if (!connectionEdgePassesKindFilter(e)) return;
+          if (e.from === selectedId) neighSet[e.to] = true;
+          if (e.to === selectedId) neighSet[e.from] = true;
+        });
+      }
+
       var gGuides = document.createElementNS(ns, "g");
       gGuides.setAttribute("class", "connections-guides");
       wheelMeta.forEach(function (w) {
@@ -2861,6 +2894,7 @@
         if (!connectionEdgePassesKindFilter(e)) return;
         var active =
           selectedId && (e.from === selectedId || e.to === selectedId);
+        var dimmed = !!(selectedId && !active);
         var kinds = e.kinds && e.kinds.length ? e.kinds : ["pain"];
         kinds = kinds.filter(function (k) {
           return connectionsKindEnabled[k];
@@ -2870,7 +2904,9 @@
         var group = document.createElementNS(ns, "g");
         group.setAttribute(
           "class",
-          "connections-edge-group" + (active ? " is-active" : ""),
+          "connections-edge-group" +
+            (active ? " is-active" : "") +
+            (dimmed ? " is-dimmed" : ""),
         );
         group.setAttribute("data-edge-index", String(idx));
 
@@ -2921,12 +2957,14 @@
 
       nodes.forEach(function (n) {
         var isFaction = n.entityType === "faction";
+        var dimmed = !!(neighSet && !neighSet[n.id]);
         var g = document.createElementNS(ns, "g");
         g.setAttribute(
           "class",
           "connections-node" +
             (selectedId === n.id ? " is-selected" : "") +
             (isHub[n.id] ? " is-hub" : "") +
+            (dimmed ? " is-dimmed" : "") +
             (isFaction ? " is-faction" : n.gender === "F" ? " is-f" : " is-m"),
         );
         g.setAttribute("transform", "translate(" + n.x + "," + n.y + ")");
@@ -4360,7 +4398,7 @@
     });
   }
 
-  /** Cast panel: either flat Female / Male blocks, or one subsection per story (all genders). */
+  /** Cast panel: Female / Male / Factions blocks, or one subsection per story. */
   function renderCharactersGrid() {
     var charactersGrid = byId("characters-grid");
     if (!charactersGrid || !characters.length) return;
@@ -4371,6 +4409,28 @@
     characters.forEach(function (c) {
       charById[c.id] = c;
     });
+
+    function isFactionEntity(c) {
+      return !!(c && c.entityType === "faction");
+    }
+
+    function appendFactionSection() {
+      var factions = characters.filter(isFactionEntity);
+      if (!factions.length) return;
+      factions.sort(nameSort);
+      var section = document.createElement("div");
+      var heading = document.createElement("h2");
+      heading.className = "characters-section-title";
+      heading.textContent = "Factions";
+      section.appendChild(heading);
+      var grid = document.createElement("div");
+      grid.className = "characters-grid-inner";
+      factions.forEach(function (c) {
+        grid.appendChild(renderCharacterCard(c));
+      });
+      section.appendChild(grid);
+      charactersGrid.appendChild(section);
+    }
 
     if (byStory) {
       var placedInAnyStory = {};
@@ -4385,7 +4445,7 @@
             if (seenId[cid]) return;
             seenId[cid] = true;
             var ch = charById[cid];
-            if (ch) {
+            if (ch && !isFactionEntity(ch)) {
               row.push(ch);
               placedInAnyStory[ch.id] = true;
             }
@@ -4411,7 +4471,7 @@
         });
 
       var orphans = characters.filter(function (c) {
-        return !placedInAnyStory[c.id] && c.entityType !== "faction";
+        return !placedInAnyStory[c.id] && !isFactionEntity(c);
       });
       if (orphans.length) {
         orphans.sort(nameSort);
@@ -4429,12 +4489,13 @@
         orphanWrap.appendChild(oGrid);
         charactersGrid.appendChild(orphanWrap);
       }
+      appendFactionSection();
       return;
     }
 
     var byGender = { F: [], M: [] };
     characters.forEach(function (c) {
-      if (c.entityType === "faction") return;
+      if (isFactionEntity(c)) return;
       var g = c.gender || "M";
       if (byGender[g]) byGender[g].push(c);
     });
@@ -4456,6 +4517,7 @@
       section.appendChild(grid);
       charactersGrid.appendChild(section);
     });
+    appendFactionSection();
   }
 
   function initCharactersGrid() {
@@ -5749,16 +5811,21 @@
       },
     );
 
-    var genderSymbol = character.gender === "F" ? "\u2640" : "\u2642";
-    var metaHtml =
-      '<p class="flyout-character-meta">' + escapeHtml(genderSymbol);
-    if (
-      character.gender === "F" &&
-      typeof character.testiclesKilled === "number"
-    ) {
-      metaHtml += " &middot; Testicles killed: " + character.testiclesKilled;
+    var metaHtml = "";
+    if (character.entityType === "faction") {
+      metaHtml = '<p class="flyout-character-meta">Faction</p>';
+    } else {
+      var genderSymbol = character.gender === "F" ? "\u2640" : "\u2642";
+      metaHtml =
+        '<p class="flyout-character-meta">' + escapeHtml(genderSymbol);
+      if (
+        character.gender === "F" &&
+        typeof character.testiclesKilled === "number"
+      ) {
+        metaHtml += " &middot; Testicles killed: " + character.testiclesKilled;
+      }
+      metaHtml += "</p>";
     }
-    metaHtml += "</p>";
 
     flyoutBody.innerHTML =
       picsHtml +

@@ -156,6 +156,7 @@ window.DATA_CONNECTIONS = [
     label: "Trains Erica to ballbust",
     reverseLabel: "Trained to ballbust by Serena",
     storyId: 8,
+    kinds: ["relationship"],
   },
   {
     from: "serena",
@@ -330,6 +331,7 @@ window.DATA_CONNECTIONS = [
     label: "Commands Robin in ritual",
     reverseLabel: "Commanded by Poly in ritual",
     storyId: 18,
+    kinds: ["relationship"],
   },
   {
     from: "salei",
@@ -355,17 +357,18 @@ window.DATA_CONNECTIONS = [
   {
     from: "melody",
     to: "monique",
-    label: "Races Monique to pop their boys",
-    reverseLabel: "Races Melody to pop their boys",
+    label: "Knows each other",
+    reverseLabel: "Knows each other",
     storyId: 20,
+    kinds: ["knows"],
   },
   {
     from: "melody",
     to: "malcolm",
-    label: "Pops Malcolm's left testicle",
-    reverseLabel: "Left testicle popped by Melody",
-    storyId: 20,
-    kinds: ["left"],
+    label: "Pops Malcolm's left testicle, hurts his last, and keeps him as a sub",
+    reverseLabel: "Left testicle popped, last hurt, and kept as Melody's sub",
+    storyId: 46,
+    kinds: ["left", "pain", "relationship"],
   },
   {
     from: "maria",
@@ -384,9 +387,10 @@ window.DATA_CONNECTIONS = [
   {
     from: "monique",
     to: "malcolm",
-    label: "Compares Malcolm's damaged sack",
-    reverseLabel: "Damaged sack compared by Monique",
+    label: "Knows each other",
+    reverseLabel: "Knows each other",
     storyId: 20,
+    kinds: ["knows"],
   },
   {
     from: "naimi",
@@ -487,6 +491,7 @@ window.DATA_CONNECTIONS = [
     label: "Trains Kaitlin in self-defense",
     reverseLabel: "Trained in self-defense by Serena",
     storyId: 28,
+    kinds: ["relationship"],
   },
   {
     from: "serena",
@@ -552,6 +557,7 @@ window.DATA_CONNECTIONS = [
     label: "Authorizes double rupture on Ivan",
     reverseLabel: "Authorized by Lieutenant Maria for double rupture on Ivan",
     storyId: 36,
+    kinds: ["relationship"],
   },
   {
     from: "natalie",
@@ -621,13 +627,6 @@ window.DATA_CONNECTIONS = [
     to: "ryan",
     label: "Castrates Ryan",
     reverseLabel: "Castrated by Melody",
-    storyId: 46,
-  },
-  {
-    from: "melody",
-    to: "malcolm",
-    label: "Torments Malcolm's last testicle",
-    reverseLabel: "Last testicle tormented by Melody",
     storyId: 46,
   },
   {
@@ -786,9 +785,10 @@ window.DATA_CONNECTIONS = [
   {
     from: "cathy",
     to: "olivia",
-    label: "Onboards Olivia at OverEasy QC",
-    reverseLabel: "Onboarded at OverEasy QC by Cathy",
+    label: "Knows each other",
+    reverseLabel: "Knows each other",
     storyId: 48,
+    kinds: ["knows"],
   },
   {
     from: "olivia",
@@ -817,6 +817,7 @@ window.DATA_CONNECTIONS = [
     label: "Oversees Olivia's SeedSpray test",
     reverseLabel: "SeedSpray test overseen by Zennia",
     storyId: 48,
+    kinds: ["relationship"],
   },
   {
     from: "zennia",
@@ -838,6 +839,7 @@ window.DATA_CONNECTIONS = [
     label: "Presents samples to Charlotte",
     reverseLabel: "Receives samples from Olivia",
     storyId: 48,
+    kinds: ["knows"],
   },
   {
     from: "karen",
@@ -961,9 +963,10 @@ window.DATA_CONNECTIONS = [
   {
     from: "melody",
     to: "tamara",
-    label: "Encourages Tamara in the medical tent",
-    reverseLabel: "Encouraged by Melody in the medical tent",
+    label: "Knows each other",
+    reverseLabel: "Knows each other",
     storyId: 47,
+    kinds: ["knows"],
   },
   {
     from: "zennia",
@@ -982,9 +985,10 @@ window.DATA_CONNECTIONS = [
   {
     from: "zennia",
     to: "cathy",
-    label: "Employs Cathy",
-    reverseLabel: "Employed by Zennia",
+    label: "Knows each other",
+    reverseLabel: "Knows each other",
     storyId: 48,
+    kinds: ["knows"],
   },
   {
     from: "zennia",

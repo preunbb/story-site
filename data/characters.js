@@ -5,7 +5,7 @@ window.DATA_CHARACTERS = [
     name: "Karen",
     gender: "F",
     testiclesKilled: 3,
-    bio: "Skilled therapist specializing in male sexual pathology. Her doctorate deeply involved the well known 'castration anxiety' disorder, as well as a few much rarer variants. Deeply devoted to helping her clients overcome their problems.",
+    bio: "Skilled therapist specializing in male sexual pathology. Her doctorate deeply involved the well known 'castration anxiety' disorder, as well as other pathologies related to male delusions of adequacy.",
     profilePictures: ["assets/characters/karen.jpg"],
   },
   {
@@ -733,8 +733,9 @@ window.DATA_CHARACTERS = [
   {
     id: "cherry_pop",
     name: "Cherry Pop!",
-    gender: "F",
-    bio: "Andrea, Kay, and Olivia's favorite ballbusting rock band. Sold-out mush-pit shows, sterile-forever merch, and a corporate parent in Over Easy Technologies — Zennia owns the label.",
+    entityType: "faction",
+    gender: "",
+    bio: "Andrea, Kay, and Olivia's favorite new wave feminist punkdustrialballbusting rock band. Produced under the OverEasy entertainment label.",
     profilePictures: [
       "assets/brands/cherry_pop_avatar_v1.png",
       "assets/characters/cherry_pop_cast_v1.png",
@@ -811,9 +812,7 @@ window.DATA_CHARACTERS = [
     name: "Brainwashed Male Cultists of the Church of the Broken Tree",
     gender: "M",
     bio: "Anonymous ranks of Church half-men and converts. Brainwashed into worshipping Kay as high priestess and obeying Abby and Kay as their superior female cultists. When Andrea, Izzie, and Tamara storm the compound, these devoted males are neutered en masse.",
-    profilePictures: [
-      "assets/characters/broken_tree_cultists_cast_v3.png",
-    ],
+    profilePictures: ["assets/characters/broken_tree_cultists_cast_v3.png"],
   },
   {
     id: "stuart",
