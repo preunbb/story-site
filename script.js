@@ -3468,10 +3468,44 @@
   var connectionsDataPromise = null;
   var connectionsDataReady = false;
 
+  /** Pain ("no permanent damage") must not coexist with left/right pops for a pair. */
+  function normalizeConnectionsData(list) {
+    var arr = Array.isArray(list) ? list : [];
+    var pairsWithPop = Object.create(null);
+    for (var i = 0; i < arr.length; i++) {
+      var e = arr[i];
+      if (!e || !e.from || !e.to || !Array.isArray(e.kinds)) continue;
+      if (e.kinds.indexOf("left") !== -1 || e.kinds.indexOf("right") !== -1) {
+        var key =
+          e.from < e.to ? e.from + "\0" + e.to : e.to + "\0" + e.from;
+        pairsWithPop[key] = true;
+      }
+    }
+    var out = [];
+    for (var j = 0; j < arr.length; j++) {
+      var edge = arr[j];
+      if (!edge || !edge.from || !edge.to) continue;
+      var kinds = Array.isArray(edge.kinds) ? edge.kinds.slice() : [];
+      var pk =
+        edge.from < edge.to
+          ? edge.from + "\0" + edge.to
+          : edge.to + "\0" + edge.from;
+      if (pairsWithPop[pk]) {
+        kinds = kinds.filter(function (k) {
+          return k !== "pain";
+        });
+      }
+      if (!kinds.length) continue;
+      edge.kinds = kinds;
+      out.push(edge);
+    }
+    return out;
+  }
+
   function ensureConnectionsData() {
     if (connectionsDataReady) return Promise.resolve();
     if (window.DATA_CONNECTIONS) {
-      connections = window.DATA_CONNECTIONS || [];
+      connections = normalizeConnectionsData(window.DATA_CONNECTIONS || []);
       connectionsDataReady = true;
       return Promise.resolve();
     }
@@ -3480,7 +3514,7 @@
       var s = document.createElement("script");
       s.src = "data/connections.js";
       s.onload = function () {
-        connections = window.DATA_CONNECTIONS || [];
+        connections = normalizeConnectionsData(window.DATA_CONNECTIONS || []);
         connectionsDataReady = true;
         resolve();
       };

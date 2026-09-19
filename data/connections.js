@@ -2,6 +2,7 @@
 // Each edge: { from, to, label, reverseLabel, storyId, kinds, links? }
 // label = from→to perspective; reverseLabel = to→from perspective.
 // kinds is required: family | relationship | knows | faction | left | right | dick | pain
+// Rule: pain never coexists with left/right for the same character pair (any edge).
 //
 // links (optional): character/story mentions to hyperlink inside the active label.
 //   [{ id: "sam" }]                         — match defaults to name (+ first name)
@@ -45,16 +46,6 @@ window.DATA_CONNECTIONS = [
     ]
   },
   {
-    "from": "joan_white",
-    "to": "sam",
-    "label": "Squeezes Sam's balls in her office",
-    "reverseLabel": "Balls squeezed by Joan in her office",
-    "storyId": 1,
-    "kinds": [
-      "pain"
-    ]
-  },
-  {
     "from": "cathy",
     "to": "sam",
     "label": "Plans and weakens Sam's last testicle",
@@ -84,8 +75,13 @@ window.DATA_CONNECTIONS = [
       "knows"
     ],
     "links": [
-      { "id": "sam" },
-      { "id": "joan_white", "match": "Joan" }
+      {
+        "id": "sam"
+      },
+      {
+        "id": "joan_white",
+        "match": "Joan"
+      }
     ]
   },
   {
@@ -98,8 +94,13 @@ window.DATA_CONNECTIONS = [
       "knows"
     ],
     "links": [
-      { "id": "sam" },
-      { "id": "joan_white", "match": "Joan" }
+      {
+        "id": "sam"
+      },
+      {
+        "id": "joan_white",
+        "match": "Joan"
+      }
     ]
   },
   {
@@ -112,15 +113,20 @@ window.DATA_CONNECTIONS = [
       "knows"
     ],
     "links": [
-      { "id": "sam" },
-      { "id": "joan_white", "match": "Joan" }
+      {
+        "id": "sam"
+      },
+      {
+        "id": "joan_white",
+        "match": "Joan"
+      }
     ]
   },
   {
     "from": "joan_white",
     "to": "amy",
-    "label": "Nurse friend; refers castrations together",
-    "reverseLabel": "Nurse friend of Joan; shares castration referrals",
+    "label": "Refers castration victims to Amy",
+    "reverseLabel": "Takes Joan's castration referrals",
     "storyId": 1,
     "kinds": [
       "knows"
@@ -134,16 +140,6 @@ window.DATA_CONNECTIONS = [
     "storyId": 25,
     "kinds": [
       "knows"
-    ]
-  },
-  {
-    "from": "karen",
-    "to": "jeremy",
-    "label": "Knees Jeremy in therapy",
-    "reverseLabel": "Kneed in therapy by Karen",
-    "storyId": 2,
-    "kinds": [
-      "pain"
     ]
   },
   {
@@ -544,16 +540,6 @@ window.DATA_CONNECTIONS = [
     ]
   },
   {
-    "from": "vanessa",
-    "to": "brian",
-    "label": "Knees Brian after ruined orgasm",
-    "reverseLabel": "Kneed by Vanessa after ruined orgasm",
-    "storyId": 16,
-    "kinds": [
-      "pain"
-    ]
-  },
-  {
     "from": "nikita",
     "to": "cole",
     "label": "Castrates Cole",
@@ -623,8 +609,7 @@ window.DATA_CONNECTIONS = [
     "storyId": 20,
     "kinds": [
       "relationship",
-      "left",
-      "pain"
+      "left"
     ]
   },
   {
@@ -1004,6 +989,16 @@ window.DATA_CONNECTIONS = [
     "storyId": 47,
     "kinds": [
       "relationship"
+    ]
+  },
+  {
+    "from": "andrea",
+    "to": "lucas",
+    "label": "Pops Lucas's left testicle",
+    "reverseLabel": "Left testicle popped by Andrea",
+    "storyId": 47,
+    "kinds": [
+      "left"
     ]
   },
   {
@@ -1392,16 +1387,6 @@ window.DATA_CONNECTIONS = [
     ]
   },
   {
-    "from": "monique",
-    "to": "jon",
-    "label": "Knees Jon in the hallway",
-    "reverseLabel": "Kneed in the hallway by Monique",
-    "storyId": 25,
-    "kinds": [
-      "pain"
-    ]
-  },
-  {
     "from": "cathy",
     "to": "nameless_volunteers",
     "label": "Prisoner's-dilemma castrations on triplets",
@@ -1412,7 +1397,10 @@ window.DATA_CONNECTIONS = [
       "right"
     ],
     "links": [
-      { "id": "nameless_volunteers", "match": "triplets" }
+      {
+        "id": "nameless_volunteers",
+        "match": "triplets"
+      }
     ]
   },
   {

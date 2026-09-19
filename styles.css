@@ -54,6 +54,42 @@ a:hover {
   z-index: 10;
 }
 
+.site-support-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  margin: 0;
+  padding: 0.35rem 0.65rem;
+  border-radius: 4px;
+  border: 0;
+  background: #00b9fe;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.site-support-btn:hover {
+  color: #fff;
+  background: #33c7ff;
+}
+
+.site-support-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Desktop: Other menu is flattened — keep Ko-fi out of that flattened list */
+.site-support-link--other {
+  display: none !important;
+}
+
 .logo {
   font-family: var(--font-sans);
   font-size: 1.5rem;
@@ -3639,36 +3675,7 @@ body.preun-local-andrea .local-andrea-status {
   color: var(--ink-muted);
 }
 
-.floatingchat-container-wrap,
-.floatingchat-container-wrap-mobi {
-  left: auto !important;
-  right: 1rem !important;
-  top: 1rem !important;
-  bottom: auto !important;
-}
-.floating-chat-kofi-popup-iframe,
-.floating-chat-kofi-popup-iframe-mobi {
-  left: auto !important;
-  right: 1rem !important;
-  top: 4rem !important;
-  bottom: auto !important;
-}
-.floating-chat-kofi-popup-iframe-closer-mobi {
-  left: auto !important;
-  right: 1rem !important;
-}
-
-@media (max-width: 900px) {
-  .floatingchat-container-wrap,
-  .floatingchat-container-wrap-mobi,
-  .floating-chat-kofi-popup-iframe,
-  .floating-chat-kofi-popup-iframe-mobi,
-  .floating-chat-kofi-popup-iframe-closer-mobi {
-    display: none !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-  }
-}
+/* Floating Ko-fi overlay removed — support lives in .site-support-btn */
 
 /* --- Story catalog ratings (docs/story-catalog-ratings.md) --- */
 .ratings-lead {
@@ -3901,6 +3908,14 @@ body.preun-local-andrea .local-andrea-status {
     position: relative;
   }
 
+  .tabs > .site-support-btn {
+    display: none !important;
+  }
+
+  .site-support-link--other {
+    display: block !important;
+  }
+
   .tab {
     flex: 1 1 0;
     min-width: 0;
@@ -3994,6 +4009,16 @@ body.preun-local-andrea .local-andrea-status {
 
   .tabs-other-menu .tab .tab-text-short {
     display: none;
+  }
+
+  .tabs-other-menu .site-support-link--other {
+    color: #7ecfff;
+    font-weight: 600;
+  }
+
+  .tabs-other-menu .site-support-link--other:hover {
+    color: #fff;
+    background: rgba(0, 185, 254, 0.2);
   }
 }
 

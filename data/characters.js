@@ -44,7 +44,7 @@ window.DATA_CHARACTERS = [
     name: "Joan White",
     gender: "F",
     testiclesKilled: 14,
-    bio: "Western University swim coach—voluminous red hair, legs like a pinup, and a whistle she uses like a weapon. Obsessed with making her boys more hydrodynamic, one gonad at a time. Later teaches math after too many PE 'accidents.'",
+    bio: "Western University swim coach—voluminous red hair, legs like a pinup. Dedicated to helping her students become more hydrodynamic one gonad at a time.Later teaches math after too many athletic 'accidents.'",
     profilePictures: ["assets/characters/joan_white_v1.jpg"],
   },
   {
