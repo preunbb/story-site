@@ -812,9 +812,7 @@
         '<span class="story-card-action story-card-action--' +
         escapeHtml(opts.variant) +
         ' story-card-action--disabled" aria-disabled="true"' +
-        (opts.tooltip
-          ? ' title="' + escapeHtml(opts.tooltip) + '"'
-          : "") +
+        (opts.tooltip ? ' title="' + escapeHtml(opts.tooltip) + '"' : "") +
         ">" +
         storyTextListActionIcon(opts.variant) +
         '<span class="story-card-action-label">' +
@@ -858,9 +856,7 @@
   /** Preview + unfinished serial: show a non-clickable "Coming soon" beside Read preview. */
   function storyShowsComingSoonAction(story) {
     return (
-      !!story &&
-      storyHasPreviewRead(story) &&
-      normalizeStoryState(story) === 3
+      !!story && storyHasPreviewRead(story) && normalizeStoryState(story) === 3
     );
   }
 
@@ -992,7 +988,11 @@
     var n = Math.floor(chapterOneBased);
     for (var i = 0; i < story.chapterReleases.length; i++) {
       var entry = story.chapterReleases[i];
-      if (entry && entry.chapter === n && typeof entry.releaseDate === "string") {
+      if (
+        entry &&
+        entry.chapter === n &&
+        typeof entry.releaseDate === "string"
+      ) {
         return entry.releaseDate.trim() || null;
       }
     }
@@ -1037,7 +1037,11 @@
   }
 
   function formatStoryChapterReleasesFlyoutHtml(story) {
-    if (!story || !Array.isArray(story.chapterReleases) || !story.chapterReleases.length) {
+    if (
+      !story ||
+      !Array.isArray(story.chapterReleases) ||
+      !story.chapterReleases.length
+    ) {
       return "";
     }
     var sorted = story.chapterReleases.slice().sort(function (a, b) {
@@ -1239,9 +1243,7 @@
       text = "In progress!";
       var lastChapterLabel =
         story &&
-        formatStoryReleaseDateLabel(
-          getLatestPublishedChapterReleaseIso(story),
-        );
+        formatStoryReleaseDateLabel(getLatestPublishedChapterReleaseIso(story));
       if (lastChapterLabel) {
         text += " Last chapter released: " + lastChapterLabel;
         label += ". Last chapter released: " + lastChapterLabel;
@@ -1997,8 +1999,7 @@
       otherName,
     );
     var part = andreaLucasPartForStoryId(edge.storyId);
-    var spoil =
-      part != null && !andreaLucasSpoilersRevealedForPart(part);
+    var spoil = part != null && !andreaLucasSpoilersRevealedForPart(part);
     var otherIsFaction = !!(other && other.entityType === "faction");
 
     var storyLink = connectionStoryLinkAnchor(story, storyTitle);
@@ -2048,9 +2049,7 @@
     if (!modal || !body || part == null) return;
     connectionsSpoilerPendingPart = part;
     body.textContent =
-      "Are you sure you want to see Andrea & Lucas Part " +
-      part +
-      " spoilers?";
+      "Are you sure you want to see Andrea & Lucas Part " + part + " spoilers?";
     modal.hidden = false;
     document.body.classList.add("connections-spoiler-modal-open");
     var confirmBtn = byId("connections-spoiler-confirm");
@@ -2128,7 +2127,7 @@
     left: "Left ball popped",
     right: "Right ball popped",
     dick: "Dick broken",
-    pain: "Pain, no permanent damage",
+    pain: "Lots of testicular pain but no permanent damage",
   };
   var connectionsKindEnabled = {
     family: true,
@@ -2177,7 +2176,7 @@
     var label = edge.label || "Connection";
     var storyTitle = story ? story.title : "";
     tip.innerHTML =
-      '<strong>' +
+      "<strong>" +
       escapeHtml(fromName) +
       "</strong> — " +
       escapeHtml(label) +
@@ -2211,6 +2210,10 @@
     } else if (preset === "all") {
       CONNECTION_KIND_ORDER.forEach(function (k) {
         connectionsKindEnabled[k] = true;
+      });
+    } else if (preset === "none") {
+      CONNECTION_KIND_ORDER.forEach(function (k) {
+        connectionsKindEnabled[k] = false;
       });
     }
     renderConnectionsKindFilters();
@@ -2247,6 +2250,7 @@
       '<button type="button" class="connections-kind-preset" data-preset="damaging">Damaging</button>' +
       '<button type="button" class="connections-kind-preset" data-preset="non-damaging">Non-damaging</button>' +
       '<button type="button" class="connections-kind-preset" data-preset="all">All</button>' +
+      '<button type="button" class="connections-kind-preset" data-preset="none">Uncheck all</button>' +
       "</div>" +
       '<ul class="connections-kind-filter-list">' +
       CONNECTION_KIND_ORDER.map(function (kind) {
@@ -2319,7 +2323,8 @@
       var a = e && getCharacterById(e.from);
       var b = e && getCharacterById(e.to);
       if (!a || !b) return false;
-      if (a.entityType === "faction" || b.entityType === "faction") return false;
+      if (a.entityType === "faction" || b.entityType === "faction")
+        return false;
       return a.gender === "F" && b.gender === "F";
     }
 
@@ -2410,12 +2415,10 @@
 
     var metaHtml = "";
     if (isFactionDetail) {
-      metaHtml =
-        '<p class="flyout-character-meta">Setting / faction</p>';
+      metaHtml = '<p class="flyout-character-meta">Setting / faction</p>';
     } else {
       var genderSymbol = character.gender === "F" ? "\u2640" : "\u2642";
-      metaHtml =
-        '<p class="flyout-character-meta">' + escapeHtml(genderSymbol);
+      metaHtml = '<p class="flyout-character-meta">' + escapeHtml(genderSymbol);
       if (
         character.gender === "F" &&
         typeof character.testiclesKilled === "number"
@@ -2497,7 +2500,11 @@
           e.target.closest(".connections-char-link");
         if (charBtn && detail.contains(charBtn)) {
           var focusId = charBtn.getAttribute("data-character-id");
-          if (focusId && connectionsGraphState && connectionsGraphState.setSelected) {
+          if (
+            focusId &&
+            connectionsGraphState &&
+            connectionsGraphState.setSelected
+          ) {
             e.preventDefault();
             connectionsGraphState.setSelected(focusId);
           }
@@ -2532,11 +2539,7 @@
     }
 
     // Already drawn — keep it (static layout; no live sim to resize).
-    if (
-      connectionsGraphState &&
-      connectionsGraphState.alive &&
-      !forceRestart
-    ) {
+    if (connectionsGraphState && connectionsGraphState.alive && !forceRestart) {
       return;
     }
 
@@ -3035,13 +3038,7 @@
         var defs = document.createElementNS(ns, "defs");
         var clip = document.createElementNS(ns, "clipPath");
         clip.setAttribute("id", clipId);
-        var portraitR = isHub[n.id]
-          ? isNarrow
-            ? 26
-            : 20
-          : isNarrow
-            ? 20
-            : 15;
+        var portraitR = isHub[n.id] ? (isNarrow ? 26 : 20) : isNarrow ? 20 : 15;
         if (isFaction && isHub[n.id]) {
           portraitR = isNarrow ? 30 : 24;
         }
@@ -3115,7 +3112,6 @@
       svg.appendChild(gEdges);
       svg.appendChild(gNodes);
     }
-
 
     function handleGraphClickTarget(target) {
       if (!target || !target.closest) return;
@@ -3505,8 +3501,7 @@
     renderConnectionsKindFilters();
     syncConnectionsNamesVisibility();
     ensureConnectionsData().then(function () {
-      var needRestart =
-        !connectionsGraphState || !connectionsGraphState.alive;
+      var needRestart = !connectionsGraphState || !connectionsGraphState.alive;
       initConnectionsGraph(needRestart);
     });
   }
@@ -5102,14 +5097,15 @@
         classes[i],
       );
       if (!m) continue;
-      colorHex = m[1].length === 3
-        ? m[1]
-            .split("")
-            .map(function (c) {
-              return c + c;
-            })
-            .join("")
-        : m[1].slice(0, 6);
+      colorHex =
+        m[1].length === 3
+          ? m[1]
+              .split("")
+              .map(function (c) {
+                return c + c;
+              })
+              .join("")
+          : m[1].slice(0, 6);
       colorHex = colorHex.toLowerCase();
       break;
     }
@@ -5137,7 +5133,8 @@
         out += formatPreservedInner(before);
       }
       if (m[1] != null) {
-        out += docInlineSpanOpenTag(m[1]) + formatPreservedInner(m[2]) + "</span>";
+        out +=
+          docInlineSpanOpenTag(m[1]) + formatPreservedInner(m[2]) + "</span>";
       } else if (m[3] != null) {
         out += "<u>" + formatPreservedInner(m[3]) + "</u>";
       }
@@ -5469,10 +5466,7 @@
         btn.className = "story-reader-chapters-link";
         var chapterTitle = head.textContent || "";
         var chapterDateLabel = readerStory
-          ? formatStoryChapterReleaseDateLabel(
-              readerStory,
-              chapterIndex0 + 1,
-            )
+          ? formatStoryChapterReleaseDateLabel(readerStory, chapterIndex0 + 1)
           : null;
         if (chapterDateLabel) {
           btn.innerHTML =
@@ -5557,14 +5551,10 @@
       .replace(/\/index\.html?$/i, "")
       .replace(/\/$/, "");
     var fileName = String(storyId);
-    if (
-      story &&
-      storyChapterShareConfig(story, chapterOneBased)
-    ) {
+    if (story && storyChapterShareConfig(story, chapterOneBased)) {
       fileName += "-" + Math.floor(chapterOneBased);
     }
-    var path =
-      (prefix ? prefix + "/" : "") + "share/" + fileName + ".html";
+    var path = (prefix ? prefix + "/" : "") + "share/" + fileName + ".html";
     if (path.charAt(0) !== "/") path = "/" + path;
     return new URL(path, location.origin).href;
   }
@@ -5866,9 +5856,7 @@
           ? " flyout-full-story-cta--" + escapeHtml(opts.variant)
           : "") +
         '" aria-disabled="true"' +
-        (opts.tooltip
-          ? ' title="' + escapeHtml(opts.tooltip) + '"'
-          : "") +
+        (opts.tooltip ? ' title="' + escapeHtml(opts.tooltip) + '"' : "") +
         ">" +
         escapeHtml(opts.label) +
         "</span></div>"
@@ -6119,8 +6107,7 @@
       metaHtml = '<p class="flyout-character-meta">Faction</p>';
     } else {
       var genderSymbol = character.gender === "F" ? "\u2640" : "\u2642";
-      metaHtml =
-        '<p class="flyout-character-meta">' + escapeHtml(genderSymbol);
+      metaHtml = '<p class="flyout-character-meta">' + escapeHtml(genderSymbol);
       if (
         character.gender === "F" &&
         typeof character.testiclesKilled === "number"
