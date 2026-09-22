@@ -1,0 +1,41 @@
+---
+description: Vocabulary allowances and style preferences for typo/grammar passes on catalog fiction—not dictionary “corrections” of intentional terms.
+alwaysApply: true
+---
+
+# Copy-edit spellchecker
+
+When reviewing or fixing typos, grammar, or copy in catalog fiction (Drive docs, synced `assets/stories/*.md`, or copy-edit tooling), apply these standing rules.
+
+## Valid catalog vocabulary (never “correct” away)
+
+Treat these as intentional words, not misspellings. Do not normalize them to generic or dictionary-only wording unless the author asks:
+
+- **halfstration** (and close variants like **halfstrated**)
+- **nutmeat**
+- **nutpain**
+- **ballpain**
+- **ballache**
+- **ballsack** (and natural plurals like *ball sacks*)
+- **testeria**
+- **star them / star you / star him** — Izzie (and similar) *stars* cast members in sketches and skits; do not “correct” to *cast*.
+- **drinks get drank** — intentional colloquial; do not change to *drunk* or *are drunk*.
+- **hoorah** (and phrases like **one final hoorah**) — valid spelling/usage; do not change to *hooray* or *hurrah*.
+
+## Style preferences (flag or fix when copy-editing)
+
+- **OverEasy** — always the closed compound *OverEasy* (one word, capital O and E). Never *Over Easy*, *over easy*, or *overeasy* in prose, summaries, bios, or catalog copy. (Product *logo wordmark* may still show spaced OVER EASY on hardware art; running text still uses *OverEasy*.)
+- **step-sister** — prefer hyphenated *step-sister* over *stepsister* or *step sister*.
+- **okay** — prefer *okay* over *ok*.
+- **liquify** — prefer *liquify* over *liquefy*.
+- **Church** — prefer capitalized *Church* over *church* when referring to the cult/organization (e.g. Church of the Broken Tree).
+- **Goddess** — prefer capitalized *Goddess* over *goddess* when referring to the cult deity.
+- **mom / Mom** — prefer lowercase *mom* in mid-sentence; capitalize *Mom* at the start of a sentence. Do not flag mom/Mom consistency otherwise.
+- **Unhyphenated compounds** — when a closed compound exists as a standard word (e.g. *nonbeliever*, *stepbrother*), prefer it over a hyphenated variant. Do **not** remove hyphens where grammar requires them (e.g. compound modifiers before a noun: *orgasm-inducing*, *modern-day*, *innocent-looking*).
+- **Numbers ≤ 10** — spell out (*one* … *ten*) instead of digits (*1* … *10*) in prose. Digits are fine for ages, dates, times, measurements, and other contexts where numerals are standard.
+
+## Scope
+
+- Still flag objective typos, doubled words, wrong apostrophes, subject–verb agreement, etc.
+- Do **not** rewrite for voice or taste beyond the preferences above.
+- Do **not** treat catalog lexicon as errors.

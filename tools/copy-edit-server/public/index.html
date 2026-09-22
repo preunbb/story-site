@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Copy edit — local</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div>
+        <h1>Copy edit</h1>
+        <p class="sub">
+          Local only (<code>127.0.0.1</code>). Uses published Drive URLs from
+          <code>data/stories.js</code> and applies edits via Google Docs API.
+        </p>
+      </div>
+      <div class="tools">
+        <a class="btn secondary" href="/api/google/start">Connect Google Docs</a>
+        <span id="health" class="health"></span>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel list-panel">
+        <h2>Stories</h2>
+        <ul id="story-list" class="story-list"></ul>
+      </section>
+      <section class="panel detail-panel" id="detail" hidden>
+        <div class="detail-head">
+          <h2 id="detail-title"></h2>
+          <p id="detail-links"></p>
+        </div>
+        <div id="chapters"></div>
+      </section>
+    </main>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Over Easy Technologies — Product Catalog</title>
+    <meta
+      name="description"
+      content="Over Easy Technologies product catalog — self-defense, medical, and lifestyle hardware."
+    />
+    <link
+      rel="canonical"
+      href="https://preunbb.github.io/story-site/over-easy-products"
+    />
+    <meta property="og:title" content="Over Easy Technologies — Product Catalog" />
+    <meta property="og:description" content="Premium lifestyle hardware for the modern woman." />
+    <meta property="og:image" content="https://preunbb.github.io/story-site/assets/over-easy/brands/overeasy_logo_v2_raw_eggs_minimal.png" />
+    <meta property="og:image:width" content="1536" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:url" content="https://preunbb.github.io/story-site/over-easy-products" />
+    <meta property="og:site_name" content="Over Easy Technologies" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Over Easy Technologies — Product Catalog" />
+    <meta name="twitter:description" content="Premium lifestyle hardware for the modern woman." />
+    <meta name="twitter:image" content="https://preunbb.github.io/story-site/assets/over-easy/brands/overeasy_logo_v2_raw_eggs_minimal.png" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap"
+    />
+    <link rel="stylesheet" href="oe-catalog/styles.css" />
+  </head>
+  <body>
+    <header class="oe-header">
+      <div class="oe-header__top">
+        <div class="oe-header__inner">
+          <a class="oe-brand" href="index.html#stories" id="oe-brand-link">
+            <span class="oe-brand__text" id="oe-brand-name"></span>
+          </a>
+          <p class="oe-header__tagline" id="oe-hero-tagline"></p>
+        </div>
+      </div>
+      <div class="oe-header__nav-wrap">
+        <label class="oe-category-select-wrap" for="oe-category-select">
+          <span class="oe-category-select__label">Category</span>
+          <select
+            class="oe-category-select"
+            id="oe-category-select"
+            aria-label="Product category"
+          ></select>
+        </label>
+        <nav class="oe-tabs" id="oe-tabs" aria-label="Product categories">
+          <div class="oe-tabs__inner" id="oe-tabs-inner"></div>
+          <span
+            class="oe-tabs__indicator"
+            id="oe-tabs-indicator"
+            aria-hidden="true"
+          ></span>
+        </nav>
+      </div>
+    </header>
+
+    <main class="oe-main">
+      <h2 class="oe-section-title" id="oe-section-title">Current lineup</h2>
+      <div class="oe-grid" id="oe-product-grid"></div>
+    </main>
+
+    <footer class="oe-footer">
+      <img id="oe-footer-logo" alt="" width="120" height="40" />
+      <p id="oe-footer-note"></p>
+    </footer>
+
+    <div id="scene-lightbox" class="scene-lightbox" aria-hidden="true">
+      <div
+        class="scene-lightbox-panel"
+        id="scene-lightbox-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Enlarged product image"
+      >
+        <button
+          type="button"
+          class="scene-lightbox-close"
+          id="scene-lightbox-close"
+          aria-label="Close"
+        >
+          ×
+        </button>
+        <div class="scene-lightbox-stage">
+          <button
+            type="button"
+            class="scene-lightbox-nav scene-lightbox-nav--prev"
+            id="scene-lightbox-prev"
+            aria-label="Previous image"
+            hidden
+          >
+            ‹
+          </button>
+          <div class="scene-lightbox-img-wrap">
+            <img
+              id="scene-lightbox-img"
+              class="scene-lightbox-img"
+              alt=""
+              decoding="async"
+            />
+          </div>
+          <button
+            type="button"
+            class="scene-lightbox-nav scene-lightbox-nav--next"
+            id="scene-lightbox-next"
+            aria-label="Next image"
+            hidden
+          >
+            ›
+          </button>
+        </div>
+        <p
+          id="scene-lightbox-caption"
+          class="scene-lightbox-caption"
+          hidden
+        ></p>
+      </div>
+    </div>
+
+    <script src="oe-catalog/products.js"></script>
+    <script src="oe-catalog/lightbox.js"></script>
+    <script>
+      (function () {
+        const catalog = window.OVER_EASY_CATALOG;
+        if (!catalog) return;
+
+        const { brand, categories, products } = catalog;
+        const NEW_ARRIVALS_ID = "new-arrivals";
+        const visibleCategories = categories.filter(function (c) {
+          return !c.hidden;
+        });
+        const tabItems = [
+          { id: NEW_ARRIVALS_ID, label: "New Arrivals!" },
+        ].concat(visibleCategories);
+        let activeTab = NEW_ARRIVALS_ID;
+
+        // Brand header
+        document.getElementById("oe-brand-name").innerHTML = brand.name.replace(
+          "Easy",
+          "<span>Easy</span>",
+        );
+        document.getElementById("oe-hero-tagline").textContent = brand.tagline;
+        document.getElementById("oe-footer-logo").src = brand.logo;
+        document.getElementById("oe-footer-logo").alt = brand.name;
+        document.getElementById("oe-footer-note").textContent =
+          brand.footerNote;
+
+        const tabsEl = document.getElementById("oe-tabs");
+        const tabsInner = document.getElementById("oe-tabs-inner");
+        const tabsIndicator = document.getElementById("oe-tabs-indicator");
+        const categorySelect = document.getElementById("oe-category-select");
+        const grid = document.getElementById("oe-product-grid");
+        const sectionTitle = document.getElementById("oe-section-title");
+        const desktopTabsMq = window.matchMedia("(min-width: 769px)");
+
+        tabsInner.innerHTML = tabItems
+          .map(function (tab) {
+            return (
+              '<button type="button" class="oe-tab" data-category="' +
+              escapeHtml(tab.id) +
+              '" aria-selected="false">' +
+              '<span class="oe-tab__label">' +
+              escapeHtml(tab.label) +
+              "</span>" +
+              "</button>"
+            );
+          })
+          .join("");
+
+        categorySelect.innerHTML = tabItems
+          .map(function (tab) {
+            return (
+              '<option value="' +
+              escapeHtml(tab.id) +
+              '">' +
+              escapeHtml(tab.label) +
+              "</option>"
+            );
+          })
+          .join("");
+
+        function updateTabIndicator() {
+          const activeBtn = tabsInner.querySelector(".oe-tab--active");
+          if (!activeBtn || !tabsIndicator) return;
+          const left =
+            activeBtn.offsetLeft + tabsInner.offsetLeft - tabsEl.scrollLeft;
+          tabsIndicator.style.width = activeBtn.offsetWidth + "px";
+          tabsIndicator.style.transform = "translateX(" + left + "px)";
+        }
+
+        function renderProducts() {
+          const visible =
+            activeTab === NEW_ARRIVALS_ID
+              ? products.filter(function (p) {
+                  return p.newArrival;
+                })
+              : products.filter(function (p) {
+                  return p.category === activeTab;
+                });
+          const tabLabel =
+            tabItems.find(function (t) {
+              return t.id === activeTab;
+            })?.label ?? "Current lineup";
+
+          sectionTitle.textContent = tabLabel;
+
+          grid.innerHTML = visible
+            .map(function (p) {
+              return renderCard(p);
+            })
+            .join("");
+
+          tabsInner.querySelectorAll(".oe-tab").forEach(function (btn) {
+            const selected = btn.dataset.category === activeTab;
+            btn.classList.toggle("oe-tab--active", selected);
+            btn.setAttribute("aria-selected", selected ? "true" : "false");
+          });
+          if (categorySelect.value !== activeTab) {
+            categorySelect.value = activeTab;
+          }
+          if (desktopTabsMq.matches) {
+            requestAnimationFrame(updateTabIndicator);
+          }
+        }
+
+        function renderSizeOptions(p) {
+          if (!p.sizeOptions?.length) return "";
+
+          const fields = p.sizeOptions
+            .map(function (field) {
+              const selectId =
+                "size-" + escapeHtml(p.id) + "-" + escapeHtml(field.id);
+              const options = field.options
+                .map(function (opt) {
+                  const unavailable = opt.soldOut || opt.disabled;
+                  const label = opt.soldOut
+                    ? opt.label + " — sold out"
+                    : opt.label;
+                  const disabled = unavailable ? " disabled" : "";
+                  const className = unavailable
+                    ? ' class="oe-size-option--sold-out"'
+                    : "";
+                  const imageIndexAttr =
+                    opt.imageIndex != null
+                      ? ' data-image-index="' + escapeHtml(String(opt.imageIndex)) + '"'
+                      : "";
+                  return (
+                    '<option value="' +
+                    escapeHtml(opt.value) +
+                    '"' +
+                    disabled +
+                    className +
+                    imageIndexAttr +
+                    ">" +
+                    escapeHtml(label) +
+                    "</option>"
+                  );
+                })
+                .join("");
+
+              return (
+                '<div class="oe-size-field">' +
+                '<label class="oe-size-label" for="' +
+                selectId +
+                '">' +
+                escapeHtml(field.label) +
+                "</label>" +
+                '<select class="oe-size-select" id="' +
+                selectId +
+                '" name="' +
+                escapeHtml(p.id + "-" + field.id) +
+                '" aria-label="' +
+                escapeHtml(field.label) +
+                '">' +
+                options +
+                "</select>" +
+                "</div>"
+              );
+            })
+            .join("");
+
+          return '<div class="oe-card__sizes">' + fields + "</div>";
+        }
+
+        function purchaseDisabledTooltip(p) {
+          if (p.purchaseDisabledTooltip) return p.purchaseDisabledTooltip;
+          const features = p.features || [];
+          if (features.length === 1) return features[0];
+          return "";
+        }
+
+        function renderComingSoonButton(p) {
+          const tooltip = p.purchaseDisabled
+            ? purchaseDisabledTooltip(p)
+            : "";
+          const tooltipId = tooltip
+            ? "purchase-tooltip-" + escapeHtml(p.id)
+            : "";
+          const tooltipHtml = tooltip
+            ? '<span class="oe-purchase-tooltip" id="' +
+              tooltipId +
+              '" role="tooltip">' +
+              escapeHtml(tooltip) +
+              "</span>"
+            : "";
+          const describedBy = tooltipId
+            ? ' aria-describedby="' + tooltipId + '"'
+            : "";
+          return (
+            '<div class="oe-card__actions">' +
+            '<div class="oe-purchase-wrap">' +
+            '<span class="oe-purchase-btn oe-purchase-btn--disabled" aria-disabled="true" tabindex="0"' +
+            describedBy +
+            ">Coming soon!</span>" +
+            tooltipHtml +
+            "</div></div>"
+          );
+        }
+
+        function resolvePurchaseUrl(url) {
+          if (
+            !url ||
+            url.indexOf("http://") === 0 ||
+            url.indexOf("https://") === 0
+          ) {
+            return url;
+          }
+          var hashIndex = url.indexOf("#");
+          if (hashIndex === -1) return url;
+          var hash = url.slice(hashIndex);
+          var siteRoot = location.pathname
+            .replace(/\/index\.html?$/i, "")
+            .replace(/\/over-easy-products(?:\.html)?$/i, "")
+            .replace(/\/$/, "");
+          var path = (siteRoot ? siteRoot : "") + "/";
+          return new URL(path + hash, location.origin).href;
+        }
+
+        function renderPurchaseButton(p) {
+          if (p.purchaseDisabled) {
+            return renderComingSoonButton(p);
+          }
+          const url = resolvePurchaseUrl(p.purchaseUrl);
+          if (!url) {
+            return renderComingSoonButton(p);
+          }
+          const external =
+            url.indexOf("http://") === 0 || url.indexOf("https://") === 0;
+          const target = external ? ' target="_blank"' : "";
+          const rel = external ? ' rel="noopener noreferrer"' : "";
+          return (
+            '<div class="oe-card__actions">' +
+            '<a class="oe-purchase-btn" href="' +
+            escapeHtml(url) +
+            '"' +
+            target +
+            rel +
+            ">Purchase</a>" +
+            "</div>"
+          );
+        }
+
+        function productImages(p) {
+          if (p.images?.length) return p.images;
+          if (p.image) return [{ path: p.image }];
+          return [];
+        }
+
+        function hasImageEditionSelect(p) {
+          return (p.sizeOptions || []).some(function (field) {
+            return (field.options || []).some(function (opt) {
+              return opt.imageIndex != null;
+            });
+          });
+        }
+
+        function renderCardMedia(p) {
+          const imgs = productImages(p);
+          const thumb = p.image || imgs[0]?.path || "";
+          if (!thumb) return '<div class="oe-card__media"></div>';
+
+          const payload = escapeHtml(
+            JSON.stringify(
+              imgs.map(function (img) {
+                return { path: img.path, caption: img.caption || "" };
+              }),
+            ),
+          );
+
+          const showCount = imgs.length > 1 && !hasImageEditionSelect(p);
+          const countBadge = showCount
+            ? '<span class="oe-card__media-count" aria-hidden="true">' +
+              imgs.length +
+              " photos</span>"
+            : "";
+          const newBadge = p.newArrival
+            ? '<span class="oe-new-badge" aria-label="New product"><span class="oe-new-badge-text">New!</span></span>'
+            : "";
+
+          return (
+            '<figure class="oe-card__media oe-card__media--zoomable" tabindex="0" ' +
+            'role="button" aria-label="View ' +
+            escapeHtml(p.name) +
+            (imgs.length > 1 ? " images" : " image") +
+            '" data-product-name="' +
+            escapeHtml(p.name) +
+            '" data-product-images="' +
+            payload +
+            '" data-image-index="0">' +
+            '<img src="' +
+            escapeHtml(thumb) +
+            '" alt="' +
+            escapeHtml(p.name) +
+            '" loading="lazy" />' +
+            newBadge +
+            countBadge +
+            "</figure>"
+          );
+        }
+
+        function renderSetlist(p) {
+          const tracks = p.setlist || [];
+          if (!tracks.length) return "";
+
+          const items = tracks
+            .map(function (title) {
+              return "<li>" + escapeHtml(title) + "</li>";
+            })
+            .join("");
+
+          return (
+            '<div class="oe-card__setlist">' +
+            '<p class="oe-card__setlist-label">Setlist</p>' +
+            '<ol class="oe-card__setlist-tracks">' +
+            items +
+            "</ol></div>"
+          );
+        }
+
+        function renderCard(p) {
+          const features = (p.features || [])
+            .map(function (f) {
+              return "<li>" + escapeHtml(f) + "</li>";
+            })
+            .join("");
+
+          const footerParts = [];
+          const setlist = renderSetlist(p);
+          if (setlist) footerParts.push(setlist);
+          if (features) {
+            footerParts.push(
+              '<ul class="oe-card__features">' + features + "</ul>",
+            );
+          }
+          const sizes = renderSizeOptions(p);
+          if (sizes) footerParts.push(sizes);
+          footerParts.push(renderPurchaseButton(p));
+
+          return (
+            '<article class="oe-card" id="product-' +
+            escapeHtml(p.id) +
+            '">' +
+            renderCardMedia(p) +
+            '<div class="oe-card__body">' +
+            '<div class="oe-card__meta">' +
+            (p.model
+              ? '<span class="oe-model">' + escapeHtml(p.model) + "</span>"
+              : "") +
+            "</div>" +
+            '<h3 class="oe-card__title">' +
+            escapeHtml(p.name) +
+            "</h3>" +
+            (p.tagline
+              ? '<p class="oe-card__tagline">' + escapeHtml(p.tagline) + "</p>"
+              : "") +
+            '<p class="oe-card__desc">' +
+            escapeHtml(p.description) +
+            "</p>" +
+            '<div class="oe-card__footer">' +
+            footerParts.join("") +
+            "</div>" +
+            "</div>" +
+            "</article>"
+          );
+        }
+
+        function isValidTab(tabId) {
+          return tabItems.some(function (t) {
+            return t.id === tabId;
+          });
+        }
+
+        function setCategory(categoryId, options) {
+          if (!isValidTab(categoryId)) {
+            return;
+          }
+          activeTab = categoryId;
+          renderProducts();
+          if (!options || !options.skipHash) {
+            history.replaceState(null, "", "#category-" + categoryId);
+          }
+          if (desktopTabsMq.matches) {
+            const activeBtn = tabsInner.querySelector(
+              '.oe-tab[data-category="' + categoryId + '"]',
+            );
+            if (activeBtn) {
+              activeBtn.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+                inline: "center",
+              });
+            }
+          }
+        }
+
+        function resolveHash() {
+          const hash = location.hash.replace(/^#/, "");
+          const defaultTab = NEW_ARRIVALS_ID;
+          if (!hash) {
+            setCategory(defaultTab, { skipHash: true });
+            return;
+          }
+          if (hash.indexOf("category-") === 0) {
+            const categoryId = hash.slice("category-".length);
+            if (isValidTab(categoryId)) {
+              setCategory(categoryId, { skipHash: true });
+            } else {
+              setCategory(defaultTab, { skipHash: true });
+            }
+            return;
+          }
+          if (hash.indexOf("product-") === 0) {
+            const productId = hash.slice("product-".length);
+            const product = products.find(function (p) {
+              return p.id === productId;
+            });
+            if (product?.category) {
+              const categoryVisible = visibleCategories.some(function (c) {
+                return c.id === product.category;
+              });
+              if (categoryVisible) {
+                setCategory(product.category, { skipHash: true });
+                requestAnimationFrame(function () {
+                  const el = document.getElementById("product-" + productId);
+                  if (el)
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                });
+              } else {
+                setCategory(defaultTab, { skipHash: true });
+              }
+              return;
+            }
+          }
+          setCategory(defaultTab, { skipHash: true });
+        }
+
+        tabsEl.addEventListener("click", function (event) {
+          const btn = event.target.closest(".oe-tab");
+          if (!btn) return;
+          setCategory(btn.dataset.category);
+        });
+
+        categorySelect.addEventListener("change", function () {
+          setCategory(categorySelect.value);
+        });
+
+        grid.addEventListener("change", function (event) {
+          const sel = event.target.closest(".oe-size-select");
+          if (!sel) return;
+          const opt = sel.options[sel.selectedIndex];
+          if (!opt) return;
+          const imgIdxRaw = opt.getAttribute("data-image-index");
+          if (imgIdxRaw == null) return;
+          const imgIdx = parseInt(imgIdxRaw, 10);
+          if (isNaN(imgIdx)) return;
+          const card = sel.closest(".oe-card");
+          if (!card) return;
+          const fig = card.querySelector(".oe-card__media--zoomable");
+          if (!fig) return;
+          const raw = fig.getAttribute("data-product-images");
+          if (!raw) return;
+          let productSlides;
+          try {
+            productSlides = JSON.parse(raw);
+          } catch (_e) {
+            return;
+          }
+          const slide = productSlides[imgIdx];
+          if (!slide?.path) return;
+          const thumb = fig.querySelector("img");
+          if (thumb) thumb.src = slide.path;
+          fig.setAttribute("data-image-index", String(imgIdx));
+        });
+
+        tabsEl.addEventListener("scroll", updateTabIndicator, {
+          passive: true,
+        });
+
+        window.addEventListener("hashchange", resolveHash);
+        window.addEventListener("resize", function () {
+          if (desktopTabsMq.matches) updateTabIndicator();
+        });
+        resolveHash();
+
+        if (window.OE_INIT_PRODUCT_LIGHTBOX) {
+          window.OE_INIT_PRODUCT_LIGHTBOX();
+        }
+
+        function escapeHtml(str) {
+          return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+        }
+      })();
+    </script>
+  </body>
+</html>

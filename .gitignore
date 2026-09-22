@@ -1,0 +1,10 @@
+node_modules/
+.env.local
+.DS_Store
+.venv*/
+*.log
+dist/
+tools/copy-edit-server/credentials.json
+tools/copy-edit-server/.google-docs-token.json
+assets/stories/andrea_lucas.md
+workers/story-views/.dev.vars

@@ -1,0 +1,38 @@
+{
+  "name": "story-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "sync": "node scripts/sync-stories.mjs && node scripts/generate-story-share-pages.mjs",
+    "sync:andrea-complete": "node scripts/sync-andrea-lucas-complete-to-dist.mjs",
+    "encrypt:andrea-lucas": "node scripts/encrypt-andrea-lucas.mjs",
+    "sync:andrea-part2-preview": "node scripts/sync-andrea-part2-preview-md.mjs",
+    "rebuild:andrea-from-doc": "node scripts/rebuild-andrea-from-doc.mjs",
+    "sync:bereavement": "node scripts/sync-bereavement-counseling-to-dist.mjs",
+    "sync:bereavement-preview": "node scripts/sync-bereavement-preview-md.mjs",
+    "encrypt:bereavement": "node scripts/encrypt-bereavement-counseling.mjs",
+    "rebuild:bereavement-from-doc": "npm run sync:bereavement && npm run sync:bereavement-preview && npm run encrypt:bereavement && npm run pdf -- 49",
+    "sync:concurrent": "node scripts/sync-stories.mjs --concurrency=4 && node scripts/generate-story-share-pages.mjs",
+    "pdf": "node scripts/render-story-pdf.mjs",
+    "pdf:andrea-part-1": "node scripts/render-andrea-complete-chapters-pdf.mjs --part=1",
+    "epub": "node scripts/render-story-epub.mjs",
+    "anthology": "node scripts/render-anthology-epub.mjs",
+    "publish": "node scripts/publish.mjs",
+    "publish:andrea-lucas": "node scripts/publish-andrea-lucas.mjs",
+    "share-pages": "node scripts/generate-story-share-pages.mjs",
+    "deploy:story-views": "npx wrangler deploy --config workers/story-views/wrangler.toml",
+    "reddit-post-sections": "node scripts/reddit-post-sections.mjs",
+    "copy-edit-server": "npm --prefix tools/copy-edit-server run start",
+    "oe-product": "node tools/over-easy-product/add-product.mjs",
+    "injured-testicles": "node tools/injured-testicles/generate.mjs",
+    "image-caption": "python3 tools/image-caption/caption.py",
+    "triptych": "python3 tools/image-caption/triptych.py",
+    "thumbs": "python3 scripts/generate-character-thumbs.py",
+    "thumbs:force": "python3 scripts/generate-character-thumbs.py --force"
+  },
+  "devDependencies": {
+    "cheerio": "^1.0.0",
+    "turndown": "^7.2.0"
+  }
+}
