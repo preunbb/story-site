@@ -58,8 +58,10 @@ window.DATA_ANDREA_LUCAS_FULL = {
 window.DATA_BEREAVEMENT_FULL = {
   id: "bereavement-full",
   title: "Bereavement Counseling: The Five Stages of Grieving a Testicle",
-  cover: "assets/covers/bereavement_cover_karen_stuart_leash_heart_key_v4.png",
+  cover: "assets/covers/bereavement.png",
   access: "password",
+  /** Flip to true when the paid full manuscript is ready to expose. */
+  available: false,
   storyCiphertext: "assets/stories/bereavement-counseling.enc.json",
   passwordGateHash:
     "734f58260d6a716777b67d48e80ff7db0a513d6bf7096e6b4061b3bad4901d48",
@@ -1755,10 +1757,7 @@ window.DATA_STORIES = [
     brutalityRating: 1,
     summary:
       "Dr. Karen sees a new patient dealing with a particularly sensitive injury.",
-    cover: "assets/covers/bereavement_cover_karen_stuart_leash_heart_key_v4.png",
-    amazonUrl: "",
-    kofiUrl: "",
-    purchaseParts: BEREAVEMENT_PURCHASE_PARTS,
+    cover: "assets/covers/bereavement.png",
     characterIds: [
       "karen",
       "stuart",
@@ -1770,20 +1769,20 @@ window.DATA_STORIES = [
       "alyssa",
       "yvette",
     ],
-    state: 2,
-    releaseDate: "2026-09-22",
+    state: 3,
+    releaseDate: "2026-08-09",
     chapterReleases: [
       {
         chapter: 1,
         title: "Chapter 1: Denial",
-        releaseDate: "2026-09-22",
+        releaseDate: "2026-08-09",
       },
     ],
     tags: ["Premium Story", "New to Reddit"],
     previewRead: {
       md: "assets/stories/49-preview.md",
       fromChapter: 1,
-      toChapter: 2,
+      toChapter: 1,
     },
   },
 ];

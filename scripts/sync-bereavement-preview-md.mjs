@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Extract Bereavement Counseling free-preview prose (Chapters 1–2) into a
+ * Extract Bereavement Counseling free-preview prose (Chapter 1) into a
  * committed markdown file for the site reader.
  *
  * Usage: node scripts/sync-bereavement-preview-md.mjs
@@ -22,7 +22,7 @@ const INPUT = join(repoRoot, "dist", "bereavement-counseling", "story.md");
 const OUT = join(repoRoot, "assets", "stories", "49-preview.md");
 
 const FROM_CHAPTER = 1;
-const TO_CHAPTER = 2;
+const TO_CHAPTER = 1;
 
 function main() {
   if (!existsSync(INPUT)) {

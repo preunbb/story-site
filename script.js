@@ -243,7 +243,11 @@
     ];
     for (var gi = 0; gi < gated.length; gi++) {
       var full = gated[gi];
-      if (full && (id === full.id || String(id) === String(full.id))) {
+      if (
+        full &&
+        full.available !== false &&
+        (id === full.id || String(id) === String(full.id))
+      ) {
         return full;
       }
     }
@@ -310,7 +314,9 @@
   }
 
   function bereavementFullStory() {
-    return window.DATA_BEREAVEMENT_FULL || null;
+    var full = window.DATA_BEREAVEMENT_FULL || null;
+    if (!full || full.available === false) return null;
+    return full;
   }
 
   function storyShowsAndreaLucasFullLink(story) {
@@ -323,7 +329,11 @@
   }
 
   function storyShowsBereavementFullLink(story) {
-    return !!(story && (story.id === 49 || story.id === "49"));
+    return !!(
+      story &&
+      (story.id === 49 || story.id === "49") &&
+      bereavementFullStory()
+    );
   }
 
   function storyPasswordGateDomain(story) {
