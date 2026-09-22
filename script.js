@@ -8,6 +8,7 @@
   var captionSections = [];
   var fanart = [];
   var connections = [];
+  var connectionsInfopanel = {};
 
   /**
    * Story bodies are pre-rendered to markdown files under assets/stories/<id>.md
@@ -152,13 +153,53 @@
   }
 
   function getStoriesForCharacter(charId) {
-    return stories.filter(function (s) {
+    var list = stories.filter(function (s) {
       return (
         isStoryVisibleInCatalog(s) &&
         s.characterIds &&
         s.characterIds.indexOf(charId) !== -1
       );
     });
+    list.sort(compareStoriesForCharacterDisplay);
+    return list;
+  }
+
+  /**
+   * Prefer series.order within the same series (e.g. Arena 1–4), then catalog
+   * order. Keeps Sofia's list as Arena 1–4 then Bereavement.
+   */
+  function compareStoriesForCharacterDisplay(a, b) {
+    var aSeries = a && a.series && a.series.id;
+    var bSeries = b && b.series && b.series.id;
+    var aOrd =
+      a && a.series && typeof a.series.order === "number"
+        ? a.series.order
+        : null;
+    var bOrd =
+      b && b.series && typeof b.series.order === "number"
+        ? b.series.order
+        : null;
+    if (aSeries && aSeries === bSeries && aOrd != null && bOrd != null) {
+      return aOrd - bOrd;
+    }
+    if (aSeries === "ballbusting-arena" && bSeries !== "ballbusting-arena") {
+      return -1;
+    }
+    if (bSeries === "ballbusting-arena" && aSeries !== "ballbusting-arena") {
+      return 1;
+    }
+    return stories.indexOf(a) - stories.indexOf(b);
+  }
+
+  function storyOrderIndexForCharacter(storyId, charId) {
+    var list = getStoriesForCharacter(charId);
+    var want = storyId != null ? Number(storyId) : NaN;
+    var i;
+    for (i = 0; i < list.length; i++) {
+      if (Number(list[i].id) === want) return i;
+    }
+    if (storyId == null || storyId === "") return 10000;
+    return 1000 + (Number(storyId) || 0);
   }
 
   function getCharactersForStory(story) {
@@ -580,12 +621,7 @@
       );
     }
 
-    if (!links.length) {
-      return (
-        '<p class="story-reader-unlock-buy">Don\'t have the password yet? Purchase on Ko-fi ' +
-        '<span class="story-reader-unlock-buy-pending">(set <code>BEREAVEMENT_PURCHASE_PARTS[0].kofiUrl</code> in <code>data/stories.js</code>)</span>.</p>'
-      );
-    }
+    if (!links.length) return "";
 
     return (
       '<p class="story-reader-unlock-buy">Don\'t have the password yet? ' +
@@ -1990,26 +2026,6 @@
 
   var connectionsGraphState = null;
 
-  function connectionLabelForViewer(edge, viewerId) {
-    if (!edge) return "Connection";
-    if (viewerId && edge.to === viewerId && edge.reverseLabel) {
-      return edge.reverseLabel;
-    }
-    return edge.label || edge.reverseLabel || "Connection";
-  }
-
-  function connectionLinksForViewer(edge, viewerId) {
-    if (!edge) return [];
-    if (viewerId && edge.to === viewerId && edge.reverseLabel) {
-      return edge.reverseLabelLinks || edge.links || [];
-    }
-    return edge.labelLinks || edge.links || [];
-  }
-
-  function escapeRegExp(s) {
-    return String(s || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  }
-
   function connectionCharLinkButton(characterId, displayText) {
     return (
       '<button type="button" class="connections-char-link" data-character-id="' +
@@ -2032,191 +2048,64 @@
     );
   }
 
-  /** Default visible texts that should link to a character. */
-  function connectionAutoMatchTextsForCharacter(characterId) {
-    var c = getCharacterById(characterId);
-    if (!c || !c.name) return [];
-    var name = String(c.name).trim();
-    var texts = [name];
-    // Honorifics / leading articles — never use these alone as link aliases
-    // ("The" from "The Nurse" was linking every "the" in sentences).
-    var titleRe = /^(Goddess|Ms\.|Mrs\.|Mr\.|Dr\.|The)\s+/i;
-    var stopFirst = /^(Goddess|Ms\.|Mrs\.|Mr\.|Dr\.|The|A|An)$/i;
-    var withoutTitle = name.replace(titleRe, "");
-    var parts = name.split(/\s+/).filter(Boolean);
-    // First-token alias only for real given names (not titles/articles), length ≥ 3.
-    if (
-      parts.length > 1 &&
-      parts[0].length >= 3 &&
-      !stopFirst.test(parts[0])
-    ) {
-      texts.push(parts[0]);
-    }
-    // "Goddess Alexa" → "Alexa"; "The Nurse" → "Nurse"; skip tiny leftovers like "S".
-    if (
-      withoutTitle &&
-      withoutTitle !== name &&
-      withoutTitle.length >= 2 &&
-      !stopFirst.test(withoutTitle)
-    ) {
-      texts.push(withoutTitle);
-    }
-    return texts;
-  }
-
-  /** Match a name/title as a whole token, not letters inside other words. */
-  function connectionMatchRegExp(matchText) {
-    var escaped = escapeRegExp(matchText);
-    if (/^\w+$/.test(matchText)) {
-      return new RegExp("\\b" + escaped + "\\b", "gi");
-    }
-    return new RegExp("(?<![\\w])" + escaped + "(?![\\w])", "gi");
-  }
-
   /**
-   * Resolve a links[] entry to match texts.
-   * Character: { id, match? } — match defaults to name + first-name alias
-   * Story: { storyId, match? } — match defaults to story.title
+   * Render infopanel markup: [[char:id]], [[char:id|text]], [[story:id]], [[story:id|text]].
+   * Plain text is escaped (and spoiler-wrapped when spoilers are active).
+   * Inserts a line break after each sentence-ending period outside [[...]] links
+   * (periods inside link tags, e.g. Dr. Karen or a story title, do not break).
    */
-  function connectionLinkMatchTexts(link) {
-    if (!link) return [];
-    if (link.match) return [String(link.match)];
-    if (link.storyId != null) {
-      var story = getStoryById(link.storyId);
-      return story && story.title ? [story.title] : [];
-    }
-    if (link.id) {
-      return connectionAutoMatchTextsForCharacter(link.id);
-    }
-    return [];
-  }
-
-  /**
-   * Link character/story mentions inside a connection phrase.
-   * Returns { html, matchedIds }.
-   * otherIds: one id, an array of ids, or null — always auto-linked when named.
-   * Also auto-links any cast member whose name appears in the phrase so
-   * multi-person lines (e.g. "Alyssa, Monique, and Cathy") all become links.
-   */
-  function linkifyConnectionPhrase(phrase, links, otherIds, textBit) {
-    var candidates = [];
-    var others = [];
-    if (Array.isArray(otherIds)) {
-      others = otherIds.filter(Boolean);
-    } else if (otherIds) {
-      others = [otherIds];
-    }
-
-    function addMatchTexts(target, matchTexts, kind) {
-      (matchTexts || []).forEach(function (mt) {
-        if (!mt) return;
-        var re = connectionMatchRegExp(mt);
-        var m;
-        while ((m = re.exec(phrase))) {
-          candidates.push({
-            start: m.index,
-            end: m.index + m[0].length,
-            text: m[0],
-            kind: kind,
-            id: target.id,
-            storyId: target.storyId,
-          });
-        }
-      });
-    }
-
-    (links || []).forEach(function (link) {
-      if (!link) return;
-      if (link.storyId != null) {
-        addMatchTexts(
-          { storyId: link.storyId },
-          connectionLinkMatchTexts(link),
-          "story",
-        );
-      } else if (link.id) {
-        addMatchTexts({ id: link.id }, connectionLinkMatchTexts(link), "char");
-      }
-    });
-
-    others.forEach(function (oid) {
-      addMatchTexts(
-        { id: oid },
-        connectionAutoMatchTextsForCharacter(oid),
-        "char",
-      );
-    });
-
-    // Link every cast name that appears in the phrase (multi-actor lines).
-    var seenAuto = Object.create(null);
-    others.forEach(function (oid) {
-      seenAuto[oid] = true;
-    });
-    (links || []).forEach(function (link) {
-      if (link && link.id) seenAuto[link.id] = true;
-    });
-    (characters || []).forEach(function (c) {
-      if (!c || !c.id || seenAuto[c.id]) return;
-      addMatchTexts(
-        { id: c.id },
-        connectionAutoMatchTextsForCharacter(c.id),
-        "char",
-      );
-    });
-
-    candidates.sort(function (a, b) {
-      var lenA = a.end - a.start;
-      var lenB = b.end - b.start;
-      if (lenA !== lenB) return lenB - lenA;
-      return a.start - b.start;
-    });
-
-    var chosen = [];
-    candidates.forEach(function (c) {
-      var overlaps = chosen.some(function (x) {
-        return !(c.end <= x.start || c.start >= x.end);
-      });
-      if (!overlaps) chosen.push(c);
-    });
-    chosen.sort(function (a, b) {
-      return a.start - b.start;
-    });
-
-    var matchedIds = Object.create(null);
-    chosen.forEach(function (c) {
-      if (c.kind === "char" && c.id) matchedIds[c.id] = true;
-    });
-
+  function renderInfopanelMarkup(text, textBit) {
+    var src = String(text || "");
+    var re = /\[\[(char|story):([^\]|]+)(?:\|([^\]]+))?\]\]/g;
     var html = "";
     var last = 0;
-    chosen.forEach(function (c) {
-      html += textBit(phrase.slice(last, c.start));
-      if (c.kind === "story") {
-        html += connectionStoryLinkAnchor(getStoryById(c.storyId), c.text);
-      } else {
-        html += connectionCharLinkButton(c.id, c.text);
-      }
-      last = c.end;
-    });
-    html += textBit(phrase.slice(last));
+    var m;
 
-    return { html: html, matchedIds: matchedIds };
+    function emitPlain(chunk) {
+      if (!chunk) return;
+      // Sentence breaks only in plain text — never inside link tags.
+      var withBreaks = chunk.replace(/\.(\s+)/g, ".<br>");
+      var parts = withBreaks.split("<br>");
+      for (var i = 0; i < parts.length; i++) {
+        if (i > 0) html += "<br>";
+        html += textBit(parts[i]);
+      }
+    }
+
+    while ((m = re.exec(src))) {
+      emitPlain(src.slice(last, m.index));
+      var kind = m[1];
+      var id = String(m[2] || "").trim();
+      var display = m[3] != null ? m[3] : null;
+      if (kind === "char") {
+        var ch = getCharacterById(id);
+        html += connectionCharLinkButton(
+          id,
+          display != null ? display : (ch && ch.name) || id,
+        );
+      } else {
+        var story = getStoryById(id);
+        html += connectionStoryLinkAnchor(
+          story,
+          display != null ? display : (story && story.title) || id,
+        );
+      }
+      last = m.index + m[0].length;
+    }
+    emitPlain(src.slice(last));
+    return html;
   }
 
-  /** Turn a stored label into a phrase that fits: "{phrase} in {Story}." */
-  function connectionSentencePhrase(rawLabel, otherName) {
-    var label = String(rawLabel || "").trim();
-    if (!label) return "Connected";
-    var m;
-    if ((m = /^Mother of (.+)$/i.exec(label))) return m[1] + "'s mother";
-    if ((m = /^Son of (.+)$/i.exec(label))) return m[1] + "'s son";
-    if ((m = /^Daughter of (.+)$/i.exec(label))) return m[1] + "'s daughter";
-    if ((m = /^Sister of (.+)$/i.exec(label))) return m[1] + "'s sister";
-    if ((m = /^Brother of (.+)$/i.exec(label))) return m[1] + "'s brother";
-    if ((m = /^Stepmom (.+)$/i.exec(label))) return "Stepmother who " + m[1];
-    if ((m = /^Stepsister (\w+) (.+)$/i.exec(label)))
-      return "Stepsister who " + m[2];
-    // Keep stored labels as written (sentence-cased already in data).
-    return label;
+  function formatInfopanelEntryHtml(entry) {
+    if (!entry || !entry.text) return "";
+    var spoilerKey = connectionSpoilerKeyForStoryId(entry.storyId);
+    var spoil =
+      spoilerKey != null && !connectionSpoilersRevealedForKey(spoilerKey);
+    function textBit(t) {
+      if (!t) return "";
+      return spoil ? connectionSpoilerTextHtml(t, spoilerKey) : escapeHtml(t);
+    }
+    return renderInfopanelMarkup(entry.text, textBit);
   }
 
   var connectionsSpoilersRevealed = {};
@@ -2259,169 +2148,6 @@
       escapeHtml(text) +
       "</span>"
     );
-  }
-
-  function connectionOtherId(edge, viewerId) {
-    if (!edge) return null;
-    return edge.from === viewerId ? edge.to : edge.from;
-  }
-
-  function connectionDetailGroupKey(edge, viewerId) {
-    return (
-      String(edge.storyId != null ? edge.storyId : "") +
-      "\0" +
-      String(connectionLabelForViewer(edge, viewerId) || "")
-    );
-  }
-
-  /**
-   * Merge edges that would print the same sentence for this viewer
-   * (same label + story) into one row with multiple linked characters.
-   */
-  function collateConnectionEdgesForDetail(edges, viewerId) {
-    var groups = [];
-    var indexByKey = Object.create(null);
-    (edges || []).forEach(function (edge) {
-      if (!edge) return;
-      var key = connectionDetailGroupKey(edge, viewerId);
-      var idx = indexByKey[key];
-      if (idx == null) {
-        indexByKey[key] = groups.length;
-        groups.push({
-          edge: edge,
-          otherIds: [],
-          _seen: Object.create(null),
-        });
-        idx = groups.length - 1;
-      }
-      var oid = connectionOtherId(edge, viewerId);
-      if (oid && !groups[idx]._seen[oid]) {
-        groups[idx]._seen[oid] = true;
-        groups[idx].otherIds.push(oid);
-      }
-    });
-    return groups.map(function (g) {
-      return { edge: g.edge, otherIds: g.otherIds };
-    });
-  }
-
-  function formatConnectionNameListHtml(otherIds, textBit) {
-    var parts = (otherIds || []).filter(Boolean).map(function (id) {
-      var ch = getCharacterById(id);
-      return connectionCharLinkButton(id, ch ? ch.name : id);
-    });
-    if (!parts.length) return "";
-    if (parts.length === 1) return parts[0];
-    if (parts.length === 2) return parts[0] + textBit(" and ") + parts[1];
-    return (
-      parts.slice(0, -1).join(textBit(", ")) +
-      textBit(" and ") +
-      parts[parts.length - 1]
-    );
-  }
-
-  function formatConnectionOthersParenthetical(otherIds, matchedIds, textBit) {
-    var unmatched = (otherIds || []).filter(function (id) {
-      return id && !(matchedIds && matchedIds[id]);
-    });
-    if (!unmatched.length) return "";
-    return (
-      textBit(" (") +
-      formatConnectionNameListHtml(unmatched, textBit) +
-      textBit(")")
-    );
-  }
-
-  function formatConnectionSentenceHtml(edge, viewerId, otherIds) {
-    var others =
-      otherIds && otherIds.length
-        ? otherIds.slice()
-        : [connectionOtherId(edge, viewerId)].filter(Boolean);
-    var primaryOtherId = others[0] || null;
-    var other = primaryOtherId ? getCharacterById(primaryOtherId) : null;
-    var story = getStoryById(edge.storyId);
-    var storyTitle = story ? story.title || "a story" : "a story";
-    var rawLabel = connectionLabelForViewer(edge, viewerId);
-    var phrase = connectionSentencePhrase(
-      rawLabel,
-      other ? other.name : primaryOtherId,
-    );
-    // "{others} all help…" collapses to singular when only one other is present.
-    if (others.length < 2 && /\{others\}/i.test(phrase)) {
-      phrase = phrase
-        .replace(/\{others\} all help/gi, "{other} helps")
-        .replace(/\{others\}/gi, "{other}");
-    }
-    var spoilerKey = connectionSpoilerKeyForStoryId(edge.storyId);
-    var spoil =
-      spoilerKey != null && !connectionSpoilersRevealedForKey(spoilerKey);
-    var otherIsFaction = others.some(function (oid) {
-      var ch = getCharacterById(oid);
-      return ch && ch.entityType === "faction";
-    });
-
-    var storyLink = connectionStoryLinkAnchor(story, storyTitle);
-
-    function textBit(t) {
-      if (!t) return "";
-      return spoil ? connectionSpoilerTextHtml(t, spoilerKey) : escapeHtml(t);
-    }
-
-    var links = connectionLinksForViewer(edge, viewerId);
-    var matchedIds = Object.create(null);
-    var linkedPhrase;
-
-    if (/\{others\}|\{other\}/i.test(phrase)) {
-      var nameList = formatConnectionNameListHtml(others, textBit);
-      others.forEach(function (id) {
-        if (id) matchedIds[id] = true;
-      });
-      linkedPhrase = phrase
-        .split(/(\{others\}|\{other\})/i)
-        .map(function (chunk) {
-          if (/^\{others\}$/i.test(chunk) || /^\{other\}$/i.test(chunk)) {
-            return nameList;
-          }
-          if (!chunk) return "";
-          var linked = linkifyConnectionPhrase(chunk, links, others, textBit);
-          Object.keys(linked.matchedIds).forEach(function (id) {
-            matchedIds[id] = true;
-          });
-          return linked.html;
-        })
-        .join("");
-    } else {
-      var linked = linkifyConnectionPhrase(phrase, links, others, textBit);
-      matchedIds = linked.matchedIds;
-      var paren = formatConnectionOthersParenthetical(
-        others,
-        matchedIds,
-        textBit,
-      );
-      // Keep authored trailing periods terminal — tuck unmatched names in
-      // before the period so complete sentences stay complete.
-      if (paren && /\.\s*$/.test(linked.html)) {
-        linkedPhrase = linked.html.replace(/\.\s*$/, paren + ".");
-      } else {
-        linkedPhrase = linked.html + paren;
-      }
-    }
-
-    // Faction settings: "Fought in the Ballbusting Arena." — no story suffix.
-    if (otherIsFaction) {
-      if (/\.\s*$/.test(linkedPhrase) || /\.\s*$/.test(phrase)) {
-        return linkedPhrase;
-      }
-      return linkedPhrase + textBit(".");
-    }
-
-    // Authored complete sentences (story/setting already embedded) — no suffix.
-    if (/\.\s*$/.test(phrase)) return linkedPhrase;
-
-    if (/\bin\b/i.test(phrase.replace(/\{others\}|\{other\}/gi, "x"))) {
-      return linkedPhrase + textBit(", from ") + storyLink + textBit(".");
-    }
-    return linkedPhrase + textBit(" in ") + storyLink + textBit(".");
   }
 
   function closeConnectionsSpoilerModal() {
@@ -2573,13 +2299,22 @@
     var to = getCharacterById(edge.to);
     var story = getStoryById(edge.storyId);
     var fromName = from ? from.name : edge.from;
-    var label = edge.label || "Connection";
+    var toName = to ? to.name : edge.to;
+    var kinds = connectionEdgeKinds(edge);
+    var kindLabel = kinds
+      .map(function (k) {
+        return CONNECTION_KIND_LABELS[k] || k;
+      })
+      .join(" · ");
     var storyTitle = story ? story.title : "";
     tip.innerHTML =
       "<strong>" +
       escapeHtml(fromName) +
-      "</strong> — " +
-      escapeHtml(label) +
+      "</strong> → " +
+      escapeHtml(toName) +
+      (kindLabel
+        ? " — " + escapeHtml(kindLabel)
+        : "") +
       (storyTitle
         ? '<span class="connections-edge-tooltip-story">' +
           escapeHtml(storyTitle) +
@@ -3033,29 +2768,21 @@
       metaHtml += "</p>";
     }
 
-    var edges = connectionsEdgesForCharacter(charId).filter(
-      function (edge) {
-        if (!connectionEdgePassesKindFilter(edge)) return false;
-        var omit = edge && edge.omitDetailFor;
-        if (!omit || !omit.length) return true;
-        return omit.indexOf(charId) === -1;
-      },
-    );
-    var linkItems = collateConnectionEdgesForDetail(edges, charId);
+    var entries = (connectionsInfopanel[charId] || []).slice().sort(function (a, b) {
+      var ia = storyOrderIndexForCharacter(a && a.storyId, charId);
+      var ib = storyOrderIndexForCharacter(b && b.storyId, charId);
+      return ia - ib;
+    });
     var linksHtml = "";
-    if (linkItems.length) {
+    if (entries.length) {
       linksHtml =
         '<div class="flyout-section"><h3 class="flyout-section-title">Connections</h3>' +
         '<ul class="connections-edge-list">' +
-        linkItems
-          .map(function (item) {
+        entries
+          .map(function (entry) {
             return (
               '<li class="connections-edge-sentence">' +
-              formatConnectionSentenceHtml(
-                item.edge,
-                charId,
-                item.otherIds,
-              ) +
+              formatInfopanelEntryHtml(entry) +
               "</li>"
             );
           })
@@ -3064,7 +2791,7 @@
     } else {
       linksHtml =
         '<div class="flyout-section"><h3 class="flyout-section-title">Connections</h3>' +
-        '<p class="connections-detail-empty">No visible connections for the selected types.</p></div>';
+        '<p class="connections-detail-empty">No connection notes for this character.</p></div>';
     }
 
     detail.innerHTML =
@@ -3227,8 +2954,6 @@
             kinds: [],
             _kindSeen: Object.create(null),
             storyId: e.storyId,
-            label: e.label || "",
-            reverseLabel: e.reverseLabel || "",
             sourceEdges: [],
           };
           order.push(key);
@@ -3245,18 +2970,6 @@
         g.kinds = CONNECTION_KIND_ORDER.filter(function (k) {
           return g._kindSeen[k];
         });
-        if (g.sourceEdges.length > 1) {
-          var labels = [];
-          var seenLab = Object.create(null);
-          g.sourceEdges.forEach(function (se) {
-            var lab = se.label || "";
-            if (lab && !seenLab[lab]) {
-              seenLab[lab] = true;
-              labels.push(lab);
-            }
-          });
-          if (labels.length) g.label = labels.join(" · ");
-        }
         g.source = nodeById[g.from];
         g.target = nodeById[g.to];
         return g;
@@ -4509,27 +4222,35 @@
 
   function ensureConnectionsData() {
     if (connectionsDataReady) return Promise.resolve();
-    if (window.DATA_CONNECTIONS) {
-      connections = normalizeConnectionsData(window.DATA_CONNECTIONS || []);
-      connectionsDataReady = true;
-      return Promise.resolve();
-    }
     if (connectionsDataPromise) return connectionsDataPromise;
-    connectionsDataPromise = new Promise(function (resolve) {
-      var s = document.createElement("script");
-      s.src = "data/connections.js";
-      s.onload = function () {
+
+    function loadScriptOnce(src, flagName) {
+      if (window[flagName]) return Promise.resolve();
+      return new Promise(function (resolve) {
+        var s = document.createElement("script");
+        s.src = src;
+        s.onload = function () {
+          resolve();
+        };
+        s.onerror = function () {
+          resolve();
+        };
+        document.head.appendChild(s);
+      });
+    }
+
+    connectionsDataPromise = loadScriptOnce(
+      "data/connections.js",
+      "DATA_CONNECTIONS",
+    )
+      .then(function () {
+        return loadScriptOnce("data/infopanel.js", "DATA_INFOPANEL");
+      })
+      .then(function () {
         connections = normalizeConnectionsData(window.DATA_CONNECTIONS || []);
+        connectionsInfopanel = window.DATA_INFOPANEL || {};
         connectionsDataReady = true;
-        resolve();
-      };
-      s.onerror = function () {
-        connections = [];
-        connectionsDataReady = true;
-        resolve();
-      };
-      document.head.appendChild(s);
-    });
+      });
     return connectionsDataPromise;
   }
 
@@ -6912,6 +6633,9 @@
     var labelKey = vendor.variant === "kofi" ? "kofiLabel" : "amazonLabel";
     var cells = parts
       .map(function (p, i) {
+        var url =
+          typeof p[vendor.urlKey] === "string" ? p[vendor.urlKey].trim() : "";
+        if (!url) return "";
         var n = typeof p.part === "number" && !isNaN(p.part) ? p.part : i + 1;
         var tooltip =
           vendor.variant === "amazon" && p.kofiUrl
@@ -6919,14 +6643,10 @@
             : null;
         var cellLabel =
           p[labelKey] || "Buy part " + n + " on " + vendor.label + "!";
-        return purchasePartCell(
-          p[vendor.urlKey],
-          cellLabel,
-          vendor.variant,
-          tooltip,
-        );
+        return purchasePartCell(url, cellLabel, vendor.variant, tooltip);
       })
       .join("");
+    if (!cells) return "";
     return '<div class="flyout-purchase-grid">' + cells + "</div>";
   }
 
@@ -6936,6 +6656,7 @@
     var grids = PURCHASE_VENDORS.map(function (v) {
       return purchaseVendorGridHtml(parts, v);
     }).join("");
+    if (!grids) return "";
     return (
       '<div class="flyout-purchase-block">' +
       '<div class="flyout-purchase-grids">' +

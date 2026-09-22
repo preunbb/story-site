@@ -33,15 +33,20 @@
 
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
+import { loadEnvLocal } from "./lib/load-env-local.mjs";
 import {
   loadStories,
   findStory,
-  readStoryMarkdown,
+  readStoryMarkdownForExport,
+  storyForExport,
+  repoRoot,
   slugify,
   escapeHtml,
   splitMarkdownByChapter,
   END_PAGE,
   DEFAULT_OUT_DIR,
+  ANDREA_LUCAS_COMPLETE_STORY_ID,
+  BEREAVEMENT_COUNSELING_STORY_ID,
 } from "./lib/story-render.mjs";
 import {
   AUTHOR,
@@ -88,10 +93,25 @@ function parseArgs(argv) {
 
 /* ---------- Content pages ---------- */
 
-function buildTitlePage(story) {
+function readerPasswordForStory(story) {
+  if (Number(story.id) !== BEREAVEMENT_COUNSELING_STORY_ID) return null;
+  const password = process.env.BEREAVEMENT_READER_PASSWORD?.trim();
+  if (!password) {
+    console.error(
+      "BEREAVEMENT_READER_PASSWORD is not set. Add it to .env.local.",
+    );
+    process.exit(1);
+  }
+  return password;
+}
+
+function buildTitlePage(story, readerPassword) {
   const title = escapeHtml(story.title);
   const summary = story.summary ? escapeHtml(story.summary) : "";
   const author = escapeHtml(AUTHOR);
+  const password = readerPassword
+    ? `    <p class="title-password">Online reader password: ${escapeHtml(readerPassword)}</p>\n`
+    : "";
   return xhtmlPage({
     title: story.title,
     bodyClass: "titlepage",
@@ -100,6 +120,7 @@ function buildTitlePage(story) {
       `    <h1 class="title-main">${title}</h1>\n` +
       (summary ? `    <p class="title-summary">${summary}</p>\n` : "") +
       `    <p class="title-byline">${author}</p>\n` +
+      password +
       `  </section>`,
   });
 }
@@ -308,6 +329,7 @@ ${navPoints.join("\n")}
 /* ---------- main ---------- */
 
 function main() {
+  loadEnvLocal(repoRoot);
   const args = parseArgs(process.argv.slice(2));
   const stories = loadStories();
   const baseStory = findStory(stories, args.id);
@@ -316,18 +338,26 @@ function main() {
     process.exit(1);
   }
 
-  // Shallow copy so a CLI title override doesn't mutate the loaded data.
-  const story = { ...baseStory };
-  if (args.title) story.title = args.title;
+  const story = storyForExport(baseStory, stories, {
+    titleOverride: args.title,
+  });
 
   let markdown;
   try {
-    markdown = readStoryMarkdown(story.id);
+    markdown = readStoryMarkdownForExport(story.id);
   } catch (e) {
     console.error(`Could not read story ${story.id} markdown: ${e.message}`);
-    console.error(`Run \`npm run sync -- --only=${story.id}\` first.`);
+    if (story.id === ANDREA_LUCAS_COMPLETE_STORY_ID) {
+      console.error("Run `npm run sync:andrea-complete` first.");
+    } else if (story.id === BEREAVEMENT_COUNSELING_STORY_ID) {
+      console.error("Run `npm run sync:bereavement` first.");
+    } else {
+      console.error(`Run \`npm run sync -- --only=${story.id}\` first.`);
+    }
     process.exit(1);
   }
+
+  const readerPassword = readerPasswordForStory(story);
 
   const chapters = splitMarkdownByChapter(markdown);
   if (!chapters.length) {
@@ -365,7 +395,7 @@ function main() {
     { name: "OEBPS/styles.css", data: buildStylesheet() },
     {
       name: "OEBPS/text/titlepage.xhtml",
-      data: buildTitlePage(story),
+      data: buildTitlePage(story, readerPassword),
     },
     {
       name: "OEBPS/text/nav.xhtml",

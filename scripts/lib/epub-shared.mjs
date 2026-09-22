@@ -394,6 +394,10 @@ body.cover { margin: 0; padding: 0; }
   text-transform: uppercase;
   margin: 0;
 }
+.titlepage .title-password {
+  margin: 1.4em 0 0;
+  font-size: 1em;
+}
 
 /* Contents */
 .contents-page { page-break-after: always; }

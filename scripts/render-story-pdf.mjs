@@ -13,13 +13,16 @@
  * the full manuscript from dist/andrea-and-lucas-complete/story.md (synced from
  * the canonical Google Doc via `npm run sync:andrea-complete`). Story id 49
  * (Bereavement Counseling) reads dist/bereavement-counseling/story.md (via
- * `npm run sync:bereavement`). Unless --out is
- * set, writes two PDFs (mirroring the EPUB publish convention):
- *   dist/<slug>.pdf             — text-only, scene illustrations stripped
- *   dist/<slug>-illustrated.pdf — same text plus inline scene images
+ * `npm run sync:bereavement`). Unless --out is set, writes a text-only PDF
+ * and a text-only EPUB, both with the story cover:
+ *   dist/<slug>.pdf
+ *   dist/<slug>.epub
  *
- * With --out=, renders a single PDF to that path. Add --no-images to strip
- * scene illustrations from that single export.
+ * With --out=, renders a single PDF to that path. Omit --no-images on that
+ * path to embed scene illustrations.
+ *
+ * Story 49 prints "Online reader password: …" on the contents page, using
+ * BEREAVEMENT_READER_PASSWORD from .env.local.
  */
 
 import {
@@ -31,15 +34,20 @@ import {
 import { dirname, join, resolve } from "node:path";
 import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
+import { pathToFileURL } from "node:url";
+import { loadEnvLocal } from "./lib/load-env-local.mjs";
+import { findStoryCover } from "./lib/epub-shared.mjs";
 import {
   loadStories,
   findStory,
   readStoryMarkdownForExport,
   storyForExport,
+  repoRoot,
   ANDREA_LUCAS_COMPLETE_STORY_ID,
   BEREAVEMENT_COUNSELING_STORY_ID,
   slugify,
   escapeHtml,
+  plainTextFromInlineMarkdown,
   storyMarkdownToSafeHtml,
   extractChapters,
   makePdfSceneRenderer,
@@ -100,12 +108,15 @@ function findChrome() {
 
 /* ---------- HTML document wrapping ---------- */
 
-function buildTocHtml({ title, chapters }) {
+function buildTocHtml({ title, chapters, readerPassword }) {
   if (!chapters || !chapters.length) return "";
+  const passwordHtml = readerPassword
+    ? `<p class="toc-password">Online reader password: ${escapeHtml(readerPassword)}</p>`
+    : "";
   let topNum = 0;
   const items = chapters
     .map((ch) => {
-      const linkTitle = escapeHtml(ch.title);
+      const linkTitle = escapeHtml(plainTextFromInlineMarkdown(ch.title));
       const href = "#" + ch.id;
       topNum += 1;
       return (
@@ -121,6 +132,7 @@ function buildTocHtml({ title, chapters }) {
   return `  <section class="toc-page">
     <p class="toc-eyebrow">Contents</p>
     <h1 class="toc-title">${title}</h1>
+    ${passwordHtml}
     <hr class="toc-flourish" />
     <ol class="toc-list">
       ${items}
@@ -128,10 +140,30 @@ function buildTocHtml({ title, chapters }) {
   </section>`;
 }
 
-function buildHtmlDocument({ story, bodyHtml, chapters }) {
+function readerPasswordForStory(story) {
+  if (Number(story.id) !== BEREAVEMENT_COUNSELING_STORY_ID) return null;
+  const password = process.env.BEREAVEMENT_READER_PASSWORD?.trim();
+  if (!password) {
+    console.error(
+      "BEREAVEMENT_READER_PASSWORD is not set. Add it to .env.local.",
+    );
+    process.exit(1);
+  }
+  return password;
+}
+
+function buildCoverHtml(story) {
+  const cover = findStoryCover(story);
+  if (!cover) return "";
+  const src = escapeHtml(pathToFileURL(cover.src).href);
+  return `  <section class="cover-page">\n    <img src="${src}" alt="" />\n  </section>\n`;
+}
+
+function buildHtmlDocument({ story, bodyHtml, chapters, readerPassword }) {
   const palette = PDF_PRINT_PALETTE;
   const title = escapeHtml(story.title);
-  const tocHtml = buildTocHtml({ title, chapters });
+  const coverHtml = buildCoverHtml(story);
+  const tocHtml = buildTocHtml({ title, chapters, readerPassword });
   const endHtml = buildEndPageHtml();
 
   return `<!doctype html>
@@ -143,6 +175,11 @@ function buildHtmlDocument({ story, bodyHtml, chapters }) {
   @page {
     size: Letter;
     margin: 0.85in 0.75in;
+  }
+  ${
+    coverHtml
+      ? `@page :first { margin: 0; }`
+      : ""
   }
   :root {
     --bg: ${palette.bg};
@@ -163,6 +200,23 @@ function buildHtmlDocument({ story, bodyHtml, chapters }) {
     line-height: 1.6;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+  }
+  .cover-page {
+    width: 8.5in;
+    height: 11in;
+    margin: 0;
+    padding: 0;
+    page-break-after: always;
+    break-after: page;
+    overflow: hidden;
+    background: #fff;
+  }
+  .cover-page img {
+    width: 8.5in;
+    height: 11in;
+    object-fit: contain;
+    object-position: center;
+    display: block;
   }
   article.story-reader-article {
     max-width: 6.25in;
@@ -223,11 +277,17 @@ function buildHtmlDocument({ story, bodyHtml, chapters }) {
   .toc-page .toc-title {
     font-size: 26pt;
     font-weight: 700;
-    margin: 0 0 0.45in;
+    margin: 0 0 0.28in;
     letter-spacing: 0.01em;
     color: var(--ink);
     text-align: center;
     line-height: 1.2;
+  }
+  .toc-page .toc-password {
+    font-size: 12pt;
+    text-align: center;
+    margin: 0 0 0.35in;
+    color: var(--ink);
   }
   .toc-page .toc-flourish {
     border: 0;
@@ -288,7 +348,7 @@ ${PDF_END_PAGE_CSS}
 </style>
 </head>
 <body>
-${tocHtml}
+${coverHtml}${tocHtml}
   <article class="story-reader-article">
 ${bodyHtml}
   </article>
@@ -299,10 +359,11 @@ ${endHtml}
 
 /* ---------- main ---------- */
 
-function renderPdf({ story, markdown, outPath, noImages }) {
+function renderPdf({ story, markdown, outPath, noImages, readerPassword }) {
   const imageMode = noImages ? "strip" : "embed";
   const bodyHtml = storyMarkdownToSafeHtml(markdown, {
     ...READER_OPTS,
+    plainHeadings: true,
     sceneRenderer: makePdfSceneRenderer(story, { imageMode }),
   });
   const chapters = extractChapters(markdown);
@@ -310,6 +371,7 @@ function renderPdf({ story, markdown, outPath, noImages }) {
     story,
     bodyHtml,
     chapters,
+    readerPassword,
   });
 
   const resolvedOut = resolve(outPath);
@@ -352,6 +414,7 @@ function renderPdf({ story, markdown, outPath, noImages }) {
 }
 
 function main() {
+  loadEnvLocal(repoRoot);
   const args = parseArgs(process.argv.slice(2));
   const stories = loadStories();
   const baseStory = findStory(stories, args.id);
@@ -380,6 +443,7 @@ function main() {
   }
 
   const slug = slugify(story.title);
+  const readerPassword = readerPasswordForStory(story);
 
   if (args.output) {
     renderPdf({
@@ -387,19 +451,7 @@ function main() {
       markdown,
       outPath: args.output,
       noImages: args.noImages,
-    });
-    return;
-  }
-
-  const textOnlyPath = join(DEFAULT_OUT_DIR, `${slug}.pdf`);
-  const illustratedPath = join(DEFAULT_OUT_DIR, `${slug}-illustrated.pdf`);
-
-  if (args.noImages) {
-    renderPdf({
-      story,
-      markdown,
-      outPath: textOnlyPath,
-      noImages: true,
+      readerPassword,
     });
     return;
   }
@@ -407,15 +459,27 @@ function main() {
   renderPdf({
     story,
     markdown,
-    outPath: textOnlyPath,
+    outPath: join(DEFAULT_OUT_DIR, `${slug}.pdf`),
     noImages: true,
+    readerPassword,
   });
-  renderPdf({
-    story,
-    markdown,
-    outPath: illustratedPath,
-    noImages: false,
-  });
+
+  const epubScript = join(repoRoot, "scripts", "render-story-epub.mjs");
+  const epubPath = join(DEFAULT_OUT_DIR, `${slug}.epub`);
+  const epub = spawnSync(
+    process.execPath,
+    [
+      epubScript,
+      String(story.id),
+      `--title=${story.title}`,
+      "--no-images",
+      `--out=${epubPath}`,
+    ],
+    { cwd: repoRoot, stdio: "inherit" },
+  );
+  if (epub.status !== 0) {
+    process.exit(epub.status || 1);
+  }
 }
 
 main();

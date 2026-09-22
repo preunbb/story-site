@@ -1,6 +1,6 @@
 # <span class="doc-size-20pt">Chapter 1: Denial</span>
 
-Stuart laid back on the therapist’s couch, still feeling too anxious to really relax. It was his first therapy session ever, and he was dreading bringing up the thing that had driven him to book Dr. Karen. But the loss of his testicle had brought about feelings and emotions he’d never had before, and it was starting to seriously impact his life. He knew he needed help.
+Stuart lay back on the therapist’s couch, still feeling too anxious to really relax. It was his first therapy session ever, and he was dreading bringing up the thing that had driven him to book Dr. Karen. But the loss of his testicle had brought about feelings and emotions he’d never had before, and it was starting to seriously impact his life. He knew he needed help.
 
 “So, what brings you into my office, Stuart? Stu or Stuart, which do you prefer?” The attractive older brunette was wearing a hip-hugging black skirt that nearly covered her knees and a professional white blouse. Stuart tried not to look up the crevice between her shapely thighs; he was here for therapy, after all. And that was the exact habit that had led him here in the first place…
 

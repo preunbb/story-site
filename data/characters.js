@@ -13,7 +13,7 @@ window.DATA_CHARACTERS = [
     name: "Jenny",
     gender: "F",
     testiclesKilled: 9,
-    bio: "A high school goth who's grown into a professional dominatrix. Intense, expensive tastes, and a flair for the theatrical.",
+    bio: "A goth who's grown into a professional dominatrix. Intense, expensive tastes, and a flair for the theatrical.",
     profilePictures: ["assets/characters/jenny.jpg"],
   },
   {
@@ -36,7 +36,7 @@ window.DATA_CHARACTERS = [
     id: "sam",
     name: "Sam",
     gender: "M",
-    bio: "High school senior with an exceptionally full scrotum. Tries his hardest to keep it that way, much to the chagrin of his swim instructor.",
+    bio: "College freshman with an exceptionally full scrotum. Tries his hardest to keep it that way, much to the chagrin of his swim instructor.",
     profilePictures: ["assets/characters/sam_three_strikes_cover_match_v1.png"],
   },
   {
@@ -102,7 +102,7 @@ window.DATA_CHARACTERS = [
     name: "Venn",
     gender: "M",
     bio: "One of the male fighters. Ends up on the wrong end of Vivian's attention.",
-    profilePictures: ["assets/characters/venn_v1.png"],
+    profilePictures: ["assets/characters/venn_v3.png"],
   },
   {
     id: "roger",
@@ -854,10 +854,17 @@ window.DATA_CHARACTERS = [
   },
   {
     id: "broken_tree_cultists",
-    name: "Brainwashed Male Cultists of the Church of the Broken Tree",
+    name: "Church males",
     gender: "M",
-    bio: "Anonymous ranks of Church half-men and converts. Brainwashed into worshipping Eve as high mistress and obeying Abby and Kay as their superior female cultists. Eve takes their left testicles; when Andrea, Izzie, and Tamara storm the compound, these devoted males lose their remaining right ones en masse.",
+    bio: "Anonymous ranks of brainwashed Church of the Broken Tree half-men and converts. Brainwashed into worshipping Eve as high mistress and obeying Abby and Kay as their superior female cultists. Eve takes their left testicles; when Andrea, Izzie, and Tamara storm the compound, these devoted males lose their remaining right ones en masse.",
     profilePictures: ["assets/characters/broken_tree_cultists_cast_v3.png"],
+    // Longer aliases only — short "males"/"cultists" are wired per-edge via
+    // labelLinks so they don't hyperlink unrelated connection sentences.
+    connectionMatchAliases: [
+      "male cultists",
+      "Brainwashed male cultists",
+      "Brainwashed Male Cultists of the Church of the Broken Tree",
+    ],
   },
   {
     id: "stuart",

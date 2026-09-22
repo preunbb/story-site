@@ -565,9 +565,15 @@ export function storyMarkdownToSafeHtml(markdown, opts) {
     const heading = parseChapterHeading(block);
     if (heading) {
       const tag = heading.level === 2 ? "h2" : "h3";
-      const inner = hasPreservedInlineHtml(heading.title)
-        ? formatBodyInline(heading.title, opts)
-        : readerFormatEscapedInline(escapeHtml(heading.title), opts);
+      const inner =
+        opts && opts.plainHeadings
+          ? readerFormatEscapedInline(
+              escapeHtml(plainTextFromInlineMarkdown(heading.title)),
+              opts,
+            )
+          : hasPreservedInlineHtml(heading.title)
+            ? formatBodyInline(heading.title, opts)
+            : readerFormatEscapedInline(escapeHtml(heading.title), opts);
       const id = "story-ch-" + chapterIndex++;
       out.push(
         `<${tag} id="${id}" class="story-reader-chapter story-reader-chapter--h${heading.level}">${inner}</${tag}>`,

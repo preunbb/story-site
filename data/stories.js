@@ -60,8 +60,7 @@ window.DATA_BEREAVEMENT_FULL = {
   title: "Bereavement Counseling: The Five Stages of Grieving a Testicle",
   cover: "assets/covers/bereavement.png",
   access: "password",
-  /** Flip to true when the paid full manuscript is ready to expose. */
-  available: false,
+  available: true,
   storyCiphertext: "assets/stories/bereavement-counseling.enc.json",
   passwordGateHash:
     "734f58260d6a716777b67d48e80ff7db0a513d6bf7096e6b4061b3bad4901d48",
@@ -69,13 +68,7 @@ window.DATA_BEREAVEMENT_FULL = {
   passwordKeyDomain: "story-site:bereavement-counseling:key:",
   /** Short tip shown above the password field. */
   passwordHint:
-    "Enter the password included with your purchase of this story.",
-  /**
-   * Longer copy on the unlock page (above buy links). Edit freely —
-   * e.g. where to buy, what the password email looks like, refunds, etc.
-   */
-  passwordUnlockInstructions:
-    "TODO: Replace this with reader-facing instructions (how to buy, where the password is sent, etc.).",
+    "Enter the password included with your copy of this story.",
   purchaseParts: BEREAVEMENT_PURCHASE_PARTS,
   detailsStoryId: 49,
   catalogHidden: true,
@@ -1768,6 +1761,7 @@ window.DATA_STORIES = [
       "sofia",
       "alyssa",
       "yvette",
+      "tamara",
     ],
     state: 3,
     releaseDate: "2026-08-09",

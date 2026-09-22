@@ -1,4 +1,4 @@
-// Assembles site data from data/*.js (connections.js is lazy-loaded on the Connections tab)
+// Assembles site data from data/*.js (connections.js + infopanel.js are lazy-loaded on the Connections tab)
 window.DATA_SOURCE = {
   characters: window.DATA_CHARACTERS || [],
   stories: window.DATA_STORIES || [],
