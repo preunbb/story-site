@@ -434,9 +434,10 @@ window.DATA_CHARACTERS = [
     id: "michelle",
     name: "Michelle",
     gender: "F",
-    bio: "Blonde receptionist at the clinic. Knows the Drip and Snip special by heart; used to the stream of testicular injuries.",
+    bio: "Former cheerleader turned receptionist, Michelle works intake for a variety of clinics and therapists around town. She's gotten used to seeing men hobbling out of her clinic missing bits that they had arrived with.",
     profilePictures: [
       "assets/characters/michelle_desk_wave_curvy_v2.png",
+      "assets/characters/michelle_college_cheerleader_high_kick_v1.png",
     ],
   },
   {
