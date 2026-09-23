@@ -878,14 +878,14 @@ window.DATA_CHARACTERS = [
   },
   {
     id: "beverly",
-    name: "Beverly",
+    name: "Lauren",
     gender: "F",
     bio: "Stuart's mom. Voluptuous, confident. Has recently decided she doesn't necessarily need to have grandchildren.",
     profilePictures: ["assets/characters/beverly_v2.png"],
   },
   {
     id: "lauren",
-    name: "Lauren",
+    name: "Beverly",
     gender: "F",
     bio: "Stuart's younger sister. Casual, blunt, and happy to join mom in kicking some sense into her brother.",
     profilePictures: ["assets/characters/lauren_v1.png"],
