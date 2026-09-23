@@ -111,8 +111,9 @@ window.DATA_STORIES = [
           "Strike one — Jenny's heel finds Sam's left nut behind the portables.",
       },
       {
-        path: "assets/scenes/three_strikes/michelle_cheerleader_right_ball_kick_v1.png",
-        caption: "Strike two — Michelle's cheer-routine punt to the right one.",
+        path: "assets/scenes/three_strikes/michelle_cheer_kick_three_bulges_v4.png",
+        caption:
+          "Michelle's sneaker connects with the middle of Sam's three bulges.",
       },
       {
         path: "assets/scenes/three_strikes/cathy_allan_utility_closet_knees_v1.png",
