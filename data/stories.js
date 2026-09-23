@@ -1778,6 +1778,16 @@ window.DATA_STORIES = [
         releaseDate: "2026-09-23",
       },
     ],
+    chapterShares: [
+      {
+        chapter: 1,
+        title: "Bereavement Counseling — Chapter 1: Denial",
+      },
+      {
+        chapter: 2,
+        title: "Bereavement Counseling — Chapter 2: Anger",
+      },
+    ],
     tags: ["Premium Story", "New to Reddit"],
     purchaseParts: BEREAVEMENT_PURCHASE_PARTS,
     previewRead: {
