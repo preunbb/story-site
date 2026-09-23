@@ -382,7 +382,7 @@ window.DATA_CHARACTERS = [
     name: "Queen Mother",
     gender: "F",
     bio: "Atheras's mother and queen after his father abdicated. Calm, kind-faced, and quietly domineering—protective to a fault, she keeps her sons from hunts, dances, and danger, and once stopped the royal surgeon from circumcising Atheras.",
-    profilePictures: ["assets/characters/queen_mother_cast_v1.png"],
+    profilePictures: ["assets/characters/queen_mother_cast_v3.png"],
   },
   {
     id: "lurian",
