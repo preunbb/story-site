@@ -205,6 +205,10 @@
         -->
         <div class="stories-panel-header">
           <h1>Stories</h1>
+        </div>
+        <details class="story-controls">
+          <summary class="story-controls-summary">Controls</summary>
+          <div class="story-controls-body">
           <div class="ai-images-toggle" id="ai-images-toggle-wrap">
             <span
               class="ai-images-toggle-label ai-images-toggle-label--list"
@@ -240,8 +244,7 @@
               }
             } catch (e) {}
           </script>
-        </div>
-        <div class="story-filters">
+          <div class="story-filters">
           <div class="tag-selector-wrap">
             <label for="tag-select" class="tag-selector-label"
               >Filter by tag</label
@@ -316,7 +319,9 @@
               </select>
             </div>
           </div>
-        </div>
+          </div>
+          </div>
+        </details>
         <div class="stories-grid" id="stories-grid">
           <!-- Injected by JS from data/stories.js / characters.js -->
         </div>
