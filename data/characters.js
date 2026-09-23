@@ -880,7 +880,7 @@ window.DATA_CHARACTERS = [
     id: "beverly",
     name: "Lauren",
     gender: "F",
-    bio: "Stuart's mom. Voluptuous, confident. Has recently decided she doesn't necessarily need to have grandchildren.",
+    bio: "Stuart's mom. Voluptuous, confident. Has recently decided she doesn't necessarily need to have grandchildren, at least not from all of her children.",
     profilePictures: ["assets/characters/beverly_v2.png"],
   },
   {
