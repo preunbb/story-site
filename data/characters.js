@@ -435,7 +435,9 @@ window.DATA_CHARACTERS = [
     name: "Michelle",
     gender: "F",
     bio: "Blonde receptionist at the clinic. Knows the Drip and Snip special by heart; used to the stream of testicular injuries.",
-    profilePictures: ["assets/characters/michelle.jpg"],
+    profilePictures: [
+      "assets/characters/michelle_desk_wave_curvy_v2.png",
+    ],
   },
   {
     id: "hato",
