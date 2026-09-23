@@ -60,9 +60,9 @@ import {
   buildCoverPage,
   buildStylesheet,
   collectReferencedSceneImages,
-  coverFromAbsolutePath,
   deterministicUuid,
   findStoryCover,
+  titledCoverFromArtwork,
   nowIsoSecond,
   xhtmlPage,
 } from "./lib/epub-shared.mjs";
@@ -432,11 +432,17 @@ function main() {
     args.title || defaultAnthologyTitle(stories.map((e) => e.story));
   const anthologySummary = args.summary || null;
 
-  const cover = args.cover ? coverFromAbsolutePath(resolve(args.cover)) : null;
-  if (args.cover && !cover) {
-    console.error(
-      `Cover not found or unsupported format: ${args.cover}. Continuing without cover.`,
-    );
+  const artworkPath = args.cover
+    ? resolve(args.cover)
+    : findStoryCover(stories[0].story)?.src;
+  let cover = null;
+  if (artworkPath) {
+    try {
+      cover = titledCoverFromArtwork(artworkPath, anthologyTitle);
+    } catch (e) {
+      console.error(`Could not build the cover: ${e.message}`);
+      process.exit(1);
+    }
   }
 
   const uuid = deterministicUuid(

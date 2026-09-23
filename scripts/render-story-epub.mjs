@@ -8,7 +8,8 @@
  *
  *   - One XHTML file per chapter so e-readers get clean chapter navigation.
  *   - EPUB 3 nav doc + EPUB 2 toc.ncx (Kindle still consults the NCX).
- *   - Cover image embedded with cover-image properties.
+ *   - Cover image embedded with cover-image properties. The cover is the
+ *     catalog art with the title and "by Preun BB" burned into the margins.
  *   - No background colors / fixed sizes so the user's dark/light/font
  *     preferences continue to work on-device.
  *
@@ -22,8 +23,8 @@
  *   --title=    Override the story's display title (used everywhere the title
  *               appears: dc:title metadata, title page, contents, NCX, and the
  *               default output filename slug).
- *   --no-cover  Build the EPUB without a cover page or cover image. Useful when
- *               KDP / a publisher will supply the cover separately.
+ *   --no-cover  Build the EPUB without a cover page or cover image. The default
+ *               cover includes the title and author byline.
  *   --no-images Strip inline `[[scene:…]]` scene illustrations from the story.
  *               By default scene tags are resolved against story.scenes and the
  *               matching image is embedded inline (with caption). Use this flag
@@ -58,7 +59,7 @@ import {
   buildStylesheet,
   collectReferencedSceneImages,
   deterministicUuid,
-  findStoryCover,
+  titledCoverForStory,
   nowIsoSecond,
   xhtmlPage,
 } from "./lib/epub-shared.mjs";
@@ -364,7 +365,15 @@ function main() {
     console.error(`Story ${story.id} has no content.`);
     process.exit(1);
   }
-  const cover = args.noCover ? null : findStoryCover(story);
+  let cover = null;
+  if (!args.noCover) {
+    try {
+      cover = titledCoverForStory(story);
+    } catch (e) {
+      console.error(`Could not build the cover: ${e.message}`);
+      process.exit(1);
+    }
+  }
   const modified = nowIsoSecond();
 
   // Decide what to do with [[scene:…]] tags. In "embed" mode we collect the

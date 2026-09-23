@@ -295,7 +295,18 @@ def render_overlays(image_path: Path, output_path: Path, title: str, author: str
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("story_id", type=int, help="Story id from data/stories.js.")
+    parser.add_argument(
+        "story_id",
+        nargs="?",
+        type=int,
+        default=None,
+        help="Story id from data/stories.js. Omit when --artwork is set.",
+    )
+    parser.add_argument(
+        "--artwork",
+        default=None,
+        help="Source image to letterbox and title. Skips the stories.js lookup.",
+    )
     parser.add_argument(
         "--title",
         default=None,
@@ -313,22 +324,30 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    story = lookup_story(args.story_id)
-    cover_rel = story.get("cover")
-    if not cover_rel:
-        raise SystemExit(f"story {story['id']} has no cover field in data/stories.js")
-    cover_path = (REPO_ROOT / cover_rel).resolve()
+    story = None
+    if args.artwork:
+        cover_path = Path(args.artwork).resolve()
+        if args.title is None:
+            raise SystemExit("--title is required with --artwork")
+        title_text = args.title
+    else:
+        if args.story_id is None:
+            raise SystemExit("pass a story id, or --artwork with --title")
+        story = lookup_story(args.story_id)
+        cover_rel = story.get("cover")
+        if not cover_rel:
+            raise SystemExit(f"story {story['id']} has no cover field in data/stories.js")
+        cover_path = (REPO_ROOT / cover_rel).resolve()
+        title_text = args.title if args.title is not None else story["title"]
     if not cover_path.is_file():
         raise SystemExit(f"cover image not found: {cover_path}")
-
-    title_text = args.title if args.title is not None else story["title"]
 
     if args.output:
         output_path = Path(args.output).resolve()
     else:
         # When --title is supplied, slug the output filename from it too so
         # `dist/covers/<slug>.jpg` lines up with the EPUB's <slug>.epub.
-        slug = slugify(title_text) or f"story-{story['id']}"
+        slug = slugify(title_text) or (f"story-{story['id']}" if story else "cover")
         output_path = (REPO_ROOT / "dist" / "covers" / f"{slug}.jpg").resolve()
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -340,10 +359,12 @@ def main() -> int:
     finally:
         sized_path.unlink(missing_ok=True)
 
-    print(
-        f"[ok] story {story['id']} '{story['title']}' -> {output_path} "
-        f"({final_w}x{final_h})"
+    label = (
+        f"story {story['id']} '{story['title']}'"
+        if story
+        else f"artwork '{title_text}'"
     )
+    print(f"[ok] {label} -> {output_path} ({final_w}x{final_h})")
     return 0
 
 

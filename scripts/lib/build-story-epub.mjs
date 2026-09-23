@@ -17,7 +17,7 @@ import {
   collectReferencedSceneImages,
   coverFromAbsolutePath,
   deterministicUuid,
-  findStoryCover,
+  titledCoverForStory,
   nowIsoSecond,
   xhtmlPage,
 } from "./epub-shared.mjs";
@@ -254,11 +254,14 @@ export function writeStoryEpub({
     throw new Error("markdown has no chapter content");
   }
 
-  const cover = noCover
-    ? null
-    : coverPath
-      ? coverFromAbsolutePath(resolve(coverPath))
-      : findStoryCover(story);
+  let cover = null;
+  if (!noCover) {
+    if (coverPath) {
+      cover = coverFromAbsolutePath(resolve(coverPath));
+    } else {
+      cover = titledCoverForStory(story);
+    }
+  }
   const modified = nowIsoSecond();
   const imageMode = noImages ? "strip" : "embed";
   let sceneImages = [];

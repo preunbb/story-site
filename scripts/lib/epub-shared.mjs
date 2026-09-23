@@ -13,7 +13,9 @@
  * formats arrange chapters differently.
  */
 
+import { spawnSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { basename, extname, join } from "node:path";
 import { createHash } from "node:crypto";
 import {
@@ -31,6 +33,8 @@ import {
 /* ---------- Constants ---------- */
 
 export const AUTHOR = "Preun";
+/** Burned into every EPUB cover image. Matches scripts/make_cover.py. */
+export const COVER_BYLINE = "by Preun BB";
 export const NS_UUID = "urn:uuid:9b9b1d60-7c1c-5a6a-9d0a-preun-story-site";
 
 export const READER_OPTS = {
@@ -102,6 +106,51 @@ export function findStoryCover(story) {
 // For renderers that accept an explicit cover path on the CLI.
 export function coverFromAbsolutePath(absPath) {
   return coverDescriptorForPath(absPath);
+}
+
+function pythonForCovers() {
+  const venv = join(repoRoot, ".venv-crop", "bin", "python3");
+  return existsSync(venv) ? venv : "python3";
+}
+
+/**
+ * Letterbox catalog art and burn the title plus the author byline into the
+ * margins. Every EPUB cover goes through this so the image itself carries
+ * the title and pseudonym, not only the following title page.
+ */
+export function titledCoverFromArtwork(artworkPath, title, author = COVER_BYLINE) {
+  if (!artworkPath || !existsSync(artworkPath) || !title) return null;
+  const stamp = createHash("sha1")
+    .update(`${artworkPath}\0${title}\0${author}`)
+    .digest("hex")
+    .slice(0, 16);
+  const out = join(tmpdir(), `story-site-cover-${stamp}.jpg`);
+  const result = spawnSync(
+    pythonForCovers(),
+    [
+      join(repoRoot, "scripts", "make_cover.py"),
+      "--artwork",
+      artworkPath,
+      "--title",
+      title,
+      "--author",
+      author,
+      "-o",
+      out,
+    ],
+    { cwd: repoRoot, encoding: "utf8" },
+  );
+  if (result.status !== 0) {
+    const detail = (result.stderr || result.stdout || "cover render failed").trim();
+    throw new Error(detail);
+  }
+  return coverDescriptorForPath(out);
+}
+
+export function titledCoverForStory(story, titleOverride) {
+  const raw = findStoryCover(story);
+  if (!raw) return null;
+  return titledCoverFromArtwork(raw.src, titleOverride || story.title);
 }
 
 /* ---------- XHTML helpers ---------- */

@@ -15,8 +15,9 @@
  *                                    images embedded inline (with captions),
  *                                    for direct distribution to readers who
  *                                    want the illustrated experience.
- *      Both are built WITHOUT a cover page; the cover JPEG is intended to be
- *      uploaded separately (e.g. to KDP).
+ *      Both include a cover page with the title and author byline burned
+ *      into the image. The standalone JPEG is still written for a separate
+ *      KDP cover upload.
  *   3. scripts/render-story-pdf.mjs — same two variants as PDF:
  *        - <slug>.pdf             : text-only
  *        - <slug>-illustrated.pdf : with inline scene images
@@ -113,7 +114,6 @@ function main() {
     "scripts/render-story-epub.mjs",
     String(id),
     `--title=${title}`,
-    "--no-cover",
     "--no-images",
     `--out=${textOnlyPath}`,
   ]);
@@ -122,7 +122,6 @@ function main() {
     "scripts/render-story-epub.mjs",
     String(id),
     `--title=${title}`,
-    "--no-cover",
     `--out=${illustratedPath}`,
   ]);
 
