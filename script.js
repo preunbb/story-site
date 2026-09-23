@@ -6633,23 +6633,24 @@
     { variant: "amazon", urlKey: "amazonUrl", label: "Amazon" },
   ];
 
-  function purchaseVendorGridHtml(parts, vendor) {
-    var labelKey = vendor.variant === "kofi" ? "kofiLabel" : "amazonLabel";
-    var cells = parts
-      .map(function (p, i) {
-        var url =
-          typeof p[vendor.urlKey] === "string" ? p[vendor.urlKey].trim() : "";
-        if (!url) return "";
-        var n = typeof p.part === "number" && !isNaN(p.part) ? p.part : i + 1;
-        var tooltip =
-          vendor.variant === "amazon" && p.kofiUrl
-            ? KOFI_PREFERENCE_TOOLTIP
-            : null;
-        var cellLabel =
-          p[labelKey] || "Buy part " + n + " on " + vendor.label + "!";
-        return purchasePartCell(url, cellLabel, vendor.variant, tooltip);
-      })
-      .join("");
+  function purchasePartRowHtml(part, index) {
+    var n =
+      typeof part.part === "number" && !isNaN(part.part) ? part.part : index + 1;
+    var cells = PURCHASE_VENDORS.map(function (vendor) {
+      var labelKey = vendor.variant === "kofi" ? "kofiLabel" : "amazonLabel";
+      var url =
+        typeof part[vendor.urlKey] === "string"
+          ? part[vendor.urlKey].trim()
+          : "";
+      if (!url) return '<span class="flyout-purchase-slot" aria-hidden="true"></span>';
+      var tooltip =
+        vendor.variant === "amazon" && part.kofiUrl
+          ? KOFI_PREFERENCE_TOOLTIP
+          : null;
+      var cellLabel =
+        part[labelKey] || "Buy part " + n + " on " + vendor.label + "!";
+      return purchasePartCell(url, cellLabel, vendor.variant, tooltip);
+    }).join("");
     if (!cells) return "";
     return '<div class="flyout-purchase-grid">' + cells + "</div>";
   }
@@ -6657,14 +6658,16 @@
   function formatPurchasePartsFlyoutHtml(story) {
     var parts = story.purchaseParts;
     if (!parts || !parts.length) return "";
-    var grids = PURCHASE_VENDORS.map(function (v) {
-      return purchaseVendorGridHtml(parts, v);
-    }).join("");
-    if (!grids) return "";
+    var rows = parts
+      .map(function (part, i) {
+        return purchasePartRowHtml(part, i);
+      })
+      .join("");
+    if (!rows) return "";
     return (
       '<div class="flyout-purchase-block">' +
       '<div class="flyout-purchase-grids">' +
-      grids +
+      rows +
       "</div></div>"
     );
   }

@@ -21,8 +21,8 @@ var BEREAVEMENT_PURCHASE_PARTS = [
     part: 1,
     kofiUrl: "https://ko-fi.com/s/ada3de9443",
     amazonUrl: "https://www.amazon.com/dp/B0HKSVK3ZJ",
-    kofiLabel: "Buy on Ko-fi",
-    amazonLabel: "Buy on Amazon",
+    kofiLabel: "Buy for $3.99 on Ko-fi",
+    amazonLabel: "Buy for $4.99 on Amazon",
   },
 ];
 
