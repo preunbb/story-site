@@ -10,6 +10,7 @@
  *   - EPUB 3 nav doc + EPUB 2 toc.ncx (Kindle still consults the NCX).
  *   - Cover image embedded with cover-image properties. The cover is the
  *     catalog art with the title and "by Preun BB" burned into the margins.
+ *     The same image is written as a plain JPEG at dist/covers/<slug>.jpg.
  *   - No background colors / fixed sizes so the user's dark/light/font
  *     preferences continue to work on-device.
  *

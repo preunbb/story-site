@@ -31,6 +31,8 @@
  *     [--out=path/to/output.epub] \
  *     [--no-images]
  *
+ * The titled cover is also written as a plain JPEG at dist/covers/<slug>.jpg.
+ *
  *   --no-images Strip inline `[[scene:…]]` illustrations from every story.
  *               Default behavior is to embed them per-story (with a stable
  *               image-id prefix so two stories' scenes can't collide).

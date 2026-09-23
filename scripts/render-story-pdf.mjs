@@ -14,9 +14,10 @@
  * the canonical Google Doc via `npm run sync:andrea-complete`). Story id 49
  * (Bereavement Counseling) reads dist/bereavement-counseling/story.md (via
  * `npm run sync:bereavement`). Unless --out is set, writes a text-only PDF
- * and a text-only EPUB, both with the story cover:
+ * and a text-only EPUB, both with the story cover, plus a plain cover JPEG:
  *   dist/<slug>.pdf
  *   dist/<slug>.epub
+ *   dist/covers/<slug>.jpg
  *
  * With --out=, renders a single PDF to that path. Omit --no-images on that
  * path to embed scene illustrations.
@@ -36,7 +37,7 @@ import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { pathToFileURL } from "node:url";
 import { loadEnvLocal } from "./lib/load-env-local.mjs";
-import { findStoryCover } from "./lib/epub-shared.mjs";
+import { findStoryCover, titledCoverForStory } from "./lib/epub-shared.mjs";
 import {
   loadStories,
   findStory,
@@ -445,7 +446,16 @@ function main() {
   const slug = slugify(story.title);
   const readerPassword = readerPasswordForStory(story);
 
+  // --out renders a PDF only, so the EPUB step never runs. Still leave the
+  // titled cover as a plain JPEG. The default path writes that file when it
+  // builds the EPUB.
   if (args.output) {
+    try {
+      titledCoverForStory(story);
+    } catch (e) {
+      console.error(`Could not build the cover: ${e.message}`);
+      process.exit(1);
+    }
     renderPdf({
       story,
       markdown,

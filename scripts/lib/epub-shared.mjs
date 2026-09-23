@@ -15,7 +15,6 @@
 
 import { spawnSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
-import { tmpdir } from "node:os";
 import { basename, extname, join } from "node:path";
 import { createHash } from "node:crypto";
 import {
@@ -28,6 +27,7 @@ import {
   DOC_FONT_CSS,
   renderBodyBlocks,
   plainTextFromInlineMarkdown,
+  slugify,
 } from "./story-render.mjs";
 
 /* ---------- Constants ---------- */
@@ -113,18 +113,27 @@ function pythonForCovers() {
   return existsSync(venv) ? venv : "python3";
 }
 
+/** Standalone JPEG written beside every EPUB. Same slug as dist/<slug>.epub. */
+export function defaultCoverJpegPath(title) {
+  const slug = slugify(title) || "cover";
+  return join(repoRoot, "dist", "covers", `${slug}.jpg`);
+}
+
 /**
  * Letterbox catalog art and burn the title plus the author byline into the
- * margins. Every EPUB cover goes through this so the image itself carries
- * the title and pseudonym, not only the following title page.
+ * margins. Writes a plain JPEG at dist/covers/<slug>.jpg (or outPath) and
+ * returns that file so the EPUB can embed it. New export scripts should call
+ * this, or make_cover.py with -o pointing at defaultCoverJpegPath, instead of
+ * embedding the raw catalog art.
  */
-export function titledCoverFromArtwork(artworkPath, title, author = COVER_BYLINE) {
+export function titledCoverFromArtwork(
+  artworkPath,
+  title,
+  author = COVER_BYLINE,
+  outPath = null,
+) {
   if (!artworkPath || !existsSync(artworkPath) || !title) return null;
-  const stamp = createHash("sha1")
-    .update(`${artworkPath}\0${title}\0${author}`)
-    .digest("hex")
-    .slice(0, 16);
-  const out = join(tmpdir(), `story-site-cover-${stamp}.jpg`);
+  const out = outPath || defaultCoverJpegPath(title);
   const result = spawnSync(
     pythonForCovers(),
     [
@@ -144,6 +153,7 @@ export function titledCoverFromArtwork(artworkPath, title, author = COVER_BYLINE
     const detail = (result.stderr || result.stdout || "cover render failed").trim();
     throw new Error(detail);
   }
+  console.log(`Cover JPEG: ${out}`);
   return coverDescriptorForPath(out);
 }
 

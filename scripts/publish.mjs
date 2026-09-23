@@ -93,18 +93,19 @@ function main() {
 
   console.log(`[publish] story id ${id}, title "${title}"`);
 
+  // The EPUB renderer's default filename is `dist/<slugify(title)>.epub`.
+  // The plain cover JPEG uses the same slug so it sits next to that book.
+  const slug = slugify(title) || "story";
+  const coverJpeg = `dist/covers/${slug}.jpg`;
+
   run("rendering cover", pythonInterpreter(), [
     "scripts/make_cover.py",
     String(id),
     "--title",
     title,
+    "-o",
+    coverJpeg,
   ]);
-
-  // The EPUB renderer's default filename is `dist/<slugify(title)>.epub`.
-  // Mirror that slug here so the text-only variant lands at the canonical
-  // path (back-compat) and the illustrated variant lands beside it with a
-  // clear suffix. Both go to `dist/` via the same default out dir.
-  const slug = slugify(title) || "story";
   const textOnlyPath = `dist/${slug}.epub`;
   const illustratedPath = `dist/${slug}-illustrated.epub`;
   const textOnlyPdfPath = `dist/${slug}.pdf`;
