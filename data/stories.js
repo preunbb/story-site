@@ -19,8 +19,8 @@ var ANDREA_LUCAS_PURCHASE_PARTS = [
 var BEREAVEMENT_PURCHASE_PARTS = [
   {
     part: 1,
-    kofiUrl: "",
-    amazonUrl: "",
+    kofiUrl: "https://ko-fi.com/s/ada3de9443",
+    amazonUrl: "https://www.amazon.com/dp/B0HKSVK3ZJ",
     kofiLabel: "Buy on Ko-fi",
     amazonLabel: "Buy on Amazon",
   },
@@ -1764,20 +1764,26 @@ window.DATA_STORIES = [
       "yvette",
       "tamara",
     ],
-    state: 3,
-    releaseDate: "2026-08-09",
+    state: 2,
+    releaseDate: "2026-09-23",
     chapterReleases: [
       {
         chapter: 1,
         title: "Chapter 1: Denial",
         releaseDate: "2026-08-09",
       },
+      {
+        chapter: 2,
+        title: "Chapter 2: Anger",
+        releaseDate: "2026-09-23",
+      },
     ],
     tags: ["Premium Story", "New to Reddit"],
+    purchaseParts: BEREAVEMENT_PURCHASE_PARTS,
     previewRead: {
       md: "assets/stories/49-preview.md",
       fromChapter: 1,
-      toChapter: 1,
+      toChapter: 2,
     },
   },
 ];

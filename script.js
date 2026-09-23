@@ -545,7 +545,6 @@
       coverHtml +
       buyBarHtml +
       storyMarkdownToSafeHtml(bodyMd, story) +
-      buyBarHtml +
       formatStoryPreviewPurchaseHtml(story);
     setupStoryReaderChapters();
   }
@@ -812,11 +811,16 @@
         : null;
     var restLabel =
       partOrder != null ? "the rest of part " + partOrder : "the rest";
+    var stores = [kofiUrl ? "Ko-fi" : "", amazonUrl ? "Amazon" : ""]
+      .filter(Boolean)
+      .join(" and ");
     var text =
-      kofiUrl || amazonUrl
+      stores
         ? "If you enjoyed this, and want to read hundreds more pages about shattered testicles, ruined reproductive abilities, and all sorts of man-destroying, woman-dominating exploits, " +
           restLabel +
-          " is now available on Ko-fi and Amazon!"
+          " is now available on " +
+          stores +
+          "!"
         : "Enjoyed the preview? Unlock the full story with your purchase password.";
     var purchasePart = storyPreviewPurchasePart(story);
     var kofiBuyLabel =

@@ -349,3 +349,193 @@ How Karen had known he’d ask this exact question, she had no idea. The woman h
 “Don’t you mean later this week? The doctor has you set up for Friday, it looks like.”
 
 He shuddered. “Of course. I’ll see you Friday.” Stuart hobbled off, clearly dreading his next appointment.
+
+# <span class="doc-size-20pt">Chapter 2: Anger</span>
+
+Stuart hobbled into Dr. Karen’s office for his next appointment, his ball throbbing with pain. He’d mostly recovered from his previous therapy session, although some particularly bad bruises still lingered on his testicle, but the incident at the grocery store yesterday had added a bloom of purples and blues to his solitary sex organ. He set himself down gingerly on the couch, barely wincing at the pain.
+
+“Hello Dr. Karen.”
+
+“Welcome back, Stuart. Before we begin, I will need you to get naked,” Karen said. He sighed and disrobed. Her eyes widened when she caught sight of his injured scrotum.
+
+“Is all that bruising from our session? I did aim to do *some* permanent damage, but that looks much worse than I would’ve expected.”
+
+“No,” he said, shaken by her casual admission that she’d intended to lower his sperm count permanently. “I had another…incident. At the store yesterday.”
+
+“Oh! Well, before we continue your grief therapy, why don’t you tell me about it?”
+
+“Well, I was at the grocery store, and the line was long. I only had two things in my cart, and I was in the express aisle, and this woman in front of me had like, thirty items, even though it was supposed to be ten items or less, and when I politely asked if I could go ahead of her, she just…slammed her heel up into my nut,” he relayed, trying to keep the bitterness out of his voice.
+
+“Did you touch her?”
+
+“No! I mean, I tapped her on the shoulder to get her attention —”
+
+“So you touched her.”
+
+“I guess so. But that doesn’t mean I deserved to have my ball bashed in.”
+
+Karen sighed. “Stuart, this is exactly what we’re trying to work on. You need to be more respectful to women.”
+
+“I AM respectful!” He tried to keep the anger out of his voice. “It’s just not fair. I’m just living my life, trying to be polite, and respectful, and…and a normal fucking guy, and I’m still dealing with losing my testicle, and she just heel-kicked me in my only nut with no warning. No reason. Just…*bam*, and I’m on the floor, trying not to throw up, in so much pain and…and…”
+
+“Calm down, Stuart. Let’s try some roleplay, okay?”
+
+A sinking feeling spread through him, starting from his throat and spreading through his stomach and down into his groin. He had a feeling he knew what her roleplay would entail.
+
+“Come on, stand up for me. I’ll be the woman. You said you were behind her, right?” Dr. Karen turned around, giving him a perfect view of her bubble butt. The black wool skirt wrapping it was long enough to be professional, but well-tailored enough to accentuate her curves.
+
+“Just pretend we’re in the store. Do exactly what you did there, and I’ll do what she did.” Stuart nervously approached her, staying several feet back.
+
+“Get closer, Stuart. My heel won’t be able to reach your testicles if you’re that far away.”
+
+“Can’t we just talk about it?”
+
+“No. Now get closer and tap me on the shoulder so I can kick you in your ball.”
+
+Stuart got closer, his legs shaking. He could feel his only testicle shriveling up, his nervousness drawing his nutcords tight against himself as if that would protect it from the incoming devastation. He reached out one finger and tapped her on the shoulder.
+
+“Excuse me, ma’am, could you —”
+
+WHAM, *CRUNCH*.
+
+Her heel flew up lightning-fast, pinning his testicle against his pelvis. Nutpain exploded through him for the third time that week, and he fell to the floor in the fetal position.
+
+“Don’t *ever* touch me, little-dicked loser!” She shouted down at him, in a shockingly accurate recreation of the woman at the store. He wondered how Dr. Karen had known exactly what she’d said, seeing as how he had omitted that detail from his retelling. She looked down at him from above, the ceiling lights haloing her, a mocking grin on her face and her arms on her knees pressing her breasts together. Stuart just groaned and held himself.
+
+“How was that? Was that an accurate recreation? Besides the fact that you’re naked this time?”
+
+“Urgh…Yeah, that’s…that’s pretty close…”
+
+“And is that what you did after? Just held your ball in pain and stared up at her breasts?” He blushed furiously, but she didn’t even seem bothered by his ogling.
+
+“I…I think so. It was kind of a blur after she kicked me, I was in a lot of pain…”
+
+“So you didn’t apologize?”
+
+“...Apologize for what?”
+
+Dr. Karen sighed. “You need to practice appropriate reactions to testicular injuries if you want to keep your ball intact, Stuart. Let’s try again.”
+
+“No…please…” But she lifted him to his feet by his armpits.
+
+“Try again, Stuart. Apologize after I kick you. And get closer this time; I’m sure you weren’t standing such a polite distance away at the store.” She turned around and presented her amazing ass to him again, pulling him forward. He twitched as his naked glans rubbed against her skirt.
+
+“I don’t think I want to —”
+
+*WHAM*.
+
+Without preamble, she donkey kicked him in the crotch again. He collapsed, choking and coughing.
+
+“Now what do you say, Stuart?”
+
+“I’m…I’m sorry…”
+
+“Sorry for what, Stuart?”
+
+“I…I don’t know. Sorry for touching you? It hurts, Karen, please…”
+
+“That’s not good enough, Stuart. Let’s try again.”
+
+“God no…”
+
+She stood him up again and turned around again. He tried to move his hands from his crotch, but the pain was too much. He just needed a minute to collect his breath and —
+
+WHAM *CRUNCH*.
+
+She slammed her heel upwards into his hands, the sharp point wedging itself between his fingers to nearly skewer his testicle with pinpoint accuracy.
+
+“Oh god, my *nuts*…”
+
+“Remember, you just have the one nut now, Stuart. And what do you do after a girl hits you in the remaining half of your manhood?”
+
+“I don’t…I don’t…”
+
+“I think you do, Stuart. Think about what we talked about last time. Pretend I’m her.” Stuart looked up at his therapist. She was looking down at him, almost impatient, like she was waiting for him to do something obvious.
+
+“I’m…sorry,” he said squeakily. “I’m really sorry.”
+
+His right ball throbbed almost as bad as his left one had right before it had exploded, and every nerve ending and neuron was telling him he needed to protect himself, submit, show fealty or weakness or *something* before she popped his last ball. His anger and confusion and indignity at the unavoidable *unfairness* throbbing between his legs had all been replaced with a more primal need, some long-evolved function meant to protect his genetic material at any and all costs to his ego.
+
+“I’m sorry. I’m sorry for everything. I’m sorry for touching you. I’m sorry for being a man,” he babbled, the string of nonsense dribbling out of him almost against his will. “I’m sorry for talking to you, and looking at you, and thinking about you, and I’m sorry for…sorry for having balls. Having a ball, now. Please don’t kick me again. I’m so, so sorry.”
+
+Through his monologue, her flat look of disappointment curled into an approving smile.
+
+“That’s very good, Stuart. You’re progressing so fast. There’s just one last thing you need to do.”
+
+“I don’t…I don’t…” He frantically searched his mind for anything else he could do to please her. “You can scan your groceries, ma’am. I’ll…I’ll pay for them. I’ll do whatever you want.”
+
+“And what do you think I want?”
+
+He realized he had one last thing he could give up. One last scrap of dignity he hadn’t surrendered in an attempt to save his last ball.
+
+Slowly, he crawled to his knees. Unable to fully stand, he just slid his legs apart, shins to the ground, and let his last ball dangle low between his thighs, unprotected and as vulnerable as he could make it.
+
+“You want to kick me in the ball again. And…you can.” He swallowed hard. “Please, ma’am, if you need to kick me again, just please do it —”
+
+*WHUMP. WHUMP. WHUMP.*
+
+She'd pulled her leg back and kicked him in the nut again. And again, not even letting him collapse before blasting her high heel into his crotch again. Kick after kick thumped into his half-empty scrotum. He fell forward crying as Dr. Karen continued her assault, collapsing around her thigh, hugging it for dear life even as she pulled back to give him one final cruel blow.
+
+She stopped, and he collapsed, trying not to throw up. His ball felt like it was filled with hot lead. He was sure she had broken something inside his gonad. He grabbed himself and moaned.
+
+“Alright, I think that's enough. Now one last step. We need to positively reinforce this behavior.”
+
+“What…how?” His voice was hoarse with pain.
+
+“Ejaculation is an excellent reinforcer. You were good enough to spurt during our last session, but it looks like you’re holding back now. Could you please ejaculate now, Stuart?”
+
+“I can’t…I can’t do that on command.” His ball was killing him.
+
+“Well, you need to do it quickly, so your mind keeps the pain in your ball associated with the pleasure. Stroke your penis if you need to. And if it’ll help trigger you faster, you can look at my body while you do it. Just cum as fast as you possibly can, okay?”
+
+She shimmied out of her skirt, and he looked up wide-eyed at her pantyhose-clad naked legs and pussy. She wasn't wearing any underwear, and her pussy hair was trimmed back just enough for him to see the tight pink folds that distinguished her sex from his.
+
+“That's right, Stuart. Stare at my vagina, and think about the pain in your testicle. I'm a woman. I'll never know your pain. I'll never have to check my vulnerable, dangly parts for damage after a woman decides to wedge her heel up between my legs. I don't have balls, Stuart. Does that make you jealous? Consider and interrogate your feelings on masculinity while you masturbate, please. And stroke faster, Stuart. You’re taking too long.”
+
+He'd never seen a pussy in real life before. He was already hard, somehow, despite the pain. Her legs were silky smooth beneath her pantyhose, and he could smell her scent. He wrapped one hand around her thigh while he frantically jerked off, trying to obey her, trying to please her, all anger dissipated as desire replaced it. Despite what she had done to him. Despite the pain still throbbing in his only testicle, and the memory of the girl at the store, and the girl who’d popped his first ball, this parade of women casually destroying his sperm count and his manhood and she was still so *beautiful*, he had to obey. His cock eagerly agreed.
+
+His hand was a blur, vibrating up and down his cock. With his two-and-a-half-inch member, he could never really stroke it without slipping off, but he rubbed his tiny stiff dick as fast as he could. Dr. Karen stared imperiously down at him, her legs spread wide enough that he could see every inch of her perfect pussy, and he imagined being born so lucky.
+
+Lucky enough never to feel that life-changing *pop* in his groin. Lucky enough never to have to worry about it happening again, never have to beg and demean herself in front of her attacker to spare her fertility. This was his burden, his bad luck, his fault he was born so agonizingly *male…*
+
+“Fuck…doctor…I’m *cumming*!”
+
+“Good, Stuart. Let it all out, now.”
+
+His cock exploded in his hand, cum splattering across her legs. He groaned and sputtered while she watched him silently, standing still as he twitched and squirted, staring up mindlessly at that tight slit and pinched, painless gap between her legs.
+
+When he finished, he looked down at what he’d done. Her pantyhose was fouled with his cum, the splatters of gooey white already starting to drip down and dry out into the fabric. Dr. Karen slid her heels off and peeled the sticky fabric off. She was now naked from the waist down, and stood in front of Stuart with her legs spread. His ball throbbed, and he stared jealously at her invulnerable pussy, nothing dangling or throbbing or poppable between her heavenly thighs.
+
+“Thank you…thank you, doc — *MMMF!*”
+
+She had shoved the sodden wad into his mouth midway through his sentence.
+
+“Keep it in your mouth, Stuart. This is very important for your therapy. Suck it all out, too.”
+
+Salty bitterness coated his throat. But behind the undeniable taste of semen, another flavor was present. It was musky and thick and feminine. It was *her*. She’d gotten wet, too, despite her professional aloofness. He sucked hard, eager to taste every drop of pussy juice to drown out the horrible flavor of his own cum.
+
+“Good boy. You can take those home with you, I don’t think I’ll be wearing them anymore. And it looks like our time is up again, Stuart. Get dressed, and clean yourself up. And once you leave, remember what you learned in here today.”
+
+“Try your best to avoid women, for the sake of your own sexual health. But if you get hit in the groin again, for the sake of your mental health, remember: don’t fight back. Don’t complain. Don’t try to stand up for yourself. Just apologize, and give her what she wants, and let her kick you in the ball as many times as she wants. Understand?”
+
+“Yes, ma’am.” His voice was soft and timid. All the anger and frustration had seeped out of him. Cumming that much had left him exhausted, and dignity felt like something other men got to have. He got dressed and staggered out, each off-kilter step sending burning shocks through his testicle. Her pantyhose formed a wet spot in his pocket. Despite the ball-draining orgasm he’d just spurted, all he could think about was rushing home and jacking off again.
+
+“And Stuart? One last thing.”
+
+He turned to see her as he walked out.
+
+“Don’t masturbate until our next session, please. You hold off for me until Monday, okay? It’s important for your mental health that you avoid any sort of sexual pleasure when I’m not around to supervise it.”
+
+He didn’t even bother asking why, although he could already anticipate the feeling of blueballs setting in while he denied himself over the weekend. “Of course, Dr. Karen. If you say so.”
+
+“Good. I’ll see you on Monday. Good luck with your last ball and your tiny dick.”
+
+Her words seemed uncharacteristically unprofessional. He supposed that crushing his ball into mush until he spurted, then watching him eat his own undoubtedly infertile semen had built some rapport between them.
+
+“Thank you, Karen. I’ll —”
+
+She swatted his crotch hard, hitting his testicle directly on target. When he instinctively covered his crotch, she removed his hands and slapped his nut again, even harder this time.
+
+“Dr. Karen, Stuart. I’m your therapist, not your girlfriend.”
+
+“Sorry, Dr. Karen. I’ll see you next time.” He hobbled out to the lobby, trying to make sense of what had just happened. He didn’t even make small talk when he saw Michelle, just selected the far right option once again (a software update increasing it to a staggering 150 percent since Monday, apparently), and staggered out bow-legged to his car.
