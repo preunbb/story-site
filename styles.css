@@ -783,6 +783,20 @@ html.ai-images-off .story-card-body {
   padding: 0;
 }
 
+html.ai-images-off .story-card-status {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+html.ai-images-off .story-card-status .story-state-badge--in-row {
+  text-align: center;
+}
+
+html.ai-images-off .story-card-status .story-state-badge-text {
+  text-align: center;
+}
+
 html.ai-images-off .story-card-title-row {
   display: flex;
   flex-wrap: wrap;
@@ -990,17 +1004,6 @@ html.ai-images-off .story-card-action--download:hover {
   color: var(--ink);
   border-color: var(--red-dim);
   background: rgba(176, 122, 133, 0.08);
-}
-
-.flyout-download {
-  margin: 0.15rem 0 0.85rem;
-}
-
-.flyout-download a {
-  color: var(--red-bright);
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 0.14em;
 }
 
 html.ai-images-off .story-card-action--kofi,
@@ -4489,8 +4492,30 @@ body.preun-local-andrea .local-andrea-status {
     font-size: 0.72rem;
   }
 
-  html.ai-images-off .story-card-summary {
+  html.ai-images-off .story-card-brutality,
+  html.ai-images-off .story-card-tags {
     display: none;
+  }
+
+  html.ai-images-off .story-card-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    width: 100%;
+    gap: 0.45rem;
+  }
+
+  html.ai-images-off .story-card-actions:has(> :only-child) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  html.ai-images-off .story-card-action {
+    width: 100%;
+    min-height: 2.65rem;
+    height: 100%;
+    padding: 0.4rem 0.55rem;
+    font-size: 0.78rem;
+    text-align: center;
   }
 
   .content {

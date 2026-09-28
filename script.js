@@ -1143,17 +1143,6 @@
         }),
       );
     }
-    var ebookHref = storyEbookHref(story);
-    if (ebookHref) {
-      buttons.push(
-        storyTextListActionButton({
-          href: ebookHref,
-          label: "Download",
-          variant: "download",
-          download: storyEbookFilename(story),
-        }),
-      );
-    }
     if (storyShowsComingSoonAction(story)) {
       buttons.push(
         storyTextListActionButton({
@@ -1705,12 +1694,13 @@
       card.setAttribute("data-story", s.id);
       var st = normalizeStoryState(s);
       var rowBadgeHtml = "";
+      var statusBadgeHtml = "";
       if (st === 1) {
         rowBadgeHtml = storyStateBadgeHtml("soon", "in-row", s);
       } else if (st === 3) {
-        rowBadgeHtml = storyStateBadgeHtml("in-progress", "in-row", s);
+        statusBadgeHtml = storyStateBadgeHtml("in-progress", "in-row", s);
       } else if (st === 2 && shouldShowNewStoryBadge(s)) {
-        rowBadgeHtml = storyStateBadgeHtml("new", "in-row", s);
+        statusBadgeHtml = storyStateBadgeHtml("new", "in-row", s);
       }
       var rowPremiumHtml = "";
       if (storyHasPremiumTag(s)) {
@@ -1725,6 +1715,9 @@
         card.className = "story-card story-card--text";
         card.innerHTML =
           '<div class="story-card-body">' +
+          (statusBadgeHtml
+            ? '<div class="story-card-status">' + statusBadgeHtml + "</div>"
+            : "") +
           '<div class="story-card-title-row">' +
           '<span class="story-card-title">' +
           escapeHtml(s.title) +
@@ -6974,17 +6967,6 @@
       '<h2 class="flyout-title">' +
       escapeHtml(story.title) +
       "</h2>" +
-      (function () {
-        var href = storyEbookHref(story);
-        if (!href) return "";
-        return (
-          '<p class="flyout-download"><a href="' +
-          escapeHtml(href) +
-          '" download="' +
-          escapeHtml(storyEbookFilename(story)) +
-          '">Download PDF</a></p>'
-        );
-      })() +
       coverHtml +
       '<div class="flyout-story-meta">' +
       '<p class="flyout-summary">' +
