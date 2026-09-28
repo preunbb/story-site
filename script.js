@@ -1039,6 +1039,15 @@
         "</svg>"
       );
     }
+    if (variant === "download") {
+      return (
+        '<svg class="story-card-action-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false">' +
+        '<path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v9"/>' +
+        '<path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m8.2 10.2 3.8 3.8 3.8-3.8"/>' +
+        '<path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M5 18.5h14"/>' +
+        "</svg>"
+      );
+    }
     return "";
   }
 
@@ -1064,6 +1073,9 @@
       '"';
     if (opts.external) {
       attrs += ' target="_blank" rel="noopener noreferrer"';
+    }
+    if (opts.download) {
+      attrs += ' download="' + escapeHtml(opts.download) + '"';
     }
     if (opts.tooltip) {
       attrs +=
@@ -1096,6 +1108,30 @@
     );
   }
 
+  function storyEbookHref(story) {
+    var list = window.DATA_EBOOKS;
+    if (!story || !list || !list.length) return "";
+    var id = story.id;
+    var found = false;
+    var i;
+    for (i = 0; i < list.length; i++) {
+      if (list[i] === id || String(list[i]) === String(id)) {
+        found = true;
+        break;
+      }
+    }
+    if (!found) return "";
+    return "assets/ebooks/" + id + ".pdf";
+  }
+
+  function storyEbookFilename(story) {
+    var slug = String((story && story.title) || "story")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+    return (slug || "story") + ".pdf";
+  }
+
   function storyTextListActionsHtml(story) {
     var buttons = [];
     if (storyIsReadable(story)) {
@@ -1104,6 +1140,17 @@
           href: "#story/" + story.id + "/read",
           label: storyTextListReadLabel(story),
           variant: "read",
+        }),
+      );
+    }
+    var ebookHref = storyEbookHref(story);
+    if (ebookHref) {
+      buttons.push(
+        storyTextListActionButton({
+          href: ebookHref,
+          label: "Download",
+          variant: "download",
+          download: storyEbookFilename(story),
         }),
       );
     }
@@ -1995,6 +2042,139 @@
       det.appendChild(body);
       root.appendChild(det);
     });
+  }
+
+  function musicTrackHtml(track, index) {
+    var title = track && track.title ? String(track.title) : "";
+    var lyrics = track && track.lyrics ? String(track.lyrics).trim() : "";
+    var num = String(index + 1).padStart(2, "0");
+    var lyricsHtml = "";
+    if (lyrics) {
+      lyricsHtml =
+        '<details class="music-lyrics">' +
+        "<summary>Lyrics</summary>" +
+        '<div class="music-lyrics-body">' +
+        escapeHtml(lyrics).replace(/\n/g, "<br />") +
+        "</div></details>";
+    }
+    return (
+      '<li class="music-track">' +
+      '<span class="music-track-num">' +
+      num +
+      "</span>" +
+      '<div class="music-track-main">' +
+      '<span class="music-track-title">' +
+      (title
+        ? escapeHtml(title)
+        : '<span class="music-track-rule"></span>') +
+      "</span>" +
+      lyricsHtml +
+      "</div></li>"
+    );
+  }
+
+  function musicSideHtml(side) {
+    var tracks = side && side.tracks ? side.tracks : [];
+    var label = side && side.label ? String(side.label) : "";
+    var items = tracks.length
+      ? tracks.map(musicTrackHtml).join("")
+      : [0, 1, 2, 3]
+          .map(function (i) {
+            return musicTrackHtml({ title: "" }, i);
+          })
+          .join("");
+    return (
+      '<div class="music-side">' +
+      (label
+        ? '<p class="music-side-label">' + escapeHtml(label) + "</p>"
+        : "") +
+      '<ol class="music-tracks">' +
+      items +
+      "</ol></div>"
+    );
+  }
+
+  function musicReleaseHtml(release) {
+    var sides =
+      release.sides && release.sides.length
+        ? release.sides
+        : [{ label: "", tracks: release.tracks || [] }];
+    var year = release.year ? String(release.year) : "";
+    var note = release.note ? String(release.note) : "";
+    var title = release.title ? String(release.title) : "";
+    var header = "";
+    if (title || year || note) {
+      header =
+        '<header class="music-release-head">' +
+        '<span class="music-spindle" aria-hidden="true"></span>' +
+        "<div>" +
+        (title
+          ? '<h2 class="music-release-title">' + escapeHtml(title) + "</h2>"
+          : "") +
+        (year
+          ? '<p class="music-release-year">' + escapeHtml(year) + "</p>"
+          : "") +
+        (note
+          ? '<p class="music-release-note">' + escapeHtml(note) + "</p>"
+          : "") +
+        "</div></header>";
+    }
+    return (
+      '<article class="music-release">' +
+      header +
+      '<div class="music-sides' +
+      (sides.length > 1 ? " music-sides--split" : "") +
+      '">' +
+      sides.map(musicSideHtml).join("") +
+      "</div></article>"
+    );
+  }
+
+  function musicJacketHtml(inner, coverSrc) {
+    var cover = coverSrc
+      ? '<div class="music-sleeve"><img class="music-cover" src="' +
+        escapeHtml(coverSrc) +
+        '" alt="Album cover"></div>'
+      : "";
+    return (
+      '<div class="music-jacket' +
+      (coverSrc ? " music-jacket--with-cover" : "") +
+      '">' +
+      cover +
+      '<div class="music-jacket-inner">' +
+      inner +
+      "</div></div>"
+    );
+  }
+
+  function renderMusicPanel() {
+    var root = byId("music-root");
+    if (!root) return;
+    var releases = window.DATA_MUSIC;
+    if (!releases || !releases.length) {
+      root.innerHTML = musicJacketHtml(
+        '<article class="music-release music-release--blank">' +
+          '<header class="music-release-head">' +
+          '<span class="music-spindle" aria-hidden="true"></span>' +
+          "<div>" +
+          '<h2 class="music-release-title">Track list</h2>' +
+          '<p class="music-release-note">Song titles go on these lines.</p>' +
+          "</div></header>" +
+          '<div class="music-sides music-sides--split">' +
+          musicSideHtml({ label: "Side A", tracks: [] }) +
+          musicSideHtml({ label: "Side B", tracks: [] }) +
+          "</div></article>",
+      );
+      return;
+    }
+    var cover =
+      releases.length === 1 && releases[0].cover
+        ? String(releases[0].cover)
+        : "";
+    root.innerHTML = musicJacketHtml(
+      releases.map(musicReleaseHtml).join(""),
+      cover,
+    );
   }
 
   function renderFanartPanel() {
@@ -5230,6 +5410,7 @@
     "ratings",
     "captions",
     "fanart",
+    "music",
     "connections",
     "about",
     "other-authors",
@@ -5290,6 +5471,9 @@
     } else if (name === "fanart") {
       lazyTabPanelsDone.fanart = true;
       renderFanartPanel();
+    } else if (name === "music") {
+      lazyTabPanelsDone.music = true;
+      renderMusicPanel();
     } else if (name === "other-authors") {
       lazyTabPanelsDone["other-authors"] = true;
       renderOtherAuthors(pendingOtherAuthors);
@@ -5925,12 +6109,12 @@
       var escapedOnly = escapeHtml(block).replace(/\r\n/g, "\n");
       return readerFormatEscapedInline(escapedOnly).replace(/\n/g, "<br />");
     }
-    PRESERVED_INLINE_CHUNK_RE.lastIndex = 0;
+    var chunkRe = new RegExp(PRESERVED_INLINE_CHUNK_RE.source, "g");
     var out = "";
     var last = 0;
     var m;
     var matched = false;
-    while ((m = PRESERVED_INLINE_CHUNK_RE.exec(block))) {
+    while ((m = chunkRe.exec(block))) {
       matched = true;
       var before = block.slice(last, m.index);
       if (before) {
@@ -6421,6 +6605,18 @@
       "data-share-url",
       storyReaderSharePageUrl(story.id, chapterOneBased, story),
     );
+    var download = byId("story-reader-download");
+    if (!download) return;
+    var href = storyEbookHref(story);
+    if (!href) {
+      download.hidden = true;
+      download.removeAttribute("href");
+      download.removeAttribute("download");
+      return;
+    }
+    download.hidden = false;
+    download.href = href;
+    download.setAttribute("download", storyEbookFilename(story));
   }
 
   function closeStoryReaderUi() {
@@ -6778,6 +6974,17 @@
       '<h2 class="flyout-title">' +
       escapeHtml(story.title) +
       "</h2>" +
+      (function () {
+        var href = storyEbookHref(story);
+        if (!href) return "";
+        return (
+          '<p class="flyout-download"><a href="' +
+          escapeHtml(href) +
+          '" download="' +
+          escapeHtml(storyEbookFilename(story)) +
+          '">Download PDF</a></p>'
+        );
+      })() +
       coverHtml +
       '<div class="flyout-story-meta">' +
       '<p class="flyout-summary">' +

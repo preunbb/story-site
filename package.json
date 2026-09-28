@@ -15,6 +15,7 @@
     "rebuild:bereavement-from-doc": "npm run sync:bereavement && npm run sync:bereavement-preview && npm run encrypt:bereavement && npm run pdf -- 49",
     "sync:concurrent": "node scripts/sync-stories.mjs --concurrency=4 && node scripts/generate-story-share-pages.mjs",
     "pdf": "node scripts/render-story-pdf.mjs",
+    "pdf:catalog": "node scripts/render-story-pdf.mjs --all",
     "pdf:andrea-part-1": "node scripts/render-andrea-complete-chapters-pdf.mjs --part=1",
     "epub": "node scripts/render-story-epub.mjs",
     "anthology": "node scripts/render-anthology-epub.mjs",

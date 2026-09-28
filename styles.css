@@ -343,17 +343,20 @@ html:not(.ai-images-off) .ai-images-toggle-label--tiles {
 .tab[data-tab="fanart"] {
   order: 6;
 }
-.tab[data-tab="connections"] {
+.tab[data-tab="music"] {
   order: 7;
 }
-.tab--oe-catalog {
+.tab[data-tab="connections"] {
   order: 8;
 }
-.tab[data-tab="about"] {
+.tab--oe-catalog {
   order: 9;
 }
-.tab[data-tab="other-authors"] {
+.tab[data-tab="about"] {
   order: 10;
+}
+.tab[data-tab="other-authors"] {
+  order: 11;
 }
 
 /* Catalog "Ratings" tab only when dist/andrea-and-lucas-complete/SOURCE.json exists (local gitignored snapshot). */
@@ -975,6 +978,29 @@ html.ai-images-off .story-card-action--read:hover {
 
 html.ai-images-off .story-card-action--read:focus-visible {
   outline-color: var(--cherry-bright);
+}
+
+html.ai-images-off .story-card-action--download {
+  color: var(--ink);
+  background: transparent;
+  border-color: var(--border);
+}
+
+html.ai-images-off .story-card-action--download:hover {
+  color: var(--ink);
+  border-color: var(--red-dim);
+  background: rgba(176, 122, 133, 0.08);
+}
+
+.flyout-download {
+  margin: 0.15rem 0 0.85rem;
+}
+
+.flyout-download a {
+  color: var(--red-bright);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
 }
 
 html.ai-images-off .story-card-action--kofi,
@@ -4720,5 +4746,207 @@ body.preun-local-andrea .local-andrea-status {
 
   .flyout-story-cta-mount .flyout-full-story-wrap:last-child {
     margin-bottom: 0;
+  }
+}
+
+.music-jacket {
+  position: relative;
+  max-width: 68rem;
+  margin-top: 0.5rem;
+  padding: 1.35rem 1.35rem 1.15rem;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(176, 122, 133, 0.16), transparent 26%),
+    linear-gradient(165deg, #2c2c31 0%, #1e1e22 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(235, 233, 236, 0.08),
+    inset 0 0 0 7px rgba(0, 0, 0, 0.28),
+    inset 0 0 0 8px rgba(176, 122, 133, 0.28),
+    inset 0 0 0 12px rgba(0, 0, 0, 0.22),
+    0 16px 40px rgba(0, 0, 0, 0.28);
+}
+
+.music-jacket::before,
+.music-jacket::after {
+  content: "";
+  position: absolute;
+  width: 0.7rem;
+  height: 0.7rem;
+  border: 1px solid rgba(201, 149, 159, 0.55);
+  pointer-events: none;
+}
+
+.music-jacket::before {
+  top: 0.55rem;
+  left: 0.55rem;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.music-jacket::after {
+  right: 0.55rem;
+  bottom: 0.55rem;
+  border-left: 0;
+  border-top: 0;
+}
+
+.music-jacket-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.music-jacket--with-cover {
+  display: grid;
+  grid-template-columns: minmax(13rem, 20rem) minmax(0, 1fr);
+  gap: 1.35rem 1.6rem;
+  align-items: start;
+}
+
+.music-sleeve {
+  position: relative;
+  z-index: 2;
+}
+
+.music-cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.music-jacket--with-cover .music-jacket-inner {
+  padding-right: 0;
+  min-width: 0;
+}
+
+.music-release + .music-release {
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(176, 122, 133, 0.22);
+}
+
+.music-release-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.music-spindle {
+  flex: 0 0 auto;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-top: 0.4rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #3a3a40, #111);
+  box-shadow:
+    0 0 0 3px rgba(176, 122, 133, 0.35),
+    0 0 0 5px rgba(0, 0, 0, 0.35);
+}
+
+.music-release-title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 650;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+}
+
+.music-release-year,
+.music-release-note {
+  margin: 0.2rem 0 0;
+  color: var(--ink-muted);
+  font-size: 0.92rem;
+}
+
+.music-sides--split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem 2rem;
+}
+
+.music-side-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--red-bright);
+}
+
+.music-tracks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.music-track {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 0.65rem;
+  align-items: baseline;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(235, 233, 236, 0.08);
+}
+
+.music-track-num {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+  color: var(--red-dim);
+  font-size: 0.82rem;
+}
+
+.music-track-title {
+  display: block;
+  color: var(--ink);
+  font-weight: 550;
+}
+
+.music-track-rule {
+  display: block;
+  height: 1px;
+  margin-top: 0.55rem;
+  background: linear-gradient(
+    90deg,
+    rgba(176, 122, 133, 0.45),
+    rgba(176, 122, 133, 0.05)
+  );
+}
+
+.music-lyrics {
+  margin-top: 0.35rem;
+}
+
+.music-lyrics summary {
+  cursor: pointer;
+  color: var(--ink-muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.music-lyrics-body {
+  margin-top: 0.45rem;
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  white-space: normal;
+}
+
+@media (max-width: 720px) {
+  .music-jacket--with-cover {
+    grid-template-columns: 1fr;
+  }
+
+  .music-sleeve {
+    max-width: 18rem;
+  }
+
+  .music-sides--split {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
 }

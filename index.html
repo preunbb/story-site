@@ -142,6 +142,13 @@
               >Fanart</a
             >
             <a
+              href="#music"
+              class="tab"
+              data-tab="music"
+              role="menuitem"
+              >Music</a
+            >
+            <a
               href="#other-authors"
               class="tab"
               data-tab="other-authors"
@@ -668,6 +675,11 @@
         </details>
       </section>
 
+      <section id="panel-music" class="panel">
+        <h1>Music</h1>
+        <div id="music-root" class="music-root"></div>
+      </section>
+
       <section id="panel-other-authors" class="panel">
         <h1>Other authors</h1>
         <div class="about-content" id="other-authors-root">
@@ -771,6 +783,13 @@
           >
             Share
           </button>
+          <a
+            class="story-reader-meta-link"
+            id="story-reader-download"
+            hidden
+          >
+            Download
+          </a>
         </div>
       </header>
       <div class="story-reader-main">
@@ -807,6 +826,8 @@
     <script defer src="data/fanart.js"></script>
     <script defer src="data/source.js"></script>
     <script defer src="data/analytics.js"></script>
+    <script defer src="data/ebooks.js"></script>
+    <script defer src="data/music.js"></script>
     <script defer src="script.js"></script>
   </body>
 </html>

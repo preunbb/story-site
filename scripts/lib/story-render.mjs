@@ -443,17 +443,40 @@ function splitBlocks(markdown) {
     .filter((b) => b.length > 0);
 }
 
+/** Same cut as the site reader’s `chaptersToPublish`. */
+export function truncateMarkdownToPublishedChapters(markdown, maxChapters) {
+  if (
+    typeof maxChapters !== "number" ||
+    !Number.isFinite(maxChapters) ||
+    maxChapters < 1
+  ) {
+    return markdown;
+  }
+  const blocks = splitBlocks(markdown);
+  const out = [];
+  let chapterCount = 0;
+  for (const block of blocks) {
+    if (parseChapterHeading(block)) {
+      chapterCount++;
+      if (chapterCount > maxChapters) break;
+    }
+    out.push(block);
+  }
+  return out.join("\n\n");
+}
+
 function formatBodyInline(block, opts) {
   if (!hasPreservedInlineHtml(block)) {
     const escaped = escapeHtml(block).replace(/\r\n/g, "\n");
     return readerFormatEscapedInline(escaped, opts).replace(/\n/g, "<br />");
   }
   PRESERVED_INLINE_CHUNK_RE.lastIndex = 0;
+  const chunkRe = new RegExp(PRESERVED_INLINE_CHUNK_RE.source, "g");
   let out = "";
   let last = 0;
   let m;
   let matched = false;
-  while ((m = PRESERVED_INLINE_CHUNK_RE.exec(block))) {
+  while ((m = chunkRe.exec(block))) {
     matched = true;
     const before = block.slice(last, m.index);
     if (before) {

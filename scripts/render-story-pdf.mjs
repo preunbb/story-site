@@ -6,8 +6,15 @@
  * and printed via headless Google Chrome.
  *
  * Usage:
+ *   node scripts/render-story-pdf.mjs --all
  *   node scripts/render-story-pdf.mjs [storyId] [--out=path.pdf]
  *                                       [--title="..."] [--no-images]
+ *
+ * --all writes a text-only PDF of each story's public prose (the same
+ * markdown the site reader shows, including preview extracts and
+ * chaptersToPublish) to assets/ebooks/<id>.pdf, plus data/ebooks.js.
+ * Those files omit paywalled manuscripts and reader passwords. Each PDF
+ * uses the titled cover (catalog art, title, "by Preun BB").
  *
  * Defaults to story id 1 (Three Strikes). Story id 43 (Andrea and Lucas) reads
  * the full manuscript from dist/andrea-and-lucas-complete/story.md (synced from
@@ -27,6 +34,7 @@
  */
 
 import {
+  existsSync,
   readFileSync,
   writeFileSync,
   mkdirSync,
@@ -50,6 +58,7 @@ import {
   escapeHtml,
   plainTextFromInlineMarkdown,
   storyMarkdownToSafeHtml,
+  truncateMarkdownToPublishedChapters,
   extractChapters,
   makePdfSceneRenderer,
   PDF_SCENE_FIGURE_CSS,
@@ -75,9 +84,11 @@ const CHROME_CANDIDATES = [
 ];
 
 function parseArgs(argv) {
-  const out = { id: 1, output: null, title: null, noImages: false };
+  const out = { id: 1, output: null, title: null, noImages: false, all: false };
   for (const arg of argv) {
-    if (arg.startsWith("--out=")) {
+    if (arg === "--all") {
+      out.all = true;
+    } else if (arg.startsWith("--out=")) {
       out.output = arg.slice("--out=".length);
     } else if (arg.startsWith("--title=")) {
       out.title = arg.slice("--title=".length);
@@ -153,17 +164,16 @@ function readerPasswordForStory(story) {
   return password;
 }
 
-function buildCoverHtml(story) {
-  const cover = findStoryCover(story);
-  if (!cover) return "";
-  const src = escapeHtml(pathToFileURL(cover.src).href);
+function buildCoverHtml(coverSrc) {
+  if (!coverSrc) return "";
+  const src = escapeHtml(pathToFileURL(coverSrc).href);
   return `  <section class="cover-page">\n    <img src="${src}" alt="" />\n  </section>\n`;
 }
 
-function buildHtmlDocument({ story, bodyHtml, chapters, readerPassword }) {
+function buildHtmlDocument({ story, bodyHtml, chapters, readerPassword, coverSrc }) {
   const palette = PDF_PRINT_PALETTE;
   const title = escapeHtml(story.title);
-  const coverHtml = buildCoverHtml(story);
+  const coverHtml = buildCoverHtml(coverSrc);
   const tocHtml = buildTocHtml({ title, chapters, readerPassword });
   const endHtml = buildEndPageHtml();
 
@@ -360,7 +370,34 @@ ${endHtml}
 
 /* ---------- main ---------- */
 
-function renderPdf({ story, markdown, outPath, noImages, readerPassword }) {
+function coverSrcForPdf(story) {
+  try {
+    const titled = titledCoverForStory(story);
+    if (titled) return titled.src;
+  } catch (e) {
+    console.error(`Could not build the titled cover: ${e.message}`);
+  }
+  const raw = findStoryCover(story);
+  return raw ? raw.src : null;
+}
+
+/** Public reader prose. Skips paywalled full manuscripts. */
+function publicMarkdownForStory(story) {
+  const rel =
+    story.previewRead && story.previewRead.md
+      ? story.previewRead.md
+      : `assets/stories/${story.id}.md`;
+  const abs = join(repoRoot, rel);
+  if (!existsSync(abs)) return null;
+  let markdown = readFileSync(abs, "utf8");
+  const max = story.chaptersToPublish;
+  if (typeof max === "number" && Number.isFinite(max) && max >= 1) {
+    markdown = truncateMarkdownToPublishedChapters(markdown, max);
+  }
+  return markdown;
+}
+
+function renderPdf({ story, markdown, outPath, noImages, readerPassword, coverSrc }) {
   const imageMode = noImages ? "strip" : "embed";
   const bodyHtml = storyMarkdownToSafeHtml(markdown, {
     ...READER_OPTS,
@@ -373,6 +410,7 @@ function renderPdf({ story, markdown, outPath, noImages, readerPassword }) {
     bodyHtml,
     chapters,
     readerPassword,
+    coverSrc: coverSrc || coverSrcForPdf(story),
   });
 
   const resolvedOut = resolve(outPath);
@@ -408,15 +446,56 @@ function renderPdf({ story, markdown, outPath, noImages, readerPassword }) {
   }
 
   if (result.status !== 0) {
-    console.error(`Chrome exited with status ${result.status}`);
-    process.exit(result.status || 1);
+    throw new Error(`Chrome exited with status ${result.status}`);
   }
   console.log(`Wrote ${resolvedOut}`);
+}
+
+const CATALOG_PDF_DIR = join(repoRoot, "assets", "ebooks");
+
+function renderCatalogPdfs() {
+  const stories = loadStories();
+  mkdirSync(CATALOG_PDF_DIR, { recursive: true });
+  const ids = [];
+  const skipped = [];
+  for (const story of stories) {
+    const markdown = publicMarkdownForStory(story);
+    if (!markdown || !markdown.trim()) {
+      skipped.push(story.id);
+      console.error(`Skipping story ${story.id} (${story.title}): no public prose`);
+      continue;
+    }
+    const outPath = join(CATALOG_PDF_DIR, `${story.id}.pdf`);
+    try {
+      renderPdf({
+        story,
+        markdown,
+        outPath,
+        noImages: true,
+        readerPassword: null,
+        coverSrc: coverSrcForPdf(story),
+      });
+      ids.push(story.id);
+    } catch (e) {
+      console.error(`Story ${story.id} failed: ${e.message}`);
+    }
+  }
+  const manifest =
+    "window.DATA_EBOOKS = " + JSON.stringify(ids) + ";\n";
+  writeFileSync(join(repoRoot, "data", "ebooks.js"), manifest, "utf8");
+  console.log(
+    `Catalog PDFs: ${ids.length} written, ${skipped.length} skipped (${skipped.join(", ") || "none"})`,
+  );
+  if (!ids.length) process.exit(1);
 }
 
 function main() {
   loadEnvLocal(repoRoot);
   const args = parseArgs(process.argv.slice(2));
+  if (args.all) {
+    renderCatalogPdfs();
+    return;
+  }
   const stories = loadStories();
   const baseStory = findStory(stories, args.id);
   if (!baseStory) {
@@ -446,33 +525,36 @@ function main() {
   const slug = slugify(story.title);
   const readerPassword = readerPasswordForStory(story);
 
-  // --out renders a PDF only, so the EPUB step never runs. Still leave the
-  // titled cover as a plain JPEG. The default path writes that file when it
-  // builds the EPUB.
+  // --out renders a PDF only, so the EPUB step never runs. renderPdf still
+  // writes the titled cover JPEG under dist/covers/.
   if (args.output) {
     try {
-      titledCoverForStory(story);
+      renderPdf({
+        story,
+        markdown,
+        outPath: args.output,
+        noImages: args.noImages,
+        readerPassword,
+      });
     } catch (e) {
-      console.error(`Could not build the cover: ${e.message}`);
+      console.error(e.message);
       process.exit(1);
     }
-    renderPdf({
-      story,
-      markdown,
-      outPath: args.output,
-      noImages: args.noImages,
-      readerPassword,
-    });
     return;
   }
 
-  renderPdf({
-    story,
-    markdown,
-    outPath: join(DEFAULT_OUT_DIR, `${slug}.pdf`),
-    noImages: true,
-    readerPassword,
-  });
+  try {
+    renderPdf({
+      story,
+      markdown,
+      outPath: join(DEFAULT_OUT_DIR, `${slug}.pdf`),
+      noImages: true,
+      readerPassword,
+    });
+  } catch (e) {
+    console.error(e.message);
+    process.exit(1);
+  }
 
   const epubScript = join(repoRoot, "scripts", "render-story-epub.mjs");
   const epubPath = join(DEFAULT_OUT_DIR, `${slug}.epub`);
