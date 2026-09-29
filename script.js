@@ -5437,6 +5437,7 @@
     });
     document.body.classList.toggle("tab-connections", name === "connections");
     syncTabsOtherActive(name);
+    syncTabsStoryExtrasActive(name);
     closeTabsOther();
     ensureLazyTabPanel(name);
   }
@@ -5473,13 +5474,23 @@
     }
   }
 
-  function closeTabsOther() {
-    var wrap = document.querySelector(".tabs-other");
-    var toggle = byId("tabs-other-toggle");
-    var menu = byId("tabs-other-menu");
+  function closeNavMenu(wrap, toggle, menu) {
     if (wrap) wrap.classList.remove("is-open");
     if (toggle) toggle.setAttribute("aria-expanded", "false");
     if (menu) menu.hidden = true;
+  }
+
+  function closeTabsOther() {
+    closeNavMenu(
+      document.querySelector(".tabs-other"),
+      byId("tabs-other-toggle"),
+      byId("tabs-other-menu"),
+    );
+    closeNavMenu(
+      document.querySelector(".tabs-story-extras"),
+      byId("tabs-story-extras-toggle"),
+      byId("tabs-story-extras-menu"),
+    );
   }
 
   function syncTabsOtherActive(name) {
@@ -5492,35 +5503,70 @@
     toggle.classList.toggle("is-active", inOther);
   }
 
-  function initTabsOtherMenu() {
-    var wrap = document.querySelector(".tabs-other");
-    var toggle = byId("tabs-other-toggle");
-    var menu = byId("tabs-other-menu");
-    if (!wrap || !toggle || !menu || wrap._tabsOtherBound) return;
-    wrap._tabsOtherBound = true;
+  function syncTabsStoryExtrasActive(name) {
+    var toggle = byId("tabs-story-extras-toggle");
+    if (!toggle) return;
+    var inExtras =
+      name === "characters" ||
+      name === "scenes" ||
+      name === "music" ||
+      name === "connections";
+    toggle.classList.toggle("is-active", inExtras);
+  }
 
+  function bindNavMenu(wrap, toggle, menu, beforeOpen) {
+    if (!wrap || !toggle || !menu || wrap._navMenuBound) return;
+    wrap._navMenuBound = true;
     toggle.addEventListener("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
       var open = !wrap.classList.contains("is-open");
       if (open) {
+        if (beforeOpen) beforeOpen();
         wrap.classList.add("is-open");
         toggle.setAttribute("aria-expanded", "true");
         menu.hidden = false;
       } else {
-        closeTabsOther();
+        closeNavMenu(wrap, toggle, menu);
       }
     });
-
     document.addEventListener("click", function (e) {
       if (!wrap.classList.contains("is-open")) return;
       if (wrap.contains(e.target)) return;
-      closeTabsOther();
+      closeNavMenu(wrap, toggle, menu);
     });
-
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closeTabsOther();
+      if (e.key === "Escape") closeNavMenu(wrap, toggle, menu);
     });
+  }
+
+  function initTabsOtherMenu() {
+    var otherWrap = document.querySelector(".tabs-other");
+    var extrasWrap = document.querySelector(".tabs-story-extras");
+    bindNavMenu(
+      otherWrap,
+      byId("tabs-other-toggle"),
+      byId("tabs-other-menu"),
+      function () {
+        closeNavMenu(
+          extrasWrap,
+          byId("tabs-story-extras-toggle"),
+          byId("tabs-story-extras-menu"),
+        );
+      },
+    );
+    bindNavMenu(
+      extrasWrap,
+      byId("tabs-story-extras-toggle"),
+      byId("tabs-story-extras-menu"),
+      function () {
+        closeNavMenu(
+          otherWrap,
+          byId("tabs-other-toggle"),
+          byId("tabs-other-menu"),
+        );
+      },
+    );
   }
 
   function connectionsCharacterFromQuery() {
@@ -7410,16 +7456,7 @@
 
     window.addEventListener("hashchange", applyHash);
     applyHash();
-    checkLocalDistMarker().then(function (ok) {
-      if (ok) {
-        document.documentElement.classList.add("has-local-dist");
-        loadStoryCatalogRatings();
-      } else {
-        document.documentElement.classList.remove("has-local-dist");
-        if (parseHash().tab === "ratings") location.hash = "stories";
-      }
-      applyHash();
-    });
+    if (parseHash().tab === "ratings") location.hash = "stories";
   }
 
   if (document.body && document.body.classList.contains("preun-local-andrea")) {

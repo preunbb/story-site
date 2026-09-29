@@ -119,34 +119,61 @@
               aria-label="Caption images"
               >Captions</a
             >
-            <a
-              href="#characters"
-              class="tab"
-              data-tab="characters"
-              role="menuitem"
-              >Cast</a
-            >
-            <a
-              href="#connections"
-              class="tab"
-              data-tab="connections"
-              role="menuitem"
-              ><span class="tab-text-full">Connections</span
-              ><span class="tab-text-short" aria-hidden="true">Links</span></a
-            >
+            <div class="tabs-story-extras">
+              <button
+                type="button"
+                class="tab tabs-story-extras-toggle"
+                id="tabs-story-extras-toggle"
+                aria-expanded="false"
+                aria-controls="tabs-story-extras-menu"
+                aria-haspopup="true"
+              >
+                Story extras
+              </button>
+              <div
+                class="tabs-story-extras-menu"
+                id="tabs-story-extras-menu"
+                role="menu"
+                hidden
+              >
+                <a
+                  href="#characters"
+                  class="tab"
+                  data-tab="characters"
+                  role="menuitem"
+                  >Cast</a
+                >
+                <a
+                  href="#scenes"
+                  class="tab"
+                  data-tab="scenes"
+                  role="menuitem"
+                  aria-label="Illustrated scenes"
+                  >Scenes</a
+                >
+                <a
+                  href="#music"
+                  class="tab"
+                  data-tab="music"
+                  role="menuitem"
+                  >Music</a
+                >
+                <a
+                  href="#connections"
+                  class="tab"
+                  data-tab="connections"
+                  role="menuitem"
+                  ><span class="tab-text-full">Connections</span
+                  ><span class="tab-text-short" aria-hidden="true">Links</span></a
+                >
+              </div>
+            </div>
             <a
               href="#fanart"
               class="tab"
               data-tab="fanart"
               role="menuitem"
               >Fanart</a
-            >
-            <a
-              href="#music"
-              class="tab"
-              data-tab="music"
-              role="menuitem"
-              >Music</a
             >
             <a
               href="#other-authors"
@@ -163,14 +190,6 @@
               data-tab="ratings"
               role="menuitem"
               >Ratings</a
-            >
-            <a
-              href="#scenes"
-              class="tab"
-              data-tab="scenes"
-              role="menuitem"
-              aria-label="Illustrated scenes"
-              >Scenes</a
             >
             <a
               class="tab site-support-link--other"

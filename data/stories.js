@@ -1610,7 +1610,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 28326,
+    wordCount: 28380,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
