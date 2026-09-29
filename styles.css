@@ -832,13 +832,28 @@ html:not(.ai-images-off) .ai-images-toggle-label--tiles {
 
 /* Text-only catalog when AI images are toggled off */
 html.ai-images-off .stories-catalog {
-  gap: 1.75rem;
+  gap: 1.5rem;
+}
+
+html.ai-images-off .stories-section {
+  background: var(--grey-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
 }
 
 html.ai-images-off .stories-section-title {
-  margin: 0 0 0.45rem;
-  padding: 0 0.15rem;
-  font-size: 1.1rem;
+  margin: 0;
+  padding: 0.6rem 1rem 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red-bright);
+  background: var(--grey-soft);
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
 }
 
 html.ai-images-off .stories-grid {
@@ -4619,12 +4634,6 @@ body.preun-local-andrea .local-andrea-status {
     gap: 0.45rem;
   }
 
-  html.ai-images-off .story-card-actions:has(> :only-child) > :only-child {
-    grid-column: 1 / -1;
-    width: calc((100% - 0.45rem) / 2);
-    justify-self: center;
-  }
-
   html.ai-images-off .story-card-action {
     width: 100%;
     min-height: 2.65rem;
@@ -4632,6 +4641,13 @@ body.preun-local-andrea .local-andrea-status {
     padding: 0.4rem 0.55rem;
     font-size: 0.78rem;
     text-align: center;
+  }
+
+  html.ai-images-off .story-card-actions:has(> :only-child) > :only-child {
+    grid-column: 1 / -1;
+    width: calc((100% - 0.45rem) / 2);
+    max-width: calc((100% - 0.45rem) / 2);
+    justify-self: center;
   }
 
   .content {
