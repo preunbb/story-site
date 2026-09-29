@@ -6196,6 +6196,30 @@
   }
 
   /** Turn doc-color-ff0000 class tokens into an inline style (safe hex only). */
+  function docColorHexFromClass(token) {
+    var m = /^doc-color-([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.exec(
+      token,
+    );
+    if (!m) return null;
+    var hex =
+      m[1].length === 3
+        ? m[1]
+            .split("")
+            .map(function (c) {
+              return c + c;
+            })
+            .join("")
+        : m[1].slice(0, 6);
+    hex = hex.toLowerCase();
+    var r = parseInt(hex.slice(0, 2), 16);
+    var g = parseInt(hex.slice(2, 4), 16);
+    var b = parseInt(hex.slice(4, 6), 16);
+    if (isNaN(r) || isNaN(g) || isNaN(b)) return null;
+    /* Docs body ink is often #444; force it to inherit the site text color. */
+    if (r <= 0x55 && g <= 0x55 && b <= 0x55) return null;
+    return hex;
+  }
+
   function docInlineSpanOpenTag(classList) {
     var classes = String(classList || "")
       .split(/\s+/)
@@ -6203,20 +6227,9 @@
     var colorHex = null;
     var i;
     for (i = 0; i < classes.length; i++) {
-      var m = /^doc-color-([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.exec(
-        classes[i],
-      );
-      if (!m) continue;
-      colorHex =
-        m[1].length === 3
-          ? m[1]
-              .split("")
-              .map(function (c) {
-                return c + c;
-              })
-              .join("")
-          : m[1].slice(0, 6);
-      colorHex = colorHex.toLowerCase();
+      var hex = docColorHexFromClass(classes[i]);
+      if (!hex) continue;
+      colorHex = hex;
       break;
     }
     var tag = '<span class="' + classes.join(" ") + '"';

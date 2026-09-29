@@ -1162,7 +1162,7 @@ window.DATA_STORIES = [
   },
   {
     id: 38,
-    wordCount: 11980,
+    wordCount: 11728,
     title: "James' Big Balls",
     summary:
       "James's cousin Sarah stays at his place for the weekend. What begins as secret ballbusting during a family movie turns into a brutal weekend alone together.",

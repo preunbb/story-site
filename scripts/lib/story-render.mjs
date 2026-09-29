@@ -326,24 +326,36 @@ function formatPreservedInner(inner, opts) {
   return readerFormatEscapedInline(escaped, opts).replace(/\n/g, "<br />");
 }
 
+function docColorHexFromClass(token) {
+  const m = /^doc-color-([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.exec(
+    token,
+  );
+  if (!m) return null;
+  let hex =
+    m[1].length === 3
+      ? m[1]
+          .split("")
+          .map((c) => c + c)
+          .join("")
+      : m[1].slice(0, 6);
+  hex = hex.toLowerCase();
+  const r = parseInt(hex.slice(0, 2), 16);
+  const g = parseInt(hex.slice(2, 4), 16);
+  const b = parseInt(hex.slice(4, 6), 16);
+  if (Number.isNaN(r) || Number.isNaN(g) || Number.isNaN(b)) return null;
+  if (r <= 0x55 && g <= 0x55 && b <= 0x55) return null;
+  return hex;
+}
+
 function docInlineSpanOpenTag(classList) {
   const classes = String(classList || "")
     .split(/\s+/)
     .filter(Boolean);
   let colorHex = null;
   for (const cls of classes) {
-    const m = /^doc-color-([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.exec(
-      cls,
-    );
-    if (!m) continue;
-    colorHex =
-      m[1].length === 3
-        ? m[1]
-            .split("")
-            .map((c) => c + c)
-            .join("")
-        : m[1].slice(0, 6);
-    colorHex = colorHex.toLowerCase();
+    const hex = docColorHexFromClass(cls);
+    if (!hex) continue;
+    colorHex = hex;
     break;
   }
   let tag = `<span class="${classes.join(" ")}"`;

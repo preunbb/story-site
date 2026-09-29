@@ -127,7 +127,7 @@ function cssColorToDocHex(value) {
   const g = parseInt(hex.slice(2, 4), 16);
   const b = parseInt(hex.slice(4, 6), 16);
   // Skip near-black / default Docs body ink so we don't wrap every run.
-  if (r <= 0x40 && g <= 0x40 && b <= 0x40) return null;
+  if (r <= 0x55 && g <= 0x55 && b <= 0x55) return null;
   return hex;
 }
 
