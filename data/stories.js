@@ -57,7 +57,7 @@ window.DATA_ANDREA_LUCAS_FULL = {
  */
 window.DATA_BEREAVEMENT_FULL = {
   id: "bereavement-full",
-  title: "Bereavement Counseling: The Five Stages of Grieving a Testicle",
+  title: "Bereavement Counseling",
   cover: "assets/covers/bereavement.png",
   access: "password",
   available: true,
@@ -1723,7 +1723,7 @@ window.DATA_STORIES = [
   {
     id: 49,
     wordCount: 24519,
-    title: "Bereavement Counseling: The Five Stages of Grieving a Testicle",
+    title: "Bereavement Counseling",
     brutalityRating: 1,
     summary:
       "Dr. Karen sees a new patient dealing with a particularly sensitive injury.",

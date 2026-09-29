@@ -55,7 +55,7 @@ async function main() {
     join(OUT_DIR, "SOURCE.json"),
     JSON.stringify(
       {
-        title: "Bereavement Counseling: The Five Stages of Grieving a Testicle",
+        title: "Bereavement Counseling",
         editDocId: EDIT_DOC_ID,
         editUrl: `https://docs.google.com/document/d/${EDIT_DOC_ID}/edit`,
         publishUrl: PUBLISH_URL,
