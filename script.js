@@ -1246,7 +1246,8 @@
   }
 
   function releaseDateSortKey(s) {
-    var p = parseReleaseYyyyMmDd(s.releaseDate);
+    var iso = getLatestPublishedChapterReleaseIso(s) || s.releaseDate;
+    var p = parseReleaseYyyyMmDd(iso);
     if (!p) return Number.POSITIVE_INFINITY;
     return releaseYmdSortNumber(p);
   }
