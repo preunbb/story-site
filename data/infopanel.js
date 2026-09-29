@@ -520,11 +520,11 @@ window.DATA_INFOPANEL = {
   alyssa: [
     {
       storyId: 25,
-      text: "Pops [[char:jon]]'s left ball while blowing off steam. [[char:alyssa]], [[char:monique]], and [[char:cathy]] all work together to pop his last testicle ([[char:jon]]). [[char:alyssa]] snaps his dick while taking his virginity too vigorously ([[char:jon]]). Dates cheating [[char:chad]] in [[story:25]].",
+      text: "Relies on [[char:jon]] to help her deal with the stress of her cheating boyfriend [[char:chad]] in [[story:25]].",
     },
     {
       storyId: 49,
-      text: "Helps [[char:karen|Dr. Karen]] complete [[char:stuart]]'s therapy. Stomps [[char:stuart]]'s last ball during a therapy session in [[story:49]].",
+      text: "[[char:stuart]]'s unrequitted high school crush, and helps [[char:karen|Dr. Karen]] complete his therapy in [[story:49]].",
     },
   ],
   chad: [
