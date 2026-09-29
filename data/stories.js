@@ -132,7 +132,7 @@ window.DATA_STORIES = [
   },
   {
     id: 2,
-    wordCount: 8451,
+    wordCount: 8108,
     title: "Castration Anxiety",
     summary:
       "Jeremy's having the weirdest, most painful nightmares. He's desperately hoping his therapist can help him figure things out.",
@@ -408,7 +408,7 @@ window.DATA_STORIES = [
   },
   {
     id: 15,
-    wordCount: 4103,
+    wordCount: 3916,
     brutalityRating: 3,
     title: "The Ballbusting Arena 2: Sofia's Choice",
     summary:
@@ -584,7 +584,7 @@ window.DATA_STORIES = [
   },
   {
     id: 19,
-    wordCount: 14499,
+    wordCount: 14498,
     title: "The Amazon's Fruits",
     brutalityRating: 4,
     summary:
@@ -861,7 +861,7 @@ window.DATA_STORIES = [
   },
   {
     id: 27,
-    wordCount: 9333,
+    wordCount: 9332,
     title: "Living with Ballbusting Witches",
     brutalityRating: 3,
     summary:
@@ -1574,7 +1574,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 28421,
+    wordCount: 28433,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
