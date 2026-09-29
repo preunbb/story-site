@@ -378,7 +378,7 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vQ4BV7uLAAfS57qXcqPU3km0k7kepW1TLwBZFvwB4KWX0kE1fv9EJEnL2e6VfZHhXCAHRTbY7Qo_mrf/pub",
     characterIds: ["melody", "richard", "nathan", "tommy"],
     state: 2,
-    series: { id: "melody-adventures", order: 1 },
+    series: { id: "melody-adventures", order: 4 },
   },
   {
     id: 12,
@@ -658,7 +658,7 @@ window.DATA_STORIES = [
       "joan_white",
     ],
     state: 2,
-    series: { id: "melody-adventures", order: 3 },
+    series: { id: "melody-adventures", order: 2 },
     scenes: [
       {
         path: "assets/scenes/school_bully/monique_stomps_robert_calc.png",
@@ -835,7 +835,7 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vSCFSsYv9k5JNRuwqyMvtMBCESmShx9HFjIHjnnUFwG0DKcMhN4Lkx-AvSzawnOHyHDv1HylaLObYYm/pub",
     characterIds: ["melody", "eric", "bryan"],
     state: 2,
-    series: { id: "melody-adventures", order: 2 },
+    series: { id: "melody-adventures", order: 3 },
     scenes: [
       {
         path: "assets/scenes/busted_by_the_babysitter/ch01_first_knee_aftermath_v2.jpg",
@@ -1298,6 +1298,7 @@ window.DATA_STORIES = [
     subtitle:
       "Ancient commission from crushednutz on tumblr that I never finished.",
     state: 1,
+    hideFromCatalog: true,
     characterIds: ["dava", "jeff"],
   },
 
@@ -1439,7 +1440,7 @@ window.DATA_STORIES = [
       "Melody's castration kink is back in full force, ever since her son lost his balls. She's been craving a chance to explore her awakened urges, and the nervous, virginal Ryan is just the guy to help her.",
     cover: "assets/covers/melody_seduces_a_virgin.png",
     state: 2,
-    series: { id: "melody-adventures", order: 4 },
+    series: { id: "melody-adventures", order: 1 },
     amazonUrl: "https://www.amazon.com/dp/B0H1J6MB7C",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTw7ksLCB2UgTKpZGwSoE8dGkhwoHkCkg5_iUz8ga467w2A1twmZ-nuj_iYocjiUTdSHanhPdfMArhS/pub",

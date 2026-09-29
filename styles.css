@@ -581,6 +581,26 @@ html:not(.ai-images-off) .ai-images-toggle-label--tiles {
   max-width: none;
 }
 
+.stories-catalog {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+.stories-section-title {
+  margin: 0 0 1rem;
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+.stories-catalog-empty {
+  margin: 0;
+  color: var(--ink-muted);
+}
+
 .stories-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -672,6 +692,25 @@ html:not(.ai-images-off) .ai-images-toggle-label--tiles {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
 }
 
+.story-cover-badges {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  max-width: calc(100% - 3.6rem);
+}
+
+.story-cover-badges .story-state-badge--on-cover {
+  position: static;
+  top: auto;
+  left: auto;
+  max-width: 100%;
+}
+
 .story-state-badge {
   position: absolute;
   top: 0.5rem;
@@ -698,14 +737,9 @@ html:not(.ai-images-off) .ai-images-toggle-label--tiles {
   color: #fff;
 }
 
-.story-state-badge--in-progress {
-  background: rgba(150, 90, 20, 0.95);
-  color: #fff;
-}
-
-.story-state-badge--new {
-  background: rgba(25, 120, 55, 0.95);
-  color: #fff;
+.story-state-badge--released {
+  background: rgba(42, 44, 52, 0.94);
+  color: #f0f0f3;
 }
 
 .story-premium-tag {
@@ -797,6 +831,16 @@ html:not(.ai-images-off) .ai-images-toggle-label--tiles {
 }
 
 /* Text-only catalog when AI images are toggled off */
+html.ai-images-off .stories-catalog {
+  gap: 1.75rem;
+}
+
+html.ai-images-off .stories-section-title {
+  margin: 0 0 0.45rem;
+  padding: 0 0.15rem;
+  font-size: 1.1rem;
+}
+
 html.ai-images-off .stories-grid {
   display: flex;
   flex-direction: column;
@@ -834,7 +878,10 @@ html.ai-images-off .story-card-body {
 
 html.ai-images-off .story-card-status {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  gap: 0.35rem;
   width: 100%;
 }
 
@@ -4688,6 +4735,7 @@ body.preun-local-andrea .local-andrea-status {
     right: 0.12rem;
   }
 
+  .story-cover-wrap .story-cover-badges,
   .story-cover-wrap .story-state-badge--on-cover {
     display: none;
   }
@@ -4735,7 +4783,7 @@ body.preun-local-andrea .local-andrea-status {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
   }
 
-  /* Narrow $ pill to the right of "Coming soon!" / "In progress!" / "New story!" */
+  /* Narrow $ pill to the right of "Coming soon!" */
   .story-premium-tag--in-row {
     display: inline-flex;
     position: static;

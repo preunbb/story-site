@@ -39,6 +39,58 @@
       label: "No Nut Narrator",
     },
   ];
+  /**
+   * Catalog page sections. Newest is a highlight row and may repeat cards
+   * that also appear in later sections. Every other listed id is "owned"
+   * by that section so leftovers go into More stories.
+   */
+  var CATALOG_SECTIONS = [
+    {
+      id: "newest",
+      title: "Newest releases",
+      storyIds: [49, 48, 47],
+    },
+    {
+      id: "epic",
+      title: "Epic length stories",
+      storyIds: [48, 47, 43, 19, 27, 1, 2, 49, 25],
+    },
+    {
+      id: "arena",
+      title: "Ballbusting Arena",
+      storyIds: [42, 10, 16, 14, 15, 5],
+    },
+    {
+      id: "melody",
+      title: "Melody's Adventures in Testicular Violence",
+      storyIds: [46, 20, 26, 11],
+    },
+    {
+      id: "red-dragon",
+      title: "Red Dragon Stories",
+      storyIds: [44, 45, 40, 21],
+    },
+    {
+      id: "overeasy",
+      title: "OverEasy Technologies",
+      storyIds: [48, 32, 30, 31],
+    },
+    {
+      id: "no-nut-narrator",
+      title: "No Nut Narrator",
+      storyIds: [34, 35],
+    },
+    {
+      id: "scripts",
+      title: "Scripts",
+      storyIds: [23, 33, 37],
+    },
+    {
+      id: "gym",
+      title: "Gym stories",
+      storyIds: [28, 24, 8],
+    },
+  ];
   var readerAbort = null;
   var readerStory = null;
 
@@ -319,6 +371,7 @@
   /** Stories with `localOnly: true` are hidden on production deploys. */
   function isStoryVisibleInCatalog(story) {
     if (!story) return false;
+    if (story.hideFromCatalog) return false;
     if (story.localOnly && !isLocalDevHost()) return false;
     return true;
   }
@@ -954,17 +1007,9 @@
   }
 
   function storyTextListMetaHtml(story) {
-    var parts = [];
-    var releaseLabel = formatStoryReleaseDateLabel(story.releaseDate);
-    if (releaseLabel) parts.push(escapeHtml(releaseLabel));
     var wordLabel = formatStoryWordCountLabel(story);
-    if (wordLabel) parts.push(escapeHtml(wordLabel));
-    if (!parts.length) return "";
-    return (
-      '<p class="story-card-meta">' +
-      parts.join('<span aria-hidden="true"> · </span>') +
-      "</p>"
-    );
+    if (!wordLabel) return "";
+    return '<p class="story-card-meta">' + escapeHtml(wordLabel) + "</p>";
   }
 
   function storyTextListBrutalityHtml(story) {
@@ -1361,32 +1406,6 @@
     );
   }
 
-  function isReleaseWithinLastThreeMonths(iso) {
-    var rel = parseReleaseYyyyMmDd(iso);
-    if (!rel) return false;
-    var cutoff = new Date();
-    cutoff.setMonth(cutoff.getMonth() - 3);
-    var cy = cutoff.getFullYear();
-    var cm = cutoff.getMonth() + 1;
-    var cd = cutoff.getDate();
-    return (
-      releaseYmdSortNumber(rel) >=
-      releaseYmdSortNumber({
-        y: cy,
-        m: cm,
-        d: cd,
-      })
-    );
-  }
-
-  /** Released stories with a recent releaseDate show the green "New story!" badge. */
-  function shouldShowNewStoryBadge(s) {
-    return (
-      normalizeStoryState(s) === 2 &&
-      isReleaseWithinLastThreeMonths(s.releaseDate)
-    );
-  }
-
   var BRUT_MAX = 6;
 
   function intRange(lo, hi) {
@@ -1447,6 +1466,7 @@
   function getAllTags() {
     var set = {};
     stories.forEach(function (s) {
+      if (!isStoryVisibleInCatalog(s)) return;
       var t = storyEffectiveTags(s);
       for (var i = 0; i < t.length; i++) {
         if (String(t[i]).indexOf("Series:") === 0) continue;
@@ -1517,32 +1537,9 @@
     return true;
   }
 
-  function storyStateBadgeHtml(kind, place, story) {
-    var label;
-    var text;
-    if (kind === "soon") {
-      label = "Coming soon";
-      text = "Coming soon!";
-    } else if (kind === "in-progress") {
-      label = "In progress";
-      text = "In progress!";
-      var lastChapterLabel =
-        story &&
-        formatStoryReleaseDateLabel(getLatestPublishedChapterReleaseIso(story));
-      if (lastChapterLabel) {
-        text += " Last chapter released: " + lastChapterLabel;
-        label += ". Last chapter released: " + lastChapterLabel;
-      }
-    } else {
-      label = "New story";
-      text = "New story!";
-      var releaseLabel =
-        story && formatStoryReleaseDateLabel(story.releaseDate);
-      if (releaseLabel) {
-        text += " " + releaseLabel;
-        label += ". Released " + releaseLabel;
-      }
-    }
+  function storyStateBadgeHtml(kind, place) {
+    var label = "Coming soon";
+    var text = "Coming soon!";
     return (
       '<span class="story-state-badge story-state-badge--' +
       kind +
@@ -1572,15 +1569,30 @@
     );
   }
 
+  function storyReleaseBadgeHtml(place, story) {
+    var dateLabel = story && formatStoryReleaseDateLabel(story.releaseDate);
+    if (!dateLabel) return "";
+    var text = "Released " + dateLabel;
+    return (
+      '<span class="story-state-badge story-state-badge--released story-state-badge--' +
+      place +
+      '" aria-label="' +
+      escapeHtml(text) +
+      '"><span class="story-state-badge-text">' +
+      escapeHtml(text) +
+      "</span></span>"
+    );
+  }
+
   function storyOnCoverBadgesHtml(s) {
-    var st = normalizeStoryState(s);
+    var left = "";
+    if (normalizeStoryState(s) === 1) {
+      left += storyStateBadgeHtml("soon", "on-cover");
+    }
+    left += storyReleaseBadgeHtml("on-cover", s);
     var html = "";
-    if (st === 1) {
-      html += storyStateBadgeHtml("soon", "on-cover", s);
-    } else if (st === 3) {
-      html += storyStateBadgeHtml("in-progress", "on-cover", s);
-    } else if (st === 2 && shouldShowNewStoryBadge(s)) {
-      html += storyStateBadgeHtml("new", "on-cover", s);
+    if (left) {
+      html += '<div class="story-cover-badges">' + left + "</div>";
     }
     if (storyHasPremiumTag(s)) {
       html += storyPremiumTagHtml("on-cover");
@@ -1600,8 +1612,8 @@
   /**
    * Cover wrapper for a story card / flyout. If the story has a coverFlip
    * we build the 3D flip wrapper (front + back); otherwise just the plain
-   * single-image wrapper. Either way the on-cover badges (premium / new /
-   * coming-soon) are placed over the front face.
+   * single-image wrapper. Either way the on-cover badges (premium /
+   * coming-soon / release) are placed over the front face.
    */
   function storyCoverMarkup(s, onCoverBadges) {
     var badges = onCoverBadges || "";
@@ -1658,9 +1670,99 @@
     });
   }
 
+  function catalogOwnedStoryIds() {
+    var owned = {};
+    for (var i = 0; i < CATALOG_SECTIONS.length; i++) {
+      var sec = CATALOG_SECTIONS[i];
+      if (sec.id === "newest") continue;
+      for (var j = 0; j < sec.storyIds.length; j++) {
+        owned[sec.storyIds[j]] = true;
+      }
+    }
+    return owned;
+  }
+
+  function createStoryCard(s) {
+    var card = document.createElement("article");
+    card.className = "story-card";
+    card.setAttribute("data-story", s.id);
+    var st = normalizeStoryState(s);
+    var rowBadgeHtml = "";
+    if (st === 1) {
+      rowBadgeHtml = storyStateBadgeHtml("soon", "in-row");
+    }
+    var releaseBadgeHtml = storyReleaseBadgeHtml("in-row", s);
+    var rowPremiumHtml = "";
+    if (storyHasPremiumTag(s)) {
+      rowPremiumHtml = storyPremiumTagHtml("in-row");
+    }
+    var aiImagesOn = getAiImagesEnabled();
+    if (!aiImagesOn) {
+      var compactStatusHtml = releaseBadgeHtml;
+      var compactTrailing = rowBadgeHtml + rowPremiumHtml;
+      var compactTrailingHtml = compactTrailing
+        ? '<div class="story-card-trailing">' + compactTrailing + "</div>"
+        : "";
+      card.className = "story-card story-card--text";
+      card.innerHTML =
+        '<div class="story-card-body">' +
+        (compactStatusHtml
+          ? '<div class="story-card-status">' + compactStatusHtml + "</div>"
+          : "") +
+        '<div class="story-card-title-row">' +
+        '<span class="story-card-title">' +
+        escapeHtml(s.title) +
+        "</span>" +
+        compactTrailingHtml +
+        "</div>" +
+        storyTextListMetaHtml(s) +
+        storyTextListBrutalityHtml(s) +
+        storyTextListTagsHtml(s) +
+        '<p class="story-card-summary">' +
+        escapeHtml(s.summary || "") +
+        "</p>" +
+        storyTextListActionsHtml(s) +
+        "</div>";
+      return card;
+    }
+    var coverTrailing = rowBadgeHtml + releaseBadgeHtml + rowPremiumHtml;
+    var coverTrailingHtml = coverTrailing
+      ? '<div class="story-card-trailing">' + coverTrailing + "</div>"
+      : "";
+    var coverWrapHtml = storyCoverMarkup(s, storyOnCoverBadgesHtml(s));
+    card.innerHTML =
+      coverWrapHtml +
+      '<div class="story-card-body">' +
+      '<span class="story-card-title">' +
+      escapeHtml(s.title) +
+      "</span>" +
+      coverTrailingHtml +
+      "</div>";
+    return card;
+  }
+
+  function appendCatalogSection(catalog, title, sectionId, storyList) {
+    if (!storyList.length) return;
+    var section = document.createElement("section");
+    section.className = "stories-section";
+    section.setAttribute("aria-labelledby", "stories-section-" + sectionId);
+    var heading = document.createElement("h2");
+    heading.className = "stories-section-title";
+    heading.id = "stories-section-" + sectionId;
+    heading.textContent = title;
+    var grid = document.createElement("div");
+    grid.className = "stories-grid";
+    storyList.forEach(function (s) {
+      grid.appendChild(createStoryCard(s));
+    });
+    section.appendChild(heading);
+    section.appendChild(grid);
+    catalog.appendChild(section);
+  }
+
   function renderStoriesGrid() {
-    var grid = byId("stories-grid");
-    if (!grid) return;
+    var catalog = byId("stories-catalog");
+    if (!catalog) return;
     var tagSelect = byId("tag-select");
     var selectedTag = tagSelect && tagSelect.value ? tagSelect.value : null;
     var seriesSelect = byId("series-select");
@@ -1685,68 +1787,39 @@
       if (!passesBrutalityFilter(s, bMode, bLevel)) return false;
       return true;
     });
-    var sorted = list.sort(function (a, b) {
-      return compareStoriesForFilter(a, b, activeSeries);
+    var visibleById = {};
+    list.forEach(function (s) {
+      visibleById[Number(s.id)] = s;
     });
-    grid.innerHTML = "";
-    sorted.forEach(function (s) {
-      var card = document.createElement("article");
-      card.className = "story-card";
-      card.setAttribute("data-story", s.id);
-      var st = normalizeStoryState(s);
-      var rowBadgeHtml = "";
-      var statusBadgeHtml = "";
-      if (st === 1) {
-        rowBadgeHtml = storyStateBadgeHtml("soon", "in-row", s);
-      } else if (st === 3) {
-        statusBadgeHtml = storyStateBadgeHtml("in-progress", "in-row", s);
-      } else if (st === 2 && shouldShowNewStoryBadge(s)) {
-        statusBadgeHtml = storyStateBadgeHtml("new", "in-row", s);
+    var ownedIds = catalogOwnedStoryIds();
+    var leftovers = list
+      .filter(function (s) {
+        return !ownedIds[Number(s.id)];
+      })
+      .sort(compareStories);
+
+    catalog.innerHTML = "";
+    var rendered = 0;
+    for (var i = 0; i < CATALOG_SECTIONS.length; i++) {
+      var sec = CATALOG_SECTIONS[i];
+      var sectionStories = [];
+      for (var j = 0; j < sec.storyIds.length; j++) {
+        var match = visibleById[sec.storyIds[j]];
+        if (match) sectionStories.push(match);
       }
-      var rowPremiumHtml = "";
-      if (storyHasPremiumTag(s)) {
-        rowPremiumHtml = storyPremiumTagHtml("in-row");
+      if (sectionStories.length) {
+        appendCatalogSection(catalog, sec.title, sec.id, sectionStories);
+        rendered += sectionStories.length;
       }
-      var rowTrailingInner = rowBadgeHtml + rowPremiumHtml;
-      var trailingRowHtml = rowTrailingInner
-        ? '<div class="story-card-trailing">' + rowTrailingInner + "</div>"
-        : "";
-      var aiImagesOn = getAiImagesEnabled();
-      if (!aiImagesOn) {
-        card.className = "story-card story-card--text";
-        card.innerHTML =
-          '<div class="story-card-body">' +
-          (statusBadgeHtml
-            ? '<div class="story-card-status">' + statusBadgeHtml + "</div>"
-            : "") +
-          '<div class="story-card-title-row">' +
-          '<span class="story-card-title">' +
-          escapeHtml(s.title) +
-          "</span>" +
-          trailingRowHtml +
-          "</div>" +
-          storyTextListMetaHtml(s) +
-          storyTextListBrutalityHtml(s) +
-          storyTextListTagsHtml(s) +
-          '<p class="story-card-summary">' +
-          escapeHtml(s.summary || "") +
-          "</p>" +
-          storyTextListActionsHtml(s) +
-          "</div>";
-        grid.appendChild(card);
-        return;
-      }
-      var coverWrapHtml = storyCoverMarkup(s, storyOnCoverBadgesHtml(s));
-      card.innerHTML =
-        coverWrapHtml +
-        '<div class="story-card-body">' +
-        '<span class="story-card-title">' +
-        escapeHtml(s.title) +
-        "</span>" +
-        trailingRowHtml +
-        "</div>";
-      grid.appendChild(card);
-    });
+    }
+    if (leftovers.length) {
+      appendCatalogSection(catalog, "More stories", "more", leftovers);
+      rendered += leftovers.length;
+    }
+    if (!rendered) {
+      catalog.innerHTML =
+        '<p class="stories-catalog-empty">No stories match these filters.</p>';
+    }
   }
 
   function storyHasScenes(s) {
@@ -7206,9 +7279,9 @@
   }
 
   function bindStoryGridClick() {
-    var storiesGrid = byId("stories-grid");
-    if (!storiesGrid) return;
-    storiesGrid.addEventListener("click", function (e) {
+    var storiesCatalog = byId("stories-catalog");
+    if (!storiesCatalog) return;
+    storiesCatalog.addEventListener("click", function (e) {
       if (handleCoverFlipClick(e)) return;
       if (e.target.closest(".story-card-action")) return;
       var card = e.target.closest(".story-card");
@@ -7221,7 +7294,7 @@
       var href = storyCatalogHref(story);
       location.hash = href.charAt(0) === "#" ? href.slice(1) : href;
     });
-    bindCoverFlipKeydown(storiesGrid);
+    bindCoverFlipKeydown(storiesCatalog);
   }
 
   function bindCharacterGridClick() {
