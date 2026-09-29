@@ -2213,9 +2213,12 @@
     );
   }
 
-  function connectionStoryLinkAnchor(story, displayText) {
+  function connectionStoryLinkAnchor(story, displayText, chapterOneBased) {
     if (!story) return escapeHtml(displayText || "");
-    var href = storyCatalogHref(story);
+    var href =
+      typeof chapterOneBased === "number" && isFinite(chapterOneBased)
+        ? storyReaderHash(story.id, chapterOneBased)
+        : storyCatalogHref(story);
     return (
       '<a class="connections-story-link" href="' +
       escapeHtml(href) +
@@ -2226,7 +2229,9 @@
   }
 
   /**
-   * Render infopanel markup: [[char:id]], [[char:id|text]], [[story:id]], [[story:id|text]].
+   * Render infopanel markup: [[char:id]], [[char:id|text]], [[story:id]],
+   * [[story:id|text]], [[story:id/read/chapter]], or
+   * [[story:id/read/chapter|text]].
    * Plain text is escaped (and spoiler-wrapped when spoilers are active).
    * Inserts a line break after each sentence-ending period outside [[...]] links
    * (periods inside link tags, e.g. Dr. Karen or a story title, do not break).
@@ -2261,10 +2266,14 @@
           display != null ? display : (ch && ch.name) || id,
         );
       } else {
-        var story = getStoryById(id);
+        var storyRef = id.match(/^([^/]+)\/read\/(\d+)$/i);
+        var storyId = storyRef ? storyRef[1] : id;
+        var chapterOneBased = storyRef ? Number(storyRef[2]) : null;
+        var story = getStoryById(storyId);
         html += connectionStoryLinkAnchor(
           story,
           display != null ? display : (story && story.title) || id,
+          chapterOneBased,
         );
       }
       last = m.index + m[0].length;

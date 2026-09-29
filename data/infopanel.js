@@ -834,11 +834,15 @@ window.DATA_INFOPANEL = {
       storyId: 47,
       text: "Owned by [[char:overeasy_technologies]]. [[char:andrea]]'s and [[char:kay]]'s favorite band. [[char:sunni]] is a more casual fan. [[char:emma]] takes long-time boyfriend [[char:trinn]] to a date in [[story:47|the mush pit]], as does [[char:kaitlin]] with involuntary femboy [[char:felix]], and [[char:melody]] with her nameless casual date. [[char:greyson|Some pervert]] attends in the hope that he'd get to experience the ultimate exquisite pain. [[char:yvette]] does her best to assist [[char:tamara]] in the medical tent in [[story:47]]. Owned by [[char:overeasy_technologies]].",
     },
+    {
+      storyId: 48,
+      text: "[[char:olivia]]'s favorite band in [[story:48/read/5|Quality Control, Chapter 4]].",
+    },
   ],
   olivia: [
     {
       storyId: 48,
-      text: "Tests SeedSpray on [[char:theodore]]. Crushes volunteer's left testicle in AutoMilker ([[char:nameless_volunteers]]). Snaps [[char:elliot]]'s spermatic cords with BoySnapper. Onboarded and supervised by [[char:cathy]] at [[char:overeasy_technologies|OverEasy]]. SeedSpray test overseen by [[char:zennia]]. Presents samples to [[char:charlotte]]. Employed by [[char:zennia]] in [[story:48]]. Employed by [[char:overeasy_technologies]].",
+      text: "Tests SeedSpray on [[char:theodore]]. Crushes volunteer's left testicle in AutoMilker ([[char:nameless_volunteers]]). Snaps [[char:elliot]]'s spermatic cords with BoySnapper. Onboarded and supervised by [[char:cathy]] at [[char:overeasy_technologies|OverEasy]]. SeedSpray test overseen by [[char:zennia]]. Presents samples to [[char:charlotte]]. Employed by [[char:zennia]] in [[story:48]]. Employed by [[char:overeasy_technologies]]. Favorite band ([[char:cherry_pop]]) in [[story:48/read/5|Chapter 4]].",
     },
   ],
   charlotte: [

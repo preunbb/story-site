@@ -1098,6 +1098,12 @@ window.DATA_CONNECTIONS = [
     kinds: ["faction"]
   },
   {
+    from: "olivia",
+    to: "cherry_pop",
+    storyId: 48,
+    kinds: ["faction"]
+  },
+  {
     from: "izzie",
     to: "overeasy_technologies",
     storyId: 43,
