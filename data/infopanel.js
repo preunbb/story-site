@@ -842,7 +842,7 @@ window.DATA_INFOPANEL = {
   olivia: [
     {
       storyId: 48,
-      text: "Tests SeedSpray on [[char:theodore]]. Crushes volunteer's left testicle in AutoMilker ([[char:nameless_volunteers]]). Snaps [[char:elliot]]'s spermatic cords with BoySnapper. Onboarded and supervised by [[char:cathy]] at [[char:overeasy_technologies|OverEasy]]. SeedSpray test overseen by [[char:zennia]]. Presents samples to [[char:charlotte]]. Employed by [[char:zennia]] in [[story:48]]. Employed by [[char:overeasy_technologies]]. Favorite band ([[char:cherry_pop]]) in [[story:48/read/5|Chapter 4]].",
+      text: "Tests SeedSpray on [[char:theodore]]. Crushes volunteer's left testicle in AutoMilker ([[char:nameless_volunteers]]). Snaps [[char:elliot]]'s spermatic cords with BoySnapper. Onboarded and supervised by [[char:cathy]] at [[char:overeasy_technologies|OverEasy]]. SeedSpray test overseen by [[char:zennia]]. Presents samples to [[char:charlotte]]. Employed by [[char:zennia]] in [[story:48]]. Employed by [[char:overeasy_technologies]]. [[char:cherry_pop]] is her favorite band to jam out to while running her [[story:48/read/5|product tests]].",
     },
   ],
   charlotte: [
