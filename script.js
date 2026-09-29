@@ -4957,50 +4957,6 @@
       allowed.indexOf(prev) !== -1 ? prev : defaultBrutalityPick(allowed);
     levelEl.innerHTML = brutalityLevelOptionsHtml(allowed, pick);
     levelEl.disabled = false;
-    fitSelectWidthToOptions(levelEl);
-  }
-
-  var filterSelectWidthMeasurer = null;
-
-  function fitSelectWidthToOptions(select) {
-    if (!select || !select.options || !select.options.length) return;
-    if (!filterSelectWidthMeasurer) {
-      filterSelectWidthMeasurer = document.createElement("span");
-      filterSelectWidthMeasurer.setAttribute("aria-hidden", "true");
-      filterSelectWidthMeasurer.style.cssText =
-        "position:absolute;left:-9999px;top:0;visibility:hidden;white-space:nowrap;";
-      document.body.appendChild(filterSelectWidthMeasurer);
-    }
-    var style = window.getComputedStyle(select);
-    filterSelectWidthMeasurer.style.font = style.font;
-    var maxText = 0;
-    for (var i = 0; i < select.options.length; i++) {
-      filterSelectWidthMeasurer.textContent = select.options[i].textContent;
-      maxText = Math.max(
-        maxText,
-        filterSelectWidthMeasurer.getBoundingClientRect().width,
-      );
-    }
-    var padL = parseFloat(style.paddingLeft) || 0;
-    var padR = parseFloat(style.paddingRight) || 0;
-    var borderL = parseFloat(style.borderLeftWidth) || 0;
-    var borderR = parseFloat(style.borderRightWidth) || 0;
-    select.style.width =
-      Math.ceil(maxText + padL + padR + borderL + borderR + 2) + "px";
-  }
-
-  function fitStoryFilterSelects() {
-    fitSelectWidthToOptions(byId("tag-select"));
-    fitSelectWidthToOptions(byId("series-select"));
-    fitSelectWidthToOptions(byId("length-select"));
-    fitSelectWidthToOptions(byId("brutality-mode"));
-    fitSelectWidthToOptions(byId("brutality-level"));
-  }
-
-  function scheduleStoryFilterSelectFit() {
-    requestAnimationFrame(function () {
-      fitStoryFilterSelects();
-    });
   }
 
   function initStoryFilters() {
@@ -5051,7 +5007,6 @@
     if (modeEl) {
       modeEl.addEventListener("change", function () {
         syncBrutalityLevelOptions();
-        scheduleStoryFilterSelectFit();
         renderStoriesGrid();
       });
     }
@@ -5061,11 +5016,6 @@
       });
     }
     syncBrutalityLevelOptions();
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(scheduleStoryFilterSelectFit);
-    } else {
-      scheduleStoryFilterSelectFit();
-    }
   }
 
   /** Inline **bold**, *italic*, `code` for ratings panel (from markdown). */

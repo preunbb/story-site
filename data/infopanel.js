@@ -102,11 +102,11 @@ window.DATA_INFOPANEL = {
   emma: [
     {
       storyId: 5,
-      text: "Destroys [[char:roger]]'s testicles. Castrates [[char:paul]] in [[story:5]]. Fought in [[char:ballbusting_arena]].",
+      text: "Snacks on [[char:roger]]'s testicles and helps slam [[char:paul]] crotch-first into the pole in [[story:5|a battle royale]] in the [[char:ballbusting_arena]].",
     },
     {
       storyId: 10,
-      text: "Swaps castration stories ([[char:brian]]) in [[story:10]].",
+      text: "Swaps castration stories with [[char:natalie]] and [[char:david]] while [[char:brian]] listens very intently in [[story:10]].",
     },
     {
       storyId: 12,
@@ -114,11 +114,11 @@ window.DATA_INFOPANEL = {
     },
     {
       storyId: 24,
-      text: "Castrates [[char:jose]] in [[story:24]].",
+      text: "Chews [[char:jose]]'s testicles to mush in [[story:24]].",
     },
     {
       storyId: 47,
-      text: "Mistakenly targets [[char:lucas]]. Dates [[char:trinn]] in [[story:47]].",
+      text: "Takes [[char:trinn]] to a Cherry Pop! concert where she accidentally punts [[char:lucas]] in his massively overproductive testicles in [[story:47]].",
     },
   ],
   vivian: [
@@ -842,7 +842,7 @@ window.DATA_INFOPANEL = {
   olivia: [
     {
       storyId: 48,
-      text: "Tests SeedSpray on [[char:theodore]]. Crushes volunteer's left testicle in AutoMilker ([[char:nameless_volunteers]]). Snaps [[char:elliot]]'s spermatic cords with BoySnapper. Onboarded and supervised by [[char:cathy]] at [[char:overeasy_technologies|OverEasy]]. SeedSpray test overseen by [[char:zennia]]. Employed by [[char:overeasy_technologies]]. [[char:cherry_pop]] is her favorite band to jam out to while running her [[story:48/read/5|product tests]].",
+      text: "Tests SeedSpray on [[char:theodore]]. Crushes volunteer's left testicle in AutoMilker ([[char:nameless_volunteers]]). Snaps [[char:elliot]]'s spermatic cords with BoySnapper. Onboarded and supervised by [[char:cathy]] at [[char:overeasy_technologies|OverEasy]]. [[char:zennia]] is her boss's boss's boss's grand-boss. Employed by [[char:overeasy_technologies]]. [[char:cherry_pop]] is her favorite band to jam out to while running her [[story:48/read/5|product tests]].",
     },
   ],
   charlotte: [

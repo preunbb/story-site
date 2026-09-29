@@ -519,10 +519,11 @@ html:not(.ai-images-off) .ai-images-toggle-label--tiles {
 .length-filter-wrap,
 .brutality-filter-wrap {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 10.5rem minmax(0, 1fr);
   align-items: center;
   gap: 0.5rem 0.75rem;
-  justify-self: start;
+  justify-self: stretch;
+  width: 100%;
 }
 
 .filter-select-slot {
@@ -530,7 +531,8 @@ html:not(.ai-images-off) .ai-images-toggle-label--tiles {
   flex-wrap: nowrap;
   align-items: center;
   gap: 0.5rem;
-  width: auto;
+  min-width: 0;
+  width: 100%;
 }
 
 .brutality-level-select:disabled {
@@ -541,6 +543,7 @@ html:not(.ai-images-off) .ai-images-toggle-label--tiles {
 .tag-selector-label {
   font-size: 0.95rem;
   color: var(--ink-muted);
+  white-space: nowrap;
 }
 
 .tag-select {
@@ -552,8 +555,9 @@ html:not(.ai-images-off) .ai-images-toggle-label--tiles {
   font: inherit;
   font-size: 0.95rem;
   cursor: pointer;
-  width: auto;
-  max-width: none;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .tag-select:hover,
@@ -563,9 +567,9 @@ html:not(.ai-images-off) .ai-images-toggle-label--tiles {
 }
 
 .tag-select.brutality-mode-select {
-  min-width: 3.75rem;
+  flex: 1.35 1 0;
+  min-width: 5.25rem;
   width: auto;
-  flex: 0 0 auto;
   padding-left: 0.5rem;
   padding-right: 1.65rem;
   text-align: center;
@@ -573,8 +577,9 @@ html:not(.ai-images-off) .ai-images-toggle-label--tiles {
 }
 
 .tag-select.brutality-level-select {
-  min-width: 3.25rem;
-  flex: 0 0 auto;
+  flex: 1 1 0;
+  min-width: 3.5rem;
+  width: auto;
   padding-left: 0.5rem;
   padding-right: 1.65rem;
   text-align: center;
@@ -4691,13 +4696,14 @@ body.preun-local-andrea .local-andrea-status {
   .brutality-filter-wrap {
     width: 100%;
     justify-self: stretch;
-    grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+    grid-template-columns: 10.5rem minmax(0, 1fr);
     gap: 0.5rem 0.75rem;
   }
 
   .story-filters .filter-select-slot {
     flex: 1;
     min-width: 0;
+    width: 100%;
   }
 
   .tag-selector-wrap .tag-select,
@@ -4708,7 +4714,7 @@ body.preun-local-andrea .local-andrea-status {
   }
 
   .tag-selector-label {
-    white-space: normal;
+    white-space: nowrap;
   }
 
   .stories-grid {
