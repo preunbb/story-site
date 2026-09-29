@@ -99,7 +99,11 @@ window.DATA_MUSIC = [
           "(chorus) \n" +
           "QUEEN, QUEEN, QUEEN, QUEEN, QUEEN\n" +
           "DON'T NEED NO KING, NO KNIGHT, NO PRINCE\n" +
-          "YOU'RE JUST MY FOOL, SO LICK MY LIPS",
+          "YOU'RE JUST MY FOOL, SO LICK MY LIPS\n" +
+          "Spread your legs get on the floor\n" +
+          "I'll stand on them, you fucking whore\n" +
+          "Eunuch loser, nutless wussy\n" +
+          "Shove your tongue into my pussy",
       },
     ],
   },
