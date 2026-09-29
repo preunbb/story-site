@@ -2160,14 +2160,14 @@
       );
       return;
     }
-    var cover =
-      releases.length === 1 && releases[0].cover
-        ? String(releases[0].cover)
-        : "";
-    root.innerHTML = musicJacketHtml(
-      releases.map(musicReleaseHtml).join(""),
-      cover,
-    );
+    root.innerHTML = releases
+      .map(function (release) {
+        return musicJacketHtml(
+          musicReleaseHtml(release),
+          release.cover ? String(release.cover) : "",
+        );
+      })
+      .join("");
   }
 
   function renderFanartPanel() {

@@ -27,6 +27,83 @@
 */
 window.DATA_MUSIC = [
   {
+    title: "Cherry Pop!",
+    cover: "assets/music/cherry_pop_plum_dumb_cover_v2.png",
+    tracks: [
+      {
+        title: "Kick him till he cries",
+        lyrics:
+          "Kick him till he cries\n" +
+          "Kick him till they're mush\n" +
+          "Stomp his last ball till it dies\n" +
+          "Don't give up at the first crunch!",
+      },
+      {
+        title: "Kick. Stomp. Knee. Repeat.",
+        lyrics:
+          "KICK. STOMP. KNEE. REPEAT.\n" +
+          "CRUNCH. POP. SQUICK. DEFEAT.\n" +
+          "LEAVE. HIM NEUTERED. IN. THE STREET.\n" +
+          "\n" +
+          "KICK. STOMP. KNEE. AGAIN.\n" +
+          "CRACK. SNAP. END. HIS BLOOD-LINE.\n" +
+          "LEAVE. HIM STERILE. FOREVER, CRYING.",
+      },
+      {
+        title: "Plum Dumb & Permanently Done",
+        lyrics:
+          "Stop them flat until they POP\n" +
+          "Don't let up or ever STOP\n" +
+          "He'll beg and plead to let one live -\n" +
+          "but don't forget and don't forGIVE",
+      },
+      {
+        title: "So Easy to Break",
+        lyrics:
+          "CRACK—hear the CRUNCH under my boot\n" +
+          "SNAP—cut your manhood right down to the root\n" +
+          "Remember your balls? They're not around anymore\n" +
+          "Now they're pulp on the floor, don't exist anymore\n" +
+          "\n" +
+          "Now they're gone, I don't answer anymore\n" +
+          "Just mush, just slush forevermore\n" +
+          "You'll never stop sobbing, you'll never get better\n" +
+          "They're gone, empty sack, forever and ever\n" +
+          "\n" +
+          "It's over, they're broken, we took them both from you\n" +
+          "It'll never get hard, and they'll never go blue\n" +
+          "Say bye bye to those balls, wish them both well\n" +
+          "Because me and all my bitches are sending them all HELL\n\n" +
+          "(chorus) \n" +
+          "They're so easy to break,\n" +
+          "So easy to take,\n" +
+          "Away from you for-ever,\n" +
+          "You thought you're fucking cle-ver,\n" +
+          "But now you're just a nullo,\n" +
+          "Feeling pretty hollow,\n" +
+          "Not much of a balla\n" +
+          "Not much of a fella!",
+      },
+      {
+        title: "QUEEN",
+        lyrics:
+          "I'M THE QUEEN, YOU'RE MY BITCH\n" +
+          "YOU EXIST, TO SCRATCH MY ITCH\n" +
+          "\n" +
+          "NOW GET DOWN. ON THE FLOOR.\n" +
+          "SPREAD YOUR LEGS AND GIVE ME MORE!\n" +
+          "\n" +
+          "FLATTENING THEM IS SO MUCH FUN\n" +
+          "DON'T STOP LICKING TILL I CUM" +
+          "\n" +
+          "(chorus) \n" +
+          "QUEEN, QUEEN, QUEEN, QUEEN, QUEEN\n" +
+          "DON'T NEED NO KING, NO KNIGHT, NO PRINCE\n" +
+          "YOU'RE JUST MY FOOL, SO LICK MY LIPS",
+      },
+    ],
+  },
+  {
     title: "SOFTER FLATTER SWEETER CLEARER",
     cover: "assets/music/album_cover_three_punks_v1.png",
     tracks: [

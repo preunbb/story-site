@@ -1610,7 +1610,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 21345,
+    wordCount: 28326,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
@@ -1630,7 +1630,7 @@ window.DATA_STORIES = [
     ],
     state: 3,
     releaseDate: "2026-08-24",
-    chaptersToPublish: 4,
+    chaptersToPublish: 5,
     chapterReleases: [
       {
         chapter: 1,
@@ -1651,6 +1651,11 @@ window.DATA_STORIES = [
         chapter: 4,
         title: "Chapter 3: SeedSpray™ seminal extraction nanobots",
         releaseDate: "2026-09-14",
+      },
+      {
+        chapter: 5,
+        title: "Chapter 4: Sterilizer™ Comprehensive Batch Test (CBT)",
+        releaseDate: "2026-09-28",
       },
     ],
     tags: ["New to Reddit"],

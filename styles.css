@@ -4774,6 +4774,10 @@ body.preun-local-andrea .local-andrea-status {
   }
 }
 
+.music-jacket + .music-jacket {
+  margin-top: 1.75rem;
+}
+
 .music-jacket {
   position: relative;
   max-width: 68rem;
