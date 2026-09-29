@@ -1610,7 +1610,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 28380,
+    wordCount: 28421,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
@@ -1674,6 +1674,14 @@ window.DATA_STORIES = [
           "Quality Control — Chapter 3: SeedSpray™ seminal extraction nanobots",
         description:
           "Zennia sits in on Olivia's SeedSpray™ nanobot extraction test — and an old Over Easy employee.",
+      },
+      {
+        chapter: 5,
+        cover: "assets/covers/ch4_qc.png",
+        title:
+          "Quality Control — Chapter 4: Sterilizer™ Comprehensive Batch Test",
+        description:
+          "Cathy introduces Olivia to comprehensive batch testing: five Sterilizers, five subjects, and thirty minutes on the clock.",
       },
     ],
     scenes: [
