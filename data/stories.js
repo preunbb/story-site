@@ -67,8 +67,7 @@ window.DATA_BEREAVEMENT_FULL = {
   passwordGateDomain: "story-site:bereavement-counseling:gate:",
   passwordKeyDomain: "story-site:bereavement-counseling:key:",
   /** Short tip shown above the password field. */
-  passwordHint:
-    "Enter the password included with your copy of this story.",
+  passwordHint: "Enter the password included with your copy of this story.",
   purchaseParts: BEREAVEMENT_PURCHASE_PARTS,
   detailsStoryId: 49,
   catalogHidden: true,
@@ -98,7 +97,6 @@ window.DATA_STORIES = [
       "allan",
     ],
     state: 2,
-    tags: [],
     brutalityRating: 5,
     scenes: [
       {
@@ -145,7 +143,6 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vSzHrCQAe11KrCIyKxKmcF8imQnqjwi7cZ1QrmwuRtG80z9bJTo9REehUUBpbFKFoOvpPpWL4Vd_dVy/pub",
     characterIds: ["jeremy", "karen"],
     state: 2,
-    tags: [],
     brutalityRating: 3,
     scenes: [
       {
@@ -205,7 +202,6 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vQljJeCPYRaaZ6RaxaIlNjYz-fh-yNNsoYER75eHB32UKFAUPSQ4rQ-ovd4q6K6Rvu_x_ZsS7Hz_S_q/pub",
     characterIds: ["jenny"],
     state: 2,
-    tags: [],
     brutalityRating: 2,
   },
   {
@@ -231,7 +227,6 @@ window.DATA_STORIES = [
     ],
     state: 2,
     series: { id: "ballbusting-arena", order: 1 },
-    tags: [],
     brutalityRating: 5,
     hideScenes: true,
     scenes: [
@@ -285,7 +280,6 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vRdLRm7RS8Ii9xyQ7GzfNSKP0O4AtgAs3cvpnYy9QAaPEQoThTi81fPpgCS7SgGrfDw7qsIq72rCdgL/pub",
     characterIds: ["rachel", "greg"],
     state: 2,
-    tags: [],
     brutalityRating: 3,
   },
   {
@@ -299,7 +293,6 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vTEnKFYNOWrlGqbFyMl3vHj7MyzTf4vJt4x_mLLEBSDlm5sr7vNbd_L86XFhXJbErYtvFzZmNyHjXs0/pub",
     characterIds: ["william", "elara", "alexa"],
     state: 2,
-    tags: ["New to Reddit"],
     brutalityRating: 3,
   },
   {
@@ -314,7 +307,6 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vSrwbxvPy_ir_0ggOvgKWjAnKhgRzCtKsErNxLGWNmSdZkHtq6H8XTlR4UwXHpAnyM1f70CtaDpEQca/pub",
     characterIds: ["dennis", "serena", "erica", "kayleigh"],
     state: 2,
-    tags: [],
     scenes: [
       {
         path: "assets/scenes/club_fight/scene1_serena_knee_strike_v2_realistic.png",
@@ -355,7 +347,6 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vRBtxHqI60ZsJNbBJl43GiOkLyCoN5n8Fm-lXK2qsrM_KHt0ZZkxiIYr_os0aOmTzWj7NvzgP_ykUXn/pub",
     characterIds: [],
     state: 2,
-    tags: [],
   },
   {
     id: 10,
@@ -371,7 +362,6 @@ window.DATA_STORIES = [
     characterIds: ["brian", "emma", "vivian", "natalie", "vanessa", "david"],
     state: 2,
     series: { id: "ballbusting-arena", order: 5 },
-    tags: [],
     hideScenes: true,
   },
   {
@@ -389,7 +379,6 @@ window.DATA_STORIES = [
     characterIds: ["melody", "richard", "nathan", "tommy"],
     state: 2,
     series: { id: "melody-adventures", order: 1 },
-    tags: [],
   },
   {
     id: 12,
@@ -403,7 +392,6 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vQcNjbN4-u-A0mrr_00UfsUmYpGfi6UMU5xvD4CprYwOpTTsllqdXqFeuaXhxs79B9B0m2xOQq1JTOV/pub",
     characterIds: ["emma", "simon"],
     state: 2,
-    tags: ["New to Reddit"],
   },
   {
     id: 13,
@@ -417,7 +405,6 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vRDqTNNakRk5cGuVVralHxnIVKjNJPYgMqpFHmFl69jqp6MIRxxsVJqAvwvU4ARWjojZX5GMwNrpDqt/pub",
     characterIds: ["jenny", "sanjay"],
     state: 2,
-    tags: [],
   },
   {
     id: 15,
@@ -462,7 +449,6 @@ window.DATA_STORIES = [
     ],
     state: 2,
     series: { id: "ballbusting-arena", order: 2 },
-    tags: [],
   },
   {
     id: 14,
@@ -478,7 +464,6 @@ window.DATA_STORIES = [
     characterIds: ["fiona", "brad", "sofia", "amy", "wesley"],
     state: 2,
     series: { id: "ballbusting-arena", order: 3 },
-    tags: [],
     hideScenes: true,
     scenes: [
       {
@@ -561,7 +546,6 @@ window.DATA_STORIES = [
     ],
     state: 2,
     series: { id: "ballbusting-arena", order: 4 },
-    tags: [],
   },
   {
     id: 17,
@@ -584,7 +568,6 @@ window.DATA_STORIES = [
       },
     ],
     state: 2,
-    tags: [],
   },
   {
     id: 18,
@@ -598,7 +581,6 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vTt0TRq1kLbyrUtvvw1s5rH-bDx9X6hSiu_1ybmn1vKmdz-7fQ5xuwSAAdQwFSUDtZ5cuhMZWAe5Yfd/pub",
     characterIds: ["poly", "robin"],
     state: 2,
-    tags: ["New to Reddit"],
   },
   {
     id: 19,
@@ -614,7 +596,6 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vR7EElMXTg5o4F_WWEu1J4RFfAKF5NJL6pe0lluaHapWP7ZNo7fouYChti7WlZrHV_0TzOk8LCoAdAO/pub",
     characterIds: ["atheras", "vergil", "salei", "queen_mother", "lurian"],
     state: 2,
-    tags: ["New to Reddit"],
     hideScenes: true,
     scenes: [
       {
@@ -678,7 +659,6 @@ window.DATA_STORIES = [
     ],
     state: 2,
     series: { id: "melody-adventures", order: 3 },
-    tags: [],
     scenes: [
       {
         path: "assets/scenes/school_bully/monique_stomps_robert_calc.png",
@@ -736,7 +716,7 @@ window.DATA_STORIES = [
     subtitle:
       "This takes place in the 'Red Dragon' universe, started by poiu and continued by kiwibb. Fanart by 9x9 (https://inkbunny.net/s/2226481)",
     state: 2,
-    tags: ["Furry", "New to Reddit", "Based on other authors' work"],
+    tags: ["Furry", "Based on other authors' work"],
   },
   {
     id: 22,
@@ -750,7 +730,6 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vScwbE6p1gmOjYx1gJwYRsBG4yaZxrYZOcM2eZa_7H0DPRw58GWhvUEwmD5aWjkagnEC3DiuGTrepJa/pub",
     characterIds: [],
     state: 2,
-    tags: ["New to Reddit"],
   },
   {
     id: 23,
@@ -768,7 +747,6 @@ window.DATA_STORIES = [
     audioUrl: "Castration Appointment at the Kink Agency.m4a",
     characterIds: [],
     state: 2,
-    tags: [],
   },
   {
     id: 24,
@@ -782,7 +760,6 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vSkCwlzQvhfAUEGIKey5gPeAsLdLNPfLBejwsRtqt53HtEQIgBPCYxnr_Oue17IT1xLzRFhEk5KgX-m/pub",
     characterIds: ["emma", "jose"],
     state: 2,
-    tags: [],
     scenes: [
       {
         path: "assets/scenes/food_for_thot/emma_gym_drools_at_bulge_v3.png",
@@ -821,7 +798,6 @@ window.DATA_STORIES = [
       "joan_white",
     ],
     state: 2,
-    tags: [],
     scenes: [
       {
         path: "assets/scenes/friendzoned/alyssa_lip_bite_guilty_direct_camera_oops_v1.png",
@@ -860,7 +836,6 @@ window.DATA_STORIES = [
     characterIds: ["melody", "eric", "bryan"],
     state: 2,
     series: { id: "melody-adventures", order: 2 },
-    tags: ["New to Reddit"],
     scenes: [
       {
         path: "assets/scenes/busted_by_the_babysitter/ch01_first_knee_aftermath_v2.jpg",
@@ -898,7 +873,6 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vS0bA6zQ9zU7aFW-AqA_k8k0VfL5VcfC8s43Z4kr1Fa71x3QuNeL9ujwSPiGzP2xJwtkl8TBKdgpR8C/pub",
     characterIds: ["genovia", "sylvana", "sean_witches"],
     state: 2,
-    tags: [],
     scenes: [
       {
         path: "assets/scenes/living_with_ballbusting_witches/prom_1988_public_humiliation.png",
@@ -943,7 +917,6 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vTAU43kVpZAcbYWpK5C8qNpyBgG1PZuYL9WrxJOUK741wmXWHxxkqzK0qDyGI6s4z6Hh1-X5OHA05LG/pub",
     characterIds: ["steven", "kaitlin", "amy", "june", "serena"],
     state: 2,
-    tags: [],
     scenes: [
       {
         path: "assets/scenes/testy/aftermath_in_self_defense_class.jpg",
@@ -984,7 +957,6 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vQp_4y7LJnHity8IKFUGkj_ScJ66i4HpU-yKIUslA2qmWCe8agtSxLe-_W7-Cza9tY3MCmi9JEF_uui/pub",
     characterIds: ["ross", "the_nurse"],
     state: 2,
-    tags: [],
   },
   {
     id: 30,
@@ -1006,7 +978,7 @@ window.DATA_STORIES = [
     ],
     subtitle: "Commission for a continuation between two captions.",
     state: 2,
-    tags: ["New to Reddit", "Based on other authors' work"],
+    tags: ["Based on other authors' work"],
     scenes: [
       {
         path: "assets/scenes/post_op/scene_wake_up_stirrups_v2_draped.jpg",
@@ -1058,7 +1030,6 @@ window.DATA_STORIES = [
     subtitle:
       "Followup to a beautiful RP I did with someone on tumblr way back in the day.",
     state: 2,
-    tags: ["New to Reddit"],
   },
   {
     id: 32,
@@ -1087,7 +1058,6 @@ window.DATA_STORIES = [
       },
     ],
     state: 2,
-    tags: ["New to Reddit"],
   },
   {
     id: 33,
@@ -1101,7 +1071,6 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vT_B6lDYNi_ICH9IOVhhhMWE6YTtkKSbvma4E7nO4TxlxOMa9KGVO9lq3BiZqgnhMn3gJSYvSJepL71/pub",
     characterIds: [],
     state: 2,
-    tags: ["New to Reddit"],
   },
   {
     id: 34,
@@ -1117,7 +1086,6 @@ window.DATA_STORIES = [
     characterIds: [],
     state: 2,
     series: { id: "no-nut-narrator", order: 1 },
-    tags: ["New to Reddit"],
   },
   {
     id: 35,
@@ -1133,7 +1101,7 @@ window.DATA_STORIES = [
     characterIds: [],
     state: 2,
     series: { id: "no-nut-narrator", order: 2 },
-    tags: ["New to Reddit", "No Nut Narrator"],
+    tags: ["No Nut Narrator"],
   },
   {
     id: 36,
@@ -1147,7 +1115,6 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vRETewpFyT0mnciKkMK8R97T-pDEcqkZ3siKhKg1oxgtWrgOe08CN7dLQLJ3c56bmZNcx86DyPlzGyZ/pub",
     characterIds: ["officer_alice", "ivan", "lieutenant_maria"],
     state: 2,
-    tags: ["New to Reddit"],
     scenes: [
       {
         path: "assets/scenes/paperwork/1_paperwork_alice_pliers_v5_chestup.png",
@@ -1192,7 +1159,6 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vQWua-pQJOAP2ZSyU5sFNSozli-i0KnBK1AkISCJMkY_xMpL4zcwkaiTkJbogDyeFWNYvYaNne5N762/pub",
     characterIds: [],
     state: 2,
-    tags: [],
   },
   {
     id: 38,
@@ -1207,7 +1173,7 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vSU4uTw0_e32omJ7hRARitDiwSdX-MiuPuyLde4BYZk6DSU6wxhVcenbKDREtxuox9NSGnuyZ5svd1r/pub",
     state: 2,
-    tags: ["New to Reddit", "Based on other authors' work"],
+    tags: ["Based on other authors' work"],
   },
   {
     id: 39,
@@ -1221,7 +1187,7 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vRQEaO-eWJxiU6v7YmbiL2Fwo5G8O3Z9zgjmQ2BTfuufLcKvf5LxU4cjMiA9eFxKBNpFBIu_1lc8Dyb/pub",
     characterIds: ["jenny"],
     state: 2,
-    tags: ["New to Reddit", "Based on other authors' work"],
+    tags: ["Based on other authors' work"],
   },
   {
     id: 40,
@@ -1237,7 +1203,7 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vTUG5kvCCVa1GAQuZALyLUYM6smQs0mg2kAmF9UXScDNTBeM6rp7JhmXQEqoLJKT0fR5EWmAymSGu6X/pub",
     characterIds: ["kayla"],
     state: 2,
-    tags: ["Furry", "Based on other authors' work", "New to Reddit"],
+    tags: ["Furry", "Based on other authors' work"],
     scenes: [
       {
         path: "assets/scenes/dragon_slaying/ch01_orca_first_mace_strike.png",
@@ -1333,7 +1299,6 @@ window.DATA_STORIES = [
       "Ancient commission from crushednutz on tumblr that I never finished.",
     state: 1,
     characterIds: ["dava", "jeff"],
-    tags: ["New to Reddit"],
   },
 
   {
@@ -1351,7 +1316,6 @@ window.DATA_STORIES = [
     state: 2,
     series: { id: "ballbusting-arena", order: 6 },
     characterIds: ["natalie", "nguyen_twins", "brian"],
-    tags: ["New to Reddit"],
     scenes: [
       {
         path: "assets/scenes/arena_6/twins_center.png",
@@ -1382,7 +1346,7 @@ window.DATA_STORIES = [
       "nate",
       "hunter",
     ],
-    tags: ["Premium Story", "New to Reddit"],
+    tags: ["Premium Story"],
     purchaseParts: ANDREA_LUCAS_PURCHASE_PARTS,
     previewRead: {
       md: "assets/stories/43.md",
@@ -1431,7 +1395,7 @@ window.DATA_STORIES = [
     state: 2,
     releaseDate: "2026-03-21",
     characterIds: ["malko", "taviri"],
-    tags: ["New to Reddit", "Furry", "Based on other authors' work"],
+    tags: ["Furry", "Based on other authors' work"],
     brutalityRating: 2,
     scenes: [
       {
@@ -1465,7 +1429,7 @@ window.DATA_STORIES = [
     releaseDate: "2026-03-21",
     characterIds: [],
     brutalityRating: 2,
-    tags: ["New to Reddit", "Based on other authors' work"],
+    tags: ["Based on other authors' work"],
   },
   {
     id: 46,
@@ -1481,7 +1445,6 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vTw7ksLCB2UgTKpZGwSoE8dGkhwoHkCkg5_iUz8ga467w2A1twmZ-nuj_iYocjiUTdSHanhPdfMArhS/pub",
     characterIds: ["melody", "ryan", "malcolm"],
     brutalityRating: 4,
-    tags: ["New to Reddit"],
     releaseDate: "2026-05-11",
     scenes: [
       {
@@ -1546,7 +1509,7 @@ window.DATA_STORIES = [
       "broken_tree_cultists",
       "cherry_pop",
     ],
-    tags: ["Premium Story", "New to Reddit"],
+    tags: ["Premium Story"],
     purchaseParts: ANDREA_LUCAS_PURCHASE_PARTS,
     scenes: [
       {
@@ -1658,14 +1621,13 @@ window.DATA_STORIES = [
         releaseDate: "2026-09-28",
       },
     ],
-    tags: ["New to Reddit"],
     chapterShares: [
       {
         chapter: 3,
         cover: "assets/covers/quality_control_ch02_cover_v1.jpg",
         title: "Quality Control — Chapter 2: BoySnapper™ Scrotal Stretcher",
         description:
-          "Olivia's second QC test pairs her with a familiar face — and the BoySnapper™ scrotal stretcher.",
+          "Olivia's second QC test pairs her with a familiar face. He'll help her see if the BoySnapper™ scrotal stretcher lives up to its name.",
       },
       {
         chapter: 4,
@@ -1673,7 +1635,7 @@ window.DATA_STORIES = [
         title:
           "Quality Control — Chapter 3: SeedSpray™ seminal extraction nanobots",
         description:
-          "Zennia sits in on Olivia's SeedSpray™ nanobot extraction test — and an old Over Easy employee.",
+          "Olivia tests out some experimental fertility extraction nanobots to help a lucky couple conceive. Zennia sits in on the inaugural test of her new flagship product.",
       },
       {
         chapter: 5,
@@ -1681,7 +1643,7 @@ window.DATA_STORIES = [
         title:
           "Quality Control — Chapter 4: Sterilizer™ Comprehensive Batch Test",
         description:
-          "Cathy introduces Olivia to comprehensive batch testing: five Sterilizers, five subjects, and thirty minutes on the clock.",
+          "Olivia tests as many Sterilizers as she can, as fast as possible.",
       },
     ],
     scenes: [
@@ -1801,7 +1763,7 @@ window.DATA_STORIES = [
         title: "Bereavement Counseling — Chapter 2: Anger",
       },
     ],
-    tags: ["Premium Story", "New to Reddit"],
+    tags: ["Premium Story"],
     purchaseParts: BEREAVEMENT_PURCHASE_PARTS,
     previewRead: {
       md: "assets/stories/49-preview.md",
