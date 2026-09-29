@@ -96,7 +96,7 @@ window.DATA_INFOPANEL = {
   britt: [
     {
       storyId: 5,
-      text: "Finishes [[char:dan]] — pops his right testicle. Castrates [[char:paul]]. Holds [[char:roger]] for [[char:emma]] in [[story:5]]. Fought in [[char:ballbusting_arena]].",
+      text: "Helps the other girls splatter [[char:paul]]'s sex life against the pole, reassures [[char:roger]] about his future life while [[char:emma]] neuters him, and finally finishes off [[char:dan]]'s last testicle during the [[story:5|Battle Royale]] in the [[char:ballbusting_arena]].",
     },
   ],
   emma: [
