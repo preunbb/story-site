@@ -99,10 +99,7 @@ export function extractChapterRange(markdown, fromChapter, toChapter) {
   return slice.trim() + "\n";
 }
 
-export function countWords(md) {
-  const t = md.trim();
-  return t ? t.split(/\s+/).length : 0;
-}
+export { countWords } from "./count-words.mjs";
 
 function findChrome() {
   for (const path of CHROME_CANDIDATES) {

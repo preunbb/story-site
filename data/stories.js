@@ -76,7 +76,7 @@ window.DATA_BEREAVEMENT_FULL = {
 window.DATA_STORIES = [
   {
     id: 1,
-    wordCount: 24270,
+    wordCount: 24257,
     title: "Three Strikes",
     summary:
       "A college senior has an unusually blessed anatomy and a very demanding swim coach. She insists on some minor modifications to improve his speed, which he politely declines. She enlists three eager assistants to help change his mind: a Goth, a cheerleader, and an science wiz. Sam does his best to keep all of his blessings safe from the girls, but it's not easy, and all three girls make some very convincing arguments.",
@@ -132,7 +132,7 @@ window.DATA_STORIES = [
   },
   {
     id: 2,
-    wordCount: 8108,
+    wordCount: 7765,
     title: "Castration Anxiety",
     summary:
       "Jeremy's having the weirdest, most painful nightmares. He's desperately hoping his therapist can help him figure things out.",
@@ -297,7 +297,7 @@ window.DATA_STORIES = [
   },
   {
     id: 8,
-    wordCount: 5086,
+    wordCount: 5083,
     brutalityRating: 3,
     title: "Club Fight",
     summary:
@@ -366,7 +366,7 @@ window.DATA_STORIES = [
   },
   {
     id: 11,
-    wordCount: 5700,
+    wordCount: 5699,
     brutalityRating: 5,
     title: "Melody's First Time",
     summary:
@@ -382,7 +382,7 @@ window.DATA_STORIES = [
   },
   {
     id: 12,
-    wordCount: 2871,
+    wordCount: 2873,
     brutalityRating: 4,
     title: "One Night Stand",
     summary:
@@ -408,7 +408,7 @@ window.DATA_STORIES = [
   },
   {
     id: 15,
-    wordCount: 3916,
+    wordCount: 3745,
     brutalityRating: 3,
     title: "The Ballbusting Arena 2: Sofia's Choice",
     summary:
@@ -571,7 +571,7 @@ window.DATA_STORIES = [
   },
   {
     id: 18,
-    wordCount: 1846,
+    wordCount: 1845,
     brutalityRating: 3,
     title: "The Cult",
     summary:
@@ -584,7 +584,7 @@ window.DATA_STORIES = [
   },
   {
     id: 19,
-    wordCount: 14498,
+    wordCount: 13749,
     title: "The Amazon's Fruits",
     brutalityRating: 4,
     summary:
@@ -638,7 +638,7 @@ window.DATA_STORIES = [
   },
   {
     id: 20,
-    wordCount: 25536,
+    wordCount: 25525,
     title: "School Bully",
     brutalityRating: 5,
     summary:
@@ -733,7 +733,7 @@ window.DATA_STORIES = [
   },
   {
     id: 23,
-    wordCount: 2281,
+    wordCount: 2277,
     title: "Castration Appointment at the Kink Agency",
     brutalityRating: 3,
     summary:
@@ -750,7 +750,7 @@ window.DATA_STORIES = [
   },
   {
     id: 24,
-    wordCount: 3789,
+    wordCount: 3786,
     title: "Food for Thot",
     brutalityRating: 4,
     summary:
@@ -777,7 +777,7 @@ window.DATA_STORIES = [
   },
   {
     id: 25,
-    wordCount: 20099,
+    wordCount: 20092,
     title: "Friendzoned",
     brutalityRating: 5,
     summary:
@@ -823,7 +823,7 @@ window.DATA_STORIES = [
   },
   {
     id: 26,
-    wordCount: 10520,
+    wordCount: 10516,
     title: "Busted by the Babysitter",
     brutalityRating: 4,
     summary:
@@ -861,7 +861,7 @@ window.DATA_STORIES = [
   },
   {
     id: 27,
-    wordCount: 9332,
+    wordCount: 9326,
     title: "Living with Ballbusting Witches",
     brutalityRating: 3,
     summary:
@@ -905,7 +905,7 @@ window.DATA_STORIES = [
   },
   {
     id: 28,
-    wordCount: 7063,
+    wordCount: 7061,
     title: "Testy",
     brutalityRating: 4,
     summary:
@@ -960,7 +960,7 @@ window.DATA_STORIES = [
   },
   {
     id: 30,
-    wordCount: 6425,
+    wordCount: 6420,
     title: "Postop",
     brutalityRating: 3,
     summary:
@@ -1105,7 +1105,7 @@ window.DATA_STORIES = [
   },
   {
     id: 36,
-    wordCount: 8021,
+    wordCount: 8016,
     title: "Paperwork",
     brutalityRating: 5,
     summary:
@@ -1149,7 +1149,7 @@ window.DATA_STORIES = [
   },
   {
     id: 37,
-    wordCount: 1379,
+    wordCount: 1376,
     title: "Prank Gone Wrong",
     brutalityRating: 3,
     summary:
@@ -1191,7 +1191,7 @@ window.DATA_STORIES = [
   },
   {
     id: 40,
-    wordCount: 67358,
+    wordCount: 67344,
     brutalityRating: 5,
     title: "Dragon Slaying Alternative Chapter 13: Kayla",
     summary:
@@ -1304,7 +1304,7 @@ window.DATA_STORIES = [
 
   {
     id: 42,
-    wordCount: 10385,
+    wordCount: 10007,
     title: "The Ballbusting Arena 6: Natalie Enters the Ring",
     brutalityRating: 4,
     cover: "assets/covers/arena_6.png",
@@ -1385,7 +1385,7 @@ window.DATA_STORIES = [
 
   {
     id: 44,
-    wordCount: 3701,
+    wordCount: 3702,
     title: "Courtroom Wedding",
     summary:
       "Mal'ko and Taviri are excited to get married, but the insanity of the Red Dragon marital industrial complex is offputting. They opt for a simple, quick courtroom wedding.",
@@ -1420,7 +1420,7 @@ window.DATA_STORIES = [
 
   {
     id: 45,
-    wordCount: 3672,
+    wordCount: 3673,
     title: "Courtroom Wedding (Human Edition)",
     summary: "Human version of Courtroom Wedding.",
     cover: "assets/covers/courtroom_human.png",
@@ -1434,7 +1434,7 @@ window.DATA_STORIES = [
   },
   {
     id: 46,
-    wordCount: 12805,
+    wordCount: 12803,
     title: "Melody Seduces a Virgin",
     summary:
       "Melody's castration kink is back in full force, ever since her son lost his balls. She's been craving a chance to explore her awakened urges, and the nervous, virginal Ryan is just the guy to help her.",
@@ -1574,7 +1574,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 28433,
+    wordCount: 28378,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",

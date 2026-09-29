@@ -14,7 +14,7 @@ import {
   unlinkSync,
   existsSync,
 } from "node:fs";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join, resolve } from "node:path";
 import { createContext, Script } from "node:vm";
 import {
@@ -22,6 +22,7 @@ import {
   fetchMarkdownFromPublishUrl,
 } from "./lib/published-doc-markdown.mjs";
 import { extractChapterRange } from "./lib/andrea-lucas-export.mjs";
+import { countWords } from "./lib/count-words.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -75,17 +76,6 @@ function loadStories() {
 }
 
 /**
- * Counts words the same way `wc -w` does: any run of non-whitespace is one
- * word. Matches Google Docs' built-in word count closely enough that the
- * existing hand-entered values in data/stories.js round-trip exactly.
- */
-function countWords(md) {
-  const trimmed = md.trim();
-  if (!trimmed) return 0;
-  return trimmed.split(/\s+/).length;
-}
-
-/**
  * Updates the `wordCount` field for the given story ids in data/stories.js.
  *
  * `updates` is an array of `{ id, words, fullLengthNovel }`. For each entry:
@@ -103,7 +93,7 @@ function countWords(md) {
  *
  * Returns one result per requested update describing what happened.
  */
-function applyWordCountUpdates(filepath, updates) {
+export function applyWordCountUpdates(filepath, updates) {
   if (!updates.length) return [];
   const content = readFileSync(filepath, "utf8");
   const lines = content.split("\n");
@@ -373,7 +363,9 @@ async function main() {
   if (errs.length) process.exit(1);
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+if (import.meta.url === pathToFileURL(resolve(process.argv[1] || "")).href) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}

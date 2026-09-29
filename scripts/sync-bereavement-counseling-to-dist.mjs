@@ -18,6 +18,7 @@ import {
   fetchMarkdownFromPublishUrl,
 } from "./lib/published-doc-markdown.mjs";
 import { stripGoogleDocsFrontMatter } from "./lib/andrea-lucas-export.mjs";
+import { countWords } from "./lib/count-words.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, "..");
@@ -34,12 +35,6 @@ const EDIT_DOC_ID =
   "13fqdEIlbdHRQqaTURGuTn7VGROzq-B50npIPr-9H7WU";
 
 const OUT_DIR = join(REPO_ROOT, "dist", "bereavement-counseling");
-
-function countWords(md) {
-  const t = md.trim();
-  if (!t) return 0;
-  return t.split(/\s+/).length;
-}
 
 async function main() {
   mkdirSync(OUT_DIR, { recursive: true });

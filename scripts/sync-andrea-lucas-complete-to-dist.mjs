@@ -27,6 +27,7 @@ import {
   fetchMarkdownFromPublishUrl,
 } from "./lib/published-doc-markdown.mjs";
 import { stripGoogleDocsFrontMatter } from "./lib/andrea-lucas-export.mjs";
+import { countWords } from "./lib/count-words.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, "..");
@@ -48,12 +49,6 @@ const EDIT_DOC_ID = requireEnv("ANDREA_LUCAS_EDIT_DOC_ID");
 const PUBLISH_URL = requireEnv("ANDREA_LUCAS_PUBLISH_URL");
 
 const OUT_DIR = join(REPO_ROOT, "dist", "andrea-and-lucas-complete");
-
-function countWords(md) {
-  const t = md.trim();
-  if (!t) return 0;
-  return t.split(/\s+/).length;
-}
 
 async function main() {
   mkdirSync(OUT_DIR, { recursive: true });

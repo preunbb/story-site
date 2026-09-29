@@ -13,6 +13,7 @@ import {
   makeTurndown,
   fetchMarkdownFromPublishUrl,
 } from "../../scripts/lib/published-doc-markdown.mjs";
+import { countWords } from "../../scripts/lib/count-words.mjs";
 
 import {
   authUrl,
@@ -255,7 +256,7 @@ app.get("/api/story/:rowIndex/outline", async (req, res) => {
       chapters: chapters.map((c) => ({
         index: c.index,
         title: c.title,
-        wordCount: c.body.trim() ? c.body.trim().split(/\s+/).length : 0,
+        wordCount: countWords(c.body),
       })),
     });
   } catch (e) {
