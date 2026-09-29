@@ -42,7 +42,7 @@
   /**
    * Catalog page sections. Newest is a highlight row and may repeat cards
    * that also appear in later sections. Every other listed id is "owned"
-   * by that section so leftovers go into More stories.
+   * by that section so leftovers go into Short and non-canon stories.
    */
   var CATALOG_SECTIONS = [
     {
@@ -76,6 +76,11 @@
       storyIds: [48, 32, 30, 31],
     },
     {
+      id: "gym",
+      title: "Gym stories",
+      storyIds: [28, 24, 8],
+    },
+    {
       id: "no-nut-narrator",
       title: "No Nut Narrator",
       storyIds: [34, 35],
@@ -84,11 +89,6 @@
       id: "scripts",
       title: "Scripts",
       storyIds: [23, 33, 37],
-    },
-    {
-      id: "gym",
-      title: "Gym stories",
-      storyIds: [28, 24, 8],
     },
   ];
   var readerAbort = null;
@@ -1813,7 +1813,12 @@
       }
     }
     if (leftovers.length) {
-      appendCatalogSection(catalog, "More stories", "more", leftovers);
+      appendCatalogSection(
+        catalog,
+        "Short and non-canon stories",
+        "more",
+        leftovers,
+      );
       rendered += leftovers.length;
     }
     if (!rendered) {
