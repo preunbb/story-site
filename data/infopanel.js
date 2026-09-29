@@ -514,7 +514,7 @@ window.DATA_INFOPANEL = {
   jon: [
     {
       storyId: 25,
-      text: "Left ball popped by [[char:alyssa]] while blowing off steam. Last testicle popped by [[char:alyssa]], [[char:monique]], and [[char:cathy]]. Checked into the hospital by [[char:michelle]]. Dick snapped by [[char:alyssa]] while losing his virginity. Entire penis sliced off in [[char:cathy]]'s botched partial penectomy. Surgeries supervised by [[char:dr_s]] in [[story:25]].",
+      text: "Goes from fertile virgin to nullified loser in [[story:25]]. His left ball popped by [[char:alyssa]] while she blows off the stress of her [[char:chad|cheating boyfriend]]. [[char:michelle]] checks him into the hospital for his first orchiectomy. When [[char:alyssa]] dates him and finally decides to take virginity, her lack of balance accidentally snaps his dick like a carrot. The organ is still technically viable, but [[char:cathy]] botches the operation and has to perform a complete penectomy while [[char:dr_s]] supervises. Eventually, [[char:alyssa|his girlfriend]], [[char:monique, his bully]], and [[char:cathy|his surgeon]] decide he'd be better of without any testicles and finish his last one off.",
     },
   ],
   alyssa: [
