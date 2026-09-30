@@ -323,17 +323,15 @@
       character && character.profilePictures && character.profilePictures.length
         ? character.profilePictures
         : [PLACEHOLDER_CHAR];
-    var idx = typeof opts.index === "number" && opts.index >= 0 ? opts.index : 0;
+    var idx =
+      typeof opts.index === "number" && opts.index >= 0 ? opts.index : 0;
     var full = pics[idx] || pics[0] || PLACEHOLDER_CHAR;
     if (opts.full) return full;
     return portraitThumbPath(full);
   }
 
   function getStoryById(id) {
-    var gated = [
-      window.DATA_ANDREA_LUCAS_FULL,
-      window.DATA_BEREAVEMENT_FULL,
-    ];
+    var gated = [window.DATA_ANDREA_LUCAS_FULL, window.DATA_BEREAVEMENT_FULL];
     for (var gi = 0; gi < gated.length; gi++) {
       var full = gated[gi];
       if (
@@ -437,9 +435,7 @@
   }
 
   function storyPasswordKeyDomain(story) {
-    return (
-      (story && story.passwordKeyDomain) || "story-site:andrea-lucas:key:"
-    );
+    return (story && story.passwordKeyDomain) || "story-site:andrea-lucas:key:";
   }
 
   function bytesToHex(bytes) {
@@ -648,8 +644,7 @@
         purchasePart.amazonUrl.trim()) ||
       (typeof story.amazonUrl === "string" && story.amazonUrl.trim()) ||
       "";
-    var kofiLabel =
-      (purchasePart && purchasePart.kofiLabel) || "Buy on Ko-fi";
+    var kofiLabel = (purchasePart && purchasePart.kofiLabel) || "Buy on Ko-fi";
     var amazonLabel =
       (purchasePart && purchasePart.amazonLabel) || "Buy on Amazon";
 
@@ -684,13 +679,10 @@
 
   function storyReaderUnlockFormHtml(story) {
     var instructions =
-      (story &&
-        (story.passwordUnlockInstructions || story.passwordHint)) ||
+      (story && (story.passwordUnlockInstructions || story.passwordHint)) ||
       "Enter the password included with your purchase of this story.";
     var hint =
-      story &&
-      story.passwordUnlockInstructions &&
-      story.passwordHint
+      story && story.passwordUnlockInstructions && story.passwordHint
         ? '<p class="story-reader-unlock-hint">' +
           escapeHtml(story.passwordHint) +
           "</p>"
@@ -867,14 +859,13 @@
     var stores = [kofiUrl ? "Ko-fi" : "", amazonUrl ? "Amazon" : ""]
       .filter(Boolean)
       .join(" and ");
-    var text =
-      stores
-        ? "If you enjoyed this, and want to read hundreds more pages about shattered testicles, ruined reproductive abilities, and all sorts of man-destroying, woman-dominating exploits, " +
-          restLabel +
-          " is now available on " +
-          stores +
-          "!"
-        : "Enjoyed the preview? Unlock the full story with your purchase password.";
+    var text = stores
+      ? "If you enjoyed this, and want to read hundreds more pages about shattered testicles, ruined reproductive abilities, and all sorts of man-destroying, woman-dominating exploits, " +
+        restLabel +
+        " is now available on " +
+        stores +
+        "!"
+      : "Enjoyed the preview? Unlock the full story with your purchase password.";
     var purchasePart = storyPreviewPurchasePart(story);
     var kofiBuyLabel =
       (purchasePart && purchasePart.kofiLabel) || "Buy for $7.99 on Ko-Fi";
@@ -1304,6 +1295,41 @@
     return RELEASE_MONTH_NAMES[p.m - 1] + " " + p.d + ", " + p.y;
   }
 
+  function padReleaseDatePart(n) {
+    return n < 10 ? "0" + n : String(n);
+  }
+
+  /** e.g. "09/23/26", or null if missing/invalid */
+  function formatStoryReleaseDateShortLabel(iso) {
+    var p = parseReleaseYyyyMmDd(iso);
+    if (!p) return null;
+    return (
+      padReleaseDatePart(p.m) +
+      "/" +
+      padReleaseDatePart(p.d) +
+      "/" +
+      String(p.y).slice(-2)
+    );
+  }
+
+  function storyCardHeadingHtml(s) {
+    var iso = getLatestPublishedChapterReleaseIso(s) || s.releaseDate;
+    var shortDate = formatStoryReleaseDateShortLabel(iso);
+    var updatedHtml = shortDate
+      ? '<span class="story-card-updated">Updated: ' +
+        escapeHtml(shortDate) +
+        "</span>"
+      : "";
+    return (
+      '<div class="story-card-heading">' +
+      '<span class="story-card-title">' +
+      escapeHtml(s.title) +
+      "</span>" +
+      updatedHtml +
+      "</div>"
+    );
+  }
+
   /** ISO release date for a 1-based reader chapter index, or null. */
   function getStoryChapterReleaseIso(story, chapterOneBased) {
     if (
@@ -1569,27 +1595,11 @@
     );
   }
 
-  function storyReleaseBadgeHtml(place, story) {
-    var dateLabel = story && formatStoryReleaseDateLabel(story.releaseDate);
-    if (!dateLabel) return "";
-    var text = "Released " + dateLabel;
-    return (
-      '<span class="story-state-badge story-state-badge--released story-state-badge--' +
-      place +
-      '" aria-label="' +
-      escapeHtml(text) +
-      '"><span class="story-state-badge-text">' +
-      escapeHtml(text) +
-      "</span></span>"
-    );
-  }
-
   function storyOnCoverBadgesHtml(s) {
     var left = "";
     if (normalizeStoryState(s) === 1) {
       left += storyStateBadgeHtml("soon", "on-cover");
     }
-    left += storyReleaseBadgeHtml("on-cover", s);
     var html = "";
     if (left) {
       html += '<div class="story-cover-badges">' + left + "</div>";
@@ -1691,14 +1701,13 @@
     if (st === 1) {
       rowBadgeHtml = storyStateBadgeHtml("soon", "in-row");
     }
-    var releaseBadgeHtml = storyReleaseBadgeHtml("in-row", s);
     var rowPremiumHtml = "";
     if (storyHasPremiumTag(s)) {
       rowPremiumHtml = storyPremiumTagHtml("in-row");
     }
+    var headingHtml = storyCardHeadingHtml(s);
     var aiImagesOn = getAiImagesEnabled();
     if (!aiImagesOn) {
-      var compactStatusHtml = releaseBadgeHtml;
       var compactTrailing = rowBadgeHtml + rowPremiumHtml;
       var compactTrailingHtml = compactTrailing
         ? '<div class="story-card-trailing">' + compactTrailing + "</div>"
@@ -1706,13 +1715,8 @@
       card.className = "story-card story-card--text";
       card.innerHTML =
         '<div class="story-card-body">' +
-        (compactStatusHtml
-          ? '<div class="story-card-status">' + compactStatusHtml + "</div>"
-          : "") +
         '<div class="story-card-title-row">' +
-        '<span class="story-card-title">' +
-        escapeHtml(s.title) +
-        "</span>" +
+        headingHtml +
         compactTrailingHtml +
         "</div>" +
         storyTextListMetaHtml(s) +
@@ -1725,7 +1729,7 @@
         "</div>";
       return card;
     }
-    var coverTrailing = rowBadgeHtml + releaseBadgeHtml + rowPremiumHtml;
+    var coverTrailing = rowBadgeHtml + rowPremiumHtml;
     var coverTrailingHtml = coverTrailing
       ? '<div class="story-card-trailing">' + coverTrailing + "</div>"
       : "";
@@ -1733,9 +1737,7 @@
     card.innerHTML =
       coverWrapHtml +
       '<div class="story-card-body">' +
-      '<span class="story-card-title">' +
-      escapeHtml(s.title) +
-      "</span>" +
+      headingHtml +
       coverTrailingHtml +
       "</div>";
     return card;
@@ -2136,9 +2138,7 @@
       "</span>" +
       '<div class="music-track-main">' +
       '<span class="music-track-title">' +
-      (title
-        ? escapeHtml(title)
-        : '<span class="music-track-rule"></span>') +
+      (title ? escapeHtml(title) : '<span class="music-track-rule"></span>') +
       "</span>" +
       lyricsHtml +
       "</div></li>"
@@ -2577,9 +2577,7 @@
       escapeHtml(fromName) +
       "</strong> → " +
       escapeHtml(toName) +
-      (kindLabel
-        ? " — " + escapeHtml(kindLabel)
-        : "") +
+      (kindLabel ? " — " + escapeHtml(kindLabel) : "") +
       (storyTitle
         ? '<span class="connections-edge-tooltip-story">' +
           escapeHtml(storyTitle) +
@@ -2699,7 +2697,7 @@
       });
     dl.innerHTML = names
       .map(function (name) {
-        return "<option value=\"" + escapeHtml(name) + "\"></option>";
+        return '<option value="' + escapeHtml(name) + '"></option>';
       })
       .join("");
   }
@@ -2819,7 +2817,8 @@
   function syncConnectionsKindFiltersCollapsed(host) {
     if (!host) return;
     if (connectionsKindFiltersCollapsed === null) {
-      connectionsKindFiltersCollapsed = connectionsKindFiltersDefaultCollapsed();
+      connectionsKindFiltersCollapsed =
+        connectionsKindFiltersDefaultCollapsed();
     }
     var collapsed = !!connectionsKindFiltersCollapsed;
     host.classList.toggle("is-collapsed", collapsed);
@@ -3033,11 +3032,13 @@
       metaHtml += "</p>";
     }
 
-    var entries = (connectionsInfopanel[charId] || []).slice().sort(function (a, b) {
-      var ia = storyOrderIndexForCharacter(a && a.storyId, charId);
-      var ib = storyOrderIndexForCharacter(b && b.storyId, charId);
-      return ia - ib;
-    });
+    var entries = (connectionsInfopanel[charId] || [])
+      .slice()
+      .sort(function (a, b) {
+        var ia = storyOrderIndexForCharacter(a && a.storyId, charId);
+        var ib = storyOrderIndexForCharacter(b && b.storyId, charId);
+        return ia - ib;
+      });
     var linksHtml = "";
     if (entries.length) {
       linksHtml =
@@ -3210,8 +3211,7 @@
       (rawEdges || []).forEach(function (e) {
         if (!e || !e.from || !e.to) return;
         if (!nodeById[e.from] || !nodeById[e.to]) return;
-        var key =
-          e.from < e.to ? e.from + "\0" + e.to : e.to + "\0" + e.from;
+        var key = e.from < e.to ? e.from + "\0" + e.to : e.to + "\0" + e.from;
         if (!byPair[key]) {
           byPair[key] = {
             from: e.from,
@@ -3610,9 +3610,7 @@
 
     // Small disconnected islands: compact circles, packed as one organic cloud
     // to the right of the main catalog (non-overlapping, not a grid).
-    var islandMeta = islandComps
-      .map(islandClusterMeta)
-      .filter(Boolean);
+    var islandMeta = islandComps.map(islandClusterMeta).filter(Boolean);
     if (islandMeta.length) {
       var islandGap = 52;
       var maxIslandR = 0;
@@ -4071,9 +4069,7 @@
 
     function connectionsNodeFromTarget(target) {
       return (
-        (target &&
-          target.closest &&
-          target.closest(".connections-node")) ||
+        (target && target.closest && target.closest(".connections-node")) ||
         null
       );
     }
@@ -4459,8 +4455,7 @@
       var e = arr[i];
       if (!e || !e.from || !e.to || !Array.isArray(e.kinds)) continue;
       if (e.kinds.indexOf("left") !== -1 || e.kinds.indexOf("right") !== -1) {
-        var key =
-          e.from < e.to ? e.from + "\0" + e.to : e.to + "\0" + e.from;
+        var key = e.from < e.to ? e.from + "\0" + e.to : e.to + "\0" + e.from;
         pairsWithPop[key] = true;
       }
     }
@@ -6853,7 +6848,10 @@
     var detailsId =
       story.detailsStoryId != null ? story.detailsStoryId : story.id;
     if (storyReaderDetails) {
-      storyReaderDetails.setAttribute("data-details-story-id", String(detailsId));
+      storyReaderDetails.setAttribute(
+        "data-details-story-id",
+        String(detailsId),
+      );
     }
     updateStoryReaderShareLinks(
       story,
@@ -6921,14 +6919,17 @@
 
   function purchasePartRowHtml(part, index) {
     var n =
-      typeof part.part === "number" && !isNaN(part.part) ? part.part : index + 1;
+      typeof part.part === "number" && !isNaN(part.part)
+        ? part.part
+        : index + 1;
     var cells = PURCHASE_VENDORS.map(function (vendor) {
       var labelKey = vendor.variant === "kofi" ? "kofiLabel" : "amazonLabel";
       var url =
         typeof part[vendor.urlKey] === "string"
           ? part[vendor.urlKey].trim()
           : "";
-      if (!url) return '<span class="flyout-purchase-slot" aria-hidden="true"></span>';
+      if (!url)
+        return '<span class="flyout-purchase-slot" aria-hidden="true"></span>';
       var tooltip =
         vendor.variant === "amazon" && part.kofiUrl
           ? KOFI_PREFERENCE_TOOLTIP
@@ -7471,7 +7472,9 @@
     }
     if (storyReaderDetails) {
       storyReaderDetails.addEventListener("click", function () {
-        var detailsId = storyReaderDetails.getAttribute("data-details-story-id");
+        var detailsId = storyReaderDetails.getAttribute(
+          "data-details-story-id",
+        );
         if (!detailsId && readerStory) {
           detailsId =
             readerStory.detailsStoryId != null

@@ -642,8 +642,8 @@ window.DATA_STORIES = [
     title: "School Bully",
     brutalityRating: 5,
     summary:
-      "Robert is partnered with Monique in AP Calc. His mom Melody has a past; the clinic in town sees a lot of boys with 'problems down there'.",
-    cover: "assets/covers/school_bully_cover_v4_notext.jpg",
+      "Robert's school bully Monique is exceptionally cruel to him. His mother, Melody, tries to help, but her own urges complicate matters, especially when she catches his fat-cocked friend masturbating in their bathroom and finds a new outlet for her dark desires.",
+    cover: "assets/covers/school_bully_cover_v5_cast_stomp_punt.jpg",
     amazonUrl:
       "https://www.amazon.com/Ballbusted-School-Bully-Part-1-ebook/dp/B07X3NGYVZ",
     driveUrl:
@@ -1328,6 +1328,7 @@ window.DATA_STORIES = [
 
   {
     id: 43,
+    wordCount: 28712,
     fullLengthNovel: true,
     title: "Andrea and Lucas: Part 1",
     brutalityRating: 5,
@@ -1473,7 +1474,7 @@ window.DATA_STORIES = [
   {
     id: 47,
     fullLengthNovel: true,
-    wordCount: 85930,
+    wordCount: 85857,
     title: "Andrea and Lucas: Part 2",
     brutalityRating: 6,
     cover: "assets/covers/andrea_and_lucas_part_2_cover_eve_abby_kay_v1.png",
@@ -1722,7 +1723,7 @@ window.DATA_STORIES = [
   },
   {
     id: 49,
-    wordCount: 24519,
+    wordCount: 26211,
     title: "Bereavement Counseling",
     brutalityRating: 1,
     summary:
