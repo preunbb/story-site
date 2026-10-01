@@ -60,7 +60,7 @@ window.DATA_INFOPANEL = {
   amy: [
     {
       storyId: 14,
-      text: "Pops [[char:wesley]]'s right testicle. Castrates [[char:wesley]] in [[story:14]]. Fought in [[char:ballbusting_arena]].",
+      text: "Castrates [[char:wesley]] in the [[char:ballbusting_arena|arena]] in [[story:14]].",
     },
     {
       storyId: 1,
@@ -368,7 +368,7 @@ window.DATA_INFOPANEL = {
   brad: [
     {
       storyId: 14,
-      text: "Last testicle popped by [[char:fiona]]. Dates [[char:fiona]] in [[story:14]]. Fought in [[char:ballbusting_arena]].",
+      text: "Castrated by [[char:fiona]] after watching [[char:amy]] fully defeat [[char:wesley]] in the [[char:ballbusting_arena|arena]] in [[story:14]].",
     },
   ],
   wesley: [

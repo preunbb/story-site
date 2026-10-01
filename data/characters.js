@@ -29,8 +29,8 @@ window.DATA_CHARACTERS = [
     name: "Amy",
     gender: "F",
     testiclesKilled: 4,
-    bio: "Nurse; black belt and arena fighter. Sweet on the surface; knows anatomy inside and out.",
-    profilePictures: ["assets/characters/amy.jpg"],
+    bio: "She's an EMT nurse by day, but Amy's real passion has always been in the Arena. Although her job certainly gives her enough opportunities to interact with, and worsen the state of, damaged men.",
+    profilePictures: ["assets/characters/amy_v2_busty_asian_sadistic.jpg"],
   },
   {
     id: "sam",
@@ -254,9 +254,9 @@ window.DATA_CHARACTERS = [
   },
   {
     id: "richard_stepson",
-    name: "Richard (Dr. Karen's stepson)",
+    name: "Richard Karen",
     gender: "M",
-    bio: "Karen's stepson. Already down to one ball when she finishes him in Stephanie's cup shop.",
+    bio: "Dr. Karen's stepson. Already down to one ball when she finishes him in Stephanie's cup shop.",
     profilePictures: ["assets/characters/richard_stepson_v1.png"],
   },
   {
@@ -316,7 +316,7 @@ window.DATA_CHARACTERS = [
     id: "brad",
     name: "Brad",
     gender: "M",
-    bio: "Hunky asshole who dates Alyssa in high school. Fiona's boyfriend. She brings him to the arena for a night out; club rules mean he has to strip.",
+    bio: "Fiona's boyfriend. She brings him to the arena for an exciting night out.",
     profilePictures: ["assets/characters/brad.jpg"],
   },
   {
