@@ -28,7 +28,7 @@ window.DATA_CHARACTERS = [
     id: "amy",
     name: "Amy",
     gender: "F",
-    testiclesKilled: 4,
+    testiclesKilled: 5,
     bio: "She's an EMT nurse by day, but Amy's real passion has always been in the Arena. Although her job certainly gives her enough opportunities to interact with, and worsen the state of, damaged men.",
     profilePictures: ["assets/characters/amy_v2_busty_asian_sadistic.jpg"],
   },
@@ -43,9 +43,18 @@ window.DATA_CHARACTERS = [
     id: "joan_white",
     name: "Joan White",
     gender: "F",
-    testiclesKilled: 14,
+    testiclesKilled: 16,
     bio: "Western University swim coach—voluminous red hair, legs like a pinup. Dedicated to helping her students become more hydrodynamic one gonad at a time.Later teaches math after too many athletic 'accidents.'",
     profilePictures: ["assets/characters/joan_white_v1.jpg"],
+  },
+  {
+    id: "james_ex",
+    name: "James (Joan's ex)",
+    gender: "M",
+    bio: "Joan's ex-husband. Hunky, black-haired, green-eyed. Ten years of marriage behind them.",
+    profilePictures: [
+      "assets/characters/james_ex_v1_hunky_black_hair_green_eyes.jpg",
+    ],
   },
   {
     id: "jeremy",
@@ -620,7 +629,10 @@ window.DATA_CHARACTERS = [
     gender: "F",
     testiclesKilled: 18,
     bio: "Thick, curvy goth—black makeup, fishnets, steel-toed boots, ink from collarbone to shins. Takes self-defense training seriously and does not like being fucked with by handsy men. She is roommates with Izzie and Tamara's twin sister.",
-    profilePictures: ["assets/characters/andrea.jpg"],
+    profilePictures: [
+      "assets/characters/andrea.jpg",
+      "assets/characters/andrea_lean_in_lowcut_tattooed_cleavage_v1.jpg",
+    ],
   },
   {
     id: "lucas",
@@ -787,6 +799,14 @@ window.DATA_CHARACTERS = [
     profilePictures: ["assets/brands/ballbusting_arena_avatar_v1.png"],
   },
   {
+    id: "the_gym",
+    name: "Serena's Self-Defense for Women",
+    entityType: "faction",
+    gender: "",
+    bio: "Serena teaches local women how best to defend themselves against men. Practice sessions can get painful...and sometimes, messy.",
+    profilePictures: ["assets/brands/the_gym_avatar_v3_flesh_two_orbs_veiny_inset.jpg"],
+  },
+  {
     id: "cherry_pop",
     name: "Cherry Pop!",
     entityType: "faction",
@@ -798,6 +818,7 @@ window.DATA_CHARACTERS = [
     id: "olivia",
     name: "Olivia",
     gender: "F",
+    testiclesKilled: 245,
     bio: "Perky new college-age intern at Over Easy—short. She's eager to get started at her first real job, and will do whatever it takes to prove herself.",
     profilePictures: ["assets/characters/olivia.jpg"],
   },
@@ -808,7 +829,6 @@ window.DATA_CHARACTERS = [
     bio: "Head of Self-Defense product development at Over Easy Technologies. She met her husband, Theodore, at work, but their marriage has been strained by his fertility issues and her own inconstant desire for both freedom and children. She's gone back and forth on the issue of having children multiple times, and her husband has stuck by her side through it all.",
     profilePictures: [
       "assets/characters/charlotte_v2_overeasy_retreat_lab.png",
-      "assets/characters/charlotte_v1.png",
     ],
   },
   {

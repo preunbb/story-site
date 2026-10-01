@@ -3378,6 +3378,16 @@
           if (!other) return;
           var hid = isHub[other.id] ? other.id : other.hubId;
           if (!hid || !spokesByHub[hid]) return;
+          var hubNode = nodeById[hid];
+          // Faction wheels are membership. Don't park dates, victims, or
+          // friends on a setting just because they know someone who belongs.
+          if (
+            hubNode &&
+            hubNode.entityType === "faction" &&
+            !(adj[n.id] && adj[n.id][hid])
+          ) {
+            return;
+          }
           var score = adj[n.id][otherId] || 0;
           if (score > bestScore) {
             bestScore = score;
@@ -3397,10 +3407,16 @@
       return mainIds[n.id] && !isHub[n.id] && !n.hubId;
     });
 
-    // Compact circular clusters — short spokes, packed in a grid (not one big ring).
+    // Compact formula as before. Small hubs were too tight, so never go
+    // below the self-defense class wheel (twice its compact radius).
     function wheelRadius(spokeCount) {
       var n = Math.max(spokeCount, 1);
-      return Math.max(56, (n * 64) / (2 * Math.PI));
+      var compact = (n * 64) / (2 * Math.PI);
+      var gymN =
+        (spokesByHub.the_gym && spokesByHub.the_gym.length) || 0;
+      var minR =
+        gymN > 0 ? (2 * (gymN * 64)) / (2 * Math.PI) : 56;
+      return Math.max(minR, compact);
     }
 
     function peripheralGridMeta(list) {

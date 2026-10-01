@@ -64,7 +64,7 @@ window.DATA_INFOPANEL = {
     },
     {
       storyId: 1,
-      text: "Kneads [[char:sam]]'s remaining ball nearly to ruin. Takes [[char:joan_white|Joan]]'s castration referrals in [[story:1]].",
+      text: "Kneads what's left of [[char:james_ex|James]]'s right testicle after his fiance pops both of his nuts. Kneads [[char:sam]]'s remaining ball nearly to ruin. Takes [[char:joan_white|Joan]]'s castration referrals in [[story:1]].",
     },
     {
       storyId: 28,
@@ -77,10 +77,16 @@ window.DATA_INFOPANEL = {
       text: "Left testicle popped by [[char:jenny]]. Right testicle popped by [[char:michelle]]. Last testicle popped by [[char:joan_white|Joan]]. Last testicle weakened under [[char:cathy]]'s plan. Remaining ball kneaded nearly to ruin by [[char:amy]] in [[story:1]].",
     },
   ],
+  james_ex: [
+    {
+      storyId: 1,
+      text: "His fiance [[char:joan_white|Joan]] discovers her love of castration when she pops his balls after catching him cheating in [[story:1]]. He has just enough to be stitched up, if only [[char:amy|the EMT]] wasn't so rough with the remaining chunks of nutmeat before he got to the hospital.",
+    },
+  ],
   joan_white: [
     {
       storyId: 1,
-      text: "Pops [[char:sam]]'s last testicle. Recruits [[char:jenny]], [[char:michelle]] and [[char:cathy]] to destroy [[char:sam]]'s balls in [[story:1]]. Refers castration victims to [[char:amy]] in [[story:1]].",
+      text: "Castrates [[char:james_ex|James]]. Dates [[char:james_ex|James]]. Pops [[char:sam]]'s last testicle. Recruits [[char:jenny]], [[char:michelle]] and [[char:cathy]] to destroy [[char:sam]]'s balls in [[story:1]]. Refers castration victims to [[char:amy]] in [[story:1]].",
     },
     {
       storyId: 25,
@@ -200,7 +206,7 @@ window.DATA_INFOPANEL = {
   june: [
     {
       storyId: 28,
-      text: "Grabs [[char:steven]]'s scrotum in class, from [[story:28]].",
+      text: "Student of [[char:the_gym]]. Grabs [[char:steven]]'s scrotum in class, from [[story:28]].",
     },
   ],
   elara: [
@@ -218,23 +224,23 @@ window.DATA_INFOPANEL = {
   dennis: [
     {
       storyId: 8,
-      text: "Left intact, but fully infertile by [[char:erica]]. Kneed in demo by [[char:serena]]. Dates [[char:kayleigh]] in [[story:8]].",
+      text: "Dates [[char:kayleigh|a gorgeous nymphomaniac]] before [[story:8]]. She breaks up with him after he's first kneed in the crotch by [[char:serena|a self-defense instructor]], then left fully infertile by a very painful match with [[char:erica]] in [[story:8]] while challenging them for ring time at [[char:the_gym]].",
     },
   ],
   serena: [
     {
       storyId: 8,
-      text: "Knees [[char:dennis]] in demo. Trains [[char:erica]] to ballbust in [[story:8]].",
+      text: "Teaches [[char:the_gym]]. Knees [[char:dennis]] in demo. Trains [[char:erica]] to ballbust in [[story:8]].",
     },
     {
       storyId: 28,
-      text: "Trains [[char:kaitlin]] in self-defense, from [[story:28]].",
+      text: "Trains [[char:kaitlin]] in self-defense at [[char:the_gym]], from [[story:28]].",
     },
   ],
   erica: [
     {
       storyId: 8,
-      text: "Removes [[char:dennis]] from the gene pool. Trained to ballbust by [[char:serena]] in [[story:8]].",
+      text: "Student of [[char:the_gym]]. Removes [[char:dennis]] from the gene pool. Trained to ballbust by [[char:serena]] in [[story:8]].",
     },
   ],
   kayleigh: [
@@ -408,7 +414,7 @@ window.DATA_INFOPANEL = {
   maria: [
     {
       storyId: 20,
-      text: "Milks [[char:robert]]'s remaining testicle in [[story:20]].",
+      text: "Milks [[char:robert]]'s remaining testicle in [[story:20]] with an [[char:overeasy_technologies|OverEasy]] AutoMilker.",
     },
   ],
   robin: [
@@ -560,13 +566,13 @@ window.DATA_INFOPANEL = {
   steven: [
     {
       storyId: 28,
-      text: "Sabotaged into full castration by [[char:kaitlin]]. Scrotum grabbed by [[char:june]] in class. Practice groin-strike target of [[char:amy]] in [[story:28]].",
+      text: "Practice dummy at [[char:the_gym]]. Sabotaged into full castration by [[char:kaitlin]]. Scrotum grabbed by [[char:june]] in class. Practice groin-strike target of [[char:amy]] in [[story:28]].",
     },
   ],
   kaitlin: [
     {
       storyId: 28,
-      text: "Sabotages [[char:steven]] into full castration. Trained in self-defense by [[char:serena]] in [[story:28]].",
+      text: "Student of [[char:the_gym]]. Sabotages [[char:steven]] into full castration. Trained in self-defense by [[char:serena]] in [[story:28]].",
     },
     {
       storyId: 47,
@@ -644,7 +650,7 @@ window.DATA_INFOPANEL = {
     },
     {
       storyId: 47,
-      text: "Pops [[char:trinn]]'s right testicle. Pops [[char:lucas]]'s left testicle. Pops [[char:greyson]]'s left testicle. Takes [[char:broken_tree_cultists|cultists]]' remaining right testicles. Owns [[char:lucas]] at [[char:cherry_pop|Cherry]] Pop!. Kicks [[char:sunni]]'s testicles. Testicle torture ([[char:judah]]) in [[story:47]]. Favorite band ([[char:cherry_pop]]).",
+      text: "Pops [[char:trinn]]'s right testicle. Pops [[char:lucas]]'s left testicle. Pops [[char:greyson]]'s left testicle. Takes [[char:broken_tree_cultists|cultists]]' remaining right testicles. Owns [[char:lucas]] at [[char:cherry_pop|Cherry]] Pop!. Rescues [[char:lucas]] from the [[char:church_broken_tree]] with [[char:izzie]] and [[char:tamara]]. Kicks [[char:sunni]]'s testicles. Testicle torture ([[char:judah]]) in [[story:47]]. Favorite band ([[char:cherry_pop]]).",
     },
     {
       storyId: 49,
@@ -654,31 +660,31 @@ window.DATA_INFOPANEL = {
   lucas: [
     {
       storyId: 43,
-      text: "Dated and owned by [[char:andrea]] in [[story:43]].",
+      text: "Dated and owned by [[char:andrea]]. Used as an e-slave by [[char:izzie]]. [[char:tamara]] offers to remove what she's sure is a pair of ruptured testicles in [[story:43]].",
     },
     {
       storyId: 47,
-      text: "Left testicle popped by [[char:andrea]]. Owned by [[char:andrea]] at [[char:cherry_pop|Cherry]] Pop!. Mistakenly targeted by [[char:emma]]. Tortured by [[char:eve]]; testicular internals scrambled. Targeted by stepsister [[char:kay]]. Targeted by stepsister [[char:abby]]. Rescued from the Church with help from [[char:izzie]] in [[story:47]]. Targeted by the [[char:church_broken_tree]].",
+      text: "Left testicle popped by [[char:andrea]]. Owned by [[char:andrea]] at [[char:cherry_pop|Cherry]] Pop!. Mistakenly targeted by [[char:emma]]. Tortured by [[char:eve]]; testicular internals scrambled. Targeted by stepsister [[char:kay]]. Targeted by stepsister [[char:abby]]. Rescued from the [[char:church_broken_tree]] by [[char:izzie]], [[char:tamara]], and [[char:andrea]]. Both broken balls repaired by [[char:tamara]] in [[story:47]].",
     },
   ],
   izzie: [
     {
       storyId: 43,
-      text: "Sterilizes [[char:nate]] for content. Roommates with [[char:andrea]] in [[story:43]]. Sponsored influencer for [[char:overeasy_technologies|OverEasy]] product demos.",
+      text: "Uses [[char:lucas]] as an e-slave. Sterilizes [[char:nate]] for content. Roommates with [[char:andrea]] in [[story:43]]. Sponsored influencer for [[char:overeasy_technologies|OverEasy]] product demos.",
     },
     {
       storyId: 47,
-      text: "Takes [[char:broken_tree_cultists|cultists]]' remaining right testicles. Helps rescue [[char:lucas]] from the Church in [[story:47]].",
+      text: "Rescues [[char:lucas]] from the [[char:church_broken_tree]] with [[char:tamara]] and [[char:andrea]]. Takes [[char:broken_tree_cultists|cultists]]' remaining right testicles in [[story:47]].",
     },
   ],
   tamara: [
     {
       storyId: 43,
-      text: "[[char:andrea]]'s sister in [[story:43]].",
+      text: "[[char:andrea]]'s sister. Offers to remove what she's sure is a pair of ruptured testicles from [[char:lucas]] in [[story:43]].",
     },
     {
       storyId: 47,
-      text: "Unnecessarily removes [[char:trinn]]'s remaining left testicle. Takes [[char:broken_tree_cultists|cultists]]' remaining right testicles. Testicular defragmentation on [[char:judah]]. Removes [[char:felix]]'s dead testicles. Extracts [[char:greyson]]'s ruptured testicle without anesthesia. Poised to take [[char:greyson]]'s last testicle (epilogue). Supervises intern [[char:yvette]]. Unwinds with [[char:melody]] at the [[char:overeasy_technologies|OverEasy]] concert in [[story:47]].",
+      text: "Rescues [[char:lucas]] from the [[char:church_broken_tree]] with [[char:izzie]] and [[char:andrea]]. Repairs both of his broken balls. Unnecessarily removes [[char:trinn]]'s remaining left testicle. Takes [[char:broken_tree_cultists|cultists]]' remaining right testicles. Testicular defragmentation on [[char:judah]]. Removes [[char:felix]]'s dead testicles. Extracts [[char:greyson]]'s ruptured testicle without anesthesia. Poised to take [[char:greyson]]'s last testicle (epilogue). Supervises intern [[char:yvette]]. Unwinds with [[char:melody]] at the [[char:overeasy_technologies|OverEasy]] concert in [[story:47]].",
     },
     {
       storyId: 49,
@@ -688,13 +694,13 @@ window.DATA_INFOPANEL = {
   bridget: [
     {
       storyId: 43,
-      text: "Punts [[char:nate]] in jeans-store skit, from [[story:43]].",
+      text: "Sells EunuchCorn jeans for [[char:overeasy_technologies|OverEasy]]. Works with [[char:nate]] at the denim store in [[story:43]].",
     },
   ],
   nate: [
     {
       storyId: 43,
-      text: "Sterilized for content by [[char:izzie]]. Punted in jeans-store skit by [[char:bridget]] in [[story:43]].",
+      text: "After losing his testicles to a hilarious prank by [[char:izzie]], Nate now does his best to sell EunuchCorn jeans for [[char:overeasy_technologies|OverEasy]] in [[story:43]]. [[char:bridget]] is constantly annoyed with his poor sales performance and always looking for new ways to market the deeply unpopular clothing line.",
     },
   ],
   hunter: [
@@ -785,12 +791,16 @@ window.DATA_INFOPANEL = {
   ],
   overeasy_technologies: [
     {
+      storyId: 20,
+      text: "[[char:maria]] uses an AutoMilker on [[char:robert]] in [[story:20]].",
+    },
+    {
       storyId: 30,
       text: "Employs [[char:diane_postop]]. Employs [[char:amanda_postop]]. Employs [[char:amber_postop]] in [[story:30]].",
     },
     {
       storyId: 43,
-      text: "Sponsors [[char:izzie]] for product demos in [[story:43]].",
+      text: "Sponsors [[char:izzie]] for product demos. [[char:bridget]] and [[char:nate]] sell EunuchCorn jeans in [[story:43]].",
     },
     {
       storyId: 47,
@@ -827,6 +837,12 @@ window.DATA_INFOPANEL = {
     {
       storyId: 42,
       text: "[[char:natalie]] fights her first fight against the [[char:nguyen_twins]] in [[story:42]].",
+    },
+  ],
+  the_gym: [
+    {
+      storyId: 8,
+      text: "[[char:serena]] teaches the class. [[char:kaitlin]], [[char:june]], and [[char:erica]] are students. [[char:steven]] is the gym's practice dummy. [[char:dennis]] loses his fertility there while challenging them for ring time at the gym in [[story:8]].",
     },
   ],
   cherry_pop: [

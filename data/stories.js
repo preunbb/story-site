@@ -87,6 +87,7 @@ window.DATA_STORIES = [
     characterIds: [
       "sam",
       "joan_white",
+      "james_ex",
       "jenny",
       "michelle",
       "stephanie",
