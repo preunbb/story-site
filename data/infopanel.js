@@ -14,7 +14,7 @@ window.DATA_INFOPANEL = {
   karen: [
     {
       storyId: 1,
-      text: "Pops stepson's last testicle in the cup shop ([[char:richard_stepson]]), from [[story:1]].",
+      text: "Pops stepson's last testicle in [[char:stephanie]]'s cup shop ([[char:richard_stepson]]), from [[story:1]].",
     },
     {
       storyId: 2,
@@ -74,7 +74,7 @@ window.DATA_INFOPANEL = {
   sam: [
     {
       storyId: 1,
-      text: "Left testicle popped by [[char:jenny]]. Right testicle popped by [[char:michelle]]. Last testicle popped by [[char:joan_white|Joan]]. Last testicle weakened under [[char:cathy]]'s plan. Remaining ball kneaded nearly to ruin by [[char:amy]] in [[story:1]].",
+      text: "Left testicle popped by [[char:jenny]]. Right testicle popped by [[char:michelle]]. Last testicle popped by [[char:joan_white|Joan]]. Last testicle weakened under [[char:cathy]]'s plan. Remaining ball kneaded nearly to ruin by [[char:amy]]. Kicked in his last testicle by [[char:stephanie]] while buying a OneNut cup in [[story:1]].",
     },
   ],
   james_ex: [
@@ -789,7 +789,17 @@ window.DATA_INFOPANEL = {
       text: "[[char:yvette]]'s mother in [[story:47]]. Owns [[char:cherry_pop|Cherry]] Pop!.",
     },
   ],
+  stephanie: [
+    {
+      storyId: 1,
+      text: "Sells [[char:overeasy_technologies|OverEasy]] OneNut cups. Watches [[char:karen|Dr. Karen]] castrate [[char:richard_stepson]] in the dressing room. Kicks [[char:sam]] in his last testicle while he's trying to buy a OneNut cup. Roommates with [[char:amy]] in [[story:1]].",
+    },
+  ],
   overeasy_technologies: [
+    {
+      storyId: 1,
+      text: "[[char:stephanie]] sells OneNut cups in [[story:1]].",
+    },
     {
       storyId: 20,
       text: "[[char:maria]] uses an AutoMilker on [[char:robert]] in [[story:20]].",

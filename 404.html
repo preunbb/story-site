@@ -3,7 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page not found</title>
+    <title>404 — nothing down here</title>
+    <meta
+      name="description"
+      content="This page came up empty. No balls, no backup, and a testosterone level you could keep in a thimble."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&amp;family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,620;1,9..144,520&amp;family=Manrope:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
     <script>
       (function () {
         var path = location.pathname.replace(/\/$/, "");
@@ -13,9 +23,423 @@
         }
       })();
     </script>
+    <style>
+      :root {
+        --grey: #252528;
+        --ink: #ebe9ec;
+        --ink-muted: #b7b1b6;
+        --blush: #f3c9d1;
+        --blush-deep: #e7a8b4;
+        --cherry: #c01018;
+        --paper: #fff8f6;
+        --note: #ffe4ea;
+        --clinic: #fbf6f1;
+        --locker: #fff1f3;
+        --sign-ink: #5c3840;
+        --sign-muted: #8d6570;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 1.5rem 1rem 2rem;
+        background:
+          radial-gradient(
+            ellipse at 50% 0%,
+            rgba(192, 16, 24, 0.22),
+            transparent 52%
+          ),
+          radial-gradient(
+            ellipse at 80% 100%,
+            rgba(243, 201, 209, 0.12),
+            transparent 46%
+          ),
+          var(--grey);
+        color: var(--ink);
+        font-family: Manrope, system-ui, sans-serif;
+        line-height: 1.5;
+      }
+
+      .chart {
+        width: min(42rem, 100%);
+        position: relative;
+        padding: 1.75rem 1.35rem 1.5rem;
+        border: 1px solid rgba(243, 201, 209, 0.28);
+        border-radius: 22px;
+        background:
+          linear-gradient(180deg, rgba(255, 248, 246, 0.04), transparent 28%),
+          #2c292c;
+        box-shadow:
+          0 24px 60px rgba(0, 0, 0, 0.35),
+          inset 0 1px 0 rgba(255, 248, 246, 0.06);
+        text-align: center;
+      }
+
+      .filetab {
+        display: inline-block;
+        margin: 0 0 1.1rem;
+        padding: 0.28rem 0.7rem 0.32rem;
+        border-radius: 999px;
+        background: rgba(243, 201, 209, 0.14);
+        color: var(--blush);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .orbs {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+        margin: 0.2rem 0 0.35rem;
+      }
+
+      .orb {
+        width: 6.6rem;
+        height: 8.1rem;
+        display: grid;
+        place-items: center;
+        border: 2px dashed rgba(243, 201, 209, 0.8);
+        border-radius: 50%;
+        background:
+          radial-gradient(
+            circle at 35% 30%,
+            rgba(255, 248, 246, 0.08),
+            transparent 46%
+          ),
+          rgba(243, 201, 209, 0.04);
+        box-shadow: inset 0 0 0 7px rgba(243, 201, 209, 0.05);
+        color: var(--blush-deep);
+        font-family: Caveat, cursive;
+        font-size: 1.45rem;
+        font-weight: 700;
+        transform: rotate(-6deg);
+      }
+
+      .orb:last-child {
+        transform: rotate(7deg);
+      }
+
+      .gap {
+        color: var(--blush);
+        font-size: 1.35rem;
+        line-height: 1;
+        text-shadow: 0 0 16px rgba(243, 201, 209, 0.45);
+      }
+
+      .pair-caption {
+        margin: 0;
+        color: var(--ink-muted);
+        font-family: Caveat, cursive;
+        font-size: 1.25rem;
+      }
+
+      h1 {
+        margin: 0.35rem 0 0.55rem;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(2.15rem, 6vw, 3.35rem);
+        font-weight: 560;
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+      }
+
+      .lede {
+        max-width: 36rem;
+        margin: 0 auto 1.35rem;
+        color: var(--ink-muted);
+        font-size: 1.02rem;
+      }
+
+      .signs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.9rem 0.75rem;
+        margin: 0 0 1.25rem;
+        padding: 0.4rem 0 0;
+        list-style: none;
+      }
+
+      .sign {
+        position: relative;
+        width: 9.4rem;
+        min-height: 7.3rem;
+        margin: 0;
+        padding: 0.95rem 0.7rem 0.75rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.12rem;
+        color: var(--sign-ink);
+        box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
+      }
+
+      .sign::before {
+        content: "";
+        position: absolute;
+        top: -0.48rem;
+        left: 50%;
+        width: 2.5rem;
+        height: 0.72rem;
+        transform: translateX(-50%) rotate(-3deg);
+        border-radius: 1px;
+        background: rgba(255, 236, 214, 0.55);
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+      }
+
+      .sign strong {
+        font-size: 1.18rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+      }
+
+      .sign-kicker,
+      .sign-detail {
+        font-size: 0.72rem;
+        font-weight: 650;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--sign-muted);
+      }
+
+      .sign-detail {
+        letter-spacing: 0.01em;
+        text-transform: none;
+        font-weight: 600;
+        font-size: 0.78rem;
+        line-height: 1.25;
+      }
+
+      .sign-clinic {
+        background: var(--clinic);
+        border-radius: 12px;
+        border: 1px solid rgba(92, 56, 64, 0.08);
+        transform: rotate(-2.5deg);
+      }
+
+      .sign-clinic strong {
+        font-family: Fraunces, Georgia, serif;
+        font-size: 1.55rem;
+        font-weight: 620;
+      }
+
+      .stamp {
+        align-self: flex-end;
+        margin-top: 0.2rem;
+        padding: 0.05rem 0.28rem;
+        border: 1.5px solid var(--cherry);
+        border-radius: 3px;
+        color: var(--cherry);
+        font-size: 0.58rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        transform: rotate(-8deg);
+        opacity: 0.82;
+      }
+
+      .sign-note {
+        background: var(--note);
+        border-radius: 2px 12px 10px 3px;
+        transform: rotate(2.4deg);
+      }
+
+      .sign-note strong,
+      .sign-note .sign-detail {
+        font-family: Caveat, cursive;
+        letter-spacing: 0;
+        text-transform: none;
+        color: #7a3d4a;
+      }
+
+      .sign-note strong {
+        font-size: 1.7rem;
+        font-weight: 700;
+      }
+
+      .sign-note .sign-detail {
+        font-size: 1.15rem;
+        font-weight: 500;
+      }
+
+      .sign-locker {
+        background: var(--locker);
+        border-radius: 4px;
+        border: 3px solid #f0b7c2;
+        transform: rotate(-1deg);
+      }
+
+      .sign-locker strong {
+        font-size: 1.02rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .sign-sticker {
+        width: 8.2rem;
+        min-height: 8.2rem;
+        border-radius: 50%;
+        background: radial-gradient(circle at 50% 45%, #fff, #ffd5de 72%);
+        transform: rotate(3deg);
+      }
+
+      .sign-sticker::before {
+        top: 0.15rem;
+        width: 2.1rem;
+        background: rgba(255, 236, 214, 0.4);
+      }
+
+      .sign-sticker strong {
+        font-family: Fraunces, Georgia, serif;
+        font-style: italic;
+        font-size: 1.45rem;
+        font-weight: 520;
+      }
+
+      .aside {
+        margin: 0 0 1.15rem;
+        color: var(--blush);
+        font-family: Fraunces, Georgia, serif;
+        font-style: italic;
+        font-size: 1.12rem;
+      }
+
+      .back {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.72rem 1.15rem;
+        border-radius: 999px;
+        background: #fff7f5;
+        color: #5c3840;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-decoration: none;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .back:hover {
+        background: var(--blush);
+        color: #3f242b;
+      }
+
+      .back:focus-visible {
+        outline: 2px solid var(--blush);
+        outline-offset: 3px;
+      }
+
+      @media (max-width: 520px) {
+        .chart {
+          padding: 1.4rem 0.9rem 1.25rem;
+        }
+
+        .orb {
+          width: 5.4rem;
+          height: 6.7rem;
+          font-size: 1.25rem;
+        }
+
+        .sign {
+          width: calc(50% - 0.5rem);
+          min-width: 8.2rem;
+        }
+
+        .sign-sticker {
+          width: 7.6rem;
+          min-height: 7.6rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .sign {
+          transition: transform 0.2s ease;
+        }
+
+        .sign-clinic:hover {
+          transform: rotate(-1deg) translateY(-2px);
+        }
+
+        .sign-note:hover {
+          transform: rotate(1deg) translateY(-2px);
+        }
+
+        .sign-locker:hover {
+          transform: rotate(0deg) translateY(-2px);
+        }
+
+        .sign-sticker:hover {
+          transform: rotate(1.5deg) translateY(-2px);
+        }
+      }
+    </style>
   </head>
   <body>
-    <p>Page not found.</p>
-    <p><a href="../">Return to the site</a></p>
+    <main class="chart">
+      <p class="filetab">patient file · contents unaccounted for</p>
+      <div class="orbs" aria-hidden="true">
+        <span class="orb">gone</span>
+        <span class="gap">♡</span>
+        <span class="orb">also gone</span>
+      </div>
+      <h1>404: Nothing down here.</h1>
+      <p class="lede">
+        We looked left, we looked right, and we looked in that hopeful little
+        crease between. This page is fresh out of manhood: no balls, no backup,
+        and a testosterone level you could keep in a thimble.
+      </p>
+      <ul class="signs">
+        <li class="sign sign-clinic">
+          <span class="sign-kicker">lab results</span>
+          <strong>Low T</strong>
+          <span class="sign-detail">practically decorative</span>
+          <span class="stamp">confirmed</span>
+        </li>
+        <li class="sign sign-note">
+          <strong>both missing</strong>
+          <span class="sign-detail">we checked twice ♡</span>
+        </li>
+        <li class="sign sign-locker">
+          <span class="sign-kicker">manhood</span>
+          <strong>not found</strong>
+          <span class="sign-detail">try again never</span>
+        </li>
+        <li class="sign sign-sticker">
+          <strong>smooth</strong>
+          <span class="sign-detail">and a little shy about it</span>
+        </li>
+      </ul>
+      <p class="aside">Be a little more careful next time.</p>
+      <a class="back" id="home-link" href="/story-site/"
+        >Take me back to the stories</a
+      >
+    </main>
+    <script>
+      (function () {
+        var home = document.getElementById("home-link");
+        if (!home) return;
+        if (location.protocol === "file:") {
+          home.href = "index.html";
+          return;
+        }
+        var marker = "/story-site/";
+        var i = location.pathname.indexOf(marker);
+        home.href = i === -1 ? "/" : location.pathname.slice(0, i) + marker;
+      })();
+    </script>
   </body>
 </html>

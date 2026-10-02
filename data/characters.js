@@ -269,6 +269,13 @@ window.DATA_CHARACTERS = [
     profilePictures: ["assets/characters/richard_stepson_v1.png"],
   },
   {
+    id: "stephanie",
+    name: "Stephanie",
+    gender: "F",
+    bio: "Mid-twenties sports-shop clerk with mousy auburn hair and freckles. Stocks OverEasy OneNut cups and is a little too interested in her customers.",
+    profilePictures: ["assets/characters/stephanie_v1_auburn_freckles_shop.jpg"],
+  },
+  {
     id: "nathan",
     name: "Nathan",
     gender: "M",

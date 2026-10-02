@@ -1002,6 +1002,36 @@ window.DATA_CONNECTIONS = [
     kinds: ["family", "left"],
   },
   {
+    from: "stephanie",
+    to: "sam",
+    storyId: 1,
+    kinds: ["pain"],
+  },
+  {
+    from: "stephanie",
+    to: "karen",
+    storyId: 1,
+    kinds: ["knows"],
+  },
+  {
+    from: "stephanie",
+    to: "richard_stepson",
+    storyId: 1,
+    kinds: ["knows"],
+  },
+  {
+    from: "amy",
+    to: "stephanie",
+    storyId: 1,
+    kinds: ["knows"],
+  },
+  {
+    from: "stephanie",
+    to: "overeasy_technologies",
+    storyId: 1,
+    kinds: ["faction"],
+  },
+  {
     from: "cathy",
     to: "allan",
     storyId: 1,
