@@ -908,7 +908,7 @@ window.DATA_INFOPANEL = {
   judah: [
     {
       storyId: 47,
-      text: "Receives righteous penance from [[char:eve]]. Testicular defragmentation by [[char:tamara]]. Testicles tortured by [[char:andrea]] in [[story:47]]. Member of the [[char:church_broken_tree]].",
+      text: "Tortured by [[char:andrea]] until he agrees to help them rescue [[char:lucas]] from [[char:church_broken_tree|the Church of the Broken Tree]] in [[story:47]]. [[char:tamara]] 'defragments' his testicle so it remains intact long enough for [[char:eve]] to express her displeasure with his betrayal.",
     },
   ],
   broken_tree_cultists: [
