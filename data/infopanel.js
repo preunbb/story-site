@@ -50,7 +50,7 @@ window.DATA_INFOPANEL = {
     },
     {
       storyId: 48,
-      text: "Onboards and supervises [[char:olivia]] at [[char:overeasy_technologies|OverEasy]]. Knows each other ([[char:zennia]]) in [[story:48]]. Employed by [[char:overeasy_technologies]].",
+      text: "Employed by [[char:zennia]] at [[char:overeasy_technologies|OverEasy]]. Supervises [[char:olivia|the new intern]] on her first day in [[story:48]].",
     },
     {
       storyId: 13,
