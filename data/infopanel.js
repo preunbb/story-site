@@ -684,7 +684,7 @@ window.DATA_INFOPANEL = {
     },
     {
       storyId: 47,
-      text: "Rescues [[char:lucas]] from the [[char:church_broken_tree]] with [[char:izzie]] and [[char:andrea]]. Repairs both of his broken balls. Unnecessarily removes [[char:trinn]]'s remaining left testicle. Takes [[char:broken_tree_cultists|cultists]]' remaining right testicles. Testicular defragmentation on [[char:judah]]. Removes [[char:felix]]'s dead testicles. Extracts [[char:greyson]]'s ruptured testicle without anesthesia. Poised to take [[char:greyson]]'s last testicle (epilogue). Supervises intern [[char:yvette]]. Unwinds with [[char:melody]] at the [[char:overeasy_technologies|OverEasy]] concert in [[story:47]].",
+      text: "Rescues [[char:lucas]] from the [[char:church_broken_tree]] with [[char:izzie]] and [[char:andrea]]. Repairs both of his broken balls. Unnecessarily removes [[char:trinn]]'s remaining left testicle. Takes [[char:broken_tree_cultists|cultists]]' remaining right testicles. Testicular defragmentation on [[char:judah]]. Removes [[char:felix]]'s dead testicles. Extracts [[char:greyson]]'s ruptured testicle without anesthesia and prepares to remove his last babymaker in the epilogue. Attempts to supervises intern [[char:yvette|her very incompetent intern]] at the [[char:cherry_pop|Cherry Pop!]] concert. [[char:melody]] encourages her to give in to her darker urges while Tamara operates on Melody's latest victim.",
     },
     {
       storyId: 49,
