@@ -684,7 +684,7 @@ window.DATA_INFOPANEL = {
     },
     {
       storyId: 47,
-      text: "[[char:andrea]] pops his right testicle as revenge when his girlfriend [[char:emma]] kicks her Lucas in the balls at the [[char:cherry_pop]] concert in [[story:47]]. [[char:tamara]] mistakenly thinks he deserves to be castrated, so she performs a double orchiectomy on him without anesthesia.",
+      text: "Rescues [[char:lucas]] from the [[char:church_broken_tree]] with [[char:izzie]] and [[char:andrea]]. Repairs both of his broken balls. Unnecessarily removes [[char:trinn]]'s remaining left testicle. Takes [[char:broken_tree_cultists|cultists]]' remaining right testicles. Testicular defragmentation on [[char:judah]]. Removes [[char:felix]]'s dead testicles. Extracts [[char:greyson]]'s ruptured testicle without anesthesia. Poised to take [[char:greyson]]'s last testicle (epilogue). Supervises intern [[char:yvette]]. Unwinds with [[char:melody]] at the [[char:overeasy_technologies|OverEasy]] concert in [[story:47]].",
     },
     {
       storyId: 49,
@@ -740,7 +740,7 @@ window.DATA_INFOPANEL = {
   trinn: [
     {
       storyId: 47,
-      text: "Right testicle popped by [[char:andrea]]. Remaining left testicle unnecessarily removed by [[char:tamara]]. Dates [[char:emma]] in [[story:47]]. Attended [[char:cherry_pop|Cherry]] Pop! as [[char:emma]]'s date.",
+      text: "[[char:andrea]] pops his right testicle as revenge when his girlfriend [[char:emma]] kicks her Lucas in the balls at the [[char:cherry_pop]] concert in [[story:47]]. [[char:tamara]] mistakenly thinks he deserves to be castrated, so she performs a double orchiectomy on him without anesthesia.",
     },
   ],
   sunni: [
