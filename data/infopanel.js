@@ -684,7 +684,7 @@ window.DATA_INFOPANEL = {
     },
     {
       storyId: 47,
-      text: "Rescues [[char:lucas]] from the [[char:church_broken_tree]] with [[char:izzie]] and [[char:andrea]]. Repairs both of his broken balls. Unnecessarily removes [[char:trinn]]'s remaining left testicle. Takes [[char:broken_tree_cultists|cultists]]' remaining right testicles. Testicular defragmentation on [[char:judah]]. Removes [[char:felix]]'s dead testicles. Extracts [[char:greyson]]'s ruptured testicle without anesthesia. Poised to take [[char:greyson]]'s last testicle (epilogue). Supervises intern [[char:yvette]]. Unwinds with [[char:melody]] at the [[char:overeasy_technologies|OverEasy]] concert in [[story:47]].",
+      text: "[[char:andrea]] pops his right testicle as revenge when his girlfriend [[char:emma]] kicks her Lucas in the balls at the [[char:cherry_pop]] concert in [[story:47]]. [[char:tamara]] mistakenly thinks he deserves to be castrated, so she performs a double orchiectomy on him without anesthesia.",
     },
     {
       storyId: 49,
@@ -746,7 +746,7 @@ window.DATA_INFOPANEL = {
   sunni: [
     {
       storyId: 47,
-      text: "Has the terrible luck to be treated by [[char:yvette]]. Testicles kicked by [[char:andrea]] in [[story:47]]. [[char:cherry_pop|Cherry]] Pop! fan.",
+      text: "Kicked extremely hard in the testicles by [[char:andrea]] at his first [[char:cherry_pop|]] concert in [[story:47]]. Although she doesn't rupture them, he unfortunately has the terrible luck to be treated by [[char:yvette]].",
     },
   ],
   felix: [
@@ -758,7 +758,7 @@ window.DATA_INFOPANEL = {
   greyson: [
     {
       storyId: 47,
-      text: "Left testicle popped by [[char:andrea]]. Ruptured testicle extracted without anesthesia by [[char:tamara]]. Last testicle threatened by [[char:tamara]] in epilogue in [[story:47]]. Attended [[char:cherry_pop|Cherry]] Pop! hoping to live out his fantasies.",
+      text: "[[char:andrea]] destroys his left testicle at the [[char:cherry_pop]] concert in [[story:47]]. After he finishes painting the inside of his shorts with his extinction pulse, he hobbles over to the medical tent for [[char:tamara]] to extract what remains of leftie. She'll later remove his remaining right testicle for totally legitimate medical reasons.",
     },
   ],
   isaac: [
