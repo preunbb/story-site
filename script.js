@@ -38,6 +38,10 @@
       id: "no-nut-narrator",
       label: "No Nut Narrator",
     },
+    {
+      id: "lowblow-tober",
+      label: "Lowblow-Tober",
+    },
   ];
   /**
    * Catalog page sections. Newest is a highlight row and may repeat cards
@@ -48,7 +52,7 @@
     {
       id: "newest",
       title: "Newest releases",
-      storyIds: [49, 48, 47],
+      storyIds: [50, 49, 48, 47],
     },
     {
       id: "epic",
@@ -84,6 +88,11 @@
       id: "no-nut-narrator",
       title: "No Nut Narrator",
       storyIds: [34, 35],
+    },
+    {
+      id: "lowblow-tober",
+      title: "Lowblow-Tober",
+      storyIds: [50],
     },
     {
       id: "scripts",

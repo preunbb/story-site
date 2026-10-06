@@ -1774,4 +1774,19 @@ window.DATA_STORIES = [
       toChapter: 2,
     },
   },
+  {
+    id: 50,
+    wordCount: 902,
+    title: "Lowblow-Tober 6: Accident",
+    brutalityRating: 4,
+    summary:
+      "Niles helps Alyssa move out. He does his best but he's not quite careful enough!",
+    cover: "assets/covers/placeholder.svg",
+    driveUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vRrvgcLQJJdS-4HEGe-GFCyg3Exxy2y38nNZUk1GFE5Lx1CWv6rvoKzTyDVhclDh0Xast1x7J-bwepo/pub",
+    characterIds: ["niles", "alyssa", "chad"],
+    state: 2,
+    releaseDate: "2026-10-06",
+    series: { id: "lowblow-tober", order: 6 },
+  },
 ];

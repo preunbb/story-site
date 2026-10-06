@@ -498,11 +498,18 @@ window.DATA_CHARACTERS = [
     id: "alyssa",
     name: "Alyssa",
     gender: "F",
-    testiclesKilled: 2,
+    testiclesKilled: 4,
     bio: "Stunning college-freshman blonde—very busty, bubbly, and a little oblivious to how intense she comes across. Wildly flirty and attention-loving; with jock Chad cheating again she vents on Jon, who's like a brother to her.",
     profilePictures: [
       "assets/characters/alyssa_profile_college_freshman_blonde_v1.png",
     ],
+  },
+  {
+    id: "niles",
+    name: "Niles",
+    gender: "M",
+    bio: "Alyssa's friend. Happy to haul furniture for her, and nowhere near as useful at it as Chad would be.",
+    profilePictures: [],
   },
   {
     id: "chad",

@@ -1056,6 +1056,18 @@ window.DATA_CONNECTIONS = [
     kinds: ["relationship"],
   },
   {
+    from: "alyssa",
+    to: "niles",
+    storyId: 50,
+    kinds: ["left", "right"],
+  },
+  {
+    from: "alyssa",
+    to: "chad",
+    storyId: 50,
+    kinds: ["relationship"],
+  },
+  {
     from: "cathy",
     to: "nameless_volunteers",
     storyId: 32,

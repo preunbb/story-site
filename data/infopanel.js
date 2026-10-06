@@ -529,6 +529,10 @@ window.DATA_INFOPANEL = {
       text: "Relies on [[char:jon]] to help her deal with the stress of her cheating boyfriend [[char:chad]] in [[story:25]].",
     },
     {
+      storyId: 50,
+      text: "Has [[char:niles]] help her move a couch in [[story:50]] while [[char:chad]] is out with his boys. An oak leg pins both of Niles's testicles to the stairwell wall until they pop. She still wants the couch, the recliner, and the bedframe downstairs before she calls an ambulance.",
+    },
+    {
       storyId: 49,
       text: "[[char:stuart]]'s unrequitted high school crush, and helps [[char:karen|Dr. Karen]] complete his therapy in [[story:49]].",
     },
@@ -537,6 +541,16 @@ window.DATA_INFOPANEL = {
     {
       storyId: 25,
       text: "Cheats on [[char:alyssa]] in [[story:25]].",
+    },
+    {
+      storyId: 50,
+      text: "Out on a trip with his boys while [[char:alyssa]] moves in [[story:50]]. She wishes he were there instead of [[char:niles]].",
+    },
+  ],
+  niles: [
+    {
+      storyId: 50,
+      text: "Helps [[char:alyssa]] carry a couch down twelve flights in [[story:50]]. A stairwell corner swings an oak leg up between his legs and flattens both testicles against the wall until they pop. He passes out on the couch. She promises an ambulance after the rest of the furniture is downstairs.",
     },
   ],
   dr_s: [
