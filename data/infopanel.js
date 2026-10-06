@@ -438,7 +438,7 @@ window.DATA_INFOPANEL = {
   lurian: [
     {
       storyId: 19,
-      text: "[[char:queen_mother]]'s daughter. Sister who tortures [[char:atheras]]'s testicles. Sister who tortures [[char:vergil]]'s testicles in [[story:19]].",
+      text: "[[char:queen_mother]]'s daughter and [[char:atheras]]'s and [[char:vergil]]'s sister in [[story:19]]. Loves playing hilarious pranks on her brother's testicles, esepcially Athetas's pea-sized gonads.",
     },
   ],
   vergil: [
