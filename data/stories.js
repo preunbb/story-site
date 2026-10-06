@@ -1781,7 +1781,7 @@ window.DATA_STORIES = [
     brutalityRating: 4,
     summary:
       "Niles helps Alyssa move out. He does his best but he's not quite careful enough!",
-    cover: "assets/covers/lowblow_tober_6_accident_cover_v2.jpg",
+    cover: "assets/covers/lowblow_tober_6_accident_cover_v10.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vRrvgcLQJJdS-4HEGe-GFCyg3Exxy2y38nNZUk1GFE5Lx1CWv6rvoKzTyDVhclDh0Xast1x7J-bwepo/pub",
     characterIds: ["niles", "alyssa", "chad"],
