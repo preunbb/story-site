@@ -456,7 +456,7 @@ window.DATA_INFOPANEL = {
   robert: [
     {
       storyId: 20,
-      text: "[[char:melody]]'s son, who loses bot testicles to [[char:monique]] in [[story:20]]. In between halfstrations, [[char:maria]] brutally automilks his last testicle. [[char:michelle]] checks him into the hospital and helpfully reminds him of the Drip-n-Snip procedure.",
+      text: "[[char:melody]]'s son, who loses both testicles to [[char:monique]] in [[story:20]]. During his brief stint as a one-testicled man, [[char:maria]] brutally automilked his only gonad with an [[char:overeasy_technologies|OverEasy]] AutoMilker. [[char:michelle]] checks him into the hospital and helpfully reminds him of the Drip-n-Snip procedure.",
     },
   ],
   monique: [
