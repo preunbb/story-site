@@ -530,7 +530,7 @@ window.DATA_INFOPANEL = {
     },
     {
       storyId: 50,
-      text: "Has [[char:niles]] help her move a couch in [[story:50]] while [[char:chad]] is out with his boys. An oak leg pins both of Niles's testicles to the stairwell wall until they pop. She still wants the couch, the recliner, and the bedframe downstairs before she calls an ambulance.",
+      text: "Has [[char:niles]] help her move a couch in [[story:50]] while [[char:chad]] is out with his boys.",
     },
     {
       storyId: 49,
