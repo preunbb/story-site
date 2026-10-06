@@ -544,7 +544,7 @@ window.DATA_INFOPANEL = {
     },
     {
       storyId: 50,
-      text: "Out on a trip with his boys while [[char:alyssa]] moves in [[story:50]]. She wishes he were there instead of [[char:niles]].",
+      text: "Out on a trip with his boys while [[char:alyssa]] moves in [[story:50]].",
     },
   ],
   niles: [
