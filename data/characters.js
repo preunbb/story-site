@@ -273,7 +273,9 @@ window.DATA_CHARACTERS = [
     name: "Stephanie",
     gender: "F",
     bio: "Mid-twenties sports-shop clerk with mousy auburn hair and freckles. Stocks OverEasy OneNut cups and is a little too interested in her customers.",
-    profilePictures: ["assets/characters/stephanie_v1_auburn_freckles_shop.jpg"],
+    profilePictures: [
+      "assets/characters/stephanie_v1_auburn_freckles_shop.jpg",
+    ],
   },
   {
     id: "nathan",
@@ -508,8 +510,8 @@ window.DATA_CHARACTERS = [
     id: "niles",
     name: "Niles",
     gender: "M",
-    bio: "Alyssa's friend. Happy to haul furniture for her, and nowhere near as useful at it as Chad would be.",
-    profilePictures: [],
+    bio: "Alyssa's friend and massive simp. Maybe if he does enough favors, she'll see him as more than a friend?",
+    profilePictures: ["assets/characters/niles_profile_stairwell_couch_v1.jpg"],
   },
   {
     id: "chad",
@@ -818,7 +820,9 @@ window.DATA_CHARACTERS = [
     entityType: "faction",
     gender: "",
     bio: "Serena teaches local women how best to defend themselves against men. Practice sessions can get painful...and sometimes, messy.",
-    profilePictures: ["assets/brands/the_gym_avatar_v3_flesh_two_orbs_veiny_inset.jpg"],
+    profilePictures: [
+      "assets/brands/the_gym_avatar_v3_flesh_two_orbs_veiny_inset.jpg",
+    ],
   },
   {
     id: "cherry_pop",

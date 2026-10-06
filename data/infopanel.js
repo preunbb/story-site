@@ -550,7 +550,7 @@ window.DATA_INFOPANEL = {
   niles: [
     {
       storyId: 50,
-      text: "Helps [[char:alyssa]] carry a couch down twelve flights in [[story:50]]. A stairwell corner swings an oak leg up between his legs and flattens both testicles against the wall until they pop. He passes out on the couch. She promises an ambulance after the rest of the furniture is downstairs.",
+      text: "Helps [[char:alyssa]] move out in [[story:50]].",
     },
   ],
   dr_s: [
