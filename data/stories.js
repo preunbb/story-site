@@ -1777,7 +1777,7 @@ window.DATA_STORIES = [
   {
     id: 50,
     wordCount: 1026,
-    title: "Lowblow-Tober 6: Accident",
+    title: "Lowblow-Tober 6: Accidental",
     brutalityRating: 4,
     summary:
       "Niles helps Alyssa move out. He does his best but he's not quite careful enough!",
