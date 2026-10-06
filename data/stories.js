@@ -1776,7 +1776,7 @@ window.DATA_STORIES = [
   },
   {
     id: 50,
-    wordCount: 902,
+    wordCount: 1026,
     title: "Lowblow-Tober 6: Accident",
     brutalityRating: 4,
     summary:
