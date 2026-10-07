@@ -1826,7 +1826,7 @@ window.DATA_STORIES = [
     brutalityRating: 3,
     summary:
       "Andrea tells Lucas to stop teasing and fuck her. She keeps hold of his one remaining testicle the whole time.",
-    cover: "assets/covers/lowblow_tober_9_midsex_cover_v6.jpg",
+    cover: "assets/covers/lowblow_tober_9_midsex_cover_v7.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vRYNwN9RThD_jElVbxroI6AG2pD5BtJeFEqvRGbJ9yXHX5EYVKFWcbtT30LXz5hpKqoBvjZrRDAxnL2/pub",
     characterIds: ["andrea", "lucas"],
