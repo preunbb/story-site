@@ -619,6 +619,12 @@ window.DATA_CONNECTIONS = [
   },
   {
     from: "andrea",
+    to: "lucas",
+    storyId: 53,
+    kinds: ["relationship", "pain"],
+  },
+  {
+    from: "andrea",
     to: "hunter",
     storyId: 43,
     kinds: ["left"],
@@ -826,6 +832,12 @@ window.DATA_CONNECTIONS = [
     to: "lucas",
     storyId: 47,
     kinds: ["knows"],
+  },
+  {
+    from: "izzie",
+    to: "leo",
+    storyId: 51,
+    kinds: ["pain"],
   },
   {
     from: "tamara",

@@ -661,9 +661,16 @@ window.DATA_CHARACTERS = [
     id: "izzie",
     name: "Izzie",
     gender: "F",
-    testiclesKilled: 59,
+    testiclesKilled: 60,
     bio: 'Andrea\'s roommate—blonde, tan, influencer and content creator. Partners with Over Easy for product skits and mall "demos."',
     profilePictures: ["assets/characters/izzie.jpg"],
+  },
+  {
+    id: "leo",
+    name: "Leo",
+    gender: "M",
+    bio: "Climbs with Izzie. Pays more attention to the view down her top than to how much slack she leaves in the rope.",
+    profilePictures: ["assets/characters/leo_profile_climbing_harness_v1.jpg"],
   },
   {
     id: "tamara",

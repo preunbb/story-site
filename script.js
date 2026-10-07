@@ -40,7 +40,7 @@
     },
     {
       id: "lowblow-tober",
-      label: "Lowblow-Tober",
+      label: "Lowblowtober 2026",
     },
   ];
   /**
@@ -52,7 +52,7 @@
     {
       id: "newest",
       title: "Newest releases",
-      storyIds: [50, 49, 48, 47],
+      storyIds: [53, 52, 51, 50],
     },
     {
       id: "epic",
@@ -91,8 +91,8 @@
     },
     {
       id: "lowblow-tober",
-      title: "Lowblow-Tober",
-      storyIds: [50],
+      title: "Lowblowtober 2026",
+      storyIds: [50, 51, 52, 53],
     },
     {
       id: "scripts",
@@ -3421,10 +3421,8 @@
     function wheelRadius(spokeCount) {
       var n = Math.max(spokeCount, 1);
       var compact = (n * 64) / (2 * Math.PI);
-      var gymN =
-        (spokesByHub.the_gym && spokesByHub.the_gym.length) || 0;
-      var minR =
-        gymN > 0 ? (2 * (gymN * 64)) / (2 * Math.PI) : 56;
+      var gymN = (spokesByHub.the_gym && spokesByHub.the_gym.length) || 0;
+      var minR = gymN > 0 ? (2 * (gymN * 64)) / (2 * Math.PI) : 56;
       return Math.max(minR, compact);
     }
 

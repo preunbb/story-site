@@ -670,6 +670,10 @@ window.DATA_INFOPANEL = {
       storyId: 49,
       text: "Helps [[char:karen|Dr. Karen]] complete [[char:stuart]]'s therapy. Kicks [[char:stuart]]'s last ball during a therapy session in [[story:49]].",
     },
+    {
+      storyId: 53,
+      text: "Fucks [[char:lucas]] in [[story:53]] and keeps a hard grip on his one remaining testicle the whole time. It comes out mushy and bruised. She does not pop it.",
+    },
   ],
   lucas: [
     {
@@ -680,6 +684,10 @@ window.DATA_INFOPANEL = {
       storyId: 47,
       text: "Left testicle popped by [[char:andrea]]. Owned by [[char:andrea]] at [[char:cherry_pop|Cherry]] Pop!. Mistakenly targeted by [[char:emma]]. Tortured by [[char:eve]]; testicular internals scrambled. Targeted by stepsister [[char:kay]]. Targeted by stepsister [[char:abby]]. Rescued from the [[char:church_broken_tree]] by [[char:izzie]], [[char:tamara]], and [[char:andrea]]. Both broken balls repaired by [[char:tamara]] in [[story:47]].",
     },
+    {
+      storyId: 53,
+      text: "Has sex with [[char:andrea]] in [[story:53]] while she squeezes his one remaining testicle. It stays attached, mushy and bruised.",
+    },
   ],
   izzie: [
     {
@@ -689,6 +697,16 @@ window.DATA_INFOPANEL = {
     {
       storyId: 47,
       text: "Rescues [[char:lucas]] from the [[char:church_broken_tree]] with [[char:tamara]] and [[char:andrea]]. Takes [[char:broken_tree_cultists|cultists]]' remaining right testicles in [[story:47]].",
+    },
+    {
+      storyId: 51,
+      text: "Belays [[char:leo]] in [[story:51]] without looking up from her phone. The slack rope lets him fall into the climbing wall until one of his testicles pops. She unclips him and leaves.",
+    },
+  ],
+  leo: [
+    {
+      storyId: 51,
+      text: "Climbs while [[char:izzie]] scrolls her phone in [[story:51]]. He slips, swings into the wall, and one testicle pops against a hold. She unclips the rope and walks off.",
     },
   ],
   tamara: [
@@ -703,6 +721,10 @@ window.DATA_INFOPANEL = {
     {
       storyId: 49,
       text: "Successfully saves [[char:stuart]]'s remaining right testicle in [[story:49]].",
+    },
+    {
+      storyId: 52,
+      text: "Examines an unnamed patient in stirrups in [[story:52]]. Heel-stomp bruises on the left testicle, the right already broken into pieces. She tells him both are irreparable and prepares a bilateral orchiectomy.",
     },
   ],
   bridget: [

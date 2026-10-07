@@ -1777,7 +1777,7 @@ window.DATA_STORIES = [
   {
     id: 50,
     wordCount: 1027,
-    title: "Lowblow-Tober 6: Accidental",
+    title: "Lowblowtober 2026 6: Accidental",
     brutalityRating: 4,
     summary:
       "Niles helps Alyssa move out. He does his best but he's not quite careful enough!",
@@ -1788,5 +1788,50 @@ window.DATA_STORIES = [
     state: 2,
     releaseDate: "2026-10-06",
     series: { id: "lowblow-tober", order: 6 },
+  },
+  {
+    id: 51,
+    wordCount: 952,
+    title: "Lowblowtober 2026 7: Fall",
+    brutalityRating: 4,
+    summary:
+      "Leo climbs while Izzie belays from her phone. The slack in the rope turns one slip into a very long fall.",
+    cover: "assets/covers/lowblow_tober_7_fall_v10.jpg",
+    driveUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vTCHANHyg9ugNJbKFNFaQJxdwJ9EXVoj_5MiWR4-DlosrZueJE6HVR4Qc_Uwl6yEp27G2FhjFESIJxv/pub",
+    characterIds: ["leo", "izzie"],
+    state: 2,
+    releaseDate: "2026-10-06",
+    series: { id: "lowblow-tober", order: 7 },
+  },
+  {
+    id: 52,
+    wordCount: 856,
+    title: "Lowblowtober 2026 8: Broken",
+    brutalityRating: 5,
+    summary:
+      "Tamara opens the exam room on a man already in the stirrups. Someone else started the damage. She finishes the diagnosis.",
+    cover: "assets/covers/lowblow_tober_8_broken_cover_v6.jpg",
+    driveUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vSf64XyVr1XGZ_IoMSoXiTVrDexkaFmRsHnWrWjgFEn7GfxL-lW60waO1EDMx8CPlWPgKqB4KFCe_bv/pub",
+    characterIds: ["tamara"],
+    state: 2,
+    releaseDate: "2026-10-06",
+    series: { id: "lowblow-tober", order: 8 },
+  },
+  {
+    id: 53,
+    wordCount: 702,
+    title: "Lowblowtober 2026 9: Mid-Sex",
+    brutalityRating: 3,
+    summary:
+      "Andrea tells Lucas to stop teasing and fuck her. She keeps hold of his one remaining testicle the whole time.",
+    cover: "assets/covers/lowblow_tober_9_midsex_cover_v6.jpg",
+    driveUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vRYNwN9RThD_jElVbxroI6AG2pD5BtJeFEqvRGbJ9yXHX5EYVKFWcbtT30LXz5hpKqoBvjZrRDAxnL2/pub",
+    characterIds: ["andrea", "lucas"],
+    state: 2,
+    releaseDate: "2026-10-06",
+    series: { id: "lowblow-tober", order: 9 },
   },
 ];
