@@ -438,13 +438,13 @@ window.DATA_INFOPANEL = {
   lurian: [
     {
       storyId: 19,
-      text: "[[char:queen_mother]]'s daughter and [[char:atheras]]'s and [[char:vergil]]'s sister in [[story:19]]. Loves playing hilarious pranks on her brother's testicles, esepcially Athetas's pea-sized gonads.",
+      text: "[[char:queen_mother]]'s daughter and [[char:atheras]]'s and [[char:vergil]]'s sister in [[story:19]]. Loves playing hilarious pranks on her brother's testicles, esepcially Atheras's pea-sized gonads.",
     },
   ],
   vergil: [
     {
       storyId: 19,
-      text: "[[char:queen_mother]]'s son. Testicles tortured by his sister [[char:lurian]]. [[char:atheras]]'s brother in [[story:19]].",
+      text: "[[char:queen_mother]]'s son and [[char:atheras]]'s and [[char:lurian]]'s brother in [[story:19]]. Sometimes takes the brunt of his sister's testicular torture for his brother, but is well aware (and, guiltily, thankful) that he gets off easy compared to Atheras.",
     },
   ],
   salei: [
