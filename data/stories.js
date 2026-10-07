@@ -1436,7 +1436,7 @@ window.DATA_STORIES = [
   },
   {
     id: 46,
-    wordCount: 12803,
+    wordCount: 12804,
     title: "Melody Seduces a Virgin",
     summary:
       "Melody's castration kink is back in full force, ever since her son lost his balls. She's been craving a chance to explore her awakened urges, and the nervous, virginal Ryan is just the guy to help her.",
@@ -1576,7 +1576,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 28378,
+    wordCount: 29171,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
@@ -1791,7 +1791,7 @@ window.DATA_STORIES = [
   },
   {
     id: 51,
-    wordCount: 952,
+    wordCount: 1452,
     title: "Lowblowtober 2026 7: Fall",
     brutalityRating: 4,
     summary:
@@ -1806,7 +1806,7 @@ window.DATA_STORIES = [
   },
   {
     id: 52,
-    wordCount: 856,
+    wordCount: 942,
     title: "Lowblowtober 2026 8: Broken",
     brutalityRating: 5,
     summary:
@@ -1822,7 +1822,7 @@ window.DATA_STORIES = [
   },
   {
     id: 53,
-    wordCount: 702,
+    wordCount: 987,
     title: "Lowblowtober 2026 9: Mid-Sex",
     brutalityRating: 3,
     summary:
