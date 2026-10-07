@@ -1794,8 +1794,7 @@ window.DATA_STORIES = [
     wordCount: 1445,
     title: "Lowblowtober 2026 7: Fall",
     brutalityRating: 4,
-    summary:
-      "Leo climbs while Izzie belays from her phone. The slack in the rope turns one slip into a very long fall.",
+    summary: "Leo and Izzie go climbing.",
     cover: "assets/covers/lowblow_tober_7_fall_v26.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTCHANHyg9ugNJbKFNFaQJxdwJ9EXVoj_5MiWR4-DlosrZueJE6HVR4Qc_Uwl6yEp27G2FhjFESIJxv/pub",
