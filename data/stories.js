@@ -1791,7 +1791,7 @@ window.DATA_STORIES = [
   },
   {
     id: 51,
-    wordCount: 1452,
+    wordCount: 1445,
     title: "Lowblowtober 2026 7: Fall",
     brutalityRating: 4,
     summary:
