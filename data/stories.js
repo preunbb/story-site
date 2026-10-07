@@ -1801,7 +1801,7 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vTCHANHyg9ugNJbKFNFaQJxdwJ9EXVoj_5MiWR4-DlosrZueJE6HVR4Qc_Uwl6yEp27G2FhjFESIJxv/pub",
     characterIds: ["leo", "izzie"],
     state: 2,
-    releaseDate: "2026-10-06",
+    releaseDate: "2026-10-07",
     series: { id: "lowblow-tober", order: 7 },
   },
   {
@@ -1816,7 +1816,8 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vSf64XyVr1XGZ_IoMSoXiTVrDexkaFmRsHnWrWjgFEn7GfxL-lW60waO1EDMx8CPlWPgKqB4KFCe_bv/pub",
     characterIds: ["tamara"],
     state: 2,
-    releaseDate: "2026-10-06",
+    releaseDate: "2026-10-08",
+    localOnly: true,
     series: { id: "lowblow-tober", order: 8 },
   },
   {
@@ -1831,7 +1832,8 @@ window.DATA_STORIES = [
       "https://docs.google.com/document/d/e/2PACX-1vRYNwN9RThD_jElVbxroI6AG2pD5BtJeFEqvRGbJ9yXHX5EYVKFWcbtT30LXz5hpKqoBvjZrRDAxnL2/pub",
     characterIds: ["andrea", "lucas"],
     state: 2,
-    releaseDate: "2026-10-06",
+    releaseDate: "2026-10-09",
+    localOnly: true,
     series: { id: "lowblow-tober", order: 9 },
   },
 ];

@@ -383,6 +383,14 @@
     return true;
   }
 
+  /** Infopanel notes and connection edges for a hidden story stay hidden too. */
+  function isCatalogStoryIdVisible(storyId) {
+    if (storyId == null || storyId === "") return true;
+    var story = getStoryById(storyId);
+    if (!story) return true;
+    return isStoryVisibleInCatalog(story);
+  }
+
   /** Illustrated scenes for `state: 1` (coming soon) only show on localhost. */
   function isStoryScenesVisibleOnSite(story) {
     if (!story || story.hideScenes === true) return false;
@@ -3043,6 +3051,9 @@
 
     var entries = (connectionsInfopanel[charId] || [])
       .slice()
+      .filter(function (entry) {
+        return !entry || isCatalogStoryIdVisible(entry.storyId);
+      })
       .sort(function (a, b) {
         var ia = storyOrderIndexForCharacter(a && a.storyId, charId);
         var ib = storyOrderIndexForCharacter(b && b.storyId, charId);
@@ -3172,7 +3183,8 @@
         e.from &&
         e.to &&
         getCharacterById(e.from) &&
-        getCharacterById(e.to)
+        getCharacterById(e.to) &&
+        isCatalogStoryIdVisible(e.storyId)
       );
     });
 
