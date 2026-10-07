@@ -700,13 +700,13 @@ window.DATA_INFOPANEL = {
     },
     {
       storyId: 51,
-      text: "Belays [[char:leo]] in [[story:51]] without looking up from her phone. The slack rope lets him fall into the climbing wall until one of his testicles pops. She unclips him and leaves.",
+      text: "[[char:leo]]'s climbing partner in [[story:51]].",
     },
   ],
   leo: [
     {
       storyId: 51,
-      text: "Climbs while [[char:izzie]] scrolls her phone in [[story:51]]. He slips, swings into the wall, and one testicle pops against a hold. She unclips the rope and walks off.",
+      text: "Relies on [[char:izzie]] to belay him safely in [[story:51]].",
     },
   ],
   tamara: [

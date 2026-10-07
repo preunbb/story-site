@@ -669,7 +669,7 @@ window.DATA_CHARACTERS = [
     id: "leo",
     name: "Leo",
     gender: "M",
-    bio: "Climbs with Izzie. Pays more attention to the view down her top than to how much slack she leaves in the rope.",
+    bio: "Climbs with Izzie. Easily distracted.",
     profilePictures: ["assets/characters/leo_profile_climbing_harness_v1.jpg"],
   },
   {

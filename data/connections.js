@@ -837,7 +837,7 @@ window.DATA_CONNECTIONS = [
     from: "izzie",
     to: "leo",
     storyId: 51,
-    kinds: ["pain"],
+    kinds: ["left"],
   },
   {
     from: "tamara",
