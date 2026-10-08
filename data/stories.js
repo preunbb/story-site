@@ -1810,13 +1810,12 @@ window.DATA_STORIES = [
     brutalityRating: 5,
     summary:
       "Tamara opens the exam room on a man already in the stirrups. Someone else started the damage. She finishes the diagnosis.",
-    cover: "assets/covers/lowblow_tober_8_broken_cover_v6.jpg",
+    cover: "assets/covers/lowblow_tober_8_broken_cover_v13.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vSf64XyVr1XGZ_IoMSoXiTVrDexkaFmRsHnWrWjgFEn7GfxL-lW60waO1EDMx8CPlWPgKqB4KFCe_bv/pub",
     characterIds: ["tamara"],
     state: 2,
     releaseDate: "2026-10-08",
-    localOnly: true,
     series: { id: "lowblow-tober", order: 8 },
   },
   {
