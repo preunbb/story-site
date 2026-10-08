@@ -724,7 +724,7 @@ window.DATA_INFOPANEL = {
     },
     {
       storyId: 52,
-      text: "Examines an unnamed patient in stirrups in [[story:52]]. Heel-stomp bruises on the left testicle, the right already broken into pieces. She tells him both are irreparable and prepares a bilateral orchiectomy.",
+      text: "Examines an unfortunate patient in [[story:52]].",
     },
   ],
   bridget: [

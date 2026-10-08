@@ -40,7 +40,7 @@
     },
     {
       id: "lowblow-tober",
-      label: "Lowblowtober 2026",
+      label: "Lowblowtober",
     },
   ];
   /**
@@ -91,7 +91,7 @@
     },
     {
       id: "lowblow-tober",
-      title: "Lowblowtober 2026",
+      title: "Lowblowtober",
       storyIds: [50, 51, 52, 53],
     },
     {

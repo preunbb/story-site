@@ -1777,7 +1777,7 @@ window.DATA_STORIES = [
   {
     id: 50,
     wordCount: 1027,
-    title: "Lowblowtober 2026 6: Accidental",
+    title: "Lowblowtober 6: Accidental",
     brutalityRating: 4,
     summary:
       "Niles helps Alyssa move out. He does his best but he's not quite careful enough!",
@@ -1792,7 +1792,7 @@ window.DATA_STORIES = [
   {
     id: 51,
     wordCount: 1445,
-    title: "Lowblowtober 2026 7: Fall",
+    title: "Lowblowtober 7: Fall",
     brutalityRating: 4,
     summary: "Leo and Izzie go climbing.",
     cover: "assets/covers/lowblow_tober_7_fall_v26.jpg",
@@ -1806,7 +1806,7 @@ window.DATA_STORIES = [
   {
     id: 52,
     wordCount: 942,
-    title: "Lowblowtober 2026 8: Broken",
+    title: "Lowblowtober 8: Broken",
     brutalityRating: 5,
     summary: "Tamara helps a man with an unfortunate injury.",
     cover: "assets/covers/lowblow_tober_8_broken_cover_v13.jpg",
@@ -1820,7 +1820,7 @@ window.DATA_STORIES = [
   {
     id: 53,
     wordCount: 987,
-    title: "Lowblowtober 2026 9: Mid-Sex",
+    title: "Lowblowtober 9: Mid-Sex",
     brutalityRating: 3,
     summary:
       "Andrea tells Lucas to stop teasing and fuck her. She keeps hold of his one remaining testicle the whole time.",
