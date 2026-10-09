@@ -548,7 +548,7 @@ window.DATA_CHARACTERS = [
     name: "Sean",
     gender: "M",
     bio: "Twenty-one-year-old virgin stepson. Moves in with Genovia and Sylvana; his fantasies make him a constant target for both witches' magic.",
-    profilePictures: [],
+    profilePictures: ["assets/characters/sean_witches_v1.jpg"],
   },
   {
     id: "steven",

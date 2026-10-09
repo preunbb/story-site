@@ -880,26 +880,26 @@ window.DATA_STORIES = [
         caption: "Prom 1988 — public humiliation, on stage.",
       },
       {
-        path: "assets/scenes/living_with_ballbusting_witches/kitchen_table_hex.png",
+        path: "assets/scenes/living_with_ballbusting_witches/kitchen_table_hex_v4.jpg",
         caption: "The kitchen-table hex.",
       },
       {
-        path: "assets/scenes/living_with_ballbusting_witches/sylvana_knee_at_stairs.png",
+        path: "assets/scenes/living_with_ballbusting_witches/sylvana_knee_at_stairs_v5.jpg",
         caption:
           "Sylvana knees Sean right in the goolies while he's trying to get some ice to soothe his blueballs.",
       },
       {
-        path: "assets/scenes/living_with_ballbusting_witches/anthony_flashback_rupture_v5.png",
+        path: "assets/scenes/living_with_ballbusting_witches/anthony_flashback_rupture_v10.jpg",
         caption:
           "Genovia experiments with her powers in college, and Anthony suffers a double testicular rupture as a result.",
       },
       {
-        path: "assets/scenes/living_with_ballbusting_witches/kitchen_climax_collision_v2_standing_burst.png",
+        path: "assets/scenes/living_with_ballbusting_witches/kitchen_climax_collision_v10.jpg",
         caption:
           "Sylvana ramps her arousal spell up as hard as she can. Genovia realizes what is happening, but it's too late.",
       },
       {
-        path: "assets/scenes/living_with_ballbusting_witches/sylvana_dark_awakening.png",
+        path: "assets/scenes/living_with_ballbusting_witches/sylvana_dark_awakening_v6.jpg",
         caption: "Sylvana's dark awakening.",
       },
     ],
@@ -1720,7 +1720,7 @@ window.DATA_STORIES = [
       {
         path: "assets/scenes/lowblowtober_6_accidental/aftermath_circle_inset_v10.jpg",
         caption:
-          "The couch only made it halfway. Niles is on the stairs, and both testicles are already pulp.",
+          "Niles tries to make excuses for why he can't finish the job he signed up for. Apparently, a ballsack full of pulp somehow prevents him from carrying the couch downstairs? Alyssa doesn't have time to wait around all day for him to come to terms with his new reality; she has a LOT of furniture for him to move.",
       },
     ],
   },
@@ -1774,7 +1774,7 @@ window.DATA_STORIES = [
     brutalityRating: 5,
     summary:
       "Coach White calls a surprise testicular inspection in the men's locker room.",
-    cover: "assets/covers/lowblow_tober_10_balls_cover_v14.jpg",
+    cover: "assets/covers/lowblow_tober_10_balls_cover_v15.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTKmXYrmztwmJQY28sCxCimgJ7-z7MUw35ab4gWVzsCjfIh0pX6jw9Bke6FleWnGcSlo1Tf1cU9laTq/pub",
     characterIds: ["joan_white", "tyler_johannes", "grant_cocksworth", "conor"],
