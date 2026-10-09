@@ -935,4 +935,25 @@ window.DATA_CHARACTERS = [
     bio: "Stuart's younger sister. Casual, blunt, and happy to join mom in kicking some sense into her brother.",
     profilePictures: ["assets/characters/lauren_v1.png"],
   },
+  {
+    id: "tyler_johannes",
+    name: "Tyler",
+    gender: "M",
+    bio: "College swimmer with a disappointing record and a pair of tiny, firm balls. Joan squeezes him hard during inspection. He stays fertile.",
+    profilePictures: ["assets/characters/tyler_johannes_v1.jpg"],
+  },
+  {
+    id: "grant_cocksworth",
+    name: "Grant",
+    gender: "M",
+    bio: "The most annoying boy on the swim team. Both of his balls get popped and liquified during Coach White's surprise inspection.",
+    profilePictures: ["assets/characters/grant_cocksworth_v1.jpg"],
+  },
+  {
+    id: "conor",
+    name: "Conor",
+    gender: "M",
+    bio: "Wimpy swimmer with a large swollen pair and a tiny cock. Loses his left ball during inspection.",
+    profilePictures: ["assets/characters/conor_v1.jpg"],
+  },
 ];

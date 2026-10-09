@@ -1452,4 +1452,22 @@ window.DATA_CONNECTIONS = [
     storyId: 42,
     kinds: ["faction"],
   },
+  {
+    from: "joan_white",
+    to: "tyler_johannes",
+    storyId: 54,
+    kinds: ["pain"],
+  },
+  {
+    from: "joan_white",
+    to: "grant_cocksworth",
+    storyId: 54,
+    kinds: ["left", "right"],
+  },
+  {
+    from: "joan_white",
+    to: "conor",
+    storyId: 54,
+    kinds: ["left"],
+  },
 ];

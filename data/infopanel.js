@@ -92,6 +92,28 @@ window.DATA_INFOPANEL = {
       storyId: 25,
       text: "Covers for [[char:monique]] with counselors in [[story:25]].",
     },
+    {
+      storyId: 54,
+      text: "Runs a surprise testicular inspection on the swim team in [[story:54]]. Squeezes [[char:tyler_johannes|Tyler]]. Pops both of [[char:grant_cocksworth|Grant]]'s testicles. Pops [[char:conor]]'s left testicle.",
+    },
+  ],
+  tyler_johannes: [
+    {
+      storyId: 54,
+      text: "Squeezed hard by [[char:joan_white|Joan]] during a swim-team inspection in [[story:54]]. His balls stay intact.",
+    },
+  ],
+  grant_cocksworth: [
+    {
+      storyId: 54,
+      text: "Both testicles popped and liquified by [[char:joan_white|Joan]] during a locker-room inspection in [[story:54]].",
+    },
+  ],
+  conor: [
+    {
+      storyId: 54,
+      text: "Left testicle popped by [[char:joan_white|Joan]] during a locker-room inspection in [[story:54]].",
+    },
   ],
   jeremy: [
     {

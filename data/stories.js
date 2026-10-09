@@ -1833,4 +1833,20 @@ window.DATA_STORIES = [
     localOnly: true,
     series: { id: "lowblow-tober", order: 9 },
   },
+  {
+    id: 54,
+    wordCount: 2105,
+    title: "Lowblowtober 10: Balls",
+    brutalityRating: 5,
+    summary:
+      "Coach White calls a surprise testicular inspection in the men's locker room.",
+    cover: "assets/covers/lowblow_tober_10_balls_cover_v11.jpg",
+    driveUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vTKmXYrmztwmJQY28sCxCimgJ7-z7MUw35ab4gWVzsCjfIh0pX6jw9Bke6FleWnGcSlo1Tf1cU9laTq/pub",
+    characterIds: ["joan_white", "tyler_johannes", "grant_cocksworth", "conor"],
+    state: 2,
+    releaseDate: "2026-10-10",
+    localOnly: true,
+    series: { id: "lowblow-tober", order: 10 },
+  },
 ];
