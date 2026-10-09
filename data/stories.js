@@ -1823,7 +1823,7 @@ window.DATA_STORIES = [
     title: "Lowblowtober 9: Mid-Sex",
     brutalityRating: 3,
     summary:
-      "Andrea tells Lucas to stop teasing and fuck her. She keeps hold of his one remaining testicle the whole time.",
+      "The goth Goddess fucks her one-nutted boytoy. He'll probably be able to have kids again, eventually.",
     cover: "assets/covers/lowblow_tober_9_midsex_cover_v7.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vRYNwN9RThD_jElVbxroI6AG2pD5BtJeFEqvRGbJ9yXHX5EYVKFWcbtT30LXz5hpKqoBvjZrRDAxnL2/pub",
