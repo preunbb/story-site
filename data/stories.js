@@ -1453,17 +1453,17 @@ window.DATA_STORIES = [
       {
         path: "assets/scenes/melody_seduces_a_virgin/taxi_play_v7_thigh.png",
         caption:
-          "Ryan is nervous about losing his virginity, while Melody sizes him up like a piece of meat.",
+          "Melody reassures Ryan that losing his virginity will be fun. She'll be gentle.",
       },
       {
         path: "assets/scenes/melody_seduces_a_virgin/back_kick_v4_aftermath.png",
         caption:
-          "The pain is too much for Ryan to bear - he can't take it anymore. Melody disagrees.",
+          "She wasn't gentle. The pain is too much for Ryan to bear - he can't take it anymore. Melody disagrees.",
       },
       {
         path: "assets/scenes/melody_seduces_a_virgin/ride_squish_v6_solo_aftermath.png",
         caption:
-          "Melody crushes Ryan's last testicle to pulp with the hardest kegel she can give, and has a huge orgasm.",
+          "Melody finally lets Ryan enter her. Feeling his last testicle explode into pulp between her pussy lips is exactly what she needed to get off.",
       },
       {
         path: "assets/scenes/melody_seduces_a_virgin/hospital_visit_v1.png",
@@ -1649,78 +1649,6 @@ window.DATA_STORIES = [
           "Olivia tests as many Sterilizers as she can, as fast as possible.",
       },
     ],
-    scenes: [
-      {
-        path: "assets/scenes/quality_control/ch01_olivia_attaching_milker_v1.png",
-        caption:
-          "Olivia inspects the XXXL Auto-Milker sleeve before fitting it onto her first QC subject.",
-      },
-      {
-        path: "assets/scenes/quality_control/ch01_milker_first_pump_v1.png",
-        caption:
-          "The milker fires up — Olivia watches the first extraction hit the collection vessel while Cathy tracks his OETF readout.",
-      },
-      {
-        path: "assets/scenes/quality_control/ch01_automilker_first_zap_v1.png",
-        caption:
-          "Cathy and Olivia watch the wall projection as the AutoMilker's electrodes whir to life — gamete count, testosterone, and OETF all begin ticking down.",
-      },
-      {
-        path: "assets/scenes/quality_control/ch01_automilker_zap_readouts_v1.png",
-        caption:
-          "The testicular perfusion monitor flares yellow as active stimulation hits — sperm concentration, testosterone, and fertility index all in freefall while Olivia grins.",
-      },
-      {
-        path: "assets/scenes/quality_control/olivia_milker_pop_macro_v1.png",
-        caption:
-          "Olivia squeezes his left gonad through the stuck milker ring — the shell gives way and its innards squirt through in a wet clump.",
-      },
-      {
-        path: "assets/scenes/quality_control/ch01_left_ball_pop_face_v1.png",
-        caption:
-          "The instant his left ball pops through the ring — his face locks on the wreckage in disbelief.",
-      },
-      {
-        path: "assets/scenes/quality_control/ch01_left_ball_pop_face_olivia_v1.png",
-        caption:
-          "Olivia strains at the stuck milker ring as his left nut finally gives; he screams down at her.",
-      },
-      {
-        path: "assets/scenes/quality_control/olivia_pop_monitor_moment_v1.png",
-        caption:
-          "The wall projection goes red as his left testicle catastrophically ruptures; Olivia watches the OETF crater while he screams behind the glass.",
-      },
-      {
-        path: "assets/scenes/quality_control/olivia_pop_reaction_faces_v1.png",
-        caption:
-          "He shrieks that she popped his ball; Olivia offers an awkward, thrilled half-apology.",
-      },
-      {
-        path: "assets/scenes/quality_control/ch02_boysnapper_device_v1.png",
-        caption:
-          "The BoySnapper™ scrotal stretcher — twin steel plates, central iris clamp, and Over Easy branding.",
-      },
-      {
-        path: "assets/scenes/quality_control/ch03_seedspray_zennia_olivia_v4.png",
-        caption:
-          "Zennia holds the SeedSpray™ vial while Olivia checks Theodore on the X-frame.",
-      },
-      {
-        path: "assets/scenes/quality_control/ch03_zennia_final_extraction_faces_v2.png",
-        caption:
-          "Zennia finishes extracting the last dud nanobots — Theodore screams while Olivia watches flushed and thrilled.",
-      },
-      {
-        path: "assets/scenes/quality_control/ch03_olivia_presents_samples_charlotte_v2.png",
-        caption:
-          "Olivia proudly offers Charlotte three overflowing vials of Theodore's last semen; Charlotte declines.",
-      },
-      {
-        path: "assets/scenes/quality_control/ch03_last_sample_vial_shattered_v3.png",
-        caption:
-          "Zennia 'accidentally' drops Theodore's last vial — his final chance at a bloodline shatters on the lab floor.",
-      },
-    ],
   },
   {
     id: 49,
@@ -1788,6 +1716,13 @@ window.DATA_STORIES = [
     state: 2,
     releaseDate: "2026-10-06",
     series: { id: "lowblow-tober", order: 6 },
+    scenes: [
+      {
+        path: "assets/scenes/lowblowtober_6_accidental/aftermath_circle_inset_v10.jpg",
+        caption:
+          "The couch only made it halfway. Niles is on the stairs, and both testicles are already pulp.",
+      },
+    ],
   },
   {
     id: 51,
@@ -1823,8 +1758,8 @@ window.DATA_STORIES = [
     title: "Lowblowtober 9: Mid-Sex",
     brutalityRating: 3,
     summary:
-      "The goth Goddess fucks her one-nutted boytoy. He'll probably be able to have kids again, eventually.",
-    cover: "assets/covers/lowblow_tober_9_midsex_cover_v7.jpg",
+      "The goth Goddess fucks her one-nutted boytoy. He'll probably be able to have kids afterwards, eventually.",
+    cover: "assets/covers/lowblow_tober_9_midsex_cover_v15.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vRYNwN9RThD_jElVbxroI6AG2pD5BtJeFEqvRGbJ9yXHX5EYVKFWcbtT30LXz5hpKqoBvjZrRDAxnL2/pub",
     characterIds: ["andrea", "lucas"],
@@ -1839,7 +1774,7 @@ window.DATA_STORIES = [
     brutalityRating: 5,
     summary:
       "Coach White calls a surprise testicular inspection in the men's locker room.",
-    cover: "assets/covers/lowblow_tober_10_balls_cover_v11.jpg",
+    cover: "assets/covers/lowblow_tober_10_balls_cover_v14.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTKmXYrmztwmJQY28sCxCimgJ7-z7MUw35ab4gWVzsCjfIh0pX6jw9Bke6FleWnGcSlo1Tf1cU9laTq/pub",
     characterIds: ["joan_white", "tyler_johannes", "grant_cocksworth", "conor"],
@@ -1847,5 +1782,37 @@ window.DATA_STORIES = [
     releaseDate: "2026-10-10",
     localOnly: true,
     series: { id: "lowblow-tober", order: 10 },
+  },
+  {
+    id: 55,
+    wordCount: 1153,
+    title: "Lowblowtober 11: Staring",
+    brutalityRating: 4,
+    summary:
+      "Doctors all agree: vigorous exercise, fresh air, and intact testicles are excellent for your health. A brisk jog in the park should get you two of those at least...",
+    cover: "assets/covers/lowblow_tober_11_staring_cover_v3.jpg",
+    driveUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vQhkt3TwqeQKrPQnGVPQmxy9T2ESSaiw8Tzc3nlz0eBI-3-bbdltUC1U_E-e-LbUQ9MefJHvC8im4WQ/pub",
+    characterIds: [],
+    state: 2,
+    releaseDate: "2026-10-11",
+    localOnly: true,
+    series: { id: "lowblow-tober", order: 11 },
+    scenes: [
+      {
+        path: "assets/covers/lowblow_tober_11_staring_cover_v4.jpg",
+        caption:
+          "Two joggers have a lively discussion on the place of women in society.",
+      },
+      {
+        path: "assets/scenes/lowblowtober_11_staring/knee_v4.jpg",
+        caption: "She presents a thought-provoking argument.",
+      },
+      {
+        path: "assets/covers/lowblow_tober_11_staring_cover_v3.jpg",
+        caption:
+          "They both got a lot out of their discussion. She finally got a chance to put her self-defense lessons to good use. And he got a chance to learn how male birth control works, and what a vasectomy feels like.",
+      },
+    ],
   },
 ];
