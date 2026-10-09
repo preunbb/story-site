@@ -598,42 +598,22 @@ window.DATA_STORIES = [
     characterIds: ["atheras", "vergil", "salei", "queen_mother", "lurian"],
     state: 2,
     hideScenes: true,
+    scenesOnLocalhost: true,
     scenes: [
       {
-        path: "assets/scenes/the_amazons_fruits/01_knee_crushes_codpiece.jpg",
-        caption: "Salei's knee crushes the prince's codpiece.",
+        path: "assets/scenes/the_amazons_fruits/01_knee_codpiece_v3.jpg",
+        caption:
+          "Prince Atheras thought he was prepared for the forest, but he wasn't prepared for the Amazon's knee. Salei is just excited to bring home some new seeds.",
       },
       {
-        path: "assets/scenes/the_amazons_fruits/02_examines_his_fruits.jpg",
-        caption: "She examines her foreign fruits with rapt curiosity.",
+        path: "assets/scenes/the_amazons_fruits/02_ride_shattered_v2.jpg",
+        caption:
+          "Ever since she heard something go *pop* between his legs, he's been screaming and crying a lot. Salei does her best to comfort the weak, irrational boy.",
       },
       {
-        path: "assets/scenes/the_amazons_fruits/03_face_smother_first_harvest.jpg",
-        caption: "First harvest — face-smother to climax.",
-      },
-      {
-        path: "assets/scenes/the_amazons_fruits/04_seed_painted_chest.jpg",
-        caption: "She paints her chest with the prince's seed.",
-      },
-      {
-        path: "assets/scenes/the_amazons_fruits/05_stone_knee_to_naked_balls.jpg",
-        caption: "Stone-knee to bare testicles in the clearing.",
-      },
-      {
-        path: "assets/scenes/the_amazons_fruits/06_left_ball_pulped_in_jungle.jpg",
-        caption: "His left fruit, pulped into the jungle floor.",
-      },
-      {
-        path: "assets/scenes/the_amazons_fruits/07_trail_stomp_on_last_ball.jpg",
-        caption: "On the trail, a heel finds the last one.",
-      },
-      {
-        path: "assets/scenes/the_amazons_fruits/08_tree_root_pops_final_ball.jpg",
-        caption: "A tree root takes what little remained.",
-      },
-      {
-        path: "assets/scenes/the_amazons_fruits/09_carried_to_village_castrated.jpg",
-        caption: "Carried home to the village, harvested at last.",
+        path: "assets/scenes/the_amazons_fruits/03_carried_on_her_back_v1.jpg",
+        caption:
+          "She carries him home on her back, his mush-filled scrotum sloshing against her back. Her village just got their latest seedless slave.",
       },
     ],
   },
@@ -862,7 +842,7 @@ window.DATA_STORIES = [
   },
   {
     id: 27,
-    wordCount: 9326,
+    wordCount: 9325,
     title: "Living with Ballbusting Witches",
     brutalityRating: 3,
     summary:
@@ -1726,7 +1706,7 @@ window.DATA_STORIES = [
   },
   {
     id: 51,
-    wordCount: 1445,
+    wordCount: 1430,
     title: "Lowblowtober 7: Fall",
     brutalityRating: 4,
     summary: "Leo and Izzie go climbing.",
@@ -1737,14 +1717,21 @@ window.DATA_STORIES = [
     state: 2,
     releaseDate: "2026-10-07",
     series: { id: "lowblow-tober", order: 7 },
+    scenes: [
+      {
+        path: "assets/scenes/lowblowtober_7_fall/leo_harness_aftermath_v25.jpg",
+        caption:
+          "Leo screams in despair at what might be his last chance to have children. Other gymgoers are too occupied to help him as his harness finishes liquifying his precious little gonad.",
+      },
+    ],
   },
   {
     id: 52,
-    wordCount: 942,
+    wordCount: 944,
     title: "Lowblowtober 8: Broken",
     brutalityRating: 5,
     summary: "Tamara helps a man with an unfortunate injury.",
-    cover: "assets/covers/lowblow_tober_8_broken_cover_v13.jpg",
+    cover: "assets/covers/lowblow_tober_8_broken_cover_v14.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vSf64XyVr1XGZ_IoMSoXiTVrDexkaFmRsHnWrWjgFEn7GfxL-lW60waO1EDMx8CPlWPgKqB4KFCe_bv/pub",
     characterIds: ["tamara"],
@@ -1754,7 +1741,7 @@ window.DATA_STORIES = [
   },
   {
     id: 53,
-    wordCount: 987,
+    wordCount: 1519,
     title: "Lowblowtober 9: Mid-Sex",
     brutalityRating: 3,
     summary:
@@ -1769,7 +1756,7 @@ window.DATA_STORIES = [
   },
   {
     id: 54,
-    wordCount: 2105,
+    wordCount: 2337,
     title: "Lowblowtober 10: Balls",
     brutalityRating: 5,
     summary:
@@ -1785,7 +1772,7 @@ window.DATA_STORIES = [
   },
   {
     id: 55,
-    wordCount: 1153,
+    wordCount: 1517,
     title: "Lowblowtober 11: Staring",
     brutalityRating: 4,
     summary:

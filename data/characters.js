@@ -421,8 +421,8 @@ window.DATA_CHARACTERS = [
     name: "Salei",
     gender: "F",
     testiclesKilled: 2,
-    bio: "Young scout from an isolated jungle village. Dark skin, muscular, white spiral tattoos on hips and breasts. Her village prizes male seed for the next generation; she's curious and eager to prove herself.",
-    profilePictures: ["assets/characters/salei.jpg"],
+    bio: "Young scout from an isolated jungle village. Tall, heavily muscular, and full-breasted, with dark skin and white spiral tattoos on her shoulders, chest, and hips. Her village prizes male seed for the next generation; she is serious and intent on proving herself.",
+    profilePictures: ["assets/characters/salei_v2.jpg"],
   },
   {
     id: "robert",

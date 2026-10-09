@@ -391,9 +391,13 @@
     return isStoryVisibleInCatalog(story);
   }
 
-  /** Illustrated scenes for `state: 1` (coming soon) only show on localhost. */
+  /** Illustrated scenes for `state: 1` (coming soon) only show on localhost.
+   *  `hideScenes` stays off production; `scenesOnLocalhost` opts a story back in here. */
   function isStoryScenesVisibleOnSite(story) {
-    if (!story || story.hideScenes === true) return false;
+    if (!story) return false;
+    if (story.hideScenes === true && !(story.scenesOnLocalhost && isLocalDevHost())) {
+      return false;
+    }
     if (!Array.isArray(story.scenes) || story.scenes.length === 0) return false;
     if (
       normalizeStoryState(story) === 1 &&
