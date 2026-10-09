@@ -1731,7 +1731,7 @@ window.DATA_STORIES = [
     title: "Lowblowtober 8: Broken",
     brutalityRating: 5,
     summary: "Tamara helps a man with an unfortunate injury.",
-    cover: "assets/covers/lowblow_tober_8_broken_cover_v14.jpg",
+    cover: "assets/covers/lowblow_tober_8_broken_cover_v19.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vSf64XyVr1XGZ_IoMSoXiTVrDexkaFmRsHnWrWjgFEn7GfxL-lW60waO1EDMx8CPlWPgKqB4KFCe_bv/pub",
     characterIds: ["tamara"],
@@ -1761,7 +1761,7 @@ window.DATA_STORIES = [
     brutalityRating: 5,
     summary:
       "Coach White calls a surprise testicular inspection in the men's locker room.",
-    cover: "assets/covers/lowblow_tober_10_balls_cover_v15.jpg",
+    cover: "assets/covers/lowblow_tober_10_balls_cover_v6.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTKmXYrmztwmJQY28sCxCimgJ7-z7MUw35ab4gWVzsCjfIh0pX6jw9Bke6FleWnGcSlo1Tf1cU9laTq/pub",
     characterIds: ["joan_white", "tyler_johannes", "grant_cocksworth", "conor"],
