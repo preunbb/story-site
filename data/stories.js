@@ -1756,7 +1756,7 @@ window.DATA_STORIES = [
   },
   {
     id: 54,
-    wordCount: 2335,
+    wordCount: 2416,
     title: "Lowblowtober 10: Balls",
     brutalityRating: 5,
     summary:
@@ -1772,7 +1772,7 @@ window.DATA_STORIES = [
   },
   {
     id: 55,
-    wordCount: 1624,
+    wordCount: 1621,
     title: "Lowblowtober 11: Staring",
     brutalityRating: 4,
     summary:
