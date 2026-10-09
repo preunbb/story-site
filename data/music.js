@@ -185,9 +185,9 @@ window.DATA_MUSIC = [
           "Smooth like a waterslide\n" +
           "She didn't leave a mark\n" +
           "\n" +
-          "Sorry she took your nub, dear\n" +
-          "Sorry about your ballsies too\n" +
-          "You're just another nullo now I fear\n" +
+          "she took your nub, dear\n" +
+          "Your ballsies are gone too\n" +
+          "You're just a nullo now I fear\n" +
           "But I'll still be your boo\n" +
           "\n" +
           "I like your personality\n" +
@@ -206,12 +206,23 @@ window.DATA_MUSIC = [
           "FIRST. RITES. (I can't wait!)\n" +
           "(I'll pop it really fast)\n" +
           "BIG. BITE. (Let's hear it squick!)\n" +
-          "It's gotra go, let's just move past\n" +
+          "It's gotta go, let's just move past\n" +
           "\n" +
           "You're devout, and you worship me\n" +
           "But I'm a part of the Broken Tree,\n" +
           "She asks for so little, our god-dess\n" +
           "She just needs half of your male-ness",
+          "\n" +
+          "She just needs a broken ball\n" +
+          "Just one mushy lil guy\n" +
+          "She just wants to know you love your Goddess\n" +
+          "Let's make you perfect in her eyes\n" +
+          "\n" +
+          "FIRST. RITES. (I can't wait!)\n" +
+          "(I'll pop it really fast)\n" +
+          "BIG. BITE. (Let's hear it squick!)\n" +
+          "It's gotta go, let's just move past\n" +
+          "\n"
       },
       {
         title: "Flat n Heavy",
