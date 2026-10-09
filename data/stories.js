@@ -1741,7 +1741,7 @@ window.DATA_STORIES = [
   },
   {
     id: 53,
-    wordCount: 1519,
+    wordCount: 1515,
     title: "Lowblowtober 9: Mid-Sex",
     brutalityRating: 3,
     summary:
