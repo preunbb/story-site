@@ -1830,7 +1830,6 @@ window.DATA_STORIES = [
     characterIds: ["andrea", "lucas"],
     state: 2,
     releaseDate: "2026-10-09",
-    localOnly: true,
     series: { id: "lowblow-tober", order: 9 },
   },
   {
