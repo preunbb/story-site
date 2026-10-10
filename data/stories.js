@@ -1760,7 +1760,7 @@ window.DATA_STORIES = [
     title: "Lowblowtober 10: Balls",
     brutalityRating: 5,
     summary:
-      "Coach White calls a surprise testicular inspection in the men's locker room.",
+      "It's important to regularly inspect your balls for any unusual lumps or bumps. They may be nothing to worry about, but it's better to be safe than sorry. If your doctor or coach recommends removing one or both, don't panic; boys can live perfectly normal lives with an empty scrotum.",
     cover: "assets/covers/lowblow_tober_10_balls_cover_v6.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTKmXYrmztwmJQY28sCxCimgJ7-z7MUw35ab4gWVzsCjfIh0pX6jw9Bke6FleWnGcSlo1Tf1cU9laTq/pub",
