@@ -1756,7 +1756,7 @@ window.DATA_STORIES = [
   },
   {
     id: 54,
-    wordCount: 2416,
+    wordCount: 2417,
     title: "Lowblowtober 10: Balls",
     brutalityRating: 5,
     summary:
@@ -1767,7 +1767,6 @@ window.DATA_STORIES = [
     characterIds: ["joan_white", "tyler_johannes", "grant_cocksworth", "conor"],
     state: 2,
     releaseDate: "2026-10-10",
-    localOnly: true,
     series: { id: "lowblow-tober", order: 10 },
   },
   {
