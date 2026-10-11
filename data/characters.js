@@ -956,4 +956,11 @@ window.DATA_CHARACTERS = [
     bio: "Wimpy swimmer with a large swollen pair and a tiny cock. Loses his left ball during inspection.",
     profilePictures: ["assets/characters/conor_v1.jpg"],
   },
+  {
+    id: "michael",
+    name: "Michael",
+    gender: "M",
+    bio: "College student down to one bruised ball after Monique's 'hilarious prank.' Still trying to get to class without another hallway ambush.",
+    profilePictures: ["assets/characters/michael_v1.jpg"],
+  },
 ];

@@ -1782,7 +1782,6 @@ window.DATA_STORIES = [
     characterIds: [],
     state: 2,
     releaseDate: "2026-10-11",
-    localOnly: true,
     series: { id: "lowblow-tober", order: 11 },
     scenes: [
       {
@@ -1800,5 +1799,21 @@ window.DATA_STORIES = [
           "They both got a lot out of their discussion. She finally got a chance to put her self-defense lessons to good use. And he got a chance to learn how male birth control works, and what a vasectomy feels like.",
       },
     ],
+  },
+  {
+    id: 56,
+    wordCount: 2038,
+    title: "Lowblowtober 12: Slap",
+    brutalityRating: 4,
+    summary:
+      "Michael only has a few minutes between classes. Monique and her friends have other plans for his last nut.",
+    cover: "assets/covers/12_slap/lowblow_tober_12_slap_cover_v57.jpg",
+    driveUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vQn-8fEFDvZIRTP9kwbq7OIE7GyZIdgqH3LwcyESIPR6ogTT0grGtKLkitCVV29mV_xhRRSLtzoSCgI/pub",
+    characterIds: ["monique", "michael"],
+    state: 2,
+    releaseDate: "2026-10-12",
+    localOnly: true,
+    series: { id: "lowblow-tober", order: 12 },
   },
 ];
