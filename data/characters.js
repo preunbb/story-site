@@ -385,7 +385,7 @@ window.DATA_CHARACTERS = [
     name: "Cole Wester",
     gender: "M",
     bio: "Nikita's boss. Married, almost twice her age. Fit, works late; drawn to his intern.",
-    profilePictures: [],
+    profilePictures: ["assets/characters/cole_v1.jpg"],
   },
   {
     id: "poly",
@@ -393,7 +393,7 @@ window.DATA_CHARACTERS = [
     gender: "F",
     testiclesKilled: 2,
     bio: "Tall, pale, long dark hair. Goddess of a cult; leads rituals and accepts only the devoted.",
-    profilePictures: [],
+    profilePictures: ["assets/characters/poly_v1.jpg"],
   },
   {
     id: "maria",
@@ -407,7 +407,7 @@ window.DATA_CHARACTERS = [
     name: "Robin",
     gender: "F",
     bio: "Acolyte in the cult of Poly.",
-    profilePictures: [],
+    profilePictures: ["assets/characters/robin_v1.jpg"],
   },
   {
     id: "atheras",
@@ -602,7 +602,7 @@ window.DATA_CHARACTERS = [
     name: "Ross",
     gender: "M",
     bio: "Wakes up at the clinic after being drugged. Subject of a Penile Necessity Assessment; if he can't prove he needs it, the law says it goes.",
-    profilePictures: [],
+    profilePictures: ["assets/characters/ross_v3.jpg"],
   },
   {
     id: "the_nurse",
@@ -661,7 +661,7 @@ window.DATA_CHARACTERS = [
     gender: "M",
     bio: "Picked up on a speeding ticket; his name hits the database as a suspect in multiple rape cases. Subject of a soundproof interrogation and the department's strict clearance rules.",
     penisLengthHtml: '<s>7"</s> <s>5"</s> <s>3"</s> <s>1"</s> shaved flat',
-    profilePictures: [],
+    profilePictures: ["assets/characters/ivan_v1.jpg"],
   },
   {
     id: "lieutenant_maria",
@@ -1033,7 +1033,7 @@ window.DATA_CHARACTERS = [
     name: "Keaton",
     gender: "M",
     bio: "College swimmer with peach-sized, heavily furred balls. Joan mouths and bruises them during inspection; they stay intact.",
-    profilePictures: [],
+    profilePictures: ["assets/characters/keaton_v7.jpg"],
   },
   {
     id: "broken_patient",
@@ -1041,7 +1041,7 @@ window.DATA_CHARACTERS = [
     gender: "M",
     bio: "Hospital patient whose anonymous assailant left both testicles irreparably shattered. Tamara confirms the damage and schedules a bilateral orchiectomy.",
     testicleCount: 0,
-    profilePictures: [],
+    profilePictures: ["assets/characters/broken_patient_v2.jpg"],
   },
   {
     id: "park_jogger",
@@ -1049,7 +1049,7 @@ window.DATA_CHARACTERS = [
     gender: "F",
     testiclesKilled: 2,
     bio: "Brown-haired jogger in painted-on yoga shorts. Puts Serena's self-defense lessons to work on a staring creep in the park.",
-    profilePictures: [],
+    profilePictures: ["assets/characters/park_jogger_v1.jpg"],
   },
   {
     id: "park_creep",
@@ -1059,7 +1059,7 @@ window.DATA_CHARACTERS = [
     penisLengthInches: 3,
     testicleSize: "small",
     scrotumHang: "tightly hung",
-    profilePictures: [],
+    profilePictures: ["assets/characters/park_creep_v1.jpg"],
   },
   {
     id: "grant_cocksworth",
