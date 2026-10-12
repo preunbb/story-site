@@ -1734,7 +1734,7 @@ window.DATA_STORIES = [
     cover: "assets/covers/lowblow_tober_8_broken_cover_v19.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vSf64XyVr1XGZ_IoMSoXiTVrDexkaFmRsHnWrWjgFEn7GfxL-lW60waO1EDMx8CPlWPgKqB4KFCe_bv/pub",
-    characterIds: ["tamara"],
+    characterIds: ["tamara", "broken_patient"],
     state: 2,
     releaseDate: "2026-10-08",
     series: { id: "lowblow-tober", order: 8 },
@@ -1764,7 +1764,13 @@ window.DATA_STORIES = [
     cover: "assets/covers/lowblow_tober_10_balls_cover_v6.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTKmXYrmztwmJQY28sCxCimgJ7-z7MUw35ab4gWVzsCjfIh0pX6jw9Bke6FleWnGcSlo1Tf1cU9laTq/pub",
-    characterIds: ["joan_white", "tyler_johannes", "grant_cocksworth", "conor"],
+    characterIds: [
+      "joan_white",
+      "tyler_johannes",
+      "keaton",
+      "grant_cocksworth",
+      "conor",
+    ],
     state: 2,
     releaseDate: "2026-10-10",
     series: { id: "lowblow-tober", order: 10 },
@@ -1779,7 +1785,7 @@ window.DATA_STORIES = [
     cover: "assets/covers/lowblow_tober_11_staring_cover_v3.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vQhkt3TwqeQKrPQnGVPQmxy9T2ESSaiw8Tzc3nlz0eBI-3-bbdltUC1U_E-e-LbUQ9MefJHvC8im4WQ/pub",
-    characterIds: [],
+    characterIds: ["park_jogger", "park_creep", "serena", "karen"],
     state: 2,
     releaseDate: "2026-10-11",
     series: { id: "lowblow-tober", order: 11 },
@@ -1806,14 +1812,13 @@ window.DATA_STORIES = [
     title: "Lowblowtober 12: Slap",
     brutalityRating: 4,
     summary:
-      "Michael only has a few minutes between classes. Monique and her friends have other plans for his last nut.",
+      "College can be a tough adjustment period for some students. Bullying dynamics from high school can often carry over. OverEasy has partnered with campus shops to sell stylish and fashionable OneNut cups for the young men too unwise to defend themselves from former high school bullies.",
     cover: "assets/covers/12_slap/lowblow_tober_12_slap_cover_v57.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vQn-8fEFDvZIRTP9kwbq7OIE7GyZIdgqH3LwcyESIPR6ogTT0grGtKLkitCVV29mV_xhRRSLtzoSCgI/pub",
     characterIds: ["monique", "michael"],
     state: 2,
     releaseDate: "2026-10-12",
-    localOnly: true,
     series: { id: "lowblow-tober", order: 12 },
   },
 ];

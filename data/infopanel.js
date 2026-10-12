@@ -115,6 +115,18 @@ window.DATA_INFOPANEL = {
       text: "Left testicle popped by [[char:joan_white|Joan]] during a locker-room inspection in [[story:54]].",
     },
   ],
+  park_jogger: [
+    {
+      storyId: 55,
+      text: "Takes [[char:park_creep]] out of the gene pool in [[story:55]].",
+    },
+  ],
+  park_creep: [
+    {
+      storyId: 55,
+      text: "Left sterile by [[char:park_jogger]] in [[story:55]].",
+    },
+  ],
   jeremy: [
     {
       storyId: 2,

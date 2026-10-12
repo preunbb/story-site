@@ -2489,6 +2489,11 @@
           if (connectionsGraphState && connectionsGraphState.selectedId) {
             renderConnectionsDetail(connectionsGraphState.selectedId);
           }
+          var openChar = parseHash().characterId;
+          if (openChar) {
+            var openCharacter = getCharacterById(openChar);
+            if (openCharacter) openCharacterFlyout(openCharacter);
+          }
         } else {
           closeConnectionsSpoilerModal();
         }
@@ -2993,8 +2998,9 @@
 
   /**
    * Gender glyph + optional catalog stats for character flyouts / connections detail.
-   * Females: testiclesKilled. Males: penisLengthInches, testicleSize, scrotumHang,
-   * optional testicleCount / anatomyDiagram.
+   * Females: testiclesKilled. Males: penisLengthInches (or penisLengthLabel /
+   * penisLengthHtml), testicleSize, scrotumHang, optional testicleCount /
+   * anatomyDiagram.
    */
   function characterFlyoutMetaHtml(character) {
     if (!character) return "";
@@ -3002,39 +3008,84 @@
       return '<p class="flyout-character-meta">Faction</p>';
     }
     var genderSymbol = character.gender === "F" ? "\u2640" : "\u2642";
-    var parts = [genderSymbol];
+    var htmlParts = [escapeHtml(genderSymbol)];
     if (
       character.gender === "F" &&
       typeof character.testiclesKilled === "number"
     ) {
-      parts.push("Testicles killed: " + character.testiclesKilled);
+      htmlParts.push(
+        escapeHtml("Testicles killed: " + character.testiclesKilled),
+      );
     }
     if (character.gender === "M") {
-      if (typeof character.penisLengthInches === "number") {
-        parts.push("Cock: " + character.penisLengthInches + '"');
+      if (typeof character.penisLengthHtml === "string") {
+        htmlParts.push("Cock: " + character.penisLengthHtml);
+      } else if (typeof character.penisLengthLabel === "string") {
+        htmlParts.push(escapeHtml("Cock: " + character.penisLengthLabel));
+      } else if (typeof character.penisLengthInches === "number") {
+        htmlParts.push(
+          escapeHtml("Cock: " + character.penisLengthInches + '"'),
+        );
       }
       if (character.testicleSize || character.scrotumHang) {
         var sizeHang = [];
         if (character.testicleSize) sizeHang.push(character.testicleSize);
         if (character.scrotumHang) sizeHang.push(character.scrotumHang);
         var ballsLabel = sizeHang.join(", ");
-        if (
-          typeof character.testicleCount === "number" &&
-          character.testicleCount === 1
-        ) {
-          ballsLabel = "one " + ballsLabel;
+        if (typeof character.testicleCount === "number") {
+          var countWords = {
+            0: "no",
+            1: "one",
+            3: "three",
+            4: "four",
+          };
+          if (character.testicleCount !== 2) {
+            var countWord =
+              countWords[character.testicleCount] ||
+              String(character.testicleCount);
+            ballsLabel = countWord + " " + ballsLabel;
+          }
         }
-        parts.push("Balls: " + ballsLabel);
+        htmlParts.push(escapeHtml("Balls: " + ballsLabel));
       }
     }
     return (
       '<p class="flyout-character-meta">' +
-      parts
-        .map(function (p, i) {
-          return i === 0 ? escapeHtml(p) : " &middot; " + escapeHtml(p);
+      htmlParts
+        .map(function (line) {
+          return '<span class="flyout-character-meta-line">' + line + "</span>";
         })
         .join("") +
       "</p>"
+    );
+  }
+
+  /** Infopanel connection notes for a character, or "" when they have none. */
+  function characterConnectionsSectionHtml(charId) {
+    var entries = (connectionsInfopanel[charId] || [])
+      .slice()
+      .filter(function (entry) {
+        return !entry || isCatalogStoryIdVisible(entry.storyId);
+      })
+      .sort(function (a, b) {
+        var ia = storyOrderIndexForCharacter(a && a.storyId, charId);
+        var ib = storyOrderIndexForCharacter(b && b.storyId, charId);
+        return ia - ib;
+      });
+    if (!entries.length) return "";
+    return (
+      '<div class="flyout-section"><h3 class="flyout-section-title">Connections</h3>' +
+      '<ul class="connections-edge-list">' +
+      entries
+        .map(function (entry) {
+          return (
+            '<li class="connections-edge-sentence">' +
+            formatInfopanelEntryHtml(entry) +
+            "</li>"
+          );
+        })
+        .join("") +
+      "</ul></div>"
     );
   }
 
@@ -3110,32 +3161,8 @@
       ? '<p class="flyout-character-meta">Setting / faction</p>'
       : characterFlyoutMetaHtml(character);
 
-    var entries = (connectionsInfopanel[charId] || [])
-      .slice()
-      .filter(function (entry) {
-        return !entry || isCatalogStoryIdVisible(entry.storyId);
-      })
-      .sort(function (a, b) {
-        var ia = storyOrderIndexForCharacter(a && a.storyId, charId);
-        var ib = storyOrderIndexForCharacter(b && b.storyId, charId);
-        return ia - ib;
-      });
-    var linksHtml = "";
-    if (entries.length) {
-      linksHtml =
-        '<div class="flyout-section"><h3 class="flyout-section-title">Connections</h3>' +
-        '<ul class="connections-edge-list">' +
-        entries
-          .map(function (entry) {
-            return (
-              '<li class="connections-edge-sentence">' +
-              formatInfopanelEntryHtml(entry) +
-              "</li>"
-            );
-          })
-          .join("") +
-        "</ul></div>";
-    } else {
+    var linksHtml = characterConnectionsSectionHtml(charId);
+    if (!linksHtml) {
       linksHtml =
         '<div class="flyout-section"><h3 class="flyout-section-title">Connections</h3>' +
         '<p class="connections-detail-empty">No connection notes for this character.</p></div>';
@@ -7239,6 +7266,7 @@
       '<p class="flyout-summary">' +
       escapeHtml(character.bio || "") +
       "</p>" +
+      characterConnectionsSectionHtml(character.id) +
       '<div class="flyout-connections-cta-wrap">' +
       '<button type="button" class="flyout-connections-cta" data-open-connections="' +
       escapeHtml(character.id) +
@@ -7530,6 +7558,38 @@
             openCharacterProfileLightbox(ch, idx);
             return;
           }
+        }
+        var spoilerEl =
+          e.target &&
+          e.target.closest &&
+          e.target.closest(".connections-spoiler-text");
+        if (spoilerEl && flyoutBody.contains(spoilerEl)) {
+          e.preventDefault();
+          var spoilerKey = spoilerEl.getAttribute("data-spoiler-key");
+          if (spoilerKey) {
+            if (connectionSpoilersRevealedForKey(spoilerKey)) {
+              var revealedChar = parseHash().characterId;
+              var revealedCharacter = revealedChar
+                ? getCharacterById(revealedChar)
+                : null;
+              if (revealedCharacter) openCharacterFlyout(revealedCharacter);
+            } else {
+              openConnectionsSpoilerModal(spoilerKey);
+            }
+          }
+          return;
+        }
+        var connChar =
+          e.target &&
+          e.target.closest &&
+          e.target.closest(".connections-char-link");
+        if (connChar && flyoutBody.contains(connChar)) {
+          var connId = connChar.getAttribute("data-character-id");
+          if (connId) {
+            e.preventDefault();
+            location.hash = "character/" + connId;
+          }
+          return;
         }
         var btn = e.target.closest(".flyout-inline-link");
         if (!btn) return;

@@ -1460,6 +1460,12 @@ window.DATA_CONNECTIONS = [
   },
   {
     from: "joan_white",
+    to: "keaton",
+    storyId: 54,
+    kinds: ["pain"],
+  },
+  {
+    from: "joan_white",
     to: "grant_cocksworth",
     storyId: 54,
     kinds: ["left", "right"],
@@ -1469,5 +1475,35 @@ window.DATA_CONNECTIONS = [
     to: "conor",
     storyId: 54,
     kinds: ["left"],
+  },
+  {
+    from: "tamara",
+    to: "broken_patient",
+    storyId: 52,
+    kinds: ["left", "right"],
+  },
+  {
+    from: "park_jogger",
+    to: "park_creep",
+    storyId: 55,
+    kinds: ["left", "right"],
+  },
+  {
+    from: "park_jogger",
+    to: "serena",
+    storyId: 55,
+    kinds: ["knows"],
+  },
+  {
+    from: "park_creep",
+    to: "karen",
+    storyId: 55,
+    kinds: ["knows"],
+  },
+  {
+    from: "monique",
+    to: "michael",
+    storyId: 56,
+    kinds: ["left", "pain"],
   },
 ];
