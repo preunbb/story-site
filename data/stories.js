@@ -1556,7 +1556,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 29171,
+    wordCount: 29368,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
@@ -1771,7 +1771,7 @@ window.DATA_STORIES = [
   },
   {
     id: 55,
-    wordCount: 1711,
+    wordCount: 1766,
     title: "Lowblowtober 11: Staring",
     brutalityRating: 4,
     summary:
@@ -1802,7 +1802,7 @@ window.DATA_STORIES = [
   },
   {
     id: 56,
-    wordCount: 2038,
+    wordCount: 3036,
     title: "Lowblowtober 12: Slap",
     brutalityRating: 4,
     summary:

@@ -2991,6 +2991,74 @@
     });
   }
 
+  /**
+   * Gender glyph + optional catalog stats for character flyouts / connections detail.
+   * Females: testiclesKilled. Males: penisLengthInches, testicleSize, scrotumHang,
+   * optional testicleCount / anatomyDiagram.
+   */
+  function characterFlyoutMetaHtml(character) {
+    if (!character) return "";
+    if (character.entityType === "faction") {
+      return '<p class="flyout-character-meta">Faction</p>';
+    }
+    var genderSymbol = character.gender === "F" ? "\u2640" : "\u2642";
+    var parts = [genderSymbol];
+    if (
+      character.gender === "F" &&
+      typeof character.testiclesKilled === "number"
+    ) {
+      parts.push("Testicles killed: " + character.testiclesKilled);
+    }
+    if (character.gender === "M") {
+      if (typeof character.penisLengthInches === "number") {
+        parts.push("Cock: " + character.penisLengthInches + '"');
+      }
+      if (character.testicleSize || character.scrotumHang) {
+        var sizeHang = [];
+        if (character.testicleSize) sizeHang.push(character.testicleSize);
+        if (character.scrotumHang) sizeHang.push(character.scrotumHang);
+        var ballsLabel = sizeHang.join(", ");
+        if (
+          typeof character.testicleCount === "number" &&
+          character.testicleCount === 1
+        ) {
+          ballsLabel = "one " + ballsLabel;
+        }
+        parts.push("Balls: " + ballsLabel);
+      }
+    }
+    return (
+      '<p class="flyout-character-meta">' +
+      parts
+        .map(function (p, i) {
+          return i === 0 ? escapeHtml(p) : " &middot; " + escapeHtml(p);
+        })
+        .join("") +
+      "</p>"
+    );
+  }
+
+  /** Set true to show medical anatomy comparison SVGs on cast flyouts. */
+  var SHOW_ANATOMY_DIAGRAMS = false;
+
+  function characterAnatomyDiagramHtml(character) {
+    if (!SHOW_ANATOMY_DIAGRAMS) return "";
+    if (!character || !character.anatomyDiagram) return "";
+    return (
+      '<div class="flyout-anatomy">' +
+      '<p class="flyout-anatomy-label">Anatomy (medical comparison)</p>' +
+      imgHtml({
+        src: character.anatomyDiagram,
+        alt:
+          (character.name || "Character") + " genital anatomy diagram",
+        className: "flyout-anatomy-img",
+        placeholder: PLACEHOLDER_CHAR,
+        extras: 'loading="lazy" decoding="async"',
+      }) +
+      "</div>"
+    );
+  }
+
   function renderConnectionsDetail(charId) {
     var detail = byId("connections-detail");
     if (!detail) return;
@@ -3038,20 +3106,9 @@
         .join("") +
       "</div>";
 
-    var metaHtml = "";
-    if (isFactionDetail) {
-      metaHtml = '<p class="flyout-character-meta">Setting / faction</p>';
-    } else {
-      var genderSymbol = character.gender === "F" ? "\u2640" : "\u2642";
-      metaHtml = '<p class="flyout-character-meta">' + escapeHtml(genderSymbol);
-      if (
-        character.gender === "F" &&
-        typeof character.testiclesKilled === "number"
-      ) {
-        metaHtml += " &middot; Testicles killed: " + character.testiclesKilled;
-      }
-      metaHtml += "</p>";
-    }
+    var metaHtml = isFactionDetail
+      ? '<p class="flyout-character-meta">Setting / faction</p>'
+      : characterFlyoutMetaHtml(character);
 
     var entries = (connectionsInfopanel[charId] || [])
       .slice()
@@ -3091,6 +3148,7 @@
       escapeHtml(character.name || "") +
       "</h2>" +
       metaHtml +
+      characterAnatomyDiagramHtml(character) +
       '<p class="flyout-summary">' +
       escapeHtml(character.bio || "") +
       "</p>" +
@@ -7169,20 +7227,7 @@
       },
     );
 
-    var metaHtml = "";
-    if (character.entityType === "faction") {
-      metaHtml = '<p class="flyout-character-meta">Faction</p>';
-    } else {
-      var genderSymbol = character.gender === "F" ? "\u2640" : "\u2642";
-      metaHtml = '<p class="flyout-character-meta">' + escapeHtml(genderSymbol);
-      if (
-        character.gender === "F" &&
-        typeof character.testiclesKilled === "number"
-      ) {
-        metaHtml += " &middot; Testicles killed: " + character.testiclesKilled;
-      }
-      metaHtml += "</p>";
-    }
+    var metaHtml = characterFlyoutMetaHtml(character);
 
     flyoutBody.innerHTML =
       picsHtml +
@@ -7190,6 +7235,7 @@
       escapeHtml(character.name) +
       "</h2>" +
       metaHtml +
+      characterAnatomyDiagramHtml(character) +
       '<p class="flyout-summary">' +
       escapeHtml(character.bio || "") +
       "</p>" +

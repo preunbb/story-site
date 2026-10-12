@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="239" viewBox="0 0 200 239" role="img">
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffd6c9"/>
+      <stop offset="100%" stop-color="#f5b9a8"/>
+    </linearGradient>
+    <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffe8df"/>
+      <stop offset="100%" stop-color="#efb09c"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="90" cy="34" rx="22.32" ry="8" fill="#f7cfc2" stroke="#c98978" stroke-width="1.5"/>
+  <rect x="83.8" y="40" width="12.4" height="80" rx="6.2" fill="url(#shade)" stroke="#c98978" stroke-width="1.6"/>
+  <ellipse cx="90" cy="40" rx="7.688" ry="6.050000000000001" fill="url(#skin)" stroke="#c98978" stroke-width="1.6"/>
+  <ellipse cx="90" cy="167.8" rx="47.599999999999994" ry="32.199999999999996" fill="#f3c2b1" stroke="#c98978" stroke-width="1.5" opacity="0.95"/>
+  <circle cx="72.28999999999999" cy="163.8" r="28" fill="url(#skin)" stroke="#c98978" stroke-width="1.7"/>
+  <circle cx="107.71000000000001" cy="163.8" r="28" fill="url(#skin)" stroke="#c98978" stroke-width="1.7"/>
+  <circle cx="65.28999999999999" cy="156.8" r="5.6000000000000005" fill="#fff6f2" opacity="0.7"/>
+  <circle cx="100.71000000000001" cy="156.8" r="5.6000000000000005" fill="#fff6f2" opacity="0.7"/>
+  <line x1="110.2" y1="40" x2="110.2" y2="120" stroke="#8aa3b5" stroke-width="2"/>
+  <line x1="106.2" y1="40" x2="114.2" y2="40" stroke="#8aa3b5" stroke-width="2"/>
+  <line x1="106.2" y1="120" x2="114.2" y2="120" stroke="#8aa3b5" stroke-width="2"/>
+  <text x="118.2" y="80" fill="#5f7586" font-family="ui-rounded, system-ui, sans-serif" font-size="13" font-weight="600" dominant-baseline="middle">8&quot;</text>
+  <text x="100" y="229" text-anchor="middle" fill="#7a8b97" font-family="ui-rounded, system-ui, sans-serif" font-size="11">medical size comparison</text>
+</svg>

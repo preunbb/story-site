@@ -4255,6 +4255,31 @@ body.preun-local-andrea .local-andrea-status {
   color: var(--ink-muted);
 }
 
+.flyout-anatomy {
+  margin: 0 0 1rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--ink-muted) 28%, transparent);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--panel, #fff) 88%, #f4f7f5);
+  max-width: 16rem;
+}
+
+.flyout-anatomy-label {
+  margin: 0 0 0.4rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.flyout-anatomy-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  background: #fff;
+}
+
 /* Floating Ko-fi overlay removed — support lives in .site-support-btn */
 
 /* --- Story catalog ratings (docs/story-catalog-ratings.md) --- */

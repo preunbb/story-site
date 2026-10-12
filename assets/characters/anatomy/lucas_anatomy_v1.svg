@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="335" viewBox="0 0 200 335" role="img">
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffd6c9"/>
+      <stop offset="100%" stop-color="#f5b9a8"/>
+    </linearGradient>
+    <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffe8df"/>
+      <stop offset="100%" stop-color="#efb09c"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="90" cy="34" rx="29.25" ry="8" fill="#f7cfc2" stroke="#c98978" stroke-width="1.5"/>
+  <rect x="81.875" y="40" width="16.25" height="150" rx="8.125" fill="url(#shade)" stroke="#c98978" stroke-width="1.6"/>
+  <ellipse cx="90" cy="40" rx="10.075" ry="8.25" fill="url(#skin)" stroke="#c98978" stroke-width="1.6"/>
+  <ellipse cx="90" cy="247.3" rx="43.699999999999996" ry="47.5" fill="#f3c2b1" stroke="#c98978" stroke-width="1.5" opacity="0.95"/>
+  <circle cx="90" cy="245.3" r="38" fill="url(#skin)" stroke="#c98978" stroke-width="1.7"/>
+  <circle cx="80.5" cy="235.8" r="8.36" fill="#fff6f2" opacity="0.7"/>
+  <line x1="112.125" y1="40" x2="112.125" y2="190" stroke="#8aa3b5" stroke-width="2"/>
+  <line x1="108.125" y1="40" x2="116.125" y2="40" stroke="#8aa3b5" stroke-width="2"/>
+  <line x1="108.125" y1="190" x2="116.125" y2="190" stroke="#8aa3b5" stroke-width="2"/>
+  <text x="120.125" y="115" fill="#5f7586" font-family="ui-rounded, system-ui, sans-serif" font-size="13" font-weight="600" dominant-baseline="middle">15&quot;</text>
+  <text x="100" y="325" text-anchor="middle" fill="#7a8b97" font-family="ui-rounded, system-ui, sans-serif" font-size="11">medical size comparison</text>
+</svg>
