@@ -2422,6 +2422,7 @@
   }
 
   function connectionSpoilersRevealedForKey(key) {
+    if (isLocalDevHost()) return true;
     return !!(key && connectionsSpoilersRevealed[key]);
   }
 

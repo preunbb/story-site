@@ -192,7 +192,7 @@ window.DATA_INFOPANEL = {
   dan: [
     {
       storyId: 5,
-      text: "Left testicle popped by [[char:sofia]]. Right testicle popped by [[char:britt]] in [[story:5]]. Fought in [[char:ballbusting_arena]].",
+      text: "[[char:sofia]] takes his left nut, and [[char:britt]] takes rightie in  [[char:ballbusting_arena|the arena]] in [[story:5]].",
     },
   ],
   venn: [
