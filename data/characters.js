@@ -1026,7 +1026,7 @@ window.DATA_CHARACTERS = [
     name: "Tyler",
     gender: "M",
     bio: "College swimmer with a disappointing record and a pair of tiny, firm balls. Joan squeezes him hard during inspection. He stays fertile.",
-    profilePictures: ["assets/characters/tyler_johannes_v1.jpg"],
+    profilePictures: ["assets/characters/tyler_johannes_v2.jpg"],
   },
   {
     id: "keaton",
@@ -1066,7 +1066,7 @@ window.DATA_CHARACTERS = [
     name: "Grant",
     gender: "M",
     bio: "The most annoying boy on the Western U swim team.",
-    profilePictures: ["assets/characters/grant_cocksworth_v1.jpg"],
+    profilePictures: ["assets/characters/grant_cocksworth_v2.jpg"],
   },
   {
     id: "conor",
@@ -1077,7 +1077,7 @@ window.DATA_CHARACTERS = [
     testicleCount: 1,
     testicleSize: "large",
     scrotumHang: "low-hanging",
-    profilePictures: ["assets/characters/conor_v1.jpg"],
+    profilePictures: ["assets/characters/conor_v2.jpg"],
   },
   {
     id: "michael",

@@ -1761,7 +1761,7 @@ window.DATA_STORIES = [
     brutalityRating: 5,
     summary:
       "It's important to regularly inspect your balls for any unusual lumps or bumps. They may be nothing to worry about, but it's better to be safe than sorry. If your doctor or coach recommends removing one or both, don't panic; boys can live perfectly normal lives with an empty scrotum.",
-    cover: "assets/covers/lowblow_tober_10_balls_cover_v6.jpg",
+    cover: "assets/covers/lowblow_tober_10_balls_cover_v7.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTKmXYrmztwmJQY28sCxCimgJ7-z7MUw35ab4gWVzsCjfIh0pX6jw9Bke6FleWnGcSlo1Tf1cU9laTq/pub",
     characterIds: [
@@ -1813,7 +1813,7 @@ window.DATA_STORIES = [
     brutalityRating: 4,
     summary:
       "College can be a tough adjustment period for some students. Bullying dynamics from high school can often carry over. OverEasy has partnered with campus shops to sell stylish and fashionable OneNut cups for the young men too unwise to defend themselves from former high school bullies.",
-    cover: "assets/covers/12_slap/lowblow_tober_12_slap_cover_v57.jpg",
+    cover: "assets/covers/12_slap/lowblow_tober_12_slap_cover_v58.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vQn-8fEFDvZIRTP9kwbq7OIE7GyZIdgqH3LwcyESIPR6ogTT0grGtKLkitCVV29mV_xhRRSLtzoSCgI/pub",
     characterIds: ["monique", "michael"],
