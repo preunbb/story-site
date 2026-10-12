@@ -1775,7 +1775,7 @@ window.DATA_STORIES = [
     title: "Lowblowtober 11: Staring",
     brutalityRating: 4,
     summary:
-      "Doctors all agree: vigorous outdoor exercise is excellent for your mental and physical health. Although very little research has been done on its effects on reproductive health.",
+      "Doctors all agree: vigorous outdoor exercise is excellent for your mental and physical health. However, very little research has been done on its effects on reproductive health.",
     cover: "assets/covers/lowblow_tober_11_staring_cover_v3.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vQhkt3TwqeQKrPQnGVPQmxy9T2ESSaiw8Tzc3nlz0eBI-3-bbdltUC1U_E-e-LbUQ9MefJHvC8im4WQ/pub",

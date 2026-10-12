@@ -30,7 +30,8 @@
     "image-caption": "python3 tools/image-caption/caption.py",
     "triptych": "python3 tools/image-caption/triptych.py",
     "thumbs": "python3 scripts/generate-character-thumbs.py",
-    "thumbs:force": "python3 scripts/generate-character-thumbs.py --force"
+    "thumbs:force": "python3 scripts/generate-character-thumbs.py --force",
+    "prepare": "git rev-parse --is-inside-work-tree >/dev/null 2>&1 && git config core.hooksPath .githooks || true"
   },
   "devDependencies": {
     "cheerio": "^1.0.0",
