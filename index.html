@@ -232,44 +232,44 @@
         <div class="stories-panel-header">
           <h1>Stories</h1>
         </div>
+        <div class="ai-images-toggle" id="ai-images-toggle-wrap">
+          <span
+            class="ai-images-toggle-label ai-images-toggle-label--list"
+            id="ai-images-label-list"
+            >Hide all AI images</span
+          >
+          <label class="ai-images-switch-wrap" for="ai-images-toggle">
+            <input
+              type="checkbox"
+              id="ai-images-toggle"
+              class="ai-images-input"
+              role="switch"
+              aria-checked="false"
+              aria-label="Display AI images when on, hide all AI images when off"
+            />
+            <span class="ai-images-track" aria-hidden="true">
+              <span class="ai-images-thumb"></span>
+            </span>
+          </label>
+          <span
+            class="ai-images-toggle-label ai-images-toggle-label--tiles"
+            id="ai-images-label-tiles"
+            >Display AI images</span
+          >
+        </div>
+        <script>
+          try {
+            var aiToggle = document.getElementById("ai-images-toggle");
+            if (aiToggle) {
+              var aiOn = localStorage.getItem("aiImagesEnabled") === "1";
+              aiToggle.checked = aiOn;
+              aiToggle.setAttribute("aria-checked", aiOn ? "true" : "false");
+            }
+          } catch (e) {}
+        </script>
         <details class="story-controls">
           <summary class="story-controls-summary">Controls</summary>
           <div class="story-controls-body">
-          <div class="ai-images-toggle" id="ai-images-toggle-wrap">
-            <span
-              class="ai-images-toggle-label ai-images-toggle-label--list"
-              id="ai-images-label-list"
-              >Compact</span
-            >
-            <label class="ai-images-switch-wrap" for="ai-images-toggle">
-              <input
-                type="checkbox"
-                id="ai-images-toggle"
-                class="ai-images-input"
-                role="switch"
-                aria-checked="false"
-                aria-label="Tiles view when on, list view when off"
-              />
-              <span class="ai-images-track" aria-hidden="true">
-                <span class="ai-images-thumb"></span>
-              </span>
-            </label>
-            <span
-              class="ai-images-toggle-label ai-images-toggle-label--tiles"
-              id="ai-images-label-tiles"
-              >Comfortable</span
-            >
-          </div>
-          <script>
-            try {
-              var aiToggle = document.getElementById("ai-images-toggle");
-              if (aiToggle) {
-                var aiOn = localStorage.getItem("aiImagesEnabled") === "1";
-                aiToggle.checked = aiOn;
-                aiToggle.setAttribute("aria-checked", aiOn ? "true" : "false");
-              }
-            } catch (e) {}
-          </script>
           <div class="story-filters">
           <div class="tag-selector-wrap">
             <label for="tag-select" class="tag-selector-label"

@@ -26,11 +26,18 @@ window.DATA_CHARACTERS = [
   },
   {
     id: "amy",
-    name: "Amy",
+    name: "Amy Li",
     gender: "F",
     testiclesKilled: 5,
-    bio: "She's an EMT nurse by day, but Amy's real passion has always been in the Arena. Although her job certainly gives her enough opportunities to interact with, and worsen the state of, damaged men.",
+    bio: "EMT, then hospital nurse — Nurse Li. Busty, Asian, and clinically cruel: she finishes what other women start, and she knew Karen back in college. Her real passion is the Arena, where she fights as a blackbelt.",
     profilePictures: ["assets/characters/amy_v2_busty_asian_sadistic.jpg"],
+  },
+  {
+    id: "amy_lachbruchjunge",
+    name: "Amy Lachbruchjunge",
+    gender: "F",
+    bio: "Kaitlin's classmate in the self-defense gym.",
+    profilePictures: ["assets/characters/amy_lachbruchjunge_v1.jpg"],
   },
   {
     id: "sam",
@@ -466,6 +473,7 @@ window.DATA_CHARACTERS = [
     gender: "M",
     bio: "Robert's friend. Formerly impressively endowed, he's slightly more modest with only one of his massive, fertile testicles left intact.",
     penisLengthInches: 9,
+    penisLengthLabel: "Nine thick inches, curved cheekily to the left",
     testicleCount: 1,
     testicleSize: "large",
     scrotumHang: "low-hanging",

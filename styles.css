@@ -177,10 +177,6 @@ a:hover {
   border-top: 1px solid var(--border);
 }
 
-.story-controls-body .ai-images-toggle {
-  margin-bottom: 0.9rem;
-}
-
 .story-controls-body .story-filters {
   margin-bottom: 0;
 }
@@ -191,6 +187,7 @@ a:hover {
   gap: 0.5rem;
   flex-shrink: 0;
   user-select: none;
+  margin: 0 0 1rem;
 }
 
 .ai-images-toggle-label {
@@ -4247,6 +4244,12 @@ body.preun-local-andrea .local-andrea-status {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Tall gym portrait: keep her face in the wide panel and the square card. */
+.character-avatar[src*="amy_lachbruchjunge_v1"],
+.flyout-profile-img[src*="amy_lachbruchjunge_v1"] {
+  object-position: center top;
 }
 
 .flyout-character-meta {

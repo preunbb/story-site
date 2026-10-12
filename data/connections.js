@@ -227,6 +227,13 @@ window.DATA_CONNECTIONS = [
     hubPrefer: true,
   },
   {
+    from: "amy_lachbruchjunge",
+    to: "the_gym",
+    storyId: 28,
+    kinds: ["faction"],
+    hubPrefer: true,
+  },
+  {
     from: "steven",
     to: "the_gym",
     storyId: 28,
@@ -328,6 +335,12 @@ window.DATA_CONNECTIONS = [
     to: "brad",
     storyId: 14,
     kinds: ["relationship"],
+  },
+  {
+    from: "wesley",
+    to: "fiona",
+    storyId: 14,
+    kinds: ["knows"],
   },
   {
     from: "sofia",
@@ -540,7 +553,7 @@ window.DATA_CONNECTIONS = [
     kinds: ["pain"],
   },
   {
-    from: "amy",
+    from: "amy_lachbruchjunge",
     to: "steven",
     storyId: 28,
     kinds: ["pain"],

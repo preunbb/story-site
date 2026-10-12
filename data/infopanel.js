@@ -66,9 +66,11 @@ window.DATA_INFOPANEL = {
       storyId: 1,
       text: "Kneads what's left of [[char:james_ex|James]]'s right testicle after his fiance pops both of his nuts. Kneads [[char:sam]]'s remaining ball nearly to ruin. Takes [[char:joan_white|Joan]]'s castration referrals in [[story:1]].",
     },
+  ],
+  amy_lachbruchjunge: [
     {
       storyId: 28,
-      text: "Practices groin strikes on [[char:steven]] in [[story:28]].",
+      text: "Classmate of [[char:kaitlin]] and [[char:june]] at [[char:the_gym]]. Practices groin strikes on [[char:steven]] in [[story:28]].",
     },
   ],
   sam: [
@@ -414,7 +416,7 @@ window.DATA_INFOPANEL = {
   wesley: [
     {
       storyId: 14,
-      text: "Right testicle popped by [[char:amy]]. Castrated by [[char:amy]] in [[story:14]]. Fought in [[char:ballbusting_arena]].",
+      text: "Neutered in the ring by [[char:amy]] while fighting in the [[char:ballbusting_arena|arena]] in [[story:14]]. His coworker, [[char:fiona]], watches with glee.",
     },
   ],
   daniel: [
@@ -614,7 +616,7 @@ window.DATA_INFOPANEL = {
   steven: [
     {
       storyId: 28,
-      text: "Practice dummy at [[char:the_gym]]. Sabotaged into full castration by [[char:kaitlin]]. Scrotum grabbed by [[char:june]] in class. Practice groin-strike target of [[char:amy]] in [[story:28]].",
+      text: "Practice dummy at [[char:the_gym]]. Sabotaged into full castration by [[char:kaitlin]]. Scrotum grabbed by [[char:june]] in class. Practice groin-strike target of [[char:amy_lachbruchjunge]] in [[story:28]].",
     },
   ],
   kaitlin: [
@@ -922,7 +924,7 @@ window.DATA_INFOPANEL = {
   the_gym: [
     {
       storyId: 8,
-      text: "[[char:serena]] teaches the class. [[char:kaitlin]], [[char:june]], and [[char:erica]] are students. [[char:steven]] is the gym's practice dummy. [[char:dennis]] loses his fertility there while challenging them for ring time at the gym in [[story:8]].",
+      text: "[[char:serena]] teaches the class. [[char:kaitlin]], [[char:june]], [[char:amy_lachbruchjunge]], and [[char:erica]] are students. [[char:steven]] is the gym's practice dummy. [[char:dennis]] loses his fertility there while challenging them for ring time at the gym in [[story:8]].",
     },
   ],
   cherry_pop: [

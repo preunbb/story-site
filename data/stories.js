@@ -896,7 +896,7 @@ window.DATA_STORIES = [
       "https://www.amazon.com/Testy-Ballbusting-Prank-Gone-Too-ebook/dp/B07X1Z92PP",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vTAU43kVpZAcbYWpK5C8qNpyBgG1PZuYL9WrxJOUK741wmXWHxxkqzK0qDyGI6s4z6Hh1-X5OHA05LG/pub",
-    characterIds: ["steven", "kaitlin", "amy", "june", "serena"],
+    characterIds: ["steven", "kaitlin", "amy_lachbruchjunge", "june", "serena"],
     state: 2,
     scenes: [
       {
