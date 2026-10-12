@@ -1808,12 +1808,12 @@ window.DATA_STORIES = [
   },
   {
     id: 56,
-    wordCount: 3036,
+    wordCount: 3104,
     title: "Lowblowtober 12: Slap",
     brutalityRating: 4,
     summary:
       "College can be a tough adjustment period for some students. Bullying dynamics from high school can often carry over. OverEasy has partnered with campus shops to sell stylish and fashionable OneNut cups for the young men too unwise to defend themselves from former high school bullies.",
-    cover: "assets/covers/12_slap/lowblow_tober_12_slap_cover_v58.jpg",
+    cover: "assets/covers/12_slap/lowblow_tober_12_slap_cover_v59.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vQn-8fEFDvZIRTP9kwbq7OIE7GyZIdgqH3LwcyESIPR6ogTT0grGtKLkitCVV29mV_xhRRSLtzoSCgI/pub",
     characterIds: ["monique", "michael"],
