@@ -86,7 +86,7 @@ window.DATA_INFOPANEL = {
   joan_white: [
     {
       storyId: 1,
-      text: "Castrates [[char:james_ex|James]]. Dates [[char:james_ex|James]]. Pops [[char:sam]]'s last testicle. Recruits [[char:jenny]], [[char:michelle]] and [[char:cathy]] to destroy [[char:sam]]'s balls in [[story:1]]. Refers castration victims to [[char:amy]] in [[story:1]].",
+      text: "Castrates [[char:james_ex|James]] after catching him cheating. [[char:amy]] helps her deal with the aftermath. Recruits [[char:jenny]], [[char:michelle]] and [[char:cathy]] to destroy [[char:sam]]'s balls, and eventually takes his last one herself in [[story:1]].",
     },
     {
       storyId: 25,
@@ -94,7 +94,7 @@ window.DATA_INFOPANEL = {
     },
     {
       storyId: 54,
-      text: "Runs a surprise testicular inspection on the swim team in [[story:54]]. Squeezes [[char:tyler_johannes|Tyler]]. Pops both of [[char:grant_cocksworth|Grant]]'s testicles. Pops [[char:conor]]'s left testicle.",
+      text: "Runs a surprise testicular inspection on the swim team in [[story:54]]. [[char:tyler_johannes|Tyler]], [[char:grant_cocksworth|Grant]], [[char:keaton]] and [[char:conor]] all get their testicles thoroughly checked.",
     },
   ],
   tyler_johannes: [
