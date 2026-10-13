@@ -41,12 +41,18 @@ function parseIdList(raw) {
 }
 
 function parseArgs(argv) {
-  const out = { concurrency: 3, only: null, prune: true };
+  // null = one worker per story (fully parallel).
+  const out = { concurrency: null, only: null, prune: true };
   const positional = [];
   for (const arg of argv) {
     if (arg.startsWith("--concurrency=")) {
-      const n = parseInt(arg.slice("--concurrency=".length), 10);
-      if (Number.isFinite(n) && n > 0) out.concurrency = Math.min(n, 8);
+      const raw = arg.slice("--concurrency=".length).trim().toLowerCase();
+      if (raw === "all" || raw === "max") {
+        out.concurrency = null;
+      } else {
+        const n = parseInt(raw, 10);
+        if (Number.isFinite(n) && n > 0) out.concurrency = n;
+      }
     } else if (arg.startsWith("--only=")) {
       out.only = new Set(parseIdList(arg.slice("--only=".length)));
     } else if (arg === "--no-prune") {
@@ -293,13 +299,17 @@ async function main() {
     console.error("No matching stories to sync.");
     process.exit(1);
   }
+  const concurrency =
+    ARGS.concurrency == null
+      ? stories.length
+      : Math.min(ARGS.concurrency, stories.length);
   console.log(
-    `Syncing ${stories.length} stories (concurrency=${ARGS.concurrency})...`,
+    `Syncing ${stories.length} stories (concurrency=${concurrency})...`,
   );
 
   const td = makeTurndown();
   const t0 = Date.now();
-  const results = await runWithConcurrency(stories, ARGS.concurrency, (s) =>
+  const results = await runWithConcurrency(stories, concurrency, (s) =>
     syncOne(s, td),
   );
 
