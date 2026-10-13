@@ -1756,7 +1756,7 @@ window.DATA_STORIES = [
   },
   {
     id: 54,
-    wordCount: 2447,
+    wordCount: 2455,
     title: "Lowblowtober 10: Balls",
     brutalityRating: 3,
     summary:
@@ -1845,7 +1845,7 @@ window.DATA_STORIES = [
    */
   {
     id: 58,
-    wordCount: 14981,
+    wordCount: 14989,
     title: "Lowblowtober Collection",
     summary: "See #lowblowtober2026 on Twitter!",
     summaryUrl: "https://x.com/Barf_on_Squid/status/2095124787605442582",
