@@ -1686,7 +1686,7 @@ window.DATA_STORIES = [
     id: 50,
     wordCount: 1027,
     title: "Lowblowtober 6: Accidental",
-    brutalityRating: 4,
+    brutalityRating: 3,
     summary:
       "Niles helps Alyssa move out. He does his best but he's not quite careful enough!",
     cover: "assets/covers/lowblow_tober_6_accident_cover_v9.jpg",
@@ -1708,7 +1708,7 @@ window.DATA_STORIES = [
     id: 51,
     wordCount: 1430,
     title: "Lowblowtober 7: Fall",
-    brutalityRating: 4,
+    brutalityRating: 3,
     summary: "Leo and Izzie go climbing.",
     cover: "assets/covers/lowblow_tober_7_fall_v26.jpg",
     driveUrl:
@@ -1729,7 +1729,7 @@ window.DATA_STORIES = [
     id: 52,
     wordCount: 944,
     title: "Lowblowtober 8: Broken",
-    brutalityRating: 5,
+    brutalityRating: 1,
     summary: "Tamara helps a man with an unfortunate injury.",
     cover: "assets/covers/lowblow_tober_8_broken_cover_v19.jpg",
     driveUrl:
@@ -1743,7 +1743,7 @@ window.DATA_STORIES = [
     id: 53,
     wordCount: 1515,
     title: "Lowblowtober 9: Mid-Sex",
-    brutalityRating: 3,
+    brutalityRating: 1,
     summary:
       "The goth Goddess fucks her one-nutted boytoy. He'll probably be able to have kids afterwards, eventually.",
     cover: "assets/covers/lowblow_tober_9_midsex_cover_v15.jpg",
@@ -1758,7 +1758,7 @@ window.DATA_STORIES = [
     id: 54,
     wordCount: 2447,
     title: "Lowblowtober 10: Balls",
-    brutalityRating: 5,
+    brutalityRating: 3,
     summary:
       "It's important to regularly inspect your balls for any unusual lumps or bumps. They may be nothing to worry about, but it's better to be safe than sorry. If your doctor or coach recommends removing one or both, don't panic; boys can live perfectly normal lives with an empty scrotum.",
     cover: "assets/covers/lowblow_tober_10_balls_cover_v7.jpg",
@@ -1779,7 +1779,7 @@ window.DATA_STORIES = [
     id: 55,
     wordCount: 1766,
     title: "Lowblowtober 11: Staring",
-    brutalityRating: 4,
+    brutalityRating: 3,
     summary:
       "Doctors all agree: vigorous outdoor exercise is excellent for your mental and physical health. However, very little research has been done on its effects on reproductive health.",
     cover: "assets/covers/lowblow_tober_11_staring_cover_v3.jpg",
@@ -1808,9 +1808,9 @@ window.DATA_STORIES = [
   },
   {
     id: 56,
-    wordCount: 3104,
+    wordCount: 3105,
     title: "Lowblowtober 12: Slap",
-    brutalityRating: 4,
+    brutalityRating: 3,
     summary:
       "College can be a tough adjustment period for some students. Bullying dynamics from high school can often carry over. OverEasy has partnered with campus shops to sell stylish and fashionable OneNut cups for the young men too unwise to defend themselves from former high school bullies.",
     cover: "assets/covers/12_slap/lowblow_tober_12_slap_cover_v59.jpg",
@@ -1820,5 +1820,20 @@ window.DATA_STORIES = [
     state: 2,
     releaseDate: "2026-10-12",
     series: { id: "lowblow-tober", order: 12 },
+  },
+  {
+    id: 57,
+    wordCount: 2666,
+    title: "Lowblowtober 13: Knee",
+    brutalityRating: 3,
+    summary:
+      "Izzie and Kaitlin are catcalling swimmers when Kaitlin boasts about neutering her brother with one knee. Inspired, Izzie picks a one-nutted guy in a green Speedo for her first-ever nutshot — and accidentally finishes the job on camera.",
+    cover: "assets/covers/lowblow_tober_13_knee_cover_v6.jpg",
+    driveUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vRaHs86VJIgkCLnUQBsjLxmCyKamMogymSzdDjlc2hW0qe23A-wjc4Xaqi1pK0U_Glxd2MOoW_MrJB3/pub",
+    characterIds: ["izzie", "kaitlin", "harvey"],
+    state: 2,
+    releaseDate: "2026-10-13",
+    series: { id: "lowblow-tober", order: 13 },
   },
 ];

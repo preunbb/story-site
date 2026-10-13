@@ -52,7 +52,7 @@
     {
       id: "newest",
       title: "Newest releases",
-      storyIds: [56, 55, 54, 53, 52, 51, 50],
+      storyIds: [57, 56, 55, 54, 53, 52, 51],
     },
     {
       id: "epic",
@@ -92,7 +92,7 @@
     {
       id: "lowblow-tober",
       title: "Lowblowtober",
-      storyIds: [50, 51, 52, 53, 54, 55, 56],
+      storyIds: [50, 51, 52, 53, 54, 55, 56, 57],
     },
     {
       id: "scripts",

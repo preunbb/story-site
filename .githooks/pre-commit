@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Sync published Google Docs → assets/stories (+ share pages) before each commit.
+# Skip with: SKIP_STORY_SYNC=1 git commit ...
+set -euo pipefail
+
+if [[ "${SKIP_STORY_SYNC:-}" == "1" ]]; then
+  echo "[pre-commit] skipping story sync (SKIP_STORY_SYNC=1)"
+  exit 0
+fi
+
+repo_root="$(git rev-parse --show-toplevel)"
+cd "$repo_root"
+
+echo "[pre-commit] npm run sync"
+npm run sync
+
+# Include sync outputs in this commit when they changed.
+git add -- assets/stories data/stories.js share
+
+echo "[pre-commit] story sync complete"
+exit 0

@@ -717,6 +717,21 @@ window.DATA_CHARACTERS = [
     profilePictures: ["assets/characters/leo_profile_climbing_harness_v1.jpg"],
   },
   {
+    id: "harvey",
+    name: "Harvey",
+    penisLengthInches: 7.5,
+    testicleSize: "large",
+    scrotumHang: "low-hanging",
+    testicleLabel: "one large, low-hanging nut",
+    gender: "M",
+    bio: "College swimmer born a little off-balance, although he's never let it get to his head.",
+    profilePictures: [
+      "assets/characters/harvey_v2.jpg",
+      "assets/characters/harvey_v1.jpg",
+    ],
+  },
+
+  {
     id: "tamara",
     name: "Tamara",
     gender: "F",

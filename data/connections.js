@@ -1519,4 +1519,28 @@ window.DATA_CONNECTIONS = [
     storyId: 56,
     kinds: ["left", "pain"],
   },
+  {
+    from: "izzie",
+    to: "harvey",
+    label: "Pops Harvey's last ball with her first knee",
+    reverseLabel: "Last ball popped by Izzie's first knee",
+    storyId: 57,
+    kinds: ["right"],
+  },
+  {
+    from: "kaitlin",
+    to: "harvey",
+    label: "Films Izzie neutering Harvey",
+    reverseLabel: "Neutering filmed by Kaitlin",
+    storyId: 57,
+    kinds: ["knows"],
+  },
+  {
+    from: "kaitlin",
+    to: "izzie",
+    label: "College friends; teaches Izzie to love nutshots",
+    reverseLabel: "College friends with Kaitlin",
+    storyId: 57,
+    kinds: ["knows"],
+  },
 ];
