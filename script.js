@@ -50,9 +50,14 @@
    */
   var CATALOG_SECTIONS = [
     {
+      id: "lowblow-tober",
+      title: "Lowblowtober",
+      storyIds: [50, 51, 52, 53, 54, 55, 56, 57],
+    },
+    {
       id: "newest",
       title: "Newest releases",
-      storyIds: [57, 56, 55, 54, 53, 52, 51],
+      storyIds: [49, 48, 47, 46, 42, 43, 45],
     },
     {
       id: "epic",
@@ -88,11 +93,6 @@
       id: "no-nut-narrator",
       title: "No Nut Narrator",
       storyIds: [34, 35],
-    },
-    {
-      id: "lowblow-tober",
-      title: "Lowblowtober",
-      storyIds: [50, 51, 52, 53, 54, 55, 56, 57],
     },
     {
       id: "scripts",
