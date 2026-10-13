@@ -1839,8 +1839,9 @@ window.DATA_STORIES = [
   /**
    * Every released Lowblowtober story, in series order, as chapters.
    * `npm run sync` rebuilds assets/stories/58.md from the series. There is
-   * no Google Doc for this entry. Cover and release date follow the latest
-   * chapter.
+   * no Google Doc for this entry. Release date follows the latest chapter.
+   * The cover is the marked prompt poster, not a chapter cover, so sync
+   * leaves it alone.
    */
   {
     id: 58,
@@ -1848,7 +1849,7 @@ window.DATA_STORIES = [
     title: "Lowblowtober Collection",
     summary:
       "Every Lowblowtober story, in order. Each day is its own chapter, with that day's cover at the start.",
-    cover: "assets/covers/lowblow_tober_13_knee_cover_v7.jpg",
+    cover: "assets/covers/lowblowtober_collection_cover_v2.jpg",
     compileFromSeries: "lowblow-tober",
     characterIds: [],
     state: 2,

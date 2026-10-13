@@ -435,9 +435,14 @@ async function main() {
         fullLengthNovel: false,
       });
       if (compiled.cover || compiled.releaseDate) {
+        const members = compiledSeriesMembers(all, story.compileFromSeries);
+        const coverIsChapter = members.some((m) => m.cover === story.cover);
         catalogUpdates.push({
           id: compiled.id,
-          cover: compiled.cover,
+          // A cover that isn't one of the chapter covers (the marked
+          // Lowblowtober poster) stays put. A chapter cover still tracks
+          // the latest chapter.
+          cover: !story.cover || coverIsChapter ? compiled.cover : null,
           releaseDate: compiled.releaseDate,
         });
       }

@@ -794,14 +794,43 @@
           >
             Details
           </button>
-          <button
-            type="button"
-            class="story-reader-meta-link story-reader-share-btn"
-            id="story-reader-share"
-            title="Copy a link that shows the story title in Discord previews"
-          >
-            Share
-          </button>
+          <div class="story-reader-share" id="story-reader-share-wrap">
+            <button
+              type="button"
+              class="story-reader-meta-link story-reader-share-btn"
+              id="story-reader-share"
+              aria-expanded="false"
+              aria-controls="story-reader-share-menu"
+              aria-haspopup="menu"
+            >
+              Share
+            </button>
+            <div
+              class="story-reader-share-menu"
+              id="story-reader-share-menu"
+              role="menu"
+              hidden
+            >
+              <button
+                type="button"
+                class="story-reader-share-item"
+                id="story-reader-share-copy-link"
+                role="menuitem"
+                title="Copy a link that shows the story title in Discord previews"
+              >
+                Copy link
+              </button>
+              <button
+                type="button"
+                class="story-reader-share-item"
+                id="story-reader-share-copy-text"
+                role="menuitem"
+                disabled
+              >
+                Copy whole text
+              </button>
+            </div>
+          </div>
           <a
             class="story-reader-meta-link"
             id="story-reader-download"

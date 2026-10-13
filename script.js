@@ -610,6 +610,7 @@
       text,
       story && story.chaptersToPublish,
     );
+    setReaderStorySourceMarkdown(bodyMd);
     var buyBarHtml = formatStoryReaderBuyBarHtml(story);
     storyReaderArticle.innerHTML =
       coverHtml +
@@ -6761,6 +6762,8 @@
   }
 
   var shareCopiedTimer = null;
+  /** Markdown currently shown in the reader, before HTML is stripped for copy. */
+  var readerStorySourceMarkdown = "";
 
   function copyTextToClipboard(text) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -6785,7 +6788,18 @@
     });
   }
 
+  function setShareMenuOpen(open) {
+    var wrap = byId("story-reader-share-wrap");
+    var btn = byId("story-reader-share");
+    var menu = byId("story-reader-share-menu");
+    if (!wrap || !btn || !menu) return;
+    wrap.classList.toggle("is-open", open);
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    menu.hidden = !open;
+  }
+
   function flashShareCopied(btn) {
+    setShareMenuOpen(false);
     btn.textContent = "Copied!";
     btn.classList.add("story-reader-share-btn--copied");
     if (shareCopiedTimer) clearTimeout(shareCopiedTimer);
@@ -6796,11 +6810,29 @@
     }, 2000);
   }
 
+  /** Drop HTML tags. Markdown markers and the text inside tags stay. */
+  function storyMarkdownWithoutHtmlTags(markdown) {
+    return String(markdown || "").replace(/<\/?[a-zA-Z][^>]*>/g, "");
+  }
+
+  function setReaderStorySourceMarkdown(markdown) {
+    readerStorySourceMarkdown = markdown || "";
+    var item = byId("story-reader-share-copy-text");
+    if (item) item.disabled = !readerStorySourceMarkdown;
+  }
+
   function bindStoryReaderShare() {
     var btn = byId("story-reader-share");
-    if (!btn || btn.dataset.bound === "1") return;
+    var copyLink = byId("story-reader-share-copy-link");
+    var copyText = byId("story-reader-share-copy-text");
+    var wrap = byId("story-reader-share-wrap");
+    if (!btn || !copyLink || !copyText || btn.dataset.bound === "1") return;
     btn.dataset.bound = "1";
     btn.addEventListener("click", function () {
+      var menu = byId("story-reader-share-menu");
+      setShareMenuOpen(!(menu && !menu.hidden));
+    });
+    copyLink.addEventListener("click", function () {
       var url = btn.getAttribute("data-share-url");
       if (!url) return;
       copyTextToClipboard(url)
@@ -6808,6 +6840,19 @@
           flashShareCopied(btn);
         })
         .catch(function () {});
+    });
+    copyText.addEventListener("click", function () {
+      if (!readerStorySourceMarkdown) return;
+      var text = storyMarkdownWithoutHtmlTags(readerStorySourceMarkdown);
+      copyTextToClipboard(text)
+        .then(function () {
+          flashShareCopied(btn);
+        })
+        .catch(function () {});
+    });
+    document.addEventListener("click", function (e) {
+      if (!wrap || wrap.contains(e.target)) return;
+      setShareMenuOpen(false);
     });
   }
 
@@ -6839,6 +6884,8 @@
       readerAbort = null;
     }
     readerStory = null;
+    setReaderStorySourceMarkdown("");
+    setShareMenuOpen(false);
     if (storyReaderEl) {
       storyReaderEl.setAttribute("aria-hidden", "true");
       storyReaderEl.classList.remove("open");
@@ -6850,6 +6897,7 @@
     if (!story || story.id == null) return;
     if (!storyReaderArticle || !storyReaderStatus || !storyReaderError) return;
     readerStory = story;
+    setReaderStorySourceMarkdown("");
     if (readerAbort) readerAbort.abort();
     readerAbort = new AbortController();
     teardownStoryReaderChapters();
@@ -7714,6 +7762,11 @@
         return;
       }
       if (e.key !== "Escape") return;
+      var shareMenu = byId("story-reader-share-menu");
+      if (shareMenu && !shareMenu.hidden) {
+        setShareMenuOpen(false);
+        return;
+      }
       if (lbOpen) {
         closeSceneLightbox();
         return;

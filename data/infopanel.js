@@ -738,6 +738,16 @@ window.DATA_INFOPANEL = {
       storyId: 51,
       text: "[[char:leo]]'s climbing partner in [[story:51]].",
     },
+    {
+      storyId: 57,
+      text: "Starts her career as a ballbusting influencer by pranking one-nutted [[char:harvey]] at [[char:kaitlin]]'s request in [[story:57]].",
+    },
+  ],
+  harvey: [
+    {
+      storyId: 57,
+      text: "Co-stars with [[char:izzie]] in her first 'social experiment' in [[story:57]] [[char:kaitlin]] films.",
+    },
   ],
   leo: [
     {
