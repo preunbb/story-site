@@ -1823,7 +1823,7 @@ window.DATA_STORIES = [
   },
   {
     id: 57,
-    wordCount: 2712,
+    wordCount: 2709,
     title: "Lowblowtober 13: Knee",
     brutalityRating: 3,
     summary:

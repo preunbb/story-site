@@ -1,21 +1,28 @@
 #!/usr/bin/env bash
-# Sync published Google Docs → assets/stories (+ share pages) before each commit.
-# Skip with: SKIP_STORY_SYNC=1 git commit ...
+# Sync published Google Docs → assets/stories, then regenerate share/ OG pages.
+# Skip Drive sync only with: SKIP_STORY_SYNC=1 git commit ...
+# Share pages always run (local, no network) unless SKIP_SHARE_PAGES=1.
 set -euo pipefail
-
-if [[ "${SKIP_STORY_SYNC:-}" == "1" ]]; then
-  echo "[pre-commit] skipping story sync (SKIP_STORY_SYNC=1)"
-  exit 0
-fi
 
 repo_root="$(git rev-parse --show-toplevel)"
 cd "$repo_root"
 
-echo "[pre-commit] npm run sync"
-npm run sync
+if [[ "${SKIP_STORY_SYNC:-}" == "1" ]]; then
+  echo "[pre-commit] skipping story sync (SKIP_STORY_SYNC=1)"
+else
+  echo "[pre-commit] syncing stories from Drive"
+  node scripts/sync-stories.mjs
+fi
 
-# Include sync outputs in this commit when they changed.
+if [[ "${SKIP_SHARE_PAGES:-}" == "1" ]]; then
+  echo "[pre-commit] skipping share pages (SKIP_SHARE_PAGES=1)"
+else
+  echo "[pre-commit] generating share pages"
+  node scripts/generate-story-share-pages.mjs
+fi
+
+# Include generated outputs in this commit when they changed.
 git add -- assets/stories data/stories.js share
 
-echo "[pre-commit] story sync complete"
+echo "[pre-commit] done"
 exit 0
