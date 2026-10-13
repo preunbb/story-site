@@ -730,7 +730,7 @@ window.OVER_EASY_CATALOG = {
       id: "invertcage",
       category: "sex-toys",
       newArrival: true,
-      purchaseUrl: "../#story/49",
+      purchaseUrl: "../#story/49/read",
       name: "CockCrusher™ Inverted Chastity Cage",
       model: "OET-IC-XS",
       image:

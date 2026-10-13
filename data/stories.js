@@ -1828,12 +1828,31 @@ window.DATA_STORIES = [
     brutalityRating: 3,
     summary:
       "INTRODUCTION TO MEDIA STUDIES: Modern media is about telling a story, engaging viewers, and having fun. Sign up today for a new course on pranks, feminism, male athletic injuries and more!",
-    cover: "assets/covers/lowblow_tober_13_knee_cover_v6.jpg",
+    cover: "assets/covers/lowblow_tober_13_knee_cover_v7.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vRaHs86VJIgkCLnUQBsjLxmCyKamMogymSzdDjlc2hW0qe23A-wjc4Xaqi1pK0U_Glxd2MOoW_MrJB3/pub",
     characterIds: ["izzie", "kaitlin", "harvey"],
     state: 2,
     releaseDate: "2026-10-13",
     series: { id: "lowblow-tober", order: 13 },
+  },
+  /**
+   * Every released Lowblowtober story, in series order, as chapters.
+   * `npm run sync` rebuilds assets/stories/58.md from the series. There is
+   * no Google Doc for this entry. Cover and release date follow the latest
+   * chapter.
+   */
+  {
+    id: 58,
+    wordCount: 14981,
+    title: "Lowblowtober Collection",
+    summary:
+      "Every Lowblowtober story, in order. Each day is its own chapter, with that day's cover at the start.",
+    cover: "assets/covers/lowblow_tober_13_knee_cover_v7.jpg",
+    compileFromSeries: "lowblow-tober",
+    characterIds: [],
+    state: 2,
+    releaseDate: "2026-10-13",
+    series: { id: "lowblow-tober", order: 0 },
   },
 ];

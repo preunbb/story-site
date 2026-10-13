@@ -4,6 +4,11 @@
  * URL, extracts the document body, converts it to Markdown, and writes it to
  * assets/stories/<id>.md. Run via `npm run sync` whenever a story's source
  * Google Doc has been edited.
+ *
+ * Stories with `compileFromSeries` have no Doc of their own. After the
+ * individual sync, each one is rebuilt from the current members of that
+ * series (see scripts/lib/compile-series.mjs). Syncing a member, or the
+ * collection id itself, rebuilds the collection.
  */
 
 import {
@@ -23,6 +28,12 @@ import {
 } from "./lib/published-doc-markdown.mjs";
 import { extractChapterRange } from "./lib/andrea-lucas-export.mjs";
 import { countWords } from "./lib/count-words.mjs";
+import {
+  applyCompilationCatalogFields,
+  assertCoverIdentifiers,
+  buildCompiledSeriesMarkdown,
+  compiledSeriesMembers,
+} from "./lib/compile-series.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -289,29 +300,90 @@ function pruneOrphans(validIds, stories) {
   return removed;
 }
 
+function compilationIsSelected(story, all) {
+  if (!story || !story.compileFromSeries) return false;
+  if (!ARGS.only) return true;
+  if (ARGS.only.has(story.id)) return true;
+  return compiledSeriesMembers(all, story.compileFromSeries).some((m) =>
+    ARGS.only.has(m.id),
+  );
+}
+
+async function readMemberMarkdown(member, td) {
+  const outPath = join(OUT_DIR, `${member.id}.md`);
+  if (existsSync(outPath)) return readFileSync(outPath, "utf8");
+  if (!member.driveUrl) {
+    throw new Error(
+      `#${member.id} "${member.title}" has no markdown and no driveUrl`,
+    );
+  }
+  console.log(
+    `  fetch #${member.id} "${member.title}" (missing local markdown)`,
+  );
+  const md = await fetchMarkdownFromPublishUrl(member.driveUrl, td);
+  writeFileSync(outPath, md, "utf8");
+  return md;
+}
+
+async function compileOneSeriesStory(story, all, td) {
+  const members = compiledSeriesMembers(all, story.compileFromSeries);
+  if (!members.length) {
+    throw new Error(
+      `no released stories in series "${story.compileFromSeries}"`,
+    );
+  }
+  assertCoverIdentifiers(members);
+  const bodies = new Map();
+  for (const member of members) {
+    bodies.set(member.id, await readMemberMarkdown(member, td));
+  }
+  const md = buildCompiledSeriesMarkdown(members, (member) => {
+    const body = bodies.get(member.id);
+    if (body == null) {
+      throw new Error(`missing body for #${member.id}`);
+    }
+    return body;
+  });
+  writeFileSync(join(OUT_DIR, `${story.id}.md`), md, "utf8");
+  const last = members[members.length - 1];
+  return {
+    id: story.id,
+    title: story.title,
+    bytes: md.length,
+    words: countWords(md),
+    chapters: members.length,
+    cover: last && last.cover ? last.cover : null,
+    releaseDate: last && last.releaseDate ? last.releaseDate : null,
+  };
+}
+
 async function main() {
   if (!existsSync(OUT_DIR)) mkdirSync(OUT_DIR, { recursive: true });
   const all = loadStories();
-  const stories = ARGS.only
-    ? all.filter((s) => ARGS.only.has(s.id))
-    : all.filter((s) => s.driveUrl);
-  if (!stories.length) {
+  const driveStories = (
+    ARGS.only ? all.filter((s) => ARGS.only.has(s.id)) : all
+  ).filter((s) => s.driveUrl && !s.compileFromSeries);
+  const compilations = all.filter((s) => compilationIsSelected(s, all));
+  if (!driveStories.length && !compilations.length) {
     console.error("No matching stories to sync.");
     process.exit(1);
   }
   const concurrency =
     ARGS.concurrency == null
-      ? stories.length
-      : Math.min(ARGS.concurrency, stories.length);
-  console.log(
-    `Syncing ${stories.length} stories (concurrency=${concurrency})...`,
-  );
-
+      ? Math.max(driveStories.length, 1)
+      : Math.min(ARGS.concurrency, Math.max(driveStories.length, 1));
   const td = makeTurndown();
   const t0 = Date.now();
-  const results = await runWithConcurrency(stories, concurrency, (s) =>
-    syncOne(s, td),
-  );
+  let results = [];
+  if (driveStories.length) {
+    console.log(
+      `Syncing ${driveStories.length} stories (concurrency=${concurrency})...`,
+    );
+    results = await runWithConcurrency(driveStories, concurrency, (s) =>
+      syncOne(s, td),
+    );
+  }
+  const stories = driveStories;
 
   const ok = [];
   const errs = [];
@@ -339,6 +411,53 @@ async function main() {
         words: r.words,
         fullLengthNovel: !!s.fullLengthNovel,
       });
+    }
+  }
+
+  const catalogUpdates = [];
+  if (compilations.length) {
+    console.log(
+      `Compiling ${compilations.length} series collection${
+        compilations.length === 1 ? "" : "s"
+      }...`,
+    );
+  }
+  for (const story of compilations) {
+    try {
+      const compiled = await compileOneSeriesStory(story, all, td);
+      ok.push(compiled);
+      console.log(
+        `  ok    #${compiled.id} "${compiled.title}" (compiled ${compiled.chapters} chapters, ${compiled.bytes} bytes, ${compiled.words} words)`,
+      );
+      wcUpdates.push({
+        id: compiled.id,
+        words: compiled.words,
+        fullLengthNovel: false,
+      });
+      if (compiled.cover || compiled.releaseDate) {
+        catalogUpdates.push({
+          id: compiled.id,
+          cover: compiled.cover,
+          releaseDate: compiled.releaseDate,
+        });
+      }
+    } catch (err) {
+      errs.push({ id: story.id, title: story.title, error: err.message });
+      console.error(`  FAIL  #${story.id} "${story.title}": ${err.message}`);
+    }
+  }
+
+  const catalogResults = applyCompilationCatalogFields(
+    STORIES_JS,
+    catalogUpdates,
+  );
+  for (const r of catalogResults) {
+    if (r.status === "updated") {
+      console.log(
+        `  meta  #${r.id}: ${r.changed.join(", ")} follows the latest chapter`,
+      );
+    } else if (r.status !== "unchanged") {
+      console.warn(`  meta  #${r.id}: ${r.status}`);
     }
   }
 

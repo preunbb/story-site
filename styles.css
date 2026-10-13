@@ -3587,6 +3587,15 @@ body.preun-local-andrea .local-andrea-status {
   border-radius: 0.5rem;
 }
 
+.story-reader-article .story-reader-scene--cover {
+  margin: 0.25rem auto 2rem;
+}
+
+.story-reader-article .story-reader-scene--cover .scene-img {
+  border: none;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+}
+
 .story-reader-scene-missing {
   margin: 1.5rem 0;
   padding: 0.6rem 0.9rem;

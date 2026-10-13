@@ -52,7 +52,7 @@
     {
       id: "lowblow-tober",
       title: "Lowblowtober",
-      storyIds: [50, 51, 52, 53, 54, 55, 56, 57],
+      storyIds: [58, 50, 51, 52, 53, 54, 55, 56, 57],
     },
     {
       id: "newest",
@@ -595,7 +595,7 @@
 
   function renderStoryReaderMarkdown(story, text) {
     var coverHtml = "";
-    if (getAiImagesEnabled()) {
+    if (getAiImagesEnabled() && !story.compileFromSeries) {
       coverHtml =
         '<div class="story-reader-cover-wrap">' +
         imgHtml({
@@ -6394,9 +6394,12 @@
       );
     }
     var sc = match.scene;
+    var coverClass =
+      sc.path.indexOf("/covers/") !== -1 ? " story-reader-scene--cover" : "";
     return (
-      '<figure class="scene-figure scene-figure--zoomable story-reader-scene"' +
-      ' tabindex="0" title="Click to enlarge"' +
+      '<figure class="scene-figure scene-figure--zoomable story-reader-scene' +
+      coverClass +
+      '" tabindex="0" title="Click to enlarge"' +
       ' data-story-id="' +
       escapeHtml(String(story.id)) +
       '" data-scene-index="' +
@@ -7505,10 +7508,81 @@
     });
   }
 
+  /**
+   * Collections (`compileFromSeries`) take their cast and illustrated scenes
+   * from the current series members. Keep this in step with
+   * expandCompiledSeriesStories in scripts/lib/compile-series.mjs.
+   */
+  function expandCompiledSeriesStories() {
+    var i;
+    for (i = 0; i < stories.length; i++) {
+      var story = stories[i];
+      if (!story || !story.compileFromSeries) continue;
+      var seriesId = story.compileFromSeries;
+      var members = stories.filter(function (s) {
+        if (!s || s.compileFromSeries) return false;
+        if (!s.series || s.series.id !== seriesId) return false;
+        if (s.state === 1 || s.state === "1") return false;
+        return true;
+      });
+      members.sort(function (a, b) {
+        var ao =
+          a.series && typeof a.series.order === "number"
+            ? a.series.order
+            : Infinity;
+        var bo =
+          b.series && typeof b.series.order === "number"
+            ? b.series.order
+            : Infinity;
+        if (ao !== bo) return ao - bo;
+        return String(a.id).localeCompare(String(b.id), undefined, {
+          numeric: true,
+        });
+      });
+      var scenes = [];
+      var seenPaths = {};
+      var characterIds = [];
+      var seenChars = {};
+      function pushScene(sc) {
+        if (!sc || !sc.path || seenPaths[sc.path]) return;
+        seenPaths[sc.path] = true;
+        scenes.push(sc);
+      }
+      for (var m = 0; m < members.length; m++) {
+        var member = members[m];
+        var memberScenes = member.scenes || [];
+        var coverListed = false;
+        var s;
+        for (s = 0; s < memberScenes.length; s++) {
+          if (memberScenes[s] && memberScenes[s].path === member.cover) {
+            coverListed = true;
+            break;
+          }
+        }
+        if (member.cover && !coverListed) {
+          pushScene({
+            path: member.cover,
+            caption: member.title || "Cover",
+          });
+        }
+        for (s = 0; s < memberScenes.length; s++) pushScene(memberScenes[s]);
+        var ids = member.characterIds || [];
+        for (s = 0; s < ids.length; s++) {
+          if (ids[s] == null || seenChars[ids[s]]) continue;
+          seenChars[ids[s]] = true;
+          characterIds.push(ids[s]);
+        }
+      }
+      story.scenes = scenes;
+      story.characterIds = characterIds;
+    }
+  }
+
   function init(data) {
     characters = data.characters || [];
     normalizeCharacterProfilePictures(characters);
     stories = data.stories || [];
+    expandCompiledSeriesStories();
     var normalizedCaptions = normalizeCaptionSections(data.captions);
     captions = normalizedCaptions.captions;
     captionSections = normalizedCaptions.sections;

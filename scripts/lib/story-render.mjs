@@ -11,6 +11,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join, resolve } from "node:path";
 import { createContext, Script } from "node:vm";
+import { expandCompiledSeriesStories } from "./compile-series.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -45,6 +46,7 @@ export function loadStories() {
   if (!Array.isArray(stories)) {
     throw new Error("data/stories.js did not populate window.DATA_STORIES");
   }
+  expandCompiledSeriesStories(stories);
   return stories;
 }
 
