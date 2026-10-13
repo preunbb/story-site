@@ -1827,7 +1827,7 @@ window.DATA_STORIES = [
     title: "Lowblowtober 13: Knee",
     brutalityRating: 3,
     summary:
-      "Izzie and Kaitlin are catcalling swimmers when Kaitlin boasts about neutering her brother with one knee. Inspired, Izzie picks a one-nutted guy in a green Speedo for her first-ever nutshot — and accidentally finishes the job on camera.",
+      "INTRODUCTION TO MEDIA STUDIES: Modern media is about telling a story, engaging viewers, and having fun. Sign up today for a new course on pranks, feminism, male athletic injuries and more!",
     cover: "assets/covers/lowblow_tober_13_knee_cover_v6.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vRaHs86VJIgkCLnUQBsjLxmCyKamMogymSzdDjlc2hW0qe23A-wjc4Xaqi1pK0U_Glxd2MOoW_MrJB3/pub",
