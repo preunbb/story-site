@@ -1847,8 +1847,8 @@ window.DATA_STORIES = [
     id: 58,
     wordCount: 14981,
     title: "Lowblowtober Collection",
-    summary:
-      "Every Lowblowtober story, in order. Each day is its own chapter, with that day's cover at the start.",
+    summary: "See #lowblowtober2026 on Twitter!",
+    summaryUrl: "https://x.com/Barf_on_Squid/status/2095124787605442582",
     cover: "assets/covers/lowblowtober_collection_cover_v2.jpg",
     compileFromSeries: "lowblow-tober",
     characterIds: [],

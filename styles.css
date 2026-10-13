@@ -3879,6 +3879,16 @@ body.preun-local-andrea .local-andrea-status {
   margin-top: 0;
 }
 
+.story-summary-link {
+  color: var(--red-bright);
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.story-summary-link:hover {
+  color: var(--ink);
+}
+
 .flyout-full-story-wrap {
   width: 100%;
   margin: 0 0 1.15rem;

@@ -173,6 +173,22 @@
     return (el || document).querySelectorAll(sel);
   }
 
+  function storySummaryHtml(story) {
+    var text = escapeHtml((story && story.summary) || "");
+    var url =
+      story && typeof story.summaryUrl === "string"
+        ? story.summaryUrl.trim()
+        : "";
+    if (!text || !/^https?:\/\//i.test(url)) return text;
+    return (
+      '<a class="story-summary-link" href="' +
+      escapeHtml(url) +
+      '" target="_blank" rel="noopener noreferrer">' +
+      text +
+      "</a>"
+    );
+  }
+
   function escapeHtml(s) {
     var div = document.createElement("div");
     div.textContent = s;
@@ -1745,7 +1761,7 @@
         storyTextListBrutalityHtml(s) +
         storyTextListTagsHtml(s) +
         '<p class="story-card-summary">' +
-        escapeHtml(s.summary || "") +
+        storySummaryHtml(s) +
         "</p>" +
         storyTextListActionsHtml(s) +
         "</div>";
@@ -7244,7 +7260,7 @@
       coverHtml +
       '<div class="flyout-story-meta">' +
       '<p class="flyout-summary">' +
-      escapeHtml(story.summary || "") +
+      storySummaryHtml(story) +
       "</p>" +
       releaseHtml +
       chapterReleasesHtml +
