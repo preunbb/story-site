@@ -725,10 +725,7 @@ window.DATA_CHARACTERS = [
     testicleLabel: "one large, low-hanging nut",
     gender: "M",
     bio: "College swimmer born a little off-balance, although he's never let it get to his head.",
-    profilePictures: [
-      "assets/characters/harvey_v2.jpg",
-      "assets/characters/harvey_v1.jpg",
-    ],
+    profilePictures: ["assets/characters/harvey_v2.jpg"],
   },
 
   {
