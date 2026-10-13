@@ -7281,7 +7281,7 @@
   function closeFlyout() {
     var state = parseHash();
     if (state.readMode) {
-      location.hash = "stories";
+      setFlyoutPanelOpen(false);
       return;
     }
     if (state.characterId) {
@@ -7646,11 +7646,6 @@
       }
       if (flyout && flyout.classList.contains("open")) {
         closeFlyout();
-        return;
-      }
-      var h = parseHash();
-      if (h.readMode) {
-        location.hash = "stories";
       }
     });
 
