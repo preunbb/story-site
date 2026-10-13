@@ -1,8 +1,10 @@
 // Character relationship graph for the Connections tab.
-// Each edge: { from, to, storyId, kinds, hubPrefer? }
+// Each edge: { from, to, storyId, kinds, hubPrefer?, testiclesPopped? }
 // kinds is required: family | relationship | knows | faction | left | right | dick | pain
 // Rule: pain never coexists with left/right for the same character pair (any edge).
 // hubPrefer (optional): prefer parking the other endpoint on this hub's wheel.
+// testiclesPopped (optional): how many testicles this edge's pop represents.
+// Drawn on the graph line when one woman clears a whole composite group.
 // Info-panel prose lives in data/infopanel.js — not here.
 window.DATA_CONNECTIONS = [
   {
@@ -147,7 +149,7 @@ window.DATA_CONNECTIONS = [
     from: "rachel",
     to: "greg",
     storyId: 6,
-    kinds: ["left", "right"],
+    kinds: ["left", "right", "relationship"],
   },
   {
     from: "elara",
@@ -743,6 +745,9 @@ window.DATA_CONNECTIONS = [
     to: "broken_tree_cultists",
     storyId: 47,
     kinds: ["left"],
+    // First Rites: one left testicle from each anonymous rank whose
+    // remaining right the trio take on-page (74 half-eunuchs).
+    testiclesPopped: 74,
   },
   {
     from: "eve",
@@ -815,18 +820,25 @@ window.DATA_CONNECTIONS = [
     to: "broken_tree_cultists",
     storyId: 47,
     kinds: ["right"],
+    // Stable 8, ritual-chamber pile 2, holding-pen guard 1, escape knee 1.
+    testiclesPopped: 12,
   },
   {
     from: "izzie",
     to: "broken_tree_cultists",
     storyId: 47,
     kinds: ["right"],
+    // Entrance clamp 1, stable 10, orgy pulse 5, sprinting unnamed 34,
+    // super-stallions 2. Matthias is named, so he is not in this count.
+    testiclesPopped: 52,
   },
   {
     from: "tamara",
     to: "broken_tree_cultists",
     storyId: 47,
     kinds: ["right"],
+    // Entrance biopsy 1, stable 6, ritual-chamber pile 2, hallway scalpel 1.
+    testiclesPopped: 10,
   },
   {
     from: "abby",
@@ -880,7 +892,9 @@ window.DATA_CONNECTIONS = [
     from: "olivia",
     to: "nameless_volunteers",
     storyId: 48,
-    kinds: ["left"],
+    kinds: ["left", "right"],
+    // AutoMilker rupture 1, plus the Sterilizer batch's 240 rendered inert.
+    testiclesPopped: 241,
   },
   {
     from: "zennia",
@@ -1097,6 +1111,8 @@ window.DATA_CONNECTIONS = [
     to: "nameless_volunteers",
     storyId: 32,
     kinds: ["left", "right"],
+    // Nash Equilibrium: both of Subject 1 and both of Subject 2.
+    testiclesPopped: 4,
   },
   {
     from: "kaitlin",

@@ -46,7 +46,7 @@ window.DATA_INFOPANEL = {
     },
     {
       storyId: 32,
-      text: "Prisoner's-dilemma castrations on [[char:nameless_volunteers|triplets]] in [[story:32]].",
+      text: "Pops four of the [[char:nameless_volunteers|triplets]]' testicles in the prisoner's dilemma in [[story:32]].",
     },
     {
       storyId: 48,
@@ -700,7 +700,7 @@ window.DATA_INFOPANEL = {
     },
     {
       storyId: 47,
-      text: "Pops [[char:trinn]]'s right testicle. Pops [[char:lucas]]'s left testicle. Pops [[char:greyson]]'s left testicle. Takes [[char:broken_tree_cultists|cultists]]' remaining right testicles. Owns [[char:lucas]] at [[char:cherry_pop|Cherry]] Pop!. Rescues [[char:lucas]] from the [[char:church_broken_tree]] with [[char:izzie]] and [[char:tamara]]. Kicks [[char:sunni]]'s testicles. Testicle torture ([[char:judah]]) in [[story:47]]. Favorite band ([[char:cherry_pop]]).",
+      text: "Pops [[char:trinn]]'s right testicle. Pops [[char:lucas]]'s left testicle. Pops [[char:greyson]]'s left testicle. Pops 12 of the [[char:broken_tree_cultists|cultists]]' remaining right testicles. Owns [[char:lucas]] at [[char:cherry_pop|Cherry]] Pop!. Rescues [[char:lucas]] from the [[char:church_broken_tree]] with [[char:izzie]] and [[char:tamara]]. Kicks [[char:sunni]]'s testicles. Testicle torture ([[char:judah]]) in [[story:47]]. Favorite band ([[char:cherry_pop]]).",
     },
     {
       storyId: 49,
@@ -708,7 +708,7 @@ window.DATA_INFOPANEL = {
     },
     {
       storyId: 53,
-      text: "Fucks [[char:lucas]] in [[story:53]] and keeps a hard grip on his one remaining testicle the whole time. It comes out mushy and bruised. She does not pop it.",
+      text: "Fucks [[char:lucas]] roughly in [[story:53]].",
     },
   ],
   lucas: [
@@ -722,7 +722,7 @@ window.DATA_INFOPANEL = {
     },
     {
       storyId: 53,
-      text: "Has sex with [[char:andrea]] in [[story:53]] while she squeezes his one remaining testicle. It stays attached, mushy and bruised.",
+      text: "[[char:andrea]] uses him as a sex toy in [[story:53]].",
     },
   ],
   izzie: [
@@ -732,7 +732,7 @@ window.DATA_INFOPANEL = {
     },
     {
       storyId: 47,
-      text: "Rescues [[char:lucas]] from the [[char:church_broken_tree]] with [[char:tamara]] and [[char:andrea]]. Takes [[char:broken_tree_cultists|cultists]]' remaining right testicles in [[story:47]].",
+      text: "Rescues [[char:lucas]] from the [[char:church_broken_tree]] with [[char:tamara]] and [[char:andrea]]. Pops 52 of the [[char:broken_tree_cultists|cultists]]' remaining right testicles in [[story:47]].",
     },
     {
       storyId: 51,
@@ -762,7 +762,7 @@ window.DATA_INFOPANEL = {
     },
     {
       storyId: 47,
-      text: "Rescues [[char:lucas]] from the [[char:church_broken_tree]] with [[char:izzie]] and [[char:andrea]]. Repairs both of his broken balls. Unnecessarily removes [[char:trinn]]'s remaining left testicle. Takes [[char:broken_tree_cultists|cultists]]' remaining right testicles. Testicular defragmentation on [[char:judah]]. Removes [[char:felix]]'s dead testicles. Extracts [[char:greyson]]'s ruptured testicle without anesthesia and prepares to remove his last babymaker in the epilogue. Attempts to supervises intern [[char:yvette|her very incompetent intern]] at the [[char:cherry_pop|Cherry Pop!]] concert. [[char:melody]] encourages her to give in to her darker urges while Tamara operates on Melody's latest victim.",
+      text: "Rescues [[char:lucas]] from the [[char:church_broken_tree]] with [[char:izzie]] and [[char:andrea]]. Repairs both of his broken balls. Unnecessarily removes [[char:trinn]]'s remaining left testicle. Pops ten of the [[char:broken_tree_cultists|cultists]]' remaining right testicles. Testicular defragmentation on [[char:judah]]. Removes [[char:felix]]'s dead testicles. Extracts [[char:greyson]]'s ruptured testicle without anesthesia and prepares to remove his last babymaker in the epilogue. Attempts to supervises intern [[char:yvette|her very incompetent intern]] at the [[char:cherry_pop|Cherry Pop!]] concert. [[char:melody]] encourages her to give in to her darker urges while Tamara operates on Melody's latest victim.",
     },
     {
       storyId: 49,
@@ -804,7 +804,7 @@ window.DATA_INFOPANEL = {
   eve: [
     {
       storyId: 47,
-      text: "Performs First Rites on [[char:broken_tree_cultists]]. Gives [[char:judah]] his righteous penance. [[char:lucas]]'s Stepmother and [[char:abby]] and [[char:kay]]'s mother. Tortures [[char:lucas]] and scrambles his testicular internals in [[story:47]].",
+      text: "Performs First Rites on [[char:broken_tree_cultists]], taking 74 left testicles. Gives [[char:judah]] his righteous penance. [[char:lucas]]'s Stepmother and [[char:abby]] and [[char:kay]]'s mother. Tortures [[char:lucas]] and scrambles his testicular internals in [[story:47]].",
     },
   ],
   kay: [
@@ -950,7 +950,7 @@ window.DATA_INFOPANEL = {
   olivia: [
     {
       storyId: 48,
-      text: "Tests SeedSpray on [[char:theodore]]. Crushes volunteer's left testicle in AutoMilker ([[char:nameless_volunteers]]). Snaps [[char:elliot]]'s spermatic cords with BoySnapper. Onboarded and supervised by [[char:cathy]] at [[char:overeasy_technologies|OverEasy]]. [[char:zennia]] is her boss's boss's boss's grand-boss. Employed by [[char:overeasy_technologies]]. [[char:cherry_pop]] is her favorite band to jam out to while running her [[story:48/read/5|product tests]].",
+      text: "Tests SeedSpray on [[char:theodore]]. Destroys 241 testicles of the [[char:nameless_volunteers|nameless volunteers]]: one ruptured in the AutoMilker, and 240 rendered inert in the Sterilizer batch. Snaps [[char:elliot]]'s spermatic cords with BoySnapper. Onboarded and supervised by [[char:cathy]] at [[char:overeasy_technologies|OverEasy]]. [[char:zennia]] is her boss's boss's boss's grand-boss. Employed by [[char:overeasy_technologies]]. [[char:cherry_pop]] is her favorite band to jam out to while running her [[story:48/read/5|product tests]].",
     },
   ],
   charlotte: [
@@ -974,11 +974,11 @@ window.DATA_INFOPANEL = {
   nameless_volunteers: [
     {
       storyId: 48,
-      text: "Left testicle crushed in AutoMilker by [[char:olivia]] in [[story:48]]. Used as test subjects by [[char:overeasy_technologies]].",
+      text: "241 testicles destroyed by [[char:olivia]] in [[story:48]]: one ruptured in the AutoMilker, and 240 rendered inert in the Sterilizer batch. Used as test subjects by [[char:overeasy_technologies]].",
     },
     {
       storyId: 32,
-      text: "Prisoner's-dilemma castration subject of [[char:cathy]] in [[story:32]].",
+      text: "Four testicles popped by [[char:cathy]] in the prisoner's dilemma in [[story:32]].",
     },
   ],
   elijah: [
@@ -996,7 +996,7 @@ window.DATA_INFOPANEL = {
   broken_tree_cultists: [
     {
       storyId: 47,
-      text: "Receive First Rites from [[char:eve]]. Remaining right testicle taken by [[char:andrea]]. Remaining right testicle taken by [[char:izzie]]. Remaining right testicle taken by [[char:tamara]]. Obey [[char:abby]] as superior female cultist. Obey [[char:kay]] as superior female cultist in [[story:47]]. Members of the [[char:church_broken_tree]].",
+      text: "Receive First Rites from [[char:eve]], who takes 74 left testicles. 12 remaining right testicles taken by [[char:andrea]]. 52 remaining right testicles taken by [[char:izzie]]. Ten remaining right testicles taken by [[char:tamara]]. Obey [[char:abby]] as superior female cultist. Obey [[char:kay]] as superior female cultist in [[story:47]]. Members of the [[char:church_broken_tree]].",
     },
   ],
   stuart: [

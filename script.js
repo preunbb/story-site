@@ -2601,6 +2601,18 @@
     if (tip) tip.hidden = true;
   }
 
+  function connectionPopCountLabel(edge) {
+    var n = edge && edge.testiclesPopped;
+    if (typeof n !== "number" || !isFinite(n)) return "";
+    var kinds = connectionEdgeKinds(edge);
+    var sides = [];
+    if (kinds.indexOf("left") !== -1) sides.push("left");
+    if (kinds.indexOf("right") !== -1) sides.push("right");
+    var noun = n === 1 ? "testicle" : "testicles";
+    if (sides.length === 1) return n + " " + sides[0] + " " + noun + " popped";
+    return n + " " + noun + " popped";
+  }
+
   function showConnectionsEdgeTooltip(edge, clientX, clientY) {
     var tip = byId("connections-edge-tooltip");
     if (!tip || !edge) return;
@@ -2610,11 +2622,16 @@
     var fromName = from ? from.name : edge.from;
     var toName = to ? to.name : edge.to;
     var kinds = connectionEdgeKinds(edge);
+    var popLabel = connectionPopCountLabel(edge);
     var kindLabel = kinds
+      .filter(function (k) {
+        return !(popLabel && (k === "left" || k === "right"));
+      })
       .map(function (k) {
         return CONNECTION_KIND_LABELS[k] || k;
       })
       .join(" · ");
+    if (popLabel) kindLabel = popLabel + (kindLabel ? " · " + kindLabel : "");
     var storyTitle = story ? story.title : "";
     tip.innerHTML =
       "<strong>" +
@@ -3354,6 +3371,9 @@
         var g = byPair[key];
         g.sourceEdges.push(e);
         if (g.storyId == null && e.storyId != null) g.storyId = e.storyId;
+        if (typeof e.testiclesPopped === "number" && isFinite(e.testiclesPopped)) {
+          g.testiclesPopped = (g.testiclesPopped || 0) + e.testiclesPopped;
+        }
         connectionEdgeKinds(e).forEach(function (k) {
           g._kindSeen[k] = true;
         });
@@ -3869,6 +3889,30 @@
       );
     }
 
+    function edgeLabelPoint(x1, y1, x2, y2, curved, bundleKey) {
+      if (!curved) return { x: (x1 + x2) / 2, y: (y1 + y2) / 2 };
+      var mx = (x1 + x2) / 2;
+      var my = (y1 + y2) / 2;
+      var dx = x2 - x1;
+      var dy = y2 - y1;
+      var len = Math.sqrt(dx * dx + dy * dy) || 1;
+      var px = -dy / len;
+      var py = dx / len;
+      var hash = 0;
+      var key = String(bundleKey || "");
+      for (var hi = 0; hi < key.length; hi++) {
+        hash = (hash * 31 + key.charCodeAt(hi)) | 0;
+      }
+      var sign = hash % 2 === 0 ? 1 : -1;
+      var bulge = Math.min(90, Math.max(28, len * 0.2)) * sign;
+      var qx = mx + px * bulge;
+      var qy = my + py * bulge;
+      return {
+        x: 0.25 * x1 + 0.5 * qx + 0.25 * x2,
+        y: 0.25 * y1 + 0.5 * qy + 0.25 * y2,
+      };
+    }
+
     var selectedId =
       (connectionsGraphState && connectionsGraphState.selectedId) || null;
 
@@ -3980,6 +4024,41 @@
           }
           group.appendChild(line);
         });
+        if (typeof e.testiclesPopped === "number" && isFinite(e.testiclesPopped)) {
+          var bundleKey = cA < cB ? cA + "|" + cB : cB + "|" + cA;
+          var at = edgeLabelPoint(
+            e.source.x,
+            e.source.y,
+            e.target.x,
+            e.target.y,
+            curved,
+            bundleKey,
+          );
+          var count = document.createElementNS(ns, "text");
+          count.setAttribute("class", "connections-edge-count");
+          count.setAttribute("x", at.x);
+          count.setAttribute("y", at.y);
+          count.setAttribute("fill", "#ebe9ec");
+          count.setAttribute("stroke", "none");
+          count.setAttribute("pointer-events", "none");
+          count.textContent = String(e.testiclesPopped);
+          group.appendChild(count);
+          var box = count.getBBox();
+          var padX = 5;
+          var padY = 2;
+          var bg = document.createElementNS(ns, "rect");
+          bg.setAttribute("class", "connections-edge-count-bg");
+          bg.setAttribute("x", box.x - padX);
+          bg.setAttribute("y", box.y - padY);
+          bg.setAttribute("width", box.width + padX * 2);
+          bg.setAttribute("height", box.height + padY * 2);
+          bg.setAttribute("rx", "4");
+          bg.setAttribute("fill", "#2a2a2e");
+          bg.setAttribute("stroke", "rgba(235,233,236,0.45)");
+          bg.setAttribute("stroke-width", "1");
+          bg.setAttribute("pointer-events", "none");
+          group.insertBefore(bg, count);
+        }
         gEdges.appendChild(group);
       });
 
