@@ -64,11 +64,12 @@ window.OVER_EASY_CATALOG = {
               value: "cockburster",
               label: "CockBurster arousal serum (ultra-maximum extra strength)",
             },
-            { value: "pump", label: "TestiGrow male enhancement formula" },
+            { value: "tg", label: "TestiGrow male enhancement formula" },
             { value: "shrink", label: "Shrinkadink male dehancement formula" },
             {
               value: "lastcall",
-              label: "LastCall™ testicular extraction formula",
+              label:
+                "LastCall permanent erectile and testicular extraction formula",
             },
             {
               value: "treetrim",
@@ -76,10 +77,11 @@ window.OVER_EASY_CATALOG = {
                 "TreeTrim permanent male contraceptive (sold unbranded as Nokidsinol)",
             },
             { value: "ec", label: "EunuchCalm mood stabilizer" },
-            { value: "dd", label: "Dripidick seminal maximizer" },
+            { value: "dd", label: "DripiDick seminal incontinence inducer" },
             {
               value: "turn",
-              label: "Turnimout sexual orientation reversal formula",
+              label:
+                "Turnimout sexual orientation reverser and rectal relaxant",
             },
           ],
         },
