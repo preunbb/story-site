@@ -45,19 +45,19 @@
   ];
   /**
    * Catalog page sections. Newest is a highlight row and may repeat cards
-   * that also appear in later sections. Every other listed id is "owned"
-   * by that section so leftovers go into Short and non-canon stories.
+   * that also appear in later sections. Any listed id is owned, so leftovers
+   * go into Short and non-canon stories.
    */
   var CATALOG_SECTIONS = [
     {
-      id: "lowblow-tober",
-      title: "Lowblowtober",
-      storyIds: [58, 50, 51, 52, 53, 54, 55, 56, 57],
-    },
-    {
       id: "newest",
       title: "Newest releases",
-      storyIds: [49, 48, 47, 46, 42, 43, 45],
+      storyIds: [58, 49, 48, 47, 46, 42, 43, 45],
+    },
+    {
+      id: "lowblow-tober",
+      title: "Lowblowtober",
+      storyIds: [50, 51, 52, 53, 54, 55, 56, 57],
     },
     {
       id: "epic",
@@ -1722,7 +1722,6 @@
     var owned = {};
     for (var i = 0; i < CATALOG_SECTIONS.length; i++) {
       var sec = CATALOG_SECTIONS[i];
-      if (sec.id === "newest") continue;
       for (var j = 0; j < sec.storyIds.length; j++) {
         owned[sec.storyIds[j]] = true;
       }
@@ -6480,6 +6479,26 @@
     return null;
   }
 
+  /**
+   * Chapter-share covers sit under the heading, same placement as a
+   * Lowblowtober `[[scene:]]` cover. Omitted unless AI images are on.
+   */
+  function readerChapterCoverHtml(story, chapterOneBased) {
+    if (!getAiImagesEnabled()) return "";
+    var cfg = storyChapterShareConfig(story, chapterOneBased);
+    if (!cfg || !cfg.cover) return "";
+    var alt = cfg.title || (story && story.title) || "Chapter cover";
+    return (
+      '<figure class="story-reader-scene story-reader-scene--cover">' +
+      '<img src="' +
+      escapeHtml(cfg.cover) +
+      '" alt="' +
+      escapeHtml(alt) +
+      '" class="scene-img" loading="lazy">' +
+      "</figure>"
+    );
+  }
+
   function readerSceneFigureHtml(story, identifier) {
     var match = findStorySceneByIdentifier(story, identifier);
     if (!match) {
@@ -6523,6 +6542,7 @@
       var inner = hasPreservedInlineHtml(trimmed)
         ? formatBodyInline(trimmed)
         : readerFormatEscapedInline(escapeHtml(trimmed));
+      var oneBased = chapterIndex + 1;
       var id = "story-ch-" + chapterIndex++;
       return (
         "<" +
@@ -6535,7 +6555,8 @@
         inner +
         "</" +
         tag +
-        ">"
+        ">" +
+        readerChapterCoverHtml(story, oneBased)
       );
     }
     var b;

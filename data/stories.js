@@ -1556,7 +1556,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 29368,
+    wordCount: 34750,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
@@ -1576,7 +1576,7 @@ window.DATA_STORIES = [
     ],
     state: 3,
     releaseDate: "2026-08-24",
-    chaptersToPublish: 5,
+    chaptersToPublish: 6,
     chapterReleases: [
       {
         chapter: 1,
@@ -1603,6 +1603,11 @@ window.DATA_STORIES = [
         title: "Chapter 4: Sterilizer™ Comprehensive Batch Test (CBT)",
         releaseDate: "2026-09-28",
       },
+      {
+        chapter: 6,
+        title: "Chapter 5: The Break Room",
+        releaseDate: "2026-10-15",
+      },
     ],
     chapterShares: [
       {
@@ -1627,6 +1632,13 @@ window.DATA_STORIES = [
           "Quality Control — Chapter 4: Sterilizer™ Comprehensive Batch Test",
         description:
           "Olivia tests as many Sterilizers as she can, as fast as possible.",
+      },
+      {
+        chapter: 6,
+        cover: "assets/covers/quality_control_ch05_breakroom_lowangle_v13.jpg",
+        title: "Quality Control — Chapter 5: The Break Room",
+        description:
+          "Olivia's break takes her to the executive lounge. Zennia is already there, and she's glad the intern asked to stay.",
       },
     ],
   },

@@ -27,6 +27,7 @@ window.OVER_EASY_CATALOG = {
     { id: "fashion", label: "Fashion" },
     { id: "media", label: "Media" },
     { id: "medical", label: "Medical Equipment" },
+    { id: "pharmaceuticals", label: "Pharmaceuticals" },
     { id: "self-defense", label: "Self Defense" },
     { id: "discipline", label: "Discipline & Security" },
     { id: "sex-toys", label: "Sex Toys" },
@@ -35,6 +36,55 @@ window.OVER_EASY_CATALOG = {
   ],
 
   products: [
+    {
+      id: "pharmaceuticals",
+      category: "pharmaceuticals",
+      newArrival: true,
+      name: "Over Easy Pharmaceuticals",
+      model: "OET-RX-1",
+      image:
+        "assets/over-easy/scenes/andrea_and_lucas/overeasy_pharmaceuticals_bottle_v1.png",
+      images: [
+        {
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_pharmaceuticals_bottle_v1.png",
+        },
+      ],
+      tagline: "His body, your choice.",
+      description:
+        "When a man's body doesn't quite work the way you'd prefer, chemical adjustments can be cheaper and easier than surgical ones. Choose from a range of OverEasy products to make sure his cock and balls are functioning exactly as you'd like. Available in pills, injections, or powder satchets to mix into his coffee, when you want a more discreet option.",
+      sizeOptions: [
+        {
+          id: "prescription",
+          label: "Prescription",
+          options: [
+            { value: "feelmax", label: "FeelMax sensation maximizers" },
+            { value: "staydown", label: "LimpHard arousal freezer" },
+            { value: "tenderpoint", label: "Keepimup stimulants" },
+            {
+              value: "cockburster",
+              label: "CockBurster arousal serum (ultra-maximum extra strength)",
+            },
+            { value: "pump", label: "TestiGrow male enhancement formula" },
+            { value: "shrink", label: "Shrinkadink male dehancement formula" },
+            {
+              value: "lastcall",
+              label: "LastCall™ testicular extraction formula",
+            },
+            {
+              value: "treetrim",
+              label:
+                "TreeTrim permanent male contraceptive (sold unbranded as Nokidsinol)",
+            },
+            { value: "ec", label: "EunuchCalm mood stabilizer" },
+            { value: "dd", label: "Dripidick seminal maximizer" },
+            {
+              value: "turn",
+              label: "Turnimout sexual orientation reversal formula",
+            },
+          ],
+        },
+      ],
+    },
     {
       id: "ball-killers",
       category: "fashion",
@@ -705,7 +755,6 @@ window.OVER_EASY_CATALOG = {
     {
       id: "boysnapper",
       category: "sex-toys",
-      newArrival: true,
       purchaseUrl: "../#story/48/read/3",
       name: "BoySnapper™ Scrotal Stretcher",
       model: "OET-BS-1",
@@ -729,7 +778,6 @@ window.OVER_EASY_CATALOG = {
     {
       id: "invertcage",
       category: "sex-toys",
-      newArrival: true,
       purchaseUrl: "../#story/49/read",
       name: "CockCrusher™ Inverted Chastity Cage",
       model: "OET-IC-XS",
@@ -777,7 +825,6 @@ window.OVER_EASY_CATALOG = {
     {
       id: "seedspray",
       category: "medical",
-      newArrival: true,
       purchaseUrl: "../#story/48/read/4",
       name: "SeedSpray™ Cavitation Nanobots",
       model: "OET-SS-1",
@@ -833,6 +880,45 @@ window.OVER_EASY_CATALOG = {
       features: [
         "Dual-ended: external shaft plus internal g-spot stimulator for wearer stability and pleasure",
         "Extra dense false testicles for heft and impact",
+      ],
+    },
+    {
+      id: "prickplug",
+      category: "sex-toys",
+      newArrival: true,
+      name: "The Prickplug™",
+      model: "OET-PP-1",
+      image:
+        "assets/over-easy/scenes/andrea_and_lucas/overeasy_prickplug_device_v8.jpg",
+      images: [
+        {
+          path: "assets/over-easy/scenes/andrea_and_lucas/overeasy_prickplug_device_v8.jpg",
+          caption: "The Prickplug™ OET-PP-1 urethral cork",
+        },
+      ],
+      tagline: "Easy on the way in, educational on the way out.",
+      description:
+        "For when he's going to finish before you're finished with him. The snubbed tip lets you work its way down the most stubborn urethras, and the firm lip prevents even unnaturally strong ejaculations from pushing it free.",
+      sizeOptions: [
+        {
+          id: "length",
+          label: "Length",
+          options: [
+            { value: "4", label: '4"' },
+            { value: "6", label: '6"' },
+            { value: "8", label: '8"' },
+          ],
+        },
+        {
+          id: "width",
+          label: "Width",
+          options: [
+            { value: "small", label: "Small" },
+            { value: "medium", label: "Medium" },
+            { value: "wide", label: "Wide" },
+            { value: "extra-wide", label: "Extra wide" },
+          ],
+        },
       ],
     },
     {

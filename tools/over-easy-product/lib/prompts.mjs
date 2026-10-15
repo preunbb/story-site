@@ -121,6 +121,18 @@ export const PRODUCT_HINTS = {
       "assets/over-easy/scenes/andrea_and_lucas/overeasy_ball_anvil_device_v1.png",
     ],
   },
+  prickplug: {
+    kind: "device",
+    category: "sex-toys",
+    badge: "Premium",
+    displayName: "The Prickplug™",
+    model: "OET-PP-1",
+    imageNotes:
+      "Lifestyle product photo. Adult woman's hand holds a matte-black plastic handle (raw-egg Over Easy pictogram and OVER EASY TECHNOLOGIES wordmark) over a real bedside table. Shaft is frosted semi-translucent and as thin as pencil lead, about 2mm, perfectly straight. Tip is a short blunt rounded cone in the same frosted plastic: slightly more conical than a sphere, nose fully rounded and dull, not sharp, not a needle, only a little wider than the shaft.",
+    referenceAssets: [
+      "assets/brands/overeasy_logo_v2_raw_eggs_minimal.png",
+    ],
+  },
   "reactive-buttplug": {
     kind: "device",
     category: "sex-toys",
@@ -269,6 +281,18 @@ export const PRODUCT_HINTS = {
       "assets/brands/crushed_testicles_xray_crosssection_v3_reference_plate.png",
     ],
   },
+  pharmaceuticals: {
+    kind: "bottle",
+    category: "pharmaceuticals",
+    badge: "Pharmaceuticals",
+    displayName: "Over Easy Pharmaceuticals",
+    model: "OET-RX-1",
+    imageNotes:
+      "Single amber glass prescription bottle with a white child-resistant cap, standing on a seamless white studio background. Clinical white label wrapped on the bottle. Label carries the canonical raw-egg pictogram (smashed raw egg with spilled yolk on the left, cracked intact raw egg with a small yolk drip on the right — flat line art, not fried eggs, not a smiley) above the wordmark OVER EASY with EASY in yolk orange and TECHNOLOGIES tracked below, then the word PHARMACEUTICALS in black. A few plain white round tablets beside the bottle. Photo-real consumer packaging. No people, no anatomy, no cartoon style.",
+    referenceAssets: [
+      "assets/brands/overeasy_logo_v2_raw_eggs_minimal.png",
+    ],
+  },
   "luna-identity-arm": {
     kind: "device",
     category: "discipline",
@@ -305,7 +329,7 @@ export function buildImagePrompt({
 
   const kind = hints.kind ?? "device";
   const base =
-    kind === "packaging"
+    kind === "packaging" || kind === "bottle"
       ? "Product catalog photograph of Over Easy Technologies retail packaging"
       : kind === "fashion"
         ? "Product catalog photograph of Over Easy Technologies fashion product"
@@ -336,6 +360,8 @@ const SLUG_ALIASES = {
   ballcracker: "nutcracker",
   "semen-extractor": "auto-milker",
   luna: "luna-identity-arm",
+  "the-prickplug": "prickplug",
+  prickplug: "prickplug",
   "reactive-prostate-plug": "reactive-buttplug",
   "reactive-butt-plug": "reactive-buttplug",
   "ball-cuff": "ball-cuff",
