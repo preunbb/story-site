@@ -1556,7 +1556,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 34750,
+    wordCount: 34228,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
@@ -1577,6 +1577,23 @@ window.DATA_STORIES = [
     state: 3,
     releaseDate: "2026-08-24",
     chaptersToPublish: 6,
+    /**
+     * Sidebar chapter 6 is "Chapter 5: The Break Room". The heading stays in
+     * the public markdown; the body is AES-GCM ciphertext. Password is
+     * QUALITY_CONTROL_CH6_PASSWORD in .env.local (never commit it).
+     */
+    passwordChapters: [
+      {
+        chapter: 6,
+        ciphertext: "assets/stories/quality-control-ch6.enc.json",
+        passwordGateHash:
+          "9870e954cdb309faa5f50f78c9aee67f285246dbdb2b929073b4315bd324a9bb",
+        passwordGateDomain: "story-site:quality-control:ch6:gate:",
+        passwordKeyDomain: "story-site:quality-control:ch6:key:",
+        passwordEnv: "QUALITY_CONTROL_CH6_PASSWORD",
+        passwordPrompt: "Enter the password to read this chapter.",
+      },
+    ],
     chapterReleases: [
       {
         chapter: 1,

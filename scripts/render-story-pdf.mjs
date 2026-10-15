@@ -68,6 +68,7 @@ import {
   buildEndPageHtml,
   DEFAULT_OUT_DIR,
 } from "./lib/story-render.mjs";
+import { redactPasswordChapterBodies } from "./lib/password-chapters.mjs";
 
 const READER_OPTS = {
   linkClass: "story-reader-inline-link",
@@ -390,6 +391,12 @@ function publicMarkdownForStory(story) {
   const abs = join(repoRoot, rel);
   if (!existsSync(abs)) return null;
   let markdown = readFileSync(abs, "utf8");
+  if (Array.isArray(story.passwordChapters) && story.passwordChapters.length) {
+    markdown = redactPasswordChapterBodies(
+      markdown,
+      story.passwordChapters.map((gate) => gate.chapter),
+    ).markdown;
+  }
   const max = story.chaptersToPublish;
   if (typeof max === "number" && Number.isFinite(max) && max >= 1) {
     markdown = truncateMarkdownToPublishedChapters(markdown, max);

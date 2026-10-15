@@ -34,6 +34,8 @@ import {
   buildCompiledSeriesMarkdown,
   compiledSeriesMembers,
 } from "./lib/compile-series.mjs";
+import { loadEnvLocal } from "./lib/load-env-local.mjs";
+import { stashPasswordChapters } from "./lib/password-chapters.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -211,7 +213,8 @@ async function syncOne(story, td) {
   if (!story.driveUrl) return { id: story.id, skipped: "no driveUrl" };
   const md = await fetchMarkdownFromPublishUrl(story.driveUrl, td);
   const outPath = join(OUT_DIR, `${story.id}.md`);
-  writeFileSync(outPath, md, "utf8");
+  const publicMd = stashPasswordChapters(repoRoot, story, md);
+  writeFileSync(outPath, publicMd, "utf8");
 
   let preview = null;
   const pr = story.previewRead;
@@ -358,6 +361,7 @@ async function compileOneSeriesStory(story, all, td) {
 }
 
 async function main() {
+  loadEnvLocal(repoRoot);
   if (!existsSync(OUT_DIR)) mkdirSync(OUT_DIR, { recursive: true });
   const all = loadStories();
   const driveStories = (

@@ -626,6 +626,7 @@
       text,
       story && story.chaptersToPublish,
     );
+    bodyMd = redactPasswordChapterBodies(bodyMd, story);
     setReaderStorySourceMarkdown(bodyMd);
     var buyBarHtml = formatStoryReaderBuyBarHtml(story);
     storyReaderArticle.innerHTML =
@@ -634,6 +635,7 @@
       storyMarkdownToSafeHtml(bodyMd, story) +
       formatStoryPreviewPurchaseHtml(story);
     setupStoryReaderChapters();
+    bindStoryChapterLocks(story);
   }
 
   function storyReaderUnlockBuyNoteHtml(story) {
@@ -6529,7 +6531,93 @@
     );
   }
 
-  function storyMarkdownToSafeHtml(markdown, story) {
+  function storyPasswordChapterGate(story, chapterOneBased) {
+    var gates = story && story.passwordChapters;
+    if (!Array.isArray(gates)) return null;
+    var want = Number(chapterOneBased);
+    for (var i = 0; i < gates.length; i++) {
+      if (gates[i] && Number(gates[i].chapter) === want) return gates[i];
+    }
+    return null;
+  }
+
+  function isMarkdownChapterHeadingLine(line) {
+    return /^#{1,3} /.test(String(line || "").trim());
+  }
+
+  /**
+   * Public reader markdown omits password-chapter bodies. This matches
+   * scripts/lib/password-chapters.mjs so a stale full file still cannot render.
+   */
+  function redactPasswordChapterBodies(markdown, story) {
+    var gates = story && story.passwordChapters;
+    if (!Array.isArray(gates) || !gates.length) return markdown;
+    var wanted = {};
+    for (var i = 0; i < gates.length; i++) {
+      var n = Number(gates[i] && gates[i].chapter);
+      if (n > 0) wanted[n] = true;
+    }
+    var lines = String(markdown || "").split("\n");
+    var out = [];
+    var chapter = 0;
+    var skipping = false;
+    for (var li = 0; li < lines.length; li++) {
+      var line = lines[li];
+      if (isMarkdownChapterHeadingLine(line)) {
+        var wasSkipping = skipping;
+        chapter++;
+        skipping = !!wanted[chapter];
+        if (wasSkipping && out.length && out[out.length - 1] !== "") {
+          out.push("");
+        }
+        out.push(line);
+      } else if (!skipping) {
+        out.push(line);
+      }
+    }
+    return out.join("\n");
+  }
+
+  function storyChapterLockHtml(gate, chapterOneBased) {
+    var prompt =
+      (gate && gate.passwordPrompt) ||
+      "Enter the password to read this chapter.";
+    var inputId = "story-chapter-lock-input-" + chapterOneBased;
+    var widths = [92, 100, 78, 96, 64, 88, 100, 71, 84, 97, 60, 90, 100, 73, 86, 55, 94, 68];
+    var veil = "";
+    for (var i = 0; i < widths.length; i++) {
+      veil += '<span style="width:' + widths[i] + '%"></span>';
+    }
+    return (
+      '<section class="story-chapter-lock" data-password-chapter="' +
+      chapterOneBased +
+      '">' +
+      '<div class="story-chapter-lock-veil" aria-hidden="true">' +
+      veil +
+      "</div>" +
+      '<div class="story-chapter-lock-scrim">' +
+      '<div class="story-reader-unlock">' +
+      '<h3 class="story-reader-unlock-title">Password required</h3>' +
+      '<p class="story-reader-unlock-text">' +
+      escapeHtml(prompt) +
+      "</p>" +
+      '<form class="story-reader-unlock-form story-chapter-lock-form">' +
+      '<label class="story-reader-unlock-label" for="' +
+      inputId +
+      '">Password</label>' +
+      '<input class="story-reader-unlock-input" id="' +
+      inputId +
+      '" type="password" name="password" autocomplete="current-password" required />' +
+      '<button type="submit" class="story-reader-unlock-submit">Unlock</button>' +
+      '<p class="story-reader-unlock-error" hidden></p>' +
+      "</form></div></div></section>"
+    );
+  }
+
+  function storyMarkdownToSafeHtml(markdown, story, renderOpts) {
+    var honorPasswordChapters = !(
+      renderOpts && renderOpts.ignorePasswordChapters
+    );
     // Isolate scene-only lines that lack a blank line before/after.
     var normalized = String(markdown || "")
       .replace(/^(\[\[\s*scene\s*:[^\]]+\]\])[ \t]*$/gim, "\n$1\n")
@@ -6537,7 +6625,8 @@
     var blocks = normalized.split(/\n\n+/);
     var html = [];
     var chapterIndex = 0;
-    function chapterHeading(level, trimmed) {
+    var skippingPasswordChapter = false;
+    function chapterHeading(level, trimmed, suppressCover) {
       var tag = level === 2 ? "h2" : "h3";
       var inner = hasPreservedInlineHtml(trimmed)
         ? formatBodyInline(trimmed)
@@ -6556,13 +6645,51 @@
         "</" +
         tag +
         ">" +
-        readerChapterCoverHtml(story, oneBased)
+        (suppressCover ? "" : readerChapterCoverHtml(story, oneBased))
       );
     }
     var b;
     for (b = 0; b < blocks.length; b++) {
       var block = blocks[b].trim();
       if (!block) continue;
+      if (
+        block.indexOf("### ") === 0 ||
+        block.indexOf("## ") === 0 ||
+        block.indexOf("# ") === 0
+      ) {
+        var level = 3;
+        var title = block.slice(2).trim();
+        if (block.indexOf("### ") === 0) {
+          title = block.slice(4).trim();
+        } else if (block.indexOf("## ") === 0) {
+          level = 2;
+          title = block.slice(3).trim();
+        }
+        var oneBased = chapterIndex + 1;
+        var gate = honorPasswordChapters
+          ? storyPasswordChapterGate(story, oneBased)
+          : null;
+        var cached = gate
+          ? unlockedChapterMarkdown[unlockedChapterKey(story, oneBased)]
+          : "";
+        html.push(chapterHeading(level, title, !!(gate && !cached)));
+        if (gate && cached) {
+          html.push(readerChapterCoverHtml(story, oneBased));
+          html.push(
+            storyMarkdownToSafeHtml(cached, story, {
+              ignorePasswordChapters: true,
+            }),
+          );
+          skippingPasswordChapter = true;
+        } else if (gate) {
+          html.push(storyChapterLockHtml(gate, oneBased));
+          skippingPasswordChapter = true;
+        } else {
+          skippingPasswordChapter = false;
+        }
+        continue;
+      }
+      if (skippingPasswordChapter) continue;
       var sceneMatch = block.match(SCENE_TAG_BLOCK_RE);
       if (sceneMatch) {
         if (getAiImagesEnabled() && isStoryScenesVisibleOnSite(story)) {
@@ -6570,13 +6697,7 @@
         }
         continue;
       }
-      if (block.indexOf("### ") === 0) {
-        html.push(chapterHeading(3, block.slice(4).trim()));
-      } else if (block.indexOf("## ") === 0) {
-        html.push(chapterHeading(2, block.slice(3).trim()));
-      } else if (block.indexOf("# ") === 0) {
-        html.push(chapterHeading(3, block.slice(2).trim()));
-      } else if (/^\s*!\[([^\]]*)\]\(([^)]+)\)\s*$/.test(block)) {
+      if (/^\s*!\[([^\]]*)\]\(([^)]+)\)\s*$/.test(block)) {
         if (!getAiImagesEnabled()) {
           continue;
         }
@@ -6880,6 +7001,56 @@
   var shareCopiedTimer = null;
   /** Markdown currently shown in the reader, before HTML is stripped for copy. */
   var readerStorySourceMarkdown = "";
+  /** Public markdown with password-chapter bodies removed. */
+  var readerStoryPublicMarkdown = "";
+  /** Decrypted chapter bodies for this page load. Keyed by storyId:chapter. */
+  var unlockedChapterMarkdown = {};
+
+  function unlockedChapterKey(story, chapterOneBased) {
+    return String(story && story.id) + ":" + chapterOneBased;
+  }
+
+  function insertMarkdownAfterChapter(markdown, chapterOneBased, body) {
+    var lines = String(markdown || "").split("\n");
+    var chapter = 0;
+    var out = [];
+    var skippingBody = false;
+    var cleanBody = String(body || "")
+      .replace(/^\n+/, "")
+      .replace(/\n+$/, "");
+    var want = Number(chapterOneBased);
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      if (isMarkdownChapterHeadingLine(line)) {
+        chapter++;
+        skippingBody = false;
+        out.push(line);
+        if (chapter === want) {
+          out.push("");
+          out.push(cleanBody);
+          out.push("");
+          skippingBody = true;
+        }
+      } else if (skippingBody) {
+        continue;
+      } else {
+        out.push(line);
+      }
+    }
+    return out.join("\n");
+  }
+
+  function composeUnlockedReaderMarkdown(story) {
+    var md = readerStoryPublicMarkdown;
+    var gates = story && story.passwordChapters;
+    if (!story || !Array.isArray(gates)) return md;
+    for (var i = 0; i < gates.length; i++) {
+      var chapter = Number(gates[i] && gates[i].chapter);
+      var body = unlockedChapterMarkdown[unlockedChapterKey(story, chapter)];
+      if (body) md = insertMarkdownAfterChapter(md, chapter, body);
+    }
+    return md;
+  }
 
   function copyTextToClipboard(text) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -6931,10 +7102,90 @@
     return String(markdown || "").replace(/<\/?[a-zA-Z][^>]*>/g, "");
   }
 
-  function setReaderStorySourceMarkdown(markdown) {
-    readerStorySourceMarkdown = markdown || "";
+  function publishReaderCopySource() {
+    readerStorySourceMarkdown = readerStory
+      ? composeUnlockedReaderMarkdown(readerStory) || ""
+      : readerStoryPublicMarkdown || "";
     var item = byId("story-reader-share-copy-text");
     if (item) item.disabled = !readerStorySourceMarkdown;
+  }
+
+  function setReaderStorySourceMarkdown(markdown) {
+    readerStoryPublicMarkdown = markdown || "";
+    publishReaderCopySource();
+  }
+
+  function bindStoryChapterLocks(story) {
+    if (!storyReaderArticle || !story) return;
+    var forms = storyReaderArticle.querySelectorAll(".story-chapter-lock-form");
+    for (var i = 0; i < forms.length; i++) {
+      (function (form) {
+        var section = form.closest(".story-chapter-lock");
+        var chapter = section
+          ? Number(section.getAttribute("data-password-chapter"))
+          : 0;
+        var gate = storyPasswordChapterGate(story, chapter);
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var input = form.querySelector(".story-reader-unlock-input");
+          var err = form.querySelector(".story-reader-unlock-error");
+          var submitBtn = form.querySelector(".story-reader-unlock-submit");
+          var password = input ? input.value : "";
+          if (!password || !gate) return;
+          if (err) {
+            err.hidden = true;
+            err.textContent = "";
+          }
+          if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Unlocking…";
+          }
+          verifyStoryPasswordGate(password, gate)
+            .then(function (ok) {
+              if (!ok) throw new Error("bad-password");
+              return fetch(gate.ciphertext, {
+                signal: readerAbort ? readerAbort.signal : undefined,
+                credentials: "omit",
+              }).then(function (res) {
+                if (!res.ok) throw new Error("HTTP " + res.status);
+                return res.json();
+              });
+            })
+            .then(function (payload) {
+              return decryptPasswordStoryMarkdown(password, payload, gate);
+            })
+            .then(function (text) {
+              if (!readerStory || readerStory.id !== story.id) return;
+              if (!section || !section.parentNode) return;
+              unlockedChapterMarkdown[unlockedChapterKey(story, chapter)] = text;
+              var wrap = document.createElement("div");
+              wrap.className = "story-chapter-unlocked";
+              wrap.innerHTML =
+                readerChapterCoverHtml(story, chapter) +
+                storyMarkdownToSafeHtml(text, story, {
+                  ignorePasswordChapters: true,
+                });
+              section.replaceWith(wrap);
+              publishReaderCopySource();
+            })
+            .catch(function (ex) {
+              if (ex && ex.name === "AbortError") return;
+              if (!readerStory || readerStory.id !== story.id) return;
+              if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Unlock";
+              }
+              if (err) {
+                err.hidden = false;
+                err.textContent =
+                  ex && ex.message === "bad-password"
+                    ? "Incorrect password."
+                    : "Could not unlock this chapter. Check the password and try again.";
+              }
+            });
+        });
+      })(forms[i]);
+    }
   }
 
   function bindStoryReaderShare() {

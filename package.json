@@ -12,6 +12,7 @@
     "sync:bereavement": "node scripts/sync-bereavement-counseling-to-dist.mjs",
     "sync:bereavement-preview": "node scripts/sync-bereavement-preview-md.mjs",
     "encrypt:bereavement": "node scripts/encrypt-bereavement-counseling.mjs",
+    "encrypt:password-chapters": "node scripts/encrypt-password-chapters.mjs",
     "rebuild:bereavement-from-doc": "npm run sync:bereavement && npm run sync:bereavement-preview && npm run encrypt:bereavement && npm run pdf -- 49",
     "sync:concurrent": "node scripts/sync-stories.mjs --concurrency=all && node scripts/generate-story-share-pages.mjs",
     "pdf": "node scripts/render-story-pdf.mjs",
