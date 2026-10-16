@@ -1556,7 +1556,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 34344,
+    wordCount: 34341,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
@@ -1852,7 +1852,7 @@ window.DATA_STORIES = [
   },
   {
     id: 57,
-    wordCount: 2707,
+    wordCount: 2741,
     title: "Lowblowtober 13: Knee",
     brutalityRating: 3,
     summary:
@@ -1874,7 +1874,7 @@ window.DATA_STORIES = [
    */
   {
     id: 58,
-    wordCount: 14989,
+    wordCount: 15023,
     title: "Lowblowtober Collection",
     summary: "See #lowblowtober2026 on Twitter!",
     summaryUrl: "https://x.com/Barf_on_Squid/status/2095124787605442582",
