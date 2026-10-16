@@ -274,7 +274,7 @@ window.DATA_STORIES = [
     title: "A Healthy Relationship",
     summary:
       "Rachel finally has a boyfriend who shares her kink. They try some roleplay in a physics lecture. Published on Amazon as 'Busted under the Desk'.",
-    cover: "assets/covers/a_healthy_relationship.jpg",
+    cover: "assets/covers/a_healthy_relationship_photoreal_keep_v1.png",
     amazonUrl:
       "https://www.amazon.com/Three-Ballbusting-Short-Stories-Castrated-ebook/dp/B07X3LZJ55",
     driveUrl:
@@ -847,7 +847,7 @@ window.DATA_STORIES = [
     brutalityRating: 3,
     summary:
       "Sean moves in with his stepmom Genovia and stepsister Sylvana—both witches with powers over male arousal and orgasm. They have very different plans for him, and his resistance pushes them to extremes.",
-    cover: "assets/covers/living_with_ballbusting_witches.jpg",
+    cover: "assets/covers/living_with_ballbusting_witches_kitchen_magic_v11.jpg",
     amazonUrl:
       "https://www.amazon.com/Living-ballbusting-witches-Preun-BB-ebook/dp/B07X6GJ99F",
     driveUrl:
@@ -1556,7 +1556,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 34230,
+    wordCount: 34344,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
