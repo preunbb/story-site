@@ -842,7 +842,7 @@ window.DATA_STORIES = [
   },
   {
     id: 27,
-    wordCount: 9325,
+    wordCount: 9173,
     title: "Living with Ballbusting Witches",
     brutalityRating: 3,
     summary:
@@ -1556,7 +1556,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 34341,
+    wordCount: 35013,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
