@@ -52,7 +52,20 @@
     {
       id: "newest",
       title: "Newest releases",
-      storyIds: [58, 49, 48, 47, 46, 42, 43, 45],
+      storyIds: [
+        {
+          id: 48,
+          chapter: 6,
+          title: "Quality Control, Chapter 5: The Break Room",
+        },
+        58,
+        49,
+        47,
+        46,
+        42,
+        43,
+        45,
+      ],
     },
     {
       id: "lowblow-tober",
@@ -1213,7 +1226,11 @@
     if (storyIsReadable(story)) {
       buttons.push(
         storyTextListActionButton({
-          href: "#story/" + story.id + "/read",
+          href:
+            "#story/" +
+            story.id +
+            "/read" +
+            (story.catalogChapter ? "/" + story.catalogChapter : ""),
           label: storyTextListReadLabel(story),
           variant: "read",
         }),
@@ -1720,21 +1737,49 @@
     });
   }
 
+  function catalogStoryEntry(entry) {
+    if (entry && typeof entry === "object") return entry;
+    return { id: entry };
+  }
+
   function catalogOwnedStoryIds() {
     var owned = {};
     for (var i = 0; i < CATALOG_SECTIONS.length; i++) {
       var sec = CATALOG_SECTIONS[i];
       for (var j = 0; j < sec.storyIds.length; j++) {
-        owned[sec.storyIds[j]] = true;
+        owned[catalogStoryEntry(sec.storyIds[j]).id] = true;
       }
     }
     return owned;
+  }
+
+  /** Card-only view of a story. Does not change the catalog entry itself. */
+  function presentCatalogStory(story, entry) {
+    if (!entry || entry.chapter == null) return story;
+    var chapter = Number(entry.chapter);
+    var share = storyChapterShareConfig(story, chapter);
+    var presented = {};
+    var key;
+    for (key in story) {
+      if (Object.prototype.hasOwnProperty.call(story, key)) {
+        presented[key] = story[key];
+      }
+    }
+    presented.title =
+      entry.title || (share && share.title) || story.title;
+    presented.cover = (share && share.cover) || story.cover;
+    presented.coverFlip = null;
+    presented.catalogChapter = chapter;
+    return presented;
   }
 
   function createStoryCard(s) {
     var card = document.createElement("article");
     card.className = "story-card";
     card.setAttribute("data-story", s.id);
+    if (s.catalogChapter) {
+      card.setAttribute("data-chapter", String(s.catalogChapter));
+    }
     var st = normalizeStoryState(s);
     var rowBadgeHtml = "";
     if (st === 1) {
@@ -1845,8 +1890,9 @@
       var sec = CATALOG_SECTIONS[i];
       var sectionStories = [];
       for (var j = 0; j < sec.storyIds.length; j++) {
-        var match = visibleById[sec.storyIds[j]];
-        if (match) sectionStories.push(match);
+        var entry = catalogStoryEntry(sec.storyIds[j]);
+        var match = visibleById[Number(entry.id)];
+        if (match) sectionStories.push(presentCatalogStory(match, entry));
       }
       if (sectionStories.length) {
         appendCatalogSection(catalog, sec.title, sec.id, sectionStories);
@@ -7792,6 +7838,11 @@
       if (!id) return;
       var story = getStoryById(id);
       if (!story) return;
+      var chapter = card.getAttribute("data-chapter");
+      if (chapter) {
+        location.hash = "story/" + story.id + "/read/" + chapter;
+        return;
+      }
       var href = storyCatalogHref(story);
       location.hash = href.charAt(0) === "#" ? href.slice(1) : href;
     });
