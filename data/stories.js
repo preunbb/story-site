@@ -847,7 +847,8 @@ window.DATA_STORIES = [
     brutalityRating: 3,
     summary:
       "Sean moves in with his stepmom Genovia and stepsister Sylvana—both witches with powers over male arousal and orgasm. They have very different plans for him, and his resistance pushes them to extremes.",
-    cover: "assets/covers/living_with_ballbusting_witches_kitchen_magic_v11.jpg",
+    cover:
+      "assets/covers/living_with_ballbusting_witches_kitchen_magic_v11.jpg",
     amazonUrl:
       "https://www.amazon.com/Living-ballbusting-witches-Preun-BB-ebook/dp/B07X6GJ99F",
     driveUrl:
@@ -1556,7 +1557,7 @@ window.DATA_STORIES = [
   },
   {
     id: 48,
-    wordCount: 35469,
+    wordCount: 35507,
     title: "Quality Control",
     brutalityRating: 5,
     cover: "assets/covers/quality_control_cover_v1.jpg",
@@ -1638,7 +1639,7 @@ window.DATA_STORIES = [
         cover: "assets/covers/quality_control_ch05_breakroom_lowangle_v13.jpg",
         title: "Quality Control — Chapter 5: The Break Room",
         description:
-          "Olivia's break takes her to the executive lounge. Zennia is already there, and she's glad the intern asked to stay.",
+          "Olivia takes her break. Zennia helps her relax and explore her sexuality.",
       },
     ],
   },
