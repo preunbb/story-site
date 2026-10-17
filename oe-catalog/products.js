@@ -822,53 +822,6 @@ window.OVER_EASY_CATALOG = {
       ],
     },
     {
-      id: "invertcage",
-      category: "sex-toys",
-      purchaseUrl: "../#story/49/read",
-      name: "CockCrusher™ Inverted Chastity Cage",
-      model: "OET-IC-XS",
-      image:
-        "assets/over-easy/scenes/bereavement_counseling/overeasy_invertcage_device_v12_no_box_inversion.png",
-      images: [
-        {
-          path: "assets/over-easy/scenes/bereavement_counseling/overeasy_invertcage_device_v12_no_box_inversion.png",
-        },
-      ],
-      tagline: "He doesn't need all that length.",
-      description:
-        "For the woman who's tired of pointless erections cluttering up his day. The CockCrusher™ cage sits fully flush against him, tamping down even the sllightest erection. If you want to shrink his penis permanently, ask our sales rep about the inversion attachment!",
-      features: [
-        "With inversion attachment, OverEasy guarantees permanent reduction of at least an inch of penis length",
-        "Warning: prolonged wear may have irreversibly deleterious effects on erectile function.",
-      ],
-      sizeOptions: [
-        {
-          id: "cage-size",
-          label: "Cage size",
-          options: [
-            {
-              value: "xxs",
-              label: 'xxs (for 1.5-2.5" erections)',
-            },
-            {
-              value: "xs",
-              label: 'xs (for 2.5-3.5" erections)',
-            },
-            {
-              value: "s",
-              label: 's (for 3.5-5" erections)',
-            },
-            {
-              value: "n/a",
-              label:
-                "Larger sizes not supported - OverEasy does not support caging real men",
-              disabled: true,
-            },
-          ],
-        },
-      ],
-    },
-    {
       id: "seedspray",
       category: "medical",
       purchaseUrl: "../#story/48/read/4",
@@ -964,6 +917,54 @@ window.OVER_EASY_CATALOG = {
             { value: "medium", label: "Medium" },
             { value: "wide", label: "Wide" },
             { value: "extra-wide", label: "Extra wide" },
+          ],
+        },
+      ],
+    },
+    {
+      id: "invertcage",
+      category: "sex-toys",
+      newArrival: true,
+      purchaseUrl: "../#story/49/read",
+      name: "CockCrusher™ Inverted Chastity Cage",
+      model: "OET-IC-XS",
+      image:
+        "assets/over-easy/scenes/bereavement_counseling/overeasy_invertcage_device_v12_no_box_inversion.png",
+      images: [
+        {
+          path: "assets/over-easy/scenes/bereavement_counseling/overeasy_invertcage_device_v12_no_box_inversion.png",
+        },
+      ],
+      tagline: "He doesn't need all that length.",
+      description:
+        "For the woman who's tired of pointless erections cluttering up his day. The CockCrusher™ cage sits fully flush against him, tamping down even the sllightest erection. If you want to shrink his penis permanently, ask our sales rep about the inversion attachment!",
+      features: [
+        "With inversion attachment, OverEasy guarantees permanent reduction of at least an inch of penis length",
+        "Warning: prolonged wear may have irreversibly deleterious effects on erectile function.",
+      ],
+      sizeOptions: [
+        {
+          id: "cage-size",
+          label: "Cage size",
+          options: [
+            {
+              value: "xxs",
+              label: 'xxs (for 1.5-2.5" erections)',
+            },
+            {
+              value: "xs",
+              label: 'xs (for 2.5-3.5" erections)',
+            },
+            {
+              value: "s",
+              label: 's (for 3.5-5" erections)',
+            },
+            {
+              value: "n/a",
+              label:
+                "Larger sizes not supported - OverEasy does not support caging real men",
+              disabled: true,
+            },
           ],
         },
       ],
