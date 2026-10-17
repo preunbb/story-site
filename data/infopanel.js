@@ -864,7 +864,7 @@ window.DATA_INFOPANEL = {
   zennia: [
     {
       storyId: 48,
-      text: "Finishes destroying [[char:theodore]]'s fertility. Oversees [[char:olivia]]'s SeedSpray test. Employs [[char:olivia]]. Knows each other ([[char:cathy]]). Employs [[char:charlotte]] in [[story:48]]. Owns [[char:overeasy_technologies]].",
+      text: "Finishes destroying [[char:theodore]]'s fertility. Oversees [[char:olivia]]'s SeedSpray test. Employs [[char:cathy]], [[char:charlotte]], and [[char:olivia]] at [[char:overeasy_technologies|OverEasy]] in [[story:48]], and helps the latters explore her sexuality in [[story:48/read/6|Chapter 5]].",
     },
     {
       storyId: 47,
@@ -950,7 +950,7 @@ window.DATA_INFOPANEL = {
   olivia: [
     {
       storyId: 48,
-      text: "Tests SeedSpray on [[char:theodore]]. Destroys 241 testicles of the [[char:nameless_volunteers|nameless volunteers]]: one ruptured in the AutoMilker, and 240 rendered inert in the Sterilizer batch. Snaps [[char:elliot]]'s spermatic cords with BoySnapper. Onboarded and supervised by [[char:cathy]] at [[char:overeasy_technologies|OverEasy]]. [[char:zennia]] is her boss's boss's boss's grand-boss. Employed by [[char:overeasy_technologies]]. [[char:cherry_pop]] is her favorite band to jam out to while running her [[story:48/read/5|product tests]].",
+      text: "Runs a large battery of quality control tests in [[story:48]]. Tests SeedSpray on [[char:theodore]]. Destroys 241 testicles of the [[char:nameless_volunteers|nameless volunteers]]: one ruptured in the AutoMilker, and 240 rendered inert in the Sterilizer batch. Snaps [[char:elliot]]'s spermatic cords with BoySnapper. Coworkers with [[char:charlotte]] and supervised by [[char:cathy]] and [[char:zennia]] at [[char:overeasy_technologies|OverEasy]]. Loves listening to [[char:cherry_pop]] while running her [[story:48/read/5|product tests]].",
     },
   ],
   charlotte: [

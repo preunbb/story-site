@@ -40,6 +40,7 @@ window.OVER_EASY_CATALOG = {
       id: "pharmaceuticals",
       category: "pharmaceuticals",
       newArrival: true,
+      purchaseUrl: "../#story/48/read/6",
       name: "Over Easy Pharmaceuticals",
       model: "OET-RX-1",
       image:
@@ -57,31 +58,72 @@ window.OVER_EASY_CATALOG = {
           id: "prescription",
           label: "Prescription",
           options: [
-            { value: "feelmax", label: "FeelMax sensation maximizers" },
-            { value: "staydown", label: "LimpHard arousal freezer" },
-            { value: "tenderpoint", label: "Keepimup stimulants" },
+            {
+              value: "feelmax",
+              label: "FeelMax sensation maximizers",
+              description:
+                "When you want him to feel absolutely everything, and more. FeelMax massively increases male sensitivity to touch, heat, pressure and pain, making every kiss, stroke, squeeze and punch that much more intense.",
+            },
+            {
+              value: "staydown",
+              label: "LimpHard arousal freezer",
+              description:
+                "When you've got his cock just as you like it and don't want it to change. LimpHard freezes his arousal at the exact level it's at, permanently. Want him quivering on the edge of orgasm for the rest of his life, or just sad and limp? Just inject him with LimpHard at the point of preferred arousal and he'll be yours forever.",
+            },
+            {
+              value: "tenderpoint",
+              label: "Keepimup stimulants",
+              description:
+                "For the boys with a low pain tolerance, it can be dispapointing seeing them pass out before you're done having fun. Keepimup keeps him conscious through any type of physical stimulation, pleasurable or painful.",
+            },
             {
               value: "cockburster",
               label: "CockBurster arousal serum (ultra-maximum extra strength)",
+              description:
+                "When you really want to see him explode. Not recommended for long term partners.",
             },
-            { value: "tg", label: "TestiGrow male enhancement formula" },
-            { value: "shrink", label: "Shrinkadink male dehancement formula" },
+            {
+              value: "tg",
+              label: "TestiGrow male enhancement formula",
+              description:
+                "When he's got cherries but you're prefer grapefruits. TestiGrow increases both size and density of his two most relevant bits. Side effects include mild nausea, extraordinary pain, slight dizziness, and occasionally ruptured testicles.",
+            },
+            {
+              value: "shrink",
+              label: "Shrinkadink male dehancement formula",
+              description:
+                "For the man that's got a little too much of a good thing. If you're looking to take more than five inches off your man, consult a doctor first so you don't accidentally invert him entirely.",
+            },
             {
               value: "lastcall",
               label:
                 "LastCall permanent erectile and testicular extraction formula",
+              description: "todo7",
             },
             {
               value: "treetrim",
               label:
                 "TreeTrim permanent male contraceptive (sold unbranded as Nokidsinol)",
+              description:
+                "Vasectomies are so inconvenient. Who wants to book a whole appointment, just so you can watch your favorite toy sit on a frozen bag of peas for two weeks? One dose of TreeTrim in his morning coffee and you'll be having worry-free condom-free sex with him for as long as he interests you.",
             },
-            { value: "ec", label: "EunuchCalm mood stabilizer" },
-            { value: "dd", label: "DripiDick seminal incontinence inducer" },
+            {
+              value: "ec",
+              label: "EunuchCalm mood stabilizer",
+              description:
+                "Wipes out every trace of testosterone from his body, permanently. Perfect for overly willful husbands, boyfriends or nephews.",
+            },
+            {
+              value: "dd",
+              label: "DripiDick seminal incontinence inducer",
+              description:
+                "Some men take hours to achieve orgasm. It can be a real nuisance. DripiDick ensures he'll never last again. Each dose erodes his stamina more, and a full prescription will leave him dribbling semen out of his prick as soon as his testicle produce it, for the rest of his life.",
+            },
             {
               value: "turn",
               label:
                 "Turnimout sexual orientation reverser and rectal relaxant",
+              description: "Make him gay and buttfuck him silly.",
             },
           ],
         },
@@ -888,6 +930,7 @@ window.OVER_EASY_CATALOG = {
       id: "prickplug",
       category: "sex-toys",
       newArrival: true,
+      purchaseUrl: "../#story/48/read/6",
       name: "The Prickplug™",
       model: "OET-PP-1",
       image:

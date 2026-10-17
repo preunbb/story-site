@@ -249,6 +249,12 @@
                     opt.imageIndex != null
                       ? ' data-image-index="' + escapeHtml(String(opt.imageIndex)) + '"'
                       : "";
+                  const descriptionAttr =
+                    opt.description != null
+                      ? ' data-description="' +
+                        escapeHtml(opt.description) +
+                        '"'
+                      : "";
                   return (
                     '<option value="' +
                     escapeHtml(opt.value) +
@@ -256,12 +262,24 @@
                     disabled +
                     className +
                     imageIndexAttr +
+                    descriptionAttr +
                     ">" +
                     escapeHtml(label) +
                     "</option>"
                   );
                 })
                 .join("");
+
+              const selected =
+                field.options.find(function (opt) {
+                  return !(opt.soldOut || opt.disabled);
+                }) || field.options[0];
+              const descriptionHtml =
+                selected && selected.description != null
+                  ? '<p class="oe-option-desc">' +
+                    escapeHtml(selected.description) +
+                    "</p>"
+                  : "";
 
               return (
                 '<div class="oe-size-field">' +
@@ -279,6 +297,7 @@
                 '">' +
                 options +
                 "</select>" +
+                descriptionHtml +
                 "</div>"
               );
             })
@@ -574,6 +593,12 @@
           if (!sel) return;
           const opt = sel.options[sel.selectedIndex];
           if (!opt) return;
+          const desc = opt.getAttribute("data-description");
+          if (desc != null) {
+            const field = sel.closest(".oe-size-field");
+            const text = field && field.querySelector(".oe-option-desc");
+            if (text) text.textContent = desc;
+          }
           const imgIdxRaw = opt.getAttribute("data-image-index");
           if (imgIdxRaw == null) return;
           const imgIdx = parseInt(imgIdxRaw, 10);

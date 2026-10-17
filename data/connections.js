@@ -904,6 +904,12 @@ window.DATA_CONNECTIONS = [
   },
   {
     from: "zennia",
+    to: "olivia",
+    storyId: 48,
+    kinds: ["relationship"],
+  },
+  {
+    from: "zennia",
     to: "theodore",
     storyId: 48,
     kinds: ["left", "right"],

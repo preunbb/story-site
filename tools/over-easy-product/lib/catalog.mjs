@@ -111,6 +111,9 @@ function formatSizeOptions(sizeOptions) {
         if (opt.soldOut) parts.push("soldOut: true");
         if (opt.disabled) parts.push("disabled: true");
         if (opt.imageIndex != null) parts.push(`imageIndex: ${opt.imageIndex}`);
+        if (opt.description != null) {
+          parts.push(`description: ${JSON.stringify(opt.description)}`);
+        }
         return `{ ${parts.join(", ")} }`;
       })
       .join(", ");
