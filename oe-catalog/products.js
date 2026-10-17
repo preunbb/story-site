@@ -98,7 +98,8 @@ window.OVER_EASY_CATALOG = {
               value: "lastcall",
               label:
                 "LastCall permanent erectile and testicular extraction formula",
-              description: "todo7",
+              description:
+                "When he's had enough sex for life and you want one last hurrah. LastCall will have him spurting the remains of his testicles out of his dick. Make sure to rupture his testicles BEFORE dosing!",
             },
             {
               value: "treetrim",
@@ -123,7 +124,8 @@ window.OVER_EASY_CATALOG = {
               value: "turn",
               label:
                 "Turnimout sexual orientation reverser and rectal relaxant",
-              description: "Make him gay and buttfuck him silly.",
+              description:
+                "Straight men can be so annoying stubborn to experimentation. Slip some Turnimout into his drink, and you can have the most heterosexual man spreading his cheeks and begging for his next cock.",
             },
           ],
         },
