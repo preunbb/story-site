@@ -1869,4 +1869,50 @@ window.DATA_STORIES = [
     releaseDate: "2026-10-13",
     series: { id: "lowblow-tober", order: 0 },
   },
+  {
+    id: 59,
+    wordCount: 14047,
+    title: "Self Defense",
+    brutalityRating: 3,
+    summary:
+      "Ben agrees to be Alyssa's partner at a women's self-defense class. Cups are not part of the curriculum.",
+    cover: "assets/covers/self_defense_cover_v10.jpg",
+    driveUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vQotp8clNS0r9MGJL12xi1OOBXir8ttgSfGE4eXKwIRf6bQOVacRObcoO02a0AM2EhQ935ze-6-UBML/pub",
+    characterIds: [
+      "ben",
+      "lee",
+      "alyssa",
+      "chad",
+      "andrea",
+      "lucas",
+      "steven",
+      "kaitlin",
+      "serena",
+    ],
+    state: 1,
+  },
+  {
+    id: 60,
+    wordCount: 5624,
+    title: "Mother Knows Best",
+    brutalityRating: 4,
+    summary:
+      "Nineteen-year-old Alf still lives at home, unemployed, and far too interested in his mother's work. Valerie has had enough of the peeking. She lays down new house rules and books him an appointment with Dr. Amy.",
+    cover: "assets/covers/mother_knows_best_cover_v5.jpg",
+    scenes: [
+      {
+        path: "assets/scenes/mother_knows_best/mkb_during_amy_trimming_v2.jpg",
+        caption: "Dr. Amy holds up the first scrap of Alf's foreskin while Mom watches.",
+      },
+      {
+        path: "assets/scenes/mother_knows_best/mkb_after_amy_scraps_v4_clean_face.jpg",
+        caption: "All done. Dr. Amy shows Alf everything she took.",
+      },
+    ],
+    driveUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vT50vGJ6PioLhuOjvODf_eyzCMrY8MQ3WKp-vXIIRn7w6bIrrRTkXYj3IE1qYiTOaPYZKo3uvG9VMQj/pub",
+    characterIds: ["valerie", "alf", "amy"],
+    state: 1,
+  },
 ];

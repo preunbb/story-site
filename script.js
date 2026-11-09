@@ -53,6 +53,7 @@
       id: "newest",
       title: "Newest releases",
       storyIds: [
+        60,
         {
           id: 48,
           chapter: 6,
@@ -1040,7 +1041,10 @@
   function storyIsReadable(story) {
     if (!story) return false;
     var st = normalizeStoryState(story);
-    return st !== 1 || storyHasPreviewRead(story);
+    if (st !== 1) return true;
+    if (storyHasPreviewRead(story)) return true;
+    // Coming soon: full text is local-only (markdown is gitignored).
+    return isLocalDevHost();
   }
 
   /** Hash target for cast / character-flyout story links. */
@@ -2795,7 +2799,7 @@
     if (!dl) return;
     var names = (characters || [])
       .filter(function (c) {
-        return c && c.name;
+        return c && c.name && !c.hideFromConnections;
       })
       .map(function (c) {
         return c.name;
@@ -3363,8 +3367,9 @@
     var nodes = [];
     function addNode(id) {
       if (!id || seenIds[id] || !getCharacterById(id)) return;
-      seenIds[id] = true;
       var c = getCharacterById(id);
+      if (c && c.hideFromConnections) return;
+      seenIds[id] = true;
       nodes.push({
         id: id,
         name: (c && c.name) || id,
