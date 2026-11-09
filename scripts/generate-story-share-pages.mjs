@@ -65,8 +65,11 @@ function absoluteCoverUrl(cover) {
   return `${SITE_ORIGIN}/${path}`;
 }
 
-function readerUrlForStory(storyId, chapterOneBased) {
-  let url = `${SITE_ORIGIN}/#story/${encodeURIComponent(String(storyId))}/read`;
+function catalogHashForStory(story, chapterOneBased) {
+  const id = encodeURIComponent(String(story.id));
+  const comingSoon = story.state === 1 || story.state === "1";
+  let url = `${SITE_ORIGIN}/#story/${id}`;
+  if (!comingSoon) url += "/read";
   if (
     typeof chapterOneBased === "number" &&
     Number.isFinite(chapterOneBased) &&
@@ -80,7 +83,7 @@ function readerUrlForStory(storyId, chapterOneBased) {
 function buildPageHtml(story) {
   const title = story.title || "Story";
   const description = story.summary || "";
-  const readerUrl = readerUrlForStory(story.id);
+  const readerUrl = catalogHashForStory(story);
   const img = absoluteCoverUrl(story.cover);
   const titleEsc = escapeAttr(title);
   const descEsc = escapeAttr(description);
@@ -128,7 +131,7 @@ function buildChapterPageHtml(story, chapterShare) {
     `${story.title || "Story"} — Chapter ${chapterShare.chapter}`;
   const description =
     chapterShare.description || story.summary || "";
-  const readerUrl = readerUrlForStory(story.id, chapterShare.chapter);
+  const readerUrl = catalogHashForStory(story, chapterShare.chapter);
   const img = absoluteCoverUrl(chapterShare.cover || story.cover);
   const titleEsc = escapeAttr(title);
   const descEsc = escapeAttr(description);

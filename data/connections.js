@@ -1565,28 +1565,4 @@ window.DATA_CONNECTIONS = [
     storyId: 57,
     kinds: ["knows"],
   },
-  {
-    from: "valerie",
-    to: "alf",
-    label: "His mother; new house rules",
-    reverseLabel: "Lives at home with his mother",
-    storyId: 60,
-    kinds: ["family", "pain"],
-  },
-  {
-    from: "amy",
-    to: "alf",
-    label: "Circumcises him high and tight",
-    reverseLabel: "Circumcised by Dr. Amy",
-    storyId: 60,
-    kinds: ["dick", "pain"],
-  },
-  {
-    from: "valerie",
-    to: "amy",
-    label: "Brings her son to Dr. Amy",
-    reverseLabel: "Sees Valerie's son",
-    storyId: 60,
-    kinds: ["knows"],
-  },
 ];

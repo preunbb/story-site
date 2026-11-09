@@ -1870,8 +1870,31 @@ window.DATA_STORIES = [
     series: { id: "lowblow-tober", order: 0 },
   },
   {
+    id: 59,
+    wordCount: 14047,
+    title: "Self Defense",
+    brutalityRating: 3,
+    summary:
+      "Ben agrees to be Alyssa's partner at a women's self-defense class. Cups are not part of the curriculum.",
+    cover: "assets/covers/self_defense_cover_v10.jpg",
+    driveUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vQotp8clNS0r9MGJL12xi1OOBXir8ttgSfGE4eXKwIRf6bQOVacRObcoO02a0AM2EhQ935ze-6-UBML/pub",
+    characterIds: [
+      "ben",
+      "lee",
+      "alyssa",
+      "chad",
+      "andrea",
+      "lucas",
+      "steven",
+      "kaitlin",
+      "serena",
+    ],
+    state: 1,
+  },
+  {
     id: 60,
-    wordCount: 5351,
+    wordCount: 5624,
     title: "Mother Knows Best",
     brutalityRating: 4,
     summary:
@@ -1890,7 +1913,6 @@ window.DATA_STORIES = [
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vT50vGJ6PioLhuOjvODf_eyzCMrY8MQ3WKp-vXIIRn7w6bIrrRTkXYj3IE1qYiTOaPYZKo3uvG9VMQj/pub",
     characterIds: ["valerie", "alf", "amy"],
-    state: 2,
-    releaseDate: "2026-11-06",
+    state: 1,
   },
 ];
