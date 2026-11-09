@@ -11,3 +11,13 @@ assets/stories/andrea_lucas.md
 assets/stories/59.md
 assets/stories/60.md
 workers/story-views/.dev.vars
+
+# Local-only archives / working files — not part of the live site.
+# Kept on disk; never pushed. GitHub Pages is capped at 1 GB.
+assets/obsolete/
+assets/bad/
+assets/captions/tocaption/
+assets/caption_inserts/
+assets/captions/**/raw/
+assets/captions/**/subimages/
+assets/captions/**/final_raw.*
