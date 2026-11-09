@@ -1032,6 +1032,7 @@
   }
 
   function storyWordCountFlyoutHtml(story) {
+    if (normalizeStoryState(story) === 1) return "";
     var n = story.wordCount;
     if (typeof n !== "number" || !isFinite(n) || n < 0) return "";
     var formatted = n.toLocaleString(undefined, { maximumFractionDigits: 0 });
@@ -1043,6 +1044,7 @@
   }
 
   function formatStoryWordCountLabel(story) {
+    if (normalizeStoryState(story) === 1) return null;
     var n = story && story.wordCount;
     if (typeof n !== "number" || !isFinite(n) || n < 0) return null;
     return n.toLocaleString(undefined, { maximumFractionDigits: 0 }) + " words";
