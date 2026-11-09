@@ -1,0 +1,91 @@
+# GitHub Pages rejects artifacts over 1 GB. The repo is larger than that
+# because of unused archives (obsolete/bad/tocaption/anatomy plates).
+# This workflow publishes the live site without those folders.
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Stage site without unpublished bulk
+        run: |
+          set -euo pipefail
+          staging="${RUNNER_TEMP}/site"
+          mkdir -p "$staging"
+          rsync -a \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude '.cursor/' \
+            --exclude '.mypy_cache/' \
+            --exclude '.venv/' \
+            --exclude '.venv-crop/' \
+            --exclude 'node_modules/' \
+            --exclude 'dist/' \
+            --exclude 'tools/' \
+            --exclude 'assets/obsolete/' \
+            --exclude 'assets/bad/' \
+            --exclude 'assets/captions/tocaption/' \
+            --exclude 'assets/caption_inserts/' \
+            ./ "$staging/"
+          find "$staging/assets/captions" -type d \( -name raw -o -name subimages \) -print0 | xargs -0 -r rm -rf
+          find "$staging/assets/captions" -type f -name 'final_raw.*' -delete
+          # Anatomy reference plates are for local image gen, not the live site.
+          find "$staging/assets/brands" -type f \( \
+            -name 'healthy_testicles_*' -o \
+            -name 'healthy_veiny*' -o \
+            -name 'healthy_noveins*' -o \
+            -name 'giant_*' -o \
+            -name 'crushed_*' -o \
+            -name 'gurney_*' -o \
+            -name 'empty_gurney_*' -o \
+            -name 'tied_off_*' -o \
+            -name 'lopsided*' \
+          \) -delete
+          echo "Staged site size:"
+          du -sh "$staging"
+          python3 - <<'PY'
+          import os
+          root = os.environ["RUNNER_TEMP"] + "/site"
+          total = 0
+          for dirpath, _, files in os.walk(root):
+              for name in files:
+                  total += os.path.getsize(os.path.join(dirpath, name))
+          gb = total / (1024 ** 3)
+          print(f"Uncompressed files: {gb:.2f} GiB")
+          if total > 1000 * 1024 * 1024:
+              raise SystemExit("Staged site is still over GitHub Pages' 1 GB limit")
+          PY
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
