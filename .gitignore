@@ -21,3 +21,6 @@ assets/caption_inserts/
 assets/captions/**/raw/
 assets/captions/**/subimages/
 assets/captions/**/final_raw.*
+
+# Unserved root images (not referenced by the live site).
+logo.png
