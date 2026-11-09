@@ -53,6 +53,7 @@
       id: "newest",
       title: "Newest releases",
       storyIds: [
+        60,
         {
           id: 48,
           chapter: 6,

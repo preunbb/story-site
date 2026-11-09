@@ -29,7 +29,7 @@ window.DATA_CHARACTERS = [
     name: "Amy Li",
     gender: "F",
     testiclesKilled: 5,
-    bio: "EMT, then hospital nurse — Nurse Li. Busty, Asian, and clinically cruel: she finishes what other women start, and she knew Karen back in college. Her real passion is the Arena, where she fights as a blackbelt.",
+    bio: "EMT, then hospital nurse, now Dr. Li. Busty, Asian, and clinically cruel: she finishes what other women start, and she knew Karen back in college. Her real passion is the Arena, where she fights as a blackbelt.",
     profilePictures: ["assets/characters/amy_v2_busty_asian_sadistic.jpg"],
   },
   {
@@ -1118,5 +1118,23 @@ window.DATA_CHARACTERS = [
     testicleSize: "medium",
     scrotumHang: "tightly hung",
     profilePictures: ["assets/characters/michael_v1.jpg"],
+  },
+  {
+    id: "alf",
+    name: "Alf",
+    gender: "M",
+    bio: "Nineteen, unemployed, and still living at home. A little too interested in his mother's work.",
+    penisLengthInches: 4,
+    testicleCount: 2,
+    testicleSize: "medium",
+    scrotumHang: "low-hanging",
+    profilePictures: ["assets/characters/alf_v1.jpg"],
+  },
+  {
+    id: "valerie",
+    name: "Valerie",
+    gender: "F",
+    bio: "Alf's mother. She works full-time as an OnlyFans model, and is quite successful. She just wishes her pervert of a son wasn't such a disappointment.",
+    profilePictures: ["assets/characters/valerie_v3.jpg"],
   },
 ];

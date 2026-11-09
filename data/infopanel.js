@@ -59,6 +59,10 @@ window.DATA_INFOPANEL = {
   ],
   amy: [
     {
+      storyId: 60,
+      text: "As Dr. Amy, circumcises [[char:alf]] high and tight at [[char:valerie]]'s request in [[story:60]].",
+    },
+    {
       storyId: 14,
       text: "Castrates [[char:wesley]] in the [[char:ballbusting_arena|arena]] in [[story:14]].",
     },
@@ -1015,6 +1019,18 @@ window.DATA_INFOPANEL = {
     {
       storyId: 49,
       text: "Helps [[char:karen|Dr. Karen]] complete [[char:stuart]]'s therapy. Kicks and stomps [[char:stuart]]'s last ball. [[char:stuart]]'s sister. [[char:beverly]]'s daughter in [[story:49]].",
+    },
+  ],
+  alf: [
+    {
+      storyId: 60,
+      text: "Lives with [[char:valerie|his mother]]. She catches him and takes him to [[char:amy|Dr. Amy]], who circumcises him high and tight in [[story:60]].",
+    },
+  ],
+  valerie: [
+    {
+      storyId: 60,
+      text: "Alf's mother. Catches [[char:alf]] and books the appointment with [[char:amy|Dr. Amy]] in [[story:60]].",
     },
   ],
 };
