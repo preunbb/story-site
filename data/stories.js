@@ -1877,8 +1877,6 @@ window.DATA_STORIES = [
     summary:
       "Ben agrees to be Alyssa's partner at a women's self-defense class. Cups are not part of the curriculum.",
     cover: "assets/covers/self_defense_cover_v10.jpg",
-    driveUrl:
-      "https://docs.google.com/document/d/e/2PACX-1vQotp8clNS0r9MGJL12xi1OOBXir8ttgSfGE4eXKwIRf6bQOVacRObcoO02a0AM2EhQ935ze-6-UBML/pub",
     characterIds: [
       "ben",
       "lee",
@@ -1910,8 +1908,6 @@ window.DATA_STORIES = [
         caption: "All done. Dr. Amy shows Alf everything she took.",
       },
     ],
-    driveUrl:
-      "https://docs.google.com/document/d/e/2PACX-1vT50vGJ6PioLhuOjvODf_eyzCMrY8MQ3WKp-vXIIRn7w6bIrrRTkXYj3IE1qYiTOaPYZKo3uvG9VMQj/pub",
     characterIds: ["valerie", "alf", "amy"],
     state: 1,
   },

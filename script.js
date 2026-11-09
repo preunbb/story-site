@@ -53,6 +53,7 @@
       id: "newest",
       title: "Newest releases",
       storyIds: [
+        59,
         60,
         {
           id: 48,
@@ -101,7 +102,7 @@
     {
       id: "gym",
       title: "Gym stories",
-      storyIds: [28, 24, 8],
+      storyIds: [59, 28, 24, 8],
     },
     {
       id: "no-nut-narrator",

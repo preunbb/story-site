@@ -5,6 +5,10 @@
  * assets/stories/<id>.md. Run via `npm run sync` whenever a story's source
  * Google Doc has been edited.
  *
+ * Unreleased stories omit `driveUrl` from stories.js. Sync still finds them
+ * via gitignored `dist/drive_doc_ids.json` (`publish_url`) or
+ * `STORY_<id>_PUBLISH_URL` in `.env.local`.
+ *
  * Stories with `compileFromSeries` have no Doc of their own. After the
  * individual sync, each one is rebuilt from the current members of that
  * series (see scripts/lib/compile-series.mjs). Syncing a member, or the
@@ -42,6 +46,7 @@ const __dirname = dirname(__filename);
 const repoRoot = resolve(__dirname, "..");
 
 const STORIES_JS = join(repoRoot, "data", "stories.js");
+const DRIVE_IDS_JSON = join(repoRoot, "dist", "drive_doc_ids.json");
 const OUT_DIR = join(repoRoot, "assets", "stories");
 const ARGS = parseArgs(process.argv.slice(2));
 
@@ -92,6 +97,42 @@ function loadStories() {
     throw new Error("data/stories.js did not populate window.DATA_STORIES");
   }
   return stories;
+}
+
+function loadDrivePublishUrls() {
+  const fromJson = new Map();
+  if (existsSync(DRIVE_IDS_JSON)) {
+    try {
+      const parsed = JSON.parse(readFileSync(DRIVE_IDS_JSON, "utf8"));
+      for (const row of parsed.mappings || []) {
+        if (row && row.story_id != null && row.publish_url) {
+          fromJson.set(Number(row.story_id), String(row.publish_url).trim());
+        }
+      }
+    } catch (err) {
+      console.error(
+        `Could not read ${DRIVE_IDS_JSON}: ${err.message}`,
+      );
+    }
+  }
+  return fromJson;
+}
+
+function resolveDriveUrl(story, publishUrls) {
+  if (story && story.driveUrl) return story.driveUrl;
+  if (!story || story.id == null) return null;
+  const envKey = `STORY_${story.id}_PUBLISH_URL`;
+  const fromEnv = process.env[envKey];
+  if (fromEnv && fromEnv.trim()) return fromEnv.trim();
+  return publishUrls.get(Number(story.id)) || null;
+}
+
+function applyPrivateDriveUrls(stories, publishUrls) {
+  for (const story of stories) {
+    if (story.driveUrl) continue;
+    const url = resolveDriveUrl(story, publishUrls);
+    if (url) story.driveUrl = url;
+  }
 }
 
 /**
@@ -364,6 +405,7 @@ async function main() {
   loadEnvLocal(repoRoot);
   if (!existsSync(OUT_DIR)) mkdirSync(OUT_DIR, { recursive: true });
   const all = loadStories();
+  applyPrivateDriveUrls(all, loadDrivePublishUrls());
   const driveStories = (
     ARGS.only ? all.filter((s) => ARGS.only.has(s.id)) : all
   ).filter((s) => s.driveUrl && !s.compileFromSeries);
