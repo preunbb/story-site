@@ -1417,7 +1417,7 @@ window.DATA_STORIES = [
   },
   {
     id: 46,
-    wordCount: 12816,
+    wordCount: 12845,
     title: "Melody Seduces a Virgin",
     summary:
       "Melody's castration kink is back in full force, ever since her son lost his balls. She's been craving a chance to explore her awakened urges, and the nervous, virginal Ryan is just the guy to help her.",
