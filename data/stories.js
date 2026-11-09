@@ -1875,7 +1875,7 @@ window.DATA_STORIES = [
     title: "Self Defense",
     brutalityRating: 3,
     summary:
-      "Ben agrees to be Alyssa's partner at a women's self-defense class. Cups are not part of the curriculum.",
+      "Ben hopes helping Alyssa with her self-defense class will finally help her see him as more than just a friend. He wasn't expecting her to bring her boyfriend along, and he definitely wasn't expecting the level of pain the coach insists the girls learn to inflict in order to defend themselves. A soft sequel to Friendzoned, Andrea and Lucas, and Testy.",
     cover: "assets/covers/self_defense_cover_v10.jpg",
     characterIds: [
       "ben",
@@ -1896,12 +1896,13 @@ window.DATA_STORIES = [
     title: "Mother Knows Best",
     brutalityRating: 4,
     summary:
-      "Nineteen-year-old Alf still lives at home, unemployed, and far too interested in his mother's work. Valerie has had enough of the peeking. She lays down new house rules and books him an appointment with Dr. Amy.",
+      "Nineteen-year-old Alf still lives at home, unemployed, and far too interested in his mother's work as an OnlyFans model. After a particularly humiliating incident, she finally has enough. Between his very painful operation with Nurse Amy, and the delicious cruelty of Professor Coqtiz at Turgid U, she hopes he'll manage to get himself under control...or risk getting a couple more much more devastating operations.",
     cover: "assets/covers/mother_knows_best_cover_v5.jpg",
     scenes: [
       {
         path: "assets/scenes/mother_knows_best/mkb_during_amy_trimming_v2.jpg",
-        caption: "Dr. Amy holds up the first scrap of Alf's foreskin while Mom watches.",
+        caption:
+          "Dr. Amy holds up the first scrap of Alf's foreskin while Mom watches.",
       },
       {
         path: "assets/scenes/mother_knows_best/mkb_after_amy_scraps_v4_clean_face.jpg",
