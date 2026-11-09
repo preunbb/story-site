@@ -272,6 +272,10 @@ window.DATA_INFOPANEL = {
       storyId: 28,
       text: "Trains [[char:kaitlin]] in self-defense at [[char:the_gym]], from [[story:28]].",
     },
+    {
+      storyId: 59,
+      text: "Teaches a no-cup class at [[char:the_gym]]. Knees nephew [[char:lee]]. Strokes [[char:steven]] toward a partial erection. Requires the men to ejaculate after practice, and threatens orchiectomy if they can't, in [[story:59]].",
+    },
   ],
   erica: [
     {
@@ -572,6 +576,10 @@ window.DATA_INFOPANEL = {
       storyId: 49,
       text: "[[char:stuart]]'s unrequitted high school crush, and helps [[char:karen|Dr. Karen]] complete his therapy in [[story:49]].",
     },
+    {
+      storyId: 59,
+      text: "Brings study buddy [[char:ben]] and boyfriend [[char:chad]] to [[char:the_gym]] for self-defense training in [[story:59]].",
+    },
   ],
   chad: [
     {
@@ -581,6 +589,10 @@ window.DATA_INFOPANEL = {
     {
       storyId: 50,
       text: "Out on a trip with his boys while [[char:alyssa]] moves in [[story:50]].",
+    },
+    {
+      storyId: 59,
+      text: "[[char:alyssa]]'s drags him to [[char:the_gym]] in [[story:59]]. He does not get along with [[char:andrea]].",
     },
   ],
   niles: [
@@ -618,6 +630,10 @@ window.DATA_INFOPANEL = {
       storyId: 28,
       text: "Practice dummy at [[char:the_gym]]. Sabotaged into full castration by [[char:kaitlin]]. Scrotum grabbed by [[char:june]] in class. Practice groin-strike target of [[char:amy_lachbruchjunge]] in [[story:28]].",
     },
+    {
+      storyId: 59,
+      text: "Paid practice dummy at [[char:the_gym]]. [[char:kaitlin]] knees his scar. [[char:serena]] strokes him toward a partial erection while [[char:kaitlin]] films in [[story:59]].",
+    },
   ],
   kaitlin: [
     {
@@ -627,6 +643,10 @@ window.DATA_INFOPANEL = {
     {
       storyId: 47,
       text: "Twists [[char:felix]]'s balls at [[char:cherry_pop|Cherry]] Pop! in [[story:47]].",
+    },
+    {
+      storyId: 59,
+      text: "Student at [[char:the_gym]]. Knees [[char:lee]], [[char:ben]], [[char:lucas]], and [[char:chad]], and knees brother [[char:steven]]'s empty groin. Films [[char:serena]] helping [[char:steven]] in [[story:59]].",
     },
   ],
   ross: [
@@ -710,6 +730,10 @@ window.DATA_INFOPANEL = {
       storyId: 53,
       text: "Fucks [[char:lucas]] roughly in [[story:53]].",
     },
+    {
+      storyId: 59,
+      text: "Student at [[char:the_gym]].",
+    },
   ],
   lucas: [
     {
@@ -723,6 +747,10 @@ window.DATA_INFOPANEL = {
     {
       storyId: 53,
       text: "[[char:andrea]] uses him as a sex toy in [[story:53]].",
+    },
+    {
+      storyId: 59,
+      text: "Attends [[char:the_gym]] with [[char:andrea]]. She knees, thumbs, and grinds his remaining testicle, then fucks him until he passes out. Also kneed by [[char:kaitlin]] in [[story:59]].",
     },
   ],
   izzie: [
@@ -936,6 +964,10 @@ window.DATA_INFOPANEL = {
       storyId: 8,
       text: "[[char:serena]] teaches the class. [[char:kaitlin]], [[char:june]], [[char:amy_lachbruchjunge]], and [[char:erica]] are students. [[char:steven]] is the gym's practice dummy. [[char:dennis]] loses his fertility there while challenging them for ring time at the gym in [[story:8]].",
     },
+    {
+      storyId: 59,
+      text: "New season with no cups. [[char:serena]] teaches [[char:alyssa]], [[char:andrea]], and [[char:kaitlin]]. Practice partners are [[char:chad]], [[char:ben]], [[char:lucas]], [[char:lee]], and dummy [[char:steven]]. Post-class fertility check in [[story:59]].",
+    },
   ],
   cherry_pop: [
     {
@@ -1015,6 +1047,18 @@ window.DATA_INFOPANEL = {
     {
       storyId: 49,
       text: "Helps [[char:karen|Dr. Karen]] complete [[char:stuart]]'s therapy. Kicks and stomps [[char:stuart]]'s last ball. [[char:stuart]]'s sister. [[char:beverly]]'s daughter in [[story:49]].",
+    },
+  ],
+  ben: [
+    {
+      storyId: 59,
+      text: "Study buddy and self-defense partner of [[char:alyssa]] at [[char:the_gym]] in [[story:59]].",
+    },
+  ],
+  lee: [
+    {
+      storyId: 59,
+      text: "Nephew and demonstration partner of [[char:serena]]. Knees from [[char:serena]] and [[char:kaitlin]]. Masturbates to his aunt during the locker-room fertility check in [[story:59]].",
     },
   ],
 };

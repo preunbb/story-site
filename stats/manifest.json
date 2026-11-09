@@ -1,14 +1,16 @@
 {
-  "generatedAt": "2026-07-01",
-  "reportCount": 44,
-  "catalogStoryCount": 48,
+  "generatedAt": "2026-11-06",
+  "reportCount": 47,
+  "catalogStoryCount": 57,
   "missingStoryIds": [
-    41,
-    48
+    41
+  ],
+  "excludedStoryIds": [
+    58
   ],
   "totals": {
-    "totalTesticlesLost": 225,
-    "totalFemaleOrgasms": 177
+    "totalTesticlesLost": 498,
+    "totalFemaleOrgasms": 183
   },
   "reports": [
     {
@@ -410,6 +412,36 @@
       "totalTesticlesLost": 2,
       "totalFemaleOrgasms": 7,
       "reportFile": "melody-seduces-a-virgin/testicle-stats.md"
+    },
+    {
+      "slug": "quality-control",
+      "title": "Quality Control",
+      "storyId": 48,
+      "sectionCount": 6,
+      "throughChapter": 5,
+      "totalTesticlesLost": 261,
+      "totalFemaleOrgasms": 4,
+      "reportFile": "quality-control/testicle-stats.md"
+    },
+    {
+      "slug": "bereavement-counseling",
+      "title": "Bereavement Counseling",
+      "storyId": 49,
+      "sectionCount": 2,
+      "throughChapter": 2,
+      "totalTesticlesLost": 1,
+      "totalFemaleOrgasms": 0,
+      "reportFile": "bereavement-counseling/testicle-stats.md"
+    },
+    {
+      "slug": "lowblow-tober",
+      "title": "Lowblowtober",
+      "storyId": [50, 51, 52, 53, 54, 55, 56, 57],
+      "seriesId": "lowblow-tober",
+      "sectionCount": 8,
+      "totalTesticlesLost": 11,
+      "totalFemaleOrgasms": 2,
+      "reportFile": "lowblow-tober/testicle-stats.md"
     }
   ]
 }

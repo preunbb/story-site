@@ -1,6 +1,6 @@
 # Catalog stats — overall rollup
 
-**Generated:** 2026-07-01 · **Method:** LLM-curated per-story reports (`story-testicle-stats` skill)
+**Generated:** 2026-11-06 · **Method:** LLM-curated per-story reports (`story-testicle-stats` skill)
 
 **Chart:** [stats/index.html](./index.html) (run `npm start` → http://localhost:8080/stats/)
 
@@ -8,12 +8,12 @@
 
 | Metric | Value |
 |---|---|
-| Stories with reports | **44** of 48 catalog entries |
-| Stories missing prose | **2** (ids 41, 48) |
-| **Total testicles lost** (on-page) | **225** |
-| **Total female orgasms** (on-page minimums) | **177** |
-| Stories with ≥1 testicle lost | 40 |
-| Stories with ≥1 female orgasm | 24 |
+| Chart entries | **47**, covering 55 of 57 catalog stories |
+| Stories missing prose | **1** (id 41, Road Trip) |
+| **Total testicles lost** (on-page) | **498** |
+| **Total female orgasms** (on-page minimums) | **183** |
+| Chart entries with ≥1 testicle lost | 43 |
+| Chart entries with ≥1 female orgasm | 26 |
 
 > Totals sum each story's curated minimum from `meta.json`. "Lost" includes ruptures, surgical removal, and on-page permanent infertility.
 
@@ -21,16 +21,16 @@
 
 | Rank | Story | Testicles lost | Female orgasms | Report |
 |:---:|---|:---:|:---:|---|
-| 1 | Andrea and Lucas (Part 1 + Part 2) | **119** | 101 | [andrea-lucas](./andrea-lucas/testicle-stats-ch1-24.md) |
-| 2 | Three Strikes | **15** | 13 | [three-strikes](./three-strikes/testicle-stats.md) |
-| 3 | The Ballbusting Arena 1: Battle Royale | **8** | 1 | [ballbusting-arena-1-battle-royale](./ballbusting-arena-1-battle-royale/testicle-stats.md) |
-| 4 | The Ballbusting Arena 3: Retired | **6** | 0 | [ballbusting-arena-3-retired](./ballbusting-arena-3-retired/testicle-stats.md) |
-| 5 | Melody's First Time | **5** | 2 | [melody-first-time](./melody-first-time/testicle-stats.md) |
-| 6 | Busted by the Babysitter | **5** | 4 | [busted-by-the-babysitter](./busted-by-the-babysitter/testicle-stats.md) |
-| 7 | Nash Equilibrium | **4** | 0 | [nash-equilibrium](./nash-equilibrium/testicle-stats.md) |
-| 8 | The Ballbusting Arena 6: Natalie Enters the Ring | **4** | 4 | [ballbusting-arena-6](./ballbusting-arena-6/testicle-stats.md) |
-| 9 | School Bully | **3** | 8 | [school-bully](./school-bully/testicle-stats.md) |
-| 10 | Castration Anxiety | **2** | 2 | [castration-anxiety](./castration-anxiety/testicle-stats.md) |
+| 1 | Quality Control | **261** | 4 | [quality-control](./quality-control/testicle-stats.md) |
+| 2 | Andrea and Lucas (Part 1 + Part 2) | **119** | 101 | [andrea-lucas](./andrea-lucas/testicle-stats-ch1-24.md) |
+| 3 | Three Strikes | **15** | 13 | [three-strikes](./three-strikes/testicle-stats.md) |
+| 4 | Lowblowtober | **11** | 2 | [lowblow-tober](./lowblow-tober/testicle-stats.md) |
+| 5 | The Ballbusting Arena 1: Battle Royale | **8** | 1 | [ballbusting-arena-1-battle-royale](./ballbusting-arena-1-battle-royale/testicle-stats.md) |
+| 6 | The Ballbusting Arena 3: Retired | **6** | 0 | [ballbusting-arena-3-retired](./ballbusting-arena-3-retired/testicle-stats.md) |
+| 7 | Busted by the Babysitter | **5** | 4 | [busted-by-the-babysitter](./busted-by-the-babysitter/testicle-stats.md) |
+| 8 | Melody's First Time | **5** | 2 | [melody-first-time](./melody-first-time/testicle-stats.md) |
+| 9 | The Ballbusting Arena 6: Natalie Enters the Ring | **4** | 4 | [ballbusting-arena-6](./ballbusting-arena-6/testicle-stats.md) |
+| 10 | Nash Equilibrium | **4** | 0 | [nash-equilibrium](./nash-equilibrium/testicle-stats.md) |
 
 ## Top stories by female orgasms
 
@@ -42,10 +42,10 @@
 | 4 | Dragon Slaying Alternative Chapter 13: Kayla | **8** | 2 | [dragon-slaying](./dragon-slaying/testicle-stats.md) |
 | 5 | Melody Seduces a Virgin | **7** | 2 | [melody-seduces-a-virgin](./melody-seduces-a-virgin/testicle-stats.md) |
 | 6 | James' Big Balls | **6** | 2 | [james-big-balls](./james-big-balls/testicle-stats.md) |
-| 7 | Busted by the Babysitter | **4** | 5 | [busted-by-the-babysitter](./busted-by-the-babysitter/testicle-stats.md) |
-| 8 | The Ballbusting Arena 6: Natalie Enters the Ring | **4** | 4 | [ballbusting-arena-6](./ballbusting-arena-6/testicle-stats.md) |
-| 9 | The Ballbusting Arena 5: First Times | **3** | 2 | [ballbusting-arena-5-first-times](./ballbusting-arena-5-first-times/testicle-stats.md) |
-| 10 | Friendzoned | **3** | 2 | [friendzoned](./friendzoned/testicle-stats.md) |
+| 7 | The Ballbusting Arena 6: Natalie Enters the Ring | **4** | 4 | [ballbusting-arena-6](./ballbusting-arena-6/testicle-stats.md) |
+| 8 | Busted by the Babysitter | **4** | 5 | [busted-by-the-babysitter](./busted-by-the-babysitter/testicle-stats.md) |
+| 9 | Quality Control | **4** | 261 | [quality-control](./quality-control/testicle-stats.md) |
+| 10 | The Ballbusting Arena 5: First Times | **3** | 2 | [ballbusting-arena-5-first-times](./ballbusting-arena-5-first-times/testicle-stats.md) |
 
 ## All stories
 
@@ -95,11 +95,16 @@
 | Courtroom Wedding | 44 | 1 | 2 | 3 | [courtroom-wedding](./courtroom-wedding/testicle-stats.md) |
 | Courtroom Wedding (Human Edition) | 45 | 1 | 2 | 3 | [courtroom-wedding-human-edition](./courtroom-wedding-human-edition/testicle-stats.md) |
 | Melody Seduces a Virgin | 46 | 2 | 7 | 2 | [melody-seduces-a-virgin](./melody-seduces-a-virgin/testicle-stats.md) |
+| Quality Control | 48 | 261 | 4 | 6 | [quality-control](./quality-control/testicle-stats.md) |
+| Bereavement Counseling | 49 | 1 | 0 | 2 | [bereavement-counseling](./bereavement-counseling/testicle-stats.md) |
+| Lowblowtober (6–13) | 50–57 | 11 | 2 | 8 | [lowblow-tober](./lowblow-tober/testicle-stats.md) |
 
-## Not yet reported
+## Not in the chart
 
-- **Road Trip** (id 41) — No synced local prose.
-- **Quality Control** (id 48) — No synced local prose.
+- **Road Trip** (id 41) — unfinished, hidden from the catalog, no synced prose.
+- **Lowblowtober Collection** (id 58) — the same eight stories as the Lowblowtober chart entry. Not a second bar.
+- **Quality Control, Chapter 6** and **Bereavement Counseling after Chapter 2** are written past the published text and are outside these reports.
+- **Self Defense** and **Mother Knows Best** were left out of this update.
 
 ---
 

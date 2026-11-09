@@ -414,12 +414,21 @@
     return true;
   }
 
-  /** Infopanel notes and connection edges for a hidden story stay hidden too. */
+  /** Infopanel notes and connection edges for a hidden or coming-soon
+   *  story stay hidden on production; localhost can still see them. */
   function isCatalogStoryIdVisible(storyId) {
     if (storyId == null || storyId === "") return true;
     var story = getStoryById(storyId);
     if (!story) return true;
-    return isStoryVisibleInCatalog(story);
+    if (!isStoryVisibleInCatalog(story)) return false;
+    if (normalizeStoryState(story) === 1 && !isLocalDevHost()) return false;
+    return true;
+  }
+
+  /** `hideFromConnections` keeps a character off the production graph;
+   *  they still appear when browsing locally. */
+  function isCharacterHiddenFromConnections(c) {
+    return !!(c && c.hideFromConnections && !isLocalDevHost());
   }
 
   /** Illustrated scenes for `state: 1` (coming soon) only show on localhost.
@@ -2800,7 +2809,7 @@
     if (!dl) return;
     var names = (characters || [])
       .filter(function (c) {
-        return c && c.name && !c.hideFromConnections;
+        return c && c.name && !isCharacterHiddenFromConnections(c);
       })
       .map(function (c) {
         return c.name;
@@ -3369,7 +3378,7 @@
     function addNode(id) {
       if (!id || seenIds[id] || !getCharacterById(id)) return;
       var c = getCharacterById(id);
-      if (c && c.hideFromConnections) return;
+      if (isCharacterHiddenFromConnections(c)) return;
       seenIds[id] = true;
       nodes.push({
         id: id,
