@@ -341,6 +341,10 @@
           );
         }
 
+        function normalizeStoryHash(hash) {
+          return hash.replace(/^#story\/(\d+)$/, "#story/$1/read");
+        }
+
         function resolvePurchaseUrl(url) {
           if (
             !url ||
@@ -351,13 +355,21 @@
           }
           var hashIndex = url.indexOf("#");
           if (hashIndex === -1) return url;
-          var hash = url.slice(hashIndex);
+          var hash = normalizeStoryHash(url.slice(hashIndex));
           var siteRoot = location.pathname
             .replace(/\/index\.html?$/i, "")
             .replace(/\/over-easy-products(?:\.html)?$/i, "")
             .replace(/\/$/, "");
           var path = (siteRoot ? siteRoot : "") + "/";
           return new URL(path + hash, location.origin).href;
+        }
+
+        function isExternalPurchaseUrl(url) {
+          try {
+            return new URL(url, location.href).origin !== location.origin;
+          } catch (e) {
+            return false;
+          }
         }
 
         function renderPurchaseButton(p) {
@@ -368,8 +380,7 @@
           if (!url) {
             return renderComingSoonButton(p);
           }
-          const external =
-            url.indexOf("http://") === 0 || url.indexOf("https://") === 0;
+          const external = isExternalPurchaseUrl(url);
           const target = external ? ' target="_blank"' : "";
           const rel = external ? ' rel="noopener noreferrer"' : "";
           return (

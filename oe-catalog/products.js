@@ -134,7 +134,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "ball-killers",
       category: "fashion",
-      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
+      purchaseUrl: "../#story/43/read",
       name: "Ball Killers™",
       model: "OET-BK-1",
       image:
@@ -167,7 +167,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "eunuchcorn-denim",
       category: "fashion",
-      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
+      purchaseUrl: "../#story/43/read",
       name: "EunuchCorn™ Denim",
       model: "OET-EC-D1",
       image:
@@ -265,7 +265,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "church-broken-tree-pendant",
       category: "fashion",
-      purchaseUrl: "../#story/47",
+      purchaseUrl: "../#story/47/read",
       name: "Church of the Broken Tree Devotional Pendant",
       model: "CBT-PND-1",
       image:
@@ -291,7 +291,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "cherry-pop-album",
       category: "media",
-      purchaseUrl: "../#story/47",
+      purchaseUrl: "../#story/47/read",
       name: "Cherry Pop! — Plum Dumb & Permanently Done",
       model: "CP-PDPD-001",
       image:
@@ -331,7 +331,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "gonadal-integrity-poster",
       category: "media",
-      purchaseUrl: "../#story/47",
+      purchaseUrl: "../#story/47/read",
       name: "Comparative Gonadal Integrity Poster",
       model: "OET-GIP-24",
       image:
@@ -377,7 +377,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "testicular-lifecycle-prints",
       category: "media",
-      purchaseUrl: "../#story/47",
+      purchaseUrl: "../#story/47/read",
       name: "Life stages of a Testicle — Framed Print Set",
 
       model: "OET-TL-6",
@@ -485,7 +485,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "hypersecretory-disorder-poster",
       category: "media",
-      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
+      purchaseUrl: "../#story/43/read",
       name: "Hypersecretory Disorder Clinical Poster",
       model: "OET-HSD-24",
       image:
@@ -496,7 +496,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "biopsy-gun",
       category: "medical",
-      purchaseUrl: "../#story/47",
+      purchaseUrl: "../#story/47/read",
       name: "Testicular Biopsy Gun™",
       model: "OET-TBG-1",
       image:
@@ -507,7 +507,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "bleach-wipes",
       category: "medical",
-      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
+      purchaseUrl: "../#story/43/read",
       name: "Bleach Wipes™",
       model: "OET-BW-40",
       image:
@@ -609,7 +609,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "sterilizer",
       category: "self-defense",
-      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
+      purchaseUrl: "../#story/43/read",
       name: "The Sterilizer™",
       model: "CBT-22120",
       image:
@@ -643,7 +643,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "nutcracker",
       category: "self-defense",
-      purchaseUrl: "../#story/47",
+      purchaseUrl: "../#story/47/read",
       name: "The Ballcracker™",
       model: "OET-BC-1",
       image:
@@ -671,7 +671,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "bell-ringer",
       category: "self-defense",
-      purchaseUrl: "../#story/47",
+      purchaseUrl: "../#story/47/read",
       name: "The BellRinger™",
       model: "OET-BR-1",
       image:
@@ -701,7 +701,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "studclamp",
       category: "discipline",
-      purchaseUrl: "../#story/47",
+      purchaseUrl: "../#story/47/read",
       name: "StudClamp™",
       model: "OET-SC-1",
       image:
@@ -858,7 +858,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "strapon",
       category: "sex-toys",
-      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
+      purchaseUrl: "../#story/43/read",
       name: "'Selfish Bitch' Strap-On System",
       model: "OET-SB-PRO",
       image:
@@ -1001,7 +1001,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "ball-cuff",
       category: "sex-toys",
-      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
+      purchaseUrl: "../#story/47/read",
       name: "'Choking Bull' Ball Cuff™",
       model: "OET-BCF-1",
       image:
@@ -1013,7 +1013,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "ball-anvil",
       category: "sex-toys",
-      purchaseUrl: "https://ko-fi.com/s/edb2b8eaa5",
+      purchaseUrl: "../#story/47/read",
       name: "Ball Anvil™",
       model: "OET-BA-1",
       image:
@@ -1024,7 +1024,7 @@ window.OVER_EASY_CATALOG = {
     {
       id: "luna-identity-arm",
       category: "discipline",
-      purchaseUrl: "../#story/47",
+      purchaseUrl: "../#story/47/read",
       name: "Luna™ Identity Arm",
       model: "OET-LIA-1",
       image:
