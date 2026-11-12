@@ -1836,7 +1836,7 @@ window.DATA_STORIES = [
   },
   {
     id: 57,
-    wordCount: 2741,
+    wordCount: 2739,
     title: "Lowblowtober 13: Knee",
     brutalityRating: 3,
     summary:
@@ -1858,7 +1858,7 @@ window.DATA_STORIES = [
    */
   {
     id: 58,
-    wordCount: 15021,
+    wordCount: 15019,
     title: "Lowblowtober Collection",
     summary: "See #lowblowtober2026 on Twitter!",
     summaryUrl: "https://x.com/Barf_on_Squid/status/2095124787605442582",
@@ -1871,12 +1871,14 @@ window.DATA_STORIES = [
   },
   {
     id: 59,
-    wordCount: 14047,
+    wordCount: 18618,
     title: "Self Defense",
     brutalityRating: 3,
     summary:
       "Ben hopes helping Alyssa with her self-defense class will finally help her see him as more than just a friend. He wasn't expecting her to bring her boyfriend along, and he definitely wasn't expecting the level of pain the coach insists the girls learn to inflict in order to defend themselves. A soft sequel to Friendzoned, Andrea and Lucas, and Testy.",
     cover: "assets/covers/self_defense_cover_v11.jpg",
+    driveUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vSLu1Ryq-TXULrx1qTeuFPCXfkab5JYWMPRFSXIv8OEZGW32NcQkhzC-PUuq-3WwXdBJrodE9o1-aLF/pub",
     characterIds: [
       "ben",
       "lee",
@@ -1888,11 +1890,20 @@ window.DATA_STORIES = [
       "kaitlin",
       "serena",
     ],
-    state: 1,
+    state: 3,
+    releaseDate: "2026-11-12",
+    chaptersToPublish: 1,
+    chapterReleases: [
+      {
+        chapter: 1,
+        title: "Chapter 1: Knees",
+        releaseDate: "2026-11-12",
+      },
+    ],
   },
   {
     id: 60,
-    wordCount: 5624,
+    wordCount: 12526,
     title: "Mother Knows Best",
     brutalityRating: 4,
     summary:
