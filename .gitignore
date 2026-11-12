@@ -8,7 +8,6 @@ tools/copy-edit-server/credentials.json
 tools/copy-edit-server/.google-docs-token.json
 assets/stories/andrea_lucas.md
 # Unreleased story prose — present locally after `npm run sync`, never pushed.
-assets/stories/59.md
 assets/stories/60.md
 workers/story-views/.dev.vars
 
