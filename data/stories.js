@@ -1871,7 +1871,7 @@ window.DATA_STORIES = [
   },
   {
     id: 59,
-    wordCount: 22852,
+    wordCount: 22907,
     title: "Self Defense",
     brutalityRating: 3,
     summary:
