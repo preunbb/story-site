@@ -211,7 +211,7 @@ window.DATA_MUSIC = [
           "You're devout, and you worship me\n" +
           "But I'm a part of the Broken Tree,\n" +
           "She asks for so little, our god-dess\n" +
-          "She just needs half of your male-ness",
+          "She just needs half of your male-ness\n" +
           "\n" +
           "She just needs a broken ball\n" +
           "Just one mushy lil guy\n" +

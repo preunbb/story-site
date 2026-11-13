@@ -1871,7 +1871,7 @@ window.DATA_STORIES = [
   },
   {
     id: 59,
-    wordCount: 18618,
+    wordCount: 19228,
     title: "Self Defense",
     brutalityRating: 3,
     summary:
@@ -1903,7 +1903,7 @@ window.DATA_STORIES = [
   },
   {
     id: 60,
-    wordCount: 12526,
+    wordCount: 14721,
     title: "Mother Knows Best",
     brutalityRating: 4,
     summary:
