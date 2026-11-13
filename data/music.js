@@ -222,7 +222,7 @@ window.DATA_MUSIC = [
           "(I'll pop it really fast)\n" +
           "BIG. BITE. (Let's hear it squick!)\n" +
           "It's gotta go, let's just move past\n" +
-          "\n"
+          "\n",
       },
       {
         title: "Flat n Heavy",
@@ -243,12 +243,12 @@ window.DATA_MUSIC = [
       {
         title: "Say your prayers",
         lyrics:
-          "I know it's hard...I know it's a lot\n" +
-          "I know it's more than most would ask\n" +
-          "But I'm part. Of the broken tree\n" +
-          "So decide which ball, to give to me\n" +
+          "I know it's hard...I'm asking a lot\n" +
+          "IBut I've given this. A ton of though\n" +
+          "I'm a sacred part. Of the broken tree\n" +
+          "So decide which ball. You'll give to me\n" +
           "\n" +
-          "I'll get down there, just take a bite\n" +
+          "I'll get down there and take a bite\n" +
           "Do it for me, it's your First Rites\n" +
           "I'll make you perfect, make you new\n" +
           "When I make one from what was two\n" +
@@ -259,14 +259,14 @@ window.DATA_MUSIC = [
           "of men who lick our pussies, worship us, and eat our ass-es\n" +
           "\n" +
           "We just need this. One small gonad\n" +
-          "One worthless boy-ball, It's not too bad!\n" +
+          "One worthless ball, that's's not too bad!\n" +
           "You'll survive, just a bit lop-sided\n" +
           "(You're survive, just a bit one-sided)\n" +
           "\n" +
-          "I'll get down there, take a bite\n" +
+          "I'll get down there, and take a bite\n" +
           "Do it for me, it's your First Rites\n" +
           "I'll make you perfect, make you new\n" +
-          "When I make one from what was two",
+          "When I make one from what was two...",
       },
     ],
   },
