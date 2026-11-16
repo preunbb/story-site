@@ -1,6 +1,6 @@
 // Character relationship graph for the Connections tab.
 // Each edge: { from, to, storyId, kinds, hubPrefer?, testiclesPopped? }
-// kinds is required: family | relationship | knows | faction | left | right | dick | pain
+// kinds is required: family | relationship | knows | faction | left | right | dick | pain | blueballs
 // Rule: pain never coexists with left/right for the same character pair (any edge).
 // hubPrefer (optional): prefer parking the other endpoint on this hub's wheel.
 // testiclesPopped (optional): how many testicles this edge's pop represents.
@@ -930,7 +930,7 @@ window.DATA_CONNECTIONS = [
     from: "karen",
     to: "stuart",
     storyId: 49,
-    kinds: ["pain"],
+    kinds: ["blueballs"],
   },
   {
     from: "michelle",
@@ -1714,5 +1714,77 @@ window.DATA_CONNECTIONS = [
     storyId: 59,
     kinds: ["faction"],
     hubPrefer: true,
+  },
+  {
+    from: "crystal",
+    to: "jamie_splegham",
+    storyId: 60,
+    kinds: ["left", "right"],
+  },
+  {
+    from: "coqtiz",
+    to: "turgid_u",
+    storyId: 60,
+    kinds: ["faction"],
+    hubPrefer: true,
+  },
+  {
+    from: "yumi",
+    to: "turgid_u",
+    storyId: 60,
+    kinds: ["faction"],
+    hubPrefer: true,
+  },
+  {
+    from: "crystal",
+    to: "turgid_u",
+    storyId: 60,
+    kinds: ["faction"],
+    hubPrefer: true,
+  },
+  {
+    from: "jamie_splegham",
+    to: "turgid_u",
+    storyId: 60,
+    kinds: ["faction"],
+    hubPrefer: true,
+  },
+  {
+    from: "alf",
+    to: "turgid_u",
+    storyId: 60,
+    kinds: ["faction"],
+    hubPrefer: true,
+  },
+  {
+    from: "nelson_masterson",
+    to: "turgid_u",
+    storyId: 60,
+    kinds: ["faction"],
+    hubPrefer: true,
+  },
+  {
+    from: "valerie",
+    to: "alf",
+    storyId: 60,
+    kinds: ["family", "pain"],
+  },
+  {
+    from: "coqtiz",
+    to: "alf",
+    storyId: 60,
+    kinds: ["blueballs"],
+  },
+  {
+    from: "coqtiz",
+    to: "jamie_splegham",
+    storyId: 60,
+    kinds: ["blueballs"],
+  },
+  {
+    from: "coqtiz",
+    to: "nelson_masterson",
+    storyId: 60,
+    kinds: ["blueballs"],
   },
 ];

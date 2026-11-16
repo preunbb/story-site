@@ -20,6 +20,7 @@ Full project rules also live in `CLAUDE.md` (Image Generation section). This ski
 3. **10-attempt cap** per image intent per session (including safety-filter rejections). At cap: stop, summarize tries, ask how to proceed.
 4. **Read character portraits** from `assets/characters/` before generating anyone in `data/characters.js`. Match hair, build, age, vibe. Same first name = same person across stories.
 5. **Register scenes** in `data/stories.js` when adding catalog art.
+6. **Never programmatically paint, composite, or draw onto a generated image** (PIL/OpenCV overlays, brush strokes, splatters, text wipe, "fix it in post," etc.). It never looks right. If the model misses a detail, regenerate with a clearer prompt — do not patch pixels by hand.
 
 ## Iteration loop
 

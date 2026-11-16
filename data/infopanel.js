@@ -961,12 +961,8 @@ window.DATA_INFOPANEL = {
   ],
   the_gym: [
     {
-      storyId: 8,
-      text: "[[char:serena]] teaches the class. [[char:kaitlin]], [[char:june]], [[char:amy_lachbruchjunge]], and [[char:erica]] are students. [[char:steven]] is the gym's practice dummy. [[char:dennis]] loses his fertility there while challenging them for ring time at the gym in [[story:8]].",
-    },
-    {
       storyId: 59,
-      text: "New season with no cups. [[char:serena]] teaches [[char:alyssa]], [[char:andrea]], and [[char:kaitlin]]. Practice partners are [[char:chad]], [[char:ben]], [[char:lucas]], [[char:lee]], and dummy [[char:steven]]. Post-class fertility check in [[story:59]].",
+      text: "[[char:serena]] teaches [[char:alyssa]], [[char:andrea]], and [[char:kaitlin]] as they practice their ballbusting on [[char:chad]], [[char:ben]], [[char:lucas]], [[char:lee]], and [[char:steven]] in [[story:59]].",
     },
   ],
   cherry_pop: [
@@ -1058,7 +1054,13 @@ window.DATA_INFOPANEL = {
   lee: [
     {
       storyId: 59,
-      text: "Nephew and demonstration partner of [[char:serena]]. Knees from [[char:serena]] and [[char:kaitlin]]. Masturbates to his aunt during the locker-room fertility check in [[story:59]].",
+      text: "Nephew and semi-willing demonstration partner of [[char:serena]]. Used as a practice dummy by [[char:alyssa]], [[char:andrea]], and [[char:kaitlin]] in [[story:59]].",
+    },
+  ],
+  valerie: [
+    {
+      storyId: 60,
+      text: "[[char:alf]]'s mother, teaser, ballbuster, and eventual castratrix in [[story:60]].",
     },
   ],
 };

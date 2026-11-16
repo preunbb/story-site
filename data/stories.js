@@ -1871,7 +1871,7 @@ window.DATA_STORIES = [
   },
   {
     id: 59,
-    wordCount: 22907,
+    wordCount: 26217,
     title: "Self Defense",
     brutalityRating: 3,
     summary:
@@ -1892,23 +1892,30 @@ window.DATA_STORIES = [
     ],
     state: 3,
     releaseDate: "2026-11-12",
-    chaptersToPublish: 1,
+    chaptersToPublish: 2,
     chapterReleases: [
       {
         chapter: 1,
         title: "Chapter 1: Knees",
         releaseDate: "2026-11-12",
       },
+      {
+        chapter: 2,
+        title: "Chapter 2: Squeezes",
+        releaseDate: "2026-11-16",
+      },
     ],
   },
   {
     id: 60,
-    wordCount: 15017,
+    wordCount: 18209,
     title: "Mother Knows Best",
     brutalityRating: 4,
     summary:
       "Nineteen-year-old Alf still lives at home, unemployed, and far too interested in his mother's work as an OnlyFans model. After a particularly humiliating incident, she finally has enough. Between his very painful operation with Nurse Amy, and the delicious cruelty of Professor Coqtiz at Turgid U, she hopes he'll manage to get himself under control...or risk getting a couple more much more devastating operations.",
     cover: "assets/covers/mother_knows_best_cover_v5.jpg",
+    driveUrl:
+      "https://docs.google.com/document/d/e/2PACX-1vT50vGJ6PioLhuOjvODf_eyzCMrY8MQ3WKp-vXIIRn7w6bIrrRTkXYj3IE1qYiTOaPYZKo3uvG9VMQj/pub",
     scenes: [
       {
         path: "assets/scenes/mother_knows_best/mkb_during_amy_trimming_v2.jpg",
@@ -1919,8 +1926,69 @@ window.DATA_STORIES = [
         path: "assets/scenes/mother_knows_best/mkb_after_amy_scraps_v4_clean_face.jpg",
         caption: "All done. Dr. Amy shows Alf everything she took.",
       },
+      {
+        path: "assets/scenes/mother_knows_best/mkb_crystal_hall_jamie_jar_v1.jpg",
+        caption:
+          "Crystal laughs in the hall with her arm around Jamie, showing his jar off to the other girls.",
+      },
+      {
+        path: "assets/scenes/mother_knows_best/mkb_yumi_triple_castration_v8_bay.jpg",
+        caption:
+          "Nurse Yumi works a three-chair bay, jar raised, still finishing the boy in the middle.",
+      },
+      {
+        path: "assets/scenes/mother_knows_best/mkb_yumi_triple_castration_v10_gleeful.jpg",
+        caption:
+          "Yumi holds the specimen up by her cleavage, other hand still under the gown.",
+      },
+      {
+        path: "assets/scenes/mother_knows_best/mkb_yumi_triple_castration_v4_clinical.jpg",
+        caption:
+          "Yumi beams over a stirrup chair, jar in one hand, the other still working.",
+      },
+      {
+        path: "assets/scenes/mother_knows_best/mkb_yumi_triple_castration_v5_trophy.jpg",
+        caption: "Close trophy shot: Yumi pinches the specimen near her cleavage.",
+      },
     ],
-    characterIds: ["valerie", "alf", "amy"],
+    characterIds: [
+      "valerie",
+      "alf",
+      "amy",
+      "coqtiz",
+      "yumi",
+      "jamie_splegham",
+      "crystal",
+      "nelson_masterson",
+    ],
     state: 1,
+    localOnly: true,
+    chapterShares: [
+      {
+        chapter: 1,
+        cover: "assets/covers/mother_knows_best_cover_v5.jpg",
+        title: "Mother Knows Best — Chapter 1: Mommy Issues",
+      },
+      {
+        chapter: 2,
+        cover: "assets/covers/mother_knows_best_ch02_clipped_clean_v2_bare.jpg",
+        title: "Mother Knows Best — Chapter 2: Clipped clean",
+      },
+      {
+        chapter: 3,
+        cover: "assets/covers/mother_knows_best_ch03_turgid_u_v2.jpg",
+        title: "Mother Knows Best — Chapter 3: Turgid U",
+      },
+      {
+        chapter: 4,
+        cover: "assets/covers/mother_knows_best_ch04_jamie_treatment_v1.jpg",
+        title: "Mother Knows Best — Chapter 4: Jamie’s Treatment",
+      },
+      {
+        chapter: 5,
+        cover: "assets/covers/mother_knows_best_ch05_alfie_endures_v6.jpg",
+        title: "Mother Knows Best — Chapter 5: Alfie Endures",
+      },
+    ],
   },
 ];

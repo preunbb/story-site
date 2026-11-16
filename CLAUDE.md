@@ -1,8 +1,20 @@
 # Project Instructions
 
+## Copy-edit / typo passes (ignore these)
+
+When reviewing or fixing story prose typos/grammar, **do not flag or “fix”**:
+
+- Curly/smart quotes that face the wrong way (misrotated `“ ” ‘ ’`)
+- Straight/flat quotes (`"` / `'`) that “should” be curly
+- Misplaced or invisible italic / bold runs that readers cannot see in normal reading (Drive/sync formatting ghosts, orphan emphasis spans, bold/italic that doesn’t change apparent wording)
+
+Focus on real typos, wrong words, grammar, and the catalog style preferences in `.cursor/rules/copy-edit-spellchecker.mdc`.
+
 ## Image Generation
 
 **NEVER overwrite an existing generated image, ever.** Every generated image must be saved as a new versioned file alongside any prior versions.
+
+**Never programmatically paint, composite, or draw onto a generated image** (PIL/OpenCV overlays, brush strokes, splatters, text wipe, "fix it in post," etc.). It never looks right. If the model misses a detail, regenerate with a clearer prompt — do not patch pixels by hand.
 
 When iterating on an image:
 
@@ -83,6 +95,10 @@ Save outputs straight into `assets/scenes/<story_slug>/` or `assets/characters/`
 ### Local Stable Diffusion (repo only — humans may set up later)
 
 Optional self-hosted stack under **`tools/local-image-gen/`**. **Agents must ignore it entirely** unless the user explicitly opts in for a given session after confirming it runs locally. Maintainer docs: **`tools/local-image-gen/README.md`**.
+
+### Character bios: no portrait duplication
+
+When writing or editing a character `bio` in `data/characters.js` (or any cast blurb), **never describe face, hair, eyes, skin, smile, ethnicity-as-look, or other appearance already visible on the cast portrait**. The portrait is the visual source of truth. Bios are personality, kink, role, relationships, and story function only.
 
 ### Character continuity: match the cast portrait
 

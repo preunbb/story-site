@@ -1,4 +1,10 @@
 // Unnamed dominatrix characters are Jenny.
+//
+// Male anatomy fields (parallel):
+//   penisLengthInches (number)  + optional penisLabel / penisLabelHtml
+//   testicleCount (number)      + optional testicleLabel / testicleLabelHtml
+// A *Label overrides the auto "Cock:" / "Balls:" line. Without a balls label,
+// testicleSize + scrotumHang still flavor the auto-composed Balls line.
 window.DATA_CHARACTERS = [
   {
     id: "karen",
@@ -72,8 +78,7 @@ window.DATA_CHARACTERS = [
     name: "Jeremy",
     gender: "M",
     bio: "Mid-twenties, recently divorced, perpetually anxious and perpetually horny. Plagued by vivid castration nightmares and hoping his therapist can help him out of them.",
-    penisLengthLabel:
-      '5.5" (before Dr. Karen\'s pharmaceuticals), 3.5" (after)',
+    penisLabel: '5.5" (before Dr. Karen\'s pharmaceuticals), 3.5" (after)',
     profilePictures: ["assets/characters/jeremy.jpg"],
   },
   {
@@ -359,7 +364,7 @@ window.DATA_CHARACTERS = [
     gender: "M",
     bio: "Fiona's boyfriend. She brings him to the arena for an exciting night out.",
     penisLengthInches: 8,
-    penisLengthLabel: "Eight thick inches",
+    penisLabel: "Eight thick inches",
     profilePictures: ["assets/characters/brad.jpg"],
   },
   {
@@ -473,7 +478,7 @@ window.DATA_CHARACTERS = [
     gender: "M",
     bio: "Robert's friend. Formerly impressively endowed, he's slightly more modest with only one of his massive, fertile testicles left intact.",
     penisLengthInches: 9,
-    penisLengthLabel: "Nine thick inches, curved cheekily to the left",
+    penisLabel: "Nine thick inches, curved cheekily to the left",
     testicleCount: 1,
     testicleSize: "large",
     scrotumHang: "low-hanging",
@@ -590,7 +595,7 @@ window.DATA_CHARACTERS = [
     gender: "M",
     bio: "Kaitlin's brother. Until recently, a male law student. No longer either.",
     penisLengthInches: 2,
-    penisLengthLabel: "Irrelevant, since he can't get hard anymore",
+    penisLabel: "Irrelevant, since he can't get hard anymore",
     testicleSize: "small, before they popped",
     scrotumHang: "nonexistent",
     profilePictures: ["assets/characters/steven_testy_cover_match_v3.jpg"],
@@ -668,7 +673,7 @@ window.DATA_CHARACTERS = [
     name: "Ivan Miller",
     gender: "M",
     bio: "Picked up on a speeding ticket; his name hits the database as a suspect in multiple rape cases. Subject of a soundproof interrogation and the department's strict clearance rules.",
-    penisLengthHtml: '<s>7"</s> <s>5"</s> <s>3"</s> <s>1"</s> shaved flat',
+    penisLabelHtml: '<s>7"</s> <s>5"</s> <s>3"</s> <s>1"</s> shaved flat',
     profilePictures: ["assets/characters/ivan_v1.jpg"],
   },
   {
@@ -720,6 +725,7 @@ window.DATA_CHARACTERS = [
     id: "harvey",
     name: "Harvey",
     penisLengthInches: 7.5,
+    testicleCount: 1,
     testicleSize: "large",
     scrotumHang: "low-hanging",
     testicleLabel: "one large, low-hanging nut",
@@ -924,6 +930,14 @@ window.DATA_CHARACTERS = [
     gender: "",
     bio: "Andrea, Kay, and Olivia's favorite new wave feminist punkdustrial ballbusting rock band. Produced under the OverEasy entertainment label.",
     profilePictures: ["assets/brands/cherry_pop_avatar_v6_punk.png"],
+  },
+  {
+    id: "turgid_u",
+    name: "Turgid U",
+    entityType: "faction",
+    gender: "",
+    bio: "Community college. Specifically markets to single mothers so frustrated by their NEET son's wanking they want him to spend his day anywhere but the goon cave he calls his bedroom.",
+    profilePictures: ["assets/brands/turgid_u_avatar_v1.jpg"],
   },
   {
     id: "olivia",
@@ -1145,7 +1159,7 @@ window.DATA_CHARACTERS = [
     gender: "M",
     bio: "Twenty-five. Alyssa's study buddy, chronically horny, and the practice partner she brought to Serena's class.",
     penisLengthInches: 6,
-    penisLengthLabel: "Perfectly average six inches",
+    penisLabel: "Perfectly average six inches",
     testicleSize: "medium",
     scrotumHang: "low-hanging",
     profilePictures: ["assets/characters/ben_profile_v1.jpg"],
@@ -1156,9 +1170,74 @@ window.DATA_CHARACTERS = [
     gender: "M",
     bio: "Serena's skinny nineteen-year-old nephew. Volunteering as her demonstration partner for the summer after his mother caught him.",
     penisLengthInches: 3,
-    penisLengthLabel: "Three small, hairless inches",
+    penisLabel: "Three small, hairless inches",
     testicleSize: "small",
     scrotumHang: "very, very tightly hung",
     profilePictures: ["assets/characters/lee_profile_v1.jpg"],
+  },
+  {
+    id: "coqtiz",
+    name: "Professor Coqtiz",
+    gender: "F",
+    bio: "Priscilla Coqtiz teaches calculus at Turgid U. Long frustrated with how easily distracted her students are, she's teamed up with Nurse Yumi to secretly work to permanently solve the strange 'seizures' that seem to keep leaving white stains on her male students' pants.",
+    hideFromConnections: true,
+    profilePictures: [
+      "assets/characters/coqtiz_profile_v1.jpg",
+      "assets/characters/coqtiz_profile_v2_grading_crop.jpg",
+    ],
+  },
+  {
+    id: "yumi",
+    name: "Nurse Yumi",
+    gender: "F",
+    bio: "Turgid U's short, bubbly campus nurse, always happy to help. Especially for the exciteable young boys who stagger over from Professor Coqtiz's class. After Nurse Yumi is done with them, she guarantees they'll never prematurely ejaculate again!",
+    hideFromConnections: true,
+    profilePictures: [
+      "assets/characters/yumi_profile_v3.jpg",
+      "assets/scenes/mother_knows_best/mkb_yumi_triple_castration_v8_bay.jpg",
+    ],
+  },
+  {
+    id: "jamie_splegham",
+    name: "Jamie Splegham",
+    gender: "M",
+    bio: "A weak-willed femboy in Professor Coqtiz's calculus lecture for the second time. He made it through last class with both of his soft little balls safely connected inside his ballsack, but Priscilla is determined to make sure he has an important little visit to nurse Yumi this semester...",
+    hideFromConnections: true,
+    penisLengthInches: 3,
+    penisLabel: "Almost three inches hard",
+    testicleCount: 0,
+    testicleLabel: "Tiny (before his surgery)",
+    profilePictures: [
+      "assets/characters/jamie_splegham_preop_denim_wet_cast.jpg",
+      "assets/characters/jamie_splegham_v3_side_rear_tearful.jpg",
+    ],
+  },
+  {
+    id: "crystal",
+    name: "Crystal",
+    gender: "F",
+    testiclesKilled: 2,
+    bio: "Student at Turgid U and Jamie's classmate. Crystal's been very interested in playing with or creating eunuchs for a long time, but her boyfriend has been surprisingly unsupportive of her interests.",
+    hideFromConnections: true,
+    profilePictures: ["assets/characters/crystal_profile_v1.jpg"],
+  },
+  {
+    id: "nelson_masterson",
+    name: "Nelson Masterson",
+    gender: "M",
+    bio: "Arrogant Turgid U jock in Professor Coqtiz's class. Perfect control over his libido — the one boy who can stare, stroke, and still keep everything in his jeans when everyone else folds.",
+    hideFromConnections: true,
+    penisLengthInches: 10,
+    testicleCount: 2,
+    testicleSize: "large",
+    scrotumHang: "low-hanging",
+    profilePictures: [
+      "assets/characters/nelson_masterson_v6_desk_realistic_pack.jpg",
+      "assets/characters/nelson_masterson_v1_desk_spread.jpg",
+      "assets/characters/nelson_masterson_v2_desk_spread.jpg",
+      "assets/characters/nelson_masterson_v3_desk_spread.jpg",
+      "assets/characters/nelson_masterson_v4_desk_spread.jpg",
+      "assets/characters/nelson_masterson_v5_desk_spread.jpg",
+    ],
   },
 ];

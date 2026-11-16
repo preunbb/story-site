@@ -21,6 +21,8 @@ Apply project vocabulary and style rules from `.cursor/rules/copy-edit-spellchec
 - Catalog lexicon: halfstration, nutmeat, nutpain, ballpain, ballache, ballsack, testeria, *star* (casting), *drinks get drank*, hoorah
 - Author voice, rhythm, or deliberate colloquialism
 - Structural or plot issues → use `story-structural-review` instead
+- Curly quotes facing the wrong way; flat quotes that “should” be curly
+- Misplaced / invisible italic or bold runs readers can’t see in normal reading
 
 ## Where prose lives
 

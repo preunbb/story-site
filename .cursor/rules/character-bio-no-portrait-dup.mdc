@@ -1,0 +1,15 @@
+---
+description: Cast bios must not restate appearance already visible on the portrait.
+globs: data/characters.js
+alwaysApply: true
+---
+
+# Character bios: no portrait duplication
+
+When writing or editing a character `bio` (or any cast blurb on the site), **never include physical descriptions of their face, hair, eyes, skin, smile, or anything else that would already be visible on their cast portrait**.
+
+The portrait is the visual source of truth. Bios cover personality, kink, role, relationships, and story function — not appearance.
+
+**Do not write:** hair color/style, eye color, cheekbones, smile shape, ethnicity-as-look, height/build details the portrait already shows, clothing the portrait already shows, etc.
+
+**Do write:** attitude, history, what they do to/with people, soft spots, kinks, job/role at Turgid U / in the catalog, etc.

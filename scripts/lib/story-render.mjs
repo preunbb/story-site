@@ -433,14 +433,24 @@ export function findStorySceneByIdentifier(story, identifier) {
 
 function parseChapterHeading(block) {
   if (block.indexOf("### ") === 0)
-    return { level: 3, title: block.slice(4).trim() };
+    return { level: 3, hash: 3, title: block.slice(4).trim() };
   if (block.indexOf("## ") === 0)
-    return { level: 2, title: block.slice(3).trim() };
+    return { level: 2, hash: 2, title: block.slice(3).trim() };
   // The codebase treats single-hash `# ` headings the same as `### ` ones
-  // (see script.js' storyMarkdownToSafeHtml).
+  // (see script.js' storyMarkdownToSafeHtml). Both are main chapters.
+  // A `##` heading is a subchapter only after one of those has opened.
   if (block.indexOf("# ") === 0)
-    return { level: 3, title: block.slice(2).trim() };
+    return { level: 3, hash: 1, title: block.slice(2).trim() };
   return null;
+}
+
+function createSubchapterTracker() {
+  let seenMainHash = false;
+  return function isSubchapter(heading) {
+    const isSub = heading.hash === 2 && seenMainHash;
+    if (heading.hash !== 2) seenMainHash = true;
+    return isSub;
+  };
 }
 
 function isDividerBlock(block) {
@@ -457,7 +467,10 @@ function splitBlocks(markdown) {
     .filter((b) => b.length > 0);
 }
 
-/** Same cut as the site reader’s `chaptersToPublish`. */
+/**
+ * Same cut as the site reader’s `chaptersToPublish`.
+ * Counts main chapters only. Subchapters stay with the main chapter above them.
+ */
 export function truncateMarkdownToPublishedChapters(markdown, maxChapters) {
   if (
     typeof maxChapters !== "number" ||
@@ -468,11 +481,13 @@ export function truncateMarkdownToPublishedChapters(markdown, maxChapters) {
   }
   const blocks = splitBlocks(markdown);
   const out = [];
-  let chapterCount = 0;
+  const isSubchapter = createSubchapterTracker();
+  let mainCount = 0;
   for (const block of blocks) {
-    if (parseChapterHeading(block)) {
-      chapterCount++;
-      if (chapterCount > maxChapters) break;
+    const heading = parseChapterHeading(block);
+    if (heading && !isSubchapter(heading)) {
+      mainCount++;
+      if (mainCount > maxChapters) break;
     }
     out.push(block);
   }

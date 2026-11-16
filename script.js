@@ -564,9 +564,36 @@
   }
 
   /**
-   * Keep only the first `maxChapters` sidebar chapter headings and the prose
-   * under them. Used by `story.chaptersToPublish`. Prefatory content before the
-   * first heading is kept. Omit / non-positive values leave markdown unchanged.
+   * `#` / `###` headings are main chapters. A `##` heading is a subchapter
+   * once a main hash heading has opened; a document made only of `##`
+   * headings keeps those as main chapters.
+   */
+  function parseStoryHeadingBlock(block) {
+    if (block.indexOf("### ") === 0) {
+      return { level: 3, hash: 3, title: block.slice(4).trim() };
+    }
+    if (block.indexOf("## ") === 0) {
+      return { level: 2, hash: 2, title: block.slice(3).trim() };
+    }
+    if (block.indexOf("# ") === 0) {
+      return { level: 3, hash: 1, title: block.slice(2).trim() };
+    }
+    return null;
+  }
+
+  function createSubchapterTracker() {
+    var seenMainHash = false;
+    return function (heading) {
+      var isSub = heading.hash === 2 && seenMainHash;
+      if (heading.hash !== 2) seenMainHash = true;
+      return isSub;
+    };
+  }
+
+  /**
+   * Keep the first `maxChapters` main chapters, including their subchapters.
+   * Used by `story.chaptersToPublish`. Prefatory content before the first
+   * heading is kept. Omit / non-positive values leave markdown unchanged.
    */
   function truncateMarkdownToPublishedChapters(markdown, maxChapters) {
     if (
@@ -581,14 +608,16 @@
       .replace(/\n{3,}/g, "\n\n");
     var blocks = normalized.split(/\n\n+/);
     var out = [];
-    var chapterCount = 0;
+    var isSubchapter = createSubchapterTracker();
+    var mainCount = 0;
     var i;
     for (i = 0; i < blocks.length; i++) {
       var block = blocks[i].trim();
       if (!block) continue;
-      if (isStoryReaderChapterHeadingBlock(block)) {
-        chapterCount++;
-        if (chapterCount > maxChapters) break;
+      var heading = parseStoryHeadingBlock(block);
+      if (heading && !isSubchapter(heading)) {
+        mainCount++;
+        if (mainCount > maxChapters) break;
       }
       out.push(block);
     }
@@ -2596,9 +2625,10 @@
     "right",
     "dick",
     "pain",
+    "blueballs",
   ];
   var CONNECTION_KIND_COLORS = {
-    family: "#4a8fdb",
+    family: "#ffffff",
     relationship: "#e07ab0",
     knows: "#5bb8c4",
     faction: "#8a9099",
@@ -2606,6 +2636,7 @@
     right: "#e25555",
     dick: "#8b6cf0",
     pain: "#5cbf6a",
+    blueballs: "#0a1a5c",
   };
   var CONNECTION_KIND_LABELS = {
     family: "Family",
@@ -2616,6 +2647,7 @@
     right: "Right ball popped",
     dick: "Dick broken or removed",
     pain: "Lots of testicular pain but no permanent damage",
+    blueballs: "Gives blue balls to",
   };
   var CONNECTION_KIND_LEGEND_LABELS = {
     family: "Family",
@@ -2626,6 +2658,7 @@
     right: "Right popped",
     dick: "Dick broken/removed",
     pain: "Pain (no pop)",
+    blueballs: "Blue balls",
   };
   var connectionsKindEnabled = {
     family: true,
@@ -2636,6 +2669,7 @@
     right: true,
     dick: true,
     pain: true,
+    blueballs: true,
   };
   var connectionsShowNames = true;
 
@@ -2720,7 +2754,13 @@
   }
 
   function setConnectionsKindPreset(preset) {
-    var damaging = { left: true, right: true, dick: true, pain: true };
+    var damaging = {
+      left: true,
+      right: true,
+      dick: true,
+      pain: true,
+      blueballs: true,
+    };
     if (preset === "damaging") {
       CONNECTION_KIND_ORDER.forEach(function (k) {
         connectionsKindEnabled[k] = !!damaging[k];
@@ -3067,7 +3107,13 @@
     function stripDamagingBetweenWomen(kindsList) {
       if (!bothEndsWomen(edge)) return kindsList;
       var safe = kindsList.filter(function (k) {
-        return k !== "left" && k !== "right" && k !== "dick" && k !== "pain";
+        return (
+          k !== "left" &&
+          k !== "right" &&
+          k !== "dick" &&
+          k !== "pain" &&
+          k !== "blueballs"
+        );
       });
       if (!safe.length) safe = ["knows"];
       return safe;
@@ -3096,9 +3142,13 @@
 
   /**
    * Gender glyph + optional catalog stats for character flyouts / connections detail.
-   * Females: testiclesKilled. Males: penisLengthInches (or penisLengthLabel /
-   * penisLengthHtml), testicleSize, scrotumHang, optional testicleCount /
-   * anatomyDiagram.
+   * Females: testiclesKilled.
+   * Males (parallel fields):
+   *   penisLengthInches (number) + optional penisLabel / penisLabelHtml
+   *   testicleCount (number) + optional testicleLabel / testicleLabelHtml
+   * When a *Label is set it overrides the auto line. Otherwise cock shows
+   * `{inches}"` and balls compose from testicleCount + testicleSize +
+   * scrotumHang (size/hang are optional flavor for the auto balls line).
    */
   function characterFlyoutMetaHtml(character) {
     if (!character) return "";
@@ -3116,32 +3166,46 @@
       );
     }
     if (character.gender === "M") {
-      if (typeof character.penisLengthHtml === "string") {
-        htmlParts.push("Cock: " + character.penisLengthHtml);
-      } else if (typeof character.penisLengthLabel === "string") {
-        htmlParts.push(escapeHtml("Cock: " + character.penisLengthLabel));
+      if (typeof character.penisLabelHtml === "string") {
+        htmlParts.push("Cock: " + character.penisLabelHtml);
+      } else if (typeof character.penisLabel === "string") {
+        htmlParts.push(escapeHtml("Cock: " + character.penisLabel));
       } else if (typeof character.penisLengthInches === "number") {
         htmlParts.push(
           escapeHtml("Cock: " + character.penisLengthInches + '"'),
         );
       }
-      if (character.testicleSize || character.scrotumHang) {
+
+      if (typeof character.testicleLabelHtml === "string") {
+        htmlParts.push("Balls: " + character.testicleLabelHtml);
+      } else if (typeof character.testicleLabel === "string") {
+        htmlParts.push(escapeHtml("Balls: " + character.testicleLabel));
+      } else if (
+        character.testicleSize ||
+        character.scrotumHang ||
+        typeof character.testicleCount === "number"
+      ) {
         var sizeHang = [];
         if (character.testicleSize) sizeHang.push(character.testicleSize);
         if (character.scrotumHang) sizeHang.push(character.scrotumHang);
         var ballsLabel = sizeHang.join(", ");
         if (typeof character.testicleCount === "number") {
-          var countWords = {
-            0: "no",
-            1: "one",
-            3: "three",
-            4: "four",
-          };
-          if (character.testicleCount !== 2) {
-            var countWord =
-              countWords[character.testicleCount] ||
-              String(character.testicleCount);
-            ballsLabel = countWord + " " + ballsLabel;
+          if (character.testicleCount === 0) {
+            ballsLabel = "none";
+          } else {
+            var countWords = {
+              1: "one",
+              3: "three",
+              4: "four",
+            };
+            if (character.testicleCount !== 2) {
+              var countWord =
+                countWords[character.testicleCount] ||
+                String(character.testicleCount);
+              ballsLabel = ballsLabel
+                ? countWord + " " + ballsLabel
+                : countWord;
+            }
           }
         }
         htmlParts.push(escapeHtml("Balls: " + ballsLabel));
@@ -6300,6 +6364,11 @@
   var storyReaderBack = byId("story-reader-back");
   var storyReaderScroll = byId("story-reader-scroll");
   var storyReaderChaptersNav = byId("story-reader-chapters");
+  var storyReaderChaptersToggle = byId("story-reader-chapters-toggle");
+  var storyReaderChaptersToggleTitle = byId(
+    "story-reader-chapters-toggle-title",
+  );
+  var storyReaderChaptersBackdrop = byId("story-reader-chapters-backdrop");
 
   var readerChapterScrollHandler = null;
   var readerChapterHeads = [];
@@ -6689,20 +6758,30 @@
     var html = [];
     var chapterIndex = 0;
     var skippingPasswordChapter = false;
-    function chapterHeading(level, trimmed, suppressCover) {
+    var isSubchapter = createSubchapterTracker();
+    var mainChapterCount = 0;
+    function chapterHeading(level, trimmed, suppressCover, isSub, mainChapterOneBased) {
       var tag = level === 2 ? "h2" : "h3";
       var inner = hasPreservedInlineHtml(trimmed)
         ? formatBodyInline(trimmed)
         : readerFormatEscapedInline(escapeHtml(trimmed));
       var oneBased = chapterIndex + 1;
       var id = "story-ch-" + chapterIndex++;
+      var subClass = isSub ? " story-reader-chapter--sub" : "";
+      var mainAttr =
+        !isSub && mainChapterOneBased
+          ? ' data-main-chapter="' + mainChapterOneBased + '"'
+          : "";
       return (
         "<" +
         tag +
         ' id="' +
         id +
-        '" class="story-reader-chapter story-reader-chapter--h' +
+        '"' +
+        mainAttr +
+        ' class="story-reader-chapter story-reader-chapter--h' +
         level +
+        subClass +
         '">' +
         inner +
         "</" +
@@ -6715,19 +6794,12 @@
     for (b = 0; b < blocks.length; b++) {
       var block = blocks[b].trim();
       if (!block) continue;
-      if (
-        block.indexOf("### ") === 0 ||
-        block.indexOf("## ") === 0 ||
-        block.indexOf("# ") === 0
-      ) {
-        var level = 3;
-        var title = block.slice(2).trim();
-        if (block.indexOf("### ") === 0) {
-          title = block.slice(4).trim();
-        } else if (block.indexOf("## ") === 0) {
-          level = 2;
-          title = block.slice(3).trim();
-        }
+      var parsedHeading = parseStoryHeadingBlock(block);
+      if (parsedHeading) {
+        var level = parsedHeading.level;
+        var title = parsedHeading.title;
+        var sub = isSubchapter(parsedHeading);
+        if (!sub) mainChapterCount++;
         var oneBased = chapterIndex + 1;
         var gate = honorPasswordChapters
           ? storyPasswordChapterGate(story, oneBased)
@@ -6735,7 +6807,15 @@
         var cached = gate
           ? unlockedChapterMarkdown[unlockedChapterKey(story, oneBased)]
           : "";
-        html.push(chapterHeading(level, title, !!(gate && !cached)));
+        html.push(
+          chapterHeading(
+            level,
+            title,
+            !!(gate && !cached),
+            sub,
+            mainChapterCount,
+          ),
+        );
         if (gate && cached) {
           html.push(readerChapterCoverHtml(story, oneBased));
           html.push(
@@ -6874,6 +6954,45 @@
     replaceStoryReaderHash(readerStory.id, oneBased);
   }
 
+  function readerChapterButtonTitle(btn) {
+    if (!btn) return "";
+    var label = btn.querySelector(".story-reader-chapters-link-label");
+    return ((label ? label.textContent : btn.textContent) || "").trim();
+  }
+
+  function storyReaderChaptersSheetOpen() {
+    return !!(
+      storyReaderChaptersNav &&
+      storyReaderChaptersNav.classList.contains("is-open")
+    );
+  }
+
+  function setStoryReaderChaptersSheetOpen(open) {
+    if (storyReaderChaptersNav) {
+      storyReaderChaptersNav.classList.toggle("is-open", !!open);
+    }
+    if (storyReaderChaptersBackdrop) {
+      storyReaderChaptersBackdrop.classList.toggle("is-open", !!open);
+      storyReaderChaptersBackdrop.hidden = !open;
+    }
+    if (storyReaderChaptersToggle) {
+      storyReaderChaptersToggle.setAttribute(
+        "aria-expanded",
+        open ? "true" : "false",
+      );
+    }
+    if (open && storyReaderChaptersNav) {
+      requestAnimationFrame(function () {
+        var active = storyReaderChaptersNav.querySelector(
+          ".story-reader-chapters-link.is-active",
+        );
+        if (active && active.scrollIntoView) {
+          active.scrollIntoView({ block: "nearest" });
+        }
+      });
+    }
+  }
+
   function setStoryReaderChapterHighlight(activeIndex) {
     var i;
     for (i = 0; i < readerChapterBtns.length; i++) {
@@ -6881,6 +7000,10 @@
       readerChapterBtns[i].classList.toggle("is-active", on);
       if (on) {
         readerChapterBtns[i].setAttribute("aria-current", "location");
+        if (storyReaderChaptersToggleTitle) {
+          storyReaderChaptersToggleTitle.textContent =
+            readerChapterButtonTitle(readerChapterBtns[i]);
+        }
       } else {
         readerChapterBtns[i].removeAttribute("aria-current");
       }
@@ -6937,6 +7060,13 @@
     readerChapterHeads = [];
     readerChapterBtns = [];
     lastSyncedReaderChapter = null;
+    setStoryReaderChaptersSheetOpen(false);
+    if (storyReaderChaptersToggleTitle) {
+      storyReaderChaptersToggleTitle.textContent = "";
+    }
+    if (storyReaderChaptersToggle) {
+      storyReaderChaptersToggle.hidden = true;
+    }
     if (storyReaderChaptersNav) {
       storyReaderChaptersNav.innerHTML = "";
       storyReaderChaptersNav.hidden = true;
@@ -6954,22 +7084,25 @@
       return;
     }
     storyReaderChaptersNav.hidden = false;
+    if (storyReaderChaptersToggle) storyReaderChaptersToggle.hidden = false;
     var ul = document.createElement("ul");
     ul.className = "story-reader-chapters-list";
     for (var i = 0; i < readerChapterHeads.length; i++) {
       (function (head, chapterIndex0) {
         var li = document.createElement("li");
-        var level = head.classList.contains("story-reader-chapter--h2")
-          ? "h2"
-          : "h3";
-        li.className = "story-reader-chapters-item--" + level;
+        var isSub = head.classList.contains("story-reader-chapter--sub");
+        li.className = isSub
+          ? "story-reader-chapters-item story-reader-chapters-item--sub"
+          : "story-reader-chapters-item";
         var btn = document.createElement("button");
         btn.type = "button";
         btn.className = "story-reader-chapters-link";
         var chapterTitle = head.textContent || "";
-        var chapterDateLabel = readerStory
-          ? formatStoryChapterReleaseDateLabel(readerStory, chapterIndex0 + 1)
-          : null;
+        var mainChapter = parseInt(head.getAttribute("data-main-chapter"), 10);
+        var chapterDateLabel =
+          !isSub && readerStory && mainChapter
+            ? formatStoryChapterReleaseDateLabel(readerStory, mainChapter)
+            : null;
         if (chapterDateLabel) {
           btn.innerHTML =
             '<span class="story-reader-chapters-link-label">' +
@@ -6981,7 +7114,12 @@
           btn.textContent = chapterTitle;
         }
         btn.addEventListener("click", function () {
+          var sheetWasOpen = storyReaderChaptersSheetOpen();
           scrollStoryReaderToChapter(chapterIndex0 + 1, "smooth");
+          if (sheetWasOpen) {
+            setStoryReaderChaptersSheetOpen(false);
+            if (storyReaderChaptersToggle) storyReaderChaptersToggle.focus();
+          }
         });
         li.appendChild(btn);
         ul.appendChild(li);
@@ -8163,6 +8301,17 @@
       });
       bindCoverFlipKeydown(flyoutBody);
     }
+    if (storyReaderChaptersToggle) {
+      storyReaderChaptersToggle.addEventListener("click", function () {
+        setStoryReaderChaptersSheetOpen(!storyReaderChaptersSheetOpen());
+      });
+    }
+    if (storyReaderChaptersBackdrop) {
+      storyReaderChaptersBackdrop.addEventListener("click", function () {
+        setStoryReaderChaptersSheetOpen(false);
+        if (storyReaderChaptersToggle) storyReaderChaptersToggle.focus();
+      });
+    }
     if (storyReaderBack) {
       storyReaderBack.addEventListener("click", function () {
         location.hash = "stories";
@@ -8208,6 +8357,11 @@
       }
       if (flyout && flyout.classList.contains("open")) {
         closeFlyout();
+        return;
+      }
+      if (storyReaderChaptersSheetOpen()) {
+        setStoryReaderChaptersSheetOpen(false);
+        if (storyReaderChaptersToggle) storyReaderChaptersToggle.focus();
       }
     });
 

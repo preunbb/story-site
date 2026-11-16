@@ -34,8 +34,14 @@ Treat these as intentional words, not misspellings. Do not normalize them to gen
 - **Unhyphenated compounds** — when a closed compound exists as a standard word (e.g. *nonbeliever*, *stepbrother*), prefer it over a hyphenated variant. Do **not** remove hyphens where grammar requires them (e.g. compound modifiers before a noun: *orgasm-inducing*, *modern-day*, *innocent-looking*).
 - **Numbers ≤ 10** — spell out (*one* … *ten*) instead of digits (*1* … *10*) in prose. Digits are fine for ages, dates, times, measurements, and other contexts where numerals are standard.
 
+## Ignore (never flag or “fix”)
+
+- Curly/smart quotes that face the wrong way (misrotated `“ ” ‘ ’`)
+- Straight/flat quotes (`"` / `'`) that “should” be curly
+- Misplaced or invisible italic / bold runs that readers cannot see in normal reading (Drive/sync formatting ghosts, orphan emphasis spans, bold/italic that doesn’t change apparent wording)
+
 ## Scope
 
-- Still flag objective typos, doubled words, wrong apostrophes, subject–verb agreement, etc.
+- Still flag objective typos, doubled words, wrong apostrophes (e.g. its/it’s, whose/who’s), subject–verb agreement, etc.
 - Do **not** rewrite for voice or taste beyond the preferences above.
 - Do **not** treat catalog lexicon as errors.
