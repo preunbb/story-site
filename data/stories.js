@@ -1871,7 +1871,7 @@ window.DATA_STORIES = [
   },
   {
     id: 59,
-    wordCount: 26217,
+    wordCount: 26551,
     title: "Self Defense",
     brutalityRating: 3,
     summary:
@@ -1908,7 +1908,7 @@ window.DATA_STORIES = [
     chapterShares: [
       {
         chapter: 3,
-        cover: "assets/covers/self_defense_ch02_squeezes_v10.jpg",
+        cover: "assets/covers/self_defense_ch02_squeezes_v45.jpg",
         title: "Self Defense — Chapter 2: Squeezes",
         description:
           "The girls practice their squeezes. Chad volunteers for a demo. Ben receives some advice.",
