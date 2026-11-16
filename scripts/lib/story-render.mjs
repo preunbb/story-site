@@ -282,6 +282,11 @@ export const PDF_SCENE_FIGURE_CSS = `
 
 /** CSS for Google Doc inline formatting preserved through sync. */
 export const DOC_FONT_CSS = `
+  .story-reader-article .doc-align-center,
+  .chapter-body .doc-align-center {
+    display: block;
+    text-align: center;
+  }
   .story-reader-article .doc-font-mono,
   .chapter-body .doc-font-mono {
     font-family: ui-monospace, "Courier New", Courier, monospace;
@@ -317,7 +322,14 @@ const PRESERVED_INLINE_CHUNK_RE = new RegExp(
 );
 
 function hasPreservedInlineHtml(block) {
-  return /class="doc-(?:font|size|color)-|<\/?u>/i.test(block);
+  return /class="doc-(?:font|size|color|align)-|<\/?u>/i.test(block);
+}
+
+function unwrapDocAlignCenter(block) {
+  const m = String(block || "").match(
+    /^<span class="doc-align-center">([\s\S]*)<\/span>$/,
+  );
+  return m ? m[1] : null;
 }
 
 function formatPreservedInner(inner, opts) {
@@ -495,6 +507,10 @@ export function truncateMarkdownToPublishedChapters(markdown, maxChapters) {
 }
 
 function formatBodyInline(block, opts) {
+  const centeredInner = unwrapDocAlignCenter(String(block || "").trim());
+  if (centeredInner != null) {
+    return `<span class="doc-align-center">${formatBodyInline(centeredInner, opts)}</span>`;
+  }
   if (!hasPreservedInlineHtml(block)) {
     const escaped = escapeHtml(block).replace(/\r\n/g, "\n");
     return readerFormatEscapedInline(escaped, opts).replace(/\n/g, "<br />");

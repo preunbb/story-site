@@ -17,6 +17,19 @@ export function makeTurndown() {
     linkStyle: "inlined",
   });
   td.addRule("dropImages", { filter: "img", replacement: () => "" });
+  td.addRule("docAlignCenter", {
+    filter(node) {
+      return (
+        node.nodeName === "P" &&
+        /\bdoc-align-center\b/.test(node.getAttribute("class") || "")
+      );
+    },
+    replacement(content) {
+      const inner = String(content || "").replace(/^\s+|\s+$/g, "");
+      if (!inner) return "";
+      return `\n\n<span class="doc-align-center">${inner}</span>\n\n`;
+    },
+  });
   td.addRule("docInlineSpan", {
     filter(node) {
       return (
@@ -302,6 +315,31 @@ function unwrapAllGoogleRedirectors($, body) {
   });
 }
 
+function centeredClassNames($) {
+  const names = new Set();
+  const ruleRe = /\.([a-zA-Z0-9_-]+)\s*\{([^}]+)\}/g;
+  $("style").each((_, el) => {
+    const css = $(el).contents().text();
+    let m;
+    while ((m = ruleRe.exec(css))) {
+      if (/text-align\s*:\s*center/i.test(m[2])) names.add(m[1]);
+    }
+    ruleRe.lastIndex = 0;
+  });
+  return names;
+}
+
+function markCenteredParagraphs($, body, centeredClasses) {
+  if (!centeredClasses.size) return;
+  body.find("p").each((_, el) => {
+    const $el = $(el);
+    if (!$el.text().trim()) return;
+    const classes = ($el.attr("class") || "").split(/\s+/).filter(Boolean);
+    if (!classes.some((name) => centeredClasses.has(name))) return;
+    $el.addClass("doc-align-center");
+  });
+}
+
 function convertDashDividersToHr($, body) {
   const dividerRe = /^[-*_\u2013\u2014]+$/;
   body.find("p").each((_, el) => {
@@ -364,6 +402,7 @@ export function extractBodyHtml(html) {
   if (!body.length) return null;
   const classFormatting = parseStyleClassFormatting($);
   wrapStyledFormatting($, body, classFormatting);
+  markCenteredParagraphs($, body, centeredClassNames($));
   normalizeHeadingFontSizes($, body);
   demoteAccidentalHeadings($, body);
   unwrapAllGoogleRedirectors($, body);

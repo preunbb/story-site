@@ -3778,6 +3778,11 @@ body.preun-local-andrea .local-andrea-status {
   font-weight: 700;
 }
 
+.story-reader-article .doc-align-center {
+  display: block;
+  text-align: center;
+}
+
 .story-reader-article .doc-font-mono {
   font-family: ui-monospace, "Courier New", Courier, monospace;
 }

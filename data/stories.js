@@ -1905,6 +1905,15 @@ window.DATA_STORIES = [
         releaseDate: "2026-11-16",
       },
     ],
+    chapterShares: [
+      {
+        chapter: 3,
+        cover: "assets/covers/self_defense_ch02_squeezes_v10.jpg",
+        title: "Self Defense — Chapter 2: Squeezes",
+        description:
+          "The girls practice their squeezes. Chad volunteers for a demo. Ben receives some advice.",
+      },
+    ],
   },
   {
     id: 60,

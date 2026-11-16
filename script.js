@@ -6488,7 +6488,14 @@
   );
 
   function hasPreservedInlineHtml(block) {
-    return /class="doc-(?:font|size|color)-|<\/?u>/i.test(block);
+    return /class="doc-(?:font|size|color|align)-|<\/?u>/i.test(block);
+  }
+
+  function unwrapDocAlignCenter(block) {
+    var m = String(block || "").match(
+      /^<span class="doc-align-center">([\s\S]*)<\/span>$/,
+    );
+    return m ? m[1] : null;
   }
 
   function formatPreservedInner(inner) {
@@ -6544,6 +6551,14 @@
   }
 
   function formatBodyInline(block) {
+    var centeredInner = unwrapDocAlignCenter(String(block || "").trim());
+    if (centeredInner != null) {
+      return (
+        '<span class="doc-align-center">' +
+        formatBodyInline(centeredInner) +
+        "</span>"
+      );
+    }
     if (!hasPreservedInlineHtml(block)) {
       var escapedOnly = escapeHtml(block).replace(/\r\n/g, "\n");
       return readerFormatEscapedInline(escapedOnly).replace(/\n/g, "<br />");
