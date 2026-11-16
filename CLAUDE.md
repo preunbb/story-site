@@ -38,6 +38,16 @@ When you hit 10 attempts on one image and still don't have a result you'd ship:
 
 Do not silently keep grinding past 10. The user's time, money, and patience all matter — bail out and ask.
 
+### Clothed bulges for big-ball characters
+
+When a man is established as having unusually large testicles — Chad, Lucas, James, and anyone the prose treats as notably bigger than average — clothed shots must show that size. The canonical look is `assets/covers/self_defense_ch02_squeezes_v45.jpg`: **two separate heavy rounds side by side**, sitting together at the front of the pelvis just under the waistband, each one obvious through the fabric. Not a single modest dick-tent, not a flat crotch, not one combined lump, and not two pads sitting out on the thighs. Ordinary-sized men stay ordinary.
+
+The image filter refuses anatomy words (testicles, balls, groin, crotch, inside the pants) and refuses the photoreal cast portrait or that v45 still as a reference image. Do not attach those. Ask for the clothing instead, with this wording:
+
+"The front of the sweatpants is pushed out by two large round cushions sitting side by side, just under the drawstring, so the cloth stretches into two separate round bumps."
+
+Keep his hands off the waistband so the cloth stays closed over the cushions. After the image comes back, check placement: the two bumps belong together at the front of the pelvis, not halfway down the thighs. If they landed on the thighs, say the same sentence again and stress "just under the drawstring, in the center, not on the thighs."
+
 ### Subject matter focus
 
 Generated images for these stories should, as much as physically possible within the model's safety filters, focus on **the physical impact of a testicular attack**:

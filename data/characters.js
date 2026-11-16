@@ -704,7 +704,10 @@ window.DATA_CHARACTERS = [
     testicleSize: "giant",
     scrotumHang: "low-hanging",
     anatomyDiagram: "assets/characters/anatomy/lucas_anatomy_v1.svg",
-    profilePictures: ["assets/characters/lucas.jpg"],
+    profilePictures: [
+      "assets/characters/lucas_before_andrea_toned_v6.jpg",
+      "assets/characters/lucas_after_andrea_toned_v5.jpg",
+    ],
   },
   {
     id: "izzie",
