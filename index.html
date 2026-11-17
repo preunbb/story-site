@@ -436,41 +436,46 @@
             story.
           </p>
           <div class="connections-layout">
-            <div class="connections-graph-wrap" id="connections-graph-wrap">
-              <label
-                class="connections-names-toggle"
-                title="Show or hide character names on the graph"
-              >
-                <input
-                  type="checkbox"
-                  id="connections-names-toggle"
-                  class="connections-names-toggle-input"
-                  checked
-                />
-                <span>Names</span>
-              </label>
-              <div class="connections-find" id="connections-find">
-                <label class="connections-find-label" for="connections-find-input"
-                  >Find</label
+            <div class="connections-graph-frame">
+              <div class="connections-graph-chrome">
+                <div class="connections-graph-chrome-left">
+                  <label
+                    class="connections-names-toggle"
+                    title="Show or hide character names on the graph"
+                  >
+                    <input
+                      type="checkbox"
+                      id="connections-names-toggle"
+                      class="connections-names-toggle-input"
+                      checked
+                    />
+                    <span>Names</span>
+                  </label>
+                  <div class="connections-find" id="connections-find">
+                    <label
+                      class="connections-find-label"
+                      for="connections-find-input"
+                      >Find</label
+                    >
+                    <input
+                      type="search"
+                      id="connections-find-input"
+                      class="connections-find-input"
+                      placeholder="Jump to character…"
+                      autocomplete="off"
+                      spellcheck="false"
+                      list="connections-find-datalist"
+                      aria-autocomplete="list"
+                    />
+                    <datalist id="connections-find-datalist"></datalist>
+                  </div>
+                </div>
+                <div
+                  class="connections-zoom"
+                  id="connections-zoom"
+                  role="group"
+                  aria-label="Graph zoom"
                 >
-                <input
-                  type="search"
-                  id="connections-find-input"
-                  class="connections-find-input"
-                  placeholder="Jump to character…"
-                  autocomplete="off"
-                  spellcheck="false"
-                  list="connections-find-datalist"
-                  aria-autocomplete="list"
-                />
-                <datalist id="connections-find-datalist"></datalist>
-              </div>
-              <div
-                class="connections-zoom"
-                id="connections-zoom"
-                role="group"
-                aria-label="Graph zoom"
-              >
                 <button
                   type="button"
                   class="connections-zoom-btn"
@@ -495,13 +500,16 @@
                 >
                   +
                 </button>
+                </div>
               </div>
-              <svg
-                id="connections-graph"
-                class="connections-graph"
-                role="img"
-                aria-label="Character connection graph"
-              ></svg>
+              <div class="connections-graph-wrap" id="connections-graph-wrap">
+                <svg
+                  id="connections-graph"
+                  class="connections-graph"
+                  role="img"
+                  aria-label="Character connection graph"
+                ></svg>
+              </div>
             </div>
             <aside class="connections-sidebar">
               <div
@@ -511,10 +519,16 @@
                 aria-label="Connection type colors"
               ></div>
               <div
+                class="connections-kind-filters connections-node-filters"
+                id="connections-node-filters"
+                role="group"
+                aria-label="Show nodes"
+              ></div>
+              <div
                 class="connections-kind-filters"
                 id="connections-kind-filters"
                 role="group"
-                aria-label="Connection types"
+                aria-label="Show connections"
               ></div>
               <div
                 class="connections-detail"

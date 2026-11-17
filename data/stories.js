@@ -2012,6 +2012,11 @@ window.DATA_STORIES = [
         cover: "assets/covers/mother_knows_best_ch05_alfie_endures_v6.jpg",
         title: "Mother Knows Best — Chapter 5: Alfie Endures",
       },
+      {
+        chapter: 6,
+        cover: "assets/covers/mother_knows_best_ch06_life_at_home_v10.jpg",
+        title: "Mother Knows Best — Chapter 6: Life at Home",
+      },
     ],
   },
 ];

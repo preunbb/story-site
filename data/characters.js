@@ -978,6 +978,7 @@ window.DATA_CHARACTERS = [
   {
     id: "nameless_volunteers",
     name: "Nameless Legions of 'Volunteers'",
+    entityType: "group",
     gender: "M",
     bio: "OverEasy's quality control department has access to a depthless well of oversexed men who don't read the fine print on their contracts. Bound to their X-Frames in the storage room, they dangle precariously until a technician requisitions them for a product test.",
     profilePictures: [
@@ -1018,6 +1019,7 @@ window.DATA_CHARACTERS = [
   {
     id: "broken_tree_cultists",
     name: "Church males",
+    entityType: "group",
     gender: "M",
     bio: "Anonymous ranks of brainwashed Church of the Broken Tree half-men and converts. Brainwashed into worshipping Eve as high mistress and obeying Abby and Kay as their superior female cultists. Eve takes their left testicles; when Andrea, Izzie, and Tamara storm the compound, these devoted males lose their remaining right ones en masse.",
     profilePictures: ["assets/characters/broken_tree_cultists_cast_v3.png"],

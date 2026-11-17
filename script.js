@@ -2695,6 +2695,31 @@
   };
   var connectionsShowNames = true;
 
+  var CONNECTIONS_NODE_HIDE_OPTIONS = [
+    { id: "male", label: "Men", swatch: "is-circle is-male" },
+    { id: "female", label: "Women", swatch: "is-circle is-female" },
+    { id: "faction", label: "Factions", swatch: "is-faction" },
+    { id: "group", label: "Nameless groups", swatch: "is-group is-male" },
+  ];
+  var connectionsNodeHidden = {
+    male: false,
+    female: false,
+    faction: false,
+    group: false,
+  };
+  var connectionsNodeFiltersCollapsed = null;
+
+  function connectionNodeCategory(entity) {
+    if (!entity) return "male";
+    if (entity.entityType === "faction") return "faction";
+    if (entity.entityType === "group") return "group";
+    return entity.gender === "F" ? "female" : "male";
+  }
+
+  function connectionNodeIsHidden(entity) {
+    return !!connectionsNodeHidden[connectionNodeCategory(entity)];
+  }
+
   function syncConnectionsNamesVisibility() {
     var wrap = byId("connections-graph-wrap");
     var input = byId("connections-names-toggle");
@@ -2873,7 +2898,12 @@
     if (!dl) return;
     var names = (characters || [])
       .filter(function (c) {
-        return c && c.name && !isCharacterHiddenFromConnections(c);
+        return (
+          c &&
+          c.name &&
+          !isCharacterHiddenFromConnections(c) &&
+          !connectionNodeIsHidden(c)
+        );
       })
       .map(function (c) {
         return c.name;
@@ -3013,9 +3043,7 @@
       toggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
     }
     var title = host.querySelector(".connections-kind-filters-title");
-    if (title) {
-      title.textContent = collapsed ? "Show controls" : "Hide controls";
-    }
+    if (title) title.textContent = "Show connections";
   }
 
   function renderConnectionsKindFilters() {
@@ -3024,7 +3052,7 @@
     host.hidden = false;
     host.innerHTML =
       '<button type="button" class="connections-kind-filters-toggle" aria-controls="connections-kind-filters-body" aria-expanded="true">' +
-      '<span class="connections-kind-filters-title">Hide controls</span>' +
+      '<span class="connections-kind-filters-title">Show connections</span>' +
       '<span class="connections-kind-filters-chevron" aria-hidden="true"></span>' +
       "</button>" +
       '<div class="connections-kind-filters-body" id="connections-kind-filters-body">' +
@@ -3056,6 +3084,103 @@
       }).join("") +
       "</ul></div>";
     syncConnectionsKindFiltersCollapsed(host);
+  }
+
+  function syncConnectionsNodeFiltersCollapsed(host) {
+    if (!host) return;
+    if (connectionsNodeFiltersCollapsed === null) {
+      connectionsNodeFiltersCollapsed = connectionsKindFiltersDefaultCollapsed();
+    }
+    var collapsed = !!connectionsNodeFiltersCollapsed;
+    host.classList.toggle("is-collapsed", collapsed);
+    var toggle = host.querySelector(".connections-kind-filters-toggle");
+    if (toggle) {
+      toggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
+    }
+    var title = host.querySelector(".connections-kind-filters-title");
+    if (title) title.textContent = "Show nodes";
+  }
+
+  function renderConnectionsNodeFilters() {
+    var host = byId("connections-node-filters");
+    if (!host) return;
+    host.hidden = false;
+    host.innerHTML =
+      '<button type="button" class="connections-kind-filters-toggle" aria-controls="connections-node-filters-body" aria-expanded="true">' +
+      '<span class="connections-kind-filters-title">Show nodes</span>' +
+      '<span class="connections-kind-filters-chevron" aria-hidden="true"></span>' +
+      "</button>" +
+      '<div class="connections-kind-filters-body" id="connections-node-filters-body">' +
+      '<ul class="connections-kind-filter-list">' +
+      CONNECTIONS_NODE_HIDE_OPTIONS.map(function (opt) {
+        var checked = connectionsNodeHidden[opt.id] ? "" : " checked";
+        return (
+          '<li class="connections-kind-filter-item">' +
+          '<label class="connections-kind-filter-label">' +
+          '<input type="checkbox" class="connections-kind-filter-input connections-node-filter-input" data-node-category="' +
+          escapeHtml(opt.id) +
+          '"' +
+          checked +
+          " />" +
+          '<span class="connections-node-swatch ' +
+          opt.swatch +
+          '" aria-hidden="true"></span>' +
+          '<span class="connections-kind-filter-text">' +
+          escapeHtml(opt.label) +
+          "</span>" +
+          "</label></li>"
+        );
+      }).join("") +
+      "</ul></div>";
+    syncConnectionsNodeFiltersCollapsed(host);
+  }
+
+  function refreshConnectionsNodeVisibility() {
+    syncConnectionsFindDatalist();
+    var selected =
+      connectionsGraphState && connectionsGraphState.selectedId;
+    if (selected && connectionNodeIsHidden(getCharacterById(selected))) {
+      if (connectionsGraphState.setSelected) {
+        connectionsGraphState.setSelected(null);
+      }
+    }
+    if (connectionsGraphState && connectionsGraphState.repaint) {
+      connectionsGraphState.repaint();
+    } else {
+      initConnectionsGraph(true);
+    }
+  }
+
+  function bindConnectionsNodeFilters() {
+    var host = byId("connections-node-filters");
+    if (!host || host._connectionsNodeBound) return;
+    host._connectionsNodeBound = true;
+    host.addEventListener("click", function (ev) {
+      var toggleBtn =
+        ev.target &&
+        ev.target.closest &&
+        ev.target.closest(".connections-kind-filters-toggle");
+      if (toggleBtn && host.contains(toggleBtn)) {
+        ev.preventDefault();
+        if (connectionsNodeFiltersCollapsed === null) {
+          connectionsNodeFiltersCollapsed =
+            connectionsKindFiltersDefaultCollapsed();
+        }
+        connectionsNodeFiltersCollapsed = !connectionsNodeFiltersCollapsed;
+        syncConnectionsNodeFiltersCollapsed(host);
+      }
+    });
+    host.addEventListener("change", function (ev) {
+      var input =
+        ev.target &&
+        ev.target.closest &&
+        ev.target.closest(".connections-node-filter-input");
+      if (!input) return;
+      var category = input.getAttribute("data-node-category");
+      if (!category || !connectionsNodeHidden.hasOwnProperty(category)) return;
+      connectionsNodeHidden[category] = !input.checked;
+      refreshConnectionsNodeVisibility();
+    });
   }
 
   function bindConnectionsKindFilters() {
@@ -3176,6 +3301,14 @@
     if (!character) return "";
     if (character.entityType === "faction") {
       return '<p class="flyout-character-meta">Faction</p>';
+    }
+    if (character.entityType === "group") {
+      var groupSymbol = character.gender === "F" ? "\u2640" : "\u2642";
+      return (
+        '<p class="flyout-character-meta">' +
+        escapeHtml(groupSymbol + " Nameless group") +
+        "</p>"
+      );
     }
     var genderSymbol = character.gender === "F" ? "\u2640" : "\u2642";
     var htmlParts = [escapeHtml(genderSymbol)];
@@ -3313,9 +3446,10 @@
         ? character.profilePictures
         : [PLACEHOLDER_CHAR];
     var isFactionDetail = character.entityType === "faction";
+    var isGroupDetail = character.entityType === "group";
     var picsHtml =
       '<div class="flyout-profiles connections-detail-profiles' +
-      (isFactionDetail ? " is-faction" : "") +
+      (isFactionDetail ? " is-faction" : isGroupDetail ? " is-group" : "") +
       '">' +
       pics
         .map(function (src, idx) {
@@ -3970,8 +4104,8 @@
       svg.setAttribute("viewBox", "0 0 " + width + " " + height);
       svg.setAttribute("width", String(Math.round(width * zoom)));
       svg.setAttribute("height", String(Math.round(height * zoom)));
-      var label = wrap.querySelector(
-        '.connections-zoom-btn[data-zoom-action="reset"]',
+      var label = document.querySelector(
+        '#connections-zoom [data-zoom-action="reset"]',
       );
       if (label) label.textContent = Math.round(zoom * 100) + "%";
     }
@@ -4101,6 +4235,12 @@
         neighSet[selectedId] = true;
         simEdges.forEach(function (e) {
           if (!connectionEdgePassesKindFilter(e)) return;
+          if (
+            connectionNodeIsHidden(e.source) ||
+            connectionNodeIsHidden(e.target)
+          ) {
+            return;
+          }
           if (e.from === selectedId) neighSet[e.to] = true;
           if (e.to === selectedId) neighSet[e.from] = true;
         });
@@ -4112,6 +4252,7 @@
         if (w.grid || w.orphan) return;
         // Hubless island pairs/triples: no decorative ring.
         if (w.island && !w.hub) return;
+        if (w.hub && connectionNodeIsHidden(w.hub)) return;
         var ring = document.createElementNS(ns, "circle");
         ring.setAttribute("cx", w.cx);
         ring.setAttribute("cy", w.cy);
@@ -4120,6 +4261,7 @@
         gGuides.appendChild(ring);
         if (w.hub) {
           w.spokes.forEach(function (s) {
+            if (connectionNodeIsHidden(s)) return;
             var spoke = document.createElementNS(ns, "line");
             spoke.setAttribute("x1", w.hub.x);
             spoke.setAttribute("y1", w.hub.y);
@@ -4142,6 +4284,12 @@
 
       simEdges.forEach(function (e, idx) {
         if (!e.source || !e.target) return;
+        if (
+          connectionNodeIsHidden(e.source) ||
+          connectionNodeIsHidden(e.target)
+        ) {
+          return;
+        }
         if (!connectionEdgePassesKindFilter(e)) return;
         var active =
           selectedId && (e.from === selectedId || e.to === selectedId);
@@ -4235,7 +4383,9 @@
       });
 
       nodes.forEach(function (n) {
+        if (connectionNodeIsHidden(n)) return;
         var isFaction = n.entityType === "faction";
+        var isSquare = isFaction || n.entityType === "group";
         var dimmed = !!(neighSet && !neighSet[n.id]);
         var g = document.createElementNS(ns, "g");
         g.setAttribute(
@@ -4244,7 +4394,12 @@
             (selectedId === n.id ? " is-selected" : "") +
             (isHub[n.id] ? " is-hub" : "") +
             (dimmed ? " is-dimmed" : "") +
-            (isFaction ? " is-faction" : n.gender === "F" ? " is-f" : " is-m"),
+            (isFaction
+              ? " is-faction"
+              : n.entityType === "group"
+                ? " is-group"
+                : "") +
+            (n.gender === "F" ? " is-f" : n.gender === "M" ? " is-m" : ""),
         );
         g.setAttribute("transform", "translate(" + n.x + "," + n.y + ")");
         g.setAttribute("data-character-id", n.id);
@@ -4259,15 +4414,12 @@
         if (isFaction && isHub[n.id]) {
           portraitR = isNarrow ? 30 : 24;
         }
-        if (isFaction) {
-          var factionCorner = Math.max(4, Math.round(portraitR * 0.28));
+        if (isSquare) {
           var clipRect = document.createElementNS(ns, "rect");
           clipRect.setAttribute("x", String(-portraitR));
           clipRect.setAttribute("y", String(-portraitR));
           clipRect.setAttribute("width", String(portraitR * 2));
           clipRect.setAttribute("height", String(portraitR * 2));
-          clipRect.setAttribute("rx", String(factionCorner));
-          clipRect.setAttribute("ry", String(factionCorner));
           clip.appendChild(clipRect);
         } else {
           var clipCircle = document.createElementNS(ns, "circle");
@@ -4278,16 +4430,13 @@
         g.appendChild(defs);
 
         var ringPad = 2;
-        if (isFaction) {
-          var ringCorner = Math.max(4, Math.round(portraitR * 0.28)) + ringPad;
+        if (isSquare) {
           var ringSize = (portraitR + ringPad) * 2;
           var ring = document.createElementNS(ns, "rect");
           ring.setAttribute("x", String(-(portraitR + ringPad)));
           ring.setAttribute("y", String(-(portraitR + ringPad)));
           ring.setAttribute("width", String(ringSize));
           ring.setAttribute("height", String(ringSize));
-          ring.setAttribute("rx", String(ringCorner));
-          ring.setAttribute("ry", String(ringCorner));
           ring.setAttribute("class", "connections-node-ring");
           g.appendChild(ring);
         } else {
@@ -4548,7 +4697,8 @@
         (el.closest(".connections-zoom") ||
           el.closest(".connections-names-toggle") ||
           el.closest(".connections-find") ||
-          el.closest(".connections-kind-filters"))
+          el.closest(".connections-kind-filters") ||
+          el.closest(".connections-node-filters"))
       );
     }
 
@@ -5019,10 +5169,12 @@
   function renderConnectionsPanel() {
     bindConnectionsSpoilerModal();
     bindConnectionsKindFilters();
+    bindConnectionsNodeFilters();
     bindConnectionsNamesToggle();
     bindConnectionsFind();
     renderConnectionsLegend();
     renderConnectionsKindFilters();
+    renderConnectionsNodeFilters();
     syncConnectionsNamesVisibility();
     syncConnectionsFindDatalist();
     ensureConnectionsData().then(function () {
