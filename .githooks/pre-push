@@ -18,6 +18,16 @@ fi
 repo_root="$(git rev-parse --show-toplevel)"
 cd "$repo_root"
 
+# shellcheck source=lib/check-pushed-authors.sh
+source "$repo_root/.githooks/lib/check-pushed-authors.sh"
+
+upstream="$(git rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>/dev/null || true)"
+if [[ -n "$upstream" ]]; then
+  check_range "$upstream..HEAD"
+else
+  check_range "HEAD"
+fi
+
 echo "[pre-push] prod (main): npm run thumbs && npm run share-pages"
 npm run thumbs
 npm run share-pages

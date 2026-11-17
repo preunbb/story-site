@@ -1,0 +1,26 @@
+---
+description: Git commits in this repo must use only the preunbb identity
+alwaysApply: true
+---
+
+# Commits: preunbb only
+
+**Never create or amend git commits** in this repository unless the author and committer will be:
+
+- **Name:** `preunbb`
+- **Email:** `boozlejam@gmail.com`
+
+This matches enforced `.githooks` checks. Do not use `Sam Fendell`, `sfendell`, or any other name/email.
+
+Before committing, confirm repo-local identity (not global):
+
+```bash
+git config user.name    # must be preunbb
+git config user.email   # must be boozlejam@gmail.com
+```
+
+If wrong, stop and tell the user to set **repo-local** `user.name` / `user.email` — do not run `git config --global`.
+
+Do not bypass hooks (`--no-verify`) unless the user explicitly asks.
+
+Same rule applies to **`~/code/forum-archives`** when working on forum scrapers/archives.

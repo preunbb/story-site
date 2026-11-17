@@ -7,6 +7,9 @@ set -euo pipefail
 repo_root="$(git rev-parse --show-toplevel)"
 cd "$repo_root"
 
+# shellcheck source=lib/require-preunbb-author.sh
+source "$repo_root/.githooks/lib/require-preunbb-author.sh"
+
 if [[ "${SKIP_STORY_SYNC:-}" == "1" ]]; then
   echo "[pre-commit] skipping story sync (SKIP_STORY_SYNC=1)"
 else
