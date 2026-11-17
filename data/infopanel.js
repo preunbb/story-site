@@ -968,7 +968,7 @@ window.DATA_INFOPANEL = {
   turgid_u: [
     {
       storyId: 60,
-      text: "Faculty: [[char:coqtiz]] and [[char:yumi]]. Students: [[char:jamie_splegham]], [[char:crystal]], and [[char:nelson_masterson]]. New student: [[char:alf]].",
+      text: "Students: [[char:jamie_splegham]], [[char:crystal]], and [[char:nelson_masterson]]. New student: [[char:alf]].",
     },
   ],
   cherry_pop: [

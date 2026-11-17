@@ -1986,8 +1986,7 @@ body.connections-spoiler-modal-open {
   stroke-width: 2.25;
   stroke-linecap: round;
   fill: none;
-  cursor: pointer;
-  pointer-events: stroke;
+  pointer-events: none;
   opacity: 0.85;
 }
 

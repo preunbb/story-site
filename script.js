@@ -410,6 +410,32 @@
     return true;
   }
 
+  var TURGID_STUDENT_IDS = {
+    alf: true,
+    jamie_splegham: true,
+    crystal: true,
+    nelson_masterson: true,
+  };
+
+  /** Student links to Turgid U stay on the public graph while Mother Knows Best is unpublished. */
+  function isTurgidStudentConnection(entry, charId) {
+    if (!entry) return false;
+    var kinds = entry.kinds;
+    if (Array.isArray(kinds) && kinds.indexOf("faction") !== -1) {
+      var other =
+        entry.from === "turgid_u" ? entry.to : entry.to === "turgid_u" ? entry.from : "";
+      return !!TURGID_STUDENT_IDS[other];
+    }
+    var text = entry.text || "";
+    if (charId === "turgid_u") {
+      for (var id in TURGID_STUDENT_IDS) {
+        if (text.indexOf("[[char:" + id) !== -1) return true;
+      }
+      return false;
+    }
+    return !!TURGID_STUDENT_IDS[charId] && text.indexOf("[[char:turgid_u]]") !== -1;
+  }
+
   /** Infopanel notes and connection edges for a hidden or coming-soon
    *  story stay hidden on production; localhost can still see them. */
   function isCatalogStoryIdVisible(storyId) {
@@ -3223,7 +3249,11 @@
     var entries = (connectionsInfopanel[charId] || [])
       .slice()
       .filter(function (entry) {
-        return !entry || isCatalogStoryIdVisible(entry.storyId);
+        return (
+          !entry ||
+          isCatalogStoryIdVisible(entry.storyId) ||
+          isTurgidStudentConnection(entry, charId)
+        );
       })
       .sort(function (a, b) {
         var ia = storyOrderIndexForCharacter(a && a.storyId, charId);
@@ -3431,7 +3461,7 @@
         e.to &&
         getCharacterById(e.from) &&
         getCharacterById(e.to) &&
-        isCatalogStoryIdVisible(e.storyId)
+        (isCatalogStoryIdVisible(e.storyId) || isTurgidStudentConnection(e))
       );
     });
 
@@ -4040,8 +4070,29 @@
     var selectedId =
       (connectionsGraphState && connectionsGraphState.selectedId) || null;
 
+    var edgesByNode = {};
+    simEdges.forEach(function (e) {
+      if (!edgesByNode[e.from]) edgesByNode[e.from] = [];
+      if (!edgesByNode[e.to]) edgesByNode[e.to] = [];
+      edgesByNode[e.from].push(e);
+      edgesByNode[e.to].push(e);
+    });
+
     function paint() {
       var ns = "http://www.w3.org/2000/svg";
+      var countBadges = [];
+      nodes.forEach(function (n) {
+        n._el = null;
+        n._spokeLines = null;
+      });
+      simEdges.forEach(function (e) {
+        e._group = null;
+        e._paths = null;
+        e._countText = null;
+        e._countBg = null;
+        e._countX = null;
+        e._countY = null;
+      });
       while (svg.firstChild) svg.removeChild(svg.firstChild);
 
       var neighSet = null;
@@ -4076,6 +4127,10 @@
             spoke.setAttribute("y2", s.y);
             spoke.setAttribute("class", "connections-spoke");
             gGuides.appendChild(spoke);
+            if (!w.hub._spokeLines) w.hub._spokeLines = [];
+            if (!s._spokeLines) s._spokeLines = [];
+            w.hub._spokeLines.push({ line: spoke, xAttr: "x1", yAttr: "y1" });
+            s._spokeLines.push({ line: spoke, xAttr: "x2", yAttr: "y2" });
           });
         }
       });
@@ -4105,17 +4160,20 @@
             (dimmed ? " is-dimmed" : ""),
         );
         group.setAttribute("data-edge-index", String(idx));
+        e._group = group;
+        e._paths = [];
 
         var cA = clusterOf(e.source);
         var cB = clusterOf(e.target);
         var curved = !!(cA && cB && cA !== cB);
+        var bundleKey = cA < cB ? cA + "|" + cB : cB + "|" + cA;
         var d = edgePathD(
           e.source.x,
           e.source.y,
           e.target.x,
           e.target.y,
           curved,
-          cA < cB ? cA + "|" + cB : cB + "|" + cA,
+          bundleKey,
         );
 
         var hit = document.createElementNS(ns, "path");
@@ -4124,6 +4182,7 @@
         hit.setAttribute("class", "connections-edge-hit");
         hit.setAttribute("data-edge-index", String(idx));
         group.appendChild(hit);
+        e._paths.push(hit);
 
         var dashLen = 10;
         var nKinds = kinds.length;
@@ -4147,9 +4206,9 @@
             line.setAttribute("stroke-dashoffset", String(-ki * dashLen));
           }
           group.appendChild(line);
+          e._paths.push(line);
         });
         if (typeof e.testiclesPopped === "number" && isFinite(e.testiclesPopped)) {
-          var bundleKey = cA < cB ? cA + "|" + cB : cB + "|" + cA;
           var at = edgeLabelPoint(
             e.source.x,
             e.source.y,
@@ -4167,21 +4226,10 @@
           count.setAttribute("pointer-events", "none");
           count.textContent = String(e.testiclesPopped);
           group.appendChild(count);
-          var box = count.getBBox();
-          var padX = 5;
-          var padY = 2;
-          var bg = document.createElementNS(ns, "rect");
-          bg.setAttribute("class", "connections-edge-count-bg");
-          bg.setAttribute("x", box.x - padX);
-          bg.setAttribute("y", box.y - padY);
-          bg.setAttribute("width", box.width + padX * 2);
-          bg.setAttribute("height", box.height + padY * 2);
-          bg.setAttribute("rx", "4");
-          bg.setAttribute("fill", "#2a2a2e");
-          bg.setAttribute("stroke", "rgba(235,233,236,0.45)");
-          bg.setAttribute("stroke-width", "1");
-          bg.setAttribute("pointer-events", "none");
-          group.insertBefore(bg, count);
+          e._countText = count;
+          e._countX = at.x;
+          e._countY = at.y;
+          countBadges.push(e);
         }
         gEdges.appendChild(group);
       });
@@ -4201,6 +4249,7 @@
         g.setAttribute("transform", "translate(" + n.x + "," + n.y + ")");
         g.setAttribute("data-character-id", n.id);
         g.style.cursor = "grab";
+        n._el = g;
 
         var clipId = "cn-clip-" + n.id.replace(/[^a-z0-9_-]/gi, "_");
         var defs = document.createElementNS(ns, "defs");
@@ -4279,6 +4328,114 @@
       svg.appendChild(gGuides);
       svg.appendChild(gEdges);
       svg.appendChild(gNodes);
+
+      // getBBox is only valid once the text is in the document.
+      countBadges.forEach(function (e) {
+        if (!e._countText) return;
+        var box = e._countText.getBBox();
+        var padX = 5;
+        var padY = 2;
+        var bg = document.createElementNS(ns, "rect");
+        bg.setAttribute("class", "connections-edge-count-bg");
+        bg.setAttribute("x", box.x - padX);
+        bg.setAttribute("y", box.y - padY);
+        bg.setAttribute("width", box.width + padX * 2);
+        bg.setAttribute("height", box.height + padY * 2);
+        bg.setAttribute("rx", "4");
+        bg.setAttribute("fill", "#2a2a2e");
+        bg.setAttribute("stroke", "rgba(235,233,236,0.45)");
+        bg.setAttribute("stroke-width", "1");
+        bg.setAttribute("pointer-events", "none");
+        e._countText.parentNode.insertBefore(bg, e._countText);
+        e._countBg = bg;
+      });
+    }
+
+    function syncEdgeGeometry(e) {
+      if (!e._paths || !e.source || !e.target) return;
+      var cA = clusterOf(e.source);
+      var cB = clusterOf(e.target);
+      var curved = !!(cA && cB && cA !== cB);
+      var bundleKey = cA < cB ? cA + "|" + cB : cB + "|" + cA;
+      var d = edgePathD(
+        e.source.x,
+        e.source.y,
+        e.target.x,
+        e.target.y,
+        curved,
+        bundleKey,
+      );
+      for (var i = 0; i < e._paths.length; i++) {
+        e._paths[i].setAttribute("d", d);
+      }
+      if (!e._countText) return;
+      var at = edgeLabelPoint(
+        e.source.x,
+        e.source.y,
+        e.target.x,
+        e.target.y,
+        curved,
+        bundleKey,
+      );
+      var dx = at.x - e._countX;
+      var dy = at.y - e._countY;
+      e._countText.setAttribute("x", at.x);
+      e._countText.setAttribute("y", at.y);
+      e._countX = at.x;
+      e._countY = at.y;
+      if (e._countBg && (dx || dy)) {
+        e._countBg.setAttribute(
+          "x",
+          parseFloat(e._countBg.getAttribute("x")) + dx,
+        );
+        e._countBg.setAttribute(
+          "y",
+          parseFloat(e._countBg.getAttribute("y")) + dy,
+        );
+      }
+    }
+
+    function syncMovedNode(n) {
+      if (n._el) {
+        n._el.setAttribute("transform", "translate(" + n.x + "," + n.y + ")");
+      }
+      var spokes = n._spokeLines;
+      if (spokes) {
+        for (var i = 0; i < spokes.length; i++) {
+          spokes[i].line.setAttribute(spokes[i].xAttr, n.x);
+          spokes[i].line.setAttribute(spokes[i].yAttr, n.y);
+        }
+      }
+      var incident = edgesByNode[n.id];
+      if (!incident) return;
+      for (var j = 0; j < incident.length; j++) syncEdgeGeometry(incident[j]);
+    }
+
+    function applySelectionAppearance() {
+      var neighSet = null;
+      if (selectedId) {
+        neighSet = {};
+        neighSet[selectedId] = true;
+        simEdges.forEach(function (e) {
+          if (!e._group) return;
+          if (e.from === selectedId) neighSet[e.to] = true;
+          if (e.to === selectedId) neighSet[e.from] = true;
+        });
+      }
+      simEdges.forEach(function (e) {
+        if (!e._group) return;
+        var active = !!(
+          selectedId &&
+          (e.from === selectedId || e.to === selectedId)
+        );
+        e._group.classList.toggle("is-active", active);
+        e._group.classList.toggle("is-dimmed", !!(selectedId && !active));
+      });
+      nodes.forEach(function (n) {
+        if (!n._el) return;
+        n._el.classList.toggle("is-selected", selectedId === n.id);
+        n._el.classList.toggle("is-dimmed", !!(neighSet && !neighSet[n.id]));
+      });
     }
 
     function handleGraphClickTarget(target) {
@@ -4454,7 +4611,7 @@
       if (n.x === nx && n.y === ny && graphGesture.moved) return;
       n.x = nx;
       n.y = ny;
-      paint();
+      syncMovedNode(n);
     }
 
     function onGraphTouchStart(ev) {
@@ -4754,7 +4911,7 @@
               '<p class="connections-detail-empty">Select a character node to see their cast info and links.</p>';
           }
         }
-        paint();
+        applySelectionAppearance();
         if (selOpts.syncHash !== false) {
           replaceConnectionsHash(id || null);
         }
