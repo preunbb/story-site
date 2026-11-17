@@ -55,11 +55,7 @@
       storyIds: [
         59,
         60,
-        {
-          id: 48,
-          chapter: 6,
-          title: "Quality Control, Chapter 5: The Break Room",
-        },
+        48,
         58,
         49,
         47,
