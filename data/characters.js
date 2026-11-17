@@ -683,7 +683,7 @@ window.DATA_CHARACTERS = [
     id: "andrea",
     name: "Andrea",
     gender: "F",
-    testiclesKilled: 18,
+    testiclesKilled: 17,
     bio: "Thick, curvy goth—black makeup, fishnets, steel-toed boots, ink from collarbone to shins. Takes self-defense training seriously and does not like being fucked with by handsy men. She is roommates with Izzie and Tamara's twin sister.",
     profilePictures: [
       "assets/characters/andrea.jpg",
@@ -737,7 +737,7 @@ window.DATA_CHARACTERS = [
     id: "tamara",
     name: "Tamara",
     gender: "F",
-    testiclesKilled: 18,
+    testiclesKilled: 17,
     bio: "Andrea's identical twin. Urological pathologist who has seen her share of testicular injuries. Testicular savant, just like her sister; can diagnose and save balls that nobody else could. Also shares her sister's kinks, much to her chagrin.",
     profilePictures: ["assets/characters/tamara.jpg"],
   },

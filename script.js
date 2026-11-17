@@ -7842,7 +7842,19 @@
     setFlyoutPanelOpen(true);
   }
 
+  var characterFlyoutToken = 0;
+
   function openCharacterFlyout(character) {
+    if (!character) return;
+    var token = ++characterFlyoutToken;
+    var id = character.id;
+    ensureConnectionsData().then(function () {
+      if (token !== characterFlyoutToken) return;
+      renderCharacterFlyout(getCharacterById(id) || character);
+    });
+  }
+
+  function renderCharacterFlyout(character) {
     if (!character) return;
     var charStories = getStoriesForCharacter(character.id);
     var pics =

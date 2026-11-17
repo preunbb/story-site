@@ -462,7 +462,7 @@ window.DATA_CONNECTIONS = [
     from: "naimi",
     to: "hato",
     storyId: 21,
-    kinds: ["relationship", "pain"],
+    kinds: ["relationship", "left"],
   },
   {
     from: "emma",
@@ -745,9 +745,6 @@ window.DATA_CONNECTIONS = [
     to: "broken_tree_cultists",
     storyId: 47,
     kinds: ["left"],
-    // First Rites: one left testicle from each anonymous rank whose
-    // remaining right the trio take on-page (74 half-eunuchs).
-    testiclesPopped: 74,
   },
   {
     from: "eve",
@@ -820,8 +817,10 @@ window.DATA_CONNECTIONS = [
     to: "broken_tree_cultists",
     storyId: 47,
     kinds: ["right"],
-    // Stable 8, ritual-chamber pile 2, holding-pen guard 1, escape knee 1.
-    testiclesPopped: 12,
+    // Stable 8, one intact ritual-chamber nut, holding-pen guard 1,
+    // escape knee 1. The second pile "find" is a lump in a sack she had
+    // already emptied.
+    testiclesPopped: 11,
   },
   {
     from: "izzie",
@@ -837,8 +836,9 @@ window.DATA_CONNECTIONS = [
     to: "broken_tree_cultists",
     storyId: 47,
     kinds: ["right"],
-    // Entrance biopsy 1, stable 6, ritual-chamber pile 2, hallway scalpel 1.
-    testiclesPopped: 10,
+    // Entrance biopsy 1, stable 6, ritual-chamber pile 2. The hallway
+    // scalpel only halves the nut.
+    testiclesPopped: 9,
   },
   {
     from: "abby",

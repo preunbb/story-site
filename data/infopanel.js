@@ -536,13 +536,13 @@ window.DATA_INFOPANEL = {
   hato: [
     {
       storyId: 21,
-      text: "Dated and ballbusted by [[char:naimi]] in [[story:21]].",
+      text: "Left testicle popped by [[char:naimi]]. Romantically involved with her in [[story:21]].",
     },
   ],
   naimi: [
     {
       storyId: 21,
-      text: "Dates and ballbusts [[char:hato]] in [[story:21]].",
+      text: "Pops [[char:hato]]'s left testicle. Romantically involved with him in [[story:21]].",
     },
   ],
   malko: [
@@ -720,7 +720,7 @@ window.DATA_INFOPANEL = {
     },
     {
       storyId: 47,
-      text: "Pops [[char:trinn]]'s right testicle. Pops [[char:lucas]]'s left testicle. Pops [[char:greyson]]'s left testicle. Pops 12 of the [[char:broken_tree_cultists|cultists]]' remaining right testicles. Owns [[char:lucas]] at [[char:cherry_pop|Cherry]] Pop!. Rescues [[char:lucas]] from the [[char:church_broken_tree]] with [[char:izzie]] and [[char:tamara]]. Kicks [[char:sunni]]'s testicles. Testicle torture ([[char:judah]]) in [[story:47]]. Favorite band ([[char:cherry_pop]]).",
+      text: "Pops [[char:trinn]]'s right testicle. Pops [[char:lucas]]'s left testicle. Pops [[char:greyson]]'s left testicle. Pops 11 of the [[char:broken_tree_cultists|cultists]]' remaining right testicles. Owns [[char:lucas]] at [[char:cherry_pop|Cherry]] Pop!. Rescues [[char:lucas]] from the [[char:church_broken_tree]] with [[char:izzie]] and [[char:tamara]]. Kicks [[char:sunni]]'s testicles. Testicle torture ([[char:judah]]) in [[story:47]]. Favorite band ([[char:cherry_pop]]).",
     },
     {
       storyId: 49,
@@ -790,7 +790,7 @@ window.DATA_INFOPANEL = {
     },
     {
       storyId: 47,
-      text: "Rescues [[char:lucas]] from the [[char:church_broken_tree]] with [[char:izzie]] and [[char:andrea]]. Repairs both of his broken balls. Unnecessarily removes [[char:trinn]]'s remaining left testicle. Pops ten of the [[char:broken_tree_cultists|cultists]]' remaining right testicles. Testicular defragmentation on [[char:judah]]. Removes [[char:felix]]'s dead testicles. Extracts [[char:greyson]]'s ruptured testicle without anesthesia and prepares to remove his last babymaker in the epilogue. Attempts to supervises intern [[char:yvette|her very incompetent intern]] at the [[char:cherry_pop|Cherry Pop!]] concert. [[char:melody]] encourages her to give in to her darker urges while Tamara operates on Melody's latest victim.",
+      text: "Rescues [[char:lucas]] from the [[char:church_broken_tree]] with [[char:izzie]] and [[char:andrea]]. Repairs both of his broken balls. Unnecessarily removes [[char:trinn]]'s remaining left testicle. Pops nine of the [[char:broken_tree_cultists|cultists]]' remaining right testicles. Testicular defragmentation on [[char:judah]]. Removes [[char:felix]]'s dead testicles. Extracts [[char:greyson]]'s ruptured testicle without anesthesia and prepares to remove his last babymaker in the epilogue. Attempts to supervises intern [[char:yvette|her very incompetent intern]] at the [[char:cherry_pop|Cherry Pop!]] concert. [[char:melody]] encourages her to give in to her darker urges while Tamara operates on Melody's latest victim.",
     },
     {
       storyId: 49,
@@ -832,7 +832,7 @@ window.DATA_INFOPANEL = {
   eve: [
     {
       storyId: 47,
-      text: "Performs First Rites on [[char:broken_tree_cultists]], taking 74 left testicles. Gives [[char:judah]] his righteous penance. [[char:lucas]]'s Stepmother and [[char:abby]] and [[char:kay]]'s mother. Tortures [[char:lucas]] and scrambles his testicular internals in [[story:47]].",
+      text: "Performs First Rites on [[char:broken_tree_cultists]]. Gives [[char:judah]] his righteous penance. [[char:lucas]]'s Stepmother and [[char:abby]] and [[char:kay]]'s mother. Tortures [[char:lucas]] and scrambles his testicular internals in [[story:47]].",
     },
   ],
   kay: [
@@ -965,6 +965,12 @@ window.DATA_INFOPANEL = {
       text: "[[char:serena]] teaches [[char:alyssa]], [[char:andrea]], and [[char:kaitlin]] as they practice their ballbusting on [[char:chad]], [[char:ben]], [[char:lucas]], [[char:lee]], and [[char:steven]] in [[story:59]].",
     },
   ],
+  turgid_u: [
+    {
+      storyId: 60,
+      text: "Faculty: [[char:coqtiz]] and [[char:yumi]]. Students: [[char:jamie_splegham]], [[char:crystal]], and [[char:nelson_masterson]]. New student: [[char:alf]].",
+    },
+  ],
   cherry_pop: [
     {
       storyId: 47,
@@ -1024,7 +1030,7 @@ window.DATA_INFOPANEL = {
   broken_tree_cultists: [
     {
       storyId: 47,
-      text: "Receive First Rites from [[char:eve]], who takes 74 left testicles. 12 remaining right testicles taken by [[char:andrea]]. 52 remaining right testicles taken by [[char:izzie]]. Ten remaining right testicles taken by [[char:tamara]]. Obey [[char:abby]] as superior female cultist. Obey [[char:kay]] as superior female cultist in [[story:47]]. Members of the [[char:church_broken_tree]].",
+      text: "Receive First Rites from [[char:eve]]. 11 remaining right testicles taken by [[char:andrea]]. 52 remaining right testicles taken by [[char:izzie]]. Nine remaining right testicles taken by [[char:tamara]]. Obey [[char:abby]] as superior female cultist. Obey [[char:kay]] as superior female cultist in [[story:47]]. Members of the [[char:church_broken_tree]].",
     },
   ],
   stuart: [
@@ -1061,6 +1067,42 @@ window.DATA_INFOPANEL = {
     {
       storyId: 60,
       text: "[[char:alf]]'s mother, teaser, ballbuster, and eventual castratrix in [[story:60]].",
+    },
+  ],
+  coqtiz: [
+    {
+      storyId: 60,
+      text: "Faculty at [[char:turgid_u]].",
+    },
+  ],
+  yumi: [
+    {
+      storyId: 60,
+      text: "Faculty at [[char:turgid_u]].",
+    },
+  ],
+  jamie_splegham: [
+    {
+      storyId: 60,
+      text: "Student at [[char:turgid_u]].",
+    },
+  ],
+  crystal: [
+    {
+      storyId: 60,
+      text: "Student at [[char:turgid_u]].",
+    },
+  ],
+  nelson_masterson: [
+    {
+      storyId: 60,
+      text: "Student at [[char:turgid_u]].",
+    },
+  ],
+  alf: [
+    {
+      storyId: 60,
+      text: "New student at [[char:turgid_u]].",
     },
   ],
 };
