@@ -1890,7 +1890,7 @@ window.DATA_STORIES = [
     brutalityRating: 3,
     summary:
       "Ben hopes helping Alyssa with her self-defense class will finally help her see him as more than just a friend. He wasn't expecting her to bring her boyfriend along, and he definitely wasn't expecting the level of pain the coach insists the girls learn to inflict in order to defend themselves. A soft sequel to Friendzoned, Andrea and Lucas, and Testy.",
-    cover: "assets/covers/self_defense_cover_v11.jpg",
+    cover: "assets/covers/self_defense_cover_v24.jpg",
     driveUrl:
       "https://docs.google.com/document/d/e/2PACX-1vSLu1Ryq-TXULrx1qTeuFPCXfkab5JYWMPRFSXIv8OEZGW32NcQkhzC-PUuq-3WwXdBJrodE9o1-aLF/pub",
     characterIds: [

@@ -58,12 +58,16 @@ Do not name anatomy, and do not attach the cast portrait or the v45 still — bo
 
 Hands stay off the waistband. If the bumps land on the thighs, regenerate and stress "just under the drawstring, in the center, not on the thighs."
 
+### Men's faces: no tears
+
+In every prompt that depicts a man in pain, **explicitly forbid tears** (no tear tracks, no crying wet eyes, no streaks on cheeks). Use mouth, brow, eyes wide or squeezed shut, posture, sweat, and pallor instead. Generated tear FX on men reliably look wrong.
+
 ### Prompt priorities (subject matter)
 
 Prefer tight, visceral framing:
 
 - **Impact moment** — connection, deformation, specific damage from prose
-- **His reaction** — agony, loss, grief where permanent harm is implied
+- **His reaction** — agony, loss, grief where permanent harm is implied (never tears on men)
 - **Her reaction** — visible thrill matching the beat
 
 ### Visual style

@@ -1,0 +1,12 @@
+---
+description: Never render tears on men's faces in generated catalog images.
+alwaysApply: true
+---
+
+# Image generation: no tears on men
+
+When generating or iterating catalog images (covers, scenes, characters):
+
+- **Never depict tears, tear tracks, wet crying eyes, or streaks on a man's cheeks** — model output reads fake.
+- Convey male pain through **mouth open**, **brow furrow**, **wide or squeezed-shut dry eyes**, **posture**, **sweat**, and **pallor** instead.
+- Include an explicit **no tears** line in every image prompt that shows a man in distress.

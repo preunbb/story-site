@@ -1162,7 +1162,7 @@ window.DATA_CHARACTERS = [
     penisLabel: "Perfectly average six inches",
     testicleSize: "medium",
     scrotumHang: "low-hanging",
-    profilePictures: ["assets/characters/ben_profile_v1.jpg"],
+    profilePictures: ["assets/characters/ben_profile_v2.jpg"],
   },
   {
     id: "lee",
