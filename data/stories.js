@@ -1612,6 +1612,20 @@ window.DATA_STORIES = [
     ],
     chapterShares: [
       {
+        chapter: 1,
+        cover: "assets/covers/quality_control_intro_foyer_v1.jpg",
+        title: "Quality Control — Introduction: Corporate Orientation",
+        description:
+          "Olivia's first morning at OverEasy. Cathy meets her in the foyer, still wearing the morning's work, and ushers her in.",
+      },
+      {
+        chapter: 2,
+        cover: "assets/covers/quality_control_automilker_xframe_v1.jpg",
+        title: "Quality Control — Chapter 1: XXXL AutoMilker",
+        description:
+          "Olivia's first product test. She gets her hands on the XXXL AutoMilker and cannot wait to try it.",
+      },
+      {
         chapter: 3,
         cover: "assets/covers/quality_control_ch02_cover_v1.jpg",
         title: "Quality Control — Chapter 2: BoySnapper™ Scrotal Stretcher",
