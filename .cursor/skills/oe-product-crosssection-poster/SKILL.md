@@ -22,7 +22,7 @@ Remote `GenerateImage` only. Never overwrite existing files.
 
 | Asset | Use |
 | --- | --- |
-| `assets/brands/crushed_testicles_xray_crosssection_v3_reference_plate.png` | Healthy vs shattered cross-section anatomy |
+| `assets/bad/brands/crushed_testicles_xray_crosssection_v3_reference_plate.png` | Healthy vs shattered cross-section anatomy |
 | `assets/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_realistic_v1.png` | Full-color poster layout, tissue palette |
 | `assets/scenes/andrea_and_lucas/lucas_hyperspermia_scrotum_textbook_diagram_v2.png` | Vintage line-art tone |
 | Product hero in `over-easy-products/products.js` → `image` | Device shape, branding, materials |

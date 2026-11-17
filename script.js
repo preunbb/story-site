@@ -5891,6 +5891,7 @@
     var inExtras =
       name === "characters" ||
       name === "scenes" ||
+      name === "captions" ||
       name === "music" ||
       name === "connections";
     toggle.classList.toggle("is-active", inExtras);

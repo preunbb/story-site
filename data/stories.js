@@ -1917,7 +1917,7 @@ window.DATA_STORIES = [
   },
   {
     id: 60,
-    wordCount: 18209,
+    wordCount: 18216,
     title: "Mother Knows Best",
     brutalityRating: 4,
     summary:

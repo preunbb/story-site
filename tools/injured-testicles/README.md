@@ -2,7 +2,7 @@
 
 Generate injured variants of the canonical **healthy veiny testes** plate from a short description.
 
-**Reference:** `assets/brands/healthy_veiny.png` (bilateral bare testes with prominent blue veins and red capillaries).
+**Reference:** `assets/bad/brands/healthy_veiny.png` (bilateral bare testes with prominent blue veins and red capillaries).
 
 ## Usage
 
@@ -18,7 +18,7 @@ The CLI does **not** call an image API. It:
 2. Picks the next versioned filename under `assets/over-easy/brands/` (or `--out-dir`).
 3. Writes `tools/injured-testicles/drafts/latest.json` with the full prompt and paths.
 
-In Cursor, ask the agent to run the command (or read the draft) and generate with **remote GenerateImage**, passing `assets/brands/healthy_veiny.png` as a reference image.
+In Cursor, ask the agent to run the command (or read the draft) and generate with **remote GenerateImage**, passing `assets/bad/brands/healthy_veiny.png` as a reference image.
 
 ## Output naming
 

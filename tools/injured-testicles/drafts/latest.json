@@ -1,6 +1,6 @@
 {
   "tool": "injured-testicles",
-  "referenceImage": "assets/brands/healthy_veiny.png",
+  "referenceImage": "assets/bad/brands/healthy_veiny.png",
   "referenceImageNote": "Canonical healthy bilateral veiny testes plate — pass as reference_image_paths to GenerateImage",
   "injuryDescription": "both testicles completely shattered, tunica split open on both sides, glandular tissue pulverized into wet pulp and fragments, no intact oval shape left on either organ, cords still attached at the top, clinical medical specimen",
   "injurySlug": "both_testicles_completely_shattered_tunica_split",
@@ -9,7 +9,7 @@
   "assetFilename": "healthy_veiny_both_testicles_completely_shattered_tunica_split_v1.png",
   "image": "assets/over-easy/brands/healthy_veiny_both_testicles_completely_shattered_tunica_split_v1.png",
   "generateSteps": [
-    "Read assets/brands/healthy_veiny.png with the Read tool.",
+    "Read assets/bad/brands/healthy_veiny.png with the Read tool.",
     "Call remote GenerateImage with reference_image_paths including that file.",
     "Save output to assets/over-easy/brands/healthy_veiny_both_testicles_completely_shattered_tunica_split_v1.png (never overwrite an existing file)."
   ]

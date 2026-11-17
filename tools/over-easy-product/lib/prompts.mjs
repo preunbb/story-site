@@ -82,7 +82,7 @@ export const PRODUCT_HINTS = {
     imageNotes:
       "Circular pewter pendant on silver cable chain, white background. Raised relief broken-tree emblem matching church_broken_tree_emblem_v1 — trunk, roots, leafy branches, jagged broken upper branch, oxidized recess, antique silver finish.",
     referenceAssets: [
-      "assets/brands/church_broken_tree_emblem_v1.png",
+      "assets/bad/brands/church_broken_tree_emblem_v1.png",
       "assets/over-easy/scenes/andrea_and_lucas/church_broken_tree_pendant_product_v1.png",
     ],
   },
@@ -278,7 +278,7 @@ export const PRODUCT_HINTS = {
     referenceAssets: [
       "assets/over-easy/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_realistic_v1.png",
       "assets/over-easy/scenes/andrea_and_lucas/overeasy_comparative_gonadal_integrity_poster_v1.png",
-      "assets/brands/crushed_testicles_xray_crosssection_v3_reference_plate.png",
+      "assets/bad/brands/crushed_testicles_xray_crosssection_v3_reference_plate.png",
     ],
   },
   pharmaceuticals: {

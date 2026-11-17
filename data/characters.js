@@ -35,7 +35,7 @@ window.DATA_CHARACTERS = [
     name: "Amy Li",
     gender: "F",
     testiclesKilled: 5,
-    bio: "EMT, then hospital nurse, now Dr. Li. Busty, Asian, and clinically cruel: she finishes what other women start, and she knew Karen back in college. Her real passion is the Arena, where she fights as a blackbelt.",
+    bio: "Dr. Li is a stalwart professional dedicated to finishing what other women start. Cruel, efficient, and professional, she's dedicated to improving the quality of the gene pool. In her free time, she enjoys jogging, reading romantasy, and crushing her patient's balls into mush.",
     profilePictures: ["assets/characters/amy_v2_busty_asian_sadistic.jpg"],
   },
   {
@@ -111,11 +111,7 @@ window.DATA_CHARACTERS = [
     gender: "F",
     testiclesKilled: 7,
     bio: "Russian former Olympian, thick accent. Muscular, cold, brutally efficient. One of the best in the arena.",
-    profilePictures: [
-      "assets/characters/sofia_blond_leotard_arena_v4.png",
-      "assets/characters/sofia_blond_leotard_arena_v6_white_goo.png",
-      "assets/characters/sofia_blond_leotard_arena_v5.png",
-    ],
+    profilePictures: ["assets/characters/sofia_blond_leotard_arena_v4.png"],
   },
   {
     id: "dan",
@@ -1236,11 +1232,6 @@ window.DATA_CHARACTERS = [
     scrotumHang: "low-hanging",
     profilePictures: [
       "assets/characters/nelson_masterson_v6_desk_realistic_pack.jpg",
-      "assets/characters/nelson_masterson_v1_desk_spread.jpg",
-      "assets/characters/nelson_masterson_v2_desk_spread.jpg",
-      "assets/characters/nelson_masterson_v3_desk_spread.jpg",
-      "assets/characters/nelson_masterson_v4_desk_spread.jpg",
-      "assets/characters/nelson_masterson_v5_desk_spread.jpg",
     ],
   },
 ];

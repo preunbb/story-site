@@ -1,7 +1,7 @@
 import { existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
-export const REFERENCE_IMAGE = "assets/brands/healthy_veiny.png";
+export const REFERENCE_IMAGE = "assets/bad/brands/healthy_veiny.png";
 export const DEFAULT_OUTPUT_DIR = "assets/over-easy/brands";
 
 /**

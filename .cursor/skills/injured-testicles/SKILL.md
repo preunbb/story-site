@@ -2,7 +2,7 @@
 name: injured-testicles
 description: >-
   Generate injured variants of the canonical healthy_veiny testes plate from a
-  user description. Uses assets/brands/healthy_veiny.png as reference, saves
+  user description. Uses assets/bad/brands/healthy_veiny.png as reference, saves
   versioned outputs. Use when the user says "create injured testicles", wants
   damaged/bruised/ruptured/punctured testes based on healthy_veiny, or runs
   npm run injured-testicles.
@@ -16,7 +16,7 @@ Produce **injured bilateral testes** that match the style, composition, and vasc
 
 | Asset | Role |
 | --- | --- |
-| `assets/brands/healthy_veiny.png` | **Always** pass as `reference_image_paths` — baseline anatomy, veining, framing |
+| `assets/bad/brands/healthy_veiny.png` | **Always** pass as `reference_image_paths` — baseline anatomy, veining, framing |
 
 User may say `healthy_veiny.jpg`; the repo file is **`healthy_veiny.png`**.
 
@@ -49,9 +49,9 @@ Read `tools/injured-testicles/drafts/latest.json` for `imagePrompt`, `image`, `r
 
 ### 2. Generate
 
-1. **Read** `assets/brands/healthy_veiny.png` (required).
+1. **Read** `assets/bad/brands/healthy_veiny.png` (required).
 2. Optionally read a prior injured variant in `assets/over-easy/brands/` if iterating on the same injury type.
-3. **Remote GenerateImage only** — pass `reference_image_paths: ["assets/brands/healthy_veiny.png"]`.
+3. **Remote GenerateImage only** — pass `reference_image_paths: ["assets/bad/brands/healthy_veiny.png"]`.
 4. Use `imagePrompt` from draft; emphasize what changed vs the healthy reference.
 5. **Save** to the exact `image` path in draft — never overwrite; CLI already picked the next `_vN` suffix.
 
