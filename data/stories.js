@@ -1885,7 +1885,7 @@ window.DATA_STORIES = [
   },
   {
     id: 59,
-    wordCount: 27981,
+    wordCount: 30027,
     title: "Self Defense",
     brutalityRating: 3,
     summary:
@@ -1906,7 +1906,7 @@ window.DATA_STORIES = [
     ],
     state: 3,
     releaseDate: "2026-11-12",
-    chaptersToPublish: 2,
+    chaptersToPublish: 3,
     chapterReleases: [
       {
         chapter: 1,
@@ -1918,6 +1918,11 @@ window.DATA_STORIES = [
         title: "Chapter 2: Squeezes",
         releaseDate: "2026-11-16",
       },
+      {
+        chapter: 3,
+        title: "Chapter 3: Seven Testicles, Seven Days",
+        releaseDate: "2026-11-20",
+      },
     ],
     chapterShares: [
       {
@@ -1928,17 +1933,16 @@ window.DATA_STORIES = [
           "The girls practice their squeezes. Chad volunteers for a demo. Ben receives some advice.",
       },
       {
-        chapter: 9,
-        cover: "assets/covers/self_defense_ch03_ben_appointment_v4.jpg",
-        title: "Self Defense — Ben's Appointment",
-        description:
-          "Ben finally books a fertility check with Dr. Tamara. Proactivity is key with testicular issues.",
+        chapter: 8,
+        cover: "assets/covers/self_defense_ch03_outside_gym_pastiche_v3.jpg",
+        title: "Self Defense — Chapter 3: Seven Testicles, Seven Days",
+        description: "Rigorous education has lasting effects.",
       },
     ],
   },
   {
     id: 60,
-    wordCount: 18290,
+    wordCount: 18541,
     title: "Mother Knows Best",
     brutalityRating: 4,
     summary:
