@@ -1934,7 +1934,7 @@ window.DATA_STORIES = [
       },
       {
         chapter: 8,
-        cover: "assets/covers/self_defense_ch03_outside_gym_pastiche_v3.jpg",
+        cover: "assets/covers/self_defense_ch03_outside_gym_pastiche_v4.jpg",
         title: "Self Defense — Chapter 3: Seven Testicles, Seven Days",
         description: "Rigorous education has lasting effects.",
       },
