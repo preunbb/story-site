@@ -14,7 +14,7 @@
     />
     <meta
       property="og:image"
-      content="https://preunbb.github.io/story-site/assets/previewfinal.png"
+      content="https://preunbb.github.io/story-site/assets/preview_joan_lineup_v2.jpg"
     />
     <meta property="og:url" content="https://preunbb.github.io/story-site/" />
     <meta property="og:type" content="website" />
@@ -29,7 +29,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://preunbb.github.io/story-site/assets/previewfinal.png"
+      content="https://preunbb.github.io/story-site/assets/preview_joan_lineup_v2.jpg"
     />
     <link rel="icon" type="image/png" href="assets/brands/cherry_pop_emblem_v2_transparent.png" />
     <meta name="theme-color" content="#070708" />
@@ -37,14 +37,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Pacifico&amp;display=swap"
       media="print"
       onload="this.media='all'"
     />
     <noscript>
       <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap"
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Pacifico&amp;display=swap"
       />
     </noscript>
     <link rel="stylesheet" href="styles.css" />
@@ -355,6 +355,21 @@
                 <option value="6">6</option>
               </select>
             </div>
+          </div>
+          <div
+            class="fetish-content-prefs"
+            id="fetish-content-prefs"
+            aria-label="Optional story content"
+          >
+            <p class="fetish-content-prefs-heading">Optional story content</p>
+            <p class="fetish-content-prefs-note">
+              Fetish passages show in full by default. Check a box here to hide
+              that content site-wide, or use the same control in the reader.
+            </p>
+            <div
+              class="fetish-content-prefs-list"
+              id="fetish-content-prefs-list"
+            ></div>
           </div>
           </div>
           </div>
@@ -913,6 +928,7 @@
     </div>
 
     <script defer src="data/characters.js"></script>
+    <script defer src="data/content-preferences.js"></script>
     <script defer src="data/stories.js"></script>
     <script defer src="data/otherAuthors.js"></script>
     <script defer src="data/captions.js"></script>

@@ -1190,7 +1190,7 @@ window.DATA_CHARACTERS = [
     id: "yumi",
     name: "Nurse Yumi",
     gender: "F",
-    bio: "Turgid U's short, bubbly campus nurse, always happy to help. Especially for the exciteable young boys who stagger over from Professor Coqtiz's class. After Nurse Yumi is done with them, she guarantees they'll never prematurely ejaculate again!",
+    bio: "Turgid U's  campus nurse, always happy to help. Especially for the exciteable college guys who stagger over from Professor Coqtiz's class. After Nurse Yumi is done with them, she guarantees they'll never prematurely ejaculate again!",
     hideFromConnections: true,
     profilePictures: [
       "assets/characters/yumi_profile_v3.jpg",

@@ -24,6 +24,14 @@
   --font-sans: "Manrope", system-ui, sans-serif;
 }
 
+@font-face {
+  font-family: "Pacifico";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/Pacifico-Regular.ttf") format("truetype");
+}
+
 * {
   box-sizing: border-box;
 }
@@ -3856,6 +3864,126 @@ body.preun-local-andrea .local-andrea-status {
   margin: 0 0 1rem;
 }
 
+.story-optional-fold {
+  margin: 1.35rem 0;
+}
+
+.story-optional-fold-bar,
+.story-optional-fold-summary-wrap {
+  border: 1px solid rgba(183, 168, 171, 0.32);
+  border-radius: 0;
+  background: color-mix(
+    in srgb,
+    var(--grey-card) 72%,
+    rgba(227, 180, 188, 0.45) 28%
+  );
+  padding: 0.85rem 1rem;
+}
+
+.story-optional-fold-bar {
+  margin-bottom: 0.55rem;
+}
+
+.story-optional-fold--expanded
+  .story-optional-fold-bar:not(.story-optional-fold-bar--tail) {
+  margin-bottom: 0.85rem;
+}
+
+.story-optional-fold-bar--tail {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.story-optional-fold-bar.is-hidden {
+  display: none;
+}
+
+.story-optional-fold-summary-wrap {
+  margin: 0 0 0.85rem;
+}
+
+.story-optional-fold-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.story-optional-fold-label input {
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+
+.story-optional-fold-summary-title {
+  margin: 0 0 0.65rem;
+  padding: 0 0 0.5rem;
+  border-bottom: 1px solid rgba(183, 168, 171, 0.22);
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.story-optional-fold-summary-wrap > p {
+  margin: 0;
+  color: var(--ink);
+  font-size: inherit;
+  line-height: 1.55;
+  font-style: normal;
+  font-weight: inherit;
+}
+
+.story-optional-fold-body.is-hidden,
+.story-optional-fold-summary-wrap.is-hidden {
+  display: none;
+}
+
+.fetish-content-prefs {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.fetish-content-prefs-heading {
+  margin: 0 0 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+}
+
+.fetish-content-prefs-note {
+  margin: 0 0 0.75rem;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--ink-muted);
+}
+
+.fetish-content-pref-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0.45rem 0;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.fetish-content-pref-row input {
+  margin-top: 0.15rem;
+}
+
 .story-reader-article .story-reader-divider {
   border: 0;
   height: 1px;
@@ -3897,6 +4025,10 @@ body.preun-local-andrea .local-andrea-status {
 
 .story-reader-article .doc-font-comic {
   font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+.story-reader-article .doc-font-pacifico {
+  font-family: "Pacifico", cursive;
 }
 
 .story-reader-article u {

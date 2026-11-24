@@ -1885,7 +1885,7 @@ window.DATA_STORIES = [
   },
   {
     id: 59,
-    wordCount: 30196,
+    wordCount: 30210,
     title: "Self Defense",
     brutalityRating: 3,
     summary:
@@ -1942,9 +1942,18 @@ window.DATA_STORIES = [
   },
   {
     id: 60,
-    wordCount: 18618,
+    wordCount: 18731,
     title: "Mother Knows Best",
     brutalityRating: 4,
+    access: "password",
+    storyCiphertext: "assets/stories/mother-knows-best.enc.json",
+    storyCiphertextVersion: 3,
+    passwordGateHash:
+      "8ea2feee6b5281530fc9cee81046f1883a1af9e6e7e0f198a2ef23620b9aded8",
+    passwordGateDomain: "story-site:mother-knows-best:gate:",
+    passwordKeyDomain: "story-site:mother-knows-best:key:",
+    passwordUnlockInstructions:
+      "Story is in beta. If you have the beta password, enter it here:",
     summary:
       "Nineteen-year-old Alf still lives at home, unemployed, and far too interested in his mother's work as an OnlyFans model. After a particularly humiliating incident, she finally has enough. Between his very painful operation with Nurse Amy, and the delicious cruelty of Professor Coqtiz at Turgid U, she hopes he'll manage to get himself under control...or risk getting a couple more much more devastating operations.",
     cover: "assets/covers/mother_knows_best_cover_v5.jpg",

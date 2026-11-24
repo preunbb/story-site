@@ -25,6 +25,7 @@ import {
 } from "node:fs";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join, resolve } from "node:path";
+import { spawnSync } from "node:child_process";
 import { createContext, Script } from "node:vm";
 import {
   makeTurndown,
@@ -532,6 +533,21 @@ async function main() {
     const validIds = new Set(all.map((s) => s.id));
     pruned = pruneOrphans(validIds, all);
     for (const f of pruned) console.log(`  prune ${f}`);
+  }
+
+  const syncedMotherKnowsBest = ok.some(function (r) {
+    return r && r.id === 60;
+  });
+  if (syncedMotherKnowsBest && !errs.length) {
+    const enc = spawnSync(
+      process.execPath,
+      [join(repoRoot, "scripts", "encrypt-mother-knows-best.mjs")],
+      { cwd: repoRoot, stdio: "inherit", env: process.env },
+    );
+    if (enc.status !== 0) {
+      console.error("encrypt-mother-knows-best failed (exit " + enc.status + ")");
+      process.exit(enc.status || 1);
+    }
   }
 
   const dt = ((Date.now() - t0) / 1000).toFixed(1);

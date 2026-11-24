@@ -68,6 +68,7 @@ function normalizeFontFamily(value) {
   if (!value) return null;
   const v = value.toLowerCase().replace(/["']/g, "").trim();
   if (/courier|consolas|monaco|monospace/.test(v)) return "mono";
+  if (/pacifico/.test(v)) return "pacifico";
   if (/comic/.test(v)) return "comic";
   if (/times|georgia|garamond|palatino|serif/.test(v) && !/sans/.test(v)) {
     return "serif";

@@ -1042,7 +1042,7 @@ window.DATA_INFOPANEL = {
   beverly: [
     {
       storyId: 49,
-      text: "Helps [[char:karen|Dr. Karen]] complete [[char:stuart]]'s therapy. Stomps [[char:stuart]]'s last ball without popping it. [[char:stuart]] and [[char:lauren]]'s mother in [[story:49]].",
+      text: "[[char:stuart]] and [[char:lauren]]'s mother. Helps [[char:karen|Dr. Karen]] complete [[char:stuart]]'s therapy in [[story:49]].",
     },
   ],
   lauren: [

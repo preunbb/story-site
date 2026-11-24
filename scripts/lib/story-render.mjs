@@ -12,6 +12,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join, resolve } from "node:path";
 import { createContext, Script } from "node:vm";
 import { expandCompiledSeriesStories } from "./compile-series.mjs";
+import { expandOptionalContentMarkdown } from "./optional-content.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -282,6 +283,13 @@ export const PDF_SCENE_FIGURE_CSS = `
 
 /** CSS for Google Doc inline formatting preserved through sync. */
 export const DOC_FONT_CSS = `
+  @font-face {
+    font-family: "Pacifico";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../../assets/fonts/Pacifico-Regular.ttf") format("truetype");
+  }
   .story-reader-article .doc-align-center,
   .chapter-body .doc-align-center {
     display: block;
@@ -299,6 +307,10 @@ export const DOC_FONT_CSS = `
   .chapter-body .doc-font-comic {
     font-family: "Comic Sans MS", "Comic Sans", cursive;
   }
+  .story-reader-article .doc-font-pacifico,
+  .chapter-body .doc-font-pacifico {
+    font-family: "Pacifico", cursive;
+  }
   .story-reader-article u,
   .chapter-body u {
     text-decoration: underline;
@@ -315,7 +327,7 @@ export const DOC_FONT_CSS = `
   .chapter-body .doc-size-26pt { font-size: 26pt; }`;
 
 const DOC_INLINE_CLASS =
-  "(?:doc-(?:font-(?:mono|serif|comic)|size-[\\d.]+pt|color-[0-9a-fA-F]{3,8}))";
+  "(?:doc-(?:font-(?:mono|serif|comic|pacifico)|size-[\\d.]+pt|color-[0-9a-fA-F]{3,8}))";
 const PRESERVED_INLINE_CHUNK_RE = new RegExp(
   `<span class="(${DOC_INLINE_CLASS}(?:\\s+${DOC_INLINE_CLASS})*)">([\\s\\S]*?)<\\/span>|<u>([\\s\\S]*?)<\\/u>`,
   "g",
@@ -626,7 +638,11 @@ export function renderBodyBlocks(blocks, opts) {
  * what the PDF generator wants (one continuous HTML document).
  */
 export function storyMarkdownToSafeHtml(markdown, opts) {
-  const blocks = splitBlocks(markdown);
+  const md =
+    opts && opts.expandOptionalContent === false
+      ? markdown
+      : expandOptionalContentMarkdown(markdown);
+  const blocks = splitBlocks(md);
   const out = [];
   let chapterIndex = 0;
   for (const block of blocks) {

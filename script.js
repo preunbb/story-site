@@ -20,6 +20,9 @@
   /** Present only after `npm run sync:andrea-complete` (dist/ is gitignored). */
   var LOCAL_DIST_MARKER_URL = "dist/andrea-and-lucas-complete/SOURCE.json";
   var LOCAL_ANDREA_STORY_MD_URL = "dist/andrea-and-lucas-complete/story.md";
+  /** Present only after `npm run sync:bereavement` (dist/ is gitignored). */
+  var LOCAL_BEREAVEMENT_STORY_MD_URL =
+    "dist/bereavement-counseling/story.md";
   /** Catalog series labels for the stories grid filter. Order lives on each story's `series` field. */
   var STORY_SERIES = [
     {
@@ -52,18 +55,7 @@
     {
       id: "newest",
       title: "Newest releases",
-      storyIds: [
-        59,
-        60,
-        48,
-        58,
-        49,
-        47,
-        46,
-        42,
-        43,
-        45,
-      ],
+      storyIds: [59, 60, 48, 58, 49, 47, 46, 42, 43, 45],
     },
     {
       id: "lowblow-tober",
@@ -174,6 +166,127 @@
       setAiImagesEnabled(enabled);
       applyAiImagesDocumentState(enabled);
       refreshAiImagesDependentUi();
+    });
+  }
+
+  var FETISH_CONTENT_STORAGE_PREFIX = "fetishContent:";
+
+  function fetishContentPrefList() {
+    var list = window.FETISH_CONTENT_PREFS;
+    return Array.isArray(list) ? list : [];
+  }
+
+  function fetishContentPrefMeta(id) {
+    var list = fetishContentPrefList();
+    var i;
+    for (i = 0; i < list.length; i++) {
+      if (list[i] && list[i].id === id) return list[i];
+    }
+    return null;
+  }
+
+  /** User chose to hide this fetish block (summary only). Default: show full text. */
+  function getFetishContentHidden(id) {
+    try {
+      return localStorage.getItem(FETISH_CONTENT_STORAGE_PREFIX + id) === "1";
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function setFetishContentHidden(id, hide) {
+    try {
+      if (hide) localStorage.setItem(FETISH_CONTENT_STORAGE_PREFIX + id, "1");
+      else localStorage.removeItem(FETISH_CONTENT_STORAGE_PREFIX + id);
+    } catch (e) {}
+  }
+
+  function fetishContentDisplayName(id, meta) {
+    var name = (meta && meta.label) || id || "this content";
+    return String(name).toLowerCase();
+  }
+
+  function fetishContentQuestionText(id, meta) {
+    return (
+      "Check this box to hide " +
+      fetishContentDisplayName(id, meta) +
+      " content"
+    );
+  }
+
+  function refreshFetishContentDependentUi() {
+    applyAllOptionalFoldsFromPrefs();
+    renderFetishContentPrefsPanel();
+  }
+
+  function renderFetishContentPrefsPanel() {
+    var host = byId("fetish-content-prefs-list");
+    var wrap = byId("fetish-content-prefs");
+    if (!host) return;
+    var list = fetishContentPrefList();
+    if (!list.length) {
+      if (wrap) wrap.hidden = true;
+      host.innerHTML = "";
+      return;
+    }
+    if (wrap) wrap.hidden = false;
+    var html = [];
+    var i;
+    for (i = 0; i < list.length; i++) {
+      var pref = list[i];
+      if (!pref || !pref.id) continue;
+      var hidden = getFetishContentHidden(pref.id);
+      html.push(
+        '<label class="fetish-content-pref-row">' +
+          '<input type="checkbox" class="fetish-content-pref-input" data-fetish-id="' +
+          escapeHtml(pref.id) +
+          '"' +
+          (hidden ? " checked" : "") +
+          " />" +
+          '<span class="fetish-content-pref-label">' +
+          escapeHtml(fetishContentQuestionText(pref.id, pref)) +
+          "</span></label>",
+      );
+    }
+    host.innerHTML = html.join("");
+  }
+
+  function syncSiteWideFetishCheckboxes(id, on) {
+    var inputs = document.querySelectorAll(
+      '.fetish-content-pref-input[data-fetish-id="' + id + '"]',
+    );
+    var i;
+    for (i = 0; i < inputs.length; i++) {
+      inputs[i].checked = on;
+    }
+    var inReader = document.querySelectorAll(
+      '.story-optional-fold-checkbox[data-fetish-id="' + id + '"]',
+    );
+    for (i = 0; i < inReader.length; i++) {
+      inReader[i].checked = on;
+    }
+  }
+
+  function bindFetishContentPrefsUi() {
+    var host = byId("fetish-content-prefs");
+    if (!host || host.dataset.bound) return;
+    host.dataset.bound = "1";
+    renderFetishContentPrefsPanel();
+    host.addEventListener("change", function (ev) {
+      var t = ev.target;
+      if (
+        !t ||
+        !t.classList ||
+        !t.classList.contains("fetish-content-pref-input")
+      ) {
+        return;
+      }
+      var id = t.getAttribute("data-fetish-id");
+      if (!id) return;
+      var hide = !!t.checked;
+      setFetishContentHidden(id, hide);
+      syncSiteWideFetishCheckboxes(id, hide);
+      applyAllOptionalFoldsFromPrefs();
     });
   }
 
@@ -423,7 +536,11 @@
     var kinds = entry.kinds;
     if (Array.isArray(kinds) && kinds.indexOf("faction") !== -1) {
       var other =
-        entry.from === "turgid_u" ? entry.to : entry.to === "turgid_u" ? entry.from : "";
+        entry.from === "turgid_u"
+          ? entry.to
+          : entry.to === "turgid_u"
+            ? entry.from
+            : "";
       return !!TURGID_STUDENT_IDS[other];
     }
     var text = entry.text || "";
@@ -433,7 +550,9 @@
       }
       return false;
     }
-    return !!TURGID_STUDENT_IDS[charId] && text.indexOf("[[char:turgid_u]]") !== -1;
+    return (
+      !!TURGID_STUDENT_IDS[charId] && text.indexOf("[[char:turgid_u]]") !== -1
+    );
   }
 
   /** Infopanel notes and connection edges for a hidden or coming-soon
@@ -457,7 +576,10 @@
    *  `hideScenes` stays off production; `scenesOnLocalhost` opts a story back in here. */
   function isStoryScenesVisibleOnSite(story) {
     if (!story) return false;
-    if (story.hideScenes === true && !(story.scenesOnLocalhost && isLocalDevHost())) {
+    if (
+      story.hideScenes === true &&
+      !(story.scenesOnLocalhost && isLocalDevHost())
+    ) {
       return false;
     }
     if (!Array.isArray(story.scenes) || story.scenes.length === 0) return false;
@@ -482,6 +604,86 @@
       story.storyCiphertext &&
       story.passwordGateHash
     );
+  }
+
+  /** Password gates apply on production only; localhost loads gitignored plaintext. */
+  function isReaderPasswordGateEnforced(story) {
+    return storyPasswordProtected(story) && !isLocalDevHost();
+  }
+
+  /**
+   * Plaintext markdown path for password-gated stories when serving locally.
+   * Never used on GitHub Pages — those routes stay on storyCiphertext + unlock.
+   */
+  function storyLocalDevPlaintextUrl(story) {
+    if (!story || !isLocalDevHost()) return null;
+    var id = story.id;
+    if (id === "andrea-lucas-full") return LOCAL_ANDREA_STORY_MD_URL;
+    if (id === "bereavement-full") return LOCAL_BEREAVEMENT_STORY_MD_URL;
+    if (id != null && /^\d+$/.test(String(id))) {
+      return STORY_MD_PREFIX + id + ".md";
+    }
+    return null;
+  }
+
+  function fetchStoryReaderMarkdown(story, signal) {
+    return fetch(storyReaderMarkdownUrl(story), {
+      signal: signal,
+      credentials: "omit",
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.text();
+      })
+      .then(function (text) {
+        if (!readerStory || readerStory.id !== story.id) return;
+        storyReaderStatus.hidden = true;
+        renderStoryReaderMarkdown(story, text);
+      })
+      .catch(function (err) {
+        if (err.name === "AbortError") return;
+        if (!readerStory || readerStory.id !== story.id) return;
+        storyReaderStatus.hidden = true;
+        storyReaderArticle.innerHTML = "";
+        teardownStoryReaderChapters();
+        storyReaderError.hidden = false;
+        storyReaderErrorMsg.textContent =
+          "Could not load the story text. Tap Try again.";
+      });
+  }
+
+  /** Decrypted full text for this load; keyed by story + ciphertext revision. */
+  var passwordStoryUnlockedMarkdown = {};
+
+  function passwordStoryCacheKey(story) {
+    if (!story || story.id == null) return "";
+    var rev =
+      story.storyCiphertextVersion != null
+        ? String(story.storyCiphertextVersion)
+        : "1";
+    return String(story.id) + ":" + rev + ":" + story.storyCiphertext;
+  }
+
+  function getPasswordStoryCachedMarkdown(story) {
+    return passwordStoryUnlockedMarkdown[passwordStoryCacheKey(story)] || "";
+  }
+
+  function setPasswordStoryCachedMarkdown(story, text) {
+    var key = passwordStoryCacheKey(story);
+    if (!key) return;
+    passwordStoryUnlockedMarkdown[key] = String(text || "");
+  }
+
+  function storyCiphertextFetchUrl(story) {
+    var url = story && story.storyCiphertext;
+    if (!url) return url;
+    if (story.storyCiphertextVersion != null) {
+      url +=
+        (url.indexOf("?") >= 0 ? "&" : "?") +
+        "v=" +
+        encodeURIComponent(String(story.storyCiphertextVersion));
+    }
+    return url;
   }
 
   function andreaLucasFullStory() {
@@ -701,16 +903,23 @@
       text,
       story && story.chaptersToPublish,
     );
-    bodyMd = redactPasswordChapterBodies(bodyMd, story);
+    if (!isLocalDevHost()) {
+      bodyMd = redactPasswordChapterBodies(bodyMd, story);
+    }
     setReaderStorySourceMarkdown(bodyMd);
     var buyBarHtml = formatStoryReaderBuyBarHtml(story);
+    var readerRenderOpts = isLocalDevHost()
+      ? { ignorePasswordChapters: true }
+      : null;
     storyReaderArticle.innerHTML =
       coverHtml +
       buyBarHtml +
-      storyMarkdownToSafeHtml(bodyMd, story) +
+      storyMarkdownToSafeHtml(bodyMd, story, readerRenderOpts) +
       formatStoryPreviewPurchaseHtml(story);
     setupStoryReaderChapters();
     bindStoryChapterLocks(story);
+    bindStoryOptionalFolds();
+    applyAllOptionalFoldsFromPrefs();
   }
 
   function storyReaderUnlockBuyNoteHtml(story) {
@@ -840,9 +1049,10 @@
       verifyStoryPasswordGate(password, story)
         .then(function (ok) {
           if (!ok) throw new Error("bad-password");
-          return fetch(story.storyCiphertext, {
+          return fetch(storyCiphertextFetchUrl(story), {
             signal: readerAbort ? readerAbort.signal : undefined,
             credentials: "omit",
+            cache: "no-store",
           }).then(function (res) {
             if (!res.ok) throw new Error("HTTP " + res.status);
             return res.json();
@@ -853,6 +1063,7 @@
         })
         .then(function (text) {
           if (!readerStory || readerStory.id !== story.id) return;
+          setPasswordStoryCachedMarkdown(story, text);
           storyReaderStatus.hidden = true;
           renderStoryReaderMarkdown(story, text);
         })
@@ -1832,8 +2043,7 @@
         presented[key] = story[key];
       }
     }
-    presented.title =
-      entry.title || (share && share.title) || story.title;
+    presented.title = entry.title || (share && share.title) || story.title;
     presented.cover = (share && share.cover) || story.cover;
     presented.coverFlip = null;
     presented.catalogChapter = chapter;
@@ -3089,7 +3299,8 @@
   function syncConnectionsNodeFiltersCollapsed(host) {
     if (!host) return;
     if (connectionsNodeFiltersCollapsed === null) {
-      connectionsNodeFiltersCollapsed = connectionsKindFiltersDefaultCollapsed();
+      connectionsNodeFiltersCollapsed =
+        connectionsKindFiltersDefaultCollapsed();
     }
     var collapsed = !!connectionsNodeFiltersCollapsed;
     host.classList.toggle("is-collapsed", collapsed);
@@ -3137,8 +3348,7 @@
 
   function refreshConnectionsNodeVisibility() {
     syncConnectionsFindDatalist();
-    var selected =
-      connectionsGraphState && connectionsGraphState.selectedId;
+    var selected = connectionsGraphState && connectionsGraphState.selectedId;
     if (selected && connectionNodeIsHidden(getCharacterById(selected))) {
       if (connectionsGraphState.setSelected) {
         connectionsGraphState.setSelected(null);
@@ -3421,8 +3631,7 @@
       '<p class="flyout-anatomy-label">Anatomy (medical comparison)</p>' +
       imgHtml({
         src: character.anatomyDiagram,
-        alt:
-          (character.name || "Character") + " genital anatomy diagram",
+        alt: (character.name || "Character") + " genital anatomy diagram",
         className: "flyout-anatomy-img",
         placeholder: PLACEHOLDER_CHAR,
         extras: 'loading="lazy" decoding="async"',
@@ -3659,7 +3868,10 @@
         var g = byPair[key];
         g.sourceEdges.push(e);
         if (g.storyId == null && e.storyId != null) g.storyId = e.storyId;
-        if (typeof e.testiclesPopped === "number" && isFinite(e.testiclesPopped)) {
+        if (
+          typeof e.testiclesPopped === "number" &&
+          isFinite(e.testiclesPopped)
+        ) {
           g.testiclesPopped = (g.testiclesPopped || 0) + e.testiclesPopped;
         }
         connectionEdgeKinds(e).forEach(function (k) {
@@ -4356,7 +4568,10 @@
           group.appendChild(line);
           e._paths.push(line);
         });
-        if (typeof e.testiclesPopped === "number" && isFinite(e.testiclesPopped)) {
+        if (
+          typeof e.testiclesPopped === "number" &&
+          isFinite(e.testiclesPopped)
+        ) {
           var at = edgeLabelPoint(
             e.source.x,
             e.source.y,
@@ -6783,7 +6998,7 @@
   }
 
   var DOC_INLINE_CLASS =
-    "(?:doc-(?:font-(?:mono|serif|comic)|size-[\\d.]+pt|color-[0-9a-fA-F]{3,8}))";
+    "(?:doc-(?:font-(?:mono|serif|comic|pacifico)|size-[\\d.]+pt|color-[0-9a-fA-F]{3,8}))";
   var PRESERVED_INLINE_CHUNK_RE = new RegExp(
     '<span class="(' +
       DOC_INLINE_CLASS +
@@ -6908,6 +7123,131 @@
    * type `[[ scene : 0 ]]` and still get a hit.
    */
   var SCENE_TAG_BLOCK_RE = /^\[\[\s*scene\s*:\s*([^\]]+?)\s*\]\]$/i;
+  var OPTIONAL_OPEN_LINE_RE =
+    /^\[\[\s*optional\s*:\s*([^\]|]+)(?:\|(.*))?\s*\]\]$/i;
+  var OPTIONAL_CLOSE_LINE_RE = /^\[\[\s*\/\s*optional\s*\]\]$/i;
+  var OPTIONAL_FOLD_SUMMARY_SUFFIX =
+    "Check the box above for the full scene.";
+
+  function optionalFoldSummaryForDisplay(pipeSummary, meta) {
+    var text = String(
+      pipeSummary || (meta && meta.summary) || "",
+    ).trim();
+    var suffix = OPTIONAL_FOLD_SUMMARY_SUFFIX;
+    if (text.toLowerCase().indexOf(suffix.toLowerCase()) !== -1) {
+      return text;
+    }
+    if (!text) return suffix;
+    return text + " " + suffix;
+  }
+
+  function optionalContentSectionHtml(id, summary, bodyHtml, expanded, meta) {
+    var question = escapeHtml(fetishContentQuestionText(id, meta));
+    var displaySummary = optionalFoldSummaryForDisplay(summary, meta);
+    var summaryHtml =
+      '<div class="story-optional-fold-summary-wrap' +
+      (expanded ? " is-hidden" : "") +
+      '">' +
+      '<h4 class="story-optional-fold-summary-title">Hidden content summary</h4>' +
+      "<p>" +
+      formatBodyInline(displaySummary) +
+      "</p></div>";
+    return (
+      '<section class="story-optional-fold' +
+      (expanded
+        ? " story-optional-fold--expanded"
+        : " story-optional-fold--collapsed") +
+      '" data-fetish-id="' +
+      escapeHtml(id) +
+      '" data-expanded="' +
+      (expanded ? "true" : "false") +
+      '">' +
+      '<div class="story-optional-fold-bar" role="group">' +
+      '<label class="story-optional-fold-label">' +
+      '<input type="checkbox" class="story-optional-fold-checkbox" data-fetish-id="' +
+      escapeHtml(id) +
+      '"' +
+      (expanded ? "" : " checked") +
+      " />" +
+      "<span>" +
+      question +
+      "</span></label>" +
+      "</div>" +
+      summaryHtml +
+      '<div class="story-optional-fold-body' +
+      (expanded ? "" : " is-hidden") +
+      '">' +
+      bodyHtml +
+      "</div>" +
+      '<div class="story-optional-fold-bar story-optional-fold-bar--tail' +
+      (expanded ? "" : " is-hidden") +
+      '" role="group">' +
+      '<label class="story-optional-fold-label">' +
+      '<input type="checkbox" class="story-optional-fold-checkbox" data-fetish-id="' +
+      escapeHtml(id) +
+      '"' +
+      (expanded ? "" : " checked") +
+      " />" +
+      "<span>" +
+      question +
+      "</span></label>" +
+      "</div></section>"
+    );
+  }
+
+  function syncOptionalFoldSection(section, expanded) {
+    if (!section) return;
+    section.setAttribute("data-expanded", expanded ? "true" : "false");
+    section.classList.toggle("story-optional-fold--expanded", expanded);
+    section.classList.toggle("story-optional-fold--collapsed", !expanded);
+    var body = section.querySelector(".story-optional-fold-body");
+    var summary = section.querySelector(".story-optional-fold-summary-wrap");
+    var tail = section.querySelector(".story-optional-fold-bar--tail");
+    var cbs = section.querySelectorAll(".story-optional-fold-checkbox");
+    var i;
+    for (i = 0; i < cbs.length; i++) {
+      cbs[i].checked = !expanded;
+    }
+    if (summary) summary.classList.toggle("is-hidden", expanded);
+    if (body) body.classList.toggle("is-hidden", !expanded);
+    if (tail) tail.classList.toggle("is-hidden", !expanded);
+  }
+
+  function applyAllOptionalFoldsFromPrefs() {
+    if (!storyReaderArticle) return;
+    var sections = storyReaderArticle.querySelectorAll(".story-optional-fold");
+    var i;
+    for (i = 0; i < sections.length; i++) {
+      var id = sections[i].getAttribute("data-fetish-id");
+      if (id) {
+        syncOptionalFoldSection(sections[i], !getFetishContentHidden(id));
+      }
+    }
+  }
+
+  function bindStoryOptionalFolds() {
+    if (!storyReaderArticle || storyReaderArticle.dataset.optionalFoldsBound) {
+      return;
+    }
+    storyReaderArticle.dataset.optionalFoldsBound = "1";
+    storyReaderArticle.addEventListener("change", function (ev) {
+      var t = ev.target;
+      if (
+        !t ||
+        !t.classList ||
+        !t.classList.contains("story-optional-fold-checkbox")
+      ) {
+        return;
+      }
+      var id = t.getAttribute("data-fetish-id");
+      if (!id) return;
+      var hide = !!t.checked;
+      setFetishContentHidden(id, hide);
+      var section = t.closest(".story-optional-fold");
+      syncOptionalFoldSection(section, !hide);
+      syncSiteWideFetishCheckboxes(id, hide);
+    });
+  }
 
   /**
    * Resolves a `[[scene:identifier]]` identifier against `story.scenes`.
@@ -6942,6 +7282,7 @@
     if (!getAiImagesEnabled()) return "";
     var cfg = storyChapterShareConfig(story, chapterOneBased);
     if (!cfg || !cfg.cover) return "";
+    if (story && story.cover && cfg.cover === story.cover) return "";
     var alt = cfg.title || (story && story.title) || "Chapter cover";
     return (
       '<figure class="story-reader-scene story-reader-scene--cover">' +
@@ -7036,7 +7377,9 @@
       (gate && gate.passwordPrompt) ||
       "Enter the password to read this chapter.";
     var inputId = "story-chapter-lock-input-" + chapterOneBased;
-    var widths = [92, 100, 78, 96, 64, 88, 100, 71, 84, 97, 60, 90, 100, 73, 86, 55, 94, 68];
+    var widths = [
+      92, 100, 78, 96, 64, 88, 100, 71, 84, 97, 60, 90, 100, 73, 86, 55, 94, 68,
+    ];
     var veil = "";
     for (var i = 0; i < widths.length; i++) {
       veil += '<span style="width:' + widths[i] + '%"></span>';
@@ -7067,27 +7410,70 @@
     );
   }
 
+  function createStoryReaderChapterState() {
+    return {
+      chapterIndex: 0,
+      mainChapterCount: 0,
+      isSubchapter: createSubchapterTracker(),
+      skippingPasswordChapter: false,
+    };
+  }
+
   function storyMarkdownToSafeHtml(markdown, story, renderOpts) {
+    return storyMarkdownToSafeHtmlBlocks(markdown, story, renderOpts);
+  }
+
+  function storyMarkdownToSafeHtmlBlocks(
+    markdown,
+    story,
+    renderOpts,
+    chapterState,
+  ) {
+    if (!chapterState) chapterState = createStoryReaderChapterState();
     var honorPasswordChapters = !(
       renderOpts && renderOpts.ignorePasswordChapters
     );
-    // Isolate scene-only lines that lack a blank line before/after.
+    var expandOptional = !!(renderOpts && renderOpts.expandOptionalContent);
+    // Isolate scene / optional tag lines that lack a blank line before/after.
     var normalized = String(markdown || "")
       .replace(/^(\[\[\s*scene\s*:[^\]]+\]\])[ \t]*$/gim, "\n$1\n")
+      .replace(/^(\[\[\s*optional\s*:[^\]]+\]\])[ \t]*$/gim, "\n$1\n")
+      .replace(/^(\[\[\s*\/\s*optional\s*\]\])[ \t]*$/gim, "\n$1\n")
       .replace(/\n{3,}/g, "\n\n");
     var blocks = normalized.split(/\n\n+/);
+    return renderStoryMarkdownBlockList(
+      blocks,
+      story,
+      renderOpts,
+      chapterState,
+      honorPasswordChapters,
+      expandOptional,
+    );
+  }
+
+  function renderStoryMarkdownBlockList(
+    blocks,
+    story,
+    renderOpts,
+    chapterState,
+    honorPasswordChapters,
+    expandOptional,
+  ) {
     var html = [];
-    var chapterIndex = 0;
-    var skippingPasswordChapter = false;
-    var isSubchapter = createSubchapterTracker();
-    var mainChapterCount = 0;
-    function chapterHeading(level, trimmed, suppressCover, isSub, mainChapterOneBased) {
+    var isSubchapter = chapterState.isSubchapter;
+    function chapterHeading(
+      level,
+      trimmed,
+      suppressCover,
+      isSub,
+      mainChapterOneBased,
+    ) {
       var tag = level === 2 ? "h2" : "h3";
       var inner = hasPreservedInlineHtml(trimmed)
         ? formatBodyInline(trimmed)
         : readerFormatEscapedInline(escapeHtml(trimmed));
-      var oneBased = chapterIndex + 1;
-      var id = "story-ch-" + chapterIndex++;
+      var oneBased = chapterState.chapterIndex + 1;
+      var id = "story-ch-" + chapterState.chapterIndex++;
       var subClass = isSub ? " story-reader-chapter--sub" : "";
       var mainAttr =
         !isSub && mainChapterOneBased
@@ -7108,20 +7494,64 @@
         "</" +
         tag +
         ">" +
-        (suppressCover ? "" : readerChapterCoverHtml(story, oneBased))
+        (suppressCover || isSub || !mainChapterOneBased
+          ? ""
+          : readerChapterCoverHtml(story, mainChapterOneBased))
       );
     }
     var b;
     for (b = 0; b < blocks.length; b++) {
       var block = blocks[b].trim();
       if (!block) continue;
+      var optionalOpen = block.match(OPTIONAL_OPEN_LINE_RE);
+      if (optionalOpen) {
+        var foldId = optionalOpen[1].trim();
+        var foldSummary = (optionalOpen[2] || "").trim();
+        var bodyBlocks = [];
+        var closeFound = false;
+        var j;
+        for (j = b + 1; j < blocks.length; j++) {
+          if (OPTIONAL_CLOSE_LINE_RE.test(blocks[j].trim())) {
+            closeFound = true;
+            b = j;
+            break;
+          }
+          bodyBlocks.push(blocks[j]);
+        }
+        if (!closeFound) {
+          b = blocks.length - 1;
+        }
+        var expanded = expandOptional || !getFetishContentHidden(foldId);
+        var meta = fetishContentPrefMeta(foldId);
+        var bodyHtml = renderStoryMarkdownBlockList(
+          bodyBlocks,
+          story,
+          renderOpts,
+          chapterState,
+          honorPasswordChapters,
+          expandOptional,
+        );
+        html.push(
+          optionalContentSectionHtml(
+            foldId,
+            foldSummary,
+            bodyHtml,
+            expanded,
+            meta,
+          ),
+        );
+        continue;
+      }
+      if (OPTIONAL_CLOSE_LINE_RE.test(block)) {
+        continue;
+      }
       var parsedHeading = parseStoryHeadingBlock(block);
       if (parsedHeading) {
         var level = parsedHeading.level;
         var title = parsedHeading.title;
         var sub = isSubchapter(parsedHeading);
-        if (!sub) mainChapterCount++;
-        var oneBased = chapterIndex + 1;
+        if (!sub) chapterState.mainChapterCount++;
+        var oneBased = chapterState.chapterIndex + 1;
         var gate = honorPasswordChapters
           ? storyPasswordChapterGate(story, oneBased)
           : null;
@@ -7134,26 +7564,30 @@
             title,
             !!(gate && !cached),
             sub,
-            mainChapterCount,
+            chapterState.mainChapterCount,
           ),
         );
         if (gate && cached) {
-          html.push(readerChapterCoverHtml(story, oneBased));
+          if (!sub && chapterState.mainChapterCount) {
+            html.push(
+              readerChapterCoverHtml(story, chapterState.mainChapterCount),
+            );
+          }
           html.push(
             storyMarkdownToSafeHtml(cached, story, {
               ignorePasswordChapters: true,
             }),
           );
-          skippingPasswordChapter = true;
+          chapterState.skippingPasswordChapter = true;
         } else if (gate) {
           html.push(storyChapterLockHtml(gate, oneBased));
-          skippingPasswordChapter = true;
+          chapterState.skippingPasswordChapter = true;
         } else {
-          skippingPasswordChapter = false;
+          chapterState.skippingPasswordChapter = false;
         }
         continue;
       }
-      if (skippingPasswordChapter) continue;
+      if (chapterState.skippingPasswordChapter) continue;
       var sceneMatch = block.match(SCENE_TAG_BLOCK_RE);
       if (sceneMatch) {
         if (getAiImagesEnabled() && isStoryScenesVisibleOnSite(story)) {
@@ -7322,8 +7756,9 @@
       if (on) {
         readerChapterBtns[i].setAttribute("aria-current", "location");
         if (storyReaderChaptersToggleTitle) {
-          storyReaderChaptersToggleTitle.textContent =
-            readerChapterButtonTitle(readerChapterBtns[i]);
+          storyReaderChaptersToggleTitle.textContent = readerChapterButtonTitle(
+            readerChapterBtns[i],
+          );
         }
       } else {
         readerChapterBtns[i].removeAttribute("aria-current");
@@ -7679,7 +8114,8 @@
             .then(function (text) {
               if (!readerStory || readerStory.id !== story.id) return;
               if (!section || !section.parentNode) return;
-              unlockedChapterMarkdown[unlockedChapterKey(story, chapter)] = text;
+              unlockedChapterMarkdown[unlockedChapterKey(story, chapter)] =
+                text;
               var wrap = document.createElement("div");
               wrap.className = "story-chapter-unlocked";
               wrap.innerHTML =
@@ -7796,6 +8232,40 @@
     storyReaderStatus.textContent = "Loading…";
 
     if (storyPasswordProtected(story)) {
+      var localMdUrl = storyLocalDevPlaintextUrl(story);
+      if (localMdUrl) {
+        var localUrl = localMdUrl;
+        fetch(localUrl, {
+          signal: readerAbort.signal,
+          credentials: "omit",
+        })
+          .then(function (res) {
+            if (!res.ok) throw new Error("HTTP " + res.status);
+            return res.text();
+          })
+          .then(function (text) {
+            if (!readerStory || readerStory.id !== story.id) return;
+            storyReaderStatus.hidden = true;
+            renderStoryReaderMarkdown(story, text);
+          })
+          .catch(function (err) {
+            if (err.name === "AbortError") return;
+            if (!readerStory || readerStory.id !== story.id) return;
+            storyReaderStatus.hidden = true;
+            storyReaderArticle.innerHTML = "";
+            teardownStoryReaderChapters();
+            storyReaderError.hidden = false;
+            storyReaderErrorMsg.textContent =
+              "Local plaintext missing. Run npm run sync (and dist sync scripts for gated full novels), then refresh.";
+          });
+        return;
+      }
+      var cachedPwdMd = getPasswordStoryCachedMarkdown(story);
+      if (cachedPwdMd) {
+        storyReaderStatus.hidden = true;
+        renderStoryReaderMarkdown(story, cachedPwdMd);
+        return;
+      }
       storyReaderStatus.hidden = true;
       storyReaderArticle.innerHTML = storyReaderUnlockFormHtml(story);
       bindStoryReaderUnlockForm(story);
@@ -7804,30 +8274,7 @@
       return;
     }
 
-    var mdUrl = storyReaderMarkdownUrl(story);
-    fetch(mdUrl, {
-      signal: readerAbort.signal,
-      credentials: "omit",
-    })
-      .then(function (res) {
-        if (!res.ok) throw new Error("HTTP " + res.status);
-        return res.text();
-      })
-      .then(function (text) {
-        if (!readerStory || readerStory.id !== story.id) return;
-        storyReaderStatus.hidden = true;
-        renderStoryReaderMarkdown(story, text);
-      })
-      .catch(function (err) {
-        if (err.name === "AbortError") return;
-        if (!readerStory || readerStory.id !== story.id) return;
-        storyReaderStatus.hidden = true;
-        storyReaderArticle.innerHTML = "";
-        teardownStoryReaderChapters();
-        storyReaderError.hidden = false;
-        storyReaderErrorMsg.textContent =
-          "Could not load the story text. Tap Try again.";
-      });
+    fetchStoryReaderMarkdown(story, readerAbort.signal);
   }
 
   function flyoutCharactersSection(chars) {
@@ -8268,13 +8715,15 @@
           storyReaderEl.classList.contains("open") &&
           readerStory &&
           String(readerStory.id) === String(storyRead.id);
-        if (
-          readerOpen &&
-          !storyPasswordProtected(storyRead) &&
-          readerChapterHeads.length
-        ) {
-          scrollStoryReaderToChapter(state.chapter, "smooth");
-          return;
+        if (readerOpen && readerChapterHeads.length) {
+          var canScroll = !isReaderPasswordGateEnforced(storyRead);
+          if (!canScroll && getPasswordStoryCachedMarkdown(storyRead)) {
+            canScroll = true;
+          }
+          if (canScroll) {
+            scrollStoryReaderToChapter(state.chapter, "smooth");
+            return;
+          }
         }
         openStoryReader(storyRead, state.chapter);
       } else {
@@ -8551,6 +9000,7 @@
     initCharactersGrid();
     initStoryFilters();
     bindAiImagesToggle();
+    bindFetishContentPrefsUi();
     renderStoriesGrid();
     initSceneLightbox();
     bindStoryGridClick();
