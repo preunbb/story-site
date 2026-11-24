@@ -24,5 +24,6 @@ assets/captions/**/final_raw.*
 # Unserved root images (not referenced by the live site).
 logo.png
 
-# Forum scraper output (local only).
+# Scratch forum dumps at repo root (use tools/forum-archives/ for committed bundles).
 archive/
+kitg.zip

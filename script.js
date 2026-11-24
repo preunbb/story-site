@@ -1314,6 +1314,8 @@
 
   function storyIsReadable(story) {
     if (!story) return false;
+    // Beta / purchase ciphertext: reader always (password on prod, plaintext on localhost).
+    if (storyPasswordProtected(story)) return true;
     var st = normalizeStoryState(story);
     if (st !== 1) return true;
     if (storyHasPreviewRead(story)) return true;
@@ -1465,6 +1467,13 @@
 
   function storyTextListReadLabel(story) {
     if (storyHasPreviewRead(story)) return "Read preview";
+    if (
+      storyPasswordProtected(story) &&
+      normalizeStoryState(story) === 1 &&
+      !isLocalDevHost()
+    ) {
+      return "Read beta";
+    }
     return "Read";
   }
 
