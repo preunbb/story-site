@@ -90,5 +90,6 @@ Prefer tight, visceral framing:
 
 ## Related skills
 
+- Male groin-pain faces (FACS prompt block) → `male-ballpain-expression`
 - Prose consistency → `story-structural-review`
 - Caption/story typos → `story-copy-edit`

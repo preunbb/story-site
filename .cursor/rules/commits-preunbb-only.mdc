@@ -23,4 +23,4 @@ If wrong, stop and tell the user to set **repo-local** `user.name` / `user.email
 
 Do not bypass hooks (`--no-verify`) unless the user explicitly asks.
 
-Same rule applies to **`~/code/forum-archives`** when working on forum scrapers/archives.
+Same rule applies to **`~/code/ballbusting-story-archive`** when working on forum scrapers/archives.
