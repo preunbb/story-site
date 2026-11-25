@@ -534,13 +534,13 @@ window.DATA_CONNECTIONS = [
     from: "genovia",
     to: "sean_witches",
     storyId: 27,
-    kinds: ["left", "right"],
+    kinds: ["family", "blueballs"],
   },
   {
     from: "sylvana",
     to: "sean_witches",
     storyId: 27,
-    kinds: ["pain"],
+    kinds: ["family", "left", "right"],
   },
   {
     from: "kaitlin",

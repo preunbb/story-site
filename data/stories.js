@@ -1942,7 +1942,7 @@ window.DATA_STORIES = [
   },
   {
     id: 60,
-    wordCount: 18731,
+    wordCount: 18739,
     title: "Mother Knows Best",
     brutalityRating: 4,
     access: "password",

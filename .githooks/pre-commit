@@ -24,8 +24,13 @@ else
   node scripts/generate-story-share-pages.mjs
 fi
 
+if [[ "${SKIP_STORY_SYNC:-}" != "1" ]]; then
+  echo "[pre-commit] indexing optional content tags"
+  node scripts/index-optional-content.mjs
+fi
+
 # Include generated outputs in this commit when they changed.
-git add -- assets/stories data/stories.js share
+git add -- assets/stories data/stories.js data/optional-content-index.js share
 
 echo "[pre-commit] done"
 exit 0

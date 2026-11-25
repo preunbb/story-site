@@ -171,18 +171,76 @@
 
   var FETISH_CONTENT_STORAGE_PREFIX = "fetishContent:";
 
-  function fetishContentPrefList() {
+  function fetishContentPrefRegistry() {
     var list = window.FETISH_CONTENT_PREFS;
     return Array.isArray(list) ? list : [];
   }
 
-  function fetishContentPrefMeta(id) {
-    var list = fetishContentPrefList();
+  function fetishContentIndexRows() {
+    var list = window.OPTIONAL_CONTENT_INDEX;
+    return Array.isArray(list) ? list : [];
+  }
+
+  /** Canonical prefs + every optional id discovered in synced manuscripts. */
+  function fetishContentPrefList() {
+    var out = [];
+    var seen = {};
+    var registry = fetishContentPrefRegistry();
+    var indexById = {};
+    var index = fetishContentIndexRows();
     var i;
-    for (i = 0; i < list.length; i++) {
-      if (list[i] && list[i].id === id) return list[i];
+    for (i = 0; i < index.length; i++) {
+      if (index[i] && index[i].id) indexById[index[i].id] = index[i];
     }
-    return null;
+    for (i = 0; i < registry.length; i++) {
+      var pref = registry[i];
+      if (!pref || !pref.id || seen[pref.id]) continue;
+      seen[pref.id] = true;
+      var idxRow = indexById[pref.id];
+      out.push({
+        id: pref.id,
+        label: pref.label || pref.id,
+        summary: pref.summary || (idxRow && idxRow.summary) || "",
+        storyIds: (idxRow && idxRow.storyIds) || [],
+      });
+    }
+    for (i = 0; i < index.length; i++) {
+      var row = index[i];
+      if (!row || !row.id || seen[row.id]) continue;
+      if (isLegacyCompoundOptionalId(row.id)) continue;
+      seen[row.id] = true;
+      out.push({
+        id: row.id,
+        label: row.id,
+        summary: row.summary || "",
+        storyIds: row.storyIds || [],
+      });
+    }
+    out.sort(function (a, b) {
+      var la = String((a && a.label) || a.id || "");
+      var lb = String((b && b.label) || b.id || "");
+      return la.localeCompare(lb, undefined, { sensitivity: "base" });
+    });
+    return out;
+  }
+
+  function fetishContentPrefMeta(id) {
+    var registry = fetishContentPrefRegistry();
+    var i;
+    for (i = 0; i < registry.length; i++) {
+      if (registry[i] && registry[i].id === id) return registry[i];
+    }
+    var index = fetishContentIndexRows();
+    for (i = 0; i < index.length; i++) {
+      if (index[i] && index[i].id === id) {
+        return {
+          id: index[i].id,
+          label: index[i].id,
+          summary: index[i].summary || "",
+        };
+      }
+    }
+    return id ? { id: id, label: id, summary: "" } : null;
   }
 
   /** User chose to hide this fetish block (summary only). Default: show full text. */
@@ -201,17 +259,73 @@
     } catch (e) {}
   }
 
-  function fetishContentDisplayName(id, meta) {
-    var name = (meta && meta.label) || id || "this content";
-    return String(name).toLowerCase();
+  function fetishContentShortLabel(id) {
+    var meta = fetishContentPrefMeta(id);
+    if (meta && meta.label) return String(meta.label);
+    return String(id || "").toLowerCase();
   }
 
-  function fetishContentQuestionText(id, meta) {
-    return (
-      "Check this box to hide " +
-      fetishContentDisplayName(id, meta) +
-      " content"
-    );
+  function fetishContentReaderHideLabel(id) {
+    return "Hide " + fetishContentShortLabel(id) + " content";
+  }
+
+  var OPTIONAL_LEGACY_COMPOUND_IDS = {
+    "prostate massage and femboy castration": [
+      "prostate massage",
+      "femboy castration",
+    ],
+  };
+
+  /** Comma-separated fetish ids in [[optional:…]] (one block may list several). */
+  function parseOptionalFetishIds(raw) {
+    var parts = String(raw || "")
+      .split(",")
+      .map(function (s) {
+        return s.trim();
+      })
+      .filter(Boolean);
+    var out = [];
+    var seen = {};
+    var i;
+    for (i = 0; i < parts.length; i++) {
+      var key = parts[i].toLowerCase();
+      var mapped = OPTIONAL_LEGACY_COMPOUND_IDS[key];
+      var j;
+      var add = mapped || [parts[i]];
+      for (j = 0; j < add.length; j++) {
+        if (!seen[add[j]]) {
+          seen[add[j]] = true;
+          out.push(add[j]);
+        }
+      }
+    }
+    return out;
+  }
+
+  function isLegacyCompoundOptionalId(id) {
+    return !!OPTIONAL_LEGACY_COMPOUND_IDS[String(id || "").toLowerCase()];
+  }
+
+  function optionalFetishIdsAttr(foldIds) {
+    return foldIds.join("|");
+  }
+
+  function optionalFetishIdsFromAttr(attr) {
+    if (!attr) return [];
+    return String(attr)
+      .split("|")
+      .map(function (s) {
+        return s.trim();
+      })
+      .filter(Boolean);
+  }
+
+  function optionalFoldHiddenByPrefs(foldIds) {
+    var i;
+    for (i = 0; i < foldIds.length; i++) {
+      if (getFetishContentHidden(foldIds[i])) return true;
+    }
+    return false;
   }
 
   function refreshFetishContentDependentUi() {
@@ -244,11 +358,22 @@
           (hidden ? " checked" : "") +
           " />" +
           '<span class="fetish-content-pref-label">' +
-          escapeHtml(fetishContentQuestionText(pref.id, pref)) +
+          escapeHtml(fetishContentShortLabel(pref.id)) +
           "</span></label>",
       );
     }
     host.innerHTML = html.join("");
+  }
+
+  function syncReaderOptionalFoldCheckboxes(id, hide) {
+    var inReader = document.querySelectorAll(
+      '.story-optional-fold-checkbox[data-fetish-id="' + id + '"]',
+    );
+    var i;
+    for (i = 0; i < inReader.length; i++) {
+      inReader[i].checked = hide;
+    }
+    applyAllOptionalFoldsFromPrefs();
   }
 
   function syncSiteWideFetishCheckboxes(id, on) {
@@ -259,12 +384,7 @@
     for (i = 0; i < inputs.length; i++) {
       inputs[i].checked = on;
     }
-    var inReader = document.querySelectorAll(
-      '.story-optional-fold-checkbox[data-fetish-id="' + id + '"]',
-    );
-    for (i = 0; i < inReader.length; i++) {
-      inReader[i].checked = on;
-    }
+    syncReaderOptionalFoldCheckboxes(id, on);
   }
 
   function bindFetishContentPrefsUi() {
@@ -7135,52 +7255,87 @@
   var OPTIONAL_OPEN_LINE_RE =
     /^\[\[\s*optional\s*:\s*([^\]|]+)(?:\|(.*))?\s*\]\]$/i;
   var OPTIONAL_CLOSE_LINE_RE = /^\[\[\s*\/\s*optional\s*\]\]$/i;
-  var OPTIONAL_FOLD_SUMMARY_SUFFIX =
-    "Check the box above for the full scene.";
+  var OPTIONAL_FOLD_REVEAL_HINT_ONE =
+    "Uncheck the box above for the full scene.";
+  var OPTIONAL_FOLD_REVEAL_HINT_MANY =
+    "Uncheck the boxes above for the full scene.";
 
-  function optionalFoldSummaryForDisplay(pipeSummary, meta) {
+  var OPTIONAL_FOLD_REVEAL_HINT_STRIP_RE =
+    /\s*(?:check|uncheck) the boxes? above for the full scene\.?\s*$/i;
+
+  function optionalFoldRevealHint(foldIds) {
+    if (foldIds && foldIds.length > 1) {
+      return OPTIONAL_FOLD_REVEAL_HINT_MANY;
+    }
+    return OPTIONAL_FOLD_REVEAL_HINT_ONE;
+  }
+
+  function optionalFoldSummaryBodyText(pipeSummary, meta) {
     var text = String(
       pipeSummary || (meta && meta.summary) || "",
     ).trim();
-    var suffix = OPTIONAL_FOLD_SUMMARY_SUFFIX;
-    if (text.toLowerCase().indexOf(suffix.toLowerCase()) !== -1) {
-      return text;
-    }
-    if (!text) return suffix;
-    return text + " " + suffix;
+    text = text.replace(OPTIONAL_FOLD_REVEAL_HINT_STRIP_RE, "").trim();
+    return text;
   }
 
-  function optionalContentSectionHtml(id, summary, bodyHtml, expanded, meta) {
-    var question = escapeHtml(fetishContentQuestionText(id, meta));
-    var displaySummary = optionalFoldSummaryForDisplay(summary, meta);
+  function optionalFoldCheckboxRowHtml(foldIds) {
+    var parts = [];
+    var fi;
+    for (fi = 0; fi < foldIds.length; fi++) {
+      var fid = foldIds[fi];
+      var hidden = getFetishContentHidden(fid);
+      parts.push(
+        '<label class="story-optional-fold-label">' +
+          '<input type="checkbox" class="story-optional-fold-checkbox" data-fetish-id="' +
+          escapeHtml(fid) +
+          '"' +
+          (hidden ? " checked" : "") +
+          " />" +
+          "<span>" +
+          escapeHtml(fetishContentReaderHideLabel(fid)) +
+          "</span></label>",
+      );
+    }
+    return parts.join("");
+  }
+
+  function optionalContentSectionHtml(
+    foldIds,
+    summary,
+    bodyHtml,
+    expanded,
+    meta,
+  ) {
+    var summaryBody = optionalFoldSummaryBodyText(summary, meta);
+    var revealHint = optionalFoldRevealHint(foldIds);
+    var summaryPara = summaryBody
+      ? "<p class=\"story-optional-fold-summary\">" +
+        formatBodyInline(summaryBody) +
+        "</p>"
+      : "";
     var summaryHtml =
       '<div class="story-optional-fold-summary-wrap' +
       (expanded ? " is-hidden" : "") +
       '">' +
       '<h4 class="story-optional-fold-summary-title">Hidden content summary</h4>' +
-      "<p>" +
-      formatBodyInline(displaySummary) +
+      summaryPara +
+      '<p class="story-optional-fold-reveal-hint">' +
+      escapeHtml(revealHint) +
       "</p></div>";
+    var idAttr = escapeHtml(optionalFetishIdsAttr(foldIds));
+    var bar = optionalFoldCheckboxRowHtml(foldIds);
     return (
       '<section class="story-optional-fold' +
       (expanded
         ? " story-optional-fold--expanded"
         : " story-optional-fold--collapsed") +
-      '" data-fetish-id="' +
-      escapeHtml(id) +
+      '" data-fetish-ids="' +
+      idAttr +
       '" data-expanded="' +
       (expanded ? "true" : "false") +
       '">' +
       '<div class="story-optional-fold-bar" role="group">' +
-      '<label class="story-optional-fold-label">' +
-      '<input type="checkbox" class="story-optional-fold-checkbox" data-fetish-id="' +
-      escapeHtml(id) +
-      '"' +
-      (expanded ? "" : " checked") +
-      " />" +
-      "<span>" +
-      question +
-      "</span></label>" +
+      bar +
       "</div>" +
       summaryHtml +
       '<div class="story-optional-fold-body' +
@@ -7191,15 +7346,7 @@
       '<div class="story-optional-fold-bar story-optional-fold-bar--tail' +
       (expanded ? "" : " is-hidden") +
       '" role="group">' +
-      '<label class="story-optional-fold-label">' +
-      '<input type="checkbox" class="story-optional-fold-checkbox" data-fetish-id="' +
-      escapeHtml(id) +
-      '"' +
-      (expanded ? "" : " checked") +
-      " />" +
-      "<span>" +
-      question +
-      "</span></label>" +
+      bar +
       "</div></section>"
     );
   }
@@ -7212,14 +7359,24 @@
     var body = section.querySelector(".story-optional-fold-body");
     var summary = section.querySelector(".story-optional-fold-summary-wrap");
     var tail = section.querySelector(".story-optional-fold-bar--tail");
-    var cbs = section.querySelectorAll(".story-optional-fold-checkbox");
-    var i;
-    for (i = 0; i < cbs.length; i++) {
-      cbs[i].checked = !expanded;
-    }
     if (summary) summary.classList.toggle("is-hidden", expanded);
     if (body) body.classList.toggle("is-hidden", !expanded);
     if (tail) tail.classList.toggle("is-hidden", !expanded);
+    var foldIds = optionalFetishIdsFromAttr(
+      section.getAttribute("data-fetish-ids") ||
+        section.getAttribute("data-fetish-id"),
+    );
+    var cbs = section.querySelectorAll(".story-optional-fold-checkbox");
+    var i;
+    for (i = 0; i < cbs.length; i++) {
+      var cbId = cbs[i].getAttribute("data-fetish-id");
+      if (cbId) cbs[i].checked = getFetishContentHidden(cbId);
+    }
+    if (!foldIds.length && cbs.length) {
+      for (i = 0; i < cbs.length; i++) {
+        cbs[i].checked = !expanded;
+      }
+    }
   }
 
   function applyAllOptionalFoldsFromPrefs() {
@@ -7227,10 +7384,15 @@
     var sections = storyReaderArticle.querySelectorAll(".story-optional-fold");
     var i;
     for (i = 0; i < sections.length; i++) {
-      var id = sections[i].getAttribute("data-fetish-id");
-      if (id) {
-        syncOptionalFoldSection(sections[i], !getFetishContentHidden(id));
-      }
+      var foldIds = optionalFetishIdsFromAttr(
+        sections[i].getAttribute("data-fetish-ids") ||
+          sections[i].getAttribute("data-fetish-id"),
+      );
+      if (!foldIds.length) continue;
+      syncOptionalFoldSection(
+        sections[i],
+        !optionalFoldHiddenByPrefs(foldIds),
+      );
     }
   }
 
@@ -7252,9 +7414,8 @@
       if (!id) return;
       var hide = !!t.checked;
       setFetishContentHidden(id, hide);
-      var section = t.closest(".story-optional-fold");
-      syncOptionalFoldSection(section, !hide);
       syncSiteWideFetishCheckboxes(id, hide);
+      applyAllOptionalFoldsFromPrefs();
     });
   }
 
@@ -7514,7 +7675,7 @@
       if (!block) continue;
       var optionalOpen = block.match(OPTIONAL_OPEN_LINE_RE);
       if (optionalOpen) {
-        var foldId = optionalOpen[1].trim();
+        var foldIds = parseOptionalFetishIds(optionalOpen[1]);
         var foldSummary = (optionalOpen[2] || "").trim();
         var bodyBlocks = [];
         var closeFound = false;
@@ -7530,8 +7691,12 @@
         if (!closeFound) {
           b = blocks.length - 1;
         }
-        var expanded = expandOptional || !getFetishContentHidden(foldId);
-        var meta = fetishContentPrefMeta(foldId);
+        if (!foldIds.length) {
+          continue;
+        }
+        var expanded =
+          expandOptional || !optionalFoldHiddenByPrefs(foldIds);
+        var meta = fetishContentPrefMeta(foldIds[0]);
         var bodyHtml = renderStoryMarkdownBlockList(
           bodyBlocks,
           story,
@@ -7542,7 +7707,7 @@
         );
         html.push(
           optionalContentSectionHtml(
-            foldId,
+            foldIds,
             foldSummary,
             bodyHtml,
             expanded,

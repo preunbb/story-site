@@ -610,19 +610,19 @@ window.DATA_INFOPANEL = {
   genovia: [
     {
       storyId: 27,
-      text: "Psychically ruptures [[char:sean_witches]]'s testicles in [[story:27]].",
+      text: "[[char:sean_witches]]'s stepmom. Blocks his orgasms and keeps him blue-balled through her witchcraft in [[story:27]].",
     },
   ],
   sylvana: [
     {
       storyId: 27,
-      text: "Knees [[char:sean_witches]]'s blue-balled testicles in [[story:27]].",
+      text: "[[char:sean_witches]]'s stepsister. Ruptures both testicles during her physical assault in [[story:27]].",
     },
   ],
   sean_witches: [
     {
       storyId: 27,
-      text: "Testicles psychically ruptured by [[char:genovia]]. Blue-balled testicles kneed by [[char:sylvana]] in [[story:27]].",
+      text: "[[char:genovia]] blocks his orgasms while [[char:sylvana]] tries to trigger them in [[story:27]].",
     },
   ],
   steven: [
@@ -856,7 +856,7 @@ window.DATA_INFOPANEL = {
   sunni: [
     {
       storyId: 47,
-      text: "Kicked extremely hard in the testicles by [[char:andrea]] at his first [[char:cherry_pop|]] concert in [[story:47]]. Although she doesn't rupture them, he unfortunately has the terrible luck to be treated by [[char:yvette]].",
+      text: "Kicked extremely hard in the testicles by [[char:andrea]] at his first [[char:cherry_pop|Cherry Pop!]] concert in [[story:47]]. Although she doesn't rupture them, he unfortunately has the terrible luck to be treated by [[char:yvette]].",
     },
   ],
   felix: [

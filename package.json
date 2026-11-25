@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "start": "python3 scripts/serve.py",
-    "sync": "node scripts/sync-stories.mjs && node scripts/generate-story-share-pages.mjs",
+    "sync": "node scripts/sync-stories.mjs && node scripts/index-optional-content.mjs && node scripts/generate-story-share-pages.mjs",
     "sync:andrea-complete": "node scripts/sync-andrea-lucas-complete-to-dist.mjs",
     "encrypt:andrea-lucas": "node scripts/encrypt-andrea-lucas.mjs",
     "sync:andrea-part2-preview": "node scripts/sync-andrea-part2-preview-md.mjs",
